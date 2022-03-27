@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CPN_Movement : RVN_Component
+public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 {
 	[SerializeField] private float speed = 1;
 	[SerializeField] private int maxDistance = 100;
@@ -14,6 +15,8 @@ public class CPN_Movement : RVN_Component
 	[SerializeField] private UnityEvent OnStopMovement;
 	[SerializeField] private UnityEvent OnEndMovement;
 
+	private Action OnEndMovementAction;
+
 	Node[] path;
 	int targetIndex;
 
@@ -23,6 +26,8 @@ public class CPN_Movement : RVN_Component
 	private Node currentNode = null;
 
 	private Coroutine currentMovement;
+
+	private int currentMovementLeft;
 
 	void Start()
 	{
@@ -41,21 +46,27 @@ public class CPN_Movement : RVN_Component
 			}
 			currentMovement = StartCoroutine(FollowPath());
 		}
+        else
+        {
+			OnEndMovementAction?.Invoke();
+		}
 	}
 
 	public List<Node> GetPossibleMovementTarget()
     {
-		return Pathfinding.GetNodesWithMaxDistance(currentNode, maxDistance, true);
+		return Pathfinding.GetNodesWithMaxDistance(currentNode, currentMovementLeft, true);
     }
 
 	public void AskToMoveTest(Transform targetTest)
     {
-		AskToMoveTo(targetTest.position);
+		AskToMoveTo(targetTest.position, null);
     }
 
-	public void AskToMoveTo(Vector2 targetPosition)
+	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		PathRequestManager.RequestPath(transform.position, targetPosition, maxDistance, OnPathFound);
+		OnEndMovementAction += callback;
+
+		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
 	public void StopMovement()
@@ -83,6 +94,8 @@ public class CPN_Movement : RVN_Component
 
 				currentNode = currentWaypoint;
 
+				currentMovementLeft -= currentNode.gCost;
+
 				OnEnterNode?.Invoke(currentWaypoint);
 			}
 
@@ -92,6 +105,8 @@ public class CPN_Movement : RVN_Component
 				if (targetIndex >= path.Length)
 				{
 					OnEndMovement?.Invoke();
+
+					OnEndMovementAction?.Invoke();
 
 					transform.position = currentWaypoint.worldPosition;
 
@@ -126,4 +141,31 @@ public class CPN_Movement : RVN_Component
 			}
 		}
 	}
+
+    public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
+    {
+		AskToMoveTo(actionTargetPosition, callback);
+    }
+
+    public override void DisplayAction(Vector2 actionTargetPosition)
+    {
+		Debug.Log("Display possible movement");
+    }
+
+	public override void ResetActionData()
+	{
+		currentMovementLeft = maxDistance;
+	}
+
+    public override void SetData(CPN_Data_Movement toSet)
+    {
+		speed = toSet.Speed();
+
+		maxDistance = toSet.MaxDistance();
+    }
+
+    public override bool IsActionUsable(Vector2 actionTargetPosition)
+    {
+		return currentMovementLeft >= 10;
+    }
 }

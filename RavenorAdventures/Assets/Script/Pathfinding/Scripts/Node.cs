@@ -75,7 +75,11 @@ public class Node : IHeapItem<Node> {
 	{
 		if (!datasOnNode.Contains(toAdd))
 		{
-			Debug.Log("Add" + worldPosition);
+			for(int i = 0; i < datasOnNode.Count; i++)
+            {
+				datasOnNode[i].OnDataEnterCurrentNode(toAdd);
+			}
+
 			datasOnNode.Add(toAdd);
 		}
 	}
@@ -84,8 +88,12 @@ public class Node : IHeapItem<Node> {
     {
 		if (datasOnNode.Contains(toRemove))
 		{
-			Debug.Log("Remove" + worldPosition);
 			datasOnNode.Remove(toRemove);
+
+			for (int i = 0; i < datasOnNode.Count; i++)
+			{
+				datasOnNode[i].OnDataExitCurrentNode(toRemove);
+			}
 		}
 	}
 
