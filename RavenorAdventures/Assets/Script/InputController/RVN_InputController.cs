@@ -10,7 +10,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     [SerializeField] private Camera usedCamera;
 
-    public Vector2 MousePosition => usedCamera.ScreenToWorldPoint(Input.mousePosition);
+    public static Vector2 MousePosition => instance.usedCamera.ScreenToWorldPoint(Input.mousePosition);
 
     // Update is called once per frame
     void Update()

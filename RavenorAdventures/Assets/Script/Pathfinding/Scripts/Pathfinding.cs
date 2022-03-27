@@ -159,7 +159,7 @@ public class Pathfinding : MonoBehaviour
 
 		while (currentNode != startNode)
 		{
-			if(currentNode.parent == null)
+			if (currentNode.parent == null)
             {
 				path = new List<Node>();
 				break;

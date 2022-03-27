@@ -27,7 +27,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private Coroutine currentMovement;
 
-	private int currentMovementLeft;
+	[SerializeField] private int currentMovementLeft;
 
 	void Start()
 	{
@@ -75,6 +75,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
+		currentMovementLeft -= currentNode.gCost;
+
 		OnStopMovement?.Invoke();
 	}
 
@@ -94,8 +96,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 				currentNode = currentWaypoint;
 
-				currentMovementLeft -= currentNode.gCost;
-
 				OnEnterNode?.Invoke(currentWaypoint);
 			}
 
@@ -104,6 +104,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				targetIndex++;
 				if (targetIndex >= path.Length)
 				{
+					currentMovementLeft -= currentNode.gCost;
+
 					OnEndMovement?.Invoke();
 
 					OnEndMovementAction?.Invoke();

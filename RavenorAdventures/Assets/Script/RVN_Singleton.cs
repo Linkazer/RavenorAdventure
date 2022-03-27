@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RVN_Singleton<T> : MonoBehaviour where T : RVN_Singleton<T>
 {
-    private T instance;
+    protected static T instance = null;
 
     private void Awake()
     {
