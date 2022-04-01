@@ -97,6 +97,20 @@ public class Node : IHeapItem<Node> {
 		}
 	}
 
+	public List<T> GetNodeComponent<T>() where T : RVN_Component
+    {
+		List<T> toReturn = new List<T>();
+
+		for (int i = 0; i < datasOnNode.Count; i++)
+		{
+			if (datasOnNode[i].Handler != null && datasOnNode[i].Handler.GetComponentOfType<T>(out T foundComponent))
+			{
+				toReturn.Add(foundComponent);
+			}
+		}
+		return new List<T>(toReturn);
+	}
+
 	public int fCost {
 		get {
 			return gCost + hCost;

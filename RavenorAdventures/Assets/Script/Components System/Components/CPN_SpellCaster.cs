@@ -31,7 +31,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     {
         if(currentSelectedSpell >= 0)
         {
-            RVN_SpellManager.UseSpell(spells[currentSelectedSpell].GetSpellData(), Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
+            RVN_SpellManager.UseSpell(spells[currentSelectedSpell].GetSpellData().GetCopy(), Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
 
             hasUsedSpell = true;
         }

@@ -31,7 +31,7 @@ public abstract class RVN_SpellBehavior : MonoBehaviour
     /// Renvoie le type de SpellData utilisé par le SpellBehavior.
     /// </summary>
     /// <returns></returns>
-    public abstract Type GetSpellDataType(); 
+    public abstract Type GetSpellDataType();
 }
 
 public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellData

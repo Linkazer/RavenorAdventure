@@ -18,6 +18,8 @@ public class NodeDataHanlder : MonoBehaviour
 
     private Node currentNode = null;
 
+    public RVN_ComponentHandler Handler => componentsHandler;
+
     public bool Walkable => walkable;
 
     public bool BlockVision => blockVision;

@@ -17,7 +17,6 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     {
         if (spellToCheck != null)
         {
-
             RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToCheck);
 
             if (behaviorUsed != null)

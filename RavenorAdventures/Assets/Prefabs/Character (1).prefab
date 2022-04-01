@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockVision: 0
   walkable: 0
-  componentsHandler: {fileID: 0}
+  componentsHandler: {fileID: 5140952349797873623}
   OnEnterNode:
     m_PersistentCalls:
       m_Calls: []
@@ -157,6 +157,7 @@ MonoBehaviour:
   OnEndMovement:
     m_PersistentCalls:
       m_Calls: []
+  currentMovementLeft: 0
 --- !u!114 &5140952349797873623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spells:
-  - {fileID: 11400000, guid: b81d5b9083ed3aa47a9bc4e1d9b31422, type: 2}
-  - {fileID: 11400000, guid: 098a5a43d35a8264a9bc90eb18c3c9bb, type: 2}
+  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
 --- !u!61 &5140952349797873621
 BoxCollider2D:
   m_ObjectHideFlags: 0
