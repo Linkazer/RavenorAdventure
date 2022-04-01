@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CPN_SpellCaster : CPN_CharacterAction
 {
-    [SerializeField] private List<Spell> spells;
+    [SerializeField] private List<SpellScriptable> spells;
 
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
@@ -17,6 +17,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
+        //TO DO : Vérifier la faisabilité du spell sélectionné.
         return !hasUsedSpell && spells.Count > 0;
     }
 
@@ -30,7 +31,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     {
         if(currentSelectedSpell >= 0)
         {
-            Debug.Log("Use " + spells[currentSelectedSpell].name + " at position " + actionTargetPosition);
+            RVN_SpellManager.UseSpell(spells[currentSelectedSpell].GetSpellData(), Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
 
             hasUsedSpell = true;
         }
