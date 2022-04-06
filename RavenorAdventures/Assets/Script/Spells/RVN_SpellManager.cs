@@ -8,7 +8,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     [SerializeField] private List<RVN_SpellBehavior> spellsBehaviors;
 
     /// <summary>
-    /// Demande à vérifier si le sort est utilisable sur la case vidée.
+    /// Demande à vérifier si le sort est utilisable sur la case visée.
     /// </summary>
     /// <param name="spellToCheck">Sort à tester.</param>
     /// <param name="targetNode">Case visée.</param>
@@ -27,11 +27,6 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
 
         return false;
     }
-
-    /*public static bool IsTargetVisible(SpellData spellToCheck,Node casterNode, Node targetNode)
-    {
-
-    }*/
 
     /// <summary>
     /// Lance le sort voulut sur la case ciblé.

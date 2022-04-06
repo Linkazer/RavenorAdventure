@@ -46,15 +46,15 @@ public class Grid : MonoBehaviour
 			for (int y = 0; y < gridSizeY; y ++) {
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics2D.OverlapCircle(worldPoint,nodeRadius*0.2f,unwalkableMask));
-				bool blockVision = (!walkable && !(Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, visionMasks)));
+				bool visible = !(Physics2D.OverlapCircle(worldPoint, nodeRadius * 0.2f, visionMasks));
 
 				if (grid[x, y] != null)
 				{
-					grid[x, y].SetNode(walkable, blockVision, worldPoint, x, y);
+					grid[x, y].SetNode(walkable, visible, worldPoint, x, y);
 				}
 				else
                 {
-					grid[x, y] = new Node(walkable, blockVision, worldPoint, x, y); ;
+					grid[x, y] = new Node(walkable, visible, worldPoint, x, y); ;
 				}
 			}
 		}
@@ -110,9 +110,9 @@ public class Grid : MonoBehaviour
 		return grid[x,y];
 	}
 
-	public static bool IsNodeVisible(Node startNode, Node targetNode, float distanceMax)
+	public static bool IsNodeVisible(Node startNode, Node targetNode, float distanceMax = -1)
 	{
-		if(Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
+		if(distanceMax > 0 && Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
         {
 			return false;
         }

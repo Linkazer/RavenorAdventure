@@ -8,6 +8,7 @@ public class Node : IHeapItem<Node> {
 	private List<NodeDataHanlder> datasOnNode = new List<NodeDataHanlder>();
 
 	public bool walkable;
+	public bool visible;
 	public Vector3 worldPosition;
 	public int gridX;
 	public int gridY;
@@ -18,14 +19,15 @@ public class Node : IHeapItem<Node> {
 	public Node children;
 	int heapIndex;
 
-	public Node(bool _walkable, bool _blockVision, Vector3 _worldPos, int _gridX, int _gridY) {
+	public Node(bool _walkable, bool _visible, Vector3 _worldPos, int _gridX, int _gridY) {
 
-		SetNode(_walkable, _blockVision, _worldPos, _gridX, _gridY);
+		SetNode(_walkable, _visible, _worldPos, _gridX, _gridY);
 	}
 
-	public void SetNode(bool _walkable, bool _blockVision, Vector3 _worldPos, int _gridX, int _gridY)
+	public void SetNode(bool _walkable, bool _visible, Vector3 _worldPos, int _gridX, int _gridY)
 	{
 		walkable = _walkable;
+		visible = _visible;
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;
@@ -39,7 +41,7 @@ public class Node : IHeapItem<Node> {
 
 	public bool IsWalkable => walkable && CheckWalkableData();
 
-	public bool IsVisible => CheckVisibleData();
+	public bool IsVisible =>  visible && CheckVisibleData();
 
 	public List<NodeDataHanlder> DatasOnNode => datasOnNode;
 

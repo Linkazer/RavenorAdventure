@@ -223,4 +223,52 @@ public class Pathfinding : MonoBehaviour
 
 		return usableNode;
 	}
+
+	public static List<Node> GetAllNodeInDistance(Node startNode, int distance, bool needVision)
+    {
+		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
+		List<Node> usableNode = new List<Node>();
+		HashSet<Node> closedSet = new HashSet<Node>();
+
+		startNode.gCost = 0;
+
+		openSet.Add(startNode);
+		usableNode.Add(startNode);
+
+		while (openSet.Count > 0)
+		{
+			Node currentNode = openSet.RemoveFirst();
+			closedSet.Add(currentNode);
+			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
+			{
+				if (closedSet.Contains(neighbour))
+				{
+					continue;
+				}
+
+				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+
+				if (newMovementCostToNeighbour <= distance && Grid.IsNodeVisible(startNode, neighbour))
+				{
+					if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
+					{
+						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.parent = currentNode;
+						currentNode.children = neighbour;
+
+						if (!openSet.Contains(neighbour))
+						{
+							openSet.Add(neighbour);
+							if (!usableNode.Contains(neighbour))
+							{
+								usableNode.Add(neighbour);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return usableNode;
+	}
 }

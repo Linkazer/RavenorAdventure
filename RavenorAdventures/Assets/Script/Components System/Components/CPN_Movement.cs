@@ -228,7 +228,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void UndisplayAction(Vector2 actionTargetPosition)
     {
-		//RVN_GridDisplayer.UnsetGridFeedback(GetPossibleMovementTarget());
+		
     }
 
     public override void ResetActionData()

@@ -13,7 +13,10 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-        Debug.Log("Affiche la zone de portée du sort");
+        if (currentSelectedSpell >= 0)
+        {
+            RVN_GridDisplayer.SetGridFeedback(Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].GetSpellData().Range, true), Color.blue);
+        }
     }
 
     public override void UndisplayAction(Vector2 actionTargetPosition)
@@ -23,7 +26,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return !hasUsedSpell && spells.Count > 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].GetSpellData().Range);
+        return !hasUsedSpell && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].GetSpellData().Range);
     }
 
     public override void ResetActionData()
@@ -39,7 +42,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        if(currentSelectedSpell >= 0)
+        if(currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(spells[currentSelectedSpell].GetSpellData(), Grid.GetNodeFromWorldPoint(actionTargetPosition)))
         {
             RVN_SpellManager.UseSpell(spells[currentSelectedSpell].GetSpellData().GetCopy(), Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
 
@@ -47,6 +50,8 @@ public class CPN_SpellCaster : CPN_CharacterAction
         }
 
         callback?.Invoke();
+
+        SelectSpell(-1);
     }
 
     /// <summary>

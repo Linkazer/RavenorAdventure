@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController>
 {
@@ -12,6 +13,10 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     private CPN_CharacterAction selectedAction = null;
 
     [SerializeField] private bool isActionPlaying = false;
+
+    [Header("Unity Events")]
+    [SerializeField] private UnityEvent<CPN_CharacterAction> OnSelectAction;
+    [SerializeField] private UnityEvent<CPN_CharacterAction> OnUnselectAction;
 
     private void LateUpdate()
     {
@@ -30,14 +35,9 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     private void ChangeCharacter(CPN_Character nCharacter)
     {
-        if (currentCharacter != null)
-        {
-            selectedAction.UndisplayAction(RVN_InputController.MousePosition);
-        }
-
         currentCharacter = nextCharacter.Handler;
 
-        selectedAction = null;
+        UnselectAction();
 
         SelectAction(0);
     }
@@ -46,7 +46,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         if(selectedAction != null)
         {
-            RVN_GridDisplayer.UnsetGridFeedback();
+            UnselectAction();
         }
 
         switch(actionSelected)
@@ -55,7 +55,6 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
                 if(currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement movement))
                 {
                     selectedAction = movement;
-                    selectedAction.DisplayAction(RVN_InputController.MousePosition);
                 }
                 break;
             case 1:
@@ -65,6 +64,15 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
                 }
                 break;
         }
+
+        OnSelectAction?.Invoke(selectedAction);
+    }
+
+    private void UnselectAction()
+    {
+        OnUnselectAction?.Invoke(selectedAction);
+
+        selectedAction = null;
     }
 
     public void SelectSpell(int spellIndex)
@@ -92,8 +100,25 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     private void OnEndAction()
     {
-        selectedAction.DisplayAction(RVN_InputController.MousePosition);
+        OnSelectAction?.Invoke(selectedAction);
 
         isActionPlaying = false;
+    }
+
+    //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?
+    public void DisplayAction(CPN_CharacterAction toDisplay)
+    {
+        if (toDisplay != null)
+        {
+            toDisplay.DisplayAction(RVN_InputController.MousePosition);
+        }
+    }
+
+    public void UndisplayAction(CPN_CharacterAction toUndisplay)
+    {
+        if (toUndisplay != null)
+        {
+            toUndisplay.UndisplayAction(RVN_InputController.MousePosition);
+        }
     }
 }
