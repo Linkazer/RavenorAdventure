@@ -223,7 +223,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), Color.green);
+		Color colorMovement = Color.green;
+		colorMovement.a = 0.5f;
+		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);
+
+		if (Grid.GetNodeFromWorldPoint(actionTargetPosition) != null)
+		{
+			RVN_GridDisplayer.SetGridFeedback(Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft), Color.green);
+		}
     }
 
     public override void UndisplayAction(Vector2 actionTargetPosition)

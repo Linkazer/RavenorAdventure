@@ -42,9 +42,7 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
 
     public void OnSetGridFeedback(List<Node> toFeedbacks, Color color) // CODE REVIEW : Voir pour clean le script
     {
-        OnUnsetGridFeedback(currentDisplayedNodes);
-
-        currentDisplayedNodes = new List<DisplayNode>();
+        //OnUnsetGridFeedback(currentDisplayedNodes);
 
         for(int i = 0; i < toFeedbacks.Count; i++)
         {
@@ -67,6 +65,8 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
     public void OnUnsetGridFeedback()
     {
         OnUnsetGridFeedback(currentDisplayedNodes);
+
+        currentDisplayedNodes = new List<DisplayNode>();
     }
     
     public void OnUnsetGridFeedback(List<DisplayNode> toFeedbacks) //CODE REVIEW : Voir pour le faire plus proprement

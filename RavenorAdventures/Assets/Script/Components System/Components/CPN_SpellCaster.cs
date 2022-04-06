@@ -21,7 +21,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override void UndisplayAction(Vector2 actionTargetPosition)
     {
-
+        RVN_GridDisplayer.UnsetGridFeedback();
     }
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
@@ -60,6 +60,8 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// <param name="spellIndex">The index of the spell to choose.</param>
     public void SelectSpell(int spellIndex)
     {
+        UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
+
         if (spellIndex == currentSelectedSpell)
         {
             currentSelectedSpell = -1;

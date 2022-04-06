@@ -107,6 +107,11 @@ public class Grid : MonoBehaviour
 		int x = Mathf.RoundToInt((gridSizeX) * percentX)-1;
 		int y = Mathf.RoundToInt((gridSizeY) * percentY)-1;
 
+		if(x < 0 || x >= gridSizeX || y < 0 || y >= gridSizeY)
+        {
+			return null;
+        }
+
 		return grid[x,y];
 	}
 

@@ -8,7 +8,7 @@ public class RVN_SD_DamageSpellData : SpellData
 {
     [SerializeField] private int damageDealt;
 
-    public int Test;
+    public int DamageDealt => damageDealt;
 
     public override SpellData GetCopy()
     {
@@ -19,7 +19,6 @@ public class RVN_SD_DamageSpellData : SpellData
         toReturn.description = description;
 
         toReturn.damageDealt = damageDealt;
-        toReturn.Test = Test;
 
         return toReturn;
     }

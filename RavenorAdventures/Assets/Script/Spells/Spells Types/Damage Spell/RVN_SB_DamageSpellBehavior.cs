@@ -13,8 +13,6 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SD_DamageSpellDa
     protected override bool OnIsSpellUsable(RVN_SD_DamageSpellData spellToCheck, Node targetNode)
     {
         Debug.Log("Is spell usable : " + spellToCheck + " at position : " + targetNode.worldPosition);
-
-        Debug.Log(spellToCheck.Test);
         return true;
     }
 

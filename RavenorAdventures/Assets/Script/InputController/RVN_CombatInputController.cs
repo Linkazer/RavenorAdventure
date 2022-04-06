@@ -16,7 +16,16 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     [Header("Unity Events")]
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnSelectAction;
+    [SerializeField] private UnityEvent<CPN_CharacterAction> OnRefreshActionDisplay;
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnUnselectAction;
+
+    private void Update()
+    {
+        if(!isActionPlaying && selectedAction != null)
+        {
+            OnRefreshActionDisplay?.Invoke(selectedAction);
+        }
+    }
 
     private void LateUpdate()
     {
@@ -31,41 +40,44 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     public void SetCurrentCharacter(CPN_Character nCharacter)
     {
         nextCharacter = nCharacter;
+
+        UnselectAction();
     }
 
     private void ChangeCharacter(CPN_Character nCharacter)
     {
-        currentCharacter = nextCharacter.Handler;
-
-        UnselectAction();
+        currentCharacter = nCharacter.Handler;
 
         SelectAction(0);
     }
 
     public void SelectAction(int actionSelected)
     {
-        if(selectedAction != null)
+        if (currentCharacter != null)
         {
-            UnselectAction();
-        }
+            if (selectedAction != null)
+            {
+                UnselectAction();
+            }
 
-        switch(actionSelected)
-        {
-            case 0:
-                if(currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement movement))
-                {
-                    selectedAction = movement;
-                }
-                break;
-            case 1:
-                if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
-                {
-                    selectedAction = caster;
-                }
-                break;
-        }
+            switch (actionSelected)
+            {
+                case 0:
+                    if (currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement movement))
+                    {
+                        selectedAction = movement;
+                    }
+                    break;
+                case 1:
+                    if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
+                    {
+                        selectedAction = caster;
+                    }
+                    break;
+            }
 
-        OnSelectAction?.Invoke(selectedAction);
+            OnSelectAction?.Invoke(selectedAction);
+        }
     }
 
     private void UnselectAction()

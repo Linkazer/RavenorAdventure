@@ -11,7 +11,14 @@ public class SpellData
     [SerializeField] protected Sprite icon;
     [SerializeField] protected string description;
 
+    [Header("Comportement")]
+    //[SerializeField] protected int cooldown;
+
+    [Header("Forme")]
     [SerializeField] protected int range;
+    //[SerializeField] protected List<Vector2Int> zone;
+    //[SerializeField] protected bool zoneFaceCaster;
+    //[SerializeField] protected bool needVision;
 
     public string Name => name;
     public Sprite Icon => icon;

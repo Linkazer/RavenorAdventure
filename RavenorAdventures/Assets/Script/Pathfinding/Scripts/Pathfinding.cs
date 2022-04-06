@@ -26,25 +26,27 @@ public class Pathfinding : MonoBehaviour
 	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
 
 		Node[] waypoints = new Node[0];
-		bool pathSuccess = false;
+		bool pathSuccess = true;
 		
 		Node startNode = Grid.GetNodeFromWorldPoint(startPos);
 		Node targetNode = Grid.GetNodeFromWorldPoint(targetPos);
 
-		if (targetNode.IsWalkable) {
+		/*if (targetNode.IsWalkable) {
 			pathSuccess = SearchPath(startNode, targetNode);
 		}
 
 		yield return null;
 		if (pathSuccess) {
-			waypoints = RetracePath(startNode,targetNode, walkDistance);
-		}
-		if(waypoints.Length <= 0 || waypoints[0] == null)
+			waypoints = CalculatePathfinding(startNode, targetNode, -1).ToArray();
+		}*/
+		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance).ToArray();
+
+		if (waypoints.Length <= 0 || waypoints[0] == null)
         {
 			pathSuccess = false;
         }
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
-		
+		yield return null;
 	}
 	
 	private Node[] RetracePath(Node startNode, Node endNode, int maxDistance) {
@@ -135,7 +137,7 @@ public class Pathfinding : MonoBehaviour
 	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
 	/// <param name="pathCalcul"></param>
 	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, float distance)
+	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
@@ -210,7 +212,7 @@ public class Pathfinding : MonoBehaviour
 
 					if (targetNode == neighbour)
 					{
-						return usableNode;
+						return new List<Node>(instance.RetracePath(startNode, targetNode, distance));
 					}
 				}
 			}
