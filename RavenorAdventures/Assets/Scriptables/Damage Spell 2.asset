@@ -16,4 +16,6 @@ MonoBehaviour:
     name: Test Spell 1
     icon: {fileID: 0}
     description: 
+    range: 20
     damageDealt: 0
+    Test: 0

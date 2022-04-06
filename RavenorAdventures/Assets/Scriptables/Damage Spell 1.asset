@@ -16,4 +16,6 @@ MonoBehaviour:
     name: L'autre spell de test
     icon: {fileID: 0}
     description: 
+    range: 500
     damageDealt: 0
+    Test: 0

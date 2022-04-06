@@ -46,7 +46,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         if(selectedAction != null)
         {
-            selectedAction.UndisplayAction(RVN_InputController.MousePosition);
+            RVN_GridDisplayer.UnsetGridFeedback();
         }
 
         switch(actionSelected)

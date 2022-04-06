@@ -23,7 +23,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return !hasUsedSpell && spells.Count > 0 && Pathfinding.GetDistance(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition)) <= spells[currentSelectedSpell].GetSpellData().Range;
+        return !hasUsedSpell && spells.Count > 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].GetSpellData().Range);
     }
 
     public override void ResetActionData()

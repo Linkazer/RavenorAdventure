@@ -110,8 +110,13 @@ public class Grid : MonoBehaviour
 		return grid[x,y];
 	}
 
-	public static bool IsNodeVisible(Node startNode, Node targetNode)
+	public static bool IsNodeVisible(Node startNode, Node targetNode, float distanceMax)
 	{
+		if(Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
+        {
+			return false;
+        }
+
 		int x = targetNode.gridX;
 		int y = targetNode.gridY;
 		int j = y;
