@@ -178,6 +178,10 @@ public class Pathfinding : MonoBehaviour
 						if (!openSet.Contains(neighbour))
 						{
 							openSet.Add(neighbour);
+							if(!usableNode.Contains(neighbour))
+                            {
+								usableNode.Add(neighbour);
+							}
 						}
 					}
 					else if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
@@ -197,6 +201,10 @@ public class Pathfinding : MonoBehaviour
 						if (!openSet.Contains(neighbour))
 						{
 							openSet.Add(neighbour);
+							if (!usableNode.Contains(neighbour))
+							{
+								usableNode.Add(neighbour);
+							}
 						}
 					}
 

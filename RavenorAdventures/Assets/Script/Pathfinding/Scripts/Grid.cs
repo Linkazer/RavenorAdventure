@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,6 +18,8 @@ public class Grid : MonoBehaviour
 
 	private float nodeDiameter;
 	private int gridSizeX, gridSizeY;
+
+	[SerializeField] private UnityEvent<Node[,], int, int> OnCreateGrid;
 
 	void Awake() {
 		instance = this;
@@ -55,6 +58,8 @@ public class Grid : MonoBehaviour
 				}
 			}
 		}
+
+		OnCreateGrid?.Invoke(grid, gridSizeX, gridSizeY);
 	}
 
 	public static Node GetNode(int x, int y)
@@ -105,12 +110,7 @@ public class Grid : MonoBehaviour
 		return grid[x,y];
 	}
 
-	private Node GetRandomNodePosition()
-	{
-		return grid[Random.Range(0, gridSizeX), Random.Range(0, gridSizeY)];
-	}
-
-	public bool IsNodeVisible(Node startNode, Node targetNode)
+	public static bool IsNodeVisible(Node startNode, Node targetNode)
 	{
 		int x = targetNode.gridX;
 		int y = targetNode.gridY;

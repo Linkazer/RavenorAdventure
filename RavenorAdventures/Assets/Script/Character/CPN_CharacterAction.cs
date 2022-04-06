@@ -23,6 +23,11 @@ public abstract class CPN_CharacterAction : RVN_Component
     /// <param name="actionTargetPosition">The position where the action will occur.</param>
     public abstract void DisplayAction(Vector2 actionTargetPosition);
     /// <summary>
+    /// Hide the action.
+    /// </summary>
+    /// <param name="actionTargetPosition">The position where the action will occur.</param>
+    public abstract void UndisplayAction(Vector2 actionTargetPosition);
+    /// <summary>
     /// Reset all datat of the action.
     /// </summary>
     public abstract void ResetActionData();

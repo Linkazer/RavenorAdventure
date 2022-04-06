@@ -104,7 +104,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <returns>The node the component can walk on.</returns>
 	public List<Node> GetPossibleMovementTarget()
     {
-		return Pathfinding.CalculatePathfinding(currentNode, null, currentMovementLeft);
+		if (currentMovementLeft >= 10)
+		{
+			return Pathfinding.CalculatePathfinding(currentNode, null, currentMovementLeft);
+		}
+        else
+        {
+			return new List<Node>();
+        }
     }
 
 	private bool CanMoveToDestination(Vector2 destination)
@@ -216,10 +223,15 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-		Debug.Log("Display possible movement");
+		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), Color.green);
     }
 
-	public override void ResetActionData()
+    public override void UndisplayAction(Vector2 actionTargetPosition)
+    {
+		//RVN_GridDisplayer.UnsetGridFeedback(GetPossibleMovementTarget());
+    }
+
+    public override void ResetActionData()
 	{
 		currentMovementLeft = maxDistance;
 	}

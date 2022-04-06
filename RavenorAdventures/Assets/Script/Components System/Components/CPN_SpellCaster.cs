@@ -16,6 +16,11 @@ public class CPN_SpellCaster : CPN_CharacterAction
         Debug.Log("Affiche la zone de portée du sort");
     }
 
+    public override void UndisplayAction(Vector2 actionTargetPosition)
+    {
+
+    }
+
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
         return !hasUsedSpell && spells.Count > 0 && Pathfinding.GetDistance(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition)) <= spells[currentSelectedSpell].GetSpellData().Range;

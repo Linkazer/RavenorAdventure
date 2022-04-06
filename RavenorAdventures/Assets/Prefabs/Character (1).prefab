@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  maxDistance: 200
+  maxDistance: 100
   OnEnterNode:
     m_PersistentCalls:
       m_Calls:
