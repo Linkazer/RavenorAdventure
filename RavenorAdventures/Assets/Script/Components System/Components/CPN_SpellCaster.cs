@@ -6,6 +6,7 @@ using UnityEngine;
 public class CPN_SpellCaster : CPN_CharacterAction
 {
     [SerializeField] private List<SpellScriptable> spells;
+    [SerializeField] private NodeDataHanlder nodeData;
 
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
@@ -17,8 +18,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        //TO DO : Vérifier la faisabilité du spell sélectionné.
-        return !hasUsedSpell && spells.Count > 0;
+        return !hasUsedSpell && spells.Count > 0 && Pathfinding.GetDistance(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition)) <= spells[currentSelectedSpell].GetSpellData().Range;
     }
 
     public override void ResetActionData()
@@ -27,6 +27,11 @@ public class CPN_SpellCaster : CPN_CharacterAction
         currentSelectedSpell = -1;
     }
 
+    /// <summary>
+    /// Use a spell if the target is available.
+    /// </summary>
+    /// <param name="actionTargetPosition">The position of the target wanted.</param>
+    /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
         if(currentSelectedSpell >= 0)
@@ -39,6 +44,10 @@ public class CPN_SpellCaster : CPN_CharacterAction
         callback?.Invoke();
     }
 
+    /// <summary>
+    /// Select a spell.
+    /// </summary>
+    /// <param name="spellIndex">The index of the spell to choose.</param>
     public void SelectSpell(int spellIndex)
     {
         if (spellIndex == currentSelectedSpell)

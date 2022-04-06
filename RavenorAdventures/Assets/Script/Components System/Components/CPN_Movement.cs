@@ -6,27 +6,68 @@ using UnityEngine.Events;
 
 public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 {
+	//Vitesse de déplacement
 	[SerializeField] private float speed = 1;
+	//Distance de déplacement possible pendant 1 tour.
 	[SerializeField] private int maxDistance = 100;
 
+	/// <summary>
+	/// Played when the component enter a new Node.
+	/// </summary>
 	[SerializeField] private UnityEvent<Node> OnEnterNode;
+	/// <summary>
+	/// Played when the component exit the Node.
+	/// </summary>
 	[SerializeField] private UnityEvent<Node> OnExitNode;
+	/// <summary>
+	/// Played when the component start to move.
+	/// </summary>
 	[SerializeField] private UnityEvent OnStartMovement;
+	/// <summary>
+	/// Played when the component stop its movement.
+	/// </summary>
 	[SerializeField] private UnityEvent OnStopMovement;
+	/// <summary>
+	/// Played when the component reach its destination.
+	/// </summary>
 	[SerializeField] private UnityEvent OnEndMovement;
 
+	/// <summary>
+	/// Played when the component reach its destination.
+	/// </summary>
 	private Action OnEndMovementAction;
 
-	Node[] path;
-	int targetIndex;
+	/// <summary>
+	/// The path the component has to take.
+	/// </summary>
+	private Node[] path;
+	/// <summary>
+	/// The current index of the path the component is taking.
+	/// </summary>
+	private int targetIndex;
 
+	/// <summary>
+	/// Position of the component in the scene.
+	/// </summary>
 	private Vector2 posUnit;
+	/// <summary>
+	/// Position of the destination in the scene.
+	/// </summary>
 	private Vector2 posTarget;
+	/// <summary>
+	/// The current direction of the component.
+	/// </summary>
 	private Vector2 direction;
+	/// <summary>
+	/// The node on which the component is.
+	/// </summary>
 	private Node currentNode = null;
 
 	private Coroutine currentMovement;
 
+	/// <summary>
+	/// The amount of movement left for the current turn.
+	/// </summary>
 	[SerializeField] private int currentMovementLeft;
 
 	void Start()
@@ -34,6 +75,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		currentNode = Grid.GetNodeFromWorldPoint(transform.position);
 	}
 
+	/// <summary>
+	/// Called when the component find a path to follow.
+	/// </summary>
+	/// <param name="newPath">The path to follow.</param>
+	/// <param name="pathSuccessful">TRUE if there is a path to follow.</param>
 	private void OnPathFound(Node[] newPath, bool pathSuccessful)
 	{
 		if (pathSuccessful)
@@ -52,16 +98,27 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		}
 	}
 
+	/// <summary>
+	/// Get all the node the component can walk on during its turn.
+	/// </summary>
+	/// <returns>The node the component can walk on.</returns>
 	public List<Node> GetPossibleMovementTarget()
     {
-		return Pathfinding.GetNodesWithMaxDistance(currentNode, currentMovementLeft, true);
+		return Pathfinding.CalculatePathfinding(currentNode, null, currentMovementLeft);
     }
 
-	public void AskToMoveTest(Transform targetTest)
+	private bool CanMoveToDestination(Vector2 destination)
     {
-		AskToMoveTo(targetTest.position, null);
+		Node toCheck = Grid.GetNodeFromWorldPoint(destination);
+
+		return GetPossibleMovementTarget().Contains(toCheck);
     }
 
+	/// <summary>
+	/// Ask the component to move to a destination.
+	/// </summary>
+	/// <param name="targetPosition">The destination the component has to reach.</param>
+	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
 		OnEndMovementAction += callback;
@@ -69,6 +126,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
+	/// <summary>
+	/// Stop the current movement of the component.
+	/// </summary>
 	public void StopMovement()
     {
 		StopCoroutine(currentMovement);
@@ -77,9 +137,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		currentMovementLeft -= currentNode.gCost;
 
+		OnEndMovementAction = null;
 		OnStopMovement?.Invoke();
 	}
 
+	/// <summary>
+	/// Make the component follow the path.
+	/// </summary>
+	/// <returns></returns>
 	private IEnumerator FollowPath()
 	{
 		Node currentWaypoint = path[0];
@@ -168,6 +233,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-		return currentMovementLeft >= 10;
+		return currentMovementLeft >= 10 && CanMoveToDestination(actionTargetPosition);
     }
 }

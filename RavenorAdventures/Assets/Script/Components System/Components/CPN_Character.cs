@@ -14,12 +14,12 @@ public class CPN_Character : RVN_Component
     public RVN_ComponentHandler Handler => handler;
 
 
-    private void OnMouseDown()
+    private void OnMouseDown() //CODE REVIEW : Le mettre dans un Clic Handler
     {
         OnMouseClic?.Invoke();
     }
 
-    public void StartTurn()
+    public void StartTurn() //CODE REVIEW : A renommer.
     {
         for(int i = 0; i < actions.Count; i++)
         {

@@ -77,64 +77,8 @@ public class Pathfinding : MonoBehaviour
 
 	private bool OnSearchPath(Node startNode, Node targetNode)
 	{
-		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
-		HashSet<Node> closedSet = new HashSet<Node>();
-
-		startNode.gCost = 0;
-
-		openSet.Add(startNode);
-
-		while (openSet.Count > 0)
-		{
-			Node currentNode = openSet.RemoveFirst();
-			closedSet.Add(currentNode);
-			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
-			{
-				if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
-				{
-					continue;
-				}
-
-				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-				int newDistanceFromTargetCost = 0;
-
-				if (targetNode != null)
-				{
-					newDistanceFromTargetCost = GetDistance(currentNode, targetNode);
-				}
-
-				if (newMovementCostToNeighbour == neighbour.gCost && newDistanceFromTargetCost < neighbour.hCost)
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					neighbour.hCost = newDistanceFromTargetCost;
-					neighbour.parent = currentNode;
-					currentNode.children = neighbour;
-
-					if (!openSet.Contains(neighbour))
-					{
-						openSet.Add(neighbour);
-					}
-				}
-				else if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					neighbour.hCost = newDistanceFromTargetCost;
-					neighbour.parent = currentNode;
-					currentNode.children = neighbour;
-
-					if (!openSet.Contains(neighbour))
-					{
-						openSet.Add(neighbour);
-					}
-				}
-
-				if(targetNode == neighbour)
-                {
-					return true;
-                }
-			}
-		}
-		return false;
+		List<Node> walkableNodes = CalculatePathfinding(startNode, targetNode, -1);
+		return walkableNodes.Count > 0;
 	}
 
 	private List<Node> GetPath(Node startNode, Node endNode, int maxDistance)
@@ -183,19 +127,29 @@ public class Pathfinding : MonoBehaviour
 		return 15*dstX + 10 * (dstY-dstX);
 	}
 
-	public static List<Node> GetNodesWithMaxDistance(Node startNode, float distance, bool pathCalcul)
+	/// <summary>
+	/// Calcul of the pathfinding.
+	/// </summary>
+	/// <param name="startNode">The node where the calcul start.</param>
+	/// <param name="targetNode">The target wanted. If null, the method will return all the node in the distance.</param>
+	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
+	/// <param name="pathCalcul"></param>
+	/// <returns></returns>
+	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, float distance)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
 		HashSet<Node> closedSet = new HashSet<Node>();
+
+		startNode.gCost = 0;
+
 		openSet.Add(startNode);
 		usableNode.Add(startNode);
 
-		while (openSet.currentItemCount > 0)
+		while (openSet.Count > 0)
 		{
 			Node currentNode = openSet.RemoveFirst();
 			closedSet.Add(currentNode);
-
 			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
 			{
 				if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
@@ -204,23 +158,60 @@ public class Pathfinding : MonoBehaviour
 				}
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-				if (newMovementCostToNeighbour <= distance)
+
+				if (distance <= 0 || newMovementCostToNeighbour <= distance)
 				{
-					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+					int newDistanceFromTargetCost = -1;
+
+					if (targetNode != null)
+					{
+						newDistanceFromTargetCost = GetDistance(currentNode, targetNode);
+					}
+
+					if (newMovementCostToNeighbour == neighbour.gCost && (newDistanceFromTargetCost >= 0 && newDistanceFromTargetCost < neighbour.hCost))
 					{
 						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.hCost = newDistanceFromTargetCost;
 						neighbour.parent = currentNode;
 						currentNode.children = neighbour;
 
 						if (!openSet.Contains(neighbour))
 						{
 							openSet.Add(neighbour);
-							usableNode.Add(neighbour);
 						}
+					}
+					else if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
+					{
+						neighbour.gCost = newMovementCostToNeighbour;
+						if (newDistanceFromTargetCost < 0)
+						{
+							neighbour.hCost = 0;
+						}
+						else
+						{
+							neighbour.hCost = newDistanceFromTargetCost;
+						}
+						neighbour.parent = currentNode;
+						currentNode.children = neighbour;
+
+						if (!openSet.Contains(neighbour))
+						{
+							openSet.Add(neighbour);
+						}
+					}
+
+					if (targetNode == neighbour)
+					{
+						return usableNode;
 					}
 				}
 			}
 		}
+
+		if(targetNode != null)
+        {
+			usableNode = new List<Node>();
+        }
 
 		return usableNode;
 	}

@@ -204,6 +204,7 @@ MonoBehaviour:
         m_CallState: 2
   actions:
   - {fileID: 5140952349797873643}
+  - {fileID: 5140952349797873620}
 --- !u!114 &5140952349797873620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,7 @@ MonoBehaviour:
   spells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
+  nodeData: {fileID: 5140952349797873642}
 --- !u!61 &5140952349797873621
 BoxCollider2D:
   m_ObjectHideFlags: 0

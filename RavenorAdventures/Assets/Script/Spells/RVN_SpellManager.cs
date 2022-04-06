@@ -28,6 +28,11 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
         return false;
     }
 
+    /*public static bool IsTargetVisible(SpellData spellToCheck,Node casterNode, Node targetNode)
+    {
+
+    }*/
+
     /// <summary>
     /// Lance le sort voulut sur la case ciblé.
     /// </summary>

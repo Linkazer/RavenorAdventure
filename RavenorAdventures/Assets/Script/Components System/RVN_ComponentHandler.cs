@@ -6,6 +6,12 @@ public class RVN_ComponentHandler : MonoBehaviour
 {
     [SerializeField] private List<RVN_Component> components;
 
+    /// <summary>
+    /// Search for a component of type T.
+    /// </summary>
+    /// <typeparam name="T">The type of the component we search for.</typeparam>
+    /// <param name="wantedComponent">A reference to the component if one is found.</param>
+    /// <returns>TRUE if the method find a component of type T.</returns>
     public bool GetComponentOfType<T>(out T wantedComponent) where T : RVN_Component
     {
         wantedComponent = null;

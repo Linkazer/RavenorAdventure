@@ -11,9 +11,13 @@ public class SpellData
     [SerializeField] protected Sprite icon;
     [SerializeField] protected string description;
 
+    [SerializeField] protected int range;
+
     public string Name => name;
     public Sprite Icon => icon;
     public string Description => description;
+
+    public int Range => range;
 
     /// <summary>
     /// Créer une copie du SpellData
