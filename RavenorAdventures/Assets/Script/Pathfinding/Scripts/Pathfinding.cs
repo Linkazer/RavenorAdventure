@@ -250,7 +250,7 @@ public class Pathfinding : MonoBehaviour
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 
-				if (newMovementCostToNeighbour <= distance && Grid.IsNodeVisible(startNode, neighbour))
+				if (newMovementCostToNeighbour <= distance && (!needVision || Grid.IsNodeVisible(startNode, neighbour)))
 				{
 					if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
 					{

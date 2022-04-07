@@ -16,6 +16,7 @@ public class SpellData
 
     [Header("Forme")]
     [SerializeField] protected int range;
+    [SerializeField] protected int zoneRange;
     //[SerializeField] protected List<Vector2Int> zone;
     //[SerializeField] protected bool zoneFaceCaster;
     //[SerializeField] protected bool needVision;
@@ -25,6 +26,7 @@ public class SpellData
     public string Description => description;
 
     public int Range => range;
+    public int ZoneRange => zoneRange;
 
     /// <summary>
     /// Créer une copie du SpellData
@@ -37,6 +39,8 @@ public class SpellData
         toReturn.name = name;
         toReturn.icon = icon;
         toReturn.description = description;
+
+        toReturn.zoneRange = zoneRange;
 
         return toReturn;
     }

@@ -19,7 +19,7 @@ public abstract class RVN_SpellBehavior : MonoBehaviour
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
-    public abstract void UseSpell(SpellData spellToUse, Node targetNode, Action callback);
+    public abstract void UseSpell(SpellData spellToUse, Node targetNode, Action callback = null);
 
     /// <summary>
     /// Est appelé quand le sort a finit d'être lancé.

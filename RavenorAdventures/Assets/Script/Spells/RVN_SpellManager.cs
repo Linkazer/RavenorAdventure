@@ -42,7 +42,18 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
 
             if (behaviorUsed != null)
             {
-                behaviorUsed.UseSpell(spellToUse, targetNode, () => EndSpell(spellToUse, callbackEndSpell));
+                List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(targetNode, spellToUse.ZoneRange, false);
+                for (int i = 0; i < targetsNodes.Count; i++)
+                {
+                    if (targetsNodes[i] != targetNode)
+                    {
+                        behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);
+                    }
+                    else
+                    {
+                        behaviorUsed.UseSpell(spellToUse, targetsNodes[i], () => EndSpell(spellToUse, callbackEndSpell));
+                    }
+                }
             }
             else
             {

@@ -19,11 +19,17 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnRefreshActionDisplay;
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnUnselectAction;
 
+    private Node lastFrameMouseNode = null;
+
     private void Update()
     {
-        if(!isActionPlaying && selectedAction != null)
+        if (lastFrameMouseNode != Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition))
         {
-            OnRefreshActionDisplay?.Invoke(selectedAction);
+            lastFrameMouseNode = Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition);
+            if (!isActionPlaying && selectedAction != null)
+            {
+                OnRefreshActionDisplay?.Invoke(selectedAction);
+            }
         }
     }
 

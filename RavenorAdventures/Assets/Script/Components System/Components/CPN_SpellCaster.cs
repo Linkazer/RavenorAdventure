@@ -15,7 +15,14 @@ public class CPN_SpellCaster : CPN_CharacterAction
     {
         if (currentSelectedSpell >= 0)
         {
-            RVN_GridDisplayer.SetGridFeedback(Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].GetSpellData().Range, true), Color.blue);
+            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].GetSpellData().Range, true);
+            RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
+
+            if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))
+            {
+                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), spells[currentSelectedSpell].GetSpellData().ZoneRange, false);
+                RVN_GridDisplayer.SetGridFeedback(zoneNodes, Color.red);
+            }
         }
     }
 

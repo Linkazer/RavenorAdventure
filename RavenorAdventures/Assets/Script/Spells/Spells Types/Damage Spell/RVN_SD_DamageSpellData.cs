@@ -17,6 +17,7 @@ public class RVN_SD_DamageSpellData : SpellData
         toReturn.name = name;
         toReturn.icon = icon;
         toReturn.description = description;
+        toReturn.zoneRange = zoneRange;
 
         toReturn.damageDealt = damageDealt;
 
