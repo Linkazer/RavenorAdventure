@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Est utilisé pour contenir les données d'un sort lancé.
+/// Permet de sauvegarder :
+/// - Le sort lancé (Scriptable)
+/// - Le lanceur du sort (Caster)
+/// </summary>
 public class LaunchedSpellData
 {
     public SpellScriptable scriptable;

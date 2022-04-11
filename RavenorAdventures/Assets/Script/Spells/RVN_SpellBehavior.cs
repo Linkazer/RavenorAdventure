@@ -39,8 +39,8 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     /// <summary>
     /// Est appelé pour vérifier si le sort peut être lancé. Contient la logique spécifique au type de sort du SpellBehavior.
     /// </summary>
-    /// <param name="spellToCheck"></param>
-    /// <param name="targetNode"></param>
+    /// <param name="spellToCheck">Sort à vérifier.</param>
+    /// <param name="targetNode">Case visée.</param>
     /// <returns></returns>
     protected abstract bool OnIsSpellUsable(LaunchedSpellData spellToCheck, Node targetNode);
 
@@ -58,11 +58,20 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     /// <param name="spellToEnd">Sort lancé.</param>
     protected abstract void OnEndSpell(LaunchedSpellData spellToEnd);
 
+    /// <summary>
+    /// Renvoie le type de sort utilisé par le Behavior.
+    /// </summary>
+    /// <returns></returns>
     public override Type GetSpellDataType()
     {
         return typeof(T);
     }
 
+    /// <summary>
+    /// Récupère le Scriptable du LaunchedSpellData avec le type générique. (Permet de récupérer des valeurs spécifiques (Ex : Récupérer les dégâts sur un scriptable de sort de dégâts)).
+    /// </summary>
+    /// <param name="spellData"></param>
+    /// <returns>Le scriptable avec le bon type.</returns>
     protected T GetScriptable(LaunchedSpellData spellData)
     {
         return spellData.GetScriptableAs<T>();

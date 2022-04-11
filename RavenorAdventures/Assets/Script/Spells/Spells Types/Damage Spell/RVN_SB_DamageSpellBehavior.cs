@@ -16,11 +16,12 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return true;
     }
 
+    // Est appelé quand le sort est utilisé. TO DO : Prendre en compte les animations
     protected override void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
         List<CPN_Character> charactersOnNode = targetNode.GetNodeComponent<CPN_Character>();
 
-        RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse);
+        RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse); // On récupère le scriptable avec le bon type.
 
         for (int i = 0; i < charactersOnNode.Count; i++)
         {
