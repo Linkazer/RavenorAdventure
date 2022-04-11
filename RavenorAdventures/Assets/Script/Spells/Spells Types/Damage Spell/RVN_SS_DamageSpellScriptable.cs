@@ -5,10 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Damage Spell", menuName = "Spell/Create Damage Spell")]
 public class RVN_SS_DamageSpellScriptable : SpellScriptable
 {
-    [SerializeField] private RVN_SD_DamageSpellData spellData;
+    [SerializeField] private int damageDealt;
 
-    public override SpellData GetSpellData()
-    {
-        return spellData;
-    }
+    public int DamageDealt => damageDealt;
+
 }

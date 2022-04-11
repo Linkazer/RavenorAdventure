@@ -15,12 +15,12 @@ public class CPN_SpellCaster : CPN_CharacterAction
     {
         if (currentSelectedSpell >= 0)
         {
-            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].GetSpellData().Range, true);
+            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].Range, true);
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
 
             if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))
             {
-                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), spells[currentSelectedSpell].GetSpellData().ZoneRange, false);
+                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), spells[currentSelectedSpell].ZoneRange, false);
                 RVN_GridDisplayer.SetGridFeedback(zoneNodes, Color.red);
             }
         }
@@ -33,7 +33,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return !hasUsedSpell && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].GetSpellData().Range);
+        return !hasUsedSpell && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
     }
 
     public override void ResetActionData()
@@ -49,9 +49,14 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        if(currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(spells[currentSelectedSpell].GetSpellData(), Grid.GetNodeFromWorldPoint(actionTargetPosition)))
+        LaunchedSpellData launchedSpell = new LaunchedSpellData();
+
+        launchedSpell.scriptable = spells[currentSelectedSpell];
+        launchedSpell.caster = this;
+
+        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition)))
         {
-            RVN_SpellManager.UseSpell(spells[currentSelectedSpell].GetSpellData().GetCopy(), Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
+            RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
 
             hasUsedSpell = true;
         }

@@ -11,7 +11,7 @@ public abstract class RVN_SpellBehavior : MonoBehaviour
     /// <param name="spellToCheck">Sort à vérifier.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <returns>TRUE si le sort peut être lancé.</returns>
-    public abstract bool IsSpellUsable(SpellData spellToCheck, Node targetNode);
+    public abstract bool IsSpellUsable(LaunchedSpellData spellToCheck, Node targetNode);
 
     /// <summary>
     /// Lance le sort voulut sur la case ciblé.
@@ -19,13 +19,13 @@ public abstract class RVN_SpellBehavior : MonoBehaviour
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
-    public abstract void UseSpell(SpellData spellToUse, Node targetNode, Action callback = null);
+    public abstract void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback = null);
 
     /// <summary>
     /// Est appelé quand le sort a finit d'être lancé.
     /// </summary>
     /// <param name="spellToEnd">Sort lancé.</param>
-    public abstract void EndSpell(SpellData spellToEnd);
+    public abstract void EndSpell(LaunchedSpellData spellToEnd);
 
     /// <summary>
     /// Renvoie le type de SpellData utilisé par le SpellBehavior.
@@ -34,7 +34,7 @@ public abstract class RVN_SpellBehavior : MonoBehaviour
     public abstract Type GetSpellDataType();
 }
 
-public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellData
+public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellScriptable
 {
     /// <summary>
     /// Est appelé pour vérifier si le sort peut être lancé. Contient la logique spécifique au type de sort du SpellBehavior.
@@ -42,7 +42,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellDa
     /// <param name="spellToCheck"></param>
     /// <param name="targetNode"></param>
     /// <returns></returns>
-    protected abstract bool OnIsSpellUsable(T spellToCheck, Node targetNode);
+    protected abstract bool OnIsSpellUsable(LaunchedSpellData spellToCheck, Node targetNode);
 
     /// <summary>
     /// Lance le sort voulut sur la case ciblé. Contient la logique spécifique au type de sort du SpellBehavior.
@@ -50,31 +50,36 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellDa
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
     ///  /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
-    protected abstract void OnUseSpell(T spellToUse, Node targetNode, Action callback);
+    protected abstract void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback);
 
     /// <summary>
     /// Est appelé quand le sort a finit d'être lancé. Contient la logique spécifique au type de sort du SpellBehavior.
     /// </summary>
     /// <param name="spellToEnd">Sort lancé.</param>
-    protected abstract void OnEndSpell(T spellToEnd);
+    protected abstract void OnEndSpell(LaunchedSpellData spellToEnd);
 
     public override Type GetSpellDataType()
     {
         return typeof(T);
     }
 
-    public override bool IsSpellUsable(SpellData spellToCheck, Node targetNode)
+    protected T GetScriptable(LaunchedSpellData spellData)
     {
-        return OnIsSpellUsable(spellToCheck as T, targetNode);
+        return spellData.GetScriptableAs<T>();
     }
 
-    public override void UseSpell(SpellData spellToUse, Node targetNode, Action callback)
+    public override bool IsSpellUsable(LaunchedSpellData spellToCheck, Node targetNode)
     {
-        OnUseSpell(spellToUse as T, targetNode, callback);
+        return OnIsSpellUsable(spellToCheck, targetNode);
     }
 
-    public override void EndSpell(SpellData spellToEnd)
+    public override void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        OnEndSpell(spellToEnd as T);
+        OnUseSpell(spellToUse, targetNode, callback);
+    }
+
+    public override void EndSpell(LaunchedSpellData spellToEnd)
+    {
+        OnEndSpell(spellToEnd);
     }
 }

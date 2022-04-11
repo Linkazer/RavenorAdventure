@@ -13,11 +13,11 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <param name="spellToCheck">Sort à tester.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <returns>TRUE si le sort peut être utilisé.</returns>
-    public static bool CanUseSpell(SpellData spellToCheck, Node targetNode)
+    public static bool CanUseSpell(LaunchedSpellData spellToCheck, Node targetNode)
     {
         if (spellToCheck != null)
         {
-            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToCheck);
+            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToCheck.scriptable);
 
             if (behaviorUsed != null)
             {
@@ -34,15 +34,15 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <param name="callbackEndSpell">Action à lancé une fois le sort lancé.</param>
-    public static void UseSpell(SpellData spellToUse, Node targetNode, Action callbackEndSpell)
+    public static void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callbackEndSpell)
     {
         if (spellToUse != null)
         {
-            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToUse);
+            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToUse.scriptable);
 
             if (behaviorUsed != null)
             {
-                List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(targetNode, spellToUse.ZoneRange, false);
+                List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(targetNode, spellToUse.scriptable.ZoneRange, false);
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
                     if (targetsNodes[i] != targetNode)
@@ -71,11 +71,11 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// </summary>
     /// <param name="spellToEnd">Sort lancé.</param>
     /// <param name="callback">Action à jouer.</param>
-    public static void EndSpell(SpellData spellToEnd, Action callback)
+    public static void EndSpell(LaunchedSpellData spellToEnd, Action callback)
     {
         if (spellToEnd != null)
         {
-            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToEnd);
+            RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToEnd.scriptable);
 
             if (behaviorUsed != null)
             {
@@ -116,7 +116,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// </summary>
     /// <param name="toCheck">Le SpellData qui doit être utilisé.</param>
     /// <returns>Retourn le SpellBehavior voulut s'il existe. Sinon, retourne null.</returns>
-    private RVN_SpellBehavior GetSpellBehaviorForSpellData(SpellData toCheck)
+    private RVN_SpellBehavior GetSpellBehaviorForSpellData(SpellScriptable toCheck)
     {
         if (toCheck != null)
         {
