@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CPN_SpellCaster : CPN_CharacterAction
 {
     [SerializeField] private List<SpellScriptable> spells;
     [SerializeField] private NodeDataHanlder nodeData;
+
+    [SerializeField] private UnityEvent<CharacterAnimation, float> OnCastSpell;
 
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
@@ -56,14 +59,10 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
         if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition)))
         {
-            RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), callback);
+            CastSpell(launchedSpell, actionTargetPosition, callback);
 
             hasUsedSpell = true;
         }
-
-        callback?.Invoke();
-
-        SelectSpell(-1);
     }
 
     /// <summary>
@@ -84,5 +83,26 @@ public class CPN_SpellCaster : CPN_CharacterAction
         }
 
         DisplayAction(RVN_InputController.MousePosition);
+    }
+
+    private void CastSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
+    {
+        OnCastSpell?.Invoke(launchedSpell.scriptable.CastingAnimation, launchedSpell.scriptable.CastDuration);
+
+        TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, actionTargetPosition, callback));
+    }
+
+    private void UseSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
+    {
+        RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), () => EndUseSpell(callback));
+
+        hasUsedSpell = true;
+    }
+
+    private void EndUseSpell(Action callback)
+    {
+        callback?.Invoke();
+
+        SelectSpell(-1);
     }
 }

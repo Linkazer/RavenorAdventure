@@ -44,6 +44,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void EndCharacterTurn(CPN_Character characterToEnd)
     {
+        RVN_GridDisplayer.UnsetGridFeedback();
+
         if (!playedThisTurn.Contains(characterToEnd))
         {
             playedThisTurn.Add(characterToEnd);
