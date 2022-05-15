@@ -13,6 +13,19 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 {
     private CharacterAnimation currentAnimation;
 
+    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] private Sprite sprite;
+    [SerializeField] private Texture normalMap;
+    private Material mat;
+
+    private void Start()
+    {
+        mat = Instantiate(renderer.material);
+        mat.SetTexture("NormalMap", normalMap);
+        renderer.material = mat;
+        renderer.sprite = sprite;
+    }
+
     public void SetWalkAnimation(bool value)
     {
         if(value)
