@@ -28,6 +28,13 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             Debug.Log(spellToUse.caster.gameObject.name + " deal " + usedScriptable.DamageDealt + " damages to " + charactersOnNode[i].gameObject.name + ".");
         }
 
-        TimerManager.CreateGameTimer(0.5f, callback);
+        if (spellToUse.scriptable.SpellAnimation != null)
+        {
+            AnimationInstantiater.PlayAnimationAtPosition(spellToUse.scriptable.SpellAnimation, targetNode.worldPosition, callback);
+        }
+        else
+        {
+            TimerManager.CreateGameTimer(0.5f, callback);
+        }
     }
 }

@@ -11,8 +11,9 @@ public abstract class SpellScriptable : ScriptableObject
     [SerializeField] protected string description;
 
     [Header("Animations")]
-    [SerializeField] protected CharacterAnimation castingAnimation;
+    [SerializeField] protected CharacterAnimationType castingAnimation;
     [SerializeField] protected float castAnimationDuration;
+    [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
 
     [Header("Comportement")]
     //[SerializeField] protected int cooldown;
@@ -28,9 +29,11 @@ public abstract class SpellScriptable : ScriptableObject
     public Sprite Icon => icon;
     public string Description => description;
 
-    public CharacterAnimation CastingAnimation => castingAnimation;
+    public CharacterAnimationType CastingAnimation => castingAnimation;
 
     public float CastDuration => castAnimationDuration;
+
+    public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
 
     public int Range => range;
     public int ZoneRange => zoneRange;

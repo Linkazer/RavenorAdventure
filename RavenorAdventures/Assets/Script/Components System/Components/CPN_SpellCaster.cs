@@ -9,7 +9,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     [SerializeField] private List<SpellScriptable> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
-    [SerializeField] private UnityEvent<CharacterAnimation, float> OnCastSpell;
+    [SerializeField] private UnityEvent<CharacterAnimationType, float> OnCastSpell;
 
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
