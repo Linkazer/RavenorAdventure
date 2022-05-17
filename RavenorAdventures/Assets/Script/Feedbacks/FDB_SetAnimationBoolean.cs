@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Set a boolean parameter of an animator.
+/// </summary>
 public class FDB_SetAnimationBoolean : MonoBehaviour, IRVN_FeedbackAction
 {
     [SerializeField] private Animator animator;

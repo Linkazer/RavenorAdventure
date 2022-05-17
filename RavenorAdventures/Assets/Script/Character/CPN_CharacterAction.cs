@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Parent class of all action usable by characters during their turn.
+/// 
+/// Inherit of RVN_Component because we can have different type T of data that the CharacterAction will need.
+/// </summary>
 public abstract class CPN_CharacterAction : RVN_Component
 {
     /// <summary>
@@ -35,5 +40,9 @@ public abstract class CPN_CharacterAction : RVN_Component
 
 public abstract class CPN_CharacterAction<T> : CPN_CharacterAction
 {
+    /// <summary>
+    /// Set the data. Need to be override for every Component.
+    /// </summary>
+    /// <param name="toSet">The values of the data to set.</param>
     public abstract void SetData(T toSet);
 }

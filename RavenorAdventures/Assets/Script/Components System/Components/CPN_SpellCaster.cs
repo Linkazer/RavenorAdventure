@@ -14,6 +14,10 @@ public class CPN_SpellCaster : CPN_CharacterAction
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
 
+    /// <summary>
+    /// Display every node on which the action can be used.
+    /// </summary>
+    /// <param name="actionTargetPosition">The current target position the player aim for.</param>
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
         if (currentSelectedSpell >= 0)
@@ -29,16 +33,28 @@ public class CPN_SpellCaster : CPN_CharacterAction
         }
     }
 
+    /// <summary>
+    /// Hide the node of the action.
+    /// </summary>
+    /// <param name="actionTargetPosition"></param>
     public override void UndisplayAction(Vector2 actionTargetPosition)
     {
         RVN_GridDisplayer.UnsetGridFeedback();
     }
 
+    /// <summary>
+    /// Check if the action can be used at the target position.
+    /// </summary>
+    /// <param name="actionTargetPosition">The position where we check if the action is usable.</param>
+    /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
         return !hasUsedSpell && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
     }
 
+    /// <summary>
+    /// Reset the action datas.
+    /// </summary>
     public override void ResetActionData()
     {
         hasUsedSpell = false;
@@ -85,6 +101,12 @@ public class CPN_SpellCaster : CPN_CharacterAction
         DisplayAction(RVN_InputController.MousePosition);
     }
 
+    /// <summary>
+    /// Prepare a spell at the target position.
+    /// </summary>
+    /// <param name="launchedSpell">The spell to cast.</param>
+    /// <param name="actionTargetPosition">The target position of the spell.</param>
+    /// <param name="callback">The callback to call after the spell is done.</param>
     private void CastSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
     {
         OnCastSpell?.Invoke(launchedSpell.scriptable.CastingAnimation, launchedSpell.scriptable.CastDuration);
@@ -92,6 +114,12 @@ public class CPN_SpellCaster : CPN_CharacterAction
         TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, actionTargetPosition, callback));
     }
 
+    /// <summary>
+    /// Launch a spell at the target position.
+    /// </summary>
+    /// <param name="launchedSpell">The spell to launch.</param>
+    /// <param name="actionTargetPosition">The target position of the spell.</param>
+    /// <param name="callback">The callback to call after the spell is done.</param>
     private void UseSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
     {
         RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), () => EndUseSpell(callback));
@@ -99,6 +127,10 @@ public class CPN_SpellCaster : CPN_CharacterAction
         hasUsedSpell = true;
     }
 
+    /// <summary>
+    /// End a spell.
+    /// </summary>
+    /// <param name="callback">The callback to call.</param>
     private void EndUseSpell(Action callback)
     {
         callback?.Invoke();

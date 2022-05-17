@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Contains all the data needed by a Node.
+/// </summary>
 public class NodeDataHanlder : MonoBehaviour
 {
     /// <summary>

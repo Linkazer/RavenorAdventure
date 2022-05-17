@@ -15,16 +15,30 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
 
     private List<DisplayNode> currentDisplayedNodes = new List<DisplayNode>();
 
+    /// <summary>
+    /// Set every wanted nodes at the color wanted.
+    /// </summary>
+    /// <param name="toFeedbacks">The nodes to set.</param>
+    /// <param name="color">The color to set.</param>
     public static void SetGridFeedback(List<Node> toFeedbacks, Color color)
     {
         instance.OnSetGridFeedback(toFeedbacks, color);
     }
 
+    /// <summary>
+    /// Unset the color of every nodes.
+    /// </summary>
     public static void UnsetGridFeedback()
     {
         instance.OnUnsetGridFeedback();
     }
 
+    /// <summary>
+    /// Create every node renderer.
+    /// </summary>
+    /// <param name="grid">An array of all the nodes</param>
+    /// <param name="xSize">The size of the grid on the X axis.</param>
+    /// <param name="ySize">The size of the grid on the Y axis</param>
     public void OnSetGrid(Node[,] grid, int xSize, int ySize)
     {
         displayedGrid = new DisplayNode[xSize, ySize];
@@ -40,6 +54,11 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
         }
     }
 
+    /// <summary>
+    /// Set every wanted nodes at the color wanted.
+    /// </summary>
+    /// <param name="toFeedbacks">The nodes to set.</param>
+    /// <param name="color">The color to set.</param>
     public void OnSetGridFeedback(List<Node> toFeedbacks, Color color) // CODE REVIEW : Voir pour clean le script
     {
         //OnUnsetGridFeedback(currentDisplayedNodes);
@@ -62,6 +81,9 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
         }
     }
 
+    /// <summary>
+    /// Unset the color of every nodes.
+    /// </summary>
     public void OnUnsetGridFeedback()
     {
         OnUnsetGridFeedback(new List<DisplayNode>(currentDisplayedNodes));
@@ -69,6 +91,10 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
         currentDisplayedNodes = new List<DisplayNode>();
     }
     
+    /// <summary>
+    /// Unset the color of a list of Node.
+    /// </summary>
+    /// <param name="toFeedbacks">The list of node to reset.</param>
     public void OnUnsetGridFeedback(List<DisplayNode> toFeedbacks) //CODE REVIEW : Voir pour le faire plus proprement
     {
         Color nullColor = Color.white;

@@ -16,12 +16,17 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return true;
     }
 
-    // Est appelé quand le sort est utilisé. TO DO : Prendre en compte les animations
-    protected override void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
+    /// <summary>
+    /// Apply the effect and damage of the spell and launch the spell animation.
+    /// </summary>
+    /// <param name="spellToUse">The spell to use.</param>
+    /// <param name="targetNode">The targeted Node.</param>
+    /// <param name="callback">The callback to call at the end of the spell.</param>
+    protected override void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback) //TO DO : Mettre à jour lors de la création du système de dégâts/pv
     {
         List<CPN_Character> charactersOnNode = targetNode.GetNodeComponent<CPN_Character>();
 
-        RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse); // On récupère le scriptable avec le bon type.
+        RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse);
 
         for (int i = 0; i < charactersOnNode.Count; i++)
         {

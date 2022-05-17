@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class InstantiatedAnimationHandler : MonoBehaviour
 {
+    /// The lifespan of the animation.
     [SerializeField] private float playTime;
     public float PlayTime => playTime;
 
     private Action endCallback;
 
+    /// <summary>
+    /// Play the animation.
+    /// </summary>
+    /// <param name="callback">The callback to call at the end of the animation.</param>
     public void Play(Action callback)
     {
         endCallback = callback;
@@ -19,6 +24,9 @@ public class InstantiatedAnimationHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// End the animation.
+    /// </summary>
     public void End()
     {
         endCallback?.Invoke();
