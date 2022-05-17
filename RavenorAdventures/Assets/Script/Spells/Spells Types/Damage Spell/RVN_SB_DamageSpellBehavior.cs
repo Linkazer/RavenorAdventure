@@ -37,7 +37,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         {
             AnimationInstantiater.PlayAnimationAtPosition(spellToUse.scriptable.SpellAnimation, targetNode.worldPosition, callback);
         }
-        else
+        else if(callback != null)
         {
             TimerManager.CreateGameTimer(0.5f, callback);
         }
