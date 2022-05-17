@@ -15,6 +15,8 @@ public class LaunchedSpellData
 
     public CPN_SpellCaster caster;
 
+    public Node targetNode;
+
     public T GetScriptableAs<T>() where T : SpellScriptable
     {
         if(scriptable is T)

@@ -9,7 +9,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     [SerializeField] private List<SpellScriptable> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
-    [SerializeField] private UnityEvent<CharacterAnimationType, float> OnCastSpell;
+    [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
 
     private bool hasUsedSpell = false;
     private int currentSelectedSpell = -1;
@@ -72,8 +72,9 @@ public class CPN_SpellCaster : CPN_CharacterAction
 
         launchedSpell.scriptable = spells[currentSelectedSpell];
         launchedSpell.caster = this;
+        launchedSpell.targetNode = Grid.GetNodeFromWorldPoint(actionTargetPosition);
 
-        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition)))
+        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell, launchedSpell.targetNode))
         {
             CastSpell(launchedSpell, actionTargetPosition, callback);
 
@@ -109,7 +110,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void CastSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
     {
-        OnCastSpell?.Invoke(launchedSpell.scriptable.CastingAnimation, launchedSpell.scriptable.CastDuration);
+        OnCastSpell?.Invoke(launchedSpell);
 
         TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, actionTargetPosition, callback));
     }

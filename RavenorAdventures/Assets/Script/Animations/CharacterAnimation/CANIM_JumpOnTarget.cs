@@ -7,7 +7,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation
 {
     [SerializeField] private Transform toMove;
     [SerializeField] private AnimationCurve jumpCurve;
-    [SerializeField] private float jumpSpeed;
+    [SerializeField] private float animationTime;
 
     private Vector2 startPosition;
     private Vector2 targetPosition;
@@ -20,15 +20,17 @@ public class CANIM_JumpOnTarget : CharacterAnimation
     {
         startPosition = toMove.localPosition;
         targetPosition = _targetPosition;
-        direction = targetPosition - startPosition;
+        direction = targetPosition - new Vector2(toMove.position.x, toMove.position.y);
         curveDirection = 1;
+
+        Debug.Log("Jump");
 
         enabled = true;
     }
 
     private void Update()
     {
-        curveIndex += Time.deltaTime * curveDirection;
+        curveIndex += (Time.deltaTime * curveDirection) / animationTime;
 
         if(curveIndex > 1)
         {
@@ -38,6 +40,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         else if(curveIndex < 0)
         {
             curveIndex = 0;
+            Debug.Log("End Jump");
             enabled = false;
         }
 

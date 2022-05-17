@@ -15,20 +15,6 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     private CharacterAnimationType currentAnimation;
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
 
-    /*[SerializeField] private SpriteRenderer renderer;
-    [SerializeField] private Sprite sprite;
-    [SerializeField] private Texture normalMap;
-
-    private Material mat;*/
-
-    private void Start()
-    {
-        /*mat = Instantiate(renderer.material);
-        mat.SetTexture("NormalMap", normalMap);
-        renderer.material = mat;
-        renderer.sprite = sprite;*/
-    }
-
     public void SetWalkAnimation(bool value)
     {
         if(value)
@@ -41,11 +27,18 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
-    public void SetCastSpellAnimation(CharacterAnimationType toPlay, float castTime)
+    public void SetCastSpellAnimation(LaunchedSpellData launchedSpell)
     {
-        SetAnimation(toPlay);
-
-        TimerManager.CreateGameTimer(castTime, () => SetAnimation(CharacterAnimationType.LaunchSpell));
+        switch(launchedSpell.scriptable.CastingAnimation)
+        {
+            case CharacterAnimationType.CastSpell:
+                SetAnimation(launchedSpell.scriptable.CastingAnimation);
+                TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => SetAnimation(CharacterAnimationType.LaunchSpell));
+                break;
+            case CharacterAnimationType.JumpOnTarget:
+                jumpOnTargetAnimation.Play(launchedSpell.targetNode.worldPosition);
+                break;
+        }
     }
 
     protected void SetAnimation(CharacterAnimationType toSet)

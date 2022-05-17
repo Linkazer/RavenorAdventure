@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 2436014866520188403}
   - component: {fileID: 6987722732372388516}
   - component: {fileID: 7894508926239594657}
+  - component: {fileID: 5972871693876766062}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -149,9 +150,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6987722732372388516}
-  renderer: {fileID: 5476766876406081633}
-  sprite: {fileID: 21300000, guid: db8ed7c5f5228234d9926228ee8a6bb1, type: 3}
-  normalMap: {fileID: 2800000, guid: 9183f255a20c93748a10541bbd895cbd, type: 3}
+  jumpOnTargetAnimation: {fileID: 5972871693876766062}
+--- !u!114 &5972871693876766062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044616657378150128}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc06a4c59743b841bf7431698fe39cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toMove: {fileID: 2436014866520188403}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.049256
+      outSlope: 2.049256
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.047186933
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.9492916
+      outSlope: -1.9492916
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.039927423
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationTime: 0.25
 --- !u!1 &5140952349797873644
 GameObject:
   m_ObjectHideFlags: 0

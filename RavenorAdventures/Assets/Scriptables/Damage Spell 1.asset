@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Test Spell 1
   icon: {fileID: 0}
   description: 
-  castingAnimation: 2
-  castAnimationDuration: 1
+  castingAnimation: 4
+  castAnimationDuration: 0.25
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   range: 150
   zoneRange: 0
