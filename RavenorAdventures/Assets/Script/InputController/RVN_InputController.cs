@@ -7,53 +7,97 @@ using UnityEngine.InputSystem;
 
 public class RVN_InputController : RVN_Singleton<RVN_InputController>
 {
+
+    [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
 
+    [Header("Inputs")]
+    [SerializeField] private InputActionReference mouseMovementInput;
+    [SerializeField] private InputActionReference mouseLeftClicInput;
+
+    [Header("Datas")]
     [SerializeField] private Camera usedCamera;
 
     [SerializeField] private PlayerControl playerControl;
 
-    public static Vector2 MousePosition => Vector2.zero;// instance.usedCamera.ScreenToWorldPoint(Input.mousePosition);
+    private RaycastHit2D mouseRaycast;
 
-    private PlayerInput playerInput;
+    private Vector2 mouseWorldPosition;
+    public static Vector2 MousePosition => instance.mouseWorldPosition;
 
-    [SerializeField] private InputActionReference mouseAction;
+    private CPN_ClicHandler currentClicHandlerTouched;
 
-     private void Awake()
-     {
-         playerControl = new PlayerControl();
-     }
+    protected override void OnAwake()
+    {
+        playerControl = new PlayerControl();
+    }
 
-     private void OnEnable()
-     {
-         playerControl.Enable();
-     }
+    private void OnEnable()
+    {
+        playerControl.Enable();
 
-     private void OnDisable()
-     {
-         playerControl.Disable();
-     }
+        mouseMovementInput.action.performed += UpdateMousePosition;
 
-     private void Start()
-     {
-        mouseAction.action.started += MouseClic;
-     }
+        mouseLeftClicInput.action.started += LeftMouseInput;
+    }
 
-     private void MouseClic(InputAction.CallbackContext context)
-     {
-         Debug.Log(context.ReadValue<Vector2>());
-     }
+    private void OnDisable()
+    {
+        playerControl.Disable();
 
-     // Update is called once per frame
-     void Update()
-     {
-         if (!EventSystem.current.IsPointerOverGameObject())
-         {
-             if (playerControl.BattleActionMap.MouseClic.triggered)
-             {
-                 OnMouseLeftDown?.Invoke(playerControl.BattleActionMap.MouseClic.ReadValue<Vector2>());
-                 Debug.Log(playerControl.BattleActionMap.MouseClic.ReadValue<Vector2>());
-             }
-         }
-     }
+        mouseMovementInput.action.performed -= UpdateMousePosition;
+
+        mouseLeftClicInput.action.started -= LeftMouseInput;
+    }
+
+    private void Update()
+    {
+        mouseRaycast = GetMouseRaycast();
+    }
+
+    private void UpdateMousePosition(InputAction.CallbackContext context)
+    {
+        mouseWorldPosition = usedCamera.ScreenToWorldPoint(context.ReadValue<Vector2>());
+    }
+
+    private void LeftMouseInput(InputAction.CallbackContext context)
+    {
+        OnMouseLeftDown?.Invoke(mouseWorldPosition);
+
+        if(currentClicHandlerTouched != null)
+        {
+            currentClicHandlerTouched.MouseDown(0);
+        }
+    }
+
+    private RaycastHit2D GetMouseRaycast() //CODE REVIEW : Voir si on peut améliorer ça (au niveau du ClicHandler)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero);
+
+        CPN_ClicHandler lastClicHandler = currentClicHandlerTouched;
+
+        if (hit.transform != null && hit.transform.gameObject.GetComponent<CPN_ClicHandler>() != null)
+        {
+            currentClicHandlerTouched = hit.transform.gameObject.GetComponent<CPN_ClicHandler>();
+        }
+        else if(currentClicHandlerTouched != null)
+        {
+            currentClicHandlerTouched = null;
+        }
+
+        if(currentClicHandlerTouched != lastClicHandler)
+        {
+            if (lastClicHandler != null)
+            {
+                lastClicHandler.MouseExit();
+            }
+
+            if(currentClicHandlerTouched != null)
+            {
+                currentClicHandlerTouched.MouseEnter();
+            }
+        }
+
+        return hit;
+    }
 }

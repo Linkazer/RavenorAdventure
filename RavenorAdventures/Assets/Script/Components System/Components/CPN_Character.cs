@@ -7,17 +7,9 @@ public class CPN_Character : RVN_Component
 {
     [SerializeField] private RVN_ComponentHandler handler;
 
-    [SerializeField] private UnityEvent OnMouseClic;
-
     [SerializeField] private List<CPN_CharacterAction> actions;
 
     public RVN_ComponentHandler Handler => handler;
-
-
-    private void OnMouseDown() //CODE REVIEW : Le mettre dans un Clic Handler
-    {
-        OnMouseClic?.Invoke();
-    }
 
     public void StartTurn() //CODE REVIEW : A renommer.
     {

@@ -16,5 +16,12 @@ public class RVN_Singleton<T> : MonoBehaviour where T : RVN_Singleton<T>
         {
             instance = this as T;
         }
+
+        OnAwake();
+    }
+
+    protected virtual void OnAwake()
+    {
+
     }
 }
