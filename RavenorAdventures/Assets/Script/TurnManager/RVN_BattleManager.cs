@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Contains the main logic of the Battle phase.
+/// </summary>
 public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 {
     [System.Serializable]
@@ -27,17 +30,25 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         StartNewRound();
     }
 
+    /// <summary>
+    /// Set a character turn if it's available.
+    /// </summary>
+    /// <param name="characterToPlay">The character we want to set the turn.</param>
     public static void TrySetCharacterTurn(CPN_Character characterToPlay)
     {
-        if (instance.currentPlayingCharacter != characterToPlay && CanCharacterPlay(characterToPlay))
+        if (instance.currentPlayingCharacter != characterToPlay && CanCharacterStartTurn(characterToPlay))
         {
             instance.StartCharacterTurn(characterToPlay);
         }
     }
 
+    /// <summary>
+    /// Start the turn of a Character.
+    /// </summary>
+    /// <param name="characterToPlay">The character.</param>
     public void StartCharacterTurn(CPN_Character characterToPlay)
     {
-        if (CanCharacterPlay(characterToPlay))
+        if (CanCharacterStartTurn(characterToPlay))
         {
             currentPlayingCharacter = characterToPlay;
 
@@ -45,16 +56,28 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
     }
 
-    public static bool CanCharacterPlay(CPN_Character characterToCheck)
+    /// <summary>
+    /// Check if a character can start its turn.
+    /// </summary>
+    /// <param name="characterToCheck">The character to check.</param>
+    /// <returns></returns>
+    public static bool CanCharacterStartTurn(CPN_Character characterToCheck)
     {
         return !instance.playedThisTurn.Contains(characterToCheck) && instance.teams[instance.currentPlayingTeam].characters.Contains(characterToCheck);
     }
 
+    /// <summary>
+    /// End the turn of the current Character.
+    /// </summary>
     public void EndCharacterTurn()
     {
         EndCharacterTurn(currentPlayingCharacter);
     }
 
+    /// <summary>
+    /// End the turn of a character.
+    /// </summary>
+    /// <param name="characterToEnd">The character that has his turn end.</param>
     public void EndCharacterTurn(CPN_Character characterToEnd)
     {
         RVN_GridDisplayer.UnsetGridFeedback();
@@ -78,6 +101,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         StartNextTeamRound();
     }
 
+    /// <summary>
+    /// Start a new round for a team.
+    /// </summary>
     private void StartNextTeamRound()
     {
         currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
@@ -90,6 +116,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         StartCharacterTurn(teams[currentPlayingTeam].characters[0]);
     }
 
+    /// <summary>
+    /// Start a all new round.
+    /// </summary>
     private void StartNewRound()
     {
         playedThisTurn = new List<CPN_Character>();
@@ -105,6 +134,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         OnBeginNewRound?.Invoke();
     }
 
+    /// <summary>
+    /// Add a character to a team.
+    /// </summary>
+    /// <param name="toAdd">The character ti add.</param>
+    /// <param name="teamIndex">The team index.</param>
     public void AddCharacter(CPN_Character toAdd, int teamIndex)
     {
         if (!teams[teamIndex].characters.Contains(toAdd))
@@ -112,7 +146,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             teams[teamIndex].characters.Add(toAdd);
         }
     }
-
+    /// <summary>
+    /// Remove a character from a team.
+    /// </summary>
+    /// <param name="toRemove">The character to remove.</param>
+    /// <param name="teamIndex">The team index.</param>
     public void RemoveCharacter(CPN_Character toRemove, int teamIndex)
     {
         if (teams[teamIndex].characters.Contains(toRemove))
