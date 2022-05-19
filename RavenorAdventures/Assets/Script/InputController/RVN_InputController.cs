@@ -20,6 +20,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     [SerializeField] private PlayerControl playerControl;
 
+    [SerializeField] private EventSystem evtSyst;
+
     private RaycastHit2D mouseRaycast;
 
     private Vector2 mouseWorldPosition;
@@ -62,11 +64,14 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     private void LeftMouseInput(InputAction.CallbackContext context)
     {
-        OnMouseLeftDown?.Invoke(mouseWorldPosition);
-
-        if(currentClicHandlerTouched != null)
+        if (!evtSyst.IsPointerOverGameObject())
         {
-            currentClicHandlerTouched.MouseDown(0);
+            OnMouseLeftDown?.Invoke(mouseWorldPosition);
+
+            if (currentClicHandlerTouched != null)
+            {
+                currentClicHandlerTouched.MouseDown(0);
+            }
         }
     }
 

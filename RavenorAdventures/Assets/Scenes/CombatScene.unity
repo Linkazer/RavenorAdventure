@@ -6134,18 +6134,18 @@ PrefabInstance:
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1346031333}
+      objectReference: {fileID: 1346031330}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartCharacterTurn
+      value: ChangeCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RVN_BattleManager, Assembly-CSharp
+      value: RVN_CombatInputController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -6394,18 +6394,18 @@ PrefabInstance:
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1346031333}
+      objectReference: {fileID: 1346031330}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartCharacterTurn
+      value: ChangeCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RVN_BattleManager, Assembly-CSharp
+      value: RVN_CombatInputController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -32069,6 +32069,7 @@ MonoBehaviour:
   mouseMovementInput: {fileID: 1319602955018677809, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   mouseLeftClicInput: {fileID: -5115876774555091843, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   usedCamera: {fileID: 1239159336}
+  evtSyst: {fileID: 14943388}
 --- !u!4 &1346031332
 Transform:
   m_ObjectHideFlags: 0
@@ -32610,18 +32611,18 @@ PrefabInstance:
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1346031333}
+      objectReference: {fileID: 1346031330}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartCharacterTurn
+      value: ChangeCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RVN_BattleManager, Assembly-CSharp
+      value: RVN_CombatInputController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -34239,18 +34240,18 @@ PrefabInstance:
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1346031333}
+      objectReference: {fileID: 1346031330}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartCharacterTurn
+      value: ChangeCharacter
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RVN_BattleManager, Assembly-CSharp
+      value: RVN_CombatInputController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4053348106658464090, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument

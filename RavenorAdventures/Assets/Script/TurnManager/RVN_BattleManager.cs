@@ -27,14 +27,27 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         StartNewRound();
     }
 
+    public static void TrySetCharacterTurn(CPN_Character characterToPlay)
+    {
+        if (instance.currentPlayingCharacter != characterToPlay && CanCharacterPlay(characterToPlay))
+        {
+            instance.StartCharacterTurn(characterToPlay);
+        }
+    }
+
     public void StartCharacterTurn(CPN_Character characterToPlay)
     {
-        if (!playedThisTurn.Contains(characterToPlay) && teams[currentPlayingTeam].characters.Contains(characterToPlay))
+        if (CanCharacterPlay(characterToPlay))
         {
             currentPlayingCharacter = characterToPlay;
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
         }
+    }
+
+    public static bool CanCharacterPlay(CPN_Character characterToCheck)
+    {
+        return !instance.playedThisTurn.Contains(characterToCheck) && instance.teams[instance.currentPlayingTeam].characters.Contains(characterToCheck);
     }
 
     public void EndCharacterTurn()

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manage the Input of the player in the Combat Phase.
+/// </summary>
 public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController>
 {
     [SerializeField] private RVN_ComponentHandler currentCharacter;
@@ -43,21 +46,41 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
+    /// <summary>
+    /// Set the character that the player control.
+    /// </summary>
+    /// <param name="nCharacter">The character that will be controlled.</param>
     public void SetCurrentCharacter(CPN_Character nCharacter)
     {
-        nextCharacter = nCharacter;
+        if (nCharacter != currentCharacter)
+        {
+            UnselectAction();
+        }
 
-        UnselectAction();
-    }
-
-    private void ChangeCharacter(CPN_Character nCharacter)
-    {
         currentCharacter = nCharacter.Handler;
 
         SelectAction(0);
     }
 
-    public void SelectAction(int actionSelected)
+    /// <summary>
+    /// Change the current playing character.
+    /// </summary>
+    /// <param name="nCharacter">The character that will play.</param>
+    public void ChangeCharacter(CPN_Character nCharacter)
+    {
+        if(RVN_BattleManager.CanCharacterPlay(nCharacter))
+        {
+            RVN_BattleManager.TrySetCharacterTurn(nCharacter);
+
+            SetCurrentCharacter(nCharacter);
+        }
+    }
+
+    /// <summary>
+    /// Select the Action the character will do.
+    /// </summary>
+    /// <param name="actionSelected">The ID of the ation chosen.</param>
+    public void SelectAction(int actionSelected)//CODE REVIEW : Voir si on peut mettre la sélection de l'action directement dans les component (Avoir une liste de CPN_Action et sélectionner depuis la liste)
     {
         if (currentCharacter != null)
         {
@@ -86,6 +109,9 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
+    /// <summary>
+    /// Unselect an Action.
+    /// </summary>
     private void UnselectAction()
     {
         OnUnselectAction?.Invoke(selectedAction);
@@ -93,7 +119,11 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         selectedAction = null;
     }
 
-    public void SelectSpell(int spellIndex)
+    /// <summary>
+    /// Select a spell.
+    /// </summary>
+    /// <param name="spellIndex">The ID of the spell.</param>
+    public void SelectSpell(int spellIndex) //CODE REVIEW : Voir si on peut mettre la sélection du spell dans le CPN_SpellCaster
     {
         if(currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
@@ -101,6 +131,10 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
+    /// <summary>
+    /// Fait une action dépendant de l'action sélectionné actuellement.
+    /// </summary>
+    /// <param name="actionPosition">La position à laquelle faire l'action.</param>
     public void DoAction(Vector2 actionPosition)
     {
         if (currentCharacter != null && !isActionPlaying)
@@ -116,6 +150,9 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
+    /// <summary>
+    /// Appelé à la fin d'une action.
+    /// </summary>
     private void OnEndAction()
     {
         OnSelectAction?.Invoke(selectedAction);
