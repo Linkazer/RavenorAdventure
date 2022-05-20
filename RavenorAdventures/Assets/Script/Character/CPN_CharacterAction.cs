@@ -35,7 +35,7 @@ public abstract class CPN_CharacterAction : RVN_Component
     /// <summary>
     /// Reset all datat of the action.
     /// </summary>
-    public abstract void ResetActionData();
+    public abstract void ResetData();
 }
 
 public abstract class CPN_CharacterAction<T> : CPN_CharacterAction

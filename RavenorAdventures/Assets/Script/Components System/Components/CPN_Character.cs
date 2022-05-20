@@ -15,7 +15,7 @@ public class CPN_Character : RVN_Component
     {
         for(int i = 0; i < actions.Count; i++)
         {
-            actions[i].ResetActionData();
+            actions[i].ResetData();
         }
     }
 }

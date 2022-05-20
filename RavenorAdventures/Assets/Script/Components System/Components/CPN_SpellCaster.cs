@@ -56,7 +56,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <summary>
     /// Reset the action datas.
     /// </summary>
-    public override void ResetActionData()
+    public override void ResetData()
     {
         spellUseLeft = maxSpellUse;
         currentSelectedSpell = -1;

@@ -238,7 +238,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		RVN_GridDisplayer.UnsetGridFeedback();
 	}
 
-    public override void ResetActionData()
+    public override void ResetData()
 	{
 		currentMovementLeft = maxDistance;
 	}

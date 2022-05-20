@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class RVN_Component : MonoBehaviour
 {
-    
+
 }
 
 public abstract class RVN_Component<T> : RVN_Component
