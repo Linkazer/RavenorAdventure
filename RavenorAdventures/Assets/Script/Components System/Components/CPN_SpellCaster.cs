@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CPN_SpellCaster : CPN_CharacterAction
+public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 {
     [SerializeField] private List<SpellScriptable> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
     [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
 
-    private bool hasUsedSpell = false;
+    private int spellUseLeft = 1;
+    [SerializeField] private int maxSpellUse = 1;
     private int currentSelectedSpell = -1;
 
     /// <summary>
@@ -49,7 +50,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return !hasUsedSpell && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
+        return spellUseLeft > 0 && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
     /// </summary>
     public override void ResetActionData()
     {
-        hasUsedSpell = false;
+        spellUseLeft = maxSpellUse;
         currentSelectedSpell = -1;
     }
 
@@ -78,7 +79,7 @@ public class CPN_SpellCaster : CPN_CharacterAction
         {
             CastSpell(launchedSpell, actionTargetPosition, callback);
 
-            hasUsedSpell = true;
+            spellUseLeft--;
         }
     }
 
@@ -124,8 +125,6 @@ public class CPN_SpellCaster : CPN_CharacterAction
     private void UseSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
     {
         RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), () => EndUseSpell(callback));
-
-        hasUsedSpell = true;
     }
 
     /// <summary>
@@ -137,5 +136,12 @@ public class CPN_SpellCaster : CPN_CharacterAction
         callback?.Invoke();
 
         SelectSpell(-1);
+    }
+
+    public override void SetData(CPN_Data_SpellCaster toSet)
+    {
+        maxSpellUse = toSet.MaxSpellUseByTurn();
+
+        spells = new List<SpellScriptable>(toSet.AvailableSpells());
     }
 }

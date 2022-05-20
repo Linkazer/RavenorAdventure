@@ -34261,6 +34261,10 @@ PrefabInstance:
       propertyPath: OnLeftMouseDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: CPN_Character, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5140952349797873620, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: maxSpellUse
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873621, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
       value: 0
