@@ -51,7 +51,7 @@ public class NodeDataHanlder : MonoBehaviour
     /// <param name="nNode">The node to assign.</param>
     public void SetNodeData(Node nNode)
     {
-        UnsetNodeData();
+        UnsetNodeData(true);
 
         currentNode = nNode;
 
@@ -74,11 +74,14 @@ public class NodeDataHanlder : MonoBehaviour
     /// <summary>
     /// Unassign the current node.
     /// </summary>
-    public void UnsetNodeData()
+    public void UnsetNodeData(bool applyNodeEffect)
     {
         if (currentNode != null)
         {
-            OnExitNode?.Invoke(currentNode);
+            if (applyNodeEffect)
+            {
+                OnExitNode?.Invoke(currentNode);
+            }
 
             currentNode.RemoveDataOnNode(this);
 

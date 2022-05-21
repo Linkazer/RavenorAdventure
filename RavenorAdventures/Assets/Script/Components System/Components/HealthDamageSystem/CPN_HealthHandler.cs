@@ -5,15 +5,16 @@ using UnityEngine.Events;
 
 public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 {
-    private float maxHealth;
-    private float maxArmor;
-    private float currentHealth;
-    private float currentArmor;
+    [SerializeField] private float maxHealth = 10;
+    [SerializeField] private float maxArmor = 0;
+    [SerializeField] private float currentHealth = 10;
+    [SerializeField] private float currentArmor = 0;
 
     [SerializeField] private UnityEvent<float> OnGainHealth;
     [SerializeField] private UnityEvent<float> OnLoseHealth;
     [SerializeField] private UnityEvent<float> OnGainArmor;
     [SerializeField] private UnityEvent<float> OnLoseArmor;
+    [SerializeField] private UnityEvent OnDeath;
 
     public override void SetData(CPN_Data_HealthHandler toSet)
     {
@@ -26,22 +27,47 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public void TakeDamage(float damageAmount, float armorPierced)
     {
-        currentArmor -= armorPierced;
-        currentArmor = Mathf.Clamp(currentArmor, 0, maxArmor);
+        RemoveArmor(armorPierced);
 
         if (damageAmount > 0)
         {
             if (damageAmount > currentArmor)
             {
                 currentHealth -= damageAmount - currentArmor;
+
+                if(currentHealth <= 0)
+                {
+                    Die();
+                    return;
+                }
+                else
+                {
+                    OnLoseHealth?.Invoke(currentHealth);
+                }
             }
 
-            currentArmor--;
-            
+            RemoveArmor(1);
         }
     }
 
-    private void AddArmor(float toAdd)
+    public void TakeHeal(float healAmount)
+    {
+        if (healAmount > 0)
+        {
+            currentHealth += healAmount;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            OnGainHealth?.Invoke(currentHealth);
+        }
+    }
+
+    private void Die()
+    {
+        OnDeath?.Invoke();
+    }
+
+    public void AddArmor(float toAdd)
     {
         if (toAdd > 0 && currentArmor < maxArmor)
         {
@@ -61,7 +87,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             currentArmor = Mathf.Clamp(currentArmor, 0, maxArmor);
 
-            OnGainArmor?.Invoke(currentArmor);
+            OnLoseArmor?.Invoke(currentArmor);
         }
     }
 }
