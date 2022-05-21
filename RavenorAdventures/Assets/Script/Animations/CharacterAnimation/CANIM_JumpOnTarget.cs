@@ -23,8 +23,6 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         direction = targetPosition - new Vector2(toMove.position.x, toMove.position.y);
         curveDirection = 1;
 
-        Debug.Log("Jump");
-
         enabled = true;
     }
 
@@ -40,7 +38,6 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         else if(curveIndex < 0)
         {
             curveIndex = 0;
-            Debug.Log("End Jump");
             enabled = false;
         }
 
