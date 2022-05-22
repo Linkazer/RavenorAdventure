@@ -10,10 +10,12 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
+    [SerializeField] private UnityEvent<Vector2> OnMoveCameraInput;
 
     [Header("Inputs")]
-    [SerializeField] private InputActionReference mouseMovementInput;
-    [SerializeField] private InputActionReference mouseLeftClicInput;
+    [SerializeField] private InputActionReference actionMouseMovementInput;
+    [SerializeField] private InputActionReference actionMouseLeftClicInput;
+    [SerializeField] private InputActionReference actionMoveCameraInput;
 
     [Header("Datas")]
     [SerializeField] private Camera usedCamera;
@@ -24,10 +26,15 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     private RaycastHit2D mouseRaycast;
 
+    private Vector2 mouseScreenPosition;
+    public static Vector2 MouseScreenPosition => instance.mouseScreenPosition;
+
     private Vector2 mouseWorldPosition;
     public static Vector2 MousePosition => instance.mouseWorldPosition;
 
     private CPN_ClicHandler currentClicHandlerTouched;
+
+    private Vector2 moveCameraDirection;
 
     protected override void OnAwake()
     {
@@ -38,28 +45,32 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     {
         playerControl.Enable();
 
-        mouseMovementInput.action.performed += UpdateMousePosition;
+        actionMouseMovementInput.action.performed += UpdateMousePosition;
 
-        mouseLeftClicInput.action.started += LeftMouseInput;
+        actionMouseLeftClicInput.action.started += LeftMouseInput;
     }
 
     private void OnDisable()
     {
         playerControl.Disable();
 
-        mouseMovementInput.action.performed -= UpdateMousePosition;
+        actionMouseMovementInput.action.performed -= UpdateMousePosition;
 
-        mouseLeftClicInput.action.started -= LeftMouseInput;
+        actionMouseLeftClicInput.action.started -= LeftMouseInput;
     }
 
     private void Update()
     {
         mouseRaycast = GetMouseRaycast();
+
+        OnMoveCameraInput?.Invoke(actionMoveCameraInput.action.ReadValue<Vector2>());
     }
 
     private void UpdateMousePosition(InputAction.CallbackContext context)
     {
-        mouseWorldPosition = usedCamera.ScreenToWorldPoint(context.ReadValue<Vector2>());
+        mouseScreenPosition = context.ReadValue<Vector2>();
+
+        mouseWorldPosition = usedCamera.ScreenToWorldPoint(mouseScreenPosition);
     }
 
     private void LeftMouseInput(InputAction.CallbackContext context)

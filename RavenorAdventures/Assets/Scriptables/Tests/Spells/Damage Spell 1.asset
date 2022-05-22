@@ -18,7 +18,7 @@ MonoBehaviour:
   castingAnimation: 4
   castAnimationDuration: 0.25
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
-  range: 15
+  range: 50
   zoneRange: 0
   type: 0
   damageDealt: 4

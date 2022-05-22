@@ -16,12 +16,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         [SerializeField] public List<CPN_Character> characters = new List<CPN_Character>();
     }
 
-    [SerializeField] private List<CharacterScriptable> playableTeam; //TO DO : Mettre ça dans le LevelManager quand il sera créé
-    [SerializeField] private List<CharacterScriptable> ennemyTeam;
+    [SerializeField] private RVN_LevelManager level;
 
     [SerializeField] private List<CombatTeam> teams = new List<CombatTeam>();
-
-    [SerializeField] private List<CombatTeam> characterPool = new List<CombatTeam>();
 
     private List<CPN_Character> playedThisTurn = new List<CPN_Character>();
     private int currentPlayingTeam = 0;
@@ -31,6 +28,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterTurn;
     [SerializeField] private UnityEvent OnBeginNewRound;
+
+    public static Action OnPlayerTeamDie;
+    public static Action OnEnnemyTeamDie;
 
     [Header("Combat End")]
     [SerializeField] private UnityEvent OnWinBattle;
@@ -43,18 +43,18 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void SetBattle()
     {
-        for(int i = 0; i < playableTeam.Count; i++)
+        for(int i = 0; i < level.GetTeam(0).Count; i++)
         {
-            teams[0].characters.Add(characterPool[0].characters[i]);
+            teams[0].characters.Add(level.GetTeam(0)[i]);
 
-            teams[0].characters[i].SetCharacter(playableTeam[i]);
+            teams[0].characters[i].SetCharacter();
         }
 
-        for (int i = 0; i < ennemyTeam.Count; i++)
+        for (int i = 0; i < level.GetTeam(1).Count; i++)
         {
-            teams[1].characters.Add(characterPool[1].characters[i]);
+            teams[1].characters.Add(level.GetTeam(1)[i]);
 
-            teams[1].characters[i].SetCharacter(ennemyTeam[i]);
+            teams[1].characters[i].SetCharacter();
         }
 
         StartBattle();
@@ -211,6 +211,19 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         return null;
     }
 
+    private int GetCharacterTeamIndex(CPN_Character character)
+    {
+        for (int i = 0; i < teams.Count; i++)
+        {
+            if (teams[i].characters.Contains(character))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public void OnCharacterDie(CPN_Character diedCharacter)
     {
         CombatTeam toCheck = GetCharacterTeam(diedCharacter);
@@ -221,22 +234,22 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if(toCheck.allegeance == CharacterAllegeance.Player)
             {
-                LoseBattle();
+                OnPlayerTeamDie?.Invoke();
             }
             else if(toCheck.allegeance == CharacterAllegeance.Ennemy)
             {
-                WinBattle(); //CODE REVIEW : Voir si on ne renvoie pas ça comme un Event pour le jouer une fois l'action en cours finie
+                OnEnnemyTeamDie?.Invoke();
             }
         }
     }
 
-    public void WinBattle()
+    public static void WinBattle()
     {
-        OnWinBattle?.Invoke();
+        instance.OnWinBattle?.Invoke();
     }
 
-    public void LoseBattle()
+    public static void LoseBattle()
     {
-        OnLoseBattle?.Invoke();
+        instance.OnLoseBattle?.Invoke();
     }
 }
