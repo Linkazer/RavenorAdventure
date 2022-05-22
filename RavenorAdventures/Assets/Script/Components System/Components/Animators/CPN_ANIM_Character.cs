@@ -12,8 +12,17 @@ public enum CharacterAnimationType
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
 {
-    private CharacterAnimationType currentAnimation;
+    [Header("Character Display")]
+    [SerializeField] private SpriteRenderer characterSprite;
+
+    [Header("Character Animations")]
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
+    private CharacterAnimationType currentAnimation;
+
+    public void SetCharacter(CharacterScriptable character)
+    {
+        characterSprite.sprite = character.GameSprite();
+    }
 
     public void SetWalkAnimation(bool value)
     {

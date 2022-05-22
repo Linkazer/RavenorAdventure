@@ -10,6 +10,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private float currentHealth = 10;
     [SerializeField] private float currentArmor = 0;
 
+    [SerializeField] private UnityEvent<float> SetMaxHealth;
+    [SerializeField] private UnityEvent<float> SetMaxArmor;
     [SerializeField] private UnityEvent<float> OnGainHealth;
     [SerializeField] private UnityEvent<float> OnLoseHealth;
     [SerializeField] private UnityEvent<float> OnGainArmor;
@@ -23,6 +25,9 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
         currentHealth = maxHealth;
         currentArmor = maxArmor;
+
+        SetMaxHealth?.Invoke(maxHealth);
+        SetMaxArmor?.Invoke(maxArmor);
     }
 
     public void TakeDamage(float damageAmount, float armorPierced)

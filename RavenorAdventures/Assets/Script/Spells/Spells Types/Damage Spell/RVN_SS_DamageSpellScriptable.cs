@@ -6,8 +6,13 @@ using UnityEngine;
 public class RVN_SS_DamageSpellScriptable : SpellScriptable
 {
     [Header("Damage")]
+    [SerializeField] private DamageType type;
     [SerializeField] private int damageDealt;
+    [SerializeField] private int armorPierced;
+
+    public DamageType Type => type;
 
     public int DamageDealt => damageDealt;
 
+    public int ArmorPierced => armorPierced;
 }

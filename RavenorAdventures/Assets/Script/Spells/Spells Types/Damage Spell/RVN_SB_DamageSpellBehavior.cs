@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DamageType
+{
+    Normal,
+    Heal,
+    IgnoreArmor
+}
+
 public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellScriptable>
 {
     protected override void OnEndSpell(LaunchedSpellData spellToEnd)
@@ -30,9 +37,18 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
         foreach(CPN_HealthHandler hitedObject in hitableObjects)
         {
-            Debug.Log(spellToUse.caster.gameObject.name + " deal " + usedScriptable.DamageDealt + " damages to " + hitedObject.gameObject.name + ".");
-
-            hitedObject.TakeDamage(usedScriptable.DamageDealt, 0);//TO DO : Voir comment on gère les Heal et la réduction d'Armure
+            switch(usedScriptable.Type)
+            {
+                case DamageType.Normal:
+                    hitedObject.TakeDamage(usedScriptable.DamageDealt, usedScriptable.ArmorPierced);
+                    break;
+                case DamageType.Heal:
+                    hitedObject.TakeHeal(usedScriptable.DamageDealt); //TO DO : Voir si on ajoute la régénération d'Armure ici
+                    break;
+                case DamageType.IgnoreArmor:
+                    //TO DO : Voir pour les dégâts Brut
+                    break;
+            }
         }
 
         if (spellToUse.scriptable.SpellAnimation != null)

@@ -248,6 +248,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		speed = toSet.Speed();
 
 		maxDistance = toSet.MaxDistance();
+
+		ResetData();
     }
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
