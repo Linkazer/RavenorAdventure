@@ -26,6 +26,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     private CPN_Character currentPlayingCharacter;
 
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
+    [SerializeField] private UnityEvent<CPN_Character> OnStartPlayerCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterTurn;
     [SerializeField] private UnityEvent OnBeginNewRound;
 
@@ -88,6 +89,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             currentPlayingCharacter = characterToPlay;
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
+
+            OnStartPlayerCharacterTurn?.Invoke(characterToPlay);//TO DO  : Mettre un vérification une fois les IA faites
         }
     }
 
