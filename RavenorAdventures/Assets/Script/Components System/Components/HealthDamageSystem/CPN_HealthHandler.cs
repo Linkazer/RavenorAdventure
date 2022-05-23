@@ -10,6 +10,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private float currentHealth = 10;
     [SerializeField] private float currentArmor = 0;
 
+    [SerializeField] private int defense;
+
     [SerializeField] private UnityEvent<float> SetMaxHealth;
     [SerializeField] private UnityEvent<float> SetMaxArmor;
     [SerializeField] private UnityEvent<float> OnGainHealth;
@@ -17,6 +19,9 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private UnityEvent<float> OnGainArmor;
     [SerializeField] private UnityEvent<float> OnLoseArmor;
     [SerializeField] private UnityEvent OnDeath;
+
+    public float Armor => currentArmor;
+    public int Defense => defense;
 
     public override void SetData(CPN_Data_HealthHandler toSet)
     {

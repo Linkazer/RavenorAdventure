@@ -15,6 +15,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     [SerializeField] private int maxSpellUse = 1;
     private int currentSelectedSpell = -1;
 
+    //Base datas
+    [SerializeField] private int possibleRelances;
+    [SerializeField] private int accuracy;
+
+    public int PossibleRelances => possibleRelances;
+    public int Accuracy => accuracy;
+
     /// <summary>
     /// Display every node on which the action can be used.
     /// </summary>

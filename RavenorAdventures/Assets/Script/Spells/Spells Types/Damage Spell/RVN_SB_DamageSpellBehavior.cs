@@ -40,7 +40,8 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             switch(usedScriptable.Type)
             {
                 case DamageType.Normal:
-                    hitedObject.TakeDamage(usedScriptable.DamageDealt, usedScriptable.ArmorPierced);
+                    float damage = CalculateDamage(DiceManager.GetDices(usedScriptable.DamageDealt, 6, spellToUse.caster.Accuracy), spellToUse.caster, hitedObject);
+                    hitedObject.TakeDamage(damage, usedScriptable.ArmorPierced);
                     break;
                 case DamageType.Heal:
                     hitedObject.TakeHeal(usedScriptable.DamageDealt); //TO DO : Voir si on ajoute la régénération d'Armure ici
@@ -59,5 +60,27 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         {
             TimerManager.CreateGameTimer(0.5f, callback);
         }
+    }
+
+    private float CalculateDamage(List<Dice> diceDamage, CPN_SpellCaster caster, CPN_HealthHandler target)
+    {
+        float totalDamage = 0;
+        int currentRelance = 0;
+
+        for(int i = 0; i < diceDamage.Count; i++)
+        {
+            if(diceDamage[i].Result > target.Defense)
+            {
+                totalDamage++;
+            }
+            else if(currentRelance < caster.PossibleRelances)
+            {
+                currentRelance++;
+                diceDamage[i].Roll();
+                i--;
+            }
+        }
+
+        return totalDamage;
     }
 }

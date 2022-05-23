@@ -223,6 +223,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
+		Debug.Log("Allo");
+
 		Color colorMovement = Color.green;
 		colorMovement.a = 0.5f;
 		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);
