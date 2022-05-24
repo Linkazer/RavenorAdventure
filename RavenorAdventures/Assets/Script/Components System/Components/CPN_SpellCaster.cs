@@ -11,8 +11,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
 
-    private int spellUseLeft = 1;
-    [SerializeField] private int maxSpellUse = 1;
+    private int actionsLeftThisTurn = 1;
+    [SerializeField] private int actionByTurn = 1;
     private int currentSelectedSpell = -1;
 
     //Base datas
@@ -23,6 +23,21 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public int PossibleRelances => possibleRelances;
     public int Accuracy => accuracy;
     public int Power => power;
+
+    public void AddPossibleRelance(int amount)
+    {
+        possibleRelances += amount;
+    }
+
+    public void AddAccuracy(int amount)
+    {
+        accuracy += amount;
+    }
+
+    public void AddPower(int amount)
+    {
+        power += amount;
+    }
 
     /// <summary>
     /// Display every node on which the action can be used.
@@ -59,7 +74,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return spellUseLeft > 0 && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
+        return actionsLeftThisTurn > 0 && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
     }
 
     /// <summary>
@@ -67,7 +82,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// </summary>
     public override void ResetData()
     {
-        spellUseLeft = maxSpellUse;
+        actionsLeftThisTurn = actionByTurn;
         currentSelectedSpell = -1;
     }
 
@@ -88,7 +103,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         {
             CastSpell(launchedSpell, actionTargetPosition, callback);
 
-            spellUseLeft--;
+            actionsLeftThisTurn--;
         }
     }
 
@@ -149,7 +164,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override void SetData(CPN_Data_SpellCaster toSet)
     {
-        maxSpellUse = toSet.MaxSpellUseByTurn();
+        actionByTurn = toSet.MaxSpellUseByTurn();
 
         spells = new List<SpellScriptable>(toSet.AvailableSpells());
 
