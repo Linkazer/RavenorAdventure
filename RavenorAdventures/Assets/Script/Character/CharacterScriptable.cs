@@ -9,9 +9,12 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
     [SerializeField] private Sprite characterSprite;
     [SerializeField] private Sprite UIPortrait;
 
-    [Header("Health")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float maxArmor;
+    [Header("Combat Stats")]
+    [SerializeField] private float health;
+    [SerializeField] private float armor;
+    [SerializeField] private int defense;
+    [SerializeField] private int accuracy;
+    [SerializeField] private int relances;
 
     [Header("Movement")]
     [SerializeField] private int movementByTurn;
@@ -33,12 +36,12 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
 
     public float MaxArmor()
     {
-        return maxArmor;
+        return armor;
     }
 
     public float MaxHealth()
     {
-        return maxHealth;
+        return health;
     }
 
     public int MaxDistance()
@@ -61,4 +64,18 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
         return usableSpellByTurn;
     }
 
+    public int Defense()
+    {
+        return defense;
+    }
+
+    public int PossibleRelance()
+    {
+        return relances;
+    }
+
+    public int Accuracy()
+    {
+        return accuracy;
+    }
 }

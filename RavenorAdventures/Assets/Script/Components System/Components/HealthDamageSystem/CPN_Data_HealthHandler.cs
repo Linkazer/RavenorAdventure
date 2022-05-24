@@ -6,4 +6,6 @@ public interface CPN_Data_HealthHandler
 {
     public float MaxHealth();
     public float MaxArmor();
+
+    public int Defense();
 }

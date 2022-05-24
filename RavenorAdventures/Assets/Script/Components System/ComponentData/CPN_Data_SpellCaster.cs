@@ -6,5 +6,6 @@ public interface CPN_Data_SpellCaster
 {
     public List<SpellScriptable> AvailableSpells();
     public int MaxSpellUseByTurn();
-
+    public int PossibleRelance();
+    public int Accuracy();
 }

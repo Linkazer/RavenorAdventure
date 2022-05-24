@@ -31,6 +31,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         currentHealth = maxHealth;
         currentArmor = maxArmor;
 
+        defense = toSet.Defense();
+
         SetMaxHealth?.Invoke(maxHealth);
         SetMaxArmor?.Invoke(maxArmor);
     }

@@ -41,6 +41,11 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             {
                 case DamageType.Normal:
                     float damage = CalculateDamage(DiceManager.GetDices(usedScriptable.DamageDealt, 6, spellToUse.caster.Accuracy), spellToUse.caster, hitedObject);
+                    if(damage > 0)
+                    {
+                        damage += spellToUse.caster.Power;
+                    }
+
                     hitedObject.TakeDamage(damage, usedScriptable.ArmorPierced);
                     break;
                 case DamageType.Heal:

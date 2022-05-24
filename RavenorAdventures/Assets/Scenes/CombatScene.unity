@@ -2642,9 +2642,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1346031330}
     - target: {fileID: 4804896778571993181, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: scriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: cc212fe62a0483d4da7b98826a07bde2, type: 2}
+    - target: {fileID: 4804896778571993181, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
+    - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: scriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b381ee1359653d4ebd88fc9020351ea, type: 2}
     - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

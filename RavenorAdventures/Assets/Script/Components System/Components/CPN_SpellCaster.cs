@@ -18,9 +18,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     //Base datas
     [SerializeField] private int possibleRelances;
     [SerializeField] private int accuracy;
+    [SerializeField] private int power;
 
     public int PossibleRelances => possibleRelances;
     public int Accuracy => accuracy;
+    public int Power => power;
 
     /// <summary>
     /// Display every node on which the action can be used.
@@ -150,5 +152,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         maxSpellUse = toSet.MaxSpellUseByTurn();
 
         spells = new List<SpellScriptable>(toSet.AvailableSpells());
+
+        possibleRelances = toSet.PossibleRelance();
+
+        accuracy = toSet.Accuracy();
     }
 }
