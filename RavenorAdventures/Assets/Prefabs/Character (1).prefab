@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870d171e0787cc04c9e697bc27ea62b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 0}
   animator: {fileID: 6987722732372388516}
   characterSprite: {fileID: 5476766876406081633}
   jumpOnTargetAnimation: {fileID: 5972871693876766062}
@@ -312,6 +313,7 @@ GameObject:
   - component: {fileID: 5140952349797873643}
   - component: {fileID: 5140952349797873620}
   - component: {fileID: 4053348106658464090}
+  - component: {fileID: 6674373229304437009}
   - component: {fileID: 5140952349797873621}
   m_Layer: 0
   m_Name: Character (1)
@@ -349,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 5140952349797873623}
+  scriptable: {fileID: 0}
   actions:
   - {fileID: 5140952349797873643}
   - {fileID: 5140952349797873620}
@@ -418,7 +421,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  scriptable: {fileID: 0}
 --- !u!114 &5140952349797873642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +465,7 @@ MonoBehaviour:
   - {fileID: 5140952349797873622}
   - {fileID: 5140952349797873620}
   - {fileID: 8205510481207194533}
+  - {fileID: 6674373229304437009}
 --- !u!114 &8205510481207194533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,10 +478,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822c349c290c7874a856100db5c43e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873623}
   maxHealth: 10
   maxArmor: 0
   currentHealth: 10
   currentArmor: 0
+  defense: 0
   SetMaxHealth:
     m_PersistentCalls:
       m_Calls:
@@ -572,6 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f441e0b6632a58478b21efd9b4f59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873623}
   speed: 5
   maxDistance: 100
   OnEnterNode:
@@ -650,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f71ed27724a91479dc70369507d04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873623}
   spells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
@@ -669,7 +676,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  maxSpellUse: 1
+  actionByTurn: 1
+  possibleReroll: 0
+  accuracy: 0
+  power: 0
 --- !u!114 &4053348106658464090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +702,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   PlayOnMouseExit:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6674373229304437009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140952349797873644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0e62dbf11db4d4bb78ec2ebf750579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873623}
+  currentAppliedEffects: []
+  OnApplyEffect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRemoveEffect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &5140952349797873621

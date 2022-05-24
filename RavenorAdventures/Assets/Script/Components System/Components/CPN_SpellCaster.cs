@@ -16,17 +16,20 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     private int currentSelectedSpell = -1;
 
     //Base datas
-    [SerializeField] private int possibleRelances;
+    [SerializeField] private int possibleReroll;
     [SerializeField] private int accuracy;
     [SerializeField] private int power;
 
-    public int PossibleRelances => possibleRelances;
+    public Action<RVN_ComponentHandler> actOnDealDamageSelf;
+    public Action<RVN_ComponentHandler> actOnDealDamageTarget;
+
+    public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
     public int Power => power;
 
-    public void AddPossibleRelance(int amount)
+    public void AddPossibleReroll(int amount)
     {
-        possibleRelances += amount;
+        possibleReroll += amount;
     }
 
     public void AddAccuracy(int amount)
@@ -93,15 +96,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        LaunchedSpellData launchedSpell = new LaunchedSpellData();
+        LaunchedSpellData launchedSpell = new LaunchedSpellData(Instantiate(spells[currentSelectedSpell]), this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
-        launchedSpell.scriptable = spells[currentSelectedSpell];
-        launchedSpell.caster = this;
-        launchedSpell.targetNode = Grid.GetNodeFromWorldPoint(actionTargetPosition);
-
-        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell, launchedSpell.targetNode))
+        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell))
         {
-            CastSpell(launchedSpell, actionTargetPosition, callback);
+            CastSpell(launchedSpell, callback);
 
             actionsLeftThisTurn--;
         }
@@ -133,11 +132,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="launchedSpell">The spell to cast.</param>
     /// <param name="actionTargetPosition">The target position of the spell.</param>
     /// <param name="callback">The callback to call after the spell is done.</param>
-    private void CastSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
+    private void CastSpell(LaunchedSpellData launchedSpell, Action callback)
     {
         OnCastSpell?.Invoke(launchedSpell);
 
-        TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, actionTargetPosition, callback));
+        TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, callback));
     }
 
     /// <summary>
@@ -146,9 +145,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="launchedSpell">The spell to launch.</param>
     /// <param name="actionTargetPosition">The target position of the spell.</param>
     /// <param name="callback">The callback to call after the spell is done.</param>
-    private void UseSpell(LaunchedSpellData launchedSpell, Vector2 actionTargetPosition, Action callback)
+    private void UseSpell(LaunchedSpellData launchedSpell, Action callback)
     {
-        RVN_SpellManager.UseSpell(launchedSpell, Grid.GetNodeFromWorldPoint(actionTargetPosition), () => EndUseSpell(callback));
+        RVN_SpellManager.UseSpell(launchedSpell, () => EndUseSpell(callback));
     }
 
     /// <summary>
@@ -168,8 +167,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
         spells = new List<SpellScriptable>(toSet.AvailableSpells());
 
-        possibleRelances = toSet.PossibleRelance();
+        possibleReroll = toSet.PossibleRelance();
 
         accuracy = toSet.Accuracy();
+    }
+
+    public void DealDamage(CPN_HealthHandler target)
+    {
+        actOnDealDamageSelf?.Invoke(Handler);
+        actOnDealDamageTarget?.Invoke(target.Handler);
     }
 }

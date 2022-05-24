@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private UnityEvent<float> OnGainArmor;
     [SerializeField] private UnityEvent<float> OnLoseArmor;
     [SerializeField] private UnityEvent OnDeath;
+
+    public Action<RVN_ComponentHandler> actOnDeath;
+    public Action<RVN_ComponentHandler> actOnTakeDamageSelf;
+    public Action<RVN_ComponentHandler> actOnTakeDamageTarget;
 
     public float Armor => currentArmor;
     public int Defense => defense;
@@ -76,6 +81,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     private void Die()
     {
+        actOnDeath?.Invoke(Handler);
         OnDeath?.Invoke();
     }
 

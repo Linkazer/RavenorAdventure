@@ -25,4 +25,22 @@ public class LaunchedSpellData
         }
         return null;
     }
+
+    public LaunchedSpellData()
+    {
+
+    }
+
+    public LaunchedSpellData(SpellScriptable spell, CPN_SpellCaster nCaster, Node nTargetNode)
+    {
+        scriptable = spell;
+
+        caster = nCaster;
+        if(caster != null)
+        {
+            scriptable.SetCaster(caster);
+        }
+
+        targetNode = nTargetNode;
+    }
 }

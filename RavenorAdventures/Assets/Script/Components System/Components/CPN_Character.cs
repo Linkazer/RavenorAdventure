@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,14 @@ public class CPN_Character : RVN_Component
 {
     [SerializeField] private CharacterScriptable scriptable;
 
-    [SerializeField] private RVN_ComponentHandler handler;
 
     [SerializeField] private List<CPN_CharacterAction> actions;
 
     [SerializeField] private UnityEvent<CharacterScriptable> OnSetCharacter;
     [SerializeField] private UnityEvent OnUnsetCharacter;
 
-    public RVN_ComponentHandler Handler => handler;
+    public Action<RVN_ComponentHandler> ActOnBeginTurn;
+    public Action<RVN_ComponentHandler> ActOnEndTurn;
 
     public bool IsSet => gameObject.activeSelf;
 
@@ -42,11 +43,18 @@ public class CPN_Character : RVN_Component
         gameObject.SetActive(false);
     }
 
-    public void StartTurn() //CODE REVIEW : A renommer.
+    public void StartTurn()
     {
+        ActOnBeginTurn?.Invoke(Handler);
+
         for(int i = 0; i < actions.Count; i++)
         {
             actions[i].ResetData();
         }
+    }
+
+    public void EndTurn()
+    {
+        ActOnEndTurn?.Invoke(Handler);
     }
 }

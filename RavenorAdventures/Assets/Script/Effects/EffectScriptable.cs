@@ -12,5 +12,5 @@ public class EffectScriptable : ScriptableObject
     [Header("Effect")]
     [SerializeField] private Effect effect;
 
-    public Effect GetEffect => effect;
+    public Effect GetEffect => effect; //CODE REVIEW : Voir pour donner une copie de l'effet ?
 }

@@ -49,8 +49,9 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     /// </summary>
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
-    ///  /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
-    protected abstract void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback);
+    /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
+    /// <returns>Return true if the spell has been correctly used.</returns>
+    protected abstract bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback);
 
     /// <summary>
     /// Est appelé quand le sort a finit d'être lancé. Contient la logique spécifique au type de sort du SpellBehavior.
@@ -90,5 +91,10 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     public override void EndSpell(LaunchedSpellData spellToEnd)
     {
         OnEndSpell(spellToEnd);
+    }
+
+    protected void ApplyEffects(CPN_EffectHandler target, Effect effectToApply)
+    {
+        target.ApplyEffect(effectToApply);
     }
 }

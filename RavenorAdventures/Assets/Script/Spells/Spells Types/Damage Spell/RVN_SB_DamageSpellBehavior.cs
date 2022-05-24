@@ -29,8 +29,10 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
     /// <param name="spellToUse">The spell to use.</param>
     /// <param name="targetNode">The targeted Node.</param>
     /// <param name="callback">The callback to call at the end of the spell.</param>
-    protected override void OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback) //TO DO : Mettre à jour lors de la création du système de dégâts/pv
+    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback) //TO DO : Mettre à jour lors de la création du système de dégâts/pv
     {
+        bool toReturn = true;
+
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
         RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse);
@@ -40,16 +42,39 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             switch(usedScriptable.Type)
             {
                 case DamageType.Normal:
-                    float damage = CalculateDamage(DiceManager.GetDices(usedScriptable.DamageDealt, 6, spellToUse.caster.Accuracy), spellToUse.caster, hitedObject);
+                    float damage = CalculateDamage(DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy), usedScriptable.PossibleReroll, hitedObject);
                     if(damage > 0)
                     {
-                        damage += spellToUse.caster.Power;
-                    }
+                        damage += usedScriptable.BaseDamage;
 
-                    hitedObject.TakeDamage(damage, usedScriptable.ArmorPierced);
+                        hitedObject.TakeDamage(damage, usedScriptable.ArmorPierced);
+
+                        Debug.Log(hitedObject.gameObject);
+                        hitedObject.actOnTakeDamageSelf?.Invoke(hitedObject.Handler); // CODE REVIEW : Voir pour mettre ça autre part
+                        hitedObject.actOnTakeDamageTarget?.Invoke(spellToUse.caster.Handler);
+
+                        if(spellToUse.caster != null)
+                        {
+                            spellToUse.caster.DealDamage(hitedObject);
+                        }
+
+
+                        if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                        {
+                            foreach (EffectScriptable eff in usedScriptable.Effects())
+                            {
+                                ApplyEffects(effectHandler, eff.GetEffect);
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        toReturn = false;
+                    }
                     break;
                 case DamageType.Heal:
-                    hitedObject.TakeHeal(usedScriptable.DamageDealt); //TO DO : Voir si on ajoute la régénération d'Armure ici
+                    hitedObject.TakeHeal(usedScriptable.DiceUsed); //TO DO : Voir si on ajoute la régénération d'Armure ici
                     break;
                 case DamageType.IgnoreArmor:
                     //TO DO : Voir pour les dégâts Brut
@@ -57,17 +82,19 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             }
         }
 
-        if (spellToUse.scriptable.SpellAnimation != null)
+        if (usedScriptable.SpellAnimation != null)
         {
-            AnimationInstantiater.PlayAnimationAtPosition(spellToUse.scriptable.SpellAnimation, targetNode.worldPosition, callback);
+            AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
         }
         else if(callback != null)
         {
             TimerManager.CreateGameTimer(0.5f, callback);
         }
+
+        return toReturn;
     }
 
-    private float CalculateDamage(List<Dice> diceDamage, CPN_SpellCaster caster, CPN_HealthHandler target)
+    private float CalculateDamage(List<Dice> diceDamage, int possibleRerolls, CPN_HealthHandler target)
     {
         float totalDamage = 0;
         int currentRelance = 0;
@@ -78,7 +105,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             {
                 totalDamage++;
             }
-            else if(currentRelance < caster.PossibleRelances)
+            else if(currentRelance < possibleRerolls)
             {
                 currentRelance++;
                 diceDamage[i].Roll();

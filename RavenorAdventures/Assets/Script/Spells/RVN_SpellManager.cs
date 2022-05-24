@@ -13,7 +13,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <param name="spellToCheck">Sort à tester.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <returns>TRUE si le sort peut être utilisé.</returns>
-    public static bool CanUseSpell(LaunchedSpellData spellToCheck, Node targetNode)
+    public static bool CanUseSpell(LaunchedSpellData spellToCheck)
     {
         if (spellToCheck != null)
         {
@@ -21,7 +21,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
 
             if (behaviorUsed != null)
             {
-                return behaviorUsed.IsSpellUsable(spellToCheck, targetNode);
+                return behaviorUsed.IsSpellUsable(spellToCheck, spellToCheck.targetNode);
             }
         }
 
@@ -34,7 +34,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <param name="spellToUse">Sort à lancer.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <param name="callbackEndSpell">Action à lancé une fois le sort lancé.</param>
-    public static void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callbackEndSpell)
+    public static void UseSpell(LaunchedSpellData spellToUse, Action callbackEndSpell)
     {
         if (spellToUse != null)
         {
@@ -42,10 +42,10 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
 
             if (behaviorUsed != null)
             {
-                List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(targetNode, spellToUse.scriptable.ZoneRange, false);
+                List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(spellToUse.targetNode, spellToUse.scriptable.ZoneRange, false);
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
-                    if (targetsNodes[i] != targetNode)
+                    if (targetsNodes[i] != spellToUse.targetNode)
                     {
                         behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);
                     }
