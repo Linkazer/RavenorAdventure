@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   effect:
-    name: 
+    name: Effet 1
+    statEffects: []
+    actionEffects:
+    - trigger: 8
+      spellToUse: {fileID: 11400000, guid: 1692320bca23f144baf9d4fc8bdca615, type: 2}

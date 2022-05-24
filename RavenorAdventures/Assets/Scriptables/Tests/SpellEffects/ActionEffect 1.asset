@@ -17,11 +17,11 @@ MonoBehaviour:
   description: 
   castingAnimation: 0
   castAnimationDuration: 0
-  spellAnimation: {fileID: 0}
-  range: 0
+  spellAnimation: {fileID: 7282106008027488376, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+  range: 10
   zoneRange: 0
   effects: []
   type: 0
-  diceUsed: 0
-  baseDamage: 0
+  diceUsed: 3
+  baseDamage: 2
   armorPierced: 0
