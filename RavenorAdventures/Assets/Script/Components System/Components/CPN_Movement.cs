@@ -55,10 +55,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// </summary>
 	private Vector2 posTarget;
 	/// <summary>
-	/// The current direction of the component.
-	/// </summary>
-	private Vector2 direction;
-	/// <summary>
 	/// The node on which the component is.
 	/// </summary>
 	private Node currentNode = null;
@@ -164,11 +160,19 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		OnStartMovement?.Invoke();
 
+		float lerpValue = 0;
+		float distance = 0;
+
+		posUnit = new Vector2(transform.position.x, transform.position.y);
+		posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+		distance = Vector2.Distance(posUnit, posTarget);
+
 		while (true)
 		{
-			posUnit = new Vector2(transform.position.x, transform.position.y);
-			posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
-			if(currentNode != currentWaypoint && Vector2.Distance(currentWaypoint.worldPosition, posUnit) < Vector2.Distance(currentNode.worldPosition, posUnit))
+			lerpValue += Time.deltaTime * speed / distance;
+
+			if (currentNode != currentWaypoint && lerpValue >= 1)
             {
 				OnExitNode?.Invoke(currentWaypoint);
 
@@ -177,7 +181,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				OnEnterNode?.Invoke(currentWaypoint);
 			}
 
-			if (Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
+			if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
 			{
 				targetIndex++;
 				if (targetIndex >= path.Length)
@@ -193,10 +197,16 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 					break;
 				}
 				currentWaypoint = path[targetIndex];
-			}
-			direction = new Vector2(currentWaypoint.worldPosition.x - transform.position.x, currentWaypoint.worldPosition.y - transform.position.y).normalized;
 
-			transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+				lerpValue = 0;
+
+				posUnit = new Vector2(transform.position.x, transform.position.y);
+				posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+				distance = Vector2.Distance(posUnit, posTarget);
+			}
+
+			transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);// new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
 			yield return null;
 		}
 	}

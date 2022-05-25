@@ -14,7 +14,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     {
         foreach(EffectScriptable eff in toSet.Effects())
         {
-            ApplyEffect(eff.GetEffect);
+            ApplyEffect(eff);
         }
     }
 
@@ -37,16 +37,20 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         }
     }
 
-    public void ApplyEffect(Effect toApply)
+    public void ApplyEffect(EffectScriptable toApply)
     {
-        if(HasEffect(toApply) != null)
+        foreach (Effect eff in toApply.GetEffects)
         {
-            HasEffect(toApply).ResetEffect(3);
-        }
-        else
-        {
-            currentAppliedEffects.Add(new AppliedEffect(toApply, 3));
-            toApply.ApplyEffect(Handler);
+            Debug.Log(HasEffect(eff));
+            if (HasEffect(eff) != null)
+            {
+                HasEffect(eff).ResetEffect(3);
+            }
+            else
+            {
+                currentAppliedEffects.Add(new AppliedEffect(eff, 3));
+                eff.ApplyEffect(Handler);
+            }
         }
     }
 
@@ -60,6 +64,8 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
     private void RemoveEffect(AppliedEffect toRemove)
     {
+        toRemove.RemoveEffect(handler);
+
         currentAppliedEffects.Remove(toRemove);
     }
 
@@ -67,7 +73,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     {
         foreach(AppliedEffect eff in currentAppliedEffects)
         {
-            if(eff.GetEffect.Name == toCheck.Name)
+            if(eff.GetEffect.name == toCheck.name)
             {
                 return eff;
             }

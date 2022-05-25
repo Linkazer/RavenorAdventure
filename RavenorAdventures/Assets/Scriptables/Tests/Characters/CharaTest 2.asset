@@ -20,7 +20,7 @@ MonoBehaviour:
   accuracy: 0
   relances: 0
   movementByTurn: 45
-  speed: 7
+  speed: 6.4
   availableSpells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   usableSpellByTurn: 10

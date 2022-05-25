@@ -25,6 +25,11 @@ public class AppliedEffect
         }
     }
 
+    public void RemoveEffect(RVN_ComponentHandler toRemoveFrom)
+    {
+        effect.RemoveEffect(toRemoveFrom);
+    }
+
     public AppliedEffect()
     {
 

@@ -93,7 +93,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         OnEndSpell(spellToEnd);
     }
 
-    protected void ApplyEffects(CPN_EffectHandler target, Effect effectToApply)
+    protected void ApplyEffects(CPN_EffectHandler target, EffectScriptable effectToApply)
     {
         target.ApplyEffect(effectToApply);
     }

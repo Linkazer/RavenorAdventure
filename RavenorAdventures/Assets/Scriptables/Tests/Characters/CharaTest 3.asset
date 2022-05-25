@@ -19,7 +19,7 @@ MonoBehaviour:
   defense: 1
   accuracy: 0
   relances: 0
-  movementByTurn: 25
+  movementByTurn: 35
   speed: 5
   availableSpells:
   - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}

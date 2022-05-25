@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe076ce3dce9f24d8cf21022f95943d, type: 3}
   m_Name: Action Effect
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Action Effect
   trigger: 8
   spellToUse: {fileID: 11400000, guid: 1692320bca23f144baf9d4fc8bdca615, type: 2}

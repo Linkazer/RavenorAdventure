@@ -144,9 +144,19 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// </summary>
     private void StartNextTeamRound()
     {
+        for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+        {
+            teams[currentPlayingTeam].characters[j].EndTurn();
+        }
+
         currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
 
-        if(currentPlayingTeam == 0)
+        for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+        {
+            teams[currentPlayingTeam].characters[j].StartTurn();
+        }
+
+        if (currentPlayingTeam == 0)
         {
             StartNewRound();
         }
@@ -161,13 +171,13 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         playedThisTurn = new List<CPN_Character>();
 
-        for(int i = 0; i < teams.Count; i++) //CODE REVIEW : Voir pour séparer la mise à jour de chaque team
+        /*for(int i = 0; i < teams.Count; i++) //CODE REVIEW : Voir pour séparer la mise à jour de chaque team
         {
             for(int j = 0; j < teams[i].characters.Count; j++)
             {
                 teams[i].characters[j].StartTurn();
             }
-        }
+        }*/
 
         OnBeginNewRound?.Invoke();
     }

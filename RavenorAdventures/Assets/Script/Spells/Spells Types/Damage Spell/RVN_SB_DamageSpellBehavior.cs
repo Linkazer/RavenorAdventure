@@ -14,12 +14,11 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 {
     protected override void OnEndSpell(LaunchedSpellData spellToEnd)
     {
-        Debug.Log("End spell : " + GetScriptable(spellToEnd));
+        
     }
 
     protected override bool OnIsSpellUsable(LaunchedSpellData spellToCheck, Node targetNode)
     {
-        Debug.Log("Is spell usable : " + GetScriptable(spellToCheck) + " at position : " + targetNode.worldPosition);
         return true;
     }
 
@@ -47,7 +46,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                     {
                         damage += usedScriptable.BaseDamage;
 
-                        hitedObject.TakeDamage(spellToUse.caster.Handler, damage, usedScriptable.ArmorPierced);
+                        hitedObject.TakeDamage(spellToUse.caster, damage, usedScriptable.ArmorPierced);
 
                         if(spellToUse.caster != null)
                         {
@@ -59,7 +58,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         {
                             foreach (EffectScriptable eff in usedScriptable.Effects())
                             {
-                                ApplyEffects(effectHandler, eff.GetEffect);
+                                ApplyEffects(effectHandler, eff);
                             }
                         }
 
@@ -68,7 +67,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                     {
                         if(usedScriptable.ArmorPierced > 0)
                         {
-                            hitedObject.TakeDamage(spellToUse.caster.Handler, 0, usedScriptable.ArmorPierced);
+                            hitedObject.TakeDamage(spellToUse.caster, 0, usedScriptable.ArmorPierced);
                         }
                         toReturn = false;
                     }

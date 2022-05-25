@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46b7b4e72011ee4a97e248bf7d39217, type: 3}
   m_Name: Stat Effect 1
   m_EditorClassIdentifier: 
-  effectName: 
+  effectName: Stat Effect 1
   trigger: 2
   effects:
   - stat: 1

@@ -42,10 +42,13 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         SetMaxArmor?.Invoke(maxArmor);
     }
 
-    public void TakeDamage(RVN_ComponentHandler caster, float damageAmount, float armorPierced)
+    public void TakeDamage(CPN_SpellCaster caster, float damageAmount, float armorPierced)
     {
         actOnTakeDamageSelf?.Invoke(handler);
-        actOnTakeDamageTarget?.Invoke(caster);
+        if (caster != null)
+        {
+            actOnTakeDamageTarget?.Invoke(caster.Handler);
+        }
 
         TakeDamage(damageAmount, armorPierced);
     }

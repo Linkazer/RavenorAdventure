@@ -13,6 +13,9 @@ public class CPN_Character : RVN_Component
 
     [SerializeField] private UnityEvent<CharacterScriptable> OnSetCharacter;
     [SerializeField] private UnityEvent OnUnsetCharacter;
+    [SerializeField] private UnityEvent OnStartTurn;
+    [SerializeField] private UnityEvent OnEndTurn;
+
 
     public Action<RVN_ComponentHandler> ActOnBeginTurn;
     public Action<RVN_ComponentHandler> ActOnEndTurn;
@@ -46,6 +49,7 @@ public class CPN_Character : RVN_Component
     public void StartTurn()
     {
         ActOnBeginTurn?.Invoke(Handler);
+        OnStartTurn?.Invoke();
 
         for(int i = 0; i < actions.Count; i++)
         {
@@ -56,5 +60,6 @@ public class CPN_Character : RVN_Component
     public void EndTurn()
     {
         ActOnEndTurn?.Invoke(Handler);
+        OnEndTurn?.Invoke();
     }
 }
