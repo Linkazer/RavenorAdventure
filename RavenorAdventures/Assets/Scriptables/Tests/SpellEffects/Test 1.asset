@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Test 1
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  effect:
-    name: Effet 1
-    statEffects: []
-    actionEffects:
-    - trigger: 8
-      spellToUse: {fileID: 11400000, guid: 1692320bca23f144baf9d4fc8bdca615, type: 2}
+  effects:
+  - {fileID: 11400000, guid: 6e83fa92892ea024a9aeb078afea6d6d, type: 2}
+  - {fileID: 11400000, guid: 151616328ab94ff44904ea765326e485, type: 2}
+  - {fileID: 11400000, guid: 46ead439edda49e4ea90b137bc76e28e, type: 2}

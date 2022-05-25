@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Effect", menuName = "Spell/Create Effect")]
+[CreateAssetMenu(fileName = "Effect", menuName = "Spell/Effect/Base Effect")]
 public class EffectScriptable : ScriptableObject
 {
     [Header("Affichage")]
@@ -10,7 +10,9 @@ public class EffectScriptable : ScriptableObject
     //Voir les affichages
 
     [Header("Effect")]
-    [SerializeField] private Effect effect;
+    [SerializeField] private List<Effect> effects;
 
-    public Effect GetEffect => effect; //CODE REVIEW : Voir pour donner une copie de l'effet ?
+    public Effect GetEffect => effects[0]; //CODE REVIEW : Voir pour donner une copie de l'effet ?
+
+    public List<Effect> GetEffects => effects;
 }

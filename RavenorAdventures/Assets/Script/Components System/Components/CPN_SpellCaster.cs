@@ -23,6 +23,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
 
+    public int ActionByTurn => actionByTurn;
     public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
     public int Power => power;
@@ -40,6 +41,12 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public void AddPower(int amount)
     {
         power += amount;
+    }
+
+    public void AddBonusAction(int amount)
+    {
+        actionByTurn += amount;
+        actionsLeftThisTurn += amount;//CODE REVIEW : Voir si on garde ça niveau GD
     }
 
     /// <summary>
@@ -172,6 +179,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         accuracy = toSet.Accuracy();
     }
 
+    //CODE REVIEW : Voir comment on peut faire pour éviter de juste avoir les events ici ?
     public void DealDamage(CPN_HealthHandler target)
     {
         actOnDealDamageSelf?.Invoke(Handler);

@@ -47,11 +47,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                     {
                         damage += usedScriptable.BaseDamage;
 
-                        hitedObject.TakeDamage(damage, usedScriptable.ArmorPierced);
-
-                        Debug.Log(hitedObject.gameObject);
-                        hitedObject.actOnTakeDamageSelf?.Invoke(hitedObject.Handler); // CODE REVIEW : Voir pour mettre ça autre part
-                        hitedObject.actOnTakeDamageTarget?.Invoke(spellToUse.caster.Handler);
+                        hitedObject.TakeDamage(spellToUse.caster.Handler, damage, usedScriptable.ArmorPierced);
 
                         if(spellToUse.caster != null)
                         {
@@ -70,6 +66,10 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                     }
                     else
                     {
+                        if(usedScriptable.ArmorPierced > 0)
+                        {
+                            hitedObject.TakeDamage(spellToUse.caster.Handler, 0, usedScriptable.ArmorPierced);
+                        }
                         toReturn = false;
                     }
                     break;

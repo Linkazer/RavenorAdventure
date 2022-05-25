@@ -75,6 +75,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		currentNode = Grid.GetNodeFromWorldPoint(transform.position);
 	}
 
+	public void AddMovement(int amount)
+    {
+		maxDistance += amount;
+		currentMovementLeft += amount;
+    }
+
 	/// <summary>
 	/// Called when the component find a path to follow.
 	/// </summary>

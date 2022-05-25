@@ -42,29 +42,34 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         SetMaxArmor?.Invoke(maxArmor);
     }
 
+    public void TakeDamage(RVN_ComponentHandler caster, float damageAmount, float armorPierced)
+    {
+        actOnTakeDamageSelf?.Invoke(handler);
+        actOnTakeDamageTarget?.Invoke(caster);
+
+        TakeDamage(damageAmount, armorPierced);
+    }
+
     public void TakeDamage(float damageAmount, float armorPierced)
     {
         RemoveArmor(armorPierced);
 
-        if (damageAmount > 0)
+        if (damageAmount > currentArmor)
         {
-            if (damageAmount > currentArmor)
+            currentHealth -= damageAmount - currentArmor;
+
+            if (currentHealth <= 0)
             {
-                currentHealth -= damageAmount - currentArmor;
-
-                if(currentHealth <= 0)
-                {
-                    Die();
-                    return;
-                }
-                else
-                {
-                    OnLoseHealth?.Invoke(currentHealth);
-                }
+                Die();
+                return;
             }
-
-            RemoveArmor(1);
+            else
+            {
+                OnLoseHealth?.Invoke(currentHealth);
+            }
         }
+
+        RemoveArmor(1);
     }
 
     public void TakeHeal(float healAmount)
@@ -107,5 +112,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             OnLoseArmor?.Invoke(currentArmor);
         }
+    }
+
+    public void AddDefense(int toAdd)
+    {
+        defense += toAdd;
     }
 }
