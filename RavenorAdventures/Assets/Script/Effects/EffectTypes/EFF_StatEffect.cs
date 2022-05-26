@@ -61,7 +61,27 @@ public class EFF_StatEffect : Effect
                 case EffectStatEnum.Armor:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthArmor))
                     {
-                        healthArmor.AddArmor(value);
+                        if (value > 0)
+                        {
+                            healthArmor.AddArmor((int)value);
+                        }
+                        else if(value < 0)
+                        {
+                            healthArmor.RemoveArmor((int)-value);
+                        }
+                    }
+                    break;
+                case EffectStatEnum.MaxArmor:
+                    if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthMaxArmor))
+                    {
+                        if (value > 0)
+                        {
+                            healthMaxArmor.AddMaxArmor((int)value);
+                        }
+                        else if (value < 0)
+                        {
+                            healthMaxArmor.RemoveMaxArmor((int)-value);
+                        }
                     }
                     break;
                 case EffectStatEnum.Defense:

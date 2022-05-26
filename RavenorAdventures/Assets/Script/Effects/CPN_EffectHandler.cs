@@ -41,7 +41,6 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     {
         foreach (Effect eff in toApply.GetEffects)
         {
-            Debug.Log(HasEffect(eff));
             if (HasEffect(eff) != null)
             {
                 HasEffect(eff).ResetEffect(3);

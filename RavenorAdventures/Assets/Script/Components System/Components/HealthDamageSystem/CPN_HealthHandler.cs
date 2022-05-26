@@ -7,25 +7,25 @@ using UnityEngine.Events;
 public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 {
     [SerializeField] private float maxHealth = 10;
-    [SerializeField] private float maxArmor = 0;
+    [SerializeField] private int maxArmor = 0;
     [SerializeField] private float currentHealth = 10;
-    [SerializeField] private float currentArmor = 0;
+    [SerializeField] private int currentArmor = 0;
 
     [SerializeField] private int defense;
 
-    [SerializeField] private UnityEvent<float> SetMaxHealth;
-    [SerializeField] private UnityEvent<float> SetMaxArmor;
+    [SerializeField] private UnityEvent<float> OnSetMaxHealth;
+    [SerializeField] private UnityEvent<int> OnSetMaxArmor;
     [SerializeField] private UnityEvent<float> OnGainHealth;
     [SerializeField] private UnityEvent<float> OnLoseHealth;
-    [SerializeField] private UnityEvent<float> OnGainArmor;
-    [SerializeField] private UnityEvent<float> OnLoseArmor;
+    [SerializeField] private UnityEvent<int> OnGainArmor;
+    [SerializeField] private UnityEvent<int> OnLoseArmor;
     [SerializeField] private UnityEvent OnDeath;
 
     public Action<RVN_ComponentHandler> actOnDeath;
     public Action<RVN_ComponentHandler> actOnTakeDamageSelf;
     public Action<RVN_ComponentHandler> actOnTakeDamageTarget;
 
-    public float Armor => currentArmor;
+    public int Armor => currentArmor;
     public int Defense => defense;
 
     public override void SetData(CPN_Data_HealthHandler toSet)
@@ -38,11 +38,13 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
         defense = toSet.Defense();
 
-        SetMaxHealth?.Invoke(maxHealth);
-        SetMaxArmor?.Invoke(maxArmor);
+        OnSetMaxHealth?.Invoke(maxHealth);
+        OnSetMaxArmor?.Invoke(maxArmor);
+
+        OnGainArmor?.Invoke(currentArmor);
     }
 
-    public void TakeDamage(CPN_SpellCaster caster, float damageAmount, float armorPierced)
+    public void TakeDamage(CPN_SpellCaster caster, float damageAmount, int armorPierced)
     {
         actOnTakeDamageSelf?.Invoke(handler);
         if (caster != null)
@@ -53,7 +55,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         TakeDamage(damageAmount, armorPierced);
     }
 
-    public void TakeDamage(float damageAmount, float armorPierced)
+    public void TakeDamage(float damageAmount, int armorPierced)
     {
         RemoveArmor(armorPierced);
 
@@ -93,7 +95,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         OnDeath?.Invoke();
     }
 
-    public void AddArmor(float toAdd)
+    public void AddArmor(int toAdd)
     {
         if (toAdd > 0 && currentArmor < maxArmor)
         {
@@ -105,9 +107,9 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         }
     }
 
-    private void RemoveArmor(float toRemove)
+    public void RemoveArmor(int toRemove)
     {
-        if (toRemove > 0 && currentArmor > 0)
+        if (maxArmor > 0 && toRemove > 0 && currentArmor > 0)
         {
             currentArmor -= toRemove;
 
@@ -115,6 +117,25 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             OnLoseArmor?.Invoke(currentArmor);
         }
+    }
+
+    public void AddMaxArmor(int toAdd)
+    {
+        maxArmor += toAdd;
+        AddArmor(toAdd);
+
+        OnSetMaxArmor?.Invoke(maxArmor);
+    }
+
+    public void RemoveMaxArmor(int toRemove)
+    {
+        maxArmor -= toRemove;
+        if(currentArmor > maxArmor)
+        {
+            currentArmor = maxArmor;
+        }
+
+        OnSetMaxArmor?.Invoke(maxArmor);
     }
 
     public void AddDefense(int toAdd)

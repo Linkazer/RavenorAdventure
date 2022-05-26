@@ -6,6 +6,7 @@ public enum EffectStatEnum
 {
     //HealthHandler
     Armor,
+    MaxArmor,
     Defense,
     //SpellCaster
     BaseDamage,

@@ -11,7 +11,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
 
-    private int actionsLeftThisTurn = 1;
+    [SerializeField] private int actionsLeftThisTurn = 1;
     [SerializeField] private int actionByTurn = 1;
     private int currentSelectedSpell = -1;
 
@@ -177,6 +177,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         possibleReroll = toSet.PossibleRelance();
 
         accuracy = toSet.Accuracy();
+        power = toSet.Power();
     }
 
     //CODE REVIEW : Voir comment on peut faire pour éviter de juste avoir les events ici ?

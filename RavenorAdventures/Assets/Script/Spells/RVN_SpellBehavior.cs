@@ -85,7 +85,21 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
     public override void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        OnUseSpell(spellToUse, targetNode, callback);
+        if(OnUseSpell(spellToUse, targetNode, callback))
+        {
+            List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
+
+            foreach (CPN_HealthHandler hitedObject in hitableObjects)
+            {
+                if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                {
+                    foreach (EffectScriptable eff in spellToUse.scriptable.Effects())
+                    {
+                        ApplyEffects(effectHandler, eff);
+                    }
+                }
+            }
+        }
     }
 
     public override void EndSpell(LaunchedSpellData spellToEnd)

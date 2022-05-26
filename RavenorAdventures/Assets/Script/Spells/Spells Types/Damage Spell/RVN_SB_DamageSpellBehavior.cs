@@ -54,13 +54,13 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         }
 
 
-                        if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                        /*if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                         {
                             foreach (EffectScriptable eff in usedScriptable.Effects())
                             {
                                 ApplyEffects(effectHandler, eff);
                             }
-                        }
+                        }*/
 
                     }
                     else

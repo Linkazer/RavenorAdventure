@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Character Data", menuName = "Character/Playable Character")]
-public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN_Data_Movement, CPN_Data_SpellCaster
+public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN_Data_Movement, CPN_Data_SpellCaster, CPN_Data_EffectHandler
 {
     [Header("Display")]
     [SerializeField] private Sprite characterSprite;
     [SerializeField] private Sprite UIPortrait;
 
+    [SerializeField] private float handHeight;
+    [SerializeField] private float uiHeight;
+
     [Header("Combat Stats")]
     [SerializeField] private float health;
-    [SerializeField] private float armor;
+    [SerializeField] private int armor;
     [SerializeField] private int defense;
     [SerializeField] private int accuracy;
+    [SerializeField] private int power;
     [SerializeField] private int relances;
 
     [Header("Movement")]
@@ -23,6 +27,9 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
     [Header("Spells")]
     [SerializeField] private List<SpellScriptable> availableSpells;
     [SerializeField] private int usableSpellByTurn;
+
+    [Header("Passives")]
+    [SerializeField] private List<EffectScriptable> passives;
 
     public Sprite GameSprite()
     {
@@ -34,7 +41,9 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
         return UIPortrait;
     }
 
-    public float MaxArmor()
+    public float UIHeight => uiHeight;
+
+    public int MaxArmor()
     {
         return armor;
     }
@@ -77,5 +86,15 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
     public int Accuracy()
     {
         return accuracy;
+    }
+
+    public int Power()
+    {
+        return power;
+    }
+
+    public List<EffectScriptable> Effects()
+    {
+        return new List<EffectScriptable>(passives);
     }
 }

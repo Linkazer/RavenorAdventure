@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stat Effect 1
   m_EditorClassIdentifier: 
   effectName: Stat Effect 1
-  trigger: 2
+  trigger: 0
   effects:
   - stat: 1
-    valueToChange: 2
+    valueToChange: -4
   - stat: 2
     valueToChange: 1

@@ -31,6 +31,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// Played when the component reach its destination.
 	/// </summary>
 	[SerializeField] private UnityEvent OnEndMovement;
+	[SerializeField] private UnityEvent<Vector2> OnChangeDirection;
 
 	/// <summary>
 	/// Played when the component reach its destination.
@@ -166,6 +167,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		posUnit = new Vector2(transform.position.x, transform.position.y);
 		posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
 
+		OnChangeDirection?.Invoke(posTarget - posUnit);
+
 		distance = Vector2.Distance(posUnit, posTarget);
 
 		while (true)
@@ -202,6 +205,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 				posUnit = new Vector2(transform.position.x, transform.position.y);
 				posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+				OnChangeDirection?.Invoke(posTarget - posUnit);
 
 				distance = Vector2.Distance(posUnit, posTarget);
 			}

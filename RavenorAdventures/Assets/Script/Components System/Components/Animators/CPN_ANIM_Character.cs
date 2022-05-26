@@ -24,6 +24,18 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         characterSprite.sprite = character.GameSprite();
     }
 
+    public void SetOrientation(Vector2 direction)
+    {
+        if(direction.x > 0)
+        {
+            characterSprite.flipX = false;
+        }
+        else if(direction.x < 0)
+        {
+            characterSprite.flipX = true;
+        }
+    }
+
     public void SetWalkAnimation(bool value)
     {
         if(value)

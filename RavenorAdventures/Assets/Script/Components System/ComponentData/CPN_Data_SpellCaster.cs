@@ -8,4 +8,5 @@ public interface CPN_Data_SpellCaster
     public int MaxSpellUseByTurn();
     public int PossibleRelance();
     public int Accuracy();
+    public int Power();
 }

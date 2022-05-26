@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
-  m_Name: Test 1
+  m_Script: {fileID: 11500000, guid: a46b7b4e72011ee4a97e248bf7d39217, type: 3}
+  m_Name: Frenesie_Bonus
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  effectName: 
+  trigger: 0
   effects:
-  - {fileID: 11400000, guid: 6e83fa92892ea024a9aeb078afea6d6d, type: 2}
+  - stat: 6
+    valueToChange: 1
