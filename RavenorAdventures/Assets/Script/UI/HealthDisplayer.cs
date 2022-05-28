@@ -6,18 +6,11 @@ using UnityEngine.UI;
 
 public class HealthDisplayer : MonoBehaviour
 {
-    [Serializable]
-    private struct ArmorDisplay
-    {
-        public Image fullImage;
-        public Image emptyImage;
-    }
-    
     [SerializeField] private Image healthImage;
 
     [SerializeField] private float maxHealth;
 
-    [SerializeField] private List<ArmorDisplay> armorDisplayers;
+    [SerializeField] private List<UI_CharacterArmorDisplayer> armorDisplayers;
 
     public void SetMaxHealth(float nMaxHealth)
     {
@@ -35,11 +28,11 @@ public class HealthDisplayer : MonoBehaviour
         {
             if (i < maxArmor)
             {
-                armorDisplayers[i].emptyImage.gameObject.SetActive(true);
+                armorDisplayers[i].SetArmor(true);
             }
             else
             {
-                armorDisplayers[i].emptyImage.gameObject.SetActive(false);
+                armorDisplayers[i].SetArmor(false);
             }
         }
     }
@@ -50,11 +43,11 @@ public class HealthDisplayer : MonoBehaviour
         {
             if (i < armor)
             {
-                armorDisplayers[i].fullImage.gameObject.SetActive(true);
+                armorDisplayers[i].GainArmor();
             }
             else
             {
-                armorDisplayers[i].fullImage.gameObject.SetActive(false);
+                armorDisplayers[i].LoseArmor();
             }
         }
     }

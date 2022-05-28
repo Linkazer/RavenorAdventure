@@ -20,7 +20,8 @@ MonoBehaviour:
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   range: 50
   zoneRange: 0
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: 5cb490150bff6ad44a5f882083d5be9b, type: 2}
   type: 0
   diceUsed: 3
   baseDamage: 1

@@ -15,12 +15,14 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     private CPN_CharacterAction selectedAction = null;
 
-    [SerializeField] private bool isActionPlaying = false;
+    [SerializeField] private bool canPlayerDoInput = true;
 
     [Header("Unity Events")]
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnSelectAction;
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnRefreshActionDisplay;
     [SerializeField] private UnityEvent<CPN_CharacterAction> OnUnselectAction;
+    [SerializeField] private UnityEvent OnEnablePlayerInput;
+    [SerializeField] private UnityEvent OnDisablePlayerInput;
 
     private Node lastFrameMouseNode = null;
 
@@ -29,7 +31,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         if (lastFrameMouseNode != Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition))
         {
             lastFrameMouseNode = Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition);
-            if (!isActionPlaying && selectedAction != null)
+            if (canPlayerDoInput && selectedAction != null)
             {
                 OnRefreshActionDisplay?.Invoke(selectedAction);
             }
@@ -137,11 +139,11 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// <param name="actionPosition">La position à laquelle faire l'action.</param>
     public void DoAction(Vector2 actionPosition)
     {
-        if (currentCharacter != null && !isActionPlaying)
+        if (currentCharacter != null && canPlayerDoInput)
         {
             if (selectedAction!= null && selectedAction.IsActionUsable(actionPosition))
             {
-                isActionPlaying = true;
+                DisableCombatInput();
 
                 selectedAction.TryDoAction(actionPosition, OnEndAction);
 
@@ -157,7 +159,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         OnSelectAction?.Invoke(selectedAction);
 
-        isActionPlaying = false;
+        EnableCombatInput();
     }
 
     //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?
@@ -175,5 +177,19 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             toUndisplay.UndisplayAction(RVN_InputController.MousePosition);
         }
+    }
+
+    public void EnableCombatInput()
+    {
+        canPlayerDoInput = true;
+
+        OnEnablePlayerInput?.Invoke();
+    }
+
+    private void DisableCombatInput()
+    {
+        canPlayerDoInput = false;
+
+        OnDisablePlayerInput?.Invoke();
     }
 }
