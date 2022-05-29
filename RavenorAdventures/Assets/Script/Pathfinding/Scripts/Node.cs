@@ -39,6 +39,8 @@ public class Node : IHeapItem<Node> {
 		heapIndex = 0;
 	}
 
+	public bool IsStaticObstacle => !walkable;
+
 	public bool IsWalkable => walkable && CheckWalkableData();
 
 	public bool IsVisible =>  visible && CheckVisibleData();

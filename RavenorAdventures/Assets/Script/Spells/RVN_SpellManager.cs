@@ -45,13 +45,16 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
                 List<Node> targetsNodes = Pathfinding.GetAllNodeInDistance(spellToUse.targetNode, spellToUse.scriptable.ZoneRange, false);
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
-                    if (targetsNodes[i] != spellToUse.targetNode)
+                    if (!targetsNodes[i].IsStaticObstacle)
                     {
-                        behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);
-                    }
-                    else
-                    {
-                        behaviorUsed.UseSpell(spellToUse, targetsNodes[i], () => EndSpell(spellToUse, callbackEndSpell));
+                        if (targetsNodes[i] != spellToUse.targetNode)
+                        {
+                            behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);
+                        }
+                        else
+                        {
+                            behaviorUsed.UseSpell(spellToUse, targetsNodes[i], () => EndSpell(spellToUse, callbackEndSpell));
+                        }
                     }
                 }
             }

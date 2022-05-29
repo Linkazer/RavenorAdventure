@@ -26,7 +26,7 @@ public class SpriteDisplayer : MonoBehaviour
 
     private void Update()
     {
-        if (originSpr == null)
+        /*if (originSpr == null)
         {
             spr.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset;
         }
@@ -38,6 +38,6 @@ public class SpriteDisplayer : MonoBehaviour
         if (canvas != null)
         {
             canvas.sortingOrder = spr.sortingOrder;
-        }
+        }*/
     }
 }

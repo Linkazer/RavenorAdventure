@@ -17,9 +17,9 @@ MonoBehaviour:
   description: "Ce sort attaque avec 10 d\xE9s en zone."
   castingAnimation: 2
   castAnimationDuration: 3
-  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  spellAnimation: {fileID: 7282106008027488376, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
   cooldown: 3
-  currentCooldown: 2
+  currentCooldown: 0
   range: 75
   zoneRange: 10
   effects: []
