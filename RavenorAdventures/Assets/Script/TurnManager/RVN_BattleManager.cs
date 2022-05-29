@@ -25,6 +25,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private CPN_Character currentPlayingCharacter;
 
+    [SerializeField] private UnityEvent<List<CPN_Character>> OnSetPlayerTeam;
+
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnStartPlayerCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterTurn;
@@ -36,6 +38,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [Header("Combat End")]
     [SerializeField] private UnityEvent OnWinBattle;
     [SerializeField] private UnityEvent OnLoseBattle;
+
+    public static List<CPN_Character> GetPlayerTeam => instance.teams[0].characters;
 
     private void Start()
     {
@@ -57,6 +61,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
             teams[1].characters[i].SetCharacter();
         }
+
+        OnSetPlayerTeam?.Invoke(teams[0].characters);
 
         StartBattle();
     }

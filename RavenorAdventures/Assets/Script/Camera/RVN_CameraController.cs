@@ -10,13 +10,35 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 
     [SerializeField] private bool enableEdgeCamera;
 
+    [SerializeField] private Transform currentFocus;
+
     public void MoveCamera(Vector2 direction)
     {
+        if(direction != Vector2.zero && currentFocus != null)
+        {
+            currentFocus = null;
+        }
+
         cameraHandler.transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.unscaledDeltaTime;
+    }
+
+    public void SetCameraFocus(CPN_Character character)
+    {
+        currentFocus = character.transform;
+    }
+
+    public void SetCameraPosition(Vector2 position)
+    {
+        cameraHandler.transform.position = position;
     }
 
     private void Update()
     {
+        if(currentFocus != null)
+        {
+            SetCameraPosition(currentFocus.position);
+        }
+
         if (enableEdgeCamera)
         {
             if (RVN_InputController.MouseScreenPosition.x < 50)

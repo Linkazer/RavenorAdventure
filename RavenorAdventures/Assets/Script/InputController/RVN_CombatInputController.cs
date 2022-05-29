@@ -68,14 +68,21 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// Change the current playing character.
     /// </summary>
     /// <param name="nCharacter">The character that will play.</param>
-    public void ChangeCharacter(CPN_Character nCharacter)
+    public static void ChangeCharacter(CPN_Character nCharacter)
     {
         if(RVN_BattleManager.CanCharacterStartTurn(nCharacter))
         {
             RVN_BattleManager.TrySetCharacterTurn(nCharacter);
 
-            SetCurrentCharacter(nCharacter);
+            instance.SetCurrentCharacter(nCharacter);
         }
+    }
+
+    public static void ChangeCharacter(int characterIndex)
+    {
+        List<CPN_Character> playerCharacter = RVN_BattleManager.GetPlayerTeam;
+
+        ChangeCharacter(playerCharacter[characterIndex]);
     }
 
     /// <summary>
