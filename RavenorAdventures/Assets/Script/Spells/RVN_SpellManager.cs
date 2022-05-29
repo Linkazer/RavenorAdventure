@@ -15,7 +15,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <returns>TRUE si le sort peut être utilisé.</returns>
     public static bool CanUseSpell(LaunchedSpellData spellToCheck)
     {
-        if (spellToCheck != null)
+        if (spellToCheck != null && spellToCheck.scriptable.IsUsable)
         {
             RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToCheck.scriptable);
 

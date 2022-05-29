@@ -7,7 +7,8 @@ public enum CharacterAnimationType
     Walk,
     CastSpell,
     LaunchSpell,
-    JumpOnTarget
+    JumpOnTarget,
+    Death
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
@@ -48,6 +49,18 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
+    public void SetDeathAnimation(bool value)
+    {
+        if(value)
+        {
+            SetAnimation(CharacterAnimationType.Death);
+        }
+        else
+        {
+            UnsetAnimation(CharacterAnimationType.Death);
+        }
+    }
+
     public void SetCastSpellAnimation(LaunchedSpellData launchedSpell)
     {
         switch(launchedSpell.scriptable.CastingAnimation)
@@ -83,6 +96,9 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                 case CharacterAnimationType.LaunchSpell:
                     animator.SetTrigger("IsSpellLaunch");
                     break;
+                case CharacterAnimationType.Death:
+                    AnimSetBool("IsDead", true);
+                    break;
             }
         }
     }
@@ -105,6 +121,9 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                     break;
                 case CharacterAnimationType.LaunchSpell:
                     AnimSetBool("IsSpellLaunch", false);
+                    break;
+                case CharacterAnimationType.Death:
+                    AnimSetBool("IsDead", false);
                     break;
             }
         }

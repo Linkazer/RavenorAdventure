@@ -86,26 +86,34 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         if (currentCharacter != null)
         {
-            if (selectedAction != null)
-            {
-                UnselectAction();
-            }
-
+            CPN_CharacterAction nextAction = null;
             switch (actionSelected)
             {
                 case 0:
                     if (currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement movement))
                     {
-                        selectedAction = movement;
+                        nextAction = movement;
                     }
                     break;
                 case 1:
                     if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
                     {
-                        selectedAction = caster;
+                        nextAction = caster;
                     }
                     break;
             }
+
+            if (!nextAction.CanSelectAction())
+            {
+                nextAction = selectedAction;
+            }
+
+            if (selectedAction != null && nextAction != null)
+            {
+                UnselectAction();
+            }
+
+            selectedAction = nextAction;
 
             OnSelectAction?.Invoke(selectedAction);
         }
@@ -157,7 +165,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// </summary>
     private void OnEndAction()
     {
-        OnSelectAction?.Invoke(selectedAction);
+        SelectAction(0);
 
         EnableCombatInput();
     }

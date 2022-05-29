@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,9 @@ using UnityEngine;
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
-    [SerializeField] protected string name;
+    [SerializeField] protected string nom;
     [SerializeField] protected Sprite icon;
-    [SerializeField] protected string description;
+    [SerializeField, TextArea(3,5)] protected string description;
 
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;
@@ -15,7 +16,8 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
 
     [Header("Comportement")]
-    //[SerializeField] protected int cooldown;
+    [SerializeField] protected int cooldown;
+    [SerializeField] protected int currentCooldown;
 
     [Header("Forme")]
     [SerializeField] protected int range;
@@ -27,7 +29,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Effects")]
     [SerializeField] private List<EffectScriptable> effects;
 
-    public string Name => name;
+
+    public Action<int> OnUpdateCooldown;
+
+    public string Name => nom;
     public Sprite Icon => icon;
     public string Description => description;
 
@@ -37,8 +42,13 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
 
+    public int StartCooldown => cooldown;
+    public int CurrentCooldown => currentCooldown;
+
     public int Range => range;
     public int ZoneRange => zoneRange;
+
+    public bool IsUsable => currentCooldown <= 0;
 
     public List<EffectScriptable> Effects()
     {
@@ -46,4 +56,24 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     }
 
     public abstract void SetCaster(CPN_SpellCaster caster);
+
+    public void UpdateCurrentCooldown()
+    {
+        Debug.Log(Name + " Update Cooldown");
+
+        if (currentCooldown > 0)
+        {
+            currentCooldown--;
+
+            OnUpdateCooldown?.Invoke(currentCooldown);
+        }
+    }
+
+    public void ResetCooldown()
+    {
+        currentCooldown = cooldown;
+        Debug.Log(name + currentCooldown + " = " + cooldown);
+
+        OnUpdateCooldown?.Invoke(currentCooldown);
+    }
 }

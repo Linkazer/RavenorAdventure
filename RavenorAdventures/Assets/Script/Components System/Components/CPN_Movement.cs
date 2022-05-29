@@ -273,6 +273,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		ResetData();
     }
 
+
+    public override bool CanSelectAction()
+    {
+        return true;
+    }
+
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
 		return currentMovementLeft >= 10 && CanMoveToDestination(actionTargetPosition);

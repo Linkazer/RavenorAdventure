@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
   m_Name: CharaTest 3
   m_EditorClassIdentifier: 
-  characterSprite: {fileID: 21300000, guid: 97eecead9baf86c40bef79a67325d140, type: 3}
-  UIPortrait: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 749e969ba9aedc34c9b395a5571a14b3, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 2befbe1df9174ec44a29834404fcd8f8, type: 3}
   handHeight: 0
   uiHeight: 1.2
   health: 25

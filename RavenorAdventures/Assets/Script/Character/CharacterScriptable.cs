@@ -36,10 +36,8 @@ public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN
         return characterSprite;
     }
 
-    public Sprite UISprite()
-    {
-        return UIPortrait;
-    }
+    public Sprite Portrait => UIPortrait;
+
 
     public float UIHeight => uiHeight;
 

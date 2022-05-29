@@ -10,6 +10,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     [SerializeField] private NodeDataHanlder nodeData;
 
     [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
+    [SerializeField] private UnityEvent<Vector2> OnCastSpellToDiection;
 
     [SerializeField] private int actionsLeftThisTurn = 1;
     [SerializeField] private int actionByTurn = 1;
@@ -22,7 +23,10 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
+    public Action<int> actOnSetActionLeft;
 
+
+    public List<SpellScriptable> Spells => spells;
     public int ActionByTurn => actionByTurn;
     public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
@@ -46,7 +50,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public void AddBonusAction(int amount)
     {
         actionByTurn += amount;
-        actionsLeftThisTurn += amount;//CODE REVIEW : Voir si on garde ça niveau GD
+        SetActionLeft(actionsLeftThisTurn + amount);//CODE REVIEW : Voir si on garde ça niveau GD
+    }
+
+    private void SetActionLeft(int amount)
+    {
+        actionsLeftThisTurn = amount;
+
+        actOnSetActionLeft?.Invoke(actionsLeftThisTurn);
     }
 
     /// <summary>
@@ -55,7 +66,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="actionTargetPosition">The current target position the player aim for.</param>
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-        if (currentSelectedSpell >= 0)
+        if (currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable)
         {
             List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].Range, true);
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
@@ -77,6 +88,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         RVN_GridDisplayer.UnsetGridFeedback();
     }
 
+    public override bool CanSelectAction()
+    {
+        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable;
+    }
+
     /// <summary>
     /// Check if the action can be used at the target position.
     /// </summary>
@@ -84,7 +100,10 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return actionsLeftThisTurn > 0 && spells.Count > 0 && currentSelectedSpell >= 0 && Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
+        return  actionsLeftThisTurn > 0 && 
+                spells.Count > 0 && currentSelectedSpell >= 0 && 
+                spells[currentSelectedSpell].IsUsable &&
+                Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
     }
 
     /// <summary>
@@ -92,7 +111,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// </summary>
     public override void ResetData()
     {
-        actionsLeftThisTurn = actionByTurn;
+        SetActionLeft(actionByTurn);
         currentSelectedSpell = -1;
     }
 
@@ -103,13 +122,20 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        LaunchedSpellData launchedSpell = new LaunchedSpellData(Instantiate(spells[currentSelectedSpell]), this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
+        LaunchedSpellData launchedSpell = new LaunchedSpellData(spells[currentSelectedSpell], this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
         if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell))
         {
             CastSpell(launchedSpell, callback);
 
-            actionsLeftThisTurn--;
+            Debug.Log("Reset cooldown");
+            launchedSpell.scriptable.ResetCooldown();
+
+            SetActionLeft(actionsLeftThisTurn - 1);
+        }
+        else
+        {
+            callback?.Invoke();
         }
     }
 
@@ -121,7 +147,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
 
-        if (spellIndex == currentSelectedSpell)
+        if (spellIndex == currentSelectedSpell || spellIndex < 0)
         {
             currentSelectedSpell = -1;
         }
@@ -142,6 +168,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     private void CastSpell(LaunchedSpellData launchedSpell, Action callback)
     {
         OnCastSpell?.Invoke(launchedSpell);
+
+        OnCastSpellToDiection?.Invoke(launchedSpell.targetNode.worldPosition - launchedSpell.caster.transform.position);
 
         TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, callback));
     }
@@ -172,12 +200,24 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actionByTurn = toSet.MaxSpellUseByTurn();
 
-        spells = new List<SpellScriptable>(toSet.AvailableSpells());
+        spells = new List<SpellScriptable>();
+        foreach (SpellScriptable spell in toSet.AvailableSpells())
+        {
+            spells.Add(Instantiate(spell));
+        }
 
         possibleReroll = toSet.PossibleRelance();
 
         accuracy = toSet.Accuracy();
         power = toSet.Power();
+    }
+
+    public void UpdateCooldowns()
+    {
+        foreach(SpellScriptable spell in spells)
+        {
+            spell.UpdateCurrentCooldown();
+        }
     }
 
     //CODE REVIEW : Voir comment on peut faire pour éviter de juste avoir les events ici ?

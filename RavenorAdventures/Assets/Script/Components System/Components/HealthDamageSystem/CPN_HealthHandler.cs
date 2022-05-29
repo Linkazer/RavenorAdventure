@@ -63,14 +63,12 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         {
             currentHealth -= damageAmount - currentArmor;
 
+            OnLoseHealth?.Invoke(currentHealth);
+
             if (currentHealth <= 0)
             {
                 Die();
                 return;
-            }
-            else
-            {
-                OnLoseHealth?.Invoke(currentHealth);
             }
         }
 

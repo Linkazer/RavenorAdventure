@@ -22,6 +22,8 @@ public class CPN_Character : RVN_Component
 
     public bool IsSet => gameObject.activeSelf;
 
+    public CharacterScriptable Scriptable => scriptable;
+
     [ContextMenu("Set Character")]
     public void SetCharacter()
     {
@@ -37,13 +39,20 @@ public class CPN_Character : RVN_Component
         OnSetCharacter?.Invoke(scriptable);
     }
 
-    public void UnsetCharacter()
+    public void UnsetCharacter(float unsetDelay)
     {
         scriptable = null;
 
         OnUnsetCharacter?.Invoke();
 
-        gameObject.SetActive(false);
+        if (unsetDelay > 0)
+        {
+            TimerManager.CreateGameTimer(unsetDelay, () => gameObject.SetActive(false));
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void StartTurn()

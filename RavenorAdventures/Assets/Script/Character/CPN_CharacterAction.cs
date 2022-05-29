@@ -11,6 +11,11 @@ using UnityEngine;
 public abstract class CPN_CharacterAction : RVN_Component
 {
     /// <summary>
+    /// Check if the action can be selected by the player.
+    /// </summary>
+    /// <returns></returns>
+    public abstract bool CanSelectAction();
+    /// <summary>
     /// Check if the action can be used at the position.
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action need to be used.</param>
