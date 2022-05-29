@@ -28,7 +28,7 @@ public class SpriteDisplayer : MonoBehaviour
     {
         if (originSpr == null)
         {
-            spr.sortingOrder = -Mathf.RoundToInt(transform.position.y * 100) + offset;
+            spr.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset;
         }
         else
         {
