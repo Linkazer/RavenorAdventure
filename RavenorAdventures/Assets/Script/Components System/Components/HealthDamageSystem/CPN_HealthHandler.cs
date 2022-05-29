@@ -15,8 +15,9 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     [SerializeField] private UnityEvent<float> OnSetMaxHealth;
     [SerializeField] private UnityEvent<int> OnSetMaxArmor;
-    [SerializeField] private UnityEvent<float> OnGainHealth;
-    [SerializeField] private UnityEvent<float> OnLoseHealth;
+    [SerializeField] private UnityEvent<int> OnGainHealth;
+    [SerializeField] private UnityEvent<int> OnLoseHealth;
+    [SerializeField] private UnityEvent<float> OnChangeHealth;
     [SerializeField] private UnityEvent<int> OnGainArmor;
     [SerializeField] private UnityEvent<int> OnLoseArmor;
     [SerializeField] private UnityEvent OnDeath;
@@ -63,7 +64,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         {
             currentHealth -= damageAmount - currentArmor;
 
-            OnLoseHealth?.Invoke(currentHealth);
+            OnLoseHealth?.Invoke((int)damageAmount);
+            OnChangeHealth?.Invoke(currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -83,7 +85,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-            OnGainHealth?.Invoke(currentHealth);
+            OnGainHealth?.Invoke((int)healAmount);
+            OnChangeHealth?.Invoke(currentHealth);
         }
     }
 

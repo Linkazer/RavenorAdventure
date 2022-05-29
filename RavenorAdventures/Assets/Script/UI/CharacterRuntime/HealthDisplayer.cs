@@ -12,6 +12,16 @@ public class HealthDisplayer : MonoBehaviour
 
     [SerializeField] private List<UI_CharacterArmorDisplayer> armorDisplayers;
 
+    [SerializeField] private UI_Character_DamageDisplayer damageDisplayerPrefab;
+    [SerializeField] private Transform damageDisplayerHandler;
+
+    public void TakeDamage(int damageAmount)
+    {
+        UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);
+
+        newDamageText.Display(damageAmount);
+    }
+
     public void SetMaxHealth(float nMaxHealth)
     {
         maxHealth = nMaxHealth;
