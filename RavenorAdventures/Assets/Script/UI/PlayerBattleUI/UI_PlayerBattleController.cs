@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,28 +11,41 @@ public class UI_PlayerBattleController : MonoBehaviour
     [Header("Actions")]
     [SerializeField] private CanvasGroup spellActions;
     [SerializeField] private List<UI_PlayerSpell> spellIcons;
-    [SerializeField] private Image healthBar;
-    [SerializeField] private TextMeshProUGUI healthText;
+
+    [SerializeField] private UnityEvent<CPN_Character> OnSetCharacter;
+    [SerializeField] private UnityEvent OnUnsetCharacter;
 
     private CPN_Character displayedCharacter;
 
     public void SetCharacter(CPN_Character nCharacter)
     {
-        if(nCharacter != displayedCharacter)
+        if (nCharacter != displayedCharacter)
         {
-            if(displayedCharacter != null)
+            UnsetCharacter();
+
+            if (nCharacter != null)
             {
-                //Retirer les Events
+                displayedCharacter = nCharacter;
+
+                OnSetCharacter?.Invoke(displayedCharacter);
+
+                characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
+
+                if (displayedCharacter.Handler.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
+                {
+                    SetSpells(caster);
+                }
             }
+        }
+    }
 
-            displayedCharacter = nCharacter;
+    public void UnsetCharacter()
+    {
+        if (displayedCharacter != null)
+        {
+            OnUnsetCharacter?.Invoke();
 
-            characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
-
-            if(displayedCharacter.Handler.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
-            {
-                SetSpells(caster);
-            }
+            displayedCharacter = null;
         }
     }
 
