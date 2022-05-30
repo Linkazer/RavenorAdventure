@@ -50,7 +50,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public void TakeDamage(CPN_SpellCaster caster, float damageAmount, int armorPierced)
     {
-        actOnTakeDamageSelf?.Invoke(handler);
+        actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
         {
             actOnTakeDamageTarget?.Invoke(caster.Handler);

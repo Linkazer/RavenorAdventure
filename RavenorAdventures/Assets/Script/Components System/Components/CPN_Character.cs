@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CPN_Character : RVN_Component
+public class CPN_Character : RVN_ComponentHandler
 {
     [SerializeField] private CharacterScriptable scriptable;
-
 
     [SerializeField] private List<CPN_CharacterAction> actions;
 
@@ -57,7 +56,7 @@ public class CPN_Character : RVN_Component
 
     public void StartTurn()
     {
-        ActOnBeginTurn?.Invoke(Handler);
+        ActOnBeginTurn?.Invoke(this);
         OnStartTurn?.Invoke();
 
         for(int i = 0; i < actions.Count; i++)
@@ -68,7 +67,7 @@ public class CPN_Character : RVN_Component
 
     public void EndTurn()
     {
-        ActOnEndTurn?.Invoke(Handler);
+        ActOnEndTurn?.Invoke(this);
         OnEndTurn?.Invoke();
     }
 }

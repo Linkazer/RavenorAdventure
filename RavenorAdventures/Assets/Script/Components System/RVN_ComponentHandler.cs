@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RVN_ComponentHandler : MonoBehaviour
+public class RVN_ComponentHandler : RVN_Component
 {
     [SerializeField] private List<RVN_Component> components;
 

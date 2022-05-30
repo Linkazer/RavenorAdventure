@@ -9,7 +9,7 @@ using UnityEngine.Events;
 /// </summary>
 public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController>
 {
-    [SerializeField] private RVN_ComponentHandler currentCharacter;
+    [SerializeField] private CPN_Character currentCharacter;
 
     private CPN_Character nextCharacter;
 
@@ -59,7 +59,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
             UnselectAction();
         }
 
-        currentCharacter = nCharacter.Handler;
+        currentCharacter = nCharacter;
 
         SelectAction(0);
     }

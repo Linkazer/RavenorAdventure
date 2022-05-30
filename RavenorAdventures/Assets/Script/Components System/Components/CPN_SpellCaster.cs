@@ -28,6 +28,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public List<SpellScriptable> Spells => spells;
     public int ActionByTurn => actionByTurn;
+    public int ActionLeftThisTurn => actionsLeftThisTurn;
     public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
     public int Power => power;

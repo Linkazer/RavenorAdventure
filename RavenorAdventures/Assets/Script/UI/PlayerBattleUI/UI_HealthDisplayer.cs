@@ -10,9 +10,9 @@ public class UI_HealthDisplayer : MonoBehaviour
 
     protected float maxHealth;
 
-    protected CPN_Character currentCharacter;
+    protected RVN_ComponentHandler currentCharacter;
 
-    public virtual void SetCharacter(CPN_Character nCharacter)
+    public virtual void SetCharacter(RVN_ComponentHandler nCharacter)
     {
         if(currentCharacter != nCharacter)
         {
@@ -22,7 +22,7 @@ public class UI_HealthDisplayer : MonoBehaviour
             {
                 currentCharacter = nCharacter;
 
-                if (currentCharacter.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler health))
+                if (currentCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler health))
                 {
                     health.actOnChangeHealth += SetCurrentHealth;
 
@@ -38,7 +38,7 @@ public class UI_HealthDisplayer : MonoBehaviour
     {
         if(currentCharacter != null)
         {
-            if(currentCharacter.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler health))
+            if(currentCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler health))
             {
                 health.actOnChangeHealth -= SetCurrentHealth;
             }
