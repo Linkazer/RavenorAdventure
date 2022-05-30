@@ -59,8 +59,6 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void UpdateCurrentCooldown()
     {
-        Debug.Log(Name + " Update Cooldown");
-
         if (currentCooldown > 0)
         {
             currentCooldown--;
@@ -72,8 +70,6 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public void ResetCooldown()
     {
         currentCooldown = cooldown;
-        Debug.Log(name + currentCooldown + " = " + cooldown);
-
         OnUpdateCooldown?.Invoke(currentCooldown);
     }
 }

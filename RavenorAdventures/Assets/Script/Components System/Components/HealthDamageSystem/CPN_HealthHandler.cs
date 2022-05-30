@@ -23,9 +23,12 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private UnityEvent OnDeath;
 
     public Action<RVN_ComponentHandler> actOnDeath;
+    public Action<float> actOnChangeHealth;
     public Action<RVN_ComponentHandler> actOnTakeDamageSelf;
     public Action<RVN_ComponentHandler> actOnTakeDamageTarget;
 
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
     public int Armor => currentArmor;
     public int Defense => defense;
 
@@ -62,10 +65,13 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
         if (damageAmount > currentArmor)
         {
-            currentHealth -= damageAmount - currentArmor;
+            float damageTaken = damageAmount - currentArmor;
 
-            OnLoseHealth?.Invoke((int)damageAmount);
+            currentHealth -= damageTaken;
+
+            OnLoseHealth?.Invoke((int)damageTaken);
             OnChangeHealth?.Invoke(currentHealth);
+            actOnChangeHealth?.Invoke(currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -87,6 +93,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             OnGainHealth?.Invoke((int)healAmount);
             OnChangeHealth?.Invoke(currentHealth);
+            actOnChangeHealth?.Invoke(currentHealth);
         }
     }
 
@@ -133,7 +140,14 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         maxArmor -= toRemove;
         if(currentArmor > maxArmor)
         {
-            currentArmor = maxArmor;
+            if (maxArmor > 0)
+            {
+                currentArmor = maxArmor;
+            }
+            else
+            {
+                currentArmor = 0;
+            }
         }
 
         OnSetMaxArmor?.Invoke(maxArmor);

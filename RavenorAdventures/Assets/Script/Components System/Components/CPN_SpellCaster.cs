@@ -128,7 +128,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         {
             CastSpell(launchedSpell, callback);
 
-            Debug.Log("Reset cooldown");
             launchedSpell.scriptable.ResetCooldown();
 
             SetActionLeft(actionsLeftThisTurn - 1);

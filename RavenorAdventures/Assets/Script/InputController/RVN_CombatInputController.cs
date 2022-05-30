@@ -70,7 +70,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// <param name="nCharacter">The character that will play.</param>
     public static void ChangeCharacter(CPN_Character nCharacter)
     {
-        if(RVN_BattleManager.CanCharacterStartTurn(nCharacter))
+        if(instance.canPlayerDoInput && RVN_BattleManager.CanCharacterStartTurn(nCharacter))
         {
             RVN_BattleManager.TrySetCharacterTurn(nCharacter);
 
