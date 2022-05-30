@@ -27,6 +27,7 @@ public class UI_PlayerBattleController : MonoBehaviour
                 OnSetCharacter?.Invoke(displayedCharacter);
 
                 characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
+                characterPortrait.color = Color.white;
             }
         }
     }

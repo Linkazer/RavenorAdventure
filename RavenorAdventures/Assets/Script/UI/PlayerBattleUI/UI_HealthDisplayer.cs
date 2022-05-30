@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_HealthDisplayer : MonoBehaviour
 {
+    [Header("Fill Image")]
     [SerializeField] protected Image healthImage;
     [SerializeField] protected bool isReversed;
+
+    [Header("Text")]
+    [SerializeField] protected TextMeshProUGUI currentHealthText;
+    [SerializeField] protected TextMeshProUGUI maxHealthText;
 
     protected float maxHealth;
 
@@ -50,6 +56,11 @@ public class UI_HealthDisplayer : MonoBehaviour
     public void SetMaxHealth(float nMaxHealth)
     {
         maxHealth = nMaxHealth;
+
+        if(maxHealthText != null)
+        {
+            maxHealthText.text = maxHealth.ToString();
+        }
     }
 
     public void SetCurrentHealth(float currentHealth)
@@ -61,6 +72,11 @@ public class UI_HealthDisplayer : MonoBehaviour
         else
         {
             healthImage.fillAmount = currentHealth / maxHealth;
+        }
+
+        if (currentHealthText != null)
+        {
+            currentHealthText.text = currentHealth.ToString();
         }
     }
 }

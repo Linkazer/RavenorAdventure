@@ -42,5 +42,6 @@ public class UI_CharacterSelector : MonoBehaviour
     public void SetPortrait(Sprite sprite)
     {
         portrait.sprite = sprite;
+        portrait.color = Color.white;
     }
 }

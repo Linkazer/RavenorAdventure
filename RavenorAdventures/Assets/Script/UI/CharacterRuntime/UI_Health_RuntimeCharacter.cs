@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
 {
+    [Header("Armor")]
     [SerializeField] private List<UI_CharacterArmorDisplayer> armorDisplayers;
 
+    [Header("Damage Taken")]
     [SerializeField] private UI_Character_DamageDisplayer damageDisplayerPrefab;
     [SerializeField] private Transform damageDisplayerHandler;
 
