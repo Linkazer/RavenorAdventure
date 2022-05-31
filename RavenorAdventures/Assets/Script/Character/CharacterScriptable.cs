@@ -2,97 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Character Data", menuName = "Character/Playable Character")]
-public class CharacterScriptable : ScriptableObject, CPN_Data_HealthHandler, CPN_Data_Movement, CPN_Data_SpellCaster, CPN_Data_EffectHandler
+[CreateAssetMenu(fileName = "Character Data", menuName = "Character/Dialogue Character")]
+public class CharacterScriptable : ScriptableObject
 {
-    [Header("Display")]
-    [SerializeField] private Sprite characterSprite;
-    [SerializeField] private Sprite UIPortrait;
+    [SerializeField] protected string nom;
+    [SerializeField] protected Sprite UIPortrait;
 
-    [SerializeField] private float handHeight;
-    [SerializeField] private float uiHeight;
-
-    [Header("Combat Stats")]
-    [SerializeField] private float health;
-    [SerializeField] private int armor;
-    [SerializeField] private int defense;
-    [SerializeField] private int accuracy;
-    [SerializeField] private int power;
-    [SerializeField] private int relances;
-
-    [Header("Movement")]
-    [SerializeField] private int movementByTurn;
-    [SerializeField] private float speed;
-
-    [Header("Spells")]
-    [SerializeField] private List<SpellScriptable> availableSpells;
-    [SerializeField] private int usableSpellByTurn;
-
-    [Header("Passives")]
-    [SerializeField] private List<EffectScriptable> passives;
-
-    public Sprite GameSprite()
-    {
-        return characterSprite;
-    }
-
+    public string Nom => nom;
     public Sprite Portrait => UIPortrait;
-
-
-    public float UIHeight => uiHeight;
-
-    public int MaxArmor()
-    {
-        return armor;
-    }
-
-    public float MaxHealth()
-    {
-        return health;
-    }
-
-    public int MaxDistance()
-    {
-        return movementByTurn;
-    }
-
-    public float Speed()
-    {
-        return speed;
-    }
-
-    public List<SpellScriptable> AvailableSpells()
-    {
-        return availableSpells;
-    }
-
-    public int MaxSpellUseByTurn()
-    {
-        return usableSpellByTurn;
-    }
-
-    public int Defense()
-    {
-        return defense;
-    }
-
-    public int PossibleRelance()
-    {
-        return relances;
-    }
-
-    public int Accuracy()
-    {
-        return accuracy;
-    }
-
-    public int Power()
-    {
-        return power;
-    }
-
-    public List<EffectScriptable> Effects()
-    {
-        return new List<EffectScriptable>(passives);
-    }
 }

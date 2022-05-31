@@ -20,7 +20,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
     private CharacterAnimationType currentAnimation;
 
-    public void SetCharacter(CharacterScriptable character)
+    public void SetCharacter(CharacterScriptable_Battle character)
     {
         characterSprite.sprite = character.GameSprite();
     }

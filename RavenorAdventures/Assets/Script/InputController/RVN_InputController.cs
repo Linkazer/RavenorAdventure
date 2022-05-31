@@ -11,11 +11,14 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
     [SerializeField] private UnityEvent<Vector2> OnMoveCameraInput;
+    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleClic;
+    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleHold;
 
     [Header("Inputs")]
     [SerializeField] private InputActionReference actionMouseMovementInput;
     [SerializeField] private InputActionReference actionMouseLeftClicInput;
     [SerializeField] private InputActionReference actionMoveCameraInput;
+    [SerializeField] private InputActionReference actionMouseMiddle;
 
     [Header("Datas")]
     [SerializeField] private Camera usedCamera;
@@ -48,6 +51,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         actionMouseMovementInput.action.performed += UpdateMousePosition;
 
         actionMouseLeftClicInput.action.started += LeftMouseInput;
+
+        actionMouseMiddle.action.performed += MiddleMouseInput;
     }
 
     private void OnDisable()
@@ -57,6 +62,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         actionMouseMovementInput.action.performed -= UpdateMousePosition;
 
         actionMouseLeftClicInput.action.started -= LeftMouseInput;
+
+        actionMouseMiddle.action.performed -= MiddleMouseInput;
     }
 
     private void Update()
@@ -83,6 +90,21 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
             {
                 currentClicHandlerTouched.MouseDown(0);
             }
+        }
+    }
+
+    private void MiddleMouseInput(InputAction.CallbackContext context)
+    {
+        if (!evtSyst.IsPointerOverGameObject())
+        {
+            if(context.started)
+            {
+                OnMouseMiddleClic?.Invoke(mouseWorldPosition);
+            }
+
+            Debug.Log("Hold input ?");
+
+            OnMouseMiddleHold?.Invoke(mouseWorldPosition);
         }
     }
 

@@ -12,6 +12,18 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 
     [SerializeField] private Transform currentFocus;
 
+    private Vector2 mouseStartPosition;
+
+    public void MoveFromMiddleClic(Vector2 mousePosition)
+    {
+        cameraHandler.transform.position = mousePosition;
+    }
+
+    public void StartMoveFromMiddleClic(Vector2 mousePosition)
+    {
+        mouseStartPosition = mousePosition;
+    }
+
     public void MoveCamera(Vector2 direction)
     {
         if(direction != Vector2.zero && currentFocus != null)

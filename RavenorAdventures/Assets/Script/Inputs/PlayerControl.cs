@@ -41,6 +41,14 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseMiddleClic"",
+                    ""type"": ""Value"",
+                    ""id"": ""670ec74b-9f63-4b94-9409-56fd5e4f05be"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -175,6 +183,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""action"": ""MouseLeftClic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf80f5f5-35d2-45b0-a127-bf33c020bcb0"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseMiddleClic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +205,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         m_BattleActionMap_MousePosition = m_BattleActionMap.FindAction("MousePosition", throwIfNotFound: true);
         m_BattleActionMap_MoveCamera = m_BattleActionMap.FindAction("MoveCamera", throwIfNotFound: true);
         m_BattleActionMap_MouseLeftClic = m_BattleActionMap.FindAction("MouseLeftClic", throwIfNotFound: true);
+        m_BattleActionMap_MouseMiddleClic = m_BattleActionMap.FindAction("MouseMiddleClic", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +258,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MousePosition;
     private readonly InputAction m_BattleActionMap_MoveCamera;
     private readonly InputAction m_BattleActionMap_MouseLeftClic;
+    private readonly InputAction m_BattleActionMap_MouseMiddleClic;
     public struct BattleActionMapActions
     {
         private @PlayerControl m_Wrapper;
@@ -245,6 +266,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_BattleActionMap_MousePosition;
         public InputAction @MoveCamera => m_Wrapper.m_BattleActionMap_MoveCamera;
         public InputAction @MouseLeftClic => m_Wrapper.m_BattleActionMap_MouseLeftClic;
+        public InputAction @MouseMiddleClic => m_Wrapper.m_BattleActionMap_MouseMiddleClic;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +285,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseLeftClic.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseLeftClic;
                 @MouseLeftClic.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseLeftClic;
                 @MouseLeftClic.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseLeftClic;
+                @MouseMiddleClic.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
+                @MouseMiddleClic.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
+                @MouseMiddleClic.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -276,6 +301,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseLeftClic.started += instance.OnMouseLeftClic;
                 @MouseLeftClic.performed += instance.OnMouseLeftClic;
                 @MouseLeftClic.canceled += instance.OnMouseLeftClic;
+                @MouseMiddleClic.started += instance.OnMouseMiddleClic;
+                @MouseMiddleClic.performed += instance.OnMouseMiddleClic;
+                @MouseMiddleClic.canceled += instance.OnMouseMiddleClic;
             }
         }
     }
@@ -285,5 +313,6 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnMouseLeftClic(InputAction.CallbackContext context);
+        void OnMouseMiddleClic(InputAction.CallbackContext context);
     }
 }

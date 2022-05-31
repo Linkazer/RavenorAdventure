@@ -6,11 +6,11 @@ using UnityEngine.Events;
 
 public class CPN_Character : RVN_ComponentHandler
 {
-    [SerializeField] private CharacterScriptable scriptable;
+    [SerializeField] private CharacterScriptable_Battle scriptable;
 
     [SerializeField] private List<CPN_CharacterAction> actions;
 
-    [SerializeField] private UnityEvent<CharacterScriptable> OnSetCharacter;
+    [SerializeField] private UnityEvent<CharacterScriptable_Battle> OnSetCharacter;
     [SerializeField] private UnityEvent OnUnsetCharacter;
     [SerializeField] private UnityEvent OnStartTurn;
     [SerializeField] private UnityEvent OnEndTurn;
@@ -21,7 +21,7 @@ public class CPN_Character : RVN_ComponentHandler
 
     public bool IsSet => gameObject.activeSelf;
 
-    public CharacterScriptable Scriptable => scriptable;
+    public CharacterScriptable_Battle Scriptable => scriptable;
 
     [ContextMenu("Set Character")]
     public void SetCharacter()
@@ -29,10 +29,11 @@ public class CPN_Character : RVN_ComponentHandler
         SetCharacter(scriptable);
     }
 
-    public void SetCharacter(CharacterScriptable nScriptable)
+    public void SetCharacter(CharacterScriptable_Battle nScriptable)
     {
         scriptable = nScriptable;
 
+        gameObject.name = scriptable.Nom;
         gameObject.SetActive(true);
 
         OnSetCharacter?.Invoke(scriptable);

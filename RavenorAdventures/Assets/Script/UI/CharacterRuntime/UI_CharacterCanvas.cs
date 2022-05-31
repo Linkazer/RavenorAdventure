@@ -7,7 +7,7 @@ public class UI_CharacterCanvas : MonoBehaviour
 {
     [SerializeField] private Transform canvasTransform;
 
-    public void SetCanvas(CharacterScriptable character)
+    public void SetCanvas(CharacterScriptable_Battle character)
     {
         canvasTransform.localPosition = new Vector2(0, character.UIHeight);
     }
