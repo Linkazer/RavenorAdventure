@@ -24,6 +24,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
     public Action<int> actOnSetActionLeft;
+    public Action<SpellScriptable> actOnSelectSpell;
+    public Action<SpellScriptable> actOnUnselectSpell;
 
 
     public List<SpellScriptable> Spells => spells;
@@ -145,18 +147,31 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="spellIndex">The index of the spell to choose.</param>
     public void SelectSpell(int spellIndex)
     {
-        UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
+        //UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
 
-        if (spellIndex == currentSelectedSpell || spellIndex < 0)
+        int lastSpell = currentSelectedSpell;
+        if (currentSelectedSpell >= 0)
         {
-            currentSelectedSpell = -1;
+            UnselectSpell();
         }
-        else
+
+        if (spellIndex != lastSpell && spellIndex >= 0)
         {
             currentSelectedSpell = spellIndex;
+
+            actOnSelectSpell?.Invoke(spells[currentSelectedSpell]);
         }
 
         DisplayAction(RVN_InputController.MousePosition);
+    }
+
+    public void UnselectSpell()
+    {
+        UndisplayAction(RVN_InputController.MousePosition);
+
+        actOnUnselectSpell?.Invoke(spells[currentSelectedSpell]);
+
+        currentSelectedSpell = -1;
     }
 
     /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using TMPro;
 
 public class UI_PlayerSpell : MonoBehaviour
@@ -16,7 +17,13 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private Image cooldown;
 
+    [Header("Events")]
+    [SerializeField] private UnityEvent OnSelectSpell;
+    [SerializeField] private UnityEvent OnUnselectSpell;
+
     private SpellScriptable currentSpell;
+
+    public SpellScriptable Spell => currentSpell;
 
     public void SetUsable(int actionLeft)
     {
@@ -51,6 +58,16 @@ public class UI_PlayerSpell : MonoBehaviour
         currentSpell = null;
 
         gameObject.SetActive(false);
+    }
+
+    public void SelectSpell()
+    {
+        OnSelectSpell?.Invoke();
+    }
+
+    public void UnselectSpell()
+    {
+        OnUnselectSpell?.Invoke();
     }
 
     public void UpdateCooldown(int currentCooldown)

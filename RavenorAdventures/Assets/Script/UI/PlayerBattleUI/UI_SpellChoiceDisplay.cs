@@ -21,6 +21,8 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 currentCharacter = nCharacter;
 
                 caster.actOnSetActionLeft += SetUsableActionSpell;
+                caster.actOnSelectSpell += OnSelectSpell;
+                caster.actOnUnselectSpell += OnUnselectSpell;
 
                 SetSpells(caster);
 
@@ -47,6 +49,28 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         }
     }
 
+    public void OnSelectSpell(SpellScriptable selectedSpell)
+    {
+        foreach (UI_PlayerSpell spl in spellIcons)
+        {
+            if (spl.Spell == selectedSpell)
+            {
+                spl.SelectSpell();
+            }
+        }
+    }
+
+    public void OnUnselectSpell(SpellScriptable unselectedSpell)
+    {
+        foreach(UI_PlayerSpell spl in spellIcons)
+        {
+            if(spl.Spell == unselectedSpell)
+            {
+                spl.UnselectSpell();
+            }
+        }
+    }
+
     public void UnsetCharacter()
     {
         if (currentCharacter != null)
@@ -54,6 +78,13 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
             if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
             {
                 caster.actOnSetActionLeft -= SetUsableActionSpell;
+                caster.actOnSelectSpell -= OnSelectSpell;
+                caster.actOnUnselectSpell -= OnUnselectSpell;
+            }
+
+            foreach (UI_PlayerSpell spl in spellIcons)
+            {
+                spl.UnselectSpell();
             }
         }
     }
