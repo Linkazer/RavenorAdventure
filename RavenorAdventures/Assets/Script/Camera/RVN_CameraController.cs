@@ -7,21 +7,40 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
     [SerializeField] private Camera camera;
     [SerializeField] private Transform cameraHandler;
     [SerializeField] private float speed;
+    [SerializeField] private float mouseSpeed;
 
     [SerializeField] private bool enableEdgeCamera;
 
     [SerializeField] private Transform currentFocus;
 
-    private Vector2 mouseStartPosition;
+    private Vector2 mouseDirection;
+
+    private Vector2 mouseStartWorldPosition;
+    private Vector2 mouseStartScreenPosition;
+    private bool isMouseMoving;
 
     public void MoveFromMiddleClic(Vector2 mousePosition)
     {
-        cameraHandler.transform.position = mousePosition;
+        Vector2 wantedPos = (mouseStartScreenPosition - RVN_InputController.MouseScreenPosition) * mouseSpeed * 0.001f;
+
+        SetCameraPosition(wantedPos + mouseStartWorldPosition);
     }
 
-    public void StartMoveFromMiddleClic(Vector2 mousePosition)
+    public void StartMoveFromMiddleClic(Vector2 mouseWorldPosition)
     {
-        mouseStartPosition = mousePosition;
+        if(currentFocus != null)
+        {
+            currentFocus = null;
+        }
+
+        isMouseMoving = true;
+        mouseStartScreenPosition = RVN_InputController.MouseScreenPosition;
+        mouseStartWorldPosition = cameraHandler.transform.position;
+    }
+
+    public void EndMoveFromMiddleClic()
+    {
+        isMouseMoving = false;
     }
 
     public void MoveCamera(Vector2 direction)
@@ -51,7 +70,11 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
             SetCameraPosition(currentFocus.position);
         }
 
-        if (enableEdgeCamera)
+        if(isMouseMoving)
+        {
+            MoveFromMiddleClic(RVN_InputController.MousePosition);
+        }
+        else if (enableEdgeCamera)
         {
             if (RVN_InputController.MouseScreenPosition.x < 50)
             {

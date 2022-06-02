@@ -11,8 +11,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
     [SerializeField] private UnityEvent<Vector2> OnMoveCameraInput;
-    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleClic;
-    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleHold;
+    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleDown;
+    [SerializeField] private UnityEvent<Vector2> OnMouseMiddleUp;
 
     [Header("Inputs")]
     [SerializeField] private InputActionReference actionMouseMovementInput;
@@ -39,6 +39,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     private Vector2 moveCameraDirection;
 
+    private bool isMiddleMouseDown;
+
     protected override void OnAwake()
     {
         playerControl = new PlayerControl();
@@ -52,7 +54,9 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
         actionMouseLeftClicInput.action.started += LeftMouseInput;
 
-        actionMouseMiddle.action.performed += MiddleMouseInput;
+        actionMouseMiddle.action.started += MiddleMouseInputDown;
+
+        actionMouseMiddle.action.canceled += MiddleMouseInputDown;
     }
 
     private void OnDisable()
@@ -63,7 +67,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
         actionMouseLeftClicInput.action.started -= LeftMouseInput;
 
-        actionMouseMiddle.action.performed -= MiddleMouseInput;
+        actionMouseMiddle.action.performed -= MiddleMouseInputDown;
     }
 
     private void Update()
@@ -93,18 +97,21 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         }
     }
 
-    private void MiddleMouseInput(InputAction.CallbackContext context)
+    private void MiddleMouseInputDown(InputAction.CallbackContext context)
     {
         if (!evtSyst.IsPointerOverGameObject())
         {
             if(context.started)
             {
-                OnMouseMiddleClic?.Invoke(mouseWorldPosition);
+                isMiddleMouseDown = true;
+                OnMouseMiddleDown?.Invoke(mouseWorldPosition);
             }
+        }
 
-            Debug.Log("Hold input ?");
-
-            OnMouseMiddleHold?.Invoke(mouseWorldPosition);
+        if (context.canceled && isMiddleMouseDown)
+        {
+            isMiddleMouseDown = false;
+            OnMouseMiddleUp?.Invoke(mouseWorldPosition);
         }
     }
 

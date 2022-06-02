@@ -44,9 +44,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""MouseMiddleClic"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""670ec74b-9f63-4b94-9409-56fd5e4f05be"",
-                    ""expectedControlType"": ""Integer"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
