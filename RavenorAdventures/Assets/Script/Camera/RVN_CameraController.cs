@@ -13,6 +13,8 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 
     [SerializeField] private Transform currentFocus;
 
+    [SerializeField] private Vector4 cameraLimit;
+
     private Vector2 mouseDirection;
 
     private Vector2 mouseStartWorldPosition;
@@ -21,9 +23,9 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 
     public void MoveFromMiddleClic(Vector2 mousePosition)
     {
-        Vector2 wantedPos = (mouseStartScreenPosition - RVN_InputController.MouseScreenPosition) * mouseSpeed * 0.001f;
+        mouseDirection = (mouseStartScreenPosition - RVN_InputController.MouseScreenPosition) * mouseSpeed * 0.001f;
 
-        SetCameraPosition(wantedPos + mouseStartWorldPosition);
+        SetCameraPosition(mouseDirection + mouseStartWorldPosition);
     }
 
     public void StartMoveFromMiddleClic(Vector2 mouseWorldPosition)
@@ -50,7 +52,7 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
             currentFocus = null;
         }
 
-        cameraHandler.transform.position += new Vector3(direction.x, direction.y, 0) * speed * Time.unscaledDeltaTime;
+        SetCameraPosition(cameraHandler.transform.position + new Vector3(direction.x, direction.y, 0) * speed * Time.unscaledDeltaTime);
     }
 
     public void SetCameraFocus(CPN_Character character)
@@ -60,6 +62,24 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 
     public void SetCameraPosition(Vector2 position)
     {
+        if(position.x < cameraLimit.x)
+        {
+            position.x = cameraLimit.x;
+        }
+        else if (position.x > cameraLimit.y)
+        {
+            position.x = cameraLimit.y;
+        }
+
+        if (position.y < cameraLimit.z)
+        {
+            position.y = cameraLimit.z;
+        }
+        else if (position.y > cameraLimit.w)
+        {
+            position.y = cameraLimit.w;
+        }
+
         cameraHandler.transform.position = position;
     }
 

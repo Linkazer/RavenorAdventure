@@ -6074,6 +6074,7 @@ MonoBehaviour:
   mouseSpeed: 20
   enableEdgeCamera: 0
   currentFocus: {fileID: 0}
+  cameraLimit: {x: -8, y: 8, z: -5, w: 5}
 --- !u!1 &1379467230
 GameObject:
   m_ObjectHideFlags: 0
