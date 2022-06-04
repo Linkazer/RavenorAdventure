@@ -6,6 +6,8 @@ public class RVN_ComponentHandler : RVN_Component
 {
     [SerializeField] private List<RVN_Component> components;
 
+    public Node CurrentNode => Grid.GetNodeFromWorldPoint(transform.position);
+
     /// <summary>
     /// Search for a component of type T.
     /// </summary>

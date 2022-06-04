@@ -67,6 +67,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// </summary>
 	[SerializeField] private int currentMovementLeft;
 
+	public Node CurrentNode => currentNode;
+
+	public int MovementLeft => currentMovementLeft;
+
 	void Start()
 	{
 		currentNode = Grid.GetNodeFromWorldPoint(transform.position);

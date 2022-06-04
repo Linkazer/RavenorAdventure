@@ -201,7 +201,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         OnEnablePlayerInput?.Invoke();
     }
 
-    private void DisableCombatInput()
+    public void DisableCombatInput()
     {
         canPlayerDoInput = false;
 

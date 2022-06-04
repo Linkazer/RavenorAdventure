@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpellTargets
+{
+    Allies,
+    Ennemies,
+    Self,
+    All
+}
+
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
@@ -16,6 +24,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
 
     [Header("Comportement")]
+    [SerializeField] protected SpellTargets hitableTarget;
     [SerializeField] protected int cooldown;
     [SerializeField] protected int currentCooldown;
 
@@ -42,6 +51,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
 
+    public SpellTargets HitableTargets => hitableTarget;
     public int StartCooldown => cooldown;
     public int CurrentCooldown => currentCooldown;
 

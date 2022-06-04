@@ -103,10 +103,17 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return  actionsLeftThisTurn > 0 && 
-                spells.Count > 0 && currentSelectedSpell >= 0 && 
-                spells[currentSelectedSpell].IsUsable &&
-                Grid.IsNodeVisible(nodeData.CurrentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), spells[currentSelectedSpell].Range);
+        return  actionsLeftThisTurn > 0 &&
+                spells.Count > 0 && currentSelectedSpell >= 0 &&
+                IsActionUsable(nodeData.CurrentNode.worldPosition, actionTargetPosition, spells[currentSelectedSpell]);
+    }
+
+    public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SpellScriptable spellToCheck)
+    {
+        return actionsLeftThisTurn > 0 &&
+                spellToCheck != null &&
+                spellToCheck.IsUsable &&
+                Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range);
     }
 
     /// <summary>
@@ -141,11 +148,22 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
+    /*public void SelectSpell(SpellScriptable toSelect)
+    {
+        for(int i = 0; i < spells.Count; i++)
+        {
+            if(spells[i] == toSelect)
+            {
+
+            }
+        }
+    }*/
+
     /// <summary>
     /// Select a spell.
     /// </summary>
     /// <param name="spellIndex">The index of the spell to choose.</param>
-    public void SelectSpell(int spellIndex)
+    public void SelectSpell(int spellIndex, bool displayAction = true)
     {
         //UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
 
@@ -162,7 +180,10 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             actOnSelectSpell?.Invoke(spells[currentSelectedSpell]);
         }
 
-        DisplayAction(RVN_InputController.MousePosition);
+        if (displayAction)
+        {
+            DisplayAction(RVN_InputController.MousePosition);
+        }
     }
 
     public void UnselectSpell()

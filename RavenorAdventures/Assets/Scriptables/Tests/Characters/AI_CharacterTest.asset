@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: AI_CharacterTest
+  m_EditorClassIdentifier: 
+  nom: Xaphan
+  UIPortrait: {fileID: 21300000, guid: 1b89bda4b964be547b011d762303566e, type: 3}
+  characterSprite: {fileID: 21300000, guid: 6421b85c7cb05fc49a04382fd34bce11, type: 3}
+  handHeight: 0
+  uiHeight: 1.5
+  health: 45
+  armor: 2
+  defense: 0
+  accuracy: 0
+  power: 0
+  relances: 0
+  movementByTurn: 35
+  speed: 5
+  availableSpells:
+  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
+  usableSpellByTurn: 1
+  passives: []
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+    wantedActionIndex: 0
+    conditions: []
+    calculs: []

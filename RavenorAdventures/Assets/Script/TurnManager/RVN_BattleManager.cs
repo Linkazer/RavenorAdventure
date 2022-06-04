@@ -29,6 +29,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnStartPlayerCharacterTurn;
+    [SerializeField] private UnityEvent<CPN_Character> OnStartAICharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterTurn;
     [SerializeField] private UnityEvent OnBeginNewRound;
 
@@ -40,6 +41,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent OnLoseBattle;
 
     public static List<CPN_Character> GetPlayerTeam => instance.teams[0].characters;
+    public static List<CPN_Character> GetEnemyTeam => instance.teams[1].characters;
 
     private void Start()
     {
@@ -96,7 +98,14 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
 
-            OnStartPlayerCharacterTurn?.Invoke(characterToPlay);//TO DO  : Mettre un vérification une fois les IA faites
+            if (teams[0].characters.Contains(characterToPlay))
+            {
+                OnStartPlayerCharacterTurn?.Invoke(characterToPlay);//TO DO  : Mettre un vérification une fois les IA faites
+            }
+            else
+            {
+                OnStartAICharacterTurn?.Invoke(characterToPlay);
+            }
         }
     }
 
@@ -113,9 +122,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <summary>
     /// End the turn of the current Character.
     /// </summary>
-    public void EndCharacterTurn()
+    public static void EndCharacterTurn()
     {
-        EndCharacterTurn(currentPlayingCharacter);
+        instance.EndCharacterTurn(instance.currentPlayingCharacter);
     }
 
     /// <summary>
@@ -177,13 +186,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         playedThisTurn = new List<CPN_Character>();
 
-        /*for(int i = 0; i < teams.Count; i++) //CODE REVIEW : Voir pour séparer la mise à jour de chaque team
-        {
-            for(int j = 0; j < teams[i].characters.Count; j++)
-            {
-                teams[i].characters[j].StartTurn();
-            }
-        }*/
+        //CODE REVIEW : Voir pour séparer la mise à jour de chaque team
 
         OnBeginNewRound?.Invoke();
     }
@@ -217,6 +220,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
     }
 
+    public static bool AreCharacterAllies(CPN_Character firstChara, CPN_Character secondChara)
+    {
+        return instance.GetCharacterTeam(firstChara) == instance.GetCharacterTeam(secondChara);
+    }
+
     private CombatTeam GetCharacterTeam(CPN_Character character)
     {
         for (int i = 0; i < teams.Count; i++)
@@ -242,6 +250,22 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         return -1;
     }
+
+    public static List<CPN_Character> GetAllCharacter()
+    {
+        List<CPN_Character> toReturn = new List<CPN_Character>();
+
+        for (int i = 0; i < instance.teams.Count; i++)
+        {
+            foreach(CPN_Character chara in instance.teams[i].characters)
+            {
+                toReturn.Add(chara);
+            }
+        }
+
+        return toReturn;
+    }
+
 
     public void OnCharacterDie(CPN_Character diedCharacter)
     {

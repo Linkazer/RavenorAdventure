@@ -137,7 +137,7 @@ public class Pathfinding : MonoBehaviour
 	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
 	/// <param name="pathCalcul"></param>
 	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance)
+	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool returnAll = false)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
