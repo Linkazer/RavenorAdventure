@@ -26,10 +26,19 @@ public class CPN_Character : RVN_ComponentHandler
     [ContextMenu("Set Character")]
     public void SetCharacter()
     {
-        SetCharacter(scriptable);
+        SetCharacterNonCopy(scriptable);
     }
 
     public void SetCharacter(CharacterScriptable_Battle nScriptable)
+    {
+        scriptable = Instantiate(nScriptable);
+
+        gameObject.name = scriptable.Nom;
+        gameObject.SetActive(true);
+
+        OnSetCharacter?.Invoke(scriptable);
+    }
+    public void SetCharacterNonCopy(CharacterScriptable_Battle nScriptable)
     {
         scriptable = nScriptable;
 
@@ -38,6 +47,8 @@ public class CPN_Character : RVN_ComponentHandler
 
         OnSetCharacter?.Invoke(scriptable);
     }
+
+
 
     public void UnsetCharacter(float unsetDelay)
     {

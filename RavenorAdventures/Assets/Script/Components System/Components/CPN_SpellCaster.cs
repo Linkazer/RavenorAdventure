@@ -148,17 +148,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
-    /*public void SelectSpell(SpellScriptable toSelect)
-    {
-        for(int i = 0; i < spells.Count; i++)
-        {
-            if(spells[i] == toSelect)
-            {
-
-            }
-        }
-    }*/
-
     /// <summary>
     /// Select a spell.
     /// </summary>

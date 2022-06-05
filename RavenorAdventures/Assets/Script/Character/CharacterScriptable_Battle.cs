@@ -20,12 +20,12 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField] private int relances;
 
     [Header("Movement")]
-    [SerializeField] private int movementByTurn;
-    [SerializeField] private float speed;
+    [SerializeField] private int movementByTurn = 35;
+    [SerializeField] private float speed = 5;
 
     [Header("Spells")]
     [SerializeField] private List<SpellScriptable> availableSpells;
-    [SerializeField] private int usableSpellByTurn;
+    [SerializeField] private int usableSpellByTurn = 1;
 
     [Header("Passives")]
     [SerializeField] private List<EffectScriptable> passives;

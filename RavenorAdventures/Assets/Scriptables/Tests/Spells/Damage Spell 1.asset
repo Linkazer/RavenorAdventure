@@ -20,7 +20,7 @@ MonoBehaviour:
   castAnimationDuration: 0.25
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   hitableTarget: 0
-  castTarget: 3
+  castTarget: 1
   cooldown: 0
   currentCooldown: 0
   range: 15
