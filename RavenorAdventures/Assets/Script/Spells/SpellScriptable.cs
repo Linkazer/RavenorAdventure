@@ -24,7 +24,8 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
 
     [Header("Comportement")]
-    [SerializeField] protected SpellTargets hitableTarget;
+    [SerializeField] protected SpellTargets hitableTarget = SpellTargets.All;
+    [SerializeField] protected SpellTargets castTarget = SpellTargets.All;
     [SerializeField] protected int cooldown;
     [SerializeField] protected int currentCooldown;
 
@@ -52,6 +53,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
 
     public SpellTargets HitableTargets => hitableTarget;
+    public SpellTargets CastTargets => castTarget;
     public int StartCooldown => cooldown;
     public int CurrentCooldown => currentCooldown;
 

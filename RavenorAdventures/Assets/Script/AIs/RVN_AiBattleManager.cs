@@ -61,7 +61,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private void PrepareNextAction(float timeToWait)
     {
-        Debug.Log("Character Prepare Action");
         TimerManager.CreateGameTimer(timeToWait, DoNextMove);
     }
 
@@ -69,19 +68,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         if(currentCharacterHealth.CurrentHealth <= 0)
         {
-            Debug.Log("Character Dead");
             EndCharacterTurn(currentCharacter);
         }
         else if(plannedAction != null && plannedAction.actionIndex >= 0)
         {
             if(plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
-                Debug.Log("Character Move");
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
             }
             else
             {
-                Debug.Log("Character Do Action");
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => PrepareNextAction(2f));
 
@@ -199,6 +195,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private bool CanDoAction(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration, bool isForNextTurn) //TO DO : Prise en compte des tours prochains
     {
+        List<CPN_Character> targets = actionToCheck.actionTarget.GetNodeComponent<CPN_Character>();
+
+        CPN_Character target = null;
+        if(targets.Count > 0)
+        {
+            target = targets[0];
+        }
+
         SpellScriptable action = consideration.wantedAction;
 
         if(actionToCheck.actionTarget == caster.CurrentNode)
@@ -206,29 +210,30 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             return false;
         }
 
-        #region Prise en compte des équipes (Mit de côté)
-        /*switch(action.HitableTargets)
+        if (target != null)
         {
-            case SpellTargets.Self:
-                if(caster != target)
-                {
-                    return false;
-                }
-                break;
-            case SpellTargets.Allies:
-                if (!RVN_BattleManager.AreCharacterAllies(caster,target))
-                {
-                    return false;
-                }
-                break;
-            case SpellTargets.Ennemies:
-                if (RVN_BattleManager.AreCharacterAllies(caster, target))
-                {
-                    return false;
-                }
-                break;
-        }*/
-        #endregion
+            switch (action.CastTargets)
+            {
+                case SpellTargets.Self:
+                    if (caster != target)
+                    {
+                        return false;
+                    }
+                    break;
+                case SpellTargets.Allies:
+                    if (!RVN_BattleManager.AreCharacterAllies(caster, target))
+                    {
+                        return false;
+                    }
+                    break;
+                case SpellTargets.Ennemies:
+                    if (RVN_BattleManager.AreCharacterAllies(caster, target))
+                    {
+                        return false;
+                    }
+                    break;
+            }
+        }
 
         if(!isForNextTurn && !Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
         {
