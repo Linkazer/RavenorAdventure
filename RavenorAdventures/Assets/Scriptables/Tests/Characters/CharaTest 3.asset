@@ -23,7 +23,7 @@ MonoBehaviour:
   accuracy: 0
   power: 0
   relances: 0
-  movementByTurn: 75
+  movementByTurn: 150
   speed: 5
   availableSpells:
   - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}

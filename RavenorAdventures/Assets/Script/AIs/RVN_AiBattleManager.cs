@@ -19,6 +19,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     [SerializeField] private Ai_PlannedAction plannedAction;
 
+    private bool usedAction = false;
+
     [ContextMenu("Test Deplacement")]
     public void TestDeplacementDisplay()
     {
@@ -43,7 +45,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             currentCharacterMovement = nMovement;
         }
 
-        SearchForNextAction(currentCharacter);
+        usedAction = false;
+
+        plannedAction = SearchForNextAction(currentCharacter, false);
 
         PrepareNextAction(2f);
     }
@@ -81,19 +85,35 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => PrepareNextAction(2f));
 
+                usedAction = true;
                 plannedAction = null;
+            }
+        }
+        else if(!usedAction && currentCharacterMovement.CanMove)
+        {
+            usedAction = true;
+
+            Ai_PlannedAction nextTurnAction = SearchForNextAction(currentCharacter, true);
+
+            if(nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+            {
+                currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+            }
+            else
+            {
+                EndCharacterTurn(currentCharacter);
             }
         }
         else
         {
-            Debug.Log("Character End turn");
-            //Plan for next turn
             EndCharacterTurn(currentCharacter);
         }
     }
 
-    private void SearchForNextAction(CPN_Character caster)
+    private Ai_PlannedAction SearchForNextAction(CPN_Character caster, bool forNextTurn)
     {
+        Ai_PlannedAction toReturn = null;
+
         AI_CharacterScriptable currentAi = caster.Scriptable as AI_CharacterScriptable;
 
         List<CPN_Character> allTargets = RVN_BattleManager.GetAllCharacter();
@@ -108,9 +128,19 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             foreach(CPN_Character target in allTargets)
             {
-                List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+                List<Node> possibleMovements = new List<Node>();
+                if (forNextTurn)
+                {
+                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement);
+                }
+                else
+                {
+                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+                }
 
                 Ai_PlannedAction actionOnTarget = null;
+
+                float minimumDistance = -1;
 
                 foreach (Node n in possibleMovements)
                 {
@@ -119,15 +149,27 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     actionToCheck.movementTarget = n;
                     actionToCheck.actionIndex = consideration.wantedActionIndex;
 
-                    if (CanDoAction(caster, actionToCheck, consideration, false))
+                    if (CanDoAction(caster, actionToCheck, consideration, forNextTurn))
                     {
                         float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
                         if(calculatedScore >= maxScore)
                         {
-                            if (actionOnTarget == null || Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode) < Pathfinding.GetDistance(actionOnTarget.movementTarget, casterNode))
+                            float calculatedDistance = -1;
+                            if(forNextTurn)
+                            {
+                                calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.actionTarget);
+                            }
+                            else
+                            {
+                                calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                            }
+
+                            if (actionOnTarget == null || calculatedDistance < minimumDistance)
                             {
                                 actionOnTarget = actionToCheck;
+
+                                minimumDistance = calculatedDistance;
                             }
 
                             if(calculatedScore > maxScore)
@@ -149,12 +191,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if(possibleActions.Count > 0)
         {
-            plannedAction = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
+            toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
-        else
-        {
-            plannedAction = null;
-        }
+
+        return toReturn;
     }
 
     private bool CanDoAction(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration, bool isForNextTurn) //TO DO : Prise en compte des tours prochains
@@ -190,14 +230,19 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         }*/
         #endregion
 
-        if(!Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
+        if(!isForNextTurn && !Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
         {
             return false;
         }
 
         //Condition de la Considération de l'IA
 
-        return currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction);
+        if(!isForNextTurn && !currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private float CalculateActionScore(Ai_PlannedAction plannedAction, AI_Consideration consideration, Node casterCurrentNode)

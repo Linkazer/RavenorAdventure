@@ -69,7 +69,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	public Node CurrentNode => currentNode;
 
+	public int MaxMovement => maxDistance;
 	public int MovementLeft => currentMovementLeft;
+
+	public bool CanMove => currentMovementLeft >= 10;
 
 	void Start()
 	{
@@ -142,6 +145,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private void EndMovement()
     {
+		OnEndMovement?.Invoke();
+
 		OnEndMovementAction?.Invoke();
 		OnEndMovementAction = null;
 	}
@@ -291,6 +296,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-		return currentMovementLeft >= 10 && CanMoveToDestination(actionTargetPosition);
+		return CanMove && CanMoveToDestination(actionTargetPosition);
     }
 }
