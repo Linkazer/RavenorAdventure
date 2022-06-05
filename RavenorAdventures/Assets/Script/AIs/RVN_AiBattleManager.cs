@@ -205,11 +205,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         SpellScriptable action = consideration.wantedAction;
 
-        if(actionToCheck.actionTarget == caster.CurrentNode)
-        {
-            return false;
-        }
-
         if (target != null)
         {
             switch (action.CastTargets)
@@ -221,7 +216,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     }
                     break;
                 case SpellTargets.Allies:
-                    if (!RVN_BattleManager.AreCharacterAllies(caster, target))
+                    if (!RVN_BattleManager.AreCharacterAllies(caster, target) || caster == target)
                     {
                         return false;
                     }
