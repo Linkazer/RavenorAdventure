@@ -34,4 +34,12 @@ MonoBehaviour:
   - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
     wantedActionIndex: 0
     conditions: []
-    calculs: []
+    bonusScore: 0
+    calculs:
+    - calculType: 0
+      abscissaValue: 13
+      checkAroundMax: 0
+      maxValue: 45
+      constant: 45
+      coeficient: -1
+      calculImportance: 0

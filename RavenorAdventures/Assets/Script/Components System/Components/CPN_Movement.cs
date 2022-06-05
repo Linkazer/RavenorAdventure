@@ -101,7 +101,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		}
         else
         {
-			OnEndMovementAction?.Invoke();
+			EndMovement();
 		}
 	}
 
@@ -140,6 +140,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
+	private void EndMovement()
+    {
+		OnEndMovementAction?.Invoke();
+		OnEndMovementAction = null;
+	}
+
 	/// <summary>
 	/// Stop the current movement of the component.
 	/// </summary>
@@ -150,6 +156,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
 		currentMovementLeft -= currentNode.gCost;
+
+		Debug.Log("End movement callback");
 
 		OnEndMovementAction = null;
 		OnStopMovement?.Invoke();
@@ -195,9 +203,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				{
 					currentMovementLeft -= currentNode.gCost;
 
-					OnEndMovement?.Invoke();
-
-					OnEndMovementAction?.Invoke();
+					EndMovement();
 
 					transform.position = currentWaypoint.worldPosition;
 

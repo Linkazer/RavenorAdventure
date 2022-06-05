@@ -29,7 +29,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
-    public int Armor => currentArmor;
+    public float MaxArmor => maxArmor;
+    public int CurrentArmor => currentArmor;
     public int Defense => defense;
 
     public override void SetData(CPN_Data_HealthHandler toSet)

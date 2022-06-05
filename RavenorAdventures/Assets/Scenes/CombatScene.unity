@@ -9229,6 +9229,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114118512083767938, guid: 4f471b08f33214a46a43ce72aa1f3bf2, type: 3}
+      propertyPath: displayGridGizmos
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114118512083767938, guid: 4f471b08f33214a46a43ce72aa1f3bf2, type: 3}
       propertyPath: visionMasks.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -10277,7 +10281,7 @@ MonoBehaviour:
   currentCharacterSpell: {fileID: 0}
   currentCharacterMovement: {fileID: 0}
   plannedAction:
-    actionIndex: 0
+    actionIndex: -1
     movementTarget:
       walkable: 0
       visible: 0

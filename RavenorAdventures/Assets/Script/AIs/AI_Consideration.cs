@@ -5,13 +5,20 @@ using UnityEngine;
 
 public enum AiAbscissaType
 {
-    DistanceFromTarget,
-    TargetMaxHp, TargetCurrentHp, TargetPercentHp,
-    CasterMaxHp, CasterCurrentHp, CasterPercentHp,
-    TargetMalus, TargetBonus,
-    TargetDangerosity, TargetVulnerability,
-    TargetPhysicalArmor, TargetMagicalArmor,
-    NumberEnnemyArea, NumberAllyArea, NumberWoundedEnnemyArea, NumberWoundedAllyArea, DistranceFromTargetBasePosition
+    DistanceFromTarget_CalculatedPosition,
+    TargetMaxHp, 
+    TargetCurrentHp, 
+    TargetPercentHp,
+    CasterMaxHp, 
+    CasterCurrentHp, 
+    CasterPercentHp,
+    TargetDangerosity,
+    TargetVulnerability,
+    TargetMaxArmor,
+    TargetCurrentArmor,
+    NumberEnnemyArea,
+    NumberAllyArea, 
+    DistranceFromTarget_BasePosition
 }
 
 public enum AiCalculType
@@ -60,7 +67,7 @@ public class AI_Consideration
     [Header("Calculs")]
     //[Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")] public float considerationImportance = 0;
     //[Tooltip("Met une limite au score maximum des calculs.")] public float maximumValueModifier;
-    //public float bonusScore;
+    public float bonusScore;
     public List<ValueForCalcul> calculs;
     //public int maxCooldown, cooldown;
 }

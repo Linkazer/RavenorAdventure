@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,7 +68,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             Debug.Log("Character Dead");
             EndCharacterTurn(currentCharacter);
         }
-        else if(plannedAction != null)
+        else if(plannedAction != null && plannedAction.actionIndex >= 0)
         {
             if(plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
@@ -103,13 +102,17 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         List<Ai_PlannedAction> possibleActions = new List<Ai_PlannedAction>();
 
+        float maxScore = -1;
+
         foreach(AI_Consideration consideration in currentAi.Comportement)
         {
             foreach(CPN_Character target in allTargets)
             {
                 List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
 
-                foreach(Node n in possibleMovements)
+                Ai_PlannedAction actionOnTarget = null;
+
+                foreach (Node n in possibleMovements)
                 {
                     Ai_PlannedAction actionToCheck = new Ai_PlannedAction();
                     actionToCheck.actionTarget = target.CurrentNode;
@@ -118,10 +121,28 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                     if (CanDoAction(caster, actionToCheck, consideration, false))
                     {
-                        //Ajouter le calcul de score
+                        float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        possibleActions.Add(actionToCheck);
+                        if(calculatedScore >= maxScore)
+                        {
+                            if (actionOnTarget == null || Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode) < Pathfinding.GetDistance(actionOnTarget.movementTarget, casterNode))
+                            {
+                                actionOnTarget = actionToCheck;
+                            }
+
+                            if(calculatedScore > maxScore)
+                            {
+                                possibleActions = new List<Ai_PlannedAction>();
+
+                                maxScore = calculatedScore;
+                            }
+                        }
                     }
+                }
+
+                if (actionOnTarget != null)
+                {
+                    possibleActions.Add(actionOnTarget);
                 }
             }
         }
@@ -179,70 +200,188 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction);
     }
 
+    private float CalculateActionScore(Ai_PlannedAction plannedAction, AI_Consideration consideration, Node casterCurrentNode)
+    {
+        float result = 0;
+        float coef = 0;
 
-    /*private void Calculate
+        foreach(ValueForCalcul calculValue in consideration.calculs)
+        {
+            result += CalculateConsideration(plannedAction, calculValue, casterCurrentNode) * (calculValue.calculImportance + 1);
+            coef += calculValue.calculImportance + 1;
+        }
+
+        return consideration.bonusScore + (result / coef);
+    }
+
+    private float CalculateConsideration(Ai_PlannedAction plannedAction, ValueForCalcul calculValues, Node casterCurrentNode)
+    {
+        float result = 0;
+        float abscissa = GetAbscissaValue(calculValues.abscissaValue, plannedAction, casterCurrentNode);
+
+        switch(calculValues.calculType)
+        {
+            case AiCalculType.Conditionnal:
+                result = CalculConditionnal(abscissa, calculValues.constant, calculValues.coeficient);
+                break;
+            case AiCalculType.Affine:
+                result = CalculAffine(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
+                break;
+            case AiCalculType.Logistical:
+                result = CalculLogistical(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue, calculValues.checkAroundMax);
+                break;
+            case AiCalculType.Exponential:
+                result = CalculExponential(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
+                break;
+            case AiCalculType.Logarythm:
+                result = CalculLogarythm(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
+                break;
+            case AiCalculType.ReverseExponential:
+                result = CalculExponentialReverse(abscissa, calculValues.constant, calculValues.coeficient);
+                break;
+        }
+
+        return Mathf.Clamp(result, 0, 1);
+    }
+
+    private float GetAbscissaValue(AiAbscissaType abscissaWanted, Ai_PlannedAction actionToCheck, Node casterCurrentNode)
+    {
+        float toReturn = 0;
+
+        CPN_Character caster = casterCurrentNode.GetNodeComponent<CPN_Character>()[0];
+
+        CPN_Character target = actionToCheck.actionTarget.GetNodeComponent<CPN_Character>()[0];
+
+        switch(abscissaWanted)
+        {
+            case AiAbscissaType.DistanceFromTarget_CalculatedPosition:
+                toReturn = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.actionTarget);
+                break;
+            case AiAbscissaType.DistranceFromTarget_BasePosition:
+                toReturn = Pathfinding.GetDistance(casterCurrentNode, actionToCheck.actionTarget);
+                break;
+            case AiAbscissaType.CasterMaxHp:
+                if(caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterMaxHealth))
+                {
+                    toReturn = casterMaxHealth.MaxHealth;
+                }
+                break;
+            case AiAbscissaType.CasterCurrentHp:
+                if (caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterCurrentHealth))
+                {
+                    toReturn = casterCurrentHealth.CurrentHealth;
+                }
+                break;
+            case AiAbscissaType.CasterPercentHp:
+                if (caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterPercentHealth))
+                {
+                    toReturn = casterPercentHealth.CurrentHealth / casterPercentHealth.MaxHealth;
+                }
+                break;
+            case AiAbscissaType.TargetMaxHp:
+                if(target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetMaxHealth))
+                {
+                    toReturn = targetMaxHealth.MaxHealth;
+                }
+                break;
+            case AiAbscissaType.TargetCurrentHp:
+                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetCurrentHealth))
+                {
+                    toReturn = targetCurrentHealth.CurrentHealth;
+                }
+                break;
+            case AiAbscissaType.TargetPercentHp:
+                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetPercentHealth))
+                {
+                    toReturn = targetPercentHealth.CurrentHealth / targetPercentHealth.MaxHealth;
+                }
+                break;
+            case AiAbscissaType.TargetMaxArmor:
+                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetMaxArmor))
+                {
+                    toReturn = targetMaxArmor.MaxArmor;
+                }
+                break;
+            case AiAbscissaType.TargetCurrentArmor:
+                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetCurrentArmor))
+                {
+                    toReturn = targetCurrentArmor.CurrentArmor;
+                }
+                break;
+            case AiAbscissaType.TargetDangerosity:
+                break;
+            case AiAbscissaType.TargetVulnerability:
+                break;
+        }
+
+        return toReturn;
+    }
+
 
     #region Calculs de Considérations
-    public float EvaluateAction()
-    {
-        
-    }
 
-    public float ConsiderationCalcul()
-    {
-       
-    }
 
-    public float GetAbcsissaValue()
+    public float CalculConditionnal(float abscissa, float constant, float coeficient)
     {
-        
-    }
-
-    private int GetCharacterInArea()
-    {
-        
-    }
-
-    public float ConditionnalCalcul(float x, float k, float c)
-    {
-        if (c >= 0 && x > k)
+        if (coeficient >= 0 && abscissa > constant)
         {
             return 1;
         }
-        else if (c < 0 && x < k)
+        else if (coeficient < 0 && abscissa < constant)
         {
             return 1;
         }
         return 0;
     }
 
-    public float AffineCalcul(float x, float k, float c)
+    public float CalculAffine(float abscissa, float constant, float coeficient, float maxValue)
     {
-        return x * c + k;
+        return (constant + abscissa * coeficient)/maxValue;
     }
 
-    public float LogarythmCalcul(float x, float k, float c)
+    public float CalculLogarythm(float abscissa, float constant, float coeficient, float maxValue)
     {
-        return k - (Mathf.Pow(x, c));
+        return (constant + (Mathf.Pow(abscissa, coeficient))) / Mathf.Pow(maxValue, coeficient);
     }
 
-    public float ExponentialCalcul(float x, float k, float c)
+    public float CalculExponential(float abscissa, float constant, float coeficient, float maxValue)
     {
-        return Mathf.Exp(c * x + k);
-    }
-
-    public float ExponentialReverseCalcul(float x, float k, float c)
-    {
-        return 1 / Mathf.Exp(c * x + k);
-    }
-
-    public float LogisticalCalcul(float x, float k, float c, bool checkAroundMax)
-    {
-        if (checkAroundMax)
+        if (coeficient >= 1)
         {
-            return 2 / (1 + (Mathf.Exp(Mathf.Abs(x - k) * c)));
+            return Mathf.Exp(abscissa / coeficient + constant) / Mathf.Exp(maxValue / coeficient);
         }
-        return 1 / (1 + (Mathf.Exp((x - k) * c)));
+        else
+        {
+            return 0;
+        }
     }
-    #endregion*/
+
+    public float CalculExponentialReverse(float abscissa, float constant, float coeficient)
+    {
+        if (coeficient > 0)
+        {
+            return 1 / Mathf.Exp(abscissa / coeficient + constant);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    public float CalculLogistical(float abscissa, float constant, float coeficient, float maxValue, bool checkAroundMax)
+    {
+        if (coeficient != 0)
+        {
+            if (checkAroundMax)
+            {
+                return 2 / (1 + (Mathf.Exp(Mathf.Abs(abscissa - constant) * coeficient)));
+            }
+            return 1 / (1 + (Mathf.Exp((abscissa - constant) * coeficient)));
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    #endregion
 }

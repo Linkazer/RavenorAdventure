@@ -124,6 +124,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// </summary>
     public static void EndCharacterTurn()
     {
+        Debug.Log("End currentCharacter turn");
+
         instance.EndCharacterTurn(instance.currentPlayingCharacter);
     }
 

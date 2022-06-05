@@ -19,11 +19,11 @@ MonoBehaviour:
   uiHeight: 1.1
   health: 20
   armor: 7
-  defense: 3
+  defense: 0
   accuracy: 0
   power: 0
   relances: 0
-  movementByTurn: 75
+  movementByTurn: 45
   speed: 6.4
   availableSpells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
