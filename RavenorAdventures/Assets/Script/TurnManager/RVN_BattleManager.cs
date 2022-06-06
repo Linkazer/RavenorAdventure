@@ -32,7 +32,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent<CPN_Character> OnStartAICharacterTurn;
     [SerializeField] private UnityEvent OnStartPlayerTurn;
     [SerializeField] private UnityEvent OnStartAITurn;
-    [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterTurn;
+    [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterSelfTurn;
     [SerializeField] private UnityEvent OnBeginNewRound;
 
     public static Action OnPlayerTeamDie;
@@ -47,7 +47,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private void Start()
     {
-        SetBattle();
+        TimerManager.CreateGameTimer(1f, SetBattle);
     }
 
     public void SetBattle()
@@ -73,7 +73,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void StartBattle()
     {
-        StartNewRound();
+        currentPlayingTeam = -1;
+
+        StartNextTeamRound();
     }
 
     /// <summary>
@@ -140,9 +142,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         if (!playedThisTurn.Contains(characterToEnd))
         {
             playedThisTurn.Add(characterToEnd);
+
+            characterToEnd.EndSelfTurn();
         }
 
-        OnEndCharacterTurn?.Invoke(characterToEnd);
+        OnEndCharacterSelfTurn?.Invoke(characterToEnd);
 
         for(int i = 0; i < teams[currentPlayingTeam].characters.Count; i++)
         {
@@ -161,9 +165,12 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// </summary>
     private void StartNextTeamRound()
     {
-        for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+        if (currentPlayingTeam >= 0)
         {
-            teams[currentPlayingTeam].characters[j].EndTurn();
+            for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+            {
+                teams[currentPlayingTeam].characters[j].EndTeamTurn();
+            }
         }
 
         currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
@@ -192,8 +199,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     private void StartNewRound()
     {
         playedThisTurn = new List<CPN_Character>();
-
-        //CODE REVIEW : Voir pour séparer la mise à jour de chaque team
 
         OnBeginNewRound?.Invoke();
     }

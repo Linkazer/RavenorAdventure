@@ -49,7 +49,7 @@ public abstract class Effect : ScriptableObject
             case EffectTrigger.OnEndTurn:
                 if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
                 {
-                    endTurnCharacter.ActOnEndTurn += UseEffect;
+                    endTurnCharacter.ActOnEndTeamTurn += UseEffect;
                 }
                 break;
             case EffectTrigger.OnEnterNode:
@@ -110,7 +110,7 @@ public abstract class Effect : ScriptableObject
             case EffectTrigger.OnEndTurn:
                 if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
                 {
-                    endTurnCharacter.ActOnEndTurn -= UseEffect;
+                    endTurnCharacter.ActOnEndTeamTurn -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnEnterNode:

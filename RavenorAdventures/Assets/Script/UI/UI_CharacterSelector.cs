@@ -12,11 +12,17 @@ public class UI_CharacterSelector : MonoBehaviour
     [SerializeField] private UnityEvent<CPN_Character> OnSetCharacter;
     [SerializeField] private UnityEvent OnUnsetCharacter;
 
+    [SerializeField] private UnityEvent onShow;
+    [SerializeField] private UnityEvent onHide;
+
     private CPN_Character currentCharacter;
 
     public void Set(CPN_Character nCharacter)
     {
         currentCharacter = nCharacter;
+
+        currentCharacter.ActOnBeginTurn += Show;
+        currentCharacter.ActOnEndSelfTurn += Hide;
 
         gameObject.SetActive(true);
 
@@ -28,6 +34,12 @@ public class UI_CharacterSelector : MonoBehaviour
     public void Unset()
     {
         OnUnsetCharacter?.Invoke();
+
+        if (currentCharacter != null)
+        {
+            currentCharacter.ActOnBeginTurn -= Show;
+            currentCharacter.ActOnEndSelfTurn -= Hide;
+        }
 
         currentCharacter = null;
 
@@ -43,5 +55,15 @@ public class UI_CharacterSelector : MonoBehaviour
     {
         portrait.sprite = sprite;
         portrait.color = Color.white;
+    }
+
+    private void Show(RVN_ComponentHandler handler)
+    {
+        onShow?.Invoke();
+    }
+
+    private void Hide(RVN_ComponentHandler handler)
+    {
+        onHide?.Invoke();
     }
 }

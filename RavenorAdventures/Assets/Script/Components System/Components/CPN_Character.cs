@@ -17,7 +17,8 @@ public class CPN_Character : RVN_ComponentHandler
 
 
     public Action<RVN_ComponentHandler> ActOnBeginTurn;
-    public Action<RVN_ComponentHandler> ActOnEndTurn;
+    public Action<RVN_ComponentHandler> ActOnEndTeamTurn;
+    public Action<RVN_ComponentHandler> ActOnEndSelfTurn;
 
     public bool IsSet => gameObject.activeSelf;
 
@@ -48,8 +49,6 @@ public class CPN_Character : RVN_ComponentHandler
         OnSetCharacter?.Invoke(scriptable);
     }
 
-
-
     public void UnsetCharacter(float unsetDelay)
     {
         scriptable = null;
@@ -78,9 +77,14 @@ public class CPN_Character : RVN_ComponentHandler
         }
     }
 
-    public void EndTurn()
+    public void EndSelfTurn()
     {
-        ActOnEndTurn?.Invoke(this);
+        ActOnEndSelfTurn?.Invoke(this);
+    }
+
+    public void EndTeamTurn()
+    {
+        ActOnEndTeamTurn?.Invoke(this);
         OnEndTurn?.Invoke();
     }
 }
