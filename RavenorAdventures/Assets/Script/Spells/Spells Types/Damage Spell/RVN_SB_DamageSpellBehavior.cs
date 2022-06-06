@@ -41,27 +41,19 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             switch(usedScriptable.Type)
             {
                 case DamageType.Normal:
-                    float damage = CalculateDamage(DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy), usedScriptable.PossibleReroll, hitedObject);
+                    List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
+
+                    float damage = CalculateDamage(damageDices, usedScriptable.PossibleReroll, hitedObject);
                     if(damage > 0)
                     {
                         damage += usedScriptable.BaseDamage;
 
-                        hitedObject.TakeDamage(spellToUse.caster, damage, usedScriptable.ArmorPierced);
+                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage, usedScriptable.ArmorPierced);
 
                         if(spellToUse.caster != null)
                         {
                             spellToUse.caster.DealDamage(hitedObject);
                         }
-
-
-                        /*if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
-                        {
-                            foreach (EffectScriptable eff in usedScriptable.Effects())
-                            {
-                                ApplyEffects(effectHandler, eff);
-                            }
-                        }*/
-
                     }
                     else
                     {
@@ -103,6 +95,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             if(diceDamage[i].Result > target.Defense)
             {
                 totalDamage++;
+                diceDamage[i].succeed = true;
             }
             else if(currentRelance < possibleRerolls)
             {

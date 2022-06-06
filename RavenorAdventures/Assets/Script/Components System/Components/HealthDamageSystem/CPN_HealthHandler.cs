@@ -17,6 +17,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private UnityEvent<int> OnSetMaxArmor;
     [SerializeField] private UnityEvent<int> OnGainHealth;
     [SerializeField] private UnityEvent<int> OnLoseHealth;
+    [SerializeField] private UnityEvent<List<Dice>> OnLoseHealthDices;
     [SerializeField] private UnityEvent<float> OnChangeHealth;
     [SerializeField] private UnityEvent<int> OnGainArmor;
     [SerializeField] private UnityEvent<int> OnLoseArmor;
@@ -49,7 +50,14 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         OnGainArmor?.Invoke(currentArmor);
     }
 
-    public void TakeDamage(CPN_SpellCaster caster, float damageAmount, int armorPierced)
+    public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage, int armorPierced)
+    {
+        OnLoseHealthDices?.Invoke(dices);
+
+        TakeDamage(caster, damage, armorPierced);
+    }
+
+    public void TakeDamage(CPN_SpellCaster caster, float damage, int armorPierced)
     {
         actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
@@ -57,7 +65,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             actOnTakeDamageTarget?.Invoke(caster.Handler);
         }
 
-        TakeDamage(damageAmount, armorPierced);
+        TakeDamage(damage, armorPierced);
     }
 
     public void TakeDamage(float damageAmount, int armorPierced)

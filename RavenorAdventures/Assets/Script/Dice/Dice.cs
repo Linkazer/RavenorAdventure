@@ -9,6 +9,8 @@ public class Dice
 
     private float result;
 
+    public bool succeed = false;
+
     public float Result => result;
 
     public Dice()

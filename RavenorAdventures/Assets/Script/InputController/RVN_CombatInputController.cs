@@ -26,6 +26,8 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     private Node lastFrameMouseNode = null;
 
+    [SerializeField] private List<MonoBehaviour> disableCount;
+
     private void Update()
     {
         if (lastFrameMouseNode != Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition))
@@ -158,7 +160,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             if (selectedAction!= null && selectedAction.IsActionUsable(actionPosition))
             {
-                DisableCombatInput();
+                DisableCombatInput(this);
 
                 selectedAction.TryDoAction(actionPosition, OnEndAction);
 
@@ -174,7 +176,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         SelectAction(0);
 
-        EnableCombatInput();
+        EnableCombatInput(this);
     }
 
     //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?
@@ -194,17 +196,30 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
-    public void EnableCombatInput()
+    public void EnableCombatInput(MonoBehaviour asker)
     {
-        canPlayerDoInput = true;
+        if(disableCount.Contains(asker))
+        {
+            disableCount.Remove(asker);
+        }
 
-        OnEnablePlayerInput?.Invoke();
+        if (disableCount.Count <= 0)
+        {
+            canPlayerDoInput = true;
+
+            OnEnablePlayerInput?.Invoke();
+        }
     }
 
-    public void DisableCombatInput()
+    public void DisableCombatInput(MonoBehaviour asker)
     {
-        canPlayerDoInput = false;
+        if (disableCount.Count <= 0)
+        {
+            canPlayerDoInput = false;
 
-        OnDisablePlayerInput?.Invoke();
+            OnDisablePlayerInput?.Invoke();
+        }
+
+        disableCount.Add(asker);
     }
 }

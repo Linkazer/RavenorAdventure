@@ -20,6 +20,13 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
         newDamageText.Display(damageAmount);
     }
 
+    public void TakeDiceDamage(List<Dice> dices)
+    {
+        UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);
+
+        newDamageText.DisplayDices(dices);
+    }
+
     public void SetMaxArmor(int maxArmor)
     {
         for(int i = 0; i < armorDisplayers.Count; i++)
