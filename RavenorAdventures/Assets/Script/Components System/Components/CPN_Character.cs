@@ -53,7 +53,6 @@ public class CPN_Character : RVN_ComponentHandler
     {
         scriptable = null;
 
-        Debug.Log("Unset Character");
         OnUnsetCharacter?.Invoke();
 
         if (unsetDelay > 0)
