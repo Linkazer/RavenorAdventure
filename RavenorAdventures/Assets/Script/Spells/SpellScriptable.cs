@@ -16,7 +16,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Général Informations")]
     [SerializeField] protected string nom;
     [SerializeField] protected Sprite icon;
-    [SerializeField, TextArea(3,5)] protected string description;
+    [SerializeField] protected RVN_Text description;
 
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;
@@ -44,7 +44,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public string Name => nom;
     public Sprite Icon => icon;
-    public string Description => description;
+    public string Description => description.Text();
 
     public CharacterAnimationType CastingAnimation => castingAnimation;
 

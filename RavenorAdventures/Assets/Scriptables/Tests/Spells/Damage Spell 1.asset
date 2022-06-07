@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: 
   icon: {fileID: 21300000, guid: f41b2210e1e89db419b2d7df22463e6f, type: 3}
-  description: "Ce spell permet d'attaquer avec 3 d\xE9s et de r\xE9duire l'armure
-    de 2."
+  description:
+    texts:
+    - "Ceci est le texte Fran\xE7ais"
+    - "Alors que cela n'est pas le texte fran\xE7ais, mais anglais"
   castingAnimation: 4
   castAnimationDuration: 0.25
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
