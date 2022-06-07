@@ -27,5 +27,6 @@ MonoBehaviour:
   speed: 5
   availableSpells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 77bdc9a93b6e8ad44ab5faf09b0522d7, type: 2}
   usableSpellByTurn: 1
   passives: []
