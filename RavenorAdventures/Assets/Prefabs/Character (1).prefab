@@ -1089,6 +1089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ebccd289bcb89c4bae72af5a9e560f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873622}
   OnLeftMouseDown:
     m_PersistentCalls:
       m_Calls: []
@@ -2425,6 +2426,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 2958618333053588406, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3022150212942997121, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2967,7 +2972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568051948502648260, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7812851773800799550, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
       propertyPath: m_AnchorMax.y

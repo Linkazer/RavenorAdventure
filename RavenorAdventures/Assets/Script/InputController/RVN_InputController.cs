@@ -10,6 +10,9 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
+    [SerializeField] private UnityEvent<CPN_ClicHandler> OnMouseLeftDownOnObject;
+    [SerializeField] private UnityEvent<Vector2> OnMouseRightDown;
+    [SerializeField] private UnityEvent<CPN_ClicHandler> OnMouseRightDownOnObject;
     [SerializeField] private UnityEvent<Vector2> OnMoveCameraInput;
     [SerializeField] private UnityEvent<Vector2> OnMouseMiddleDown;
     [SerializeField] private UnityEvent<Vector2> OnMouseMiddleUp;
@@ -17,6 +20,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [Header("Inputs")]
     [SerializeField] private InputActionReference actionMouseMovementInput;
     [SerializeField] private InputActionReference actionMouseLeftClicInput;
+    [SerializeField] private InputActionReference actionMouseRightClicInput;
     [SerializeField] private InputActionReference actionMoveCameraInput;
     [SerializeField] private InputActionReference actionMouseMiddle;
 
@@ -54,6 +58,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
         actionMouseLeftClicInput.action.started += LeftMouseInput;
 
+        actionMouseRightClicInput.action.started += RightMouseInput;
+
         actionMouseMiddle.action.started += MiddleMouseInputDown;
 
         actionMouseMiddle.action.canceled += MiddleMouseInputDown;
@@ -66,6 +72,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         actionMouseMovementInput.action.performed -= UpdateMousePosition;
 
         actionMouseLeftClicInput.action.started -= LeftMouseInput;
+
+        actionMouseRightClicInput.action.started -= RightMouseInput;
 
         actionMouseMiddle.action.performed -= MiddleMouseInputDown;
     }
@@ -92,6 +100,11 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
             if (currentClicHandlerTouched != null)
             {
+                OnMouseLeftDownOnObject?.Invoke(currentClicHandlerTouched);
+            }
+
+            if (currentClicHandlerTouched != null)
+            {
                 currentClicHandlerTouched.MouseDown(0);
             }
         }
@@ -112,6 +125,21 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         {
             isMiddleMouseDown = false;
             OnMouseMiddleUp?.Invoke(mouseWorldPosition);
+        }
+    }
+
+    private void RightMouseInput(InputAction.CallbackContext context)
+    {
+        if (!evtSyst.IsPointerOverGameObject())
+        {
+            if (currentClicHandlerTouched != null)
+            {
+                OnMouseRightDownOnObject?.Invoke(currentClicHandlerTouched);
+            }
+            else
+            {
+                OnMouseRightDown?.Invoke(mouseWorldPosition);
+            }
         }
     }
 

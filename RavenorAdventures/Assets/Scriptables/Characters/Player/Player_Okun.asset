@@ -29,4 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   - {fileID: 11400000, guid: 77bdc9a93b6e8ad44ab5faf09b0522d7, type: 2}
   usableSpellByTurn: 1
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: fcc64d3b1b917c141ab1940606501d65, type: 2}
+  - {fileID: 11400000, guid: a7222f4437f6660468de11ad85ebe4b1, type: 2}

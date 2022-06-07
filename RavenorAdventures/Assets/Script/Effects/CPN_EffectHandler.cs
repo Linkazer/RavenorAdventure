@@ -10,6 +10,8 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     [SerializeField] private UnityEvent<EffectScriptable> OnApplyEffect;
     [SerializeField] private UnityEvent<EffectScriptable> OnRemoveEffect;
 
+    public List<AppliedEffect> Effects => currentAppliedEffects;
+
     public override void SetData(CPN_Data_EffectHandler toSet)
     {
         foreach(EffectScriptable eff in toSet.Effects())

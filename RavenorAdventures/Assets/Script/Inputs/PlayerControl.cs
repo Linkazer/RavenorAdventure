@@ -49,6 +49,14 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseRightClic"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3b1b768-4b46-45bf-9a75-27299d3243fa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,7 +185,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""9a6e0a7b-be93-4494-8e7e-5d73d0d5653f"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MouseLeftClic"",
@@ -194,6 +202,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""action"": ""MouseMiddleClic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d28594bc-0379-449e-8e8e-ec68ad6ece17"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseRightClic"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +225,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         m_BattleActionMap_MoveCamera = m_BattleActionMap.FindAction("MoveCamera", throwIfNotFound: true);
         m_BattleActionMap_MouseLeftClic = m_BattleActionMap.FindAction("MouseLeftClic", throwIfNotFound: true);
         m_BattleActionMap_MouseMiddleClic = m_BattleActionMap.FindAction("MouseMiddleClic", throwIfNotFound: true);
+        m_BattleActionMap_MouseRightClic = m_BattleActionMap.FindAction("MouseRightClic", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -259,6 +279,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MoveCamera;
     private readonly InputAction m_BattleActionMap_MouseLeftClic;
     private readonly InputAction m_BattleActionMap_MouseMiddleClic;
+    private readonly InputAction m_BattleActionMap_MouseRightClic;
     public struct BattleActionMapActions
     {
         private @PlayerControl m_Wrapper;
@@ -267,6 +288,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         public InputAction @MoveCamera => m_Wrapper.m_BattleActionMap_MoveCamera;
         public InputAction @MouseLeftClic => m_Wrapper.m_BattleActionMap_MouseLeftClic;
         public InputAction @MouseMiddleClic => m_Wrapper.m_BattleActionMap_MouseMiddleClic;
+        public InputAction @MouseRightClic => m_Wrapper.m_BattleActionMap_MouseRightClic;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,6 +310,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseMiddleClic.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
                 @MouseMiddleClic.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
                 @MouseMiddleClic.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseMiddleClic;
+                @MouseRightClic.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
+                @MouseRightClic.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
+                @MouseRightClic.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -304,6 +329,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseMiddleClic.started += instance.OnMouseMiddleClic;
                 @MouseMiddleClic.performed += instance.OnMouseMiddleClic;
                 @MouseMiddleClic.canceled += instance.OnMouseMiddleClic;
+                @MouseRightClic.started += instance.OnMouseRightClic;
+                @MouseRightClic.performed += instance.OnMouseRightClic;
+                @MouseRightClic.canceled += instance.OnMouseRightClic;
             }
         }
     }
@@ -314,5 +342,6 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         void OnMoveCamera(InputAction.CallbackContext context);
         void OnMouseLeftClic(InputAction.CallbackContext context);
         void OnMouseMiddleClic(InputAction.CallbackContext context);
+        void OnMouseRightClic(InputAction.CallbackContext context);
     }
 }

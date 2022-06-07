@@ -36,6 +36,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MouseRightClic",
+                    "type": "Button",
+                    "id": "a3b1b768-4b46-45bf-9a75-27299d3243fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -164,7 +172,7 @@
                     "name": "",
                     "id": "9a6e0a7b-be93-4494-8e7e-5d73d0d5653f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MouseLeftClic",
@@ -179,6 +187,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseMiddleClic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d28594bc-0379-449e-8e8e-ec68ad6ece17",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseRightClic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
