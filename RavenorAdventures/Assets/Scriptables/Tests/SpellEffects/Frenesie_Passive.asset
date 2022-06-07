@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Frenesie_Passive
   m_EditorClassIdentifier: 
   effectName: 
+  icon: {fileID: 21300000, guid: 2d481f8ed3d6ba44489844cc28bc1c43, type: 3}
   trigger: 8
   spellToUse: {fileID: 11400000, guid: 8f38fab8307ac6145b178a1684b46e07, type: 2}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stat Effect 1
   m_EditorClassIdentifier: 
   effectName: Stat Effect 1
+  icon: {fileID: 21300000, guid: 2d481f8ed3d6ba44489844cc28bc1c43, type: 3}
   trigger: 0
   effects:
   - stat: 1
