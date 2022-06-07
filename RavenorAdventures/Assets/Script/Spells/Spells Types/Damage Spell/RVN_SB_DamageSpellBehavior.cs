@@ -7,7 +7,8 @@ public enum DamageType
 {
     Normal,
     Heal,
-    IgnoreArmor
+    IgnoreArmor,
+    RegenArmor
 }
 
 public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellScriptable>
@@ -40,35 +41,38 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         {
             switch(usedScriptable.Type)
             {
-                case DamageType.Normal:
+                case DamageType.Heal:
+                    hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed); //TO DO : Voir si on ajoute la régénération d'Armure ici
+                    break;
+                case DamageType.RegenArmor:
+                    hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
+                    break;
+                default:
                     List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
 
-                    float damage = CalculateDamage(damageDices, usedScriptable.PossibleReroll, hitedObject);
-                    if(damage > 0)
+                    float damage = CalculateDamage(damageDices, usedScriptable, hitedObject);
+                    if (damage > 0)
                     {
-                        damage += usedScriptable.BaseDamage;
+                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
 
-                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage, usedScriptable.ArmorPierced);
-
-                        if(spellToUse.caster != null)
+                        if (spellToUse.caster != null)
                         {
+                            if(usedScriptable.Lifesteal > 0 && spellToUse.caster.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterHealth))
+                            {
+                                casterHealth.TakeHeal(damage * usedScriptable.Lifesteal);
+                            }
+
                             spellToUse.caster.DealDamage(hitedObject);
                         }
                     }
                     else
                     {
-                        if(usedScriptable.ArmorPierced > 0)
+                        if (usedScriptable.ArmorPierced > 0)
                         {
-                            hitedObject.TakeDamage(spellToUse.caster, 0, usedScriptable.ArmorPierced);
+                            hitedObject.TakeDamage(spellToUse.caster, 0);
                         }
                         toReturn = false;
                     }
-                    break;
-                case DamageType.Heal:
-                    hitedObject.TakeHeal(usedScriptable.DiceUsed); //TO DO : Voir si on ajoute la régénération d'Armure ici
-                    break;
-                case DamageType.IgnoreArmor:
-                    //TO DO : Voir pour les dégâts Brut
                     break;
             }
         }
@@ -85,7 +89,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return toReturn;
     }
 
-    private float CalculateDamage(List<Dice> diceDamage, int possibleRerolls, CPN_HealthHandler target)
+    private float CalculateDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target)
     {
         float totalDamage = 0;
         int currentRelance = 0;
@@ -97,12 +101,33 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                 totalDamage++;
                 diceDamage[i].succeed = true;
             }
-            else if(currentRelance < possibleRerolls)
+            else if(currentRelance < spellUsed.PossibleReroll)
             {
                 currentRelance++;
                 diceDamage[i].Roll();
                 i--;
             }
+        }
+
+        if (diceDamage.Count <= 0 || totalDamage > 0)
+        {
+            target.RemoveArmor(spellUsed.ArmorPierced);
+        }
+
+        if (totalDamage > 0)
+        {
+            totalDamage += spellUsed.BaseDamage;
+
+            if (totalDamage > target.CurrentArmor)
+            {
+                totalDamage -= target.CurrentArmor;
+            }
+            else if(spellUsed.Type != DamageType.IgnoreArmor)
+            {
+                totalDamage = 0;
+            }
+
+            target.RemoveArmor(1);
         }
 
         return totalDamage;

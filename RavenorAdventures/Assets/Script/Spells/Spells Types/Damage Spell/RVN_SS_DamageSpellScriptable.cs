@@ -10,6 +10,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     [SerializeField] private int diceUsed;
     [SerializeField] private int baseDamage;
     [SerializeField] private int armorPierced;
+    [SerializeField, Range(0f, 1f)] private float lifestealPercent;
 
     private int bonusAccuracy;
     private int bonusBaseDamage;
@@ -23,6 +24,8 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     public int ArmorPierced => armorPierced;
 
     public int BaseDamage => baseDamage + bonusBaseDamage;
+
+    public float Lifesteal => lifestealPercent;
 
     public int Accuracy => bonusAccuracy;
 

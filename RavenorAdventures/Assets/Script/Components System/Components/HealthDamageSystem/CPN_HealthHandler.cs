@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 {
-    [SerializeField] private float maxHealth = 10;
+    [SerializeField] private int maxHealth = 10;
     [SerializeField] private int maxArmor = 0;
-    [SerializeField] private float currentHealth = 10;
+    [SerializeField] private int currentHealth = 10;
     [SerializeField] private int currentArmor = 0;
 
     [SerializeField] private int defense;
@@ -50,14 +50,14 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         OnGainArmor?.Invoke(currentArmor);
     }
 
-    public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage, int armorPierced)
+    public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage)
     {
         OnLoseHealthDices?.Invoke(dices);
 
-        TakeDamage(caster, damage, armorPierced);
+        TakeDamage(caster, damage);
     }
 
-    public void TakeDamage(CPN_SpellCaster caster, float damage, int armorPierced)
+    public void TakeDamage(CPN_SpellCaster caster, float damage)
     {
         actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
@@ -65,38 +65,29 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             actOnTakeDamageTarget?.Invoke(caster.Handler);
         }
 
-        TakeDamage(damage, armorPierced);
+        TakeDamage(damage);
     }
 
-    public void TakeDamage(float damageAmount, int armorPierced)
+    public void TakeDamage(float damageAmount)
     {
-        RemoveArmor(armorPierced);
+        currentHealth -= Mathf.RoundToInt(damageAmount);
 
-        if (damageAmount > currentArmor)
+        OnLoseHealth?.Invoke((int)damageAmount);
+        OnChangeHealth?.Invoke(currentHealth);
+        actOnChangeHealth?.Invoke(currentHealth);
+
+        if (currentHealth <= 0)
         {
-            float damageTaken = damageAmount - currentArmor;
-
-            currentHealth -= damageTaken;
-
-            OnLoseHealth?.Invoke((int)damageTaken);
-            OnChangeHealth?.Invoke(currentHealth);
-            actOnChangeHealth?.Invoke(currentHealth);
-
-            if (currentHealth <= 0)
-            {
-                Die();
-                return;
-            }
+            Die();
+            return;
         }
-
-        RemoveArmor(1);
     }
 
     public void TakeHeal(float healAmount)
     {
         if (healAmount > 0)
         {
-            currentHealth += healAmount;
+            currentHealth += Mathf.RoundToInt(healAmount);
 
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 

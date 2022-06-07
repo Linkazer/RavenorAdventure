@@ -12,7 +12,7 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField] private float uiHeight;
 
     [Header("Combat Stats")]
-    [SerializeField] private float health;
+    [SerializeField] private int health;
     [SerializeField] private int armor;
     [SerializeField] private int defense;
     [SerializeField] private int accuracy;
@@ -43,7 +43,7 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
         return armor;
     }
 
-    public float MaxHealth()
+    public int MaxHealth()
     {
         return health;
     }
