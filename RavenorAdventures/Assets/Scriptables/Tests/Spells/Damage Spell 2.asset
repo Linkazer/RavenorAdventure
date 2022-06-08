@@ -19,8 +19,9 @@ MonoBehaviour:
     - "Ceci est le texte Fran\xE7ais"
     - "Alors que cela n'est pas le texte fran\xE7ais, mais anglais"
   castingAnimation: 2
-  castAnimationDuration: 3
-  spellAnimation: {fileID: 7282106008027488376, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+  castAnimationDuration: 1
+  spellAnimation: {fileID: 7282106008027488376, guid: dbb6ffe15522bce47a38a265a7179c55, type: 3}
+  animationDuration: 2
   hitableTarget: 0
   castTarget: 1
   cooldown: 3
