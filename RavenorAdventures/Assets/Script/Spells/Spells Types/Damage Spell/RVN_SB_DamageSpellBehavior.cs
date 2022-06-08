@@ -80,11 +80,25 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
         if (usedScriptable.SpellAnimation != null)
         {
-            AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
+            if (usedScriptable.AnimationDuration > 0)
+            {
+                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, usedScriptable.AnimationDuration, targetNode.worldPosition, callback);
+            }
+            else
+            {
+                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
+            }
         }
         else if(callback != null)
         {
-            TimerManager.CreateGameTimer(0.5f, callback);
+            if (usedScriptable.AnimationDuration < 0.5f)
+            {
+                TimerManager.CreateGameTimer(0.5f, callback);
+            }
+            else
+            {
+                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+            }
         }
 
         return toReturn;

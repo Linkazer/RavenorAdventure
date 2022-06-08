@@ -22,6 +22,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected CharacterAnimationType castingAnimation;
     [SerializeField] protected float castAnimationDuration;
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
+    [SerializeField] protected float animationDuration;
 
     [Header("Comportement")]
     [SerializeField] protected SpellTargets hitableTarget = SpellTargets.All;
@@ -51,6 +52,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public float CastDuration => castAnimationDuration;
 
     public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
+    public float AnimationDuration => animationDuration;
 
     public SpellTargets HitableTargets => hitableTarget;
     public SpellTargets CastTargets => castTarget;

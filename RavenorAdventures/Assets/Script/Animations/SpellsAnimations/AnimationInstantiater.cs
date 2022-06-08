@@ -8,6 +8,13 @@ using UnityEngine;
 /// </summary>
 public class AnimationInstantiater : RVN_Singleton<AnimationInstantiater>
 {
+    public static void PlayAnimationAtPosition(InstantiatedAnimationHandler toPlay, float duration, Vector2 position, Action callback = null)
+    {
+        InstantiatedAnimationHandler runtimePlayedAnimation = Instantiate(toPlay, position, Quaternion.identity);
+
+        runtimePlayedAnimation.Play(callback, duration);
+    }
+
     /// <summary>
     /// Instatiate an Animation object at the wanted position.
     /// </summary>

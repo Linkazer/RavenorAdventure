@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InstantiatedAnimationHandler : MonoBehaviour
 {
@@ -10,6 +11,17 @@ public class InstantiatedAnimationHandler : MonoBehaviour
     public float PlayTime => playTime;
 
     private Action endCallback;
+
+    [SerializeField] private UnityEvent<float> onSetTime;
+
+    public void Play(Action callback, float duration)
+    {
+        playTime = duration;
+
+        onSetTime?.Invoke(1/PlayTime);
+
+        Play(callback);
+    }
 
     /// <summary>
     /// Play the animation.
