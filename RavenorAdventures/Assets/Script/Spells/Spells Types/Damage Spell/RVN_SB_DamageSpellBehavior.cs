@@ -51,10 +51,11 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                     List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
 
                     float damage = CalculateDamage(damageDices, usedScriptable, hitedObject);
+
+                    hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
+
                     if (damage > 0)
                     {
-                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
-
                         if (spellToUse.caster != null)
                         {
                             if(usedScriptable.Lifesteal > 0 && spellToUse.caster.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterHealth))
@@ -118,13 +119,16 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         {
             totalDamage += spellUsed.BaseDamage;
 
-            if (totalDamage > target.CurrentArmor)
+            if (spellUsed.Type != DamageType.IgnoreArmor)
             {
-                totalDamage -= target.CurrentArmor;
-            }
-            else if(spellUsed.Type != DamageType.IgnoreArmor)
-            {
-                totalDamage = 0;
+                if (totalDamage > target.CurrentArmor)
+                {
+                    totalDamage -= target.CurrentArmor;
+                }
+                else
+                {
+                    totalDamage = 0;
+                }
             }
 
             target.RemoveArmor(1);

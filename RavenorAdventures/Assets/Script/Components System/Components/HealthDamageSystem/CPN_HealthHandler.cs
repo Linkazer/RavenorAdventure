@@ -52,6 +52,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage)
     {
+        Debug.Log(damage);
+
         OnLoseHealthDices?.Invoke(dices);
 
         TakeDamage(caster, damage);
@@ -59,6 +61,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public void TakeDamage(CPN_SpellCaster caster, float damage)
     {
+        Debug.Log(damage);
+
         actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
         {
@@ -81,6 +85,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             Die();
             return;
         }
+
     }
 
     public void TakeHeal(float healAmount)

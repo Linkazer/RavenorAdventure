@@ -194,11 +194,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 			if (currentNode != currentWaypoint && lerpValue >= 1)
             {
-				OnExitNode?.Invoke(currentWaypoint);
-
-				currentNode = currentWaypoint;
-
-				OnEnterNode?.Invoke(currentWaypoint);
+				ChangeNode(currentWaypoint);
 			}
 
 			if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
@@ -226,9 +222,18 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				distance = Vector2.Distance(posUnit, posTarget);
 			}
 
-			transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);// new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+			transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
 			yield return null;
 		}
+	}
+
+	private void ChangeNode(Node newNode)
+    {
+		OnExitNode?.Invoke(currentNode);
+
+		currentNode = newNode;
+
+		OnEnterNode?.Invoke(currentNode);
 	}
 
 	public void OnDrawGizmos()
