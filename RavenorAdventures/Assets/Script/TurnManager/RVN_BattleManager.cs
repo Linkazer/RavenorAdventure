@@ -42,6 +42,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent OnWinBattle;
     [SerializeField] private UnityEvent OnLoseBattle;
 
+    public static CPN_Character CurrentCharacter => instance.currentPlayingCharacter;
     public static List<CPN_Character> GetPlayerTeam => instance.teams[0].characters;
     public static List<CPN_Character> GetEnemyTeam => instance.teams[1].characters;
 

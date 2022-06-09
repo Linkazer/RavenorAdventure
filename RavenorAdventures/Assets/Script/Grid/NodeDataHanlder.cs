@@ -105,4 +105,9 @@ public class NodeDataHanlder : MonoBehaviour
     {
         OnDataExit?.Invoke(dataExit);
     }
+
+    private void OnDisable()
+    {
+        UnsetNodeData(false);
+    }
 }
