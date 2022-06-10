@@ -10720,6 +10720,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1058080230058871037, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
     - target: {fileID: 1064037779972572824, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12604,6 +12608,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3666981633669062823, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 444fca839a6aec447aa19d6c33233b9d, type: 3}
     - target: {fileID: 3706728598826773624, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -14104,6 +14112,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5434566059025706177, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc2172871da7a24d9f7500a6ab644b0, type: 3}
     - target: {fileID: 5498792289845204795, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -15504,6 +15516,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7364725096549952131, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
     - target: {fileID: 7379015333256509791, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16171,6 +16187,10 @@ PrefabInstance:
     - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932777, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8325397280517432027, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
