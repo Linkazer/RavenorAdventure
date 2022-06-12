@@ -127,11 +127,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 List<Node> possibleMovements = new List<Node>();
                 if (forNextTurn)
                 {
-                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement);
+                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, currentCharacterMovement.Width, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement);
                 }
                 else
                 {
-                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, currentCharacterMovement.Width, null, currentCharacterMovement.MovementLeft);
                 }
 
                 Ai_PlannedAction actionOnTarget = null;

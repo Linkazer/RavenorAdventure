@@ -16,8 +16,8 @@ public class PathRequestManager : MonoBehaviour {
 		instance = this;
 	}
 
-	public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, int maxDistance, Action<Node[], bool> callback) {
-		PathRequest newRequest = new PathRequest(pathStart,pathEnd, maxDistance,callback);
+	public static void RequestPath(Vector3 pathStart, List<Vector2Int> width, Vector3 pathEnd, int maxDistance, Action<Node[], bool> callback) {
+		PathRequest newRequest = new PathRequest(pathStart, width,pathEnd, maxDistance,callback);
 		instance.pathRequestQueue.Enqueue(newRequest);
 		instance.TryProcessNext();
 	}
@@ -27,7 +27,7 @@ public class PathRequestManager : MonoBehaviour {
 		if (!isProcessingPath && pathRequestQueue.Count > 0) {
 			currentPathRequest = pathRequestQueue.Dequeue();
 			isProcessingPath = true;
-			Pathfinding.StartFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd, currentPathRequest.maxDistance);
+			Pathfinding.StartFindPath(currentPathRequest.pathStart,currentPathRequest.width, currentPathRequest.pathEnd, currentPathRequest.maxDistance);
 		}
 	}
 
@@ -39,12 +39,14 @@ public class PathRequestManager : MonoBehaviour {
 
 	struct PathRequest {
 		public Vector3 pathStart;
+		public List<Vector2Int> width;
 		public Vector3 pathEnd;
 		public int maxDistance;
 		public Action<Node[], bool> callback;
 
-		public PathRequest(Vector3 _start, Vector3 _end, int _maxDistance, Action<Node[], bool> _callback) {
+		public PathRequest(Vector3 _start, List<Vector2Int> _width, Vector3 _end, int _maxDistance, Action<Node[], bool> _callback) {
 			pathStart = _start;
+			width = _width;
 			pathEnd = _end;
 			callback = _callback;
 			maxDistance = _maxDistance;

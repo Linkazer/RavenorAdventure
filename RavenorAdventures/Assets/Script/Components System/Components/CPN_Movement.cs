@@ -10,6 +10,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	[SerializeField] private float speed = 1;
 	//Distance de déplacement possible pendant 1 tour.
 	[SerializeField] private int maxDistance = 100;
+	[SerializeField] private List<Vector2Int> width;
 
 	/// <summary>
 	/// Played when the component enter a new Node.
@@ -73,6 +74,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	public int MaxMovement => maxDistance;
 	public int MovementLeft => currentMovementLeft;
+	public List<Vector2Int> Width => width;
 
 	public bool CanMove => currentMovementLeft >= 10;
 
@@ -118,7 +120,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		if (currentMovementLeft >= 10)
 		{
-			return Pathfinding.CalculatePathfinding(currentNode, null, currentMovementLeft);
+			return Pathfinding.CalculatePathfinding(currentNode, width, null, currentMovementLeft);
 		}
         else
         {
@@ -142,9 +144,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		OnEndMovementAction += callback;
 
+		List<Vector3> positions = new List<Vector3>();
+		foreach(NodeDataHanlder n in nodesDatas)
+        {
+			positions.Add(n.CurrentNode.worldPosition);
+        }
 
-
-		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+		PathRequestManager.RequestPath(transform.position, width, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
 	private void EndMovement()
@@ -274,7 +280,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		if (Grid.GetNodeFromWorldPoint(actionTargetPosition) != null)
 		{
-			RVN_GridDisplayer.SetGridFeedback(Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft), Color.green);
+			RVN_GridDisplayer.SetGridFeedback(Pathfinding.CalculatePathfinding(currentNode, width, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft), Color.green);
 		}
     }
 

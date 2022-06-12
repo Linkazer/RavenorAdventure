@@ -14,24 +14,26 @@ public class Pathfinding : MonoBehaviour
 	}
 	
 
-	public static void StartFindPath(Vector3 startPos, Vector3 targetPos, int walkDistance)
+	public static void StartFindPath(Vector3 startPos, List<Vector2Int> width, Vector3 targetPos, int walkDistance)
 	{
-		instance.OnStartFindPath(startPos, targetPos, walkDistance);
+		instance.OnStartFindPath(startPos, width, targetPos, walkDistance);
 	}
 	
-	private void OnStartFindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
-		StartCoroutine(FindPath(startPos,targetPos, walkDistance));
+	private void OnStartFindPath(Vector3 startPos, List<Vector2Int> width, Vector3 targetPos, int walkDistance) {
+		StartCoroutine(FindPath(startPos, width,targetPos, walkDistance));
 	}
 	
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
+	IEnumerator FindPath(Vector3 startPos, List<Vector2Int> width, Vector3 targetPos, int walkDistance) {
 
 		Node[] waypoints = new Node[0];
 		bool pathSuccess = true;
-		
+
+		List<Node> startNodes = new List<Node>();
+
 		Node startNode = Grid.GetNodeFromWorldPoint(startPos);
 		Node targetNode = Grid.GetNodeFromWorldPoint(targetPos);
 
-		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance, false).ToArray();
+		waypoints = CalculatePathfinding(startNode, width, targetNode, walkDistance, false).ToArray();
 
 		if (waypoints.Length <= 0 || waypoints[0] == null)
         {
@@ -71,7 +73,7 @@ public class Pathfinding : MonoBehaviour
 
 	private bool OnSearchPath(Node startNode, Node targetNode)
 	{
-		List<Node> walkableNodes = CalculatePathfinding(startNode, targetNode, -1);
+		List<Node> walkableNodes = CalculatePathfinding(startNode, new List<Vector2Int>(), targetNode, -1); // TO DO
 		return walkableNodes.Count > 0;
 	}
 
@@ -121,6 +123,21 @@ public class Pathfinding : MonoBehaviour
 		return 15*dstX + 10 * (dstY-dstX);
 	}
 
+	private static bool IsNodeReachable(Node toReach, List<Vector2Int> widthOffset)
+    {
+		foreach(Vector2Int v in widthOffset)
+        {
+			Vector2Int id = new Vector2Int(toReach.gridX + v.x, toReach.gridY + v.y);
+
+			if(!Grid.GetNode(id.x, id.y).walkable)
+            {
+				return false;
+            }
+        }
+
+		return true;
+    }
+
 	/// <summary>
 	/// Calcul of the pathfinding.
 	/// </summary>
@@ -129,13 +146,11 @@ public class Pathfinding : MonoBehaviour
 	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
 	/// <param name="pathCalcul"></param>
 	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool isDistanceLimitated = true)
+	public static List<Node> CalculatePathfinding(Node startNode, List<Vector2Int> width, Node targetNode, int distance, bool isDistanceLimitated = true)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
 		HashSet<Node> closedSet = new HashSet<Node>();
-
-		startNode.gCost = 0;
 
 		openSet.Add(startNode);
 		usableNode.Add(startNode);
@@ -146,7 +161,8 @@ public class Pathfinding : MonoBehaviour
 			closedSet.Add(currentNode);
 			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
 			{
-				if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
+				Debug.Log(IsNodeReachable(neighbour, width));
+				if (!neighbour.IsWalkable || !IsNodeReachable(neighbour, width) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
