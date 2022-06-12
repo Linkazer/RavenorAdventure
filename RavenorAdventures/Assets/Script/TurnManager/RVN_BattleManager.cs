@@ -34,6 +34,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent OnStartAITurn;
     [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterSelfTurn;
     [SerializeField] private UnityEvent OnBeginNewRound;
+    [SerializeField] private UnityEvent<CPN_Character> OnSpawnAlly;
+    [SerializeField] private UnityEvent<CPN_Character> OnSpawnEnnemy;
 
     public static Action OnPlayerTeamDie;
     public static Action OnEnnemyTeamDie;
@@ -55,16 +57,18 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         for(int i = 0; i < level.GetTeam(0).Count; i++)
         {
-            teams[0].characters.Add(level.GetTeam(0)[i]);
+            AddCharacter(level.GetTeam(0)[i], 0);
+            /*teams[0].characters.Add(level.GetTeam(0)[i]);
 
-            teams[0].characters[i].SetCharacter();
+            teams[0].characters[i].SetCharacter();*/
         }
 
         for (int i = 0; i < level.GetTeam(1).Count; i++)
         {
-            teams[1].characters.Add(level.GetTeam(1)[i]);
+            AddCharacter(level.GetTeam(1)[i], 1);
+            /*teams[1].characters.Add(level.GetTeam(1)[i]);
 
-            teams[1].characters[i].SetCharacter();
+            teams[1].characters[i].SetCharacter();*/
         }
 
         OnSetPlayerTeam?.Invoke(teams[0].characters);
@@ -204,6 +208,13 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         OnBeginNewRound?.Invoke();
     }
 
+    public static void SpawnCharacter(CPN_Character toAdd, int teamIndex)
+    {
+        toAdd.gameObject.SetActive(true);
+
+        instance.AddCharacter(toAdd, teamIndex);
+    }
+
     /// <summary>
     /// Add a character to a team.
     /// </summary>
@@ -214,6 +225,17 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         if (!teams[teamIndex].characters.Contains(toAdd))
         {
             teams[teamIndex].characters.Add(toAdd);
+
+            toAdd.SetCharacter();
+
+            if(teamIndex == 0)
+            {
+                OnSpawnAlly?.Invoke(toAdd);
+            }
+            else
+            {
+                OnSpawnEnnemy?.Invoke(toAdd);
+            }
         }
     }
     /// <summary>

@@ -85,18 +85,28 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
     public override void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        if(OnUseSpell(spellToUse, targetNode, callback))
-        {
-            List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
+        OnUseSpell(spellToUse, targetNode, callback);
 
-            foreach (CPN_HealthHandler hitedObject in hitableObjects)
+        List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
+
+        foreach (CPN_HealthHandler hitedObject in hitableObjects)
+        {
+            if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
             {
-                if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                foreach (EffectScriptable eff in spellToUse.scriptable.Effects())
                 {
-                    foreach (EffectScriptable eff in spellToUse.scriptable.Effects())
-                    {
-                        ApplyEffects(effectHandler, eff);
-                    }
+                    ApplyEffects(effectHandler, eff);
+                }
+            }
+        }
+
+        if(spellToUse.caster != null)
+        {
+            if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+            {
+                foreach (EffectScriptable eff in spellToUse.scriptable.EffectOnCaster)
+                {
+                    ApplyEffects(effectHandler, eff);
                 }
             }
         }

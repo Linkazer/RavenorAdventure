@@ -26,4 +26,17 @@ public class UI_CharacterChoice : MonoBehaviour
             }
         }
     }
+
+    public void AddCharacter(CPN_Character toAdd)
+    {
+        for (int i = 0; i < characterSelectors.Count; i++)
+        {
+            if(!characterSelectors[i].gameObject.activeSelf)
+            {
+                characterSelectors[i].Set(toAdd);
+
+                break;
+            }
+        }
+    }
 }

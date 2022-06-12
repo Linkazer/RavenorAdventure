@@ -52,8 +52,6 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage)
     {
-        Debug.Log(damage);
-
         OnLoseHealthDices?.Invoke(dices);
 
         TakeDamage(caster, damage);

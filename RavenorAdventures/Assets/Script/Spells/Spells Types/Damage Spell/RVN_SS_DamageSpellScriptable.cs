@@ -12,6 +12,10 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     [SerializeField] private int armorPierced;
     [SerializeField, Range(0f, 1f)] private float lifestealPercent;
 
+    [Header("Hit effects")]
+    [SerializeField] private List<EffectScriptable> hitEffectsOnTarget;
+    [SerializeField] private List<EffectScriptable> hitEffectsOnCaster;
+
     private int bonusAccuracy;
     private int bonusBaseDamage;
     private int possibleReroll;
@@ -30,6 +34,9 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     public int Accuracy => bonusAccuracy;
 
     public int PossibleReroll => possibleReroll;
+
+    public List<EffectScriptable> HitEffectsOnTarget => hitEffectsOnTarget;
+    public List<EffectScriptable> HitEffectsOnCaster => hitEffectsOnCaster;
 
     public override void SetCaster(CPN_SpellCaster caster)
     {

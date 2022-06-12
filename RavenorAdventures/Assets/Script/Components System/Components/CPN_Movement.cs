@@ -33,6 +33,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	[SerializeField] private UnityEvent OnEndMovement;
 	[SerializeField] private UnityEvent<Vector2> OnChangeDirection;
 
+	[SerializeField] private List<NodeDataHanlder> nodesDatas;
+
 	/// <summary>
 	/// Played when the component reach its destination.
 	/// </summary>
@@ -139,6 +141,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
 		OnEndMovementAction += callback;
+
+
 
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}

@@ -37,8 +37,9 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     //[SerializeField] protected bool zoneFaceCaster;
     //[SerializeField] protected bool needVision;
 
-    [Header("Effects")]
-    [SerializeField] private List<EffectScriptable> effects;
+    [Header("Base Effects")]
+    [SerializeField] private List<EffectScriptable> effectsOnTarget;
+    [SerializeField] private List<EffectScriptable> effectsOnCaster;
 
 
     public Action<int> OnUpdateCooldown;
@@ -66,8 +67,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public List<EffectScriptable> Effects()
     {
-        return new List<EffectScriptable>(effects);
+        return new List<EffectScriptable>(effectsOnTarget);
     }
+
+    public List<EffectScriptable> EffectOnCaster => effectsOnCaster;
 
     public abstract void SetCaster(CPN_SpellCaster caster);
 

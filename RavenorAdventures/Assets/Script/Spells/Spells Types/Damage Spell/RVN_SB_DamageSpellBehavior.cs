@@ -101,6 +101,31 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             }
         }
 
+        if(toReturn)
+        {
+            foreach (CPN_HealthHandler hitedObject in hitableObjects)
+            {
+                if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                {
+                    foreach (EffectScriptable eff in usedScriptable.HitEffectsOnTarget)
+                    {
+                        ApplyEffects(effectHandler, eff);
+                    }
+                }
+            }
+
+            if(spellToUse.caster != null)
+            {
+                if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                {
+                    foreach (EffectScriptable eff in usedScriptable.HitEffectsOnCaster)
+                    {
+                        ApplyEffects(effectHandler, eff);
+                    }
+                }
+            }
+        }
+
         return toReturn;
     }
 
