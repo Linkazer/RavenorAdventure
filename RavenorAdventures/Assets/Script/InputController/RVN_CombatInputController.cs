@@ -198,7 +198,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     public void EnableCombatInput(MonoBehaviour asker)
     {
-        if(disableCount.Contains(asker))
+        if (disableCount.Contains(asker))
         {
             disableCount.Remove(asker);
         }

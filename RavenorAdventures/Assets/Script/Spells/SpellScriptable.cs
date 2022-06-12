@@ -46,7 +46,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public string Name => nom;
     public Sprite Icon => icon;
-    public string Description => description.Text();
+    public string Description => description.GetText();
 
     public CharacterAnimationType CastingAnimation => castingAnimation;
 

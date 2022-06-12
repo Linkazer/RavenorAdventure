@@ -24,7 +24,6 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
     {
         if(touchedObject.Handler.GetComponentOfType<CPN_Character>(out CPN_Character character))
         {
-            Debug.Log(instance);
             instance.SetCharacter(character);
         }
         else
