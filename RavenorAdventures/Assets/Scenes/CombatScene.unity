@@ -4078,6 +4078,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueChoice (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 770160942}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectResponse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RVN_DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4197,6 +4229,38 @@ PrefabInstance:
     - target: {fileID: 7771126238781442932, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
       propertyPath: m_Name
       value: DialogueChoice (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 770160942}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectResponse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RVN_DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
       propertyPath: m_Pivot.x
@@ -4636,6 +4700,10 @@ PrefabInstance:
     - target: {fileID: 4596588289848462258, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
       propertyPath: m_Name
       value: InteractibleObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596588289848462258, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4596588289848462264, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
       propertyPath: m_RootOrder
@@ -7584,6 +7652,38 @@ PrefabInstance:
     - target: {fileID: 7771126238781442932, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
       propertyPath: m_Name
       value: DialogueChoice (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 770160942}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectResponse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RVN_DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771126238781442934, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
       propertyPath: m_Pivot.x
@@ -16673,6 +16773,34 @@ PrefabInstance:
     - target: {fileID: 6117539653913877295, guid: e2daffa5a976ce046b935242ec876353, type: 3}
       propertyPath: m_Name
       value: DialogueTestDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 770160942}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectResponse
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RVN_DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117539654294009192, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6117539654294009193, guid: e2daffa5a976ce046b935242ec876353, type: 3}
       propertyPath: m_AnchorMax.y

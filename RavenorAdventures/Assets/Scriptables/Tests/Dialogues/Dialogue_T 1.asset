@@ -23,7 +23,7 @@ MonoBehaviour:
   - text:
       texts:
       - "Ceci est une r\xE9ponse menant vers un autre dialogue."
-    nextDialogue: {fileID: 0}
+    nextDialogue: {fileID: 11400000, guid: e9da7e4d3116e6e4ab6726dd1166cfb1, type: 2}
   - text:
       texts:
       - Fin du dialogue.
