@@ -133,6 +133,11 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// </summary>
     private void UnselectAction()
     {
+        if (selectedAction != null)
+        {
+            selectedAction.UnselectAction();
+        }
+
         OnUnselectAction?.Invoke(selectedAction);
 
         selectedAction = null;

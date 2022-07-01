@@ -63,6 +63,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         actOnSetActionLeft?.Invoke(actionsLeftThisTurn);
     }
 
+    public override void UnselectAction()
+    {
+        SelectSpell(-1);
+    }
+
     /// <summary>
     /// Display every node on which the action can be used.
     /// </summary>

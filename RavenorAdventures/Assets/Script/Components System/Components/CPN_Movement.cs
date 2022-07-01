@@ -261,6 +261,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		}
 	}
 
+    public override void UnselectAction()
+    {
+        
+    }
+
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
 		AskToMoveTo(actionTargetPosition, callback);

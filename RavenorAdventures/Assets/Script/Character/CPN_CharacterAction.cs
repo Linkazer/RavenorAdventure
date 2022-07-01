@@ -11,6 +11,10 @@ using UnityEngine;
 public abstract class CPN_CharacterAction : RVN_Component
 {
     /// <summary>
+    /// Actions to do when the action is unslected.
+    /// </summary>
+    public abstract void UnselectAction();
+    /// <summary>
     /// Check if the action can be selected by the player.
     /// </summary>
     /// <returns></returns>
