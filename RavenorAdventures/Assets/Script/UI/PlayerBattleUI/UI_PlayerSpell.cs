@@ -76,14 +76,14 @@ public class UI_PlayerSpell : MonoBehaviour
         {
             cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.StartCooldown;
 
-            if(cooldown.fillAmount > 0)
+            /*if(cooldown.fillAmount > 0)
             {
                 handler.enabled = false;
             }
             else
             {
                 handler.enabled = true;
-            }
+            }*/
         }
         else
         {
@@ -93,6 +93,8 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void DisplaySpellDescription(bool show)
     {
+        Debug.Log("Allo ?");
+
         descriptionHandler.SetActive(show);
     }
 }

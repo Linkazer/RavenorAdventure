@@ -302,7 +302,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		ResetData();
     }
 
-
     public override bool CanSelectAction()
     {
         return true;

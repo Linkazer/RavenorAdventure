@@ -11,13 +11,19 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
 
     [Header("Damage Taken")]
     [SerializeField] private UI_Character_DamageDisplayer damageDisplayerPrefab;
+    [SerializeField] private Color damageTextColor;
+    [SerializeField] private UI_Character_NumberDisplayer healeDisplayerPrefab;
+    [SerializeField] private Color healTextColor;
     [SerializeField] private Transform damageDisplayerHandler;
+
+    [Header("Effect Displayer")]
+    [SerializeField] private UI_Character_EffectApplyDisplayer effectApplyDisplayerPrefab;
 
     public void TakeDamage(int damageAmount)
     {
         UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);
 
-        newDamageText.Display(damageAmount);
+        newDamageText.Display(damageAmount, damageTextColor);
     }
 
     public void TakeDiceDamage(List<Dice> dices)
@@ -25,6 +31,13 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
         UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);
 
         newDamageText.DisplayDices(dices);
+    }
+
+    public void TakeHeal(int healAmount)
+    {
+        UI_Character_NumberDisplayer newDamageText = Instantiate(healeDisplayerPrefab, damageDisplayerHandler);
+
+        newDamageText.Display(healAmount, healTextColor);
     }
 
     public void SetMaxArmor(int maxArmor)
@@ -55,5 +68,19 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
                 armorDisplayers[i].LoseArmor();
             }
         }
+    }
+
+    public void AddEffect(AppliedEffect effectToApply)
+    {
+        UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
+
+        newEffectDisplayer.Display(effectToApply.GetEffect.Icon, true);
+    }
+
+    public void RemiveEffect(AppliedEffect effectToApply)
+    {
+        UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
+
+        newEffectDisplayer.Display(effectToApply.GetEffect.Icon, false);
     }
 }

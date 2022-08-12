@@ -50,6 +50,12 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         OnGainArmor?.Invoke(currentArmor);
     }
 
+    /// <summary>
+    /// Take Damage from a dice list.
+    /// </summary>
+    /// <param name="caster"></param>
+    /// <param name="dices"></param>
+    /// <param name="damage"></param>
     public void TakeDamage(CPN_SpellCaster caster, List<Dice> dices, float damage)
     {
         OnLoseHealthDices?.Invoke(dices);
@@ -57,10 +63,13 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         TakeDamage(caster, damage);
     }
 
+    /// <summary>
+    /// Take damage from a SpellCaster
+    /// </summary>
+    /// <param name="caster"></param>
+    /// <param name="damage"></param>
     public void TakeDamage(CPN_SpellCaster caster, float damage)
     {
-        Debug.Log(damage);
-
         actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
         {
@@ -70,6 +79,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         TakeDamage(damage);
     }
 
+    /// <summary>
+    /// Apply the damage taken.
+    /// </summary>
+    /// <param name="damageAmount"></param>
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= Mathf.RoundToInt(damageAmount);
@@ -86,6 +99,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     }
 
+    /// <summary>
+    /// Apply a heal.
+    /// </summary>
+    /// <param name="healAmount"></param>
     public void TakeHeal(float healAmount)
     {
         if (healAmount > 0)

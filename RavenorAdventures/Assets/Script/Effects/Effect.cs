@@ -6,13 +6,7 @@ using UnityEngine;
 [Serializable]
 public abstract class Effect : ScriptableObject
 {
-    [SerializeField] private string effectName;
-    [SerializeField] private Sprite icon;
-
     public EffectTrigger trigger;
-
-    public string Name => effectName;
-    public Sprite Icon => icon;
 
     public void ApplyEffect(RVN_ComponentHandler effectTarget)
     {

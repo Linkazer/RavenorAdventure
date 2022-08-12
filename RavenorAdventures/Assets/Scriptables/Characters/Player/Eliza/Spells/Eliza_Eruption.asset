@@ -14,18 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Eruption
   icon: {fileID: 0}
-  description: 
+  description:
+    texts: []
   castingAnimation: 2
   castAnimationDuration: 1
   spellAnimation: {fileID: 0}
+  animationDuration: 0
   hitableTarget: 3
   castTarget: 3
   cooldown: 0
   currentCooldown: 0
   range: 0
   zoneRange: 0
-  effects: []
+  effectsOnTarget: []
+  effectsOnCaster: []
   type: 0
   diceUsed: 0
   baseDamage: 0
   armorPierced: 0
+  lifestealPercent: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []

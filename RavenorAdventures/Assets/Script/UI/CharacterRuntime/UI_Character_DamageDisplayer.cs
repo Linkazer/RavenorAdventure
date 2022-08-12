@@ -4,22 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Character_DamageDisplayer : MonoBehaviour
+public class UI_Character_DamageDisplayer : UI_Character_NumberDisplayer
 {
-    [SerializeField] private TextMeshProUGUI damageText;
-    [SerializeField] private float displayDuration;
-
     [SerializeField] private List<UI_DiceResult> dicesResults = new List<UI_DiceResult>();
-
-    private void OnEnable()
-    {
-        TimerManager.CreateGameTimer(displayDuration, () => Destroy(gameObject));
-    }
-
-    public void Display(int damageAmount)
-    {
-        damageText.text = damageAmount.ToString();
-    }
 
     public void DisplayDices(List<Dice> dices)
     {

@@ -14,33 +14,39 @@ public abstract class CPN_CharacterAction : RVN_Component
     /// Actions to do when the action is unslected.
     /// </summary>
     public abstract void UnselectAction();
+   
     /// <summary>
     /// Check if the action can be selected by the player.
     /// </summary>
     /// <returns></returns>
     public abstract bool CanSelectAction();
+  
     /// <summary>
     /// Check if the action can be used at the position.
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action need to be used.</param>
     /// <returns>TRUE if the action can be made.</returns>
     public abstract bool IsActionUsable(Vector2 actionTargetPosition);
+   
     /// <summary>
     /// Try to do the action.
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action will occur.</param>
     /// <param name="callback">The callback to play at the end of the action.</param>
     public abstract void TryDoAction(Vector2 actionTargetPosition, Action callback);
+  
     /// <summary>
     /// Display the action.
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action will occur.</param>
     public abstract void DisplayAction(Vector2 actionTargetPosition);
+  
     /// <summary>
     /// Hide the action.
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action will occur.</param>
     public abstract void UndisplayAction(Vector2 actionTargetPosition);
+  
     /// <summary>
     /// Reset all datat of the action.
     /// </summary>

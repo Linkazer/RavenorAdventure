@@ -6,10 +6,10 @@ using UnityEngine;
 [Serializable]
 public class AppliedEffect
 {
-    [SerializeField] private Effect effect;
+    [SerializeField] private EffectScriptable effect;
     [SerializeField] private int durationLeft;
 
-    public Effect GetEffect => effect;
+    public EffectScriptable GetEffect => effect;
     public int Duration => durationLeft;
 
     public void UpdateDuration()
@@ -25,16 +25,25 @@ public class AppliedEffect
         }
     }
 
+    public void ApplyEffect(RVN_ComponentHandler toAddFrom)
+    {
+
+    }
+
     public void RemoveEffect(RVN_ComponentHandler toRemoveFrom)
     {
-        effect.RemoveEffect(toRemoveFrom);
+        foreach (Effect eff in effect.GetEffects)
+        {
+            eff.RemoveEffect(toRemoveFrom);
+        }
     }
 
     public AppliedEffect()
     {
 
     }
-    public AppliedEffect(Effect nEffect, int nDuration)
+
+    public AppliedEffect(EffectScriptable nEffect, int nDuration)
     {
         effect = nEffect;
         durationLeft = nDuration;

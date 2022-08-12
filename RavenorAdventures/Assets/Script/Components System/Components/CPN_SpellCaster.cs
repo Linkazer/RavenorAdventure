@@ -159,8 +159,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="spellIndex">The index of the spell to choose.</param>
     public void SelectSpell(int spellIndex, bool displayAction = true)
     {
-        //UndisplayAction(RVN_InputController.MousePosition); //CODE REVIEW : Voir pour mieux gérer l'affichage/désaffichage du cadrillage
-
         int lastSpell = currentSelectedSpell;
         if (currentSelectedSpell >= 0)
         {

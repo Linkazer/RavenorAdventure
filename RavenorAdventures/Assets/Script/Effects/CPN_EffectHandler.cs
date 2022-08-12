@@ -7,8 +7,8 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 {
     [SerializeField] private List<AppliedEffect> currentAppliedEffects;
 
-    [SerializeField] private UnityEvent<EffectScriptable> OnApplyEffect;
-    [SerializeField] private UnityEvent<EffectScriptable> OnRemoveEffect;
+    [SerializeField] private UnityEvent<AppliedEffect> OnApplyEffect;
+    [SerializeField] private UnityEvent<AppliedEffect> OnRemoveEffect;
 
     public List<AppliedEffect> Effects => currentAppliedEffects;
 
@@ -41,25 +41,54 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
     public void ApplyEffect(EffectScriptable toApply)
     {
-        foreach (Effect eff in toApply.GetEffects)
+        AppliedEffect potentialAppliedEffect = TryGetAppliedEffect(toApply);
+
+        if (potentialAppliedEffect != null)
         {
-            if (HasEffect(eff) != null)
+            potentialAppliedEffect.ResetEffect(toApply.Duration);
+        }
+        else
+        {
+            potentialAppliedEffect = new AppliedEffect(toApply, toApply.Duration);
+
+            potentialAppliedEffect.ApplyEffect(Handler);
+
+            currentAppliedEffects.Add(potentialAppliedEffect);
+        }
+
+        if (potentialAppliedEffect != null)
+        {
+            OnApplyEffect?.Invoke(potentialAppliedEffect);
+        }
+
+        /*foreach (Effect eff in toApply.GetEffects)
+        {
+            AppliedEffect potentialAppliedEffect = TryGetAppliedEffect(eff);
+
+            if (potentialAppliedEffect != null)
             {
-                HasEffect(eff).ResetEffect(3);
+                potentialAppliedEffect.ResetEffect(toApply.Duration);
             }
             else
             {
-                currentAppliedEffects.Add(new AppliedEffect(eff, 3));
+                potentialAppliedEffect = new AppliedEffect(eff, toApply.Duration);
+
+                currentAppliedEffects.Add(potentialAppliedEffect);
                 eff.ApplyEffect(Handler);
             }
-        }
+
+            if(potentialAppliedEffect != null)
+            {
+                OnApplyEffect?.Invoke(potentialAppliedEffect);
+            }
+        }*/
     }
 
-    public void RemoveEffect(Effect toRemove)
+    public void RemoveEffect(EffectScriptable toRemove)
     {
-        if (HasEffect(toRemove) != null)
+        if (TryGetAppliedEffect(toRemove) != null)
         {
-            RemoveEffect(HasEffect(toRemove));
+            RemoveEffect(TryGetAppliedEffect(toRemove));
         }
     }
 
@@ -67,10 +96,12 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     {
         toRemove.RemoveEffect(handler);
 
+        OnRemoveEffect?.Invoke(toRemove);
+
         currentAppliedEffects.Remove(toRemove);
     }
 
-    private AppliedEffect HasEffect(Effect toCheck)
+    private AppliedEffect TryGetAppliedEffect(EffectScriptable toCheck)
     {
         foreach(AppliedEffect eff in currentAppliedEffects)
         {

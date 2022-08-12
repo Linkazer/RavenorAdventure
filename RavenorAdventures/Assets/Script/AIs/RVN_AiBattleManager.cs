@@ -79,7 +79,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             else
             {
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
-                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => PrepareNextAction(2f));
+                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => PrepareNextAction(1.5f));
 
                 usedAction = true;
                 plannedAction = null;

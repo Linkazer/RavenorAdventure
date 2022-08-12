@@ -18,7 +18,7 @@ MonoBehaviour:
   characterSprite: {fileID: 21300000, guid: f9da790492710b3438b58feeb4744631, type: 3}
   handHeight: 0
   uiHeight: 1.1
-  health: 100
+  health: 12
   armor: 0
   defense: 3
   accuracy: 1
@@ -27,6 +27,6 @@ MonoBehaviour:
   movementByTurn: 35
   speed: 5
   availableSpells:
-  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
   usableSpellByTurn: 1
   passives: []

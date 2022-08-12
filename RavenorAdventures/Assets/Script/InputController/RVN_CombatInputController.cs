@@ -112,19 +112,22 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
                     break;
             }
 
-            if (!nextAction.CanSelectAction())
+            if (nextAction != selectedAction)
             {
-                nextAction = selectedAction;
+                if (!nextAction.CanSelectAction())
+                {
+                    nextAction = selectedAction;
+                }
+
+                if (selectedAction != null && nextAction != null)
+                {
+                    UnselectAction();
+                }
+
+                selectedAction = nextAction;
+
+                OnSelectAction?.Invoke(selectedAction);
             }
-
-            if (selectedAction != null && nextAction != null)
-            {
-                UnselectAction();
-            }
-
-            selectedAction = nextAction;
-
-            OnSelectAction?.Invoke(selectedAction);
         }
     }
 

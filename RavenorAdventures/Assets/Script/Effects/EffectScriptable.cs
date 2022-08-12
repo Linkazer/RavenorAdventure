@@ -10,9 +10,12 @@ public class EffectScriptable : ScriptableObject
     //Voir les affichages
 
     [Header("Effect")]
+    [SerializeField] private int duration;
     [SerializeField] private List<Effect> effects;
 
-    public Effect GetEffect => effects[0]; //CODE REVIEW : Voir pour donner une copie de l'effet ?
+    public Sprite Icon => icon;
+
+    public int Duration => duration;
 
     public List<Effect> GetEffects => effects;
 }
