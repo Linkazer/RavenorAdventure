@@ -21,12 +21,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private bool usedAction = false;
 
-    [ContextMenu("Test Deplacement")]
-    public void TestDeplacementDisplay()
-    {
-        BeginCharacterTurn(currentCharacter);
-    }
-
+    /// <summary>
+    /// Débute le tour d'un personnage IA. (Appelé par UnityEvent)
+    /// </summary>
+    /// <param name="toBeginTurn">Le personnage qui commence son tour.</param>
     public void BeginCharacterTurn(CPN_Character toBeginTurn)
     {
         currentCharacter = toBeginTurn;
@@ -52,6 +50,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         PrepareNextAction(2f);
     }
 
+    /// <summary>
+    /// Met fin au tour du personnage IA.
+    /// </summary>
+    /// <param name="toEndTurn">Le personnage dont le tour est finit.</param>
     public void EndCharacterTurn(CPN_Character toEndTurn)
     {
         currentCharacter = null;
@@ -59,11 +61,18 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         RVN_BattleManager.EndCharacterTurn();
     }
 
+    /// <summary>
+    /// Créer un délai avant de rechercher la prochain action de l'IA.
+    /// </summary>
+    /// <param name="timeToWait">Le temps à attendre avant la prochaine action.</param>
     private void PrepareNextAction(float timeToWait)
     {
         TimerManager.CreateGameTimer(timeToWait, DoNextMove);
     }
 
+    /// <summary>
+    /// Demande à l'IA de faire sa prochaine action.
+    /// </summary>
     private void DoNextMove()
     {
         if(currentCharacterHealth.CurrentHealth <= 0)
@@ -106,6 +115,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         }
     }
 
+    /// <summary>
+    /// Cherche la prochaine action que le caster doit effectuer.
+    /// </summary>
+    /// <param name="caster">Le personnage IA qui cherche à faire l'action.</param>
+    /// <param name="forNextTurn">Si TRUE, le personnage cherche une action pour son prochain tour.</param>
+    /// <returns>L'action que le personnage IA doit faire.</returns>
     private Ai_PlannedAction SearchForNextAction(CPN_Character caster, bool forNextTurn)
     {
         Ai_PlannedAction toReturn = null;
@@ -193,6 +208,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return toReturn;
     }
 
+    /// <summary>
+    /// Vérifie si le personnage IA peut faire l'action voulue.
+    /// </summary>
+    /// <param name="caster">Le personnage IA.</param>
+    /// <param name="actionToCheck">L'action à vérifier.</param>
+    /// <param name="consideration">La considération à prendre en compte pour cette action.</param>
+    /// <param name="isForNextTurn">Si TRUE, vérifie le lancement de l'action pour le tour prochain.</param>
+    /// <returns>Renvoie TRUE si l'action peut être effectuée. Sinon, renvoie FALSE.</returns>
     private bool CanDoAction(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration, bool isForNextTurn) //TO DO : Prise en compte des tours prochains
     {
         List<CPN_Character> targets = actionToCheck.actionTarget.GetNodeComponent<CPN_Character>();
@@ -245,6 +268,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return true;
     }
 
+    /// <summary>
+    /// Calcul le score d'une action pour le tour actuel.
+    /// </summary>
+    /// <param name="plannedAction">L'action à effectuer.</param>
+    /// <param name="consideration">La considération à calculer.</param>
+    /// <param name="casterCurrentNode">La case sur laquelle se trouve le personnage IA.</param>
+    /// <returns>Le score de l'action.</returns>
     private float CalculateActionScore(Ai_PlannedAction plannedAction, AI_Consideration consideration, Node casterCurrentNode)
     {
         float result = 0;
@@ -259,6 +289,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return consideration.bonusScore + (result / coef);
     }
 
+    /// <summary>
+    /// Calcul la considération d'une action
+    /// </summary>
+    /// <param name="plannedAction">L'action à vérifier.</param>
+    /// <param name="calculValues">Les calculs à effectuer.</param>
+    /// <param name="casterCurrentNode">La case sur laquelle se trouve le personnage IA.</param>
+    /// <returns>Le score de la considération.</returns>
     private float CalculateConsideration(Ai_PlannedAction plannedAction, ValueForCalcul calculValues, Node casterCurrentNode)
     {
         float result = 0;

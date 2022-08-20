@@ -7,6 +7,7 @@ public class ANIM_TakingDamage : MonoBehaviour
     [SerializeField] private SpriteRenderer sprRnd;
     [SerializeField] private float animationTime;
 
+    //TODO : Refaire un script plus global.
     public void Play()
     {
         sprRnd.color = Color.red;

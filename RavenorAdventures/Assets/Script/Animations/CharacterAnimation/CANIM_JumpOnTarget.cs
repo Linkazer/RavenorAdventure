@@ -16,6 +16,10 @@ public class CANIM_JumpOnTarget : CharacterAnimation
     private float curveIndex;
     private float curveDirection;
 
+    /// <summary>
+    /// Play a Jump animation on the target.
+    /// </summary>
+    /// <param name="_targetPosition"></param>
     public override void Play(Vector2 _targetPosition)
     {
         startPosition = toMove.localPosition;

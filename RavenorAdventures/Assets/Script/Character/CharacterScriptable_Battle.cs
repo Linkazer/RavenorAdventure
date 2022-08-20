@@ -30,12 +30,18 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [Header("Passives")]
     [SerializeField] private List<EffectScriptable> passives;
 
+    /// <summary>
+    /// The sprite used InGame.
+    /// </summary>
+    /// <returns>The sprite used InGame.</returns>
     public Sprite GameSprite()
     {
         return characterSprite;
     }
 
-
+    /// <summary>
+    /// La position de l'UI par rapport au pieds du personnage.
+    /// </summary>
     public float UIHeight => uiHeight;
 
     public int MaxArmor()
@@ -88,6 +94,10 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
         return power;
     }
 
+    /// <summary>
+    /// Passifs du personnage.
+    /// </summary>
+    /// <returns>Passifs du personnage.</returns>
     public List<EffectScriptable> Effects()
     {
         return new List<EffectScriptable>(passives);

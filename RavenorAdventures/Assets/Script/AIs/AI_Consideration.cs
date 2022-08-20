@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// La valeur qui sera récupérer pour le calcul.
+/// </summary>
 public enum AiAbscissaType
 {
     DistanceFromTarget_CalculatedPosition,
@@ -21,6 +24,9 @@ public enum AiAbscissaType
     DistranceFromTarget_BasePosition
 }
 
+/// <summary>
+/// Type de calcul d'une IA.
+/// </summary>
 public enum AiCalculType
 {
     Conditionnal, Affine, Logarythm,
@@ -28,6 +34,9 @@ public enum AiCalculType
     Logistical
 }
 
+/// <summary>
+/// Condition pour qu'une IA prennent en compte le Comportement.
+/// </summary>
 public enum AiConditionType { None, UpOrEqual, DownOrEqual, Equal }
 
 [Serializable]

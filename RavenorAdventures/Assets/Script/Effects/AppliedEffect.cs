@@ -27,7 +27,10 @@ public class AppliedEffect
 
     public void ApplyEffect(RVN_ComponentHandler toAddFrom)
     {
-
+        foreach (Effect eff in effect.GetEffects)
+        {
+            eff.ApplyEffect(toAddFrom);
+        }
     }
 
     public void RemoveEffect(RVN_ComponentHandler toRemoveFrom)

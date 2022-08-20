@@ -1,3 +1,5 @@
+using ravenor.referencePicker;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +13,7 @@ public class EffectScriptable : ScriptableObject
 
     [Header("Effect")]
     [SerializeField] private int duration;
-    [SerializeField] private List<Effect> effects;
+    [SerializeField, SerializeReference, ReferenceEditor(typeof(Effect))] private List<Effect> effects; //, [SerializeReference, ReferenceEditor(typeof(Effect))]
 
     public Sprite Icon => icon;
 

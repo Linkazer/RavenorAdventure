@@ -8,6 +8,13 @@ using UnityEngine;
 /// </summary>
 public class AnimationInstantiater : RVN_Singleton<AnimationInstantiater>
 {
+    /// <summary>
+    /// Instatiate an Animation object at the wanted position for a certain amount of time.
+    /// </summary>
+    /// <param name="toPlay">The animation object to instantiate.</param>
+    /// <param name="duration">The lifespan of the Animation object.</param>
+    /// <param name="position">The position where the animation is played.</param>
+    /// <param name="callback">The callback to call at the end of the animation.</param>
     public static void PlayAnimationAtPosition(InstantiatedAnimationHandler toPlay, float duration, Vector2 position, Action callback = null)
     {
         InstantiatedAnimationHandler runtimePlayedAnimation = Instantiate(toPlay, position, Quaternion.identity);

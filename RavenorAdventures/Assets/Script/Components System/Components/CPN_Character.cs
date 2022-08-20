@@ -30,6 +30,10 @@ public class CPN_Character : RVN_ComponentHandler
         SetCharacterNonCopy(scriptable);
     }
 
+    /// <summary>
+    /// Créer une copie du CharacterScriptable et initialise le personnage.
+    /// </summary>
+    /// <param name="nScriptable">Le scriptable de base du personnage.</param>
     public void SetCharacter(CharacterScriptable_Battle nScriptable)
     {
         scriptable = Instantiate(nScriptable);
@@ -39,6 +43,11 @@ public class CPN_Character : RVN_ComponentHandler
 
         OnSetCharacter?.Invoke(scriptable);
     }
+
+    /// <summary>
+    /// Initialise le personnage avec le scriptable voulut.
+    /// </summary>
+    /// <param name="nScriptable">Le scriptable du personnage.</param>
     public void SetCharacterNonCopy(CharacterScriptable_Battle nScriptable)
     {
         scriptable = nScriptable;
@@ -49,6 +58,10 @@ public class CPN_Character : RVN_ComponentHandler
         OnSetCharacter?.Invoke(scriptable);
     }
 
+    /// <summary>
+    /// Supprime le personnage.
+    /// </summary>
+    /// <param name="unsetDelay">Délai avant la suppréssion du personnage</param>
     public void UnsetCharacter(float unsetDelay)
     {
         scriptable = null;
@@ -65,6 +78,9 @@ public class CPN_Character : RVN_ComponentHandler
         }
     }
 
+    /// <summary>
+    /// Début du tour du personnage.
+    /// </summary>
     public void StartTurn()
     {
         ActOnBeginTurn?.Invoke(this);
@@ -76,11 +92,17 @@ public class CPN_Character : RVN_ComponentHandler
         }
     }
 
+    /// <summary>
+    /// Fin du tour du personnage.
+    /// </summary>
     public void EndSelfTurn()
     {
         ActOnEndSelfTurn?.Invoke(this);
     }
 
+    /// <summary>
+    /// Fin du tour de l'équipe du personnage.
+    /// </summary>
     public void EndTeamTurn()
     {
         ActOnEndTeamTurn?.Invoke(this);

@@ -15,5 +15,21 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 996684ac842c3e84fa12fddf48132ae2, type: 3}
   duration: 2
   effects:
-  - {fileID: 11400000, guid: a020d04849ff303428c866a36d6fcef1, type: 2}
-  - {fileID: 11400000, guid: 46ead439edda49e4ea90b137bc76e28e, type: 2}
+  - id: 0
+  - id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: EFF_StatEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 2
+        effects:
+        - stat: 4
+          valueToChange: 3
+        - stat: 1
+          valueToChange: 4
+    00000001:
+      type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 0
+        spellToUse: {fileID: 11400000, guid: 1692320bca23f144baf9d4fc8bdca615, type: 2}

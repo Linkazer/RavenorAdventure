@@ -21,6 +21,10 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
     private Vector2 mouseStartScreenPosition;
     private bool isMouseMoving;
 
+    /// <summary>
+    /// Calcul la position de la camera selon le Clic Molette.
+    /// </summary>
+    /// <param name="mousePosition">The mouse position.</param>
     public void MoveFromMiddleClic(Vector2 mousePosition)
     {
         mouseDirection = (mouseStartScreenPosition - RVN_InputController.MouseScreenPosition) * mouseSpeed * 0.001f;
@@ -28,6 +32,10 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
         SetCameraPosition(mouseDirection + mouseStartWorldPosition);
     }
 
+    /// <summary>
+    /// Définit le point de départ du Clic Molette.
+    /// </summary>
+    /// <param name="mouseWorldPosition"></param>
     public void StartMoveFromMiddleClic(Vector2 mouseWorldPosition)
     {
         if(currentFocus != null)
@@ -45,6 +53,10 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
         isMouseMoving = false;
     }
 
+    /// <summary>
+    /// Déplacement la caméra dans la direction voulue.
+    /// </summary>
+    /// <param name="direction">La direction que la camera.</param>
     public void MoveCamera(Vector2 direction)
     {
         if(direction != Vector2.zero && currentFocus != null)
@@ -55,11 +67,19 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
         SetCameraPosition(cameraHandler.transform.position + new Vector3(direction.x, direction.y, 0) * speed * Time.unscaledDeltaTime);
     }
 
+    /// <summary>
+    /// Focus la camera sur un personnage.
+    /// </summary>
+    /// <param name="character">Le personnage à focus.</param>
     public void SetCameraFocus(CPN_Character character)
     {
         currentFocus = character.transform;
     }
 
+    /// <summary>
+    /// Met la camera à la position voulue. (Prend en compte les limites de la map)
+    /// </summary>
+    /// <param name="position">La position voulue pour la camera.</param>
     public void SetCameraPosition(Vector2 position)
     {
         if(position.x < cameraLimit.x)

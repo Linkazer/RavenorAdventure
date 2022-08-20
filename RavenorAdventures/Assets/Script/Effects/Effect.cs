@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public abstract class Effect : ScriptableObject
+public abstract class Effect
 {
     public EffectTrigger trigger;
 
     public void ApplyEffect(RVN_ComponentHandler effectTarget)
     {
+
         switch (trigger)
         {
             case EffectTrigger.OnApply:

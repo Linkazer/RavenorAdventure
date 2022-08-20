@@ -60,28 +60,6 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         {
             OnApplyEffect?.Invoke(potentialAppliedEffect);
         }
-
-        /*foreach (Effect eff in toApply.GetEffects)
-        {
-            AppliedEffect potentialAppliedEffect = TryGetAppliedEffect(eff);
-
-            if (potentialAppliedEffect != null)
-            {
-                potentialAppliedEffect.ResetEffect(toApply.Duration);
-            }
-            else
-            {
-                potentialAppliedEffect = new AppliedEffect(eff, toApply.Duration);
-
-                currentAppliedEffects.Add(potentialAppliedEffect);
-                eff.ApplyEffect(Handler);
-            }
-
-            if(potentialAppliedEffect != null)
-            {
-                OnApplyEffect?.Invoke(potentialAppliedEffect);
-            }
-        }*/
     }
 
     public void RemoveEffect(EffectScriptable toRemove)

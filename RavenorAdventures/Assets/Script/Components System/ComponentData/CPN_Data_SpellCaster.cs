@@ -4,9 +4,29 @@ using UnityEngine;
 
 public interface CPN_Data_SpellCaster
 {
+    /// <summary>
+    /// Sorts disponibles.
+    /// </summary>
+    /// <returns></returns>
     public List<SpellScriptable> AvailableSpells();
+    /// <summary>
+    /// Nombre de sort utilisable par tour.
+    /// </summary>
+    /// <returns></returns>
     public int MaxSpellUseByTurn();
+    /// <summary>
+    /// Nombre de relance de dé disponible.
+    /// </summary>
+    /// <returns></returns>
     public int PossibleRelance();
+    /// <summary>
+    /// Stat de Précision.
+    /// </summary>
+    /// <returns></returns>
     public int Accuracy();
+    /// <summary>
+    /// Stat de Puissance.
+    /// </summary>
+    /// <returns></returns>
     public int Power();
 }
