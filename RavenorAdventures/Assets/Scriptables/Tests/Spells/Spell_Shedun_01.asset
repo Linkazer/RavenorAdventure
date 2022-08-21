@@ -22,7 +22,7 @@ MonoBehaviour:
   castAnimationDuration: 1
   playSpellAnimationOnlyTarget: 0
   spellAnimation: {fileID: 3603624626837706201, guid: ac04d2ce0636d1b4aa73903cab3d0fd8, type: 3}
-  animationDuration: 2
+  animationDuration: 1.8
   hitableTarget: 3
   castTarget: 1
   cooldown: 0

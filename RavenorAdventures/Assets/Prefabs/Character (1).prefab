@@ -96,9 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f423869110b944c8de1796a78f40bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rnd: {fileID: 0}
+  rnd: {fileID: 284234767151647252}
   offset: 1
-  originRnd: {fileID: 0}
+  originRnd: {fileID: 5476766876406081633}
   canvas: {fileID: 0}
 --- !u!1 &1264747494927976007
 GameObject:
@@ -1758,9 +1758,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f423869110b944c8de1796a78f40bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rnd: {fileID: 0}
+  rnd: {fileID: 7623800616649253514}
   offset: 1
-  originRnd: {fileID: 0}
+  originRnd: {fileID: 5476766876406081633}
   canvas: {fileID: 0}
 --- !u!1 &5887456766363017554
 GameObject:

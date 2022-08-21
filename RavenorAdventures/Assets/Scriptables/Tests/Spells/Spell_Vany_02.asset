@@ -20,8 +20,9 @@ MonoBehaviour:
     - This text is in <b>English</b>
   castingAnimation: 2
   castAnimationDuration: 1
+  playSpellAnimationOnlyTarget: 0
   spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
-  animationDuration: 2
+  animationDuration: 1.8
   hitableTarget: 3
   castTarget: 1
   cooldown: 0
