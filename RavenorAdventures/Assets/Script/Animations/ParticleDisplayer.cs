@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleDisplayer : MonoBehaviour
+public class ParticleDisplayer : SpriteDisplayer
 {
-    [SerializeField] private ParticleSystemRenderer particle;
-    public int offset = 0;
+    private ParticleSystemRenderer particle;
+    [SerializeField] private Texture particleSprite;
 
-    /// <summary>
-    /// Met à jour l'OrderInLayer de la particule.
-    /// </summary>
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        particle.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset; ;
+        base.OnEnable();
+
+        if (particleSprite != null)
+        {
+            SetParticleTexture();
+        }
+    }
+
+    private void SetParticleTexture()
+    {
+        if (rnd is ParticleSystemRenderer)
+        {
+            particle = rnd as ParticleSystemRenderer;
+
+            particle.material.SetTexture("_MainTex", particleSprite);
+        }
     }
 }

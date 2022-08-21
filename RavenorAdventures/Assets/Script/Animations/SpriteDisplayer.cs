@@ -5,39 +5,51 @@ using UnityEngine;
 public class SpriteDisplayer : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer spr;
+    protected Renderer rnd;
     public int offset = 0;
     [SerializeField]
-    private SpriteRenderer originSpr;
+    protected Renderer originRnd;
     [SerializeField] private Canvas canvas;
 
-    private Material mat;
+    protected Material mat;
 
-    private void Start()
+    protected virtual void OnEnable()
     {
-        spr = GetComponent<SpriteRenderer>();
-        if (spr == null)
+        if (rnd == null)
         {
-            enabled = false;
+            rnd = GetComponent<Renderer>();
+            if (rnd == null)
+            {
+                enabled = false;
+                return;
+            }
         }
-        mat = gameObject.GetComponent<SpriteRenderer>().material;
-        spr.material = Instantiate(mat);
+
+        mat = rnd.material;
+        rnd.material = Instantiate(mat);
+
+        SetSortingOrder();
     }
 
     private void Update()
     {
-        if (originSpr == null)
+        SetSortingOrder();
+    }
+
+    private void SetSortingOrder()
+    {
+        if (originRnd == null)
         {
-            spr.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset;
+            rnd.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset;
         }
         else
         {
-            spr.sortingOrder = originSpr.sortingOrder + offset;
+            rnd.sortingOrder = originRnd.sortingOrder + offset;
         }
 
         if (canvas != null)
         {
-            canvas.sortingOrder = spr.sortingOrder;
+            canvas.sortingOrder = rnd.sortingOrder;
         }
     }
 }

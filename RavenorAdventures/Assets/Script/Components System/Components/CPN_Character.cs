@@ -11,7 +11,7 @@ public class CPN_Character : RVN_ComponentHandler
     [SerializeField] private List<CPN_CharacterAction> actions;
 
     [SerializeField] private UnityEvent<CharacterScriptable_Battle> OnSetCharacter;
-    [SerializeField] private UnityEvent OnUnsetCharacter;
+    [SerializeField] private UnityEvent<CPN_Character> OnUnsetCharacter;
     [SerializeField] private UnityEvent OnStartTurn;
     [SerializeField] private UnityEvent OnEndTurn;
 
@@ -66,7 +66,7 @@ public class CPN_Character : RVN_ComponentHandler
     {
         scriptable = null;
 
-        OnUnsetCharacter?.Invoke();
+        OnUnsetCharacter?.Invoke(this);
 
         if (unsetDelay > 0)
         {

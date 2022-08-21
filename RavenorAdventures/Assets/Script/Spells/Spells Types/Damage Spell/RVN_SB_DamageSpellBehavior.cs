@@ -78,7 +78,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             }
         }
 
-        if (usedScriptable.SpellAnimation != null)
+        if (usedScriptable.SpellAnimation != null && ((usedScriptable.PlaySpellAnimationOnlyTarget && callback != null) || !usedScriptable.PlaySpellAnimationOnlyTarget))
         {
             if (usedScriptable.AnimationDuration > 0)
             {

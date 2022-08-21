@@ -8652,9 +8652,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 429593234858301258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429593234858301258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
+    - target: {fileID: 429593234858301258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 429593234858301258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 429593234858301258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 429593234858301296, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9472,12 +9488,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457060600184349822, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1572271245230220761, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10116,12 +10148,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361879170698369654, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2380170043771061551, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -11656,12 +11704,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159789790610325264, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4159789790610325290, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_IsActive
@@ -12004,12 +12068,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625834061099250550, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4683251415312863413, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12112,17 +12192,49 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
+    - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896778629462991, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4804896779023458005, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 4804896779215995680, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896779215995680, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
+    - target: {fileID: 4804896779215995680, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896779215995680, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804896779215995680, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4804896779407407258, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -13708,12 +13820,28 @@ PrefabInstance:
       value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001105682176408214, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7001105682176408232, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14464,12 +14592,28 @@ PrefabInstance:
       value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885227821095040308, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7933761777284115839, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -14712,12 +14856,28 @@ PrefabInstance:
       value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1346031333}
     - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RVN_BattleManager, ravenor_engine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932755, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
+      propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8240848136643932777, guid: 203f12226c406fe419b5f415a2ed940a, type: 3}
       propertyPath: m_IsActive
