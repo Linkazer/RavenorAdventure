@@ -57,6 +57,14 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""dff447dc-c6a6-416d-8147-fd7c565e7f98"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -213,6 +221,17 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                     ""action"": ""MouseRightClic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16d004e8-f227-4ced-a5e6-6e4971c91745"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +245,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         m_BattleActionMap_MouseLeftClic = m_BattleActionMap.FindAction("MouseLeftClic", throwIfNotFound: true);
         m_BattleActionMap_MouseMiddleClic = m_BattleActionMap.FindAction("MouseMiddleClic", throwIfNotFound: true);
         m_BattleActionMap_MouseRightClic = m_BattleActionMap.FindAction("MouseRightClic", throwIfNotFound: true);
+        m_BattleActionMap_MouseScroll = m_BattleActionMap.FindAction("MouseScroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -280,6 +300,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
     private readonly InputAction m_BattleActionMap_MouseLeftClic;
     private readonly InputAction m_BattleActionMap_MouseMiddleClic;
     private readonly InputAction m_BattleActionMap_MouseRightClic;
+    private readonly InputAction m_BattleActionMap_MouseScroll;
     public struct BattleActionMapActions
     {
         private @PlayerControl m_Wrapper;
@@ -289,6 +310,7 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         public InputAction @MouseLeftClic => m_Wrapper.m_BattleActionMap_MouseLeftClic;
         public InputAction @MouseMiddleClic => m_Wrapper.m_BattleActionMap_MouseMiddleClic;
         public InputAction @MouseRightClic => m_Wrapper.m_BattleActionMap_MouseRightClic;
+        public InputAction @MouseScroll => m_Wrapper.m_BattleActionMap_MouseScroll;
         public InputActionMap Get() { return m_Wrapper.m_BattleActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +335,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseRightClic.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
                 @MouseRightClic.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
                 @MouseRightClic.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseRightClic;
+                @MouseScroll.started -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.performed -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseScroll;
+                @MouseScroll.canceled -= m_Wrapper.m_BattleActionMapActionsCallbackInterface.OnMouseScroll;
             }
             m_Wrapper.m_BattleActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -332,6 +357,9 @@ public class @PlayerControl : IInputActionCollection, IDisposable
                 @MouseRightClic.started += instance.OnMouseRightClic;
                 @MouseRightClic.performed += instance.OnMouseRightClic;
                 @MouseRightClic.canceled += instance.OnMouseRightClic;
+                @MouseScroll.started += instance.OnMouseScroll;
+                @MouseScroll.performed += instance.OnMouseScroll;
+                @MouseScroll.canceled += instance.OnMouseScroll;
             }
         }
     }
@@ -343,5 +371,6 @@ public class @PlayerControl : IInputActionCollection, IDisposable
         void OnMouseLeftClic(InputAction.CallbackContext context);
         void OnMouseMiddleClic(InputAction.CallbackContext context);
         void OnMouseRightClic(InputAction.CallbackContext context);
+        void OnMouseScroll(InputAction.CallbackContext context);
     }
 }

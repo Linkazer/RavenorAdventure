@@ -16,6 +16,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [SerializeField] private UnityEvent<Vector2> OnMoveCameraInput;
     [SerializeField] private UnityEvent<Vector2> OnMouseMiddleDown;
     [SerializeField] private UnityEvent<Vector2> OnMouseMiddleUp;
+    [SerializeField] private UnityEvent<Vector2> OnMouseScroll;
 
     [Header("Inputs")]
     [SerializeField] private InputActionReference actionMouseMovementInput;
@@ -23,6 +24,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [SerializeField] private InputActionReference actionMouseRightClicInput;
     [SerializeField] private InputActionReference actionMoveCameraInput;
     [SerializeField] private InputActionReference actionMouseMiddle;
+    [SerializeField] private InputActionReference actionMouseScroll;
 
     [Header("Datas")]
     [SerializeField] private Camera usedCamera;
@@ -63,6 +65,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         actionMouseMiddle.action.started += MiddleMouseInputDown;
 
         actionMouseMiddle.action.canceled += MiddleMouseInputDown;
+
+        actionMouseScroll.action.performed += ScrollMouseInput;
     }
 
     private void OnDisable()
@@ -76,6 +80,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         actionMouseRightClicInput.action.started -= RightMouseInput;
 
         actionMouseMiddle.action.performed -= MiddleMouseInputDown;
+
+        actionMouseScroll.action.performed -= ScrollMouseInput;
     }
 
     private void Update()
@@ -83,6 +89,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
         mouseRaycast = GetMouseRaycast();
 
         OnMoveCameraInput?.Invoke(actionMoveCameraInput.action.ReadValue<Vector2>());
+
+        OnMouseScroll?.Invoke(actionMouseScroll.action.ReadValue<Vector2>().normalized);
     }
 
     private void UpdateMousePosition(InputAction.CallbackContext context)
@@ -140,6 +148,14 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
             {
                 OnMouseRightDown?.Invoke(mouseWorldPosition);
             }
+        }
+    }
+
+    private void ScrollMouseInput(InputAction.CallbackContext context)
+    {
+        if (!evtSyst.IsPointerOverGameObject())
+        {
+            OnMouseScroll?.Invoke(context.ReadValue<Vector2>());
         }
     }
 

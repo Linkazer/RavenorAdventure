@@ -1,25 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 {
     [SerializeField] private Camera camera;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Transform cameraHandler;
+
+    [Header("Movement")]
     [SerializeField] private float speed;
     [SerializeField] private float mouseSpeed;
 
     [SerializeField] private bool enableEdgeCamera;
+    [SerializeField] private Vector4 cameraLimit;
 
+    [Header("Zoom")]
+    [SerializeField] private float zoomForce;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private Vector2 zoomLimits;
+
+    [Header("Debug")]
     [SerializeField] private Transform currentFocus;
 
-    [SerializeField] private Vector4 cameraLimit;
 
     private Vector2 mouseDirection;
 
     private Vector2 mouseStartWorldPosition;
     private Vector2 mouseStartScreenPosition;
     private bool isMouseMoving;
+
+    private float targetZoom;
+    private float zoomDirection;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        targetZoom = virtualCamera.m_Lens.OrthographicSize;
+    }
 
     /// <summary>
     /// Calcul la position de la camera selon le Clic Molette.
@@ -65,6 +85,26 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
         }
 
         SetCameraPosition(cameraHandler.transform.position + new Vector3(direction.x, direction.y, 0) * speed * Time.unscaledDeltaTime);
+    }
+
+    public void Zoom(Vector2 scrollDirection)
+    {
+        if (scrollDirection.y != 0)
+        {
+            float nextZoom = virtualCamera.m_Lens.OrthographicSize - (scrollDirection.y * zoomForce);
+
+            if (nextZoom > zoomLimits.y)
+            {
+                nextZoom = zoomLimits.y;
+            }
+            else if (nextZoom < zoomLimits.x)
+            {
+                nextZoom = zoomLimits.x;
+            }
+
+            targetZoom = nextZoom;
+            zoomDirection = -scrollDirection.y;
+        }
     }
 
     /// <summary>
@@ -132,6 +172,18 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
             else if (RVN_InputController.MouseScreenPosition.y > Screen.height - 50)
             {
                 MoveCamera(new Vector2(0, 1));
+            }
+        }
+
+        if (virtualCamera.m_Lens.OrthographicSize != targetZoom)
+        {
+            if (Mathf.Abs(targetZoom - virtualCamera.m_Lens.OrthographicSize) > Time.deltaTime)
+            {
+                virtualCamera.m_Lens.OrthographicSize += (targetZoom - virtualCamera.m_Lens.OrthographicSize) * zoomSpeed * Time.deltaTime;
+            }
+            else
+            {
+                virtualCamera.m_Lens.OrthographicSize = targetZoom;
             }
         }
     }

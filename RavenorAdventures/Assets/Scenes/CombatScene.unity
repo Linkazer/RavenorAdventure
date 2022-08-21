@@ -4726,11 +4726,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnMouseScroll:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1346031337}
+        m_TargetAssemblyTypeName: RVN_CameraController, ravenor_engine
+        m_MethodName: Zoom
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   actionMouseMovementInput: {fileID: 1319602955018677809, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   actionMouseLeftClicInput: {fileID: -5115876774555091843, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   actionMouseRightClicInput: {fileID: -5363391323985583015, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   actionMoveCameraInput: {fileID: -3533170608830815885, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   actionMouseMiddle: {fileID: 6300768714558053264, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
+  actionMouseScroll: {fileID: -3218351577606647362, guid: a66f17adbf2a3904485be29c8c839394, type: 3}
   usedCamera: {fileID: 1239159336}
   evtSyst: {fileID: 14943388}
 --- !u!4 &1346031332
@@ -4991,12 +5007,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1239159336}
+  virtualCamera: {fileID: 1755459862}
   cameraHandler: {fileID: 1037067513}
   speed: 5
   mouseSpeed: 10
   enableEdgeCamera: 0
-  currentFocus: {fileID: 0}
   cameraLimit: {x: -8, y: 8, z: -5, w: 5}
+  zoomForce: 1
+  zoomSpeed: 5
+  zoomLimits: {x: 3, y: 8}
+  currentFocus: {fileID: 0}
 --- !u!224 &1380480609 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1595920167708038847, guid: 72985de61317a564f9e5954ac67fcce6, type: 3}

@@ -93,8 +93,6 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void DisplaySpellDescription(bool show)
     {
-        Debug.Log("Allo ?");
-
         descriptionHandler.SetActive(show);
     }
 }
