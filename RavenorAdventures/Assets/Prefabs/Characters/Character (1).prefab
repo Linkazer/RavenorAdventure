@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 4053348106658464090}
   - component: {fileID: 6674373229304437009}
   - component: {fileID: 5140952349797873621}
+  - component: {fileID: 8468142676908402632}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -1039,6 +1040,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8468142676908402632}
+        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
+        m_MethodName: UnsetFlank
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5140952349797873622}
+          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnStopMovement:
     m_PersistentCalls:
       m_Calls:
@@ -1054,6 +1067,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8468142676908402632}
+        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
+        m_MethodName: SetFlank
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5140952349797873622}
+          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEndMovement:
     m_PersistentCalls:
       m_Calls:
@@ -1064,6 +1089,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8468142676908402632}
+        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
+        m_MethodName: SetFlank
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5140952349797873622}
+          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1200,6 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 5140952349797873622}
+  flankEffect: {fileID: 11400000, guid: fad0e4d3e94124b4799c18a01e3f4833, type: 2}
   currentAppliedEffects: []
   OnApplyEffect:
     m_PersistentCalls:
@@ -1257,6 +1295,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8468142676908402632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140952349797873644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ec128d24c0eaf4f99387543a708e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5165637731750414080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,6 +3310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e323beceb05d45e4eae20144bb476e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &9200060583774372131 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
+  m_PrefabInstance: {fileID: 2267033942195826034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1170183894105774888 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1102057369520256602, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
@@ -3274,11 +3329,6 @@ MonoBehaviour:
 --- !u!223 &9035772962679803926 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7067164834572156260, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
-  m_PrefabInstance: {fileID: 2267033942195826034}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &9200060583774372131 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
   m_PrefabInstance: {fileID: 2267033942195826034}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8127994419899400247

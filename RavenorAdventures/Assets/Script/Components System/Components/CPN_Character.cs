@@ -15,6 +15,7 @@ public class CPN_Character : RVN_ComponentHandler
     [SerializeField] private UnityEvent OnStartTurn;
     [SerializeField] private UnityEvent OnEndTurn;
 
+    private List<CPN_Character> characterOnMelee = new List<CPN_Character>();
 
     public Action<RVN_ComponentHandler> ActOnBeginTurn;
     public Action<RVN_ComponentHandler> ActOnEndTeamTurn;
@@ -107,5 +108,57 @@ public class CPN_Character : RVN_ComponentHandler
     {
         ActOnEndTeamTurn?.Invoke(this);
         OnEndTurn?.Invoke();
+    }
+
+    public void AddMeleeCharacter(CPN_Character toAdd)
+    {
+        if(!characterOnMelee.Contains(toAdd))
+        {
+            characterOnMelee.Add(toAdd);
+
+            int enemyCount = 0;
+
+            foreach(CPN_Character chara in characterOnMelee)
+            {
+                if(!RVN_BattleManager.AreCharacterAllies(chara, this))
+                {
+                    enemyCount++;
+                }
+            }
+
+            if(enemyCount >= 2)
+            {
+                if(GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler eff))
+                {
+                    eff.AddFlank();
+                }
+            }
+        }
+    }
+
+    public void RemoveMeleeCharacter(CPN_Character toRemove)
+    {
+        if (characterOnMelee.Contains(toRemove))
+        {
+            characterOnMelee.Remove(toRemove);
+
+            int enemyCount = 0;
+
+            foreach (CPN_Character chara in characterOnMelee)
+            {
+                if (!RVN_BattleManager.AreCharacterAllies(chara, this))
+                {
+                    enemyCount++;
+                }
+            }
+
+            if (enemyCount <= 1)
+            {
+                if (GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler eff))
+                {
+                    eff.RemoveFlank();
+                }
+            }
+        }
     }
 }

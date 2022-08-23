@@ -72,15 +72,21 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
 
     public void AddEffect(AppliedEffect effectToApply)
     {
-        UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
+        if (!effectToApply.GetEffect.HideOnApply)
+        {
+            UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
 
-        newEffectDisplayer.Display(effectToApply.GetEffect.Icon, true);
+            newEffectDisplayer.Display(effectToApply.GetEffect.Icon, true);
+        }
     }
 
     public void RemiveEffect(AppliedEffect effectToApply)
     {
-        UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
+        if (!effectToApply.GetEffect.HideOnApply)
+        {
+            UI_Character_EffectApplyDisplayer newEffectDisplayer = Instantiate(effectApplyDisplayerPrefab, damageDisplayerHandler);
 
-        newEffectDisplayer.Display(effectToApply.GetEffect.Icon, false);
+            newEffectDisplayer.Display(effectToApply.GetEffect.Icon, false);
+        }
     }
 }

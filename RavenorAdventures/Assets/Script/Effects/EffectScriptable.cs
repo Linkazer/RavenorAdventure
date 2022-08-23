@@ -8,6 +8,7 @@ using UnityEngine;
 public class EffectScriptable : ScriptableObject
 {
     [Header("Affichage")]
+    [SerializeField] private bool hideOnApply;
     [SerializeField] private Sprite icon;
     //Voir les affichages
 
@@ -15,6 +16,7 @@ public class EffectScriptable : ScriptableObject
     [SerializeField] private int duration;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(Effect))] private List<Effect> effects; //, [SerializeReference, ReferenceEditor(typeof(Effect))]
 
+    public bool HideOnApply => hideOnApply;
     public Sprite Icon => icon;
 
     public int Duration => duration;

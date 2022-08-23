@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 {
+    [SerializeField] private EffectScriptable flankEffect;
+
     [SerializeField] private List<AppliedEffect> currentAppliedEffects;
 
     [SerializeField] private UnityEvent<AppliedEffect> OnApplyEffect;
@@ -89,5 +91,15 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
             }
         }
         return null;
+    }
+
+    public void AddFlank()
+    {
+        ApplyEffect(flankEffect);
+    }
+
+    public void RemoveFlank()
+    {
+        RemoveEffect(flankEffect);
     }
 }
