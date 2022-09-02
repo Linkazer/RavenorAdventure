@@ -29,4 +29,6 @@ public interface CPN_Data_SpellCaster
     /// </summary>
     /// <returns></returns>
     public int Power();
+
+    public SpellRessource Ressource();
 }

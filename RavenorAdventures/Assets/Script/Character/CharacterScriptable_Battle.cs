@@ -1,3 +1,4 @@
+using ravenor.referencePicker;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [Header("Display")]
     [SerializeField] private Sprite characterSprite;
 
+    [SerializeField] private Sprite handSprite;
+    [SerializeField] private bool displayHand;
     [SerializeField] private float handHeight;
     [SerializeField] private float uiHeight;
 
@@ -26,6 +29,7 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [Header("Spells")]
     [SerializeField] private List<SpellScriptable> availableSpells;
     [SerializeField] private int usableSpellByTurn = 1;
+    [SerializeField, SerializeReference, ReferenceEditor(typeof(SpellRessource))] private SpellRessource usedRessource;
 
     [Header("Passives")]
     [SerializeField] private List<EffectScriptable> passives;
@@ -38,6 +42,10 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     {
         return characterSprite;
     }
+
+    public Sprite HandSprite => handSprite;
+
+    public bool DisplayHand => displayHand;
 
     /// <summary>
     /// La position de l'UI par rapport au pieds du personnage.
@@ -101,5 +109,10 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     public List<EffectScriptable> Effects()
     {
         return new List<EffectScriptable>(passives);
+    }
+
+    public SpellRessource Ressource()
+    {
+        return usedRessource;
     }
 }

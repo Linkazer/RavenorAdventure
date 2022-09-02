@@ -20,11 +20,6 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
     private DialogueScriptable currentDialogue;
 
-    protected override void OnAwake()
-    {
-        gameObject.SetActive(false);
-    }
-
     public static void PlayDialogue(DialogueScriptable toPlay)
     {
         instance.DisplayDialogue(toPlay);

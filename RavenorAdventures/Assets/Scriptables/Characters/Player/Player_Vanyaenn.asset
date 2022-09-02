@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Player_Vanyaenn
   m_EditorClassIdentifier: 
   nom: Vanyaenn
-  UIPortrait: {fileID: 21300000, guid: 7c362c6348b4cf24085be06b433edba4, type: 3}
+  UIPortrait: {fileID: 21300000, guid: eac86b572decff04b9c34c62e1830160, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
+  handSprite: {fileID: 21300000, guid: 7eaea7f6ab88a414799e149ce55163a4, type: 3}
   handHeight: 0
   uiHeight: 1.2
   health: 8
@@ -30,4 +31,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28fd89c2703a83646912853f0046b3bc, type: 2}
   - {fileID: 11400000, guid: 72e62888ee8dcb341bd873619132c542, type: 2}
   usableSpellByTurn: 1
+  usedRessource:
+    id: 0
   passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

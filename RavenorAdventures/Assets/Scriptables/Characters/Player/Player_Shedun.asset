@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Player_Shedun
   m_EditorClassIdentifier: 
   nom: Shedun
-  UIPortrait: {fileID: 21300000, guid: 461c7bc73fb1564429a6f2f2c0989572, type: 3}
+  UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+  handSprite: {fileID: 21300000, guid: 771d8ca52f078a7468d4a87afbc5ebd4, type: 3}
   handHeight: 0
   uiHeight: 1.15
   health: 10
@@ -29,4 +30,10 @@ MonoBehaviour:
   availableSpells:
   - {fileID: 11400000, guid: 77bdc9a93b6e8ad44ab5faf09b0522d7, type: 2}
   usableSpellByTurn: 1
+  usedRessource:
+    id: 0
   passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

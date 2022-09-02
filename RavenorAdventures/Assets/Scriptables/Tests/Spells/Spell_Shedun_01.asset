@@ -18,15 +18,16 @@ MonoBehaviour:
     texts:
     - "Ceci est le texte <b>Fran\xE7ais</b>"
     - This text is in <b>English</b>
-  castingAnimation: 2
-  castAnimationDuration: 1
+  castingAnimation: 6
+  castAnimationDuration: 0.1
   playSpellAnimationOnlyTarget: 0
+  projectile: {fileID: 2016346504167992779, guid: 4d22e8a7bc9722d47be6078b4eca543a, type: 3}
   spellAnimation: {fileID: 3603624626837706201, guid: ac04d2ce0636d1b4aa73903cab3d0fd8, type: 3}
   animationDuration: 1.8
+  ressourceCost: 0
   hitableTarget: 3
   castTarget: 1
   cooldown: 0
-  currentCooldown: 0
   range: 45
   zoneRange: 0
   effectsOnTarget: []

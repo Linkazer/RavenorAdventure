@@ -8,13 +8,16 @@ public enum CharacterAnimationType
     CastSpell,
     LaunchSpell,
     JumpOnTarget,
-    Death
+    Death,
+    Shoot
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
 {
     [Header("Character Display")]
+    [SerializeField] private Transform rendererTransform;
     [SerializeField] private SpriteRenderer characterSprite;
+    [SerializeField] private List<SpriteRenderer> handsSprites;
 
     [Header("Character Animations")]
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
@@ -23,17 +26,30 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     public void SetCharacter(CharacterScriptable_Battle character)
     {
         characterSprite.sprite = character.GameSprite();
+
+        if (character.HandSprite != null)
+        {
+            foreach (SpriteRenderer spr in handsSprites)
+            {
+                spr.sprite = character.HandSprite;
+
+                if(character.DisplayHand)
+                {
+                    spr.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
     public void SetOrientation(Vector2 direction)
     {
         if(direction.x > 0)
         {
-            characterSprite.flipX = false;
+            rendererTransform.localEulerAngles = new Vector3(0, 0, 0);
         }
         else if(direction.x < 0)
         {
-            characterSprite.flipX = true;
+            rendererTransform.localEulerAngles = new Vector3(0, -180, 0);
         }
     }
 
@@ -65,12 +81,12 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     {
         switch(launchedSpell.scriptable.CastingAnimation)
         {
-            case CharacterAnimationType.CastSpell:
-                SetAnimation(launchedSpell.scriptable.CastingAnimation);
-                TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => SetAnimation(CharacterAnimationType.LaunchSpell));
-                break;
             case CharacterAnimationType.JumpOnTarget:
                 jumpOnTargetAnimation.Play(launchedSpell.targetNode.worldPosition);
+                break;
+            default:
+                SetAnimation(launchedSpell.scriptable.CastingAnimation);
+                TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => SetAnimation(CharacterAnimationType.LaunchSpell));
                 break;
         }
     }
@@ -98,6 +114,9 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                     break;
                 case CharacterAnimationType.Death:
                     AnimSetBool("IsDead", true);
+                    break;
+                case CharacterAnimationType.Shoot:
+                    AnimSetTrigger("Shoot");
                     break;
             }
         }

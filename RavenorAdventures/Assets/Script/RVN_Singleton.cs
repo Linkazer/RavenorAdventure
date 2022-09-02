@@ -6,6 +6,8 @@ public class RVN_Singleton<T> : MonoBehaviour where T : RVN_Singleton<T>
 {
     protected static T instance = null;
 
+    public static T Instance => instance;
+
     protected virtual void Awake()
     {
         if(instance != null)

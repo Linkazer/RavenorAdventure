@@ -67,6 +67,8 @@ public class CPN_Character : RVN_ComponentHandler
     {
         scriptable = null;
 
+        RVN_BattleManager.Instance.OnCharacterDie(this);
+
         OnUnsetCharacter?.Invoke(this);
 
         if (unsetDelay > 0)

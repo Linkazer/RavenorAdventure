@@ -21,12 +21,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     [SerializeField] private int accuracy;
     [SerializeField] private int power;
 
+    [SerializeField] private SpellRessource ressource;
+
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
     public Action<int> actOnSetActionLeft;
     public Action<SpellScriptable> actOnSelectSpell;
     public Action<SpellScriptable> actOnUnselectSpell;
-
 
     public List<SpellScriptable> Spells => spells;
     public int ActionByTurn => actionByTurn;
@@ -34,6 +35,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
     public int Power => power;
+
+    public Node CurrentNode => nodeData.CurrentNode;
 
     public void AddPossibleReroll(int amount)
     {
@@ -74,7 +77,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="actionTargetPosition">The current target position the player aim for.</param>
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-        if (currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable)
+        if (currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable && (ressource == null || spells[currentSelectedSpell].RessourceCost <= ressource.CurrentAmount))
         {
             List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].Range, true);
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
@@ -98,7 +101,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override bool CanSelectAction()
     {
-        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable;
+        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable && (ressource == null || spells[currentSelectedSpell].RessourceCost <= ressource.CurrentAmount);
     }
 
     /// <summary>
@@ -118,6 +121,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         return actionsLeftThisTurn > 0 &&
                 spellToCheck != null &&
                 spellToCheck.IsUsable &&
+                (ressource == null || spellToCheck.RessourceCost <= ressource.CurrentAmount) &&
                 Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range);
     }
 
@@ -195,11 +199,22 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void CastSpell(LaunchedSpellData launchedSpell, Action callback)
     {
+        ressource?.UseRessource(launchedSpell.scriptable.RessourceCost);
+
         OnCastSpell?.Invoke(launchedSpell);
 
         OnCastSpellToDiection?.Invoke(launchedSpell.targetNode.worldPosition - launchedSpell.caster.transform.position);
 
-        TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, callback));
+        if (launchedSpell.scriptable.Projectile != null)
+        {
+            SpellProjectile projectile = Instantiate(launchedSpell.scriptable.Projectile);
+
+            projectile.SetProjectile(launchedSpell.caster.CurrentNode, launchedSpell.targetNode, () => UseSpell(launchedSpell, callback));
+        }
+        else
+        {
+            TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, callback));
+        }
     }
 
     /// <summary>
@@ -233,6 +248,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         {
             spells.Add(Instantiate(spell));
         }
+
+        ressource = toSet.Ressource();
+        ressource?.Initialize();
 
         possibleReroll = toSet.PossibleRelance();
 

@@ -23,10 +23,10 @@ MonoBehaviour:
   playSpellAnimationOnlyTarget: 0
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   animationDuration: 0
+  ressourceCost: 0
   hitableTarget: 3
   castTarget: 1
   cooldown: 1
-  currentCooldown: 0
   range: 15
   zoneRange: 0
   effectsOnTarget: []
