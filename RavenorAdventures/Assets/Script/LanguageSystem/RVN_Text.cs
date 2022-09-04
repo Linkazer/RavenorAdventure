@@ -18,4 +18,9 @@ public class RVN_Text
     {
         return texts[((int)RVN_LanguageManager.Language)];
     }
+
+    public RVN_Text()
+    {
+        texts = new List<string>(Enum.GetNames(typeof(PossibleLanguage)).Length);
+    }
 }

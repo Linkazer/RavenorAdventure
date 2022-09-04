@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum SpellRessourceType
 {
-    None,
-    Mana,
-    Rage,
+    None = -1,
+    Mana = 0,
+    Rage = 1,
 }
 
 [Serializable]
@@ -17,6 +17,8 @@ public class SpellRessource
     [SerializeField] private Vector2Int limits;
 
     [SerializeField] private int currentAmount;
+
+    public Action<int> actOnRessourceUpdate;
 
     public virtual SpellRessourceType RessourceType => SpellRessourceType.None;
 
@@ -40,6 +42,8 @@ public class SpellRessource
         {
             currentAmount = limits.x;
         }
+
+        actOnRessourceUpdate?.Invoke(currentAmount);
     }
 
     public void RegainRessource(int amountToRegain)
@@ -50,10 +54,12 @@ public class SpellRessource
         {
             currentAmount = limits.y;
         }
+
+        actOnRessourceUpdate?.Invoke(currentAmount);
     }
 }
 
-public class BaseRessource : SpellRessource
+public class SpellRessource_Maana : SpellRessource
 {
-
+    public override SpellRessourceType RessourceType => SpellRessourceType.Mana;
 }

@@ -8,6 +8,8 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
     [SerializeField] private CanvasGroup spellActions;
     [SerializeField] private List<UI_PlayerSpell> spellIcons;
 
+    [SerializeField] private List<UI_RessourceDisplay> ressources;
+
     private RVN_ComponentHandler currentCharacter;
 
     public void SetCharacter(RVN_ComponentHandler nCharacter)
@@ -20,13 +22,18 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
             {
                 currentCharacter = nCharacter;
 
-                caster.actOnSetActionLeft += SetUsableActionSpell;
+                caster.actOnSetActionLeft += CheckSpellUsabilities;
                 caster.actOnSelectSpell += OnSelectSpell;
                 caster.actOnUnselectSpell += OnUnselectSpell;
 
+                if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
+                {
+                    ressources[(int)caster.Ressource.RessourceType].SetCharacter(nCharacter);
+                }
+
                 SetSpells(caster);
 
-                SetUsableActionSpell(caster.ActionLeftThisTurn);
+                CheckSpellUsabilities(caster.ActionLeftThisTurn);
             }
         }
     }
@@ -77,9 +84,14 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         {
             if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
             {
-                caster.actOnSetActionLeft -= SetUsableActionSpell;
+                caster.actOnSetActionLeft -= CheckSpellUsabilities;
                 caster.actOnSelectSpell -= OnSelectSpell;
                 caster.actOnUnselectSpell -= OnUnselectSpell;
+
+                if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
+                {
+                    ressources[(int)caster.Ressource.RessourceType].UnsetCharacter();
+                }
             }
 
             foreach (UI_PlayerSpell spl in spellIcons)
@@ -89,15 +101,14 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         }
     }
 
-    private void SetUsableActionSpell(int actionLeft)
+    private void CheckSpellUsabilities(int actionLeft)
     {
-        if (actionLeft > 0)
+        foreach (UI_PlayerSpell spl in spellIcons)
         {
-            spellActions.interactable = true;
-        }
-        else
-        {
-            spellActions.interactable = false;
+            if (spl.Spell != null)
+            {
+                spl.CheckUsable(actionLeft);
+            }
         }
     }
 }

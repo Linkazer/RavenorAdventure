@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Ylia_Heal
+  m_EditorClassIdentifier: 
+  nom: "R\xE9g\xE9n\xE9ration"
+  icon: {fileID: 0}
+  description:
+    texts:
+    - 
+    - 
+  castingAnimation: 2
+  castAnimationDuration: 0.75
+  playSpellAnimationOnlyTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
+  animationDuration: 0
+  ressourceCost: 1
+  maxUtilisations: -1
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
+  range: 25
+  zoneRange: 0
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 8d43326a67a003c42918650884721c1e, type: 2}
+  effectsOnCaster: []
+  type: 1
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []

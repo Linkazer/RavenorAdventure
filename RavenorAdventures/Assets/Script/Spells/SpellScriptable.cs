@@ -11,6 +11,12 @@ public enum SpellTargets
     All
 }
 
+public enum SpellCastType
+{
+    Normal,
+    Fast,
+}
+
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
@@ -26,10 +32,18 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
     [SerializeField] protected float animationDuration;
 
-    [Header("Comportement")]
+    [Header("Ressources")]
     [SerializeField] protected int ressourceCost;
+    [SerializeField] protected int maxUtilisations = -1;
+    protected int utilisationLeft;
+
+    [Header("Cast Data")]
     [SerializeField] protected SpellTargets hitableTarget = SpellTargets.All;
     [SerializeField] protected SpellTargets castTarget = SpellTargets.All;
+    [SerializeField] protected SpellCastType castType = SpellCastType.Normal;
+
+    [Header("Cooldowns")]
+    [SerializeField] protected bool isCooldownGlobal = false;
     [SerializeField] protected int cooldown;
     protected int currentCooldown;
 
@@ -61,15 +75,21 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public float AnimationDuration => animationDuration;
 
     public int RessourceCost => ressourceCost;
+    public int MaxUtilisation => maxUtilisations;
+    public int UtilisationLeft => utilisationLeft;
+
     public SpellTargets HitableTargets => hitableTarget;
     public SpellTargets CastTargets => castTarget;
+    public SpellCastType CastType => castType;
     public int StartCooldown => cooldown;
+
+    public bool IsCooldownGlobal => isCooldownGlobal;
     public int CurrentCooldown => currentCooldown;
 
     public int Range => range;
     public int ZoneRange => zoneRange;
 
-    public bool IsUsable => currentCooldown <= 0;
+    public bool IsUsable => currentCooldown <= 0 && (maxUtilisations <= 0 || utilisationLeft > 0);
 
     public List<EffectScriptable> Effects()
     {
@@ -79,6 +99,11 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public List<EffectScriptable> EffectOnCaster => effectsOnCaster;
 
     public abstract void SetCaster(CPN_SpellCaster caster);
+
+    public void SetSpell()
+    {
+        utilisationLeft = maxUtilisations;
+    }
 
     public void UpdateCurrentCooldown()
     {
@@ -92,7 +117,17 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void ResetCooldown()
     {
-        currentCooldown = cooldown;
+        SetCooldown(cooldown);
+    }
+
+    public void SetCooldown(int valueToSet)
+    {
+        currentCooldown = valueToSet;
         OnUpdateCooldown?.Invoke(currentCooldown);
+    }
+
+    public void UseSpell()
+    {
+        utilisationLeft--;
     }
 }

@@ -8,13 +8,14 @@ using TMPro;
 
 public class UI_PlayerSpell : MonoBehaviour
 {
-    [SerializeField] private EventTrigger handler;
+    [SerializeField] private Button button;
     [SerializeField] private Image icon;
 
     [Header("Description")]
     [SerializeField] private GameObject descriptionHandler;
     [SerializeField] private TextMeshProUGUI spellName;
-    [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshProUGUI spellCost;
+    [SerializeField] private TextMeshProUGUI spellDescription;
     [SerializeField] private Image cooldown;
 
     [Header("Events")]
@@ -25,9 +26,9 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public SpellScriptable Spell => currentSpell;
 
-    public void SetUsable(int actionLeft)
+    public void CheckUsable(int actionLeft)
     {
-        handler.enabled = actionLeft > 0;
+        button.interactable = actionLeft > 0 && (currentSpell.MaxUtilisation <= 0 || currentSpell.UtilisationLeft > 0) && currentSpell.CurrentCooldown <= 0;
     }
 
     public void SetSpell(SpellScriptable toSet)
@@ -36,7 +37,18 @@ public class UI_PlayerSpell : MonoBehaviour
         icon.sprite = toSet.Icon;
 
         spellName.text = toSet.Name;
-        description.text = toSet.Description;
+        spellDescription.text = toSet.Description;
+
+        if(toSet.RessourceCost != 0)
+        {
+            spellCost.text = toSet.RessourceCost.ToString();
+
+            spellCost.gameObject.SetActive(true);
+        }
+        else
+        {
+            spellCost.gameObject.SetActive(false);
+        }
 
         UpdateCooldown(currentSpell.CurrentCooldown);
 
@@ -75,15 +87,6 @@ public class UI_PlayerSpell : MonoBehaviour
         if (currentSpell.StartCooldown > 0)
         {
             cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.StartCooldown;
-
-            /*if(cooldown.fillAmount > 0)
-            {
-                handler.enabled = false;
-            }
-            else
-            {
-                handler.enabled = true;
-            }*/
         }
         else
         {

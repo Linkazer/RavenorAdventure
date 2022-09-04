@@ -87,6 +87,31 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     {
         OnUseSpell(spellToUse, targetNode, callback);
 
+        T usedScriptable = GetScriptable(spellToUse);
+
+        if (usedScriptable.SpellAnimation != null && ((usedScriptable.PlaySpellAnimationOnlyTarget && callback != null) || !usedScriptable.PlaySpellAnimationOnlyTarget))
+        {
+            if (usedScriptable.AnimationDuration > 0)
+            {
+                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, usedScriptable.AnimationDuration, targetNode.worldPosition, callback);
+            }
+            else
+            {
+                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
+            }
+        }
+        else if (callback != null)
+        {
+            if (usedScriptable.AnimationDuration < 0.5f)
+            {
+                TimerManager.CreateGameTimer(0.5f, callback);
+            }
+            else
+            {
+                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+            }
+        }
+
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
         foreach (CPN_HealthHandler hitedObject in hitableObjects)

@@ -19,7 +19,7 @@ public class EffectScriptable : ScriptableObject
     public bool HideOnApply => hideOnApply;
     public Sprite Icon => icon;
 
-    public int Duration => duration;
+    public int Duration => duration + 1;
 
     public List<Effect> GetEffects => effects;
 }

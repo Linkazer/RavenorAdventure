@@ -48,11 +48,18 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
         characterName.text = charaScriptable.Nom;
         characterIcon.sprite = charaScriptable.Portrait;
 
-        stats[0].text = charaScriptable.Power().ToString();
-        stats[1].text = charaScriptable.Defense().ToString();
-        stats[2].text = charaScriptable.Accuracy().ToString();
+        if (nCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster casterHandler))
+        {
+            stats[0].text = casterHandler.Power.ToString();
+            stats[2].text = casterHandler.Accuracy.ToString();
+        }
 
-        if(nCharacter.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+        if (nCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthHandler))
+        {
+            stats[1].text = healthHandler.Defense.ToString();
+        }
+
+        if (nCharacter.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
         {
             for(int i = 0; i < effectHandler.Effects.Count; i++)
             {

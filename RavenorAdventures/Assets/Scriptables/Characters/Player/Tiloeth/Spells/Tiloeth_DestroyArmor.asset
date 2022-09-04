@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Tiloeth_DestroyArmor
+  m_EditorClassIdentifier: 
+  nom: Destruction d'Armure
+  icon: {fileID: 0}
+  description:
+    texts:
+    - 
+    - 
+  castingAnimation: 4
+  castAnimationDuration: 0.25
+  playSpellAnimationOnlyTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  animationDuration: 0
+  ressourceCost: 0
+  maxUtilisations: -1
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 2
+  range: 15
+  zoneRange: 0
+  effectsOnTarget: []
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 0
+  baseDamage: 0
+  armorPierced: 3
+  lifestealPercent: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []

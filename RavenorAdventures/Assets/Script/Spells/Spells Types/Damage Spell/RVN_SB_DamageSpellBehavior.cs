@@ -78,29 +78,6 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             }
         }
 
-        if (usedScriptable.SpellAnimation != null && ((usedScriptable.PlaySpellAnimationOnlyTarget && callback != null) || !usedScriptable.PlaySpellAnimationOnlyTarget))
-        {
-            if (usedScriptable.AnimationDuration > 0)
-            {
-                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, usedScriptable.AnimationDuration, targetNode.worldPosition, callback);
-            }
-            else
-            {
-                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
-            }
-        }
-        else if(callback != null)
-        {
-            if (usedScriptable.AnimationDuration < 0.5f)
-            {
-                TimerManager.CreateGameTimer(0.5f, callback);
-            }
-            else
-            {
-                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
-            }
-        }
-
         if(toReturn)
         {
             foreach (CPN_HealthHandler hitedObject in hitableObjects)

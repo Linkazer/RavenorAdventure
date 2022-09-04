@@ -13,6 +13,8 @@ public class RVN_Singleton<T> : MonoBehaviour where T : RVN_Singleton<T>
         if(instance != null)
         {
             Destroy(this);
+
+            return;
         }
         else
         {

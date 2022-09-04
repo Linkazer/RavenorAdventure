@@ -25,6 +25,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
+    public Action actOnEndCastSpell;
     public Action<int> actOnSetActionLeft;
     public Action<SpellScriptable> actOnSelectSpell;
     public Action<SpellScriptable> actOnUnselectSpell;
@@ -35,6 +36,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public int PossibleReroll => possibleReroll;
     public int Accuracy => accuracy;
     public int Power => power;
+
+    public SpellRessource Ressource => ressource;
 
     public Node CurrentNode => nodeData.CurrentNode;
 
@@ -147,9 +150,26 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         {
             CastSpell(launchedSpell, callback);
 
-            launchedSpell.scriptable.ResetCooldown();
+            if(launchedSpell.scriptable.IsCooldownGlobal)
+            {
+                for(int i = 1; i < spells.Count; i++)
+                {
+                    spells[i].SetCooldown(launchedSpell.scriptable.StartCooldown);
+                }
+            }
+            else
+            {
+                launchedSpell.scriptable.ResetCooldown();
+            }
 
-            SetActionLeft(actionsLeftThisTurn - 1);
+            if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
+            {
+                SetActionLeft(actionsLeftThisTurn - 1);
+            }
+            else
+            {
+                SetActionLeft(actionsLeftThisTurn);
+            }
         }
         else
         {
@@ -200,6 +220,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     private void CastSpell(LaunchedSpellData launchedSpell, Action callback)
     {
         ressource?.UseRessource(launchedSpell.scriptable.RessourceCost);
+        launchedSpell.scriptable.UseSpell();
 
         OnCastSpell?.Invoke(launchedSpell);
 
@@ -236,6 +257,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         callback?.Invoke();
 
+        actOnEndCastSpell?.Invoke();
+
         SelectSpell(-1);
     }
 
@@ -247,6 +270,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         foreach (SpellScriptable spell in toSet.AvailableSpells())
         {
             spells.Add(Instantiate(spell));
+
+            spells[spells.Count - 1].SetSpell();
         }
 
         ressource = toSet.Ressource();

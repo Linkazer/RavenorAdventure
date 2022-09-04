@@ -245,13 +245,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <param name="teamIndex">The team index.</param>
     public void RemoveCharacter(CPN_Character toRemove)
     {
-        Debug.Log("Try to remove : " + toRemove);
         for (int i = 0; i < teams.Count; i++)
         {
             if (teams[i].characters.Contains(toRemove))
             {
-                Debug.Log(toRemove);
-
                 teams[i].characters.Remove(toRemove);
                 break;
             }

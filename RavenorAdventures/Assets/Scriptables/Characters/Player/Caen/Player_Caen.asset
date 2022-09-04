@@ -10,25 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
-  m_Name: Player_Ilya
+  m_Name: Player_Caen
   m_EditorClassIdentifier: 
-  nom: Ilya
-  UIPortrait: {fileID: 21300000, guid: 92fd6c3e51dcfc248aa5c7bccb4f385a, type: 3}
-  nameColor: {r: 0.92221785, g: 0, b: 1, a: 1}
-  characterSprite: {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
-  handSprite: {fileID: 21300000, guid: 28c34988060472e448246683eab2eec0, type: 3}
+  nom: Caen
+  UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+  handSprite: {fileID: 21300000, guid: 771d8ca52f078a7468d4a87afbc5ebd4, type: 3}
+  displayHand: 0
   handHeight: 0
-  uiHeight: 1.1
-  health: 12
+  uiHeight: 1.15
+  health: 8
   armor: 0
-  defense: 3
+  defense: 2
   accuracy: 1
   power: 0
-  relances: 1
+  relances: 0
   movementByTurn: 35
   speed: 5
   availableSpells:
-  - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
+  - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
+  - {fileID: 11400000, guid: 8fd99d642ff2e8d4fb91bf49d3c8f57d, type: 2}
+  - {fileID: 11400000, guid: 83eea71a8aa84f64bb1d49eaf12a0118, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

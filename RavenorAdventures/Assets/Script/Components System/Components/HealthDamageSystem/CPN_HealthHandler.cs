@@ -87,7 +87,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     {
         currentHealth -= Mathf.RoundToInt(damageAmount);
 
-        OnLoseHealth?.Invoke((int)damageAmount);
+        if (damageAmount > 0)
+        {
+            OnLoseHealth?.Invoke((int)damageAmount);
+        }
         OnChangeHealth?.Invoke(currentHealth);
         actOnChangeHealth?.Invoke(currentHealth);
 

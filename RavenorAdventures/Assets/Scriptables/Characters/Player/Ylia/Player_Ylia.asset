@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
+  m_Name: Player_Ylia
+  m_EditorClassIdentifier: 
+  nom: Ylia
+  UIPortrait: {fileID: 21300000, guid: eac86b572decff04b9c34c62e1830160, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
+  handSprite: {fileID: 21300000, guid: 7eaea7f6ab88a414799e149ce55163a4, type: 3}
+  displayHand: 0
+  handHeight: 0
+  uiHeight: 1.2
+  health: 6
+  armor: 1
+  defense: 1
+  accuracy: 0
+  power: 0
+  relances: 0
+  movementByTurn: 35
+  speed: 5
+  availableSpells:
+  - {fileID: 11400000, guid: 0e90293666764474aaf0625b8d205cdd, type: 2}
+  - {fileID: 11400000, guid: 650bf4b0470baaa4187cfe5d99fcaeb0, type: 2}
+  - {fileID: 11400000, guid: 6673fa1f7fc67c940aa58123f6e4d865, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
+      data:
+        startAmount: 5
+        limits: {x: 0, y: 5}
+        currentAmount: 5

@@ -19,6 +19,8 @@ public class VLY_FlagManager : RVN_Singleton<VLY_FlagManager>
 
     protected override void OnAwake()
     {
+        DontDestroyOnLoad(gameObject);
+
         //Ajoute tous les flags existant
         flags.Clear();
         incrementalFlagListeners.Clear();
@@ -140,9 +142,9 @@ public class VLY_FlagManager : RVN_Singleton<VLY_FlagManager>
 
     public static void TriggerFlag(string triggerName)
     {
-        foreach(Action act in triggerFlagListeners[triggerName])
+        foreach (Action act in triggerFlagListeners[triggerName])
         {
-            //Debug.Log(triggerName + " " + act.Target);
+            
             act?.Invoke();
         }
     }

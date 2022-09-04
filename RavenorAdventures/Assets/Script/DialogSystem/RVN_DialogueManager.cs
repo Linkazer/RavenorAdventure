@@ -69,6 +69,11 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
     public void SelectResponse(int index)
     {
+        foreach(DialogueResponseEffect effect in currentDialogue.Responses[index].Effects)
+        {
+            effect.ApplyEffect();
+        }
+
         if(currentDialogue.Responses[index].NextDialogue != null)
         {
             DisplayDialogue(currentDialogue.Responses[index].NextDialogue);
