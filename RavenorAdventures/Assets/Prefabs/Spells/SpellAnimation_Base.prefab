@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5088325124065952552}
   - component: {fileID: 7282106008027488376}
-  - component: {fileID: 772344424377094175}
   m_Layer: 0
   m_Name: SpellAnimation_Base
   m_TagString: Untagged
@@ -49,20 +48,6 @@ MonoBehaviour:
   onSetTime:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &772344424377094175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296962444868983952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d5d6789c25cea4893ce8414b6a19e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rnd: {fileID: 853959253304966710}
-  particleSprite: {fileID: 0}
 --- !u!1 &7526640364660457274
 GameObject:
   m_ObjectHideFlags: 0
