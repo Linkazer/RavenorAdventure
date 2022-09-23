@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Caen_Affaiblissante
   m_EditorClassIdentifier: 
   nom: Munition Affaiblissante
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a3e48fb07ed03724c9a07c0f9464eee9, type: 3}
   description:
     texts:
     - 
@@ -33,13 +33,13 @@ MonoBehaviour:
   cooldown: 0
   range: 55
   zoneRange: 0
-  effectsOnTarget:
-  - {fileID: 11400000, guid: 55442da73d3a55548aad4b86fe7b95da, type: 2}
+  effectsOnTarget: []
   effectsOnCaster: []
   type: 0
   diceUsed: 3
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
-  hitEffectsOnTarget: []
+  hitEffectsOnTarget:
+  - {fileID: 11400000, guid: 55442da73d3a55548aad4b86fe7b95da, type: 2}
   hitEffectsOnCaster: []

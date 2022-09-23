@@ -29,25 +29,40 @@ MonoBehaviour:
   movementByTurn: 35
   speed: 5
   availableSpells:
+  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
     wantedActionIndex: 0
-    conditions: []
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 10
+      condition: 3
+      baseValue: 0
+    bonusScore: 100
+    calculs: []
+  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 13
+      condition: 3
+      baseValue: 25
     bonusScore: 0
     calculs:
-    - calculType: 0
-      abscissaValue: 13
-      checkAroundMax: 0
-      maxValue: 45
-      constant: 45
-      coeficient: -1
-      calculImportance: 0
+    - id: 1
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 0
+        condition: 3
+        baseValue: 25

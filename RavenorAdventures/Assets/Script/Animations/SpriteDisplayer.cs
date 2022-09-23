@@ -40,7 +40,7 @@ public class SpriteDisplayer : MonoBehaviour
     {
         if (originRnd == null)
         {
-            rnd.sortingOrder = -Mathf.RoundToInt(transform.position.y * 5) + offset;
+            rnd.sortingOrder = /*-Mathf.RoundToInt(transform.position.y * 5) +*/ offset;
         }
         else
         {

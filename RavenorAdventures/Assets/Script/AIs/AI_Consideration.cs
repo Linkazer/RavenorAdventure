@@ -1,3 +1,4 @@
+using ravenor.referencePicker;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,11 +35,6 @@ public enum AiCalculType
     Logistical
 }
 
-/// <summary>
-/// Condition pour qu'une IA prennent en compte le Comportement.
-/// </summary>
-public enum AiConditionType { None, UpOrEqual, DownOrEqual, Equal }
-
 [Serializable]
 public class ValueForCalcul
 {
@@ -57,14 +53,6 @@ public class ValueForCalcul
 }
 
 [Serializable]
-public class ValueForCondition
-{
-    public AiAbscissaType conditionWanted;
-    public float conditionValue;
-    public AiConditionType conditionType;
-}
-
-[Serializable]
 public class AI_Consideration
 {
     [Header("Actions")]
@@ -72,11 +60,11 @@ public class AI_Consideration
     public int wantedActionIndex;
     //public OptimizePositionOption optimizePosition;
     [Header("Condition")]
-    public List<ValueForCondition> conditions;
+    public List<AIC_Conditional> conditions;
     [Header("Calculs")]
     //[Tooltip("Minimum -1 si on veut que la Considération ne soit pas prise en compte.")] public float considerationImportance = 0;
     //[Tooltip("Met une limite au score maximum des calculs.")] public float maximumValueModifier;
     public float bonusScore;
-    public List<ValueForCalcul> calculs;
+    [SerializeReference, ReferenceEditor(typeof(AI_Calcul))] public List<AI_Calcul> calculs;
     //public int maxCooldown, cooldown;
 }

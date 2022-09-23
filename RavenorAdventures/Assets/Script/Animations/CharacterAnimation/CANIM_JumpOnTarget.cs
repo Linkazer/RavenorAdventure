@@ -6,15 +6,16 @@ using UnityEngine;
 public class CANIM_JumpOnTarget : CharacterAnimation
 {
     [SerializeField] private Transform toMove;
+    [SerializeField] protected Renderer rnd;
     [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float animationTime;
 
     private Vector2 startPosition;
-    private Vector2 targetPosition;
     private Vector2 direction;
 
     private float curveIndex;
     private float curveDirection;
+    private int baseSortingOrder;
 
     /// <summary>
     /// Play a Jump animation on the target.
@@ -23,9 +24,17 @@ public class CANIM_JumpOnTarget : CharacterAnimation
     public override void Play(Vector2 _targetPosition)
     {
         startPosition = toMove.localPosition;
-        targetPosition = _targetPosition;
-        direction = targetPosition - new Vector2(toMove.position.x, toMove.position.y);
+        direction = _targetPosition - new Vector2(toMove.position.x, toMove.position.y);
         curveDirection = 1;
+
+        if (direction.y < 0)
+        {
+            baseSortingOrder = Mathf.RoundToInt(-1);
+        }
+        else
+        {
+            baseSortingOrder = Mathf.RoundToInt(1);
+        }
 
         enabled = true;
     }
@@ -34,7 +43,9 @@ public class CANIM_JumpOnTarget : CharacterAnimation
     {
         curveIndex += (Time.deltaTime * curveDirection) / animationTime;
 
-        if(curveIndex > 1)
+        rnd.sortingOrder = baseSortingOrder; //TO DO: Trouver une meilleure solution pour éviter d'avoir le personnage qui s'affiche derrière/devant la target ou les personnages qui l'entoure.
+
+        if (curveIndex > 1)
         {
             curveIndex = 1;
             curveDirection = -1;

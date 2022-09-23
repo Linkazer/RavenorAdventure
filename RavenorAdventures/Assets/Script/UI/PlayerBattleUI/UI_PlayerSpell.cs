@@ -15,6 +15,11 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private GameObject descriptionHandler;
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] private TextMeshProUGUI spellCost;
+    [SerializeField] private GameObject spellUtilisationLeftHolder;
+    [SerializeField] private TextMeshProUGUI spellUtilisationLeft;
+    [SerializeField] private GameObject spellRessourceCostHolder;
+    [SerializeField] private TextMeshProUGUI spellRessourceCost;
+    [SerializeField] private TextMeshProUGUI spellCooldown;
     [SerializeField] private TextMeshProUGUI spellDescription;
     [SerializeField] private Image cooldown;
 
@@ -48,6 +53,39 @@ public class UI_PlayerSpell : MonoBehaviour
         else
         {
             spellCost.gameObject.SetActive(false);
+        }
+
+        if(toSet.MaxUtilisation >= 0)
+        {
+            spellUtilisationLeft.text = toSet.UtilisationLeft.ToString();
+
+            spellUtilisationLeftHolder.gameObject.SetActive(true);
+        }
+        else
+        {
+            spellUtilisationLeftHolder.gameObject.SetActive(false);
+        }
+
+        if(toSet.RessourceCost != 0)
+        {
+            spellRessourceCost.text = toSet.RessourceCost.ToString();
+
+            spellRessourceCostHolder.SetActive(true);
+        }
+        else
+        {
+            spellRessourceCostHolder.SetActive(false);
+        }
+
+        if(toSet.StartCooldown > 0)
+        {
+            spellCooldown.text = toSet.StartCooldown.ToString();
+
+            spellCooldown.gameObject.SetActive(true);
+        }
+        else
+        {
+            spellCooldown.gameObject.SetActive(false);
         }
 
         UpdateCooldown(currentSpell.CurrentCooldown);

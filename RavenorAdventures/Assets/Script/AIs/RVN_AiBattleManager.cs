@@ -17,9 +17,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     [SerializeField] private CPN_SpellCaster currentCharacterSpell;
     [SerializeField] private CPN_Movement currentCharacterMovement;
 
-    [SerializeField] private Ai_PlannedAction plannedAction;
-
-    private bool usedAction = false;
+    private Ai_PlannedAction plannedAction;
 
     /// <summary>
     /// Débute le tour d'un personnage IA. (Appelé par UnityEvent)
@@ -43,11 +41,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             currentCharacterMovement = nMovement;
         }
 
-        usedAction = false;
-
-        plannedAction = SearchForNextAction(currentCharacter, false);
-
-        PrepareNextAction(2f);
+        SearchNextAction(2f);
     }
 
     /// <summary>
@@ -59,6 +53,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         currentCharacter = null;
 
         RVN_BattleManager.EndCharacterTurn();
+    }
+
+    private void SearchNextAction(float timeToWait)
+    {
+        plannedAction = SearchForBestAction(currentCharacter, false);
+
+        PrepareNextAction(timeToWait);
     }
 
     /// <summary>
@@ -75,32 +76,29 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     private void DoNextMove()
     {
-        if(currentCharacterHealth.CurrentHealth <= 0)
+        if (currentCharacterHealth.CurrentHealth <= 0)
         {
             EndCharacterTurn(currentCharacter);
         }
-        else if(plannedAction != null && plannedAction.actionIndex >= 0)
+        else if (plannedAction != null && plannedAction.actionIndex >= 0)
         {
-            if(plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
+            if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
             }
             else
             {
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
-                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => PrepareNextAction(1.5f));
+                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(1.5f));
 
-                usedAction = true;
                 plannedAction = null;
             }
         }
-        else if(!usedAction && currentCharacterMovement.CanMove)
+        else if (currentCharacterMovement.CanMove)
         {
-            usedAction = true;
+            Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
 
-            Ai_PlannedAction nextTurnAction = SearchForNextAction(currentCharacter, true);
-
-            if(nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+            if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
                 currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
             }
@@ -121,7 +119,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// <param name="caster">Le personnage IA qui cherche à faire l'action.</param>
     /// <param name="forNextTurn">Si TRUE, le personnage cherche une action pour son prochain tour.</param>
     /// <returns>L'action que le personnage IA doit faire.</returns>
-    private Ai_PlannedAction SearchForNextAction(CPN_Character caster, bool forNextTurn)
+    private Ai_PlannedAction SearchForBestAction(CPN_Character caster, bool forNextTurn)
     {
         Ai_PlannedAction toReturn = null;
 
@@ -135,20 +133,25 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         float maxScore = -1;
 
-        foreach(AI_Consideration consideration in currentAi.Comportement)
+        foreach (AI_Consideration consideration in currentAi.Comportement)
         {
-            foreach(CPN_Character target in allTargets)
+            if(!currentCharacterSpell.Spells[consideration.wantedActionIndex].IsUsable)
             {
-                List<Node> possibleMovements = new List<Node>();
-                if (forNextTurn)
-                {
-                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement);
-                }
-                else
-                {
-                    possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
-                }
+                continue;
+            }
 
+            List<Node> possibleMovements = new List<Node>();
+            if (forNextTurn)
+            {
+                possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement, false);
+            }
+            else
+            {
+                possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+            }
+
+            foreach (CPN_Character target in allTargets)
+            {
                 Ai_PlannedAction actionOnTarget = null;
 
                 float minimumDistance = -1;
@@ -164,10 +167,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     {
                         float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        if(calculatedScore >= maxScore)
+                        if (calculatedScore >= maxScore)
                         {
                             float calculatedDistance = -1;
-                            if(forNextTurn)
+                            if (forNextTurn)
                             {
                                 calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.actionTarget);
                             }
@@ -176,14 +179,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                                 calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
                             }
 
-                            if (actionOnTarget == null || calculatedDistance < minimumDistance)
+                            if (minimumDistance < 0 || calculatedDistance < minimumDistance)
                             {
                                 actionOnTarget = actionToCheck;
 
                                 minimumDistance = calculatedDistance;
                             }
 
-                            if(calculatedScore > maxScore)
+                            if (calculatedScore > maxScore)
                             {
                                 possibleActions = new List<Ai_PlannedAction>();
 
@@ -200,7 +203,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        if(possibleActions.Count > 0)
+        if (possibleActions.Count > 0)
         {
             toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
@@ -253,16 +256,39 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        if(!isForNextTurn && !Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
+        if (!isForNextTurn)
         {
-            return false;
+            if (!Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
+            {
+                return false;
+            }
+
+            if (!currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction))
+            {
+                return false;
+            }
+
+            if(!CheckConsiderationCondition(caster, actionToCheck, consideration))
+            {
+                return false;
+            }
         }
 
-        //Condition de la Considération de l'IA
+        return true;
+    }
 
-        if(!isForNextTurn && !currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction))
+    private bool CheckConsiderationCondition(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration)
+    {
+        float abscissa = 0;
+
+        foreach (AIC_Conditional condition in consideration.conditions)
         {
-            return false;
+            abscissa = GetAbscissaValue(condition.abscissaValue, actionToCheck, caster.CurrentNode);
+
+            if(condition.Calculate(abscissa) <= 0)
+            {
+                return false;
+            }
         }
 
         return true;
@@ -280,10 +306,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         float result = 0;
         float coef = 0;
 
-        foreach(ValueForCalcul calculValue in consideration.calculs)
+        foreach(AI_Calcul calculValue in consideration.calculs)
         {
             result += CalculateConsideration(plannedAction, calculValue, casterCurrentNode) * (calculValue.calculImportance + 1);
             coef += calculValue.calculImportance + 1;
+        }
+
+        if(coef == 0)
+        {
+            coef = 1;
         }
 
         return consideration.bonusScore + (result / coef);
@@ -293,37 +324,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// Calcul la considération d'une action
     /// </summary>
     /// <param name="plannedAction">L'action à vérifier.</param>
-    /// <param name="calculValues">Les calculs à effectuer.</param>
+    /// <param name="calcul">Les calculs à effectuer.</param>
     /// <param name="casterCurrentNode">La case sur laquelle se trouve le personnage IA.</param>
     /// <returns>Le score de la considération.</returns>
-    private float CalculateConsideration(Ai_PlannedAction plannedAction, ValueForCalcul calculValues, Node casterCurrentNode)
+    private float CalculateConsideration(Ai_PlannedAction plannedAction, AI_Calcul calcul, Node casterCurrentNode)
     {
-        float result = 0;
-        float abscissa = GetAbscissaValue(calculValues.abscissaValue, plannedAction, casterCurrentNode);
+        float abscissa = GetAbscissaValue(calcul.abscissaValue, plannedAction, casterCurrentNode);
 
-        switch(calculValues.calculType)
-        {
-            case AiCalculType.Conditionnal:
-                result = CalculConditionnal(abscissa, calculValues.constant, calculValues.coeficient);
-                break;
-            case AiCalculType.Affine:
-                result = CalculAffine(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
-                break;
-            case AiCalculType.Logistical:
-                result = CalculLogistical(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue, calculValues.checkAroundMax);
-                break;
-            case AiCalculType.Exponential:
-                result = CalculExponential(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
-                break;
-            case AiCalculType.Logarythm:
-                result = CalculLogarythm(abscissa, calculValues.constant, calculValues.coeficient, calculValues.maxValue);
-                break;
-            case AiCalculType.ReverseExponential:
-                result = CalculExponentialReverse(abscissa, calculValues.constant, calculValues.coeficient);
-                break;
-        }
-
-        return Mathf.Clamp(result, 0, 1);
+        return Mathf.Clamp(calcul.Calculate(abscissa), 0, 1);
     }
 
     private float GetAbscissaValue(AiAbscissaType abscissaWanted, Ai_PlannedAction actionToCheck, Node casterCurrentNode)
@@ -401,8 +409,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
 
     #region Calculs de Considérations
-
-
     public float CalculConditionnal(float abscissa, float constant, float coeficient)
     {
         if (coeficient >= 0 && abscissa > constant)
@@ -467,3 +473,5 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     }
     #endregion
 }
+
+

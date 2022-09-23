@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lisbeth_BoostPrecision
   m_EditorClassIdentifier: 
   nom: "Boost Pr\xE9cision"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
   description:
     texts:
     - 
@@ -22,8 +22,8 @@ MonoBehaviour:
   castAnimationDuration: 0.5
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: dbb6ffe15522bce47a38a265a7179c55, type: 3}
-  animationDuration: 0.5
+  spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
+  animationDuration: 0
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3

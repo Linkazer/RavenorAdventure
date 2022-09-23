@@ -40,14 +40,15 @@ MonoBehaviour:
     conditions: []
     bonusScore: 0
     calculs:
-    - calculType: 0
-      abscissaValue: 13
-      checkAroundMax: 0
-      maxValue: 45
-      constant: 45
-      coeficient: -1
-      calculImportance: 0
+    - id: 1
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 13
+        condition: 3
+        baseValue: 25

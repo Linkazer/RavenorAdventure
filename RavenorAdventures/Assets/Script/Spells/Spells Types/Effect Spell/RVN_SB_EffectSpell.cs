@@ -17,7 +17,6 @@ public class RVN_SB_EffectSpell : RVN_SpellBehavior<RVN_SS_EffectSpell>
 
     protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        Debug.Log("Use effect spell");
         return true;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ylia_ArmorBoost
   m_EditorClassIdentifier: 
   nom: Armor Boost
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
   description:
     texts:
     - 
@@ -22,10 +22,10 @@ MonoBehaviour:
   castAnimationDuration: 0.75
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
+  spellAnimation: {fileID: 3603624626837706201, guid: 14226e07f77d8f742b7e36f913a3b2d5, type: 3}
   animationDuration: 0
   ressourceCost: 1
-  maxUtilisations: -1
+  maxUtilisations: 2
   hitableTarget: 3
   castTarget: 3
   castType: 0

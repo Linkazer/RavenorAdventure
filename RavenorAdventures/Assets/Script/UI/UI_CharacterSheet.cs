@@ -11,7 +11,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
 
     [SerializeField] private List<TextMeshProUGUI> stats = new List<TextMeshProUGUI>();
 
-    [SerializeField] private List<Image> effects;
+    [SerializeField] private List<UI_CharacterSheet_Effect> effects;
 
     private CPN_Character currentCharacter;
 
@@ -63,7 +63,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
         {
             for(int i = 0; i < effectHandler.Effects.Count; i++)
             {
-                effects[i].sprite = effectHandler.Effects[i].GetEffect.Icon;
+                effects[i].SetEffect(effectHandler.Effects[i].GetEffect);
                 effects[i].gameObject.SetActive(true);
             }
         }
@@ -71,7 +71,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
 
     public void UnsetCharacter()
     {
-        foreach (Image effect in effects)
+        foreach (UI_CharacterSheet_Effect effect in effects)
         {
             effect.gameObject.SetActive(false);
         }

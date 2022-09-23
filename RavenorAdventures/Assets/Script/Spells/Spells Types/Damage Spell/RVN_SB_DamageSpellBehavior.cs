@@ -42,7 +42,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             switch(usedScriptable.Type)
             {
                 case DamageType.Heal:
-                    hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed); //TO DO : Voir si on ajoute la régénération d'Armure ici
+                    hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
                     break;
                 case DamageType.RegenArmor:
                     hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
@@ -50,7 +50,12 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                 default:
                     List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
 
-                    float damage = CalculateDamage(damageDices, usedScriptable, hitedObject);
+                    float damage = CalculateDamage(damageDices, usedScriptable, hitedObject, out bool doesHit);
+
+                    if(!doesHit)
+                    {
+                        toReturn = false;
+                    }
 
                     hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
 
@@ -72,7 +77,6 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         {
                             hitedObject.TakeDamage(spellToUse.caster, 0);
                         }
-                        toReturn = false;
                     }
                     break;
             }
@@ -106,19 +110,51 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return toReturn;
     }
 
-    private float CalculateDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target)
+    private float CalculateDiceDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target)
     {
         float totalDamage = 0;
         int currentRelance = 0;
 
-        for(int i = 0; i < diceDamage.Count; i++)
+        for (int i = 0; i < diceDamage.Count; i++)
         {
-            if(diceDamage[i].Result > target.Defense)
+            if (diceDamage[i].Result > target.Defense)
             {
                 totalDamage++;
                 diceDamage[i].succeed = true;
             }
-            else if(currentRelance < spellUsed.PossibleReroll)
+            else if (currentRelance < spellUsed.PossibleReroll)
+            {
+                currentRelance++;
+                diceDamage[i].Roll();
+                i--;
+            }
+        }
+
+        if (diceDamage.Count <= 0 || totalDamage > 0)
+        {
+            target.RemoveArmor(spellUsed.ArmorPierced);
+        }
+
+        return totalDamage;
+    }
+
+    private float CalculateDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target, out bool didHit)
+    {
+        didHit = false;
+
+        float totalDamage = 0;
+        int currentRelance = 0;
+
+        for (int i = 0; i < diceDamage.Count; i++)
+        {
+            if (diceDamage[i].Result > target.Defense)
+            {
+                totalDamage++;
+                diceDamage[i].succeed = true;
+
+                didHit = true;
+            }
+            else if (currentRelance < spellUsed.PossibleReroll)
             {
                 currentRelance++;
                 diceDamage[i].Roll();
