@@ -16,7 +16,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
 
     public void Play(Action callback, float duration)
     {
-        playTime = duration;
+        //playTime = duration;
 
         onSetTime?.Invoke(1/PlayTime);
 

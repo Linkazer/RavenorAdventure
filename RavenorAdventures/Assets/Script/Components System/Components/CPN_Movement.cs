@@ -87,6 +87,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		currentMovementLeft += amount;
     }
 
+	public void SetCurrentMovement(int amount)
+    {
+		currentMovementLeft = Mathf.Clamp(amount, 0, maxDistance);
+    }
+
 	/// <summary>
 	/// Called when the component find a path to follow.
 	/// </summary>
@@ -102,7 +107,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 			{
 				StopCoroutine(currentMovement);
 			}
-			currentMovement = StartCoroutine(FollowPath());
+			
+			if(!CheckForOpportunityAttack())
+            {
+				StartMovement();
+            }
 		}
         else
         {
@@ -147,6 +156,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
+	private void StartMovement()
+	{
+		if (enabled)
+		{
+			currentMovement = StartCoroutine(FollowPath());
+		}
+	}
+
 	private void EndMovement()
     {
 		OnEndMovement?.Invoke();
@@ -160,7 +177,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// </summary>
 	public void StopMovement()
     {
-		StopCoroutine(currentMovement);
+		if (currentMovement != null)
+		{
+			StopCoroutine(currentMovement);
+		}
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
@@ -197,12 +217,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 			lerpValue += Time.deltaTime * speed / distance;
 
 			if (currentNode != currentWaypoint && lerpValue >= 1)
-            {
+			{
 				ChangeNode(currentWaypoint);
 			}
 
 			if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
 			{
+
 				targetIndex++;
 				if (targetIndex >= path.Length)
 				{
@@ -214,17 +235,27 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					break;
 				}
-				currentWaypoint = path[targetIndex];
 
-				lerpValue = 0;
+				if (CheckForOpportunityAttack())
+				{
+					OnStopMovement?.Invoke();
+					StopCoroutine(currentMovement);
+				}
+				else
+				{
+					currentWaypoint = path[targetIndex];
 
-				posUnit = new Vector2(transform.position.x, transform.position.y);
-				posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+					lerpValue = 0;
 
-				OnChangeDirection?.Invoke(posTarget - posUnit);
+					posUnit = new Vector2(transform.position.x, transform.position.y);
+					posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
 
-				distance = Vector2.Distance(posUnit, posTarget);
+					OnChangeDirection?.Invoke(posTarget - posUnit);
+
+					distance = Vector2.Distance(posUnit, posTarget);
+				}
 			}
+
 
 			transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
 			yield return null;
@@ -311,4 +342,43 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		return CanMove && CanMoveToDestination(actionTargetPosition);
     }
+
+	public bool CheckForOpportunityAttack()//CODE REVIEW : Voir si on peut pas le mettre autre part que dans le déplacement (Créer un lien entre le Déplacement et le SpellCaster qui est pas ouf)
+	{
+		bool hasBeenHited = false;
+
+		List<Node> neighbours = Grid.GetNeighbours(CurrentNode);
+
+		foreach (Node n in neighbours)
+		{
+			List<CPN_Character> characterOnMelee = n.GetNodeComponent<CPN_Character>();
+
+			foreach (CPN_Character chara in characterOnMelee)
+			{
+				if (!RVN_BattleManager.AreCharacterAllies(chara, handler as CPN_Character))
+				{
+					if (chara.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ennemyCaster))
+					{
+						if (ennemyCaster.hasOpportunityAttack)
+						{
+							ennemyCaster.SelectSpell(0, false);
+							if (!hasBeenHited)
+							{
+								ennemyCaster.OpportunityAttack(CurrentNode.worldPosition, StartMovement);
+								hasBeenHited = true;
+							}
+							else
+							{
+								ennemyCaster.OpportunityAttack(CurrentNode.worldPosition, null);
+							}
+
+							ennemyCaster.hasOpportunityAttack = false;
+						}
+					}
+				}
+			}
+		}
+
+		return hasBeenHited;
+	}
 }

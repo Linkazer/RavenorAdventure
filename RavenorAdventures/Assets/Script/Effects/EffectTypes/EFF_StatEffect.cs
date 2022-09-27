@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat Effect", menuName = "Spell/Effect/Stat Effect")]
 public class EFF_StatEffect : Effect
 {
     [Serializable]

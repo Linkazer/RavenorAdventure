@@ -27,7 +27,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;
     [SerializeField] protected float castAnimationDuration;
-    [SerializeField] protected bool playSpellAnimationOnlyTarget = false;
+    [SerializeField, Tooltip("Does the SpellAnimation only play on the main target of the spell")] protected bool playSpellAnimationOnlyTarget = false;
     [SerializeField] protected SpellProjectile projectile;
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
     [SerializeField] protected float animationDuration;

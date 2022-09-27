@@ -19,6 +19,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private Ai_PlannedAction plannedAction;
 
+    private bool isDoneMoving;
+
     /// <summary>
     /// Débute le tour d'un personnage IA. (Appelé par UnityEvent)
     /// </summary>
@@ -40,6 +42,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             currentCharacterMovement = nMovement;
         }
+
+        isDoneMoving = false;
 
         SearchNextAction(2f);
     }
@@ -98,9 +102,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
 
-            if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+            if (!isDoneMoving && nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
                 currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+
+                isDoneMoving = true;
             }
             else
             {
@@ -143,7 +149,30 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             List<Node> possibleMovements = new List<Node>();
             if (forNextTurn)
             {
-                possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft + currentCharacterMovement.MaxMovement, false);
+                possibleMovements.Add(casterNode);
+
+                foreach (CPN_Character target in allTargets)
+                {
+                    List<Node> targetNaighbours = Grid.GetNeighbours(target.CurrentNode);
+
+                    Node toAdd = null;
+
+                    int dist = 999;
+
+                    foreach(Node n in targetNaighbours)
+                    {
+                        if(n.IsWalkable && Pathfinding.GetDistance(n, casterNode) < dist)
+                        {
+                            toAdd = n;
+                            dist = Pathfinding.GetDistance(n, casterNode);
+                        }
+                    }
+
+                    if(toAdd != null)
+                    {
+                        possibleMovements.Add(toAdd);
+                    }
+                }
             }
             else
             {
@@ -152,6 +181,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
             foreach (CPN_Character target in allTargets)
             {
+                List<Node> possibleTargetPosition = Pathfinding.GetAllNodeInDistance(target.CurrentNode, consideration.wantedAction.Range, true);
+
                 Ai_PlannedAction actionOnTarget = null;
 
                 float minimumDistance = -1;
@@ -167,7 +198,17 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     {
                         float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        if (calculatedScore >= maxScore)
+                        if (calculatedScore > maxScore)
+                        {
+                            actionOnTarget = actionToCheck;
+
+                            minimumDistance = -1;
+
+                            possibleActions = new List<Ai_PlannedAction>();
+
+                            maxScore = calculatedScore;
+                        }
+                        else if (calculatedScore == maxScore)
                         {
                             float calculatedDistance = -1;
                             if (forNextTurn)
@@ -184,13 +225,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                                 actionOnTarget = actionToCheck;
 
                                 minimumDistance = calculatedDistance;
-                            }
-
-                            if (calculatedScore > maxScore)
-                            {
-                                possibleActions = new List<Ai_PlannedAction>();
-
-                                maxScore = calculatedScore;
                             }
                         }
                     }
@@ -256,6 +290,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
+        if (!CheckConsiderationCondition(caster, actionToCheck, consideration))
+        {
+            return false;
+        }
+
         if (!isForNextTurn)
         {
             if (!Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
@@ -264,11 +303,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
 
             if (!currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction))
-            {
-                return false;
-            }
-
-            if(!CheckConsiderationCondition(caster, actionToCheck, consideration))
             {
                 return false;
             }

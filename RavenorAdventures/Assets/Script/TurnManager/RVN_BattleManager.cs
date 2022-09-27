@@ -306,22 +306,25 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         CombatTeam toCheck = GetCharacterTeam(diedCharacter);
 
-        if (currentPlayingCharacter == diedCharacter)
+        if (toCheck != null)
         {
-            EndCharacterTurn();
-        }
-
-        RemoveCharacter(diedCharacter);
-
-        if (toCheck.characters.Count <= 0)
-        {
-            if(toCheck.allegeance == CharacterAllegeance.Player)
+            if (currentPlayingCharacter == diedCharacter)
             {
-                OnPlayerTeamDie?.Invoke();
+                EndCharacterTurn();
             }
-            else if(toCheck.allegeance == CharacterAllegeance.Ennemy)
+
+            RemoveCharacter(diedCharacter);
+
+            if (toCheck.characters.Count <= 0)
             {
-                OnEnnemyTeamDie?.Invoke();
+                if (toCheck.allegeance == CharacterAllegeance.Player)
+                {
+                    OnPlayerTeamDie?.Invoke();
+                }
+                else if (toCheck.allegeance == CharacterAllegeance.Ennemy)
+                {
+                    OnEnnemyTeamDie?.Invoke();
+                }
             }
         }
     }

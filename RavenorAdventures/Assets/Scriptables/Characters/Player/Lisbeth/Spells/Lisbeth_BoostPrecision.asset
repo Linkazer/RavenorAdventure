@@ -23,7 +23,7 @@ MonoBehaviour:
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
-  animationDuration: 0
+  animationDuration: 1
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3

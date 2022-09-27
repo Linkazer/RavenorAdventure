@@ -93,7 +93,9 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         {
             if (usedScriptable.AnimationDuration > 0)
             {
-                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, usedScriptable.AnimationDuration, targetNode.worldPosition, callback);
+                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+
+                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
             }
             else
             {

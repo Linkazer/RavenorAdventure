@@ -15,7 +15,7 @@ public class CPN_Character : RVN_ComponentHandler
     [SerializeField] private UnityEvent OnStartTurn;
     [SerializeField] private UnityEvent OnEndTurn;
 
-    private List<CPN_Character> characterOnMelee = new List<CPN_Character>();
+    [SerializeField] private List<CPN_Character> characterOnMelee = new List<CPN_Character>();
 
     public Action<RVN_ComponentHandler> ActOnBeginTurn;
     public Action<RVN_ComponentHandler> ActOnEndTeamTurn;

@@ -21,13 +21,14 @@ MonoBehaviour:
   handHeight: 0
   uiHeight: 1.2
   health: 10
-  armor: 3
+  armor: 2
   defense: 2
   accuracy: 0
   power: 0
   relances: 0
-  movementByTurn: 35
+  movementByTurn: 45
   speed: 5
+  opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
   - {fileID: 11400000, guid: fa92f097a814db542b1302eb63e9238d, type: 2}

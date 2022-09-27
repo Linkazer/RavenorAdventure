@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 {
+    private SpellScriptable opportunitySpell;
     [SerializeField] private List<SpellScriptable> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
@@ -14,7 +15,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     [SerializeField] private int actionsLeftThisTurn = 1;
     [SerializeField] private int actionByTurn = 1;
-    private int currentSelectedSpell = -1;
+    private SpellScriptable currentSelectedSpell = null;
+
+    [HideInInspector] public bool hasOpportunityAttack = true;
 
     //Base datas
     [SerializeField] private int possibleReroll;
@@ -80,14 +83,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="actionTargetPosition">The current target position the player aim for.</param>
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-        if (currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable && (ressource == null || spells[currentSelectedSpell].RessourceCost <= ressource.CurrentAmount))
+        if (currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount))
         {
-            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, spells[currentSelectedSpell].Range, true);
+            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, currentSelectedSpell.Range, true);
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
 
             if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))
             {
-                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), spells[currentSelectedSpell].ZoneRange, false);
+                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), currentSelectedSpell.ZoneRange, false);
                 RVN_GridDisplayer.SetGridFeedback(zoneNodes, Color.red);
             }
         }
@@ -104,7 +107,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override bool CanSelectAction()
     {
-        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell >= 0 && spells[currentSelectedSpell].IsUsable && (ressource == null || spells[currentSelectedSpell].RessourceCost <= ressource.CurrentAmount);
+        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount);
     }
 
     /// <summary>
@@ -115,8 +118,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
         return  actionsLeftThisTurn > 0 &&
-                spells.Count > 0 && currentSelectedSpell >= 0 &&
-                IsActionUsable(nodeData.CurrentNode.worldPosition, actionTargetPosition, spells[currentSelectedSpell]);
+                spells.Count > 0 && currentSelectedSpell != null &&
+                IsActionUsable(nodeData.CurrentNode.worldPosition, actionTargetPosition, currentSelectedSpell);
     }
 
     public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SpellScriptable spellToCheck)
@@ -134,7 +137,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public override void ResetData()
     {
         SetActionLeft(actionByTurn);
-        currentSelectedSpell = -1;
+        currentSelectedSpell = null;
+
+        hasOpportunityAttack = opportunitySpell != null;
+    }
+
+    public void OpportunityAttack(Vector2 actionTargetPosition, Action callback)
+    {
+        currentSelectedSpell = opportunitySpell;
+
+        TryDoAction(actionTargetPosition, callback);
     }
 
     /// <summary>
@@ -144,9 +156,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to play once the spell end.</param>
     public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        LaunchedSpellData launchedSpell = new LaunchedSpellData(spells[currentSelectedSpell], this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
+        LaunchedSpellData launchedSpell = new LaunchedSpellData(currentSelectedSpell, this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
-        if (currentSelectedSpell >= 0 && RVN_SpellManager.CanUseSpell(launchedSpell))
+        if (currentSelectedSpell != null && RVN_SpellManager.CanUseSpell(launchedSpell))
         {
             CastSpell(launchedSpell, callback);
 
@@ -164,6 +176,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
             if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
             {
+                StopMovementAction();
                 SetActionLeft(actionsLeftThisTurn - 1);
             }
             else
@@ -183,17 +196,17 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="spellIndex">The index of the spell to choose.</param>
     public void SelectSpell(int spellIndex, bool displayAction = true)
     {
-        int lastSpell = currentSelectedSpell;
-        if (currentSelectedSpell >= 0)
+        SpellScriptable lastSpell = currentSelectedSpell;
+        if (currentSelectedSpell != null)
         {
             UnselectSpell();
         }
 
-        if (spellIndex != lastSpell && spellIndex >= 0)
+        if (spellIndex >= 0 && spells[spellIndex] != lastSpell)
         {
-            currentSelectedSpell = spellIndex;
+            currentSelectedSpell = spells[spellIndex];
 
-            actOnSelectSpell?.Invoke(spells[currentSelectedSpell]);
+            actOnSelectSpell?.Invoke(currentSelectedSpell);
         }
 
         if (displayAction)
@@ -206,9 +219,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         UndisplayAction(RVN_InputController.MousePosition);
 
-        actOnUnselectSpell?.Invoke(spells[currentSelectedSpell]);
+        actOnUnselectSpell?.Invoke(currentSelectedSpell);
 
-        currentSelectedSpell = -1;
+        currentSelectedSpell = null;
     }
 
     /// <summary>
@@ -274,6 +287,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             spells[spells.Count - 1].SetSpell();
         }
 
+        opportunitySpell = toSet.OpportunitySpell();
+
         ressource = toSet.Ressource();
         ressource?.Initialize();
 
@@ -281,6 +296,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
         accuracy = toSet.Accuracy();
         power = toSet.Power();
+
+        ResetData();
     }
 
     public void UpdateCooldowns()
@@ -296,5 +313,17 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actOnDealDamageSelf?.Invoke(Handler);
         actOnDealDamageTarget?.Invoke(target.Handler);
+    }
+
+    //CODE REVIEW : Voir si il faut mettre cette fonction autre part pour éviter le lien entre Mouvement et SpellCast
+    private void StopMovementAction()
+    {
+        if(handler.TryGetComponent<CPN_Movement>(out CPN_Movement movement))
+        {
+            if(movement.MaxMovement != movement.MovementLeft)
+            {
+                movement.SetCurrentMovement(0);
+            }
+        }
     }
 }

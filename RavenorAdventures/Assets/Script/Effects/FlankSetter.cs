@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Used to detect all character around the current character
+/// </summary>
 public class FlankSetter : MonoBehaviour
 {
     public void SetFlank(CPN_Character flankingCharacter)

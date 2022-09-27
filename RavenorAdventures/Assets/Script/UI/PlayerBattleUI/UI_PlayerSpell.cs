@@ -12,7 +12,7 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private Image icon;
 
     [Header("Description")]
-    [SerializeField] private GameObject descriptionHandler;
+    [SerializeField] private RectTransform descriptionHandler;
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] private TextMeshProUGUI spellCost;
     [SerializeField] private GameObject spellUtilisationLeftHolder;
@@ -134,6 +134,8 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void DisplaySpellDescription(bool show)
     {
-        descriptionHandler.SetActive(show);
+        descriptionHandler.gameObject.SetActive(show);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(descriptionHandler);
     }
 }

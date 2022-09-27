@@ -26,8 +26,9 @@ MonoBehaviour:
   accuracy: 0
   power: 0
   relances: 0
-  movementByTurn: 35
+  movementByTurn: 55
   speed: 5
+  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   usableSpellByTurn: 1

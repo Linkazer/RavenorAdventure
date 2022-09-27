@@ -27,6 +27,7 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField] private float speed = 5;
 
     [Header("Spells")]
+    [SerializeField] private SpellScriptable opportunitySpell;
     [SerializeField] private List<SpellScriptable> availableSpells;
     [SerializeField] private int usableSpellByTurn = 1;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(SpellRessource))] private SpellRessource usedRessource;
@@ -75,6 +76,11 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     public List<SpellScriptable> AvailableSpells()
     {
         return availableSpells;
+    }
+
+    public SpellScriptable OpportunitySpell()
+    {
+        return opportunitySpell;
     }
 
     public int MaxSpellUseByTurn()

@@ -26,18 +26,19 @@ MonoBehaviour:
   accuracy: 0
   power: 0
   relances: 0
-  movementByTurn: 35
+  movementByTurn: 55
   speed: 5
+  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
   comportement:
   - wantedAction: {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
-    wantedActionIndex: 0
+    wantedActionIndex: 1
     conditions:
     - calculImportance: 0
       abscissaValue: 10
@@ -46,7 +47,7 @@ MonoBehaviour:
     bonusScore: 100
     calculs: []
   - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
-    wantedActionIndex: 1
+    wantedActionIndex: 0
     conditions:
     - calculImportance: 0
       abscissaValue: 13
