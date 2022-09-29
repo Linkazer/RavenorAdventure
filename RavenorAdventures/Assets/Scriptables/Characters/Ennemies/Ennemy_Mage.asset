@@ -42,6 +42,7 @@ MonoBehaviour:
     bonusScore: 0
     calculs:
     - id: 1
+    - id: 2
   references:
     version: 1
     00000000:
@@ -54,3 +55,11 @@ MonoBehaviour:
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 1
+    00000002:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 0
+        abscissaCoeficient: 1
+        constantToAdd: 0
+        maxValue: 100

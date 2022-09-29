@@ -6,13 +6,28 @@ using UnityEngine.Events;
 
 public class InstantiatedAnimationHandler : MonoBehaviour
 {
+    public enum ActionOnEnd
+    {
+        Destroy,
+        Disable,
+        DesactivateObject,
+        None,
+    }
+    
     /// The lifespan of the animation.
     [SerializeField] private float playTime;
+    [SerializeField] private ActionOnEnd endAction = ActionOnEnd.Destroy;
+
     public float PlayTime => playTime;
 
     private Action endCallback;
 
     [SerializeField] private UnityEvent<float> onSetTime;
+
+    public void Play()
+    {
+        Play(null);
+    }
 
     public void Play(Action callback, float duration)
     {
@@ -42,6 +57,21 @@ public class InstantiatedAnimationHandler : MonoBehaviour
     public void End()
     {
         endCallback?.Invoke();
-        Destroy(gameObject);
+
+        switch(endAction)
+        {
+            case ActionOnEnd.Destroy:
+                Destroy(gameObject);
+                break;
+            case ActionOnEnd.Disable:
+                enabled = false;
+                break;
+            case ActionOnEnd.DesactivateObject:
+                gameObject.SetActive(false);
+                break;
+            case ActionOnEnd.None:
+                break;
+        }
+        
     }
 }

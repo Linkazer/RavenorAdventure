@@ -12,6 +12,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
     [SerializeField] private UnityEvent<Vector2> OnCastSpellToDiection;
+    [SerializeField] private UnityEvent onOpportunityAttack;
 
     [SerializeField] private int actionsLeftThisTurn = 1;
     [SerializeField] private int actionByTurn = 1;
@@ -144,9 +145,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public void OpportunityAttack(Vector2 actionTargetPosition, Action callback)
     {
-        currentSelectedSpell = opportunitySpell;
+        if (opportunitySpell != null)
+        {
+            onOpportunityAttack?.Invoke();
 
-        TryDoAction(actionTargetPosition, callback);
+            currentSelectedSpell = opportunitySpell;
+
+            TryDoAction(actionTargetPosition, callback);
+        }
     }
 
     /// <summary>

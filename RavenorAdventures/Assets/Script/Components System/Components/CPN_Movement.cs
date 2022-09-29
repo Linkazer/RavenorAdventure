@@ -198,7 +198,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <returns></returns>
 	private IEnumerator FollowPath()
 	{
-		Node currentWaypoint = path[0];
+		Node currentWaypoint = path[targetIndex];
 
 		OnStartMovement?.Invoke();
 
@@ -223,8 +223,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 			if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
 			{
-
 				targetIndex++;
+
 				if (targetIndex >= path.Length)
 				{
 					currentMovementLeft -= currentNode.gCost;
@@ -236,23 +236,23 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 					break;
 				}
 
+				currentWaypoint = path[targetIndex];
+
+				lerpValue = 0;
+
+				posUnit = new Vector2(transform.position.x, transform.position.y);
+				posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+				OnChangeDirection?.Invoke(posTarget - posUnit);
+
+				distance = Vector2.Distance(posUnit, posTarget);
+
 				if (CheckForOpportunityAttack())
 				{
+					currentMovementLeft -= currentNode.gCost;
+
 					OnStopMovement?.Invoke();
 					StopCoroutine(currentMovement);
-				}
-				else
-				{
-					currentWaypoint = path[targetIndex];
-
-					lerpValue = 0;
-
-					posUnit = new Vector2(transform.position.x, transform.position.y);
-					posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
-
-					OnChangeDirection?.Invoke(posTarget - posUnit);
-
-					distance = Vector2.Distance(posUnit, posTarget);
 				}
 			}
 

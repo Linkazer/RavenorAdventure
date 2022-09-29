@@ -131,7 +131,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         AI_CharacterScriptable currentAi = caster.Scriptable as AI_CharacterScriptable;
 
-        List<CPN_Character> allTargets = RVN_BattleManager.GetAllCharacter();
+        List<CPN_Character> possibleTargets = new List<CPN_Character>();
 
         Node casterNode = currentCharacterMovement.CurrentNode;
 
@@ -141,6 +141,24 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         foreach (AI_Consideration consideration in currentAi.Comportement)
         {
+            possibleTargets = new List<CPN_Character>();
+
+            switch(consideration.wantedAction.CastTargets)
+            {
+                case SpellTargets.Self:
+                    possibleTargets.Add(caster);
+                    break;
+                case SpellTargets.Allies:
+                    possibleTargets = RVN_BattleManager.GetAllyCharacters(caster);
+                    break;
+                case SpellTargets.Ennemies:
+                    possibleTargets = RVN_BattleManager.GetEnnemyCharacters(caster);
+                    break;
+                case SpellTargets.All:
+                    possibleTargets = RVN_BattleManager.GetAllCharacter();
+                    break;
+            }
+
             if(!currentCharacterSpell.Spells[consideration.wantedActionIndex].IsUsable)
             {
                 continue;
@@ -149,15 +167,18 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             List<Node> possibleMovements = new List<Node>();
             if (forNextTurn)
             {
-                possibleMovements.Add(casterNode);
+                if (possibleTargets.Contains(caster))
+                {
+                    possibleMovements.Add(casterNode);
+                }
 
-                foreach (CPN_Character target in allTargets)
+                foreach (CPN_Character target in possibleTargets)
                 {
                     List<Node> targetNaighbours = Grid.GetNeighbours(target.CurrentNode);
 
                     Node toAdd = null;
 
-                    int dist = 999;
+                    int dist = 1023;
 
                     foreach(Node n in targetNaighbours)
                     {
@@ -179,7 +200,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
             }
 
-            foreach (CPN_Character target in allTargets)
+            foreach (CPN_Character target in possibleTargets)
             {
                 List<Node> possibleTargetPosition = Pathfinding.GetAllNodeInDistance(target.CurrentNode, consideration.wantedAction.Range, true);
 
@@ -200,9 +221,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                         if (calculatedScore > maxScore)
                         {
+                            Debug.Log(n.worldPosition + " : " + calculatedScore);
+                            Debug.Log(target.gameObject);
+
                             actionOnTarget = actionToCheck;
 
-                            minimumDistance = -1;
+                            minimumDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
 
                             possibleActions = new List<Ai_PlannedAction>();
 
@@ -211,14 +235,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                         else if (calculatedScore == maxScore)
                         {
                             float calculatedDistance = -1;
-                            if (forNextTurn)
-                            {
-                                calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.actionTarget);
-                            }
-                            else
-                            {
-                                calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
-                            }
+
+                            calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                            
+                            Debug.Log(n.worldPosition + " = " + calculatedScore);
+                            Debug.Log(target.gameObject);
+                            Debug.Log(calculatedDistance);
 
                             if (minimumDistance < 0 || calculatedDistance < minimumDistance)
                             {

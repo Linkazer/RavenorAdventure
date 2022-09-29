@@ -301,6 +301,33 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         return toReturn;
     }
 
+    public static List<CPN_Character> GetEnnemyCharacters(CPN_Character character)
+    {
+        List<CPN_Character> toReturn = new List<CPN_Character>();
+
+        CombatTeam charaTeam = instance.GetCharacterTeam(character);
+
+        foreach(CombatTeam team in instance.teams)
+        {
+            if(team != charaTeam)
+            {
+                foreach (CPN_Character chara in team.characters)
+                {
+                    toReturn.Add(chara);
+                }
+            }
+        }
+
+        return toReturn;
+    }
+
+    public static List<CPN_Character> GetAllyCharacters(CPN_Character character)
+    {
+        CombatTeam charaTeam = instance.GetCharacterTeam(character);
+
+        return charaTeam.characters;
+    }
+
 
     public void OnCharacterDie(CPN_Character diedCharacter)
     {

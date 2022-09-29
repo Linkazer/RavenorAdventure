@@ -20,12 +20,17 @@ MonoBehaviour:
     - This text is in <b>English</b>
   castingAnimation: 2
   castAnimationDuration: 1
+  playSpellAnimationOnlyTarget: 0
+  projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: ac04d2ce0636d1b4aa73903cab3d0fd8, type: 3}
   animationDuration: 2
-  hitableTarget: 0
+  ressourceCost: 0
+  maxUtilisations: -1
+  hitableTarget: 1
   castTarget: 1
+  castType: 0
+  isCooldownGlobal: 0
   cooldown: 3
-  currentCooldown: 0
   range: 50
   zoneRange: 10
   effectsOnTarget: []
