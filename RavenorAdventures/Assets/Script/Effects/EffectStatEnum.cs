@@ -11,8 +11,9 @@ public enum EffectStatEnum
     //SpellCaster
     BaseDamage,
     Accuracy,
-    RerollDice,
+    OffensiveRerolls,
     ActionByTurn,
     //Movement
-    Movement
+    Movement,
+    DefenseiveRerolls,
 }

@@ -21,7 +21,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     [HideInInspector] public bool hasOpportunityAttack = true;
 
     //Base datas
-    [SerializeField] private int possibleReroll;
+    [SerializeField] private int offensiveRerolls;
     [SerializeField] private int accuracy;
     [SerializeField] private int power;
 
@@ -37,7 +37,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public List<SpellScriptable> Spells => spells;
     public int ActionByTurn => actionByTurn;
     public int ActionLeftThisTurn => actionsLeftThisTurn;
-    public int PossibleReroll => possibleReroll;
+    public int OffensiveRerolls => offensiveRerolls;
     public int Accuracy => accuracy;
     public int Power => power;
 
@@ -45,9 +45,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public Node CurrentNode => nodeData.CurrentNode;
 
-    public void AddPossibleReroll(int amount)
+    public void AddOffensiveRerolls(int amount)
     {
-        possibleReroll += amount;
+        offensiveRerolls += amount;
     }
 
     public void AddAccuracy(int amount)
@@ -298,7 +298,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         ressource = toSet.Ressource();
         ressource?.Initialize();
 
-        possibleReroll = toSet.PossibleRelance();
+        offensiveRerolls = toSet.OffensiveRerolls();
 
         accuracy = toSet.Accuracy();
         power = toSet.Power();

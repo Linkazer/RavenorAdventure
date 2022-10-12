@@ -12,6 +12,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private int currentArmor = 0;
 
     [SerializeField] private int defense;
+    [SerializeField] private int defensiveRerolls;
 
     [SerializeField] private UnityEvent<float> OnSetMaxHealth;
     [SerializeField] private UnityEvent<int> OnSetMaxArmor;
@@ -33,6 +34,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public float MaxArmor => maxArmor;
     public int CurrentArmor => currentArmor;
     public int Defense => defense;
+    public int DefensiveRerolls => defensiveRerolls;
 
     public override void SetData(CPN_Data_HealthHandler toSet)
     {
@@ -43,6 +45,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         currentArmor = maxArmor;
 
         defense = toSet.Defense();
+        defensiveRerolls = toSet.DefensiveRerolls();
 
         OnSetMaxHealth?.Invoke(maxHealth);
         OnSetMaxArmor?.Invoke(maxArmor);
@@ -179,5 +182,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public void AddDefense(int toAdd)
     {
         defense += toAdd;
+    }
+
+    public void AddDefensiveRerolls(int toAdd)
+    {
+        defensiveRerolls += toAdd;
     }
 }

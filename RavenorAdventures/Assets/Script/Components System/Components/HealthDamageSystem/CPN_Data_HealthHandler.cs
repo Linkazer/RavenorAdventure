@@ -8,4 +8,5 @@ public interface CPN_Data_HealthHandler
     public int MaxArmor();
 
     public int Defense();
+    public int DefensiveRerolls();
 }

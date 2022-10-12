@@ -25,7 +25,8 @@ MonoBehaviour:
   defense: 2
   accuracy: 0
   power: 0
-  relances: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
   movementByTurn: 45
   speed: 5
   opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
@@ -33,6 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
   - {fileID: 11400000, guid: fa92f097a814db542b1302eb63e9238d, type: 2}
   - {fileID: 11400000, guid: 0a9dab4d14635f843bca5072211569a8, type: 2}
+  - {fileID: 11400000, guid: 62d21ea815ac9344d83ea1a96c62821f, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

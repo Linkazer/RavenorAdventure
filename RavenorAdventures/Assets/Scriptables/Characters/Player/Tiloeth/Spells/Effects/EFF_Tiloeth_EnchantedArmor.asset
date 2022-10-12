@@ -9,30 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
-  m_Name: Lisbeth_BoostSpeed
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: EFF_Tiloeth_EnchantedArmor
   m_EditorClassIdentifier: 
-  nom: Boost Vitesse
+  nom: 
   icon: {fileID: 0}
   description:
-    texts:
-    - 
-    - 
-  castingAnimation: 2
-  castAnimationDuration: 0.5
+    texts: []
+  castingAnimation: 0
+  castAnimationDuration: 0
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: dbb6ffe15522bce47a38a265a7179c55, type: 3}
-  animationDuration: 0.5
+  spellAnimation: {fileID: 0}
+  animationDuration: 0
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
-  castType: 1
-  isCooldownGlobal: 1
-  cooldown: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
   range: 0
   zoneRange: 0
   effectsOnTarget: []
-  effectsOnCaster:
-  - {fileID: 11400000, guid: 2ce7183062a69574e98d9c636121c165, type: 2}
+  effectsOnCaster: []
+  type: 3
+  diceUsed: 0
+  baseDamage: 1
+  armorPierced: 0
+  lifestealPercent: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []

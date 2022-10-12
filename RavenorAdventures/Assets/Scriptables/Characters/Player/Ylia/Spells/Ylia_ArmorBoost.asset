@@ -25,7 +25,7 @@ MonoBehaviour:
   spellAnimation: {fileID: 3603624626837706201, guid: 14226e07f77d8f742b7e36f913a3b2d5, type: 3}
   animationDuration: 0
   ressourceCost: 1
-  maxUtilisations: 2
+  maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0

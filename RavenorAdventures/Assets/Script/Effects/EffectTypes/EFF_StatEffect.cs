@@ -45,10 +45,10 @@ public class EFF_StatEffect : Effect
                         accuracyCaster.AddAccuracy((int)value);
                     }
                     break;
-                case EffectStatEnum.RerollDice:
+                case EffectStatEnum.OffensiveRerolls:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster rerollCaster))
                     {
-                        rerollCaster.AddPossibleReroll((int)value);
+                        rerollCaster.AddOffensiveRerolls((int)value);
                     }
                     break;
                 case EffectStatEnum.ActionByTurn:
@@ -87,6 +87,12 @@ public class EFF_StatEffect : Effect
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefense))
                     {
                         healthDefense.AddDefense((int)value);
+                    }
+                    break;
+                case EffectStatEnum.DefenseiveRerolls:
+                    if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefensiveReroll))
+                    {
+                        healthDefensiveReroll.AddDefensiveRerolls((int)value);
                     }
                     break;
                 case EffectStatEnum.Movement:

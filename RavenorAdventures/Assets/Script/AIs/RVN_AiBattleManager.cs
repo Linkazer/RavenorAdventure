@@ -167,20 +167,17 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             List<Node> possibleMovements = new List<Node>();
             if (forNextTurn)
             {
-                if (possibleTargets.Contains(caster))
-                {
-                    possibleMovements.Add(casterNode);
-                }
+                possibleMovements.Add(casterNode); //POTENTIAL BUG : S'il y a un problème de comportement d'IA lors de la préparation du tour suivant, ça peut être ici
 
                 foreach (CPN_Character target in possibleTargets)
                 {
-                    List<Node> targetNaighbours = Grid.GetNeighbours(target.CurrentNode);
+                    List<Node> targetNeighbours = Grid.GetNeighbours(target.CurrentNode);
 
                     Node toAdd = null;
 
-                    int dist = 1023;
+                    int dist = 99999;
 
-                    foreach(Node n in targetNaighbours)
+                    foreach(Node n in targetNeighbours)
                     {
                         if(n.IsWalkable && Pathfinding.GetDistance(n, casterNode) < dist)
                         {
@@ -219,34 +216,42 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     {
                         float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        if (calculatedScore > maxScore)
+                        if (n != casterNode || Pathfinding.GetDistance(casterNode, target.CurrentNode) <= 15)
                         {
-                            Debug.Log(n.worldPosition + " : " + calculatedScore);
-                            Debug.Log(target.gameObject);
-
-                            actionOnTarget = actionToCheck;
-
-                            minimumDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
-
-                            possibleActions = new List<Ai_PlannedAction>();
-
-                            maxScore = calculatedScore;
-                        }
-                        else if (calculatedScore == maxScore)
-                        {
-                            float calculatedDistance = -1;
-
-                            calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
-                            
-                            Debug.Log(n.worldPosition + " = " + calculatedScore);
-                            Debug.Log(target.gameObject);
-                            Debug.Log(calculatedDistance);
-
-                            if (minimumDistance < 0 || calculatedDistance < minimumDistance)
+                            if (calculatedScore > maxScore)
                             {
+                                Debug.Log("Select Action (Score) : ");
+                                Debug.Log(n.worldPosition + " : " + calculatedScore);
+                                Debug.Log(target.gameObject);
+
                                 actionOnTarget = actionToCheck;
 
-                                minimumDistance = calculatedDistance;
+                                minimumDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+
+                                possibleActions = new List<Ai_PlannedAction>();
+
+                                maxScore = calculatedScore;
+                            }
+                            else if (calculatedScore == maxScore)
+                            {
+                                float calculatedDistance = -1;
+
+                                if (n != casterNode)
+                                {
+                                    calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                                }
+
+                                if (minimumDistance == -99 || calculatedDistance < minimumDistance)
+                                {
+                                    actionOnTarget = actionToCheck;
+
+                                    Debug.Log("Select Action (Dist) : ");
+                                    Debug.Log(n.worldPosition + " : " + calculatedScore);
+                                    Debug.Log(target.gameObject);
+                                    Debug.Log(calculatedDistance);
+
+                                    minimumDistance = calculatedDistance;
+                                }
                             }
                         }
                     }

@@ -19,7 +19,7 @@ public interface CPN_Data_SpellCaster
     /// Nombre de relance de dé disponible.
     /// </summary>
     /// <returns></returns>
-    public int PossibleRelance();
+    public int OffensiveRerolls();
     /// <summary>
     /// Stat de Précision.
     /// </summary>

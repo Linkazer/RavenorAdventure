@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Tiloeth_RegenArmor
+  m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
+  m_Name: Lisbeth_BoostReflexe
   m_EditorClassIdentifier: 
-  nom: "Lev\xE9 de bouclier"
-  icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
+  nom: "Am\xE9lioration de R\xE9fl\xE8xes"
+  icon: {fileID: 0}
   description:
     texts:
     - 
@@ -22,23 +22,17 @@ MonoBehaviour:
   castAnimationDuration: 0.5
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
+  spellAnimation: {fileID: 7282106008027488376, guid: dbb6ffe15522bce47a38a265a7179c55, type: 3}
   animationDuration: 0.5
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
-  castType: 0
-  isCooldownGlobal: 0
+  castType: 1
+  isCooldownGlobal: 1
   cooldown: 3
-  range: 25
+  range: 0
   zoneRange: 0
   effectsOnTarget: []
-  effectsOnCaster: []
-  type: 3
-  diceUsed: 2
-  baseDamage: 0
-  armorPierced: 0
-  lifestealPercent: 0
-  hitEffectsOnTarget: []
-  hitEffectsOnCaster: []
+  effectsOnCaster:
+  - {fileID: 11400000, guid: 2ce7183062a69574e98d9c636121c165, type: 2}

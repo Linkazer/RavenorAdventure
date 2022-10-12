@@ -20,7 +20,8 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField] private int defense;
     [SerializeField] private int accuracy;
     [SerializeField] private int power;
-    [SerializeField] private int relances;
+    [SerializeField] private int offensiveRerolls;
+    [SerializeField] private int defensiveRerolls;
 
     [Header("Movement")]
     [SerializeField] private int movementByTurn = 35;
@@ -93,9 +94,14 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
         return defense;
     }
 
-    public int PossibleRelance()
+    public int OffensiveRerolls()
     {
-        return relances;
+        return offensiveRerolls;
+    }
+
+    public int DefensiveRerolls()
+    {
+        return defensiveRerolls;
     }
 
     public int Accuracy()

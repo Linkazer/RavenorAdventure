@@ -110,53 +110,36 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return toReturn;
     }
 
-    private float CalculateDiceDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target)
-    {
-        float totalDamage = 0;
-        int currentRelance = 0;
-
-        for (int i = 0; i < diceDamage.Count; i++)
-        {
-            if (diceDamage[i].Result > target.Defense)
-            {
-                totalDamage++;
-                diceDamage[i].succeed = true;
-            }
-            else if (currentRelance < spellUsed.PossibleReroll)
-            {
-                currentRelance++;
-                diceDamage[i].Roll();
-                i--;
-            }
-        }
-
-        if (diceDamage.Count <= 0 || totalDamage > 0)
-        {
-            target.RemoveArmor(spellUsed.ArmorPierced);
-        }
-
-        return totalDamage;
-    }
-
     private float CalculateDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target, out bool didHit)
     {
         didHit = false;
 
         float totalDamage = 0;
-        int currentRelance = 0;
+        int currentOffensiveRerolls = 0;
+        int currentDefensiveRerolls = 0;
 
         for (int i = 0; i < diceDamage.Count; i++)
         {
             if (diceDamage[i].Result > target.Defense)
             {
-                totalDamage++;
-                diceDamage[i].succeed = true;
+                if (currentDefensiveRerolls < target.DefensiveRerolls)
+                {
+                    currentDefensiveRerolls++;
+                    diceDamage[i].Roll();
+                    i--;
+                    continue;
+                }
+                else
+                {
+                    totalDamage++;
+                    diceDamage[i].succeed = true;
 
-                didHit = true;
+                    didHit = true;
+                }
             }
-            else if (currentRelance < spellUsed.PossibleReroll)
+            else if (currentOffensiveRerolls < spellUsed.OffensiveRerolls)
             {
-                currentRelance++;
+                currentOffensiveRerolls++;
                 diceDamage[i].Roll();
                 i--;
             }

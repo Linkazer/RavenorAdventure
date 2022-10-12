@@ -9,36 +9,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Tiloeth_RegenArmor
+  m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
+  m_Name: Ylia_ArmorEnchanting
   m_EditorClassIdentifier: 
-  nom: "Lev\xE9 de bouclier"
-  icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
+  nom: "Armure Enchant\xE9e"
+  icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
   description:
     texts:
     - 
     - 
   castingAnimation: 2
-  castAnimationDuration: 0.5
+  castAnimationDuration: 0.75
   playSpellAnimationOnlyTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
-  animationDuration: 0.5
-  ressourceCost: 0
+  spellAnimation: {fileID: 3603624626837706201, guid: 14226e07f77d8f742b7e36f913a3b2d5, type: 3}
+  animationDuration: 0
+  ressourceCost: 1
   maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 3
+  cooldown: 0
   range: 25
   zoneRange: 0
-  effectsOnTarget: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 39b34eaeee58d354680475bf2eafa9ac, type: 2}
   effectsOnCaster: []
-  type: 3
-  diceUsed: 2
-  baseDamage: 0
-  armorPierced: 0
-  lifestealPercent: 0
-  hitEffectsOnTarget: []
-  hitEffectsOnCaster: []
