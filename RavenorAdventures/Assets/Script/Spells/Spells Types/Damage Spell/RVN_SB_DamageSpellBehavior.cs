@@ -37,48 +37,51 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
         RVN_SS_DamageSpellScriptable usedScriptable = GetScriptable(spellToUse);
 
-        foreach(CPN_HealthHandler hitedObject in hitableObjects)
+        foreach (CPN_HealthHandler hitedObject in hitableObjects)
         {
-            switch(usedScriptable.Type)
+            if (CanUseOnTarget(spellToUse.scriptable.HitableTargets, spellToUse.caster, hitedObject))
             {
-                case DamageType.Heal:
-                    hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
-                    break;
-                case DamageType.RegenArmor:
-                    hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
-                    break;
-                default:
-                    List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
+                switch (usedScriptable.Type)
+                {
+                    case DamageType.Heal:
+                        hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
+                        break;
+                    case DamageType.RegenArmor:
+                        hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
+                        break;
+                    default:
+                        List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
 
-                    float damage = CalculateDamage(damageDices, usedScriptable, hitedObject, out bool doesHit);
+                        float damage = CalculateDamage(damageDices, usedScriptable, hitedObject, out bool doesHit);
 
-                    if(!doesHit)
-                    {
-                        toReturn = false;
-                    }
-
-                    hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
-
-                    if (damage > 0)
-                    {
-                        if (spellToUse.caster != null)
+                        if (!doesHit)
                         {
-                            if(usedScriptable.Lifesteal > 0 && spellToUse.caster.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterHealth))
+                            toReturn = false;
+                        }
+
+                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
+
+                        if (damage > 0)
+                        {
+                            if (spellToUse.caster != null)
                             {
-                                casterHealth.TakeHeal(damage * usedScriptable.Lifesteal);
-                            }
+                                if (usedScriptable.Lifesteal > 0 && spellToUse.caster.Handler.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterHealth))
+                                {
+                                    casterHealth.TakeHeal(damage * usedScriptable.Lifesteal);
+                                }
 
-                            spellToUse.caster.DealDamage(hitedObject);
+                                spellToUse.caster.DealDamage(hitedObject);
+                            }
                         }
-                    }
-                    else
-                    {
-                        if (usedScriptable.ArmorPierced > 0)
+                        else
                         {
-                            hitedObject.TakeDamage(spellToUse.caster, 0);
+                            if (usedScriptable.ArmorPierced > 0)
+                            {
+                                hitedObject.TakeDamage(spellToUse.caster, 0);
+                            }
                         }
-                    }
-                    break;
+                        break;
+                }
             }
         }
 
@@ -86,11 +89,14 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         {
             foreach (CPN_HealthHandler hitedObject in hitableObjects)
             {
-                if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                if (CanUseOnTarget(spellToUse.scriptable.HitableTargets, spellToUse.caster, hitedObject))
                 {
-                    foreach (EffectScriptable eff in usedScriptable.HitEffectsOnTarget)
+                    if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                     {
-                        ApplyEffects(effectHandler, eff);
+                        foreach (EffectScriptable eff in usedScriptable.HitEffectsOnTarget)
+                        {
+                            ApplyEffects(effectHandler, eff);
+                        }
                     }
                 }
             }
@@ -120,29 +126,24 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
         for (int i = 0; i < diceDamage.Count; i++)
         {
-            if (diceDamage[i].Result > target.Defense)
-            {
-                if (currentDefensiveRerolls < target.DefensiveRerolls)
-                {
-                    currentDefensiveRerolls++;
-                    diceDamage[i].Roll();
-                    i--;
-                    continue;
-                }
-                else
-                {
-                    totalDamage++;
-                    diceDamage[i].succeed = true;
+            totalDamage += CheckDiceHit(diceDamage[i], target.Defense, currentOffensiveRerolls < spellUsed.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);
 
-                    didHit = true;
-                }
+            if(usedDefensiveReroll)
+            {
+                currentDefensiveRerolls++;
             }
-            else if (currentOffensiveRerolls < spellUsed.OffensiveRerolls)
+
+            if(usedOffensiveReroll)
             {
                 currentOffensiveRerolls++;
-                diceDamage[i].Roll();
-                i--;
             }
+
+           
+        }
+
+        if(totalDamage > 0)
+        {
+            didHit = true;
         }
 
         if (diceDamage.Count <= 0 || totalDamage > 0)
@@ -170,5 +171,37 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         }
 
         return totalDamage;
+    }
+
+    private int CheckDiceHit(Dice dice, int defense, bool hasOffensiveReroll, bool hasDefensiveReroll, out bool usedOffensiveReroll, out bool usedDefensiveReroll)
+    {
+        int toReturn = 0;
+
+        usedDefensiveReroll = false;
+        usedOffensiveReroll = false;
+
+        if (dice.Result > defense)
+        {
+            if (hasDefensiveReroll)
+            {
+                usedDefensiveReroll = true;
+                dice.Roll();
+
+                return CheckDiceHit(dice, defense, hasOffensiveReroll, false, out usedOffensiveReroll, out bool def);
+            }
+            else
+            {
+                dice.succeed = true;
+                toReturn = 1;
+            }
+        }
+        else if (hasOffensiveReroll)
+        {
+            usedOffensiveReroll = true;
+            dice.Roll();
+            return CheckDiceHit(dice, defense, false, hasDefensiveReroll, out bool off, out usedDefensiveReroll);
+        }
+
+        return toReturn;
     }
 }

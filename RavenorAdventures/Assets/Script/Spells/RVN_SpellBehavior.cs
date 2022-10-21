@@ -85,57 +85,64 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
     public override void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        OnUseSpell(spellToUse, targetNode, callback);
-
-        T usedScriptable = GetScriptable(spellToUse);
-
-        if (usedScriptable.SpellAnimation != null && ((usedScriptable.PlaySpellAnimationOnlyTarget && callback != null) || !usedScriptable.PlaySpellAnimationOnlyTarget))
-        {
-            if (usedScriptable.AnimationDuration > 0)
-            {
-                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
-
-                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
-            }
-            else
-            {
-                AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
-            }
-        }
-        else if (callback != null)
-        {
-            if (usedScriptable.AnimationDuration < 0.5f)
-            {
-                TimerManager.CreateGameTimer(0.5f, callback);
-            }
-            else
-            {
-                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
-            }
-        }
-
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
-        foreach (CPN_HealthHandler hitedObject in hitableObjects)
+        if (CanUseOnNode(hitableObjects, spellToUse.scriptable.HitableTargets, spellToUse.caster))
         {
-            if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+            OnUseSpell(spellToUse, targetNode, callback);
+
+            T usedScriptable = GetScriptable(spellToUse);
+
+            if (usedScriptable.SpellAnimation != null)
             {
-                foreach (EffectScriptable eff in spellToUse.scriptable.Effects())
+                if (usedScriptable.AnimationDuration > 0)
                 {
-                    ApplyEffects(effectHandler, eff);
+                    TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+
+                    AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
+                }
+                else
+                {
+                    AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
+                }
+            }
+            else if (callback != null)
+            {
+                if (usedScriptable.AnimationDuration < 0.5f)
+                {
+                    TimerManager.CreateGameTimer(0.5f, callback);
+                }
+                else
+                {
+                    TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+                }
+            }
+
+            foreach (CPN_HealthHandler hitedObject in hitableObjects)
+            {
+                if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                {
+                    foreach (EffectScriptable eff in spellToUse.scriptable.Effects())
+                    {
+                        ApplyEffects(effectHandler, eff);
+                    }
+                }
+            }
+
+            if (spellToUse.caster != null)
+            {
+                if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
+                {
+                    foreach (EffectScriptable eff in spellToUse.scriptable.EffectOnCaster)
+                    {
+                        ApplyEffects(effectHandler, eff);
+                    }
                 }
             }
         }
-
-        if(spellToUse.caster != null)
+        else if(callback != null)
         {
-            if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
-            {
-                foreach (EffectScriptable eff in spellToUse.scriptable.EffectOnCaster)
-                {
-                    ApplyEffects(effectHandler, eff);
-                }
-            }
+            TimerManager.CreateGameTimer(0.5f, callback);
         }
     }
 
@@ -147,5 +154,61 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     protected void ApplyEffects(CPN_EffectHandler target, EffectScriptable effectToApply)
     {
         target.ApplyEffect(effectToApply);
+    }
+
+    protected bool CanUseOnNode(List<CPN_HealthHandler> hitablesOnNode, SpellTargets targetType, CPN_SpellCaster caster)
+    {
+        if(targetType == SpellTargets.All)
+        {
+            return true;
+        }
+        else
+        {
+            foreach(CPN_HealthHandler hitedTrgt in hitablesOnNode)
+            {
+                if(CanUseOnTarget(targetType, caster, hitedTrgt))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected bool CanUseOnTarget(SpellTargets targetType, CPN_SpellCaster caster, CPN_HealthHandler target)
+    {
+        if (caster != null && target != null)
+        {
+            CPN_Character casterChara = caster.Handler as CPN_Character;
+            CPN_Character targetChara = target.Handler as CPN_Character;
+
+            if (casterChara != null && targetChara != null)
+            {
+                switch (targetType)
+                {
+                    case SpellTargets.Self:
+                        if (casterChara != targetChara)
+                        {
+                            return false;
+                        }
+                        break;
+                    case SpellTargets.Allies:
+                        if (!RVN_BattleManager.AreCharacterAllies(casterChara, targetChara))
+                        {
+                            return false;
+                        }
+                        break;
+                    case SpellTargets.Ennemies:
+                        if (RVN_BattleManager.AreCharacterAllies(casterChara, targetChara))
+                        {
+                            return false;
+                        }
+                        break;
+                }
+            }
+        }
+
+        return true;
     }
 }

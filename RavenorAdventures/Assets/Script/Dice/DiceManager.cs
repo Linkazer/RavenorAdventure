@@ -23,6 +23,20 @@ public class DiceManager
 
         for (int i = 0; i < diceNumber; i++)
         {
+            /*int bonus = 0;
+
+            if (i < Mathf.Abs(faceBonus))
+            {
+                if (faceBonus > 0)
+                {
+                    bonus = 1;
+                }
+                else
+                {
+                    bonus = -1;
+                }
+            }*/
+
             toReturn.Add(new Dice(faceNumber, faceBonus));
             toReturn[i].Roll();
         }

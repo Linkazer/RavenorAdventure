@@ -20,13 +20,13 @@ MonoBehaviour:
     - 
   castingAnimation: 4
   castAnimationDuration: 0.25
-  playSpellAnimationOnlyTarget: 0
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   animationDuration: 0
   ressourceCost: 0
   maxUtilisations: -1
-  hitableTarget: 3
+  hitableTarget: 1
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0

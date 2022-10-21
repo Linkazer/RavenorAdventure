@@ -973,6 +973,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6674373229304437009}
+        m_TargetAssemblyTypeName: CPN_EffectHandler, ravenor_engine
+        m_MethodName: UpdateEffectDuration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnEndTurn:
     m_PersistentCalls:
       m_Calls:
@@ -987,7 +999,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
   characterOnMelee: []
 --- !u!114 &8205510481207194533
 MonoBehaviour:
@@ -1007,6 +1019,7 @@ MonoBehaviour:
   currentHealth: 10
   currentArmor: 0
   defense: 0
+  defensiveRerolls: 0
   OnSetMaxHealth:
     m_PersistentCalls:
       m_Calls:
@@ -1250,18 +1263,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8468142676908402632}
-        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
-        m_MethodName: UnsetFlank
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5140952349797873622}
-          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   OnStopMovement:
     m_PersistentCalls:
       m_Calls:
@@ -1277,18 +1278,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8468142676908402632}
-        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
-        m_MethodName: SetFlank
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5140952349797873622}
-          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnEndMovement:
     m_PersistentCalls:
       m_Calls:
@@ -1299,18 +1288,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8468142676908402632}
-        m_TargetAssemblyTypeName: FlankSetter, ravenor_engine
-        m_MethodName: SetFlank
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5140952349797873622}
-          m_ObjectArgumentAssemblyTypeName: CPN_Character, ravenor_engine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1410,7 +1387,7 @@ MonoBehaviour:
   actionsLeftThisTurn: 1
   actionByTurn: 1
   hasOpportunityAttack: 1
-  possibleReroll: 0
+  offensiveRerolls: 0
   accuracy: 0
   power: 0
   ressource:
@@ -1544,7 +1521,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5140952349797873644}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02ec128d24c0eaf4f99387543a708e43, type: 3}
   m_Name: 

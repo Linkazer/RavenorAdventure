@@ -178,7 +178,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
         }
 
-        currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
+        do
+        {
+            currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
+        } while (teams[currentPlayingTeam].characters.Count <= 0);
 
         for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
         {

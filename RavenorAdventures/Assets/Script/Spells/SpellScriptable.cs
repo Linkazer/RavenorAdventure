@@ -17,6 +17,13 @@ public enum SpellCastType
     Fast,
 }
 
+public enum SpellAnimationTarget
+{
+    All,
+    Target,
+    HitedCharacters,
+}
+
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
@@ -27,7 +34,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;
     [SerializeField] protected float castAnimationDuration;
-    [SerializeField, Tooltip("Does the SpellAnimation only play on the main target of the spell")] protected bool playSpellAnimationOnlyTarget = false;
+    [SerializeField, Tooltip("Does the SpellAnimation only play on the main target of the spell")] protected SpellAnimationTarget spellAnimationTarget = SpellAnimationTarget.All;
     [SerializeField] protected SpellProjectile projectile;
     [SerializeField] protected InstantiatedAnimationHandler spellAnimation;
     [SerializeField] protected float animationDuration;
@@ -69,7 +76,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public float CastDuration => castAnimationDuration;
 
-    public bool PlaySpellAnimationOnlyTarget => playSpellAnimationOnlyTarget;
+    public SpellAnimationTarget AnimationTarget => spellAnimationTarget;
     public SpellProjectile Projectile => projectile;
     public InstantiatedAnimationHandler SpellAnimation => spellAnimation;
     public float AnimationDuration => animationDuration;

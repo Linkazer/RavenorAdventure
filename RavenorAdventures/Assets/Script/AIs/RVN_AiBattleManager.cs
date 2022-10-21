@@ -10,6 +10,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         public int actionIndex;
         public Node movementTarget;
         public Node actionTarget;
+        public float minimalDistance;
     }
 
     [SerializeField] private CPN_Character currentCharacter;
@@ -82,7 +83,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         if (currentCharacterHealth.CurrentHealth <= 0)
         {
-            EndCharacterTurn(currentCharacter);
+            return;// EndCharacterTurn(currentCharacter);
         }
         else if (plannedAction != null && plannedAction.actionIndex >= 0)
         {
@@ -220,37 +221,28 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                         {
                             if (calculatedScore > maxScore)
                             {
-                                Debug.Log("Select Action (Score) : ");
-                                Debug.Log(n.worldPosition + " : " + calculatedScore);
-                                Debug.Log(target.gameObject);
-
-                                actionOnTarget = actionToCheck;
-
-                                minimumDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
-
                                 possibleActions = new List<Ai_PlannedAction>();
 
                                 maxScore = calculatedScore;
                             }
-                            else if (calculatedScore == maxScore)
+                           
+                            if (calculatedScore == maxScore)
                             {
-                                float calculatedDistance = -1;
-
                                 if (n != casterNode)
                                 {
-                                    calculatedDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+
+                                    actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                                }
+                                else
+                                {
+                                    actionToCheck.minimalDistance = -1f;
                                 }
 
-                                if (minimumDistance == -99 || calculatedDistance < minimumDistance)
+                                if (actionToCheck.minimalDistance <= minimumDistance)
                                 {
+                                    minimumDistance = actionToCheck.minimalDistance;
+
                                     actionOnTarget = actionToCheck;
-
-                                    Debug.Log("Select Action (Dist) : ");
-                                    Debug.Log(n.worldPosition + " : " + calculatedScore);
-                                    Debug.Log(target.gameObject);
-                                    Debug.Log(calculatedDistance);
-
-                                    minimumDistance = calculatedDistance;
                                 }
                             }
                         }
@@ -266,7 +258,26 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (possibleActions.Count > 0)
         {
-            toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
+            List<Ai_PlannedAction> closestActions = new List<Ai_PlannedAction>();
+
+            float minimalDistance = possibleActions[0].minimalDistance;
+
+            foreach (Ai_PlannedAction pa in possibleActions)
+            {
+                if (pa.minimalDistance < minimalDistance)
+                {
+                    closestActions = new List<Ai_PlannedAction>();
+
+                    minimalDistance = pa.minimalDistance;
+                }
+
+                if(minimalDistance == pa.minimalDistance)
+                {
+                    closestActions.Add(pa);
+                }
+            }
+
+            toReturn = closestActions[UnityEngine.Random.Range(0, closestActions.Count)];
         }
 
         return toReturn;

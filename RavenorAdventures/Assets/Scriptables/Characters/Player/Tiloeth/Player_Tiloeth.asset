@@ -21,8 +21,8 @@ MonoBehaviour:
   handHeight: 0
   uiHeight: 1.2
   health: 10
-  armor: 2
-  defense: 2
+  armor: 3
+  defense: 3
   accuracy: 0
   power: 0
   offensiveRerolls: 0
@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fa92f097a814db542b1302eb63e9238d, type: 2}
   - {fileID: 11400000, guid: 0a9dab4d14635f843bca5072211569a8, type: 2}
   - {fileID: 11400000, guid: 62d21ea815ac9344d83ea1a96c62821f, type: 2}
+  - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

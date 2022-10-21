@@ -20,12 +20,13 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 10
+  health: 4
   armor: 0
-  defense: 0
+  defense: 1
   accuracy: 0
   power: 0
-  relances: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
   movementByTurn: 45
   speed: 5
   opportunitySpell: {fileID: 0}
@@ -43,6 +44,7 @@ MonoBehaviour:
     calculs:
     - id: 1
     - id: 2
+    - id: 3
   references:
     version: 1
     00000000:
@@ -63,3 +65,10 @@ MonoBehaviour:
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 100
+    00000003:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 1
+        abscissaValue: 13
+        condition: 3
+        baseValue: 15

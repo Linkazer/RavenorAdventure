@@ -7,22 +7,33 @@ using UnityEngine.Events;
 public class RoomHandler : MonoBehaviour
 {
     [Serializable]
-    private class SpawnableCharacter
+    private class SpawnableCharacterTeam
     {
-        public CPN_Character toSpawn;
-        public int team = 1;
+        public int teamIndex = 1;
+        public List<CPN_Character> charaToSpawns;
+        
     }
 
-    [SerializeField] private List<SpawnableCharacter> characters;
+    [SerializeField] private List<SpawnableCharacterTeam> teams;
     [SerializeField] private UnityEvent OnOpenDoor;
+
+    private bool hasSpawned = false;
 
     public void OpenRoom()
     {
-        foreach(SpawnableCharacter chara in characters)
+        if (!hasSpawned)
         {
-            RVN_BattleManager.SpawnCharacter(chara.toSpawn, chara.team);
+            foreach (SpawnableCharacterTeam team in teams)
+            {
+                foreach (CPN_Character chara in team.charaToSpawns)
+                {
+                    RVN_BattleManager.SpawnCharacter(chara, team.teamIndex);
+                }
+            }
 
             OnOpenDoor?.Invoke();
+
+            hasSpawned = true;
         }
     }
 }

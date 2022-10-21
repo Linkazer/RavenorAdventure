@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Lisbeth_Base
+  m_Name: Tiloeth_RegenArmorZone
   m_EditorClassIdentifier: 
-  nom: "\xC9p\xE9e de duel"
-  icon: {fileID: 21300000, guid: 6ca9483bb8dc4bc4fb429122b3b75837, type: 3}
+  nom: "Lev\xE9 de bouclier"
+  icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
   description:
     texts:
     - 
     - 
-  castingAnimation: 4
-  castAnimationDuration: 0.25
-  playSpellAnimationOnlyTarget: 0
+  castingAnimation: 2
+  castAnimationDuration: 0.5
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
-  animationDuration: 0
+  spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
+  animationDuration: 0.5
   ressourceCost: 0
   maxUtilisations: -1
-  hitableTarget: 3
-  castTarget: 3
+  hitableTarget: 0
+  castTarget: 2
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 0
-  range: 15
-  zoneRange: 0
+  cooldown: 3
+  range: 5
+  zoneRange: 25
   effectsOnTarget: []
   effectsOnCaster: []
-  type: 0
-  diceUsed: 4
+  type: 3
+  diceUsed: 1
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
