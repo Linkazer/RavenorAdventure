@@ -57,6 +57,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
         if (nCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthHandler))
         {
             stats[1].text = healthHandler.Defense.ToString();
+            stats[3].text = healthHandler.CurrentHealth.ToString();
         }
 
         if (nCharacter.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))

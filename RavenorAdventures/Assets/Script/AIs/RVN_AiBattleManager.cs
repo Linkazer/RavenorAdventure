@@ -46,6 +46,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         isDoneMoving = false;
 
+        Debug.Log("New Turn : " +  currentCharacter.gameObject);
+
         SearchNextAction(2f);
     }
 
@@ -89,10 +91,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
+                Debug.Log("Move : " + plannedAction.movementTarget.worldPosition.ToString("F2"));
+
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
             }
             else
             {
+                Debug.Log("Do action");
+
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(1.5f));
 
@@ -103,9 +109,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
 
-            if (!isDoneMoving && nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+            if (!isDoneMoving)
             {
-                currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+                if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+                {
+                    currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+                }
+                else
+                {
+                    currentCharacterMovement.AskToMoveTo(GetClosestCharacter(true).CurrentNode.worldPosition, () => PrepareNextAction(1f));
+                }
 
                 isDoneMoving = true;
             }
@@ -172,6 +185,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 foreach (CPN_Character target in possibleTargets)
                 {
+                    /*List<Node> path = Pathfinding.CalculatePathfinding(casterNode, target.CurrentNode, -1, false);
+
+                    foreach (Node n in path)
+                    {
+                        if (!possibleMovements.Contains(n))
+                        {
+                            possibleMovements.Add(n);
+                        }
+                    }*/
+
                     List<Node> targetNeighbours = Grid.GetNeighbours(target.CurrentNode);
 
                     Node toAdd = null;
@@ -204,7 +227,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 Ai_PlannedAction actionOnTarget = null;
 
-                float minimumDistance = -1;
+                float minimumDistance = 99999;
 
                 foreach (Node n in possibleMovements)
                 {
@@ -225,12 +248,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                                 maxScore = calculatedScore;
                             }
-                           
+
                             if (calculatedScore == maxScore)
                             {
                                 if (n != casterNode)
                                 {
-
                                     actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
                                 }
                                 else
@@ -479,6 +501,40 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return toReturn;
     }
 
+    private CPN_Character GetClosestCharacter(bool isEnemy)
+    {
+        CPN_Character toReturn = null;
+
+        List<CPN_Character> targets = new List<CPN_Character>();
+
+        if (!isEnemy)
+        {
+            targets = RVN_BattleManager.GetAllyCharacters(currentCharacter);
+        }
+        else
+        {
+            targets = RVN_BattleManager.GetEnnemyCharacters(currentCharacter);
+        }
+
+        if (targets.Count > 0)
+        {
+            int minDistance = Pathfinding.GetDistance(targets[0].CurrentNode, currentCharacter.CurrentNode);
+
+            toReturn = targets[0];
+
+            for(int i = 1; i < targets.Count; i++)
+            {
+                if(Pathfinding.GetDistance(targets[i].CurrentNode, currentCharacter.CurrentNode) < minDistance)
+                {
+                    minDistance = Pathfinding.GetDistance(targets[i].CurrentNode, currentCharacter.CurrentNode);
+
+                    toReturn = targets[i];
+                }
+            }
+        }
+
+        return toReturn;
+    }
 
     #region Calculs de Considérations
     public float CalculConditionnal(float abscissa, float constant, float coeficient)

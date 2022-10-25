@@ -151,8 +151,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		OnEndMovementAction += callback;
 
-
-
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 

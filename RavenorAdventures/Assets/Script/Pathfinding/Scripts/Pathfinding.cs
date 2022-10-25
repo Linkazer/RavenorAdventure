@@ -20,10 +20,10 @@ public class Pathfinding : MonoBehaviour
 	}
 	
 	private void OnStartFindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
-		StartCoroutine(FindPath(startPos,targetPos, walkDistance));
+		FindPath(startPos,targetPos, walkDistance);
 	}
 	
-	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
+	private void FindPath(Vector3 startPos, Vector3 targetPos, int walkDistance) {
 
 		Node[] waypoints = new Node[0];
 		bool pathSuccess = true;
@@ -38,7 +38,7 @@ public class Pathfinding : MonoBehaviour
 			pathSuccess = false;
         }
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
-		yield return null;
+		//yield return null;
 	}
 	
 	private Node[] RetracePath(Node startNode, Node endNode, int maxDistance) {
