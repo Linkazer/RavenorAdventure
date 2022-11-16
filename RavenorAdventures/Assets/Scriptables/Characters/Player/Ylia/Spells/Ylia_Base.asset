@@ -20,7 +20,7 @@ MonoBehaviour:
     - 
   castingAnimation: 2
   castAnimationDuration: 0.5
-  playSpellAnimationOnlyTarget: 0
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: baa97e198da92394ea7dbb77d8a37969, type: 3}
   animationDuration: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 2
+  diceUsed: 1
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

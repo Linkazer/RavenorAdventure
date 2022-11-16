@@ -20,7 +20,7 @@ MonoBehaviour:
     - 
   castingAnimation: 2
   castAnimationDuration: 0.5
-  playSpellAnimationOnlyTarget: 0
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
   animationDuration: 1

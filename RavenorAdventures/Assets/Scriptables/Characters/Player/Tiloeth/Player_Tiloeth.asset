@@ -23,9 +23,9 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.2
-  health: 10
+  health: 8
   armor: 3
-  defense: 3
+  defense: 2
   accuracy: 0
   power: 0
   offensiveRerolls: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
+  - {fileID: 11400000, guid: fa92f097a814db542b1302eb63e9238d, type: 2}
   - {fileID: 11400000, guid: 0a9dab4d14635f843bca5072211569a8, type: 2}
-  - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

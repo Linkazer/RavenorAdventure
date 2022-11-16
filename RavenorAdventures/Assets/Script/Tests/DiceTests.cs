@@ -49,7 +49,7 @@ public class DiceTests : MonoBehaviour
 
         foreach(KeyValuePair<int,int> rslt in Results)
         {
-            toDisplay += $"\n {rslt.Key} : {Mathf.RoundToInt(((float)rslt.Value / (float)iterations) * 100f)}%";
+            toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
         }
 
         Debug.Log(toDisplay);
@@ -155,6 +155,9 @@ public class DiceTests : MonoBehaviour
 
         attackResult.Sort();
         defenseResult.Sort();
+
+        attackResult.Reverse();
+        defenseResult.Reverse();
 
         int hitNb = 0;
 

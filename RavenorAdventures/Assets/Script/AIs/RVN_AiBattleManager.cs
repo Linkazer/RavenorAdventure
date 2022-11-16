@@ -96,14 +96,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
-                Debug.Log("Move : " + plannedAction.movementTarget.worldPosition.ToString("F2"));
-
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
             }
             else
             {
-                Debug.Log("Do action");
-
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 

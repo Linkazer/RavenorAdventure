@@ -14,5 +14,7 @@ public enum EffectTrigger
     OnTakeDamageTowardTarget,
     OnDealDamageTowardSelf,
     OnDealDamageTowardTarget,
-    OnDeath
+    OnDeath,
+    OnGetAttackedTowardSelf,
+    OnGetAttackedTowardTarget,
 }

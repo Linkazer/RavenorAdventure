@@ -80,6 +80,10 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                                 hitedObject.TakeDamage(spellToUse.caster, 0);
                             }
                         }
+
+                        hitedObject.actOnAttackReceivedTowardTarget?.Invoke(spellToUse.caster.Handler);
+                        hitedObject.actOnAttackReceivedTowardSelf?.Invoke(hitedObject.Handler);
+
                         break;
                 }
             }

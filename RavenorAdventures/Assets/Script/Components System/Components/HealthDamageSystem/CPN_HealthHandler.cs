@@ -28,6 +28,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public Action<float> actOnChangeHealth;
     public Action<RVN_ComponentHandler> actOnTakeDamageSelf;
     public Action<RVN_ComponentHandler> actOnTakeDamageTarget;
+    public Action<RVN_ComponentHandler> actOnAttackReceivedTowardSelf;
+    public Action<RVN_ComponentHandler> actOnAttackReceivedTowardTarget;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;

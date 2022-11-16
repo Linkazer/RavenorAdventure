@@ -22,5 +22,5 @@ MonoBehaviour:
     00000000:
       type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
       data:
-        trigger: 9
-        spellToUse: {fileID: 11400000, guid: 25c1bc61cd10855488c734fe392e472d, type: 2}
+        trigger: 12
+        spellToUse: {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}

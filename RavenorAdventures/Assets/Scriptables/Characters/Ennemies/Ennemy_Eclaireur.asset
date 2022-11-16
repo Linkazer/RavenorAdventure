@@ -23,11 +23,11 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 4
+  health: 3
   armor: 0
   defense: 2
-  accuracy: 1
-  power: 0
+  accuracy: 0
+  power: 1
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 45

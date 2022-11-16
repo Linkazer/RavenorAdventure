@@ -67,6 +67,18 @@ public abstract class Effect
                     takeDamageTarget.actOnTakeDamageTarget += UseEffect;
                 }
                 break;
+            case EffectTrigger.OnGetAttackedTowardSelf:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedSelf))
+                {
+                    getAttackedSelf.actOnTakeDamageSelf += UseEffect;
+                }
+                break;
+            case EffectTrigger.OnGetAttackedTowardTarget:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedTarget))
+                {
+                    getAttackedTarget.actOnTakeDamageTarget += UseEffect;
+                }
+                break;
         }
     }
 
@@ -126,6 +138,18 @@ public abstract class Effect
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler takeDamageTarget))
                 {
                     takeDamageTarget.actOnTakeDamageTarget -= UseEffect;
+                }
+                break;
+            case EffectTrigger.OnGetAttackedTowardSelf:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedSelf))
+                {
+                    getAttackedSelf.actOnTakeDamageSelf -= UseEffect;
+                }
+                break;
+            case EffectTrigger.OnGetAttackedTowardTarget:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedTarget))
+                {
+                    getAttackedTarget.actOnTakeDamageTarget -= UseEffect;
                 }
                 break;
         }

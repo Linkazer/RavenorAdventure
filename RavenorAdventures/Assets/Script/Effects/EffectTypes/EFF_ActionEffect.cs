@@ -9,8 +9,6 @@ public class EFF_ActionEffect : Effect
 
     protected override void UseEffect(RVN_ComponentHandler effectTarget)
     {
-        Debug.Log(effectTarget + " : " + this);
-
         LaunchedSpellData launchedSpell = new LaunchedSpellData(spellToUse, null, Grid.GetNodeFromWorldPoint(effectTarget.transform.position));
 
         if (RVN_SpellManager.CanUseSpell(launchedSpell))

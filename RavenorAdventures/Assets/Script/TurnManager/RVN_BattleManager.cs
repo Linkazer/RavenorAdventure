@@ -364,8 +364,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public static void WinBattle()
     {
-        Debug.Log("???");
-
         instance.OnWinBattle?.Invoke();
     }
 
