@@ -9,7 +9,8 @@ public enum CharacterAnimationType
     LaunchSpell,
     JumpOnTarget,
     Death,
-    Shoot
+    Shoot,
+    None
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
@@ -21,7 +22,8 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     [Header("Character Animations")]
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
-    private CharacterAnimationType currentAnimation;
+    [SerializeField] private CharacterAnimation idleSpriteAnim;
+    private CharacterAnimationType currentAnimation = CharacterAnimationType.None;
 
     public void SetCharacter(CharacterScriptable_Battle character)
     {
@@ -39,6 +41,8 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                 }
             }
         }
+
+        SetAnimation(CharacterAnimationType.Idle);
     }
 
     public void SetOrientation(Vector2 direction)
@@ -61,7 +65,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
         else
         {
-            UnsetAnimation(CharacterAnimationType.Walk);
+            SetAnimation(CharacterAnimationType.Idle);
         }
     }
 
@@ -73,7 +77,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
         else
         {
-            UnsetAnimation(CharacterAnimationType.Death);
+            SetAnimation(CharacterAnimationType.Idle);
         }
     }
 
@@ -93,7 +97,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     protected void SetAnimation(CharacterAnimationType toSet)
     {
-        if(toSet != currentAnimation)
+        if (toSet != currentAnimation)
         {
             UnsetAnimation(currentAnimation);
 
@@ -102,6 +106,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
             {
                 case CharacterAnimationType.Idle:
                     AnimSetBool("IsIdle", true);
+                    idleSpriteAnim.Play(Vector2.zero);
                     break;
                 case CharacterAnimationType.Walk:
                     AnimSetBool("IsWalking", true);
@@ -131,6 +136,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
             {
                 case CharacterAnimationType.Idle:
                     AnimSetBool("IsIdle", false);
+                    idleSpriteAnim.Stop();
                     break;
                 case CharacterAnimationType.Walk:
                     AnimSetBool("IsWalking", false);
@@ -144,6 +150,11 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                 case CharacterAnimationType.Death:
                     AnimSetBool("IsDead", false);
                     break;
+            }
+
+            if(toUnset != CharacterAnimationType.Idle)
+            {
+                SetAnimation(currentAnimation);
             }
         }
     }

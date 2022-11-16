@@ -14,11 +14,15 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
     [SerializeField] private Image rightCharacterDisplay;
     [SerializeField] private List<DialogueResponseHandler> responses;
 
+    [SerializeField] private CanvasGroup dialogueGroup;
+    [SerializeField] private CanvasGroup responsesGroup;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onStartDialogue;
     [SerializeField] private UnityEvent onEndDialogue;
 
     private DialogueScriptable currentDialogue;
+    private int currentSentenceIndex;
 
     public static void PlayDialogue(DialogueScriptable toPlay)
     {
@@ -33,16 +37,56 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
         }
 
         currentDialogue = toPlay;
+        currentSentenceIndex = 0;
 
-        characterName.text = toPlay.Talker.Nom;
-        characterName.color = toPlay.Talker.NameColor;
+        dialogueGroup.interactable = true;
+        responsesGroup.interactable = false;
+        responsesGroup.alpha = 0;
 
-        dialogueText.text = toPlay.Text.GetText();
+        DisplayNextSentence();
+    }
 
-        leftCharacterDisplay.sprite = toPlay.LeftCharacter.Portrait;
-        rightCharacterDisplay.sprite = toPlay.RightCharacter.Portrait;
+    public void DisplayNextSentence()
+    {
+        DialogueSentence sentence = currentDialogue.Sentences[currentSentenceIndex];
 
-        DisplayResponses(toPlay);
+        if (sentence.talker != null)
+        {
+            characterName.text = sentence.talker.Nom;
+            characterName.color = sentence.talker.NameColor;
+        }
+        else
+        {
+            characterName.text = "";
+        }
+
+        dialogueText.text = sentence.text.GetText();
+
+        if (sentence.leftCharacter != null)
+        {
+            leftCharacterDisplay.enabled = true;
+            leftCharacterDisplay.sprite = sentence.leftCharacter.Portrait;
+        }
+        else
+        {
+            leftCharacterDisplay.enabled = false;
+        }
+        if (sentence.rightCharacter != null)
+        {
+            rightCharacterDisplay.enabled = true;
+            rightCharacterDisplay.sprite = sentence.rightCharacter.Portrait;
+        }
+        else
+        {
+            rightCharacterDisplay.enabled = false;
+        }
+
+        currentSentenceIndex++;
+
+        if (currentSentenceIndex >= currentDialogue.Sentences.Length)
+        {
+            DisplayResponses(currentDialogue);
+        }
     }
 
     private void DisplayResponses(DialogueScriptable toPlay)
@@ -58,6 +102,10 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
                 responses[i].UnsetResponse();
             }
         }
+
+        dialogueGroup.interactable = false;
+        responsesGroup.interactable = true;
+        responsesGroup.alpha = 1;
     }
 
     private void EndDialogue()

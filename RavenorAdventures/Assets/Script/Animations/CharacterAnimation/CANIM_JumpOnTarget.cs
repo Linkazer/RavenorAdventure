@@ -39,6 +39,11 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         enabled = true;
     }
 
+    public override void Stop()
+    {
+        
+    }
+
     private void Update()
     {
         curveIndex += (Time.deltaTime * curveDirection) / animationTime;

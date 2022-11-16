@@ -13,6 +13,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         public float minimalDistance;
     }
 
+    [SerializeField] private float timeBetweenActions = 0.5f;
+    [SerializeField] private float timeDelayBeginTurn = 1f;
+    [SerializeField] private float timeDelayEndTurn = 0.5f;
+
+    [Header("Debugs")]
     [SerializeField] private CPN_Character currentCharacter;
     [SerializeField] private CPN_HealthHandler currentCharacterHealth;
     [SerializeField] private CPN_SpellCaster currentCharacterSpell;
@@ -48,7 +53,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         Debug.Log("New Turn : " +  currentCharacter.gameObject);
 
-        SearchNextAction(2f);
+        SearchNextAction(timeDelayBeginTurn);
     }
 
     /// <summary>
@@ -59,7 +64,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         currentCharacter = null;
 
-        RVN_BattleManager.EndCharacterTurn();
+        TimerManager.CreateGameTimer(timeDelayEndTurn, () => RVN_BattleManager.EndCharacterTurn());
     }
 
     private void SearchNextAction(float timeToWait)
@@ -93,14 +98,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             {
                 Debug.Log("Move : " + plannedAction.movementTarget.worldPosition.ToString("F2"));
 
-                currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+                currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
             }
             else
             {
                 Debug.Log("Do action");
 
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
-                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(1.5f));
+                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 
                 plannedAction = null;
             }
@@ -113,11 +118,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             {
                 if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
                 {
-                    currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(1f));
+                    currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
                 }
                 else
                 {
-                    currentCharacterMovement.AskToMoveTo(GetClosestCharacter(true).CurrentNode.worldPosition, () => PrepareNextAction(1f));
+                    currentCharacterMovement.AskToMoveTo(GetClosestCharacter(true).CurrentNode.worldPosition, () => PrepareNextAction(timeBetweenActions));
                 }
 
                 isDoneMoving = true;

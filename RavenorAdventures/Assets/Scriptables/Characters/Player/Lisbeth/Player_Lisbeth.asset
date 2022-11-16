@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Lisbeth
   UIPortrait: {fileID: 21300000, guid: 92fd6c3e51dcfc248aa5c7bccb4f385a, type: 3}
-  nameColor: {r: 0.92221785, g: 0, b: 1, a: 1}
+  nameColor: {r: 0.9150943, g: 0.4977866, b: 0.25467247, a: 1}
   characterSprite: {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
+  characterIdleAnimation:
+  - {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
+  - {fileID: 21300000, guid: 1e3eb10232338fc4a8dd293c45220601, type: 3}
   handSprite: {fileID: 21300000, guid: 28c34988060472e448246683eab2eec0, type: 3}
   displayHand: 0
   handHeight: 0
@@ -33,7 +36,6 @@ MonoBehaviour:
   availableSpells:
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
   - {fileID: 11400000, guid: d3687ca9a17af6a40acbdcec88127655, type: 2}
-  - {fileID: 11400000, guid: f4b7a943c18d02c4eb2f8b0709f48235, type: 2}
   - {fileID: 11400000, guid: d331bdf7360b4204283c19e1931839ed, type: 2}
   usableSpellByTurn: 1
   usedRessource:

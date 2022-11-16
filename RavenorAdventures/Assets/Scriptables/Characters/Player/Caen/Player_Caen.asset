@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Caen
   UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
-  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  nameColor: {r: 0.16570203, g: 0.6698113, b: 0.14217694, a: 1}
   characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+  characterIdleAnimation:
+  - {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+  - {fileID: 21300000, guid: dffd536c8c7169b4fb89664890a87147, type: 3}
   handSprite: {fileID: 21300000, guid: 771d8ca52f078a7468d4a87afbc5ebd4, type: 3}
   displayHand: 0
   handHeight: 0
@@ -33,9 +36,7 @@ MonoBehaviour:
   availableSpells:
   - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
   - {fileID: 11400000, guid: 8fd99d642ff2e8d4fb91bf49d3c8f57d, type: 2}
-  - {fileID: 11400000, guid: 83eea71a8aa84f64bb1d49eaf12a0118, type: 2}
   - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
-  - {fileID: 11400000, guid: db89cea0714b594459f9b7d7612c82a3, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

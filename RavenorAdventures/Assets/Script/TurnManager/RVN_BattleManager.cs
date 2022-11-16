@@ -39,6 +39,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public static Action OnPlayerTeamDie;
     public static Action OnEnnemyTeamDie;
+    public static Action<CPN_Character> ActOnCharacterDie;
 
     [Header("Combat End")]
     [SerializeField] private UnityEvent OnWinBattle;
@@ -276,11 +277,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         return null;
     }
 
-    private int GetCharacterTeamIndex(CPN_Character character)
+    public static int GetCharacterTeamIndex(CPN_Character character)
     {
-        for (int i = 0; i < teams.Count; i++)
+        for (int i = 0; i < instance.teams.Count; i++)
         {
-            if (teams[i].characters.Contains(character))
+            if (instance.teams[i].characters.Contains(character))
             {
                 return i;
             }
@@ -338,6 +339,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (toCheck != null)
         {
+            ActOnCharacterDie?.Invoke(diedCharacter);
+
             if (currentPlayingCharacter == diedCharacter)
             {
                 EndCharacterTurn();
@@ -361,6 +364,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public static void WinBattle()
     {
+        Debug.Log("???");
+
         instance.OnWinBattle?.Invoke();
     }
 

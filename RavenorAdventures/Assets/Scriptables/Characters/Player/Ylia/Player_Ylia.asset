@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nom: Ylia
   UIPortrait: {fileID: 21300000, guid: eac86b572decff04b9c34c62e1830160, type: 3}
-  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  nameColor: {r: 0.48718405, g: 0.8679245, b: 0.8520406, a: 1}
   characterSprite: {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
+  characterIdleAnimation:
+  - {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
+  - {fileID: 21300000, guid: 18f80c26585a2f745beb657e6ce0cf6c, type: 3}
   handSprite: {fileID: 21300000, guid: 7eaea7f6ab88a414799e149ce55163a4, type: 3}
   displayHand: 0
   handHeight: 0
@@ -33,7 +36,6 @@ MonoBehaviour:
   availableSpells:
   - {fileID: 11400000, guid: 0e90293666764474aaf0625b8d205cdd, type: 2}
   - {fileID: 11400000, guid: 650bf4b0470baaa4187cfe5d99fcaeb0, type: 2}
-  - {fileID: 11400000, guid: 6673fa1f7fc67c940aa58123f6e4d865, type: 2}
   - {fileID: 11400000, guid: d76bc598a7824ff43b7d410d3ea53b57, type: 2}
   - {fileID: 11400000, guid: 25e6768ecc984884890a81db679239d2, type: 2}
   usableSpellByTurn: 1

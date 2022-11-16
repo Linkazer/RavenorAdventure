@@ -10,34 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
-  m_Name: Ennemy_EtheralKnight
+  m_Name: Ennemy_Chevalier
   m_EditorClassIdentifier: 
-  nom: Etheral Knight
+  nom: Chevalier
   UIPortrait: {fileID: 21300000, guid: 1b89bda4b964be547b011d762303566e, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
-  characterSprite: {fileID: 21300000, guid: 3ba7e3e404a6c254a94029fb633da193, type: 3}
+  characterSprite: {fileID: 21300000, guid: d5dd6e411d972ac46ad27f510c6f7073, type: 3}
+  characterIdleAnimation:
+  - {fileID: 21300000, guid: d5dd6e411d972ac46ad27f510c6f7073, type: 3}
+  - {fileID: 21300000, guid: bb294fa5c89d26347ac15e4999898eaa, type: 3}
   handSprite: {fileID: 0}
   displayHand: 0
   handHeight: 0
   uiHeight: 1.25
   health: 5
-  armor: 1
-  defense: 2
+  armor: 2
+  defense: 4
   accuracy: 0
   power: 0
   offensiveRerolls: 0
-  defensiveRerolls: 1
+  defensiveRerolls: 0
   movementByTurn: 55
   speed: 5
-  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 10
+      condition: 3
+      baseValue: 0
+    bonusScore: 100
+    calculs: []
+  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0

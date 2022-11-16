@@ -132,4 +132,40 @@ public class DiceTests : MonoBehaviour
 
         return toReturn;
     }
+
+    [Header("DungeonSaga dices")]
+    public int attackDice;
+    public int defenseDice;
+    public int defenseArmor;
+
+    public int TryDSDices()
+    {
+        List<int> attackResult = new List<int>();
+        List<int> defenseResult = new List<int>();
+
+        for(int i = 0; i < attackDice; i++)
+        {
+            attackResult.Add(Random.Range(0, 6) + 1);
+        }
+
+        for (int i = 0; i < defenseDice; i++)
+        {
+            defenseResult.Add(Random.Range(0, 6) + 1);
+        }
+
+        attackResult.Sort();
+        defenseResult.Sort();
+
+        int hitNb = 0;
+
+        for(int i = 0; i < attackResult.Count; i++)
+        {
+            if(attackResult[i] > defenseArmor && (defenseResult.Count <= i || attackResult[i] > defenseResult[i]))
+            {
+                hitNb++;
+            }
+        }
+
+        return hitNb;
+    }
 }
