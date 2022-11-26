@@ -35,9 +35,10 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: 4c0851a9f67c2c34aab31dcdf9fcce10, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
-  - {fileID: 11400000, guid: 8fd99d642ff2e8d4fb91bf49d3c8f57d, type: 2}
-  - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
-  usableSpellByTurn: 1
+  - {fileID: 11400000, guid: b6cd4844a086a694895926711d221edf, type: 2}
+  - {fileID: 11400000, guid: a1f40f17b2b583e4ab2f699baf24d625, type: 2}
+  - {fileID: 11400000, guid: 9f7ea61c399fd4f4f8f80abe4d860960, type: 2}
+  usableSpellByTurn: 10
   usedRessource:
     id: 0
   passives: []

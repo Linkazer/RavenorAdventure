@@ -67,6 +67,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
 
     public Action<int> OnUpdateCooldown;
+    public Action<int> OnUpdateUtilisationLeft;
 
     public string Name => nom;
     public Sprite Icon => icon;
@@ -110,6 +111,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public void SetSpell()
     {
         utilisationLeft = maxUtilisations;
+        OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
     }
 
     public void UpdateCurrentCooldown()
@@ -136,5 +138,6 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public void UseSpell()
     {
         utilisationLeft--;
+        OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
     }
 }

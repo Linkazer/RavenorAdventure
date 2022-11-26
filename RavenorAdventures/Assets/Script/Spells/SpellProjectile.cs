@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpellProjectile : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float heightByDistance;
     [SerializeField] private AnimationCurve heightCurve;
 
     private Vector2 direction;
@@ -18,7 +19,6 @@ public class SpellProjectile : MonoBehaviour
 
     private float maxDistance;
     private float currentTraveledDistance;
-    private float currentProgress;
 
     public void SetProjectile(Node nStartNode, Node nTargetNode, Action callback)
     {
@@ -52,6 +52,6 @@ public class SpellProjectile : MonoBehaviour
 
         currentPosition = nextPosition;
 
-        transform.position = nextPosition + new Vector2(0, heightCurve.Evaluate(currentTraveledDistance / maxDistance));
+        transform.position = nextPosition + (new Vector2(0, heightCurve.Evaluate(currentTraveledDistance / maxDistance) * (heightByDistance * maxDistance)));
     }
 }

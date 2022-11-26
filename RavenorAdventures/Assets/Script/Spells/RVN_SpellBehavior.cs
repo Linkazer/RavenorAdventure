@@ -120,7 +120,10 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
             foreach (CPN_HealthHandler hitedObject in hitableObjects)
             {
-                spellToUse.caster.actOnUseSkillTarget?.Invoke(hitedObject.Handler);
+                if (spellToUse.scriptable.Range >= 10 && spellToUse.caster != null)
+                {
+                    spellToUse.caster.actOnUseSkillTarget?.Invoke(hitedObject.Handler);
+                }
 
                 if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                 {
@@ -133,7 +136,10 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
             if (spellToUse.caster != null)
             {
-                spellToUse.caster.actOnUseSkillSelf?.Invoke(spellToUse.caster.Handler);
+                if (spellToUse.scriptable.Range >= 10)
+                {
+                    spellToUse.caster.actOnUseSkillSelf?.Invoke(spellToUse.caster.Handler);
+                }
 
                 if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                 {

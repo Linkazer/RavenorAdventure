@@ -10469,8 +10469,8 @@ MonoBehaviour:
   OffensiveRerolls: 0
   Accuracy: 0
   Power: 0
-  Defense: 2
-  DefensiveRerolls: 2
+  Defense: 3
+  DefensiveRerolls: 0
   iterations: 10000
   attackDice: 5
   defenseDice: 2

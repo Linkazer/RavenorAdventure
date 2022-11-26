@@ -95,6 +95,12 @@ public class UI_PlayerSpell : MonoBehaviour
             currentSpell.OnUpdateCooldown += UpdateCooldown;
         }
 
+        if (currentSpell.MaxUtilisation > 0)
+        {
+            currentSpell.OnUpdateUtilisationLeft += UpdateUtilisationLeft;
+        }
+
+
         gameObject.SetActive(true);
     }
 
@@ -103,6 +109,8 @@ public class UI_PlayerSpell : MonoBehaviour
         if(currentSpell != null)
         {
             currentSpell.OnUpdateCooldown -= UpdateCooldown;
+
+            currentSpell.OnUpdateUtilisationLeft -= UpdateUtilisationLeft;
         }
 
         currentSpell = null;
@@ -130,6 +138,11 @@ public class UI_PlayerSpell : MonoBehaviour
         {
             cooldown.fillAmount = 0;
         }
+    }
+
+    public void UpdateUtilisationLeft(int currentUtilisation)
+    {
+        spellUtilisationLeft.text = currentUtilisation.ToString();
     }
 
     public void DisplaySpellDescription(bool show)
