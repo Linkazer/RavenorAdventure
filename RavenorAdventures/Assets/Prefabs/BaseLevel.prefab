@@ -34510,7 +34510,7 @@ PrefabInstance:
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 922fce959006cf44993a10d44f1f97b8, type: 2}
+      objectReference: {fileID: 11400000, guid: ba6b645a24b8a864a8e6d6909af85a91, type: 2}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -34597,7 +34597,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: "Armure Anim\xE9e"
+      value: Chevalier
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -34630,7 +34630,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1ea4f6732f1870f4fb9f0e514e410440, type: 3}
+      objectReference: {fileID: 21300000, guid: d5dd6e411d972ac46ad27f510c6f7073, type: 3}
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

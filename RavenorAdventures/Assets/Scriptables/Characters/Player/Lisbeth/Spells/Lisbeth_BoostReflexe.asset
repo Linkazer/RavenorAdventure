@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
   m_Name: Lisbeth_BoostReflexe
   m_EditorClassIdentifier: 
-  nom: "Am\xE9lioration de R\xE9fl\xE8xes"
+  nom: "Module de R\xE9fl\xE8xes"
   icon: {fileID: 0}
   description:
     texts:
@@ -30,7 +30,7 @@ MonoBehaviour:
   castTarget: 3
   castType: 1
   isCooldownGlobal: 1
-  cooldown: 3
+  cooldown: 2
   range: 0
   zoneRange: 0
   effectsOnTarget: []

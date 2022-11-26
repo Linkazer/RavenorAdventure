@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
   m_Name: Lisbeth_BoostAcuity
   m_EditorClassIdentifier: 
-  nom: "Am\xE9lioration d'Acuit\xE9"
+  nom: "Module d'Acuit\xE9"
   icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
   description:
     texts:
@@ -30,7 +30,7 @@ MonoBehaviour:
   castTarget: 3
   castType: 1
   isCooldownGlobal: 1
-  cooldown: 3
+  cooldown: 2
   range: 0
   zoneRange: 0
   effectsOnTarget: []

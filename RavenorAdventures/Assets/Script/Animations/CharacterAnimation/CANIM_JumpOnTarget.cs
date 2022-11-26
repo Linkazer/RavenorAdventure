@@ -57,6 +57,8 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         }
         else if(curveIndex < 0)
         {
+            rnd.sortingOrder = 0;
+
             curveIndex = 0;
             enabled = false;
         }

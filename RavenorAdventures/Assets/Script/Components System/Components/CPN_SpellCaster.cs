@@ -29,6 +29,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
+    public Action<RVN_ComponentHandler> actOnUseSkillSelf;
+    public Action<RVN_ComponentHandler> actOnUseSkillTarget;
     public Action actOnEndCastSpell;
     public Action<int> actOnSetActionLeft;
     public Action<SpellScriptable> actOnSelectSpell;

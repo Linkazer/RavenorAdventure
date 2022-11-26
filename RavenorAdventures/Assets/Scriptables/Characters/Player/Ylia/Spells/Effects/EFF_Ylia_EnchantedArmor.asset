@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
-  m_Name: Frenesie_Bonus_EffectHolder
+  m_Name: EFF_Ylia_EnchantedArmor
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 996684ac842c3e84fa12fddf48132ae2, type: 3}
+  hideOnApply: 0
+  icon: {fileID: 0}
   duration: 2
   effects:
   - id: 0
@@ -22,14 +23,12 @@ MonoBehaviour:
     00000000:
       type: {class: EFF_StatEffect, ns: , asm: ravenor_engine}
       data:
-        trigger: 2
+        trigger: 0
         effects:
-        - stat: 4
-          valueToChange: 3
         - stat: 1
-          valueToChange: 4
+          valueToChange: 1
     00000001:
       type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
       data:
-        trigger: 0
-        spellToUse: {fileID: 11400000, guid: 1692320bca23f144baf9d4fc8bdca615, type: 2}
+        trigger: 2
+        spellToUse: {fileID: 11400000, guid: f7de4299176771c45b852fc4fd9f0770, type: 2}

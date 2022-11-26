@@ -14,7 +14,10 @@ public class AppliedEffect
 
     public void UpdateDuration()
     {
-        durationLeft--;
+        if (durationLeft > -1)
+        {
+            durationLeft--;
+        }
     }
 
     public void ResetEffect(int resetDuration)

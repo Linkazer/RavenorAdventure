@@ -79,6 +79,18 @@ public abstract class Effect
                     getAttackedTarget.actOnTakeDamageTarget += UseEffect;
                 }
                 break;
+            case EffectTrigger.OnAttackTowardSelf:
+                if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster attackSelf))
+                {
+                    attackSelf.actOnUseSkillSelf += UseEffect;
+                }
+                break;
+            case EffectTrigger.OnAttackTowardTarget:
+                if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster attackTarget))
+                {
+                    attackTarget.actOnUseSkillTarget += UseEffect;
+                }
+                break;
         }
     }
 
@@ -150,6 +162,18 @@ public abstract class Effect
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedTarget))
                 {
                     getAttackedTarget.actOnTakeDamageTarget -= UseEffect;
+                }
+                break;
+            case EffectTrigger.OnAttackTowardSelf:
+                if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster attackSelf))
+                {
+                    attackSelf.actOnUseSkillSelf -= UseEffect;
+                }
+                break;
+            case EffectTrigger.OnAttackTowardTarget:
+                if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster attackTarget))
+                {
+                    attackTarget.actOnUseSkillTarget -= UseEffect;
                 }
                 break;
         }

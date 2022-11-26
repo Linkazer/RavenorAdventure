@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideOnApply: 0
   icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
-  duration: 0
+  duration: -1
   effects:
   - id: 0
+  - id: 1
   references:
     version: 1
     00000000:
@@ -25,4 +26,10 @@ MonoBehaviour:
         trigger: 0
         effects:
         - stat: 5
-          valueToChange: 2
+          valueToChange: 1
+    00000001:
+      type: {class: EFF_RemoveSpecificEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 0
+        effectToRemove:
+        - {fileID: 11400000, guid: 2ce7183062a69574e98d9c636121c165, type: 2}
