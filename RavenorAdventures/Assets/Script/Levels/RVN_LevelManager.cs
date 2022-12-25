@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
 {
+    public DialogueScriptable startDialogue;
+    public DialogueScriptable endDialogue;
+
     [Serializable]
     private struct CharacterTeam
     {

@@ -86,11 +86,14 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     private void Update()
     {
-        mouseRaycast = GetMouseRaycast();
+        if (!evtSyst.IsPointerOverGameObject())
+        {
+            mouseRaycast = GetMouseRaycast();
 
-        OnMoveCameraInput?.Invoke(actionMoveCameraInput.action.ReadValue<Vector2>());
+            OnMoveCameraInput?.Invoke(actionMoveCameraInput.action.ReadValue<Vector2>());
 
-        OnMouseScroll?.Invoke(actionMouseScroll.action.ReadValue<Vector2>().normalized);
+            OnMouseScroll?.Invoke(actionMouseScroll.action.ReadValue<Vector2>().normalized);
+        }
     }
 
     private void UpdateMousePosition(InputAction.CallbackContext context)

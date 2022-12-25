@@ -9,16 +9,21 @@ public class SpellProjectile : MonoBehaviour
     [SerializeField] private float heightByDistance;
     [SerializeField] private AnimationCurve heightCurve;
 
+    [SerializeField] private bool faceDirection = false;
+
     private Vector2 direction;
     private Node targetNode;
 
     private Vector2 currentPosition;
+    private Vector2 lastPosition;
     private Vector2 nextPosition;
 
     private Action toPlayAtReachTarget;
 
     private float maxDistance;
     private float currentTraveledDistance;
+
+    private Vector2 RealPosition => transform.position;
 
     public void SetProjectile(Node nStartNode, Node nTargetNode, Action callback)
     {
@@ -53,5 +58,12 @@ public class SpellProjectile : MonoBehaviour
         currentPosition = nextPosition;
 
         transform.position = nextPosition + (new Vector2(0, heightCurve.Evaluate(currentTraveledDistance / maxDistance) * (heightByDistance * maxDistance)));
+
+        if (faceDirection)
+        {
+            transform.up = RealPosition - lastPosition;
+        }
+
+        lastPosition = transform.position;
     }
 }

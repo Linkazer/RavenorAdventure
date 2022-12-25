@@ -17,6 +17,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     [SerializeField] private float timeDelayBeginTurn = 1f;
     [SerializeField] private float timeDelayEndTurn = 0.5f;
 
+    [Header("Calcul Values")]
+    [SerializeField] private float opportunityDefenseCoef = 0.2f;
+
     [Header("Debugs")]
     [SerializeField] private CPN_Character currentCharacter;
     [SerializeField] private CPN_HealthHandler currentCharacterHealth;
@@ -118,7 +121,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
                 else
                 {
-                    currentCharacterMovement.AskToMoveTo(GetClosestCharacter(true).CurrentNode.worldPosition, () => PrepareNextAction(timeBetweenActions));
+                    currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
                 }
 
                 isDoneMoving = true;
@@ -154,11 +157,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         float maxScore = -1;
 
-        foreach (AI_Consideration consideration in currentAi.Comportement)
+        foreach (AI_Consideration consideration in currentAi.Comportement) //Check de chacune des considérations de l'IA
         {
             possibleTargets = new List<CPN_Character>();
 
-            switch(consideration.wantedAction.CastTargets)
+            switch(consideration.wantedAction.CastTargets) //Récupération des targets possibles
             {
                 case SpellTargets.Self:
                     possibleTargets.Add(caster);
@@ -179,52 +182,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 continue;
             }
 
-            List<Node> possibleMovements = new List<Node>();
-            if (forNextTurn)
-            {
-                possibleMovements.Add(casterNode); //POTENTIAL BUG : S'il y a un problème de comportement d'IA lors de la préparation du tour suivant, ça peut être ici
+            //Recherche des mouvements possibles
+            List<Node> possibleMovements = GetPossibleMovements(casterNode, possibleTargets, forNextTurn);
 
-                foreach (CPN_Character target in possibleTargets)
-                {
-                    /*List<Node> path = Pathfinding.CalculatePathfinding(casterNode, target.CurrentNode, -1, false);
-
-                    foreach (Node n in path)
-                    {
-                        if (!possibleMovements.Contains(n))
-                        {
-                            possibleMovements.Add(n);
-                        }
-                    }*/
-
-                    List<Node> targetNeighbours = Grid.GetNeighbours(target.CurrentNode);
-
-                    Node toAdd = null;
-
-                    int dist = 99999;
-
-                    foreach(Node n in targetNeighbours)
-                    {
-                        if(n.IsWalkable && Pathfinding.GetDistance(n, casterNode) < dist)
-                        {
-                            toAdd = n;
-                            dist = Pathfinding.GetDistance(n, casterNode);
-                        }
-                    }
-
-                    if(toAdd != null)
-                    {
-                        possibleMovements.Add(toAdd);
-                    }
-                }
-            }
-            else
-            {
-                possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
-            }
+            float opportunityAttackScore = OpportunityAttackScore(currentCharacterHealth, casterNode); // On fait le calcul ici puisque le résultat de changera pas pendant la recherche de l'attaque
 
             foreach (CPN_Character target in possibleTargets)
             {
-                List<Node> possibleTargetPosition = Pathfinding.GetAllNodeInDistance(target.CurrentNode, consideration.wantedAction.Range, true);
+                //List<Node> possibleTargetPosition = Pathfinding.GetAllNodeInDistance(target.CurrentNode, consideration.wantedAction.Range, true); Useless pour l'instant, à voir si on réutilisé
 
                 Ai_PlannedAction actionOnTarget = null;
 
@@ -241,7 +206,32 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     {
                         float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        if (n != casterNode || Pathfinding.GetDistance(casterNode, target.CurrentNode) <= 15)
+                        //Debug.Log($"AVANT : {currentCharacter} on {target} : {calculatedScore}");
+
+                        if(n != casterNode)
+                        {
+                            calculatedScore -= opportunityAttackScore;
+                        }
+
+                        //Debug.Log($"APRES : {currentCharacter} on {target} : {calculatedScore}");
+
+                        if(forNextTurn)
+                        {
+                            actionToCheck.minimalDistance = Mathf.Abs(Pathfinding.GetDistance(actionToCheck.movementTarget, target.CurrentNode) - consideration.wantedAction.Range);
+                        }
+                        else
+                        {
+                            if (n != casterNode)
+                            {
+                                actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                            }
+                            else
+                            {
+                                actionToCheck.minimalDistance = -1f;
+                            }
+                        }
+
+                        //if (!forNextTurn || (n != casterNode || Pathfinding.GetDistance(casterNode, target.CurrentNode) <= 15))
                         {
                             if (calculatedScore > maxScore)
                             {
@@ -252,15 +242,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                             if (calculatedScore == maxScore)
                             {
-                                if (n != casterNode)
-                                {
-                                    actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
-                                }
-                                else
-                                {
-                                    actionToCheck.minimalDistance = -1f;
-                                }
-
                                 if (actionToCheck.minimalDistance <= minimumDistance)
                                 {
                                     minimumDistance = actionToCheck.minimalDistance;
@@ -304,6 +285,163 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         }
 
         return toReturn;
+    }
+
+    private Node SearchForBestMovement()
+    {
+        Debug.Log(currentCharacterMovement);
+
+        Node casterNode = currentCharacterMovement.CurrentNode;
+        AI_CharacterScriptable casterScriptable = (currentCharacter.Scriptable as AI_CharacterScriptable);
+
+        float maxScore = 9999;
+
+        List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+
+        List<Node> possibleTargetNodes = new List<Node>();
+
+        Node toReturn = null;
+
+        foreach(Node n in possibleMovements)
+        {
+            float distance = Pathfinding.GetDistance(n, GetClosestCharacter(n, true).CurrentNode);
+
+            float opportunityAttackScore = 0;
+
+            List<Node> path = Pathfinding.CalculatePathfinding(casterNode, n, currentCharacterMovement.MovementLeft);
+
+            opportunityAttackScore += OpportunityAttackScore(currentCharacterHealth, path);
+
+            if (distance > casterScriptable.DistanceFromTarget.y)
+            {
+                distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.y) / casterScriptable.DistanceFromTarget.y;
+            }
+            else if (distance < casterScriptable.DistanceFromTarget.x)
+            {
+                distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.x) / casterScriptable.DistanceFromTarget.x;
+            }
+            else
+            {
+                distance = 0;
+            }
+
+            if(n != casterNode)
+            {
+                distance += opportunityAttackScore;
+            }
+
+            if(n == casterNode)
+            {
+                Debug.Log($"Distance with cster node : {distance}");
+            }
+
+            Debug.Log($"Distance : {distance} < {maxScore}");
+
+            if (distance < maxScore)
+            {
+                possibleTargetNodes = new List<Node>();
+
+                maxScore = distance;
+
+                toReturn = n;
+            }
+            else if(distance == maxScore && Pathfinding.GetDistance(casterNode, toReturn) < Pathfinding.GetDistance(casterNode, n))
+            {
+                Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : {Pathfinding.GetDistance(casterNode, toReturn)} < {Pathfinding.GetDistance(casterNode, GetClosestCharacter(n, true).CurrentNode)}");
+
+                toReturn = n;
+
+                possibleTargetNodes.Add(n);
+            }
+        }
+
+        return toReturn;
+    }
+
+    private float OpportunityAttackScore(CPN_HealthHandler casterHealthHandler, Node casterNode)
+    {
+        float opportunityAttackDiceCounter = 0;
+
+        List<Node> casterNeighbours = Grid.GetNeighbours(casterNode);
+
+        foreach(Node n in casterNeighbours)
+        {
+            List<CPN_SpellCaster> casters = n.GetNodeComponent<CPN_SpellCaster>();
+            foreach(CPN_SpellCaster c in casters)
+            {
+                if(c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                {
+                    opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
+                }
+            }
+        }
+
+        opportunityAttackDiceCounter = ((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
+
+        return opportunityAttackDiceCounter / casterHealthHandler.CurrentHealth;
+    }
+
+    private float OpportunityAttackScore(CPN_HealthHandler casterHealthHandler, List<Node> pathNode)
+    {
+        float opportunityAttackDiceCounter = 0;
+
+        List<CPN_SpellCaster> alreadyAttackedCaster = new List<CPN_SpellCaster>();
+
+        foreach (Node casterNode in pathNode)
+        {
+
+            List<Node> casterNeighbours = Grid.GetNeighbours(casterNode);
+
+            foreach (Node n in casterNeighbours)
+            {
+                List<CPN_SpellCaster> casters = n.GetNodeComponent<CPN_SpellCaster>();
+                foreach (CPN_SpellCaster c in casters)
+                {
+                    if (!alreadyAttackedCaster.Contains(c) && c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                    {
+                        opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
+
+                        alreadyAttackedCaster.Add(c);
+                    }
+                }
+            }
+        }
+        opportunityAttackDiceCounter = ((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
+
+        return opportunityAttackDiceCounter / casterHealthHandler.CurrentHealth;
+    }
+
+    private List<Node> GetPossibleMovements(Node startNode, List<CPN_Character> possibleTargets, bool forNextTurn)
+    {
+        List<Node> possibleMovements = Pathfinding.CalculatePathfinding(startNode, null, currentCharacterMovement.MovementLeft);
+        if (forNextTurn)
+        {
+            possibleMovements.Add(startNode); //POTENTIAL BUG : S'il y a un problème de comportement d'IA lors de la préparation du tour suivant, ça peut être ici
+
+            foreach (CPN_Character target in possibleTargets)
+            {
+                List<Node> targetNeighbours = Grid.GetNeighbours(target.CurrentNode);
+
+                Node toAdd = null;
+
+                int dist = 99999;
+
+                foreach (Node n in targetNeighbours)
+                {
+                    if (n.IsWalkable && Pathfinding.GetDistance(n, startNode) < dist)
+                    {
+                        toAdd = n;
+                        dist = Pathfinding.GetDistance(n, startNode);
+                    }
+                }
+
+                if (toAdd != null && !possibleMovements.Contains(toAdd))
+                {
+                    possibleMovements.Add(toAdd);
+                }
+            }
+        }
+        return possibleMovements;
     }
 
     /// <summary>
@@ -502,7 +640,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return toReturn;
     }
 
-    private CPN_Character GetClosestCharacter(bool isEnemy)
+    private CPN_Character GetClosestCharacter(Node nodeToCheck, bool isEnemy)
     {
         CPN_Character toReturn = null;
 
@@ -519,15 +657,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (targets.Count > 0)
         {
-            int minDistance = Pathfinding.GetDistance(targets[0].CurrentNode, currentCharacter.CurrentNode);
+            int minDistance = Pathfinding.GetDistance(targets[0].CurrentNode, nodeToCheck);
 
             toReturn = targets[0];
 
             for(int i = 1; i < targets.Count; i++)
             {
-                if(Pathfinding.GetDistance(targets[i].CurrentNode, currentCharacter.CurrentNode) < minDistance)
+                if(Pathfinding.GetDistance(targets[i].CurrentNode, nodeToCheck) < minDistance)
                 {
-                    minDistance = Pathfinding.GetDistance(targets[i].CurrentNode, currentCharacter.CurrentNode);
+                    minDistance = Pathfinding.GetDistance(targets[i].CurrentNode, nodeToCheck);
 
                     toReturn = targets[i];
                 }

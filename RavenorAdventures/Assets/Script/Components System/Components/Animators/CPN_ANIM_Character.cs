@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum CharacterAnimationType
 {
+    None,
     Idle,
     Walk,
     CastSpell,
@@ -10,7 +11,7 @@ public enum CharacterAnimationType
     JumpOnTarget,
     Death,
     Shoot,
-    None
+    Throw,
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
@@ -122,6 +123,9 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                     break;
                 case CharacterAnimationType.Shoot:
                     AnimSetTrigger("Shoot");
+                    break;
+                case CharacterAnimationType.Throw:
+                    AnimSetTrigger("Throw");
                     break;
             }
         }

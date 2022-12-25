@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Caen_Ingredient_Defense
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1ab633b11476bbd4cb9a90f26e846c56, type: 3}
   duration: -1
   effects:
   - id: 0

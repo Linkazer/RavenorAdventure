@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Lisbeth_BoostAcuity
   m_EditorClassIdentifier: 
   nom: "Module d'Acuit\xE9"
-  icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
+  icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
   description:
-    texts:
-    - 
-    - 
-  castingAnimation: 2
+    frenchText: 
+    englishText: 
+  castingAnimation: 3
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
   projectile: {fileID: 0}

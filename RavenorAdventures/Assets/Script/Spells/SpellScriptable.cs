@@ -29,7 +29,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Général Informations")]
     [SerializeField] protected string nom;
     [SerializeField] protected Sprite icon;
-    [SerializeField] protected RVN_Text description;
+    [SerializeField] protected RVN_Text description = new RVN_Text();
 
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;

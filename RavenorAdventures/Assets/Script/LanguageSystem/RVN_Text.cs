@@ -12,15 +12,19 @@ public enum PossibleLanguage
 [Serializable]
 public class RVN_Text
 {
-    [SerializeField, TextArea(2,3)] private List<string> texts = new List<string>(Enum.GetNames(typeof(PossibleLanguage)).Length);
+    [SerializeField, TextArea(2,3)] private string frenchText = "";
+    [SerializeField, TextArea(2,3)] private string englishText = "";
 
     public string GetText()
     {
-        return texts[((int)RVN_LanguageManager.Language)];
-    }
+        switch(RVN_LanguageManager.Language)
+        {
+            case PossibleLanguage.Francais:
+                return frenchText;
+            case PossibleLanguage.English:
+                return englishText;
+        }
 
-    public RVN_Text()
-    {
-        texts = new List<string>(Enum.GetNames(typeof(PossibleLanguage)).Length);
+        return "";
     }
 }

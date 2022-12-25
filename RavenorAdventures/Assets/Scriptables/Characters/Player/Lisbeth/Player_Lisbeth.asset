@@ -30,8 +30,8 @@ MonoBehaviour:
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
-  movementByTurn: 65
-  speed: 5
+  movementByTurn: 55
+  speed: 6
   opportunitySpell: {fileID: 11400000, guid: 59fb311f2c750fc458c2da6eb42637eb, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IngredientOnTarget_Precision
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dad2141da2ff944468c82da4ee5991db, type: 3}
   duration: 2
   effects:
   - id: 0

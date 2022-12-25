@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ennemy_Chevalier
   m_EditorClassIdentifier: 
   nom: Chevalier
-  UIPortrait: {fileID: 21300000, guid: 1b89bda4b964be547b011d762303566e, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 23c78bc4f636cdf44b795cba95e74d0f, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: d5dd6e411d972ac46ad27f510c6f7073, type: 3}
   characterIdleAnimation:
@@ -30,7 +30,7 @@ MonoBehaviour:
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
-  movementByTurn: 55
+  movementByTurn: 45
   speed: 5
   opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
   availableSpells:

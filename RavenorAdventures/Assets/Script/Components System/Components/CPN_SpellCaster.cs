@@ -37,6 +37,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public Action<SpellScriptable> actOnUnselectSpell;
 
     public List<SpellScriptable> Spells => spells;
+    public SpellScriptable OpportunitySpell => opportunitySpell;
     public int ActionByTurn => actionByTurn;
     public int ActionLeftThisTurn => actionsLeftThisTurn;
     public int OffensiveRerolls => offensiveRerolls;

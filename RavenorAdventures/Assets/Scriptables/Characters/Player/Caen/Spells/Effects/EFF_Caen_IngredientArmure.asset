@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EFF_Caen_IngredientArmure
   m_EditorClassIdentifier: 
   nom: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 654ba76aee145634fa8ea442ca4952a7, type: 3}
   description:
     texts: []
   castingAnimation: 0

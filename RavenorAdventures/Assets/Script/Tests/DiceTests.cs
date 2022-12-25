@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class DiceTests : MonoBehaviour
 {
+    public enum DiceCalculType
+    {
+        DamageChance,
+        HitsOnTarget,
+    }
+
     [SerializeField] private string testName;
+    [SerializeField] private DiceCalculType calculType;
 
     [Header("Attack")]
     [SerializeField] private int AttackDice;
@@ -16,17 +23,34 @@ public class DiceTests : MonoBehaviour
     [SerializeField] private int Defense;
     [SerializeField] private int DefensiveRerolls;
 
+    [Header("Target")]
+    [SerializeField] private int health;
+    [SerializeField] private int armor;
+
     [Header("Tests")]
     [SerializeField] private int iterations;
 
-    private Dictionary<int, int> Results;
+    private SortedDictionary<int, int> Results;
 
     [ContextMenu("Try Dices")]
     public void Test()
     {
-        Results = new Dictionary<int, int>();
+        switch(calculType)
+        {
+            case DiceCalculType.DamageChance:
+                DamageChanceTest();
+                break;
+            case DiceCalculType.HitsOnTarget:
+                HitsOnTargetTest();
+                break;
+        }
+    }
 
-        for(int i = 0; i < AttackDice + 1; i++)
+    private void DamageChanceTest()
+    {
+        Results = new SortedDictionary<int, int>();
+
+        for (int i = 0; i < AttackDice + 1; i++)
         {
             Results.Add(i, 0);
         }
@@ -47,9 +71,59 @@ public class DiceTests : MonoBehaviour
 
         string toDisplay = ($"{testName} : ");
 
-        foreach(KeyValuePair<int,int> rslt in Results)
+        foreach (KeyValuePair<int, int> rslt in Results)
         {
             toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
+        }
+
+        Debug.Log(toDisplay);
+    }
+
+    private void HitsOnTargetTest()
+    {
+        Results = new SortedDictionary<int, int>();
+
+        for (int i = 0; i < iterations; i++)
+        {
+            int currentArmor = armor;
+            int currentHealth = health;
+
+            int touches = 0;
+
+            while (currentHealth > 0)
+            {
+                int damage = CalculateDamage();
+                touches++;
+
+                if (damage > 0)
+                {
+                    if (damage >= currentArmor)
+                    {
+                        currentHealth -= damage - currentArmor;
+                    }
+
+                    currentArmor--;
+                }
+            }
+
+            if (Results.ContainsKey(touches))
+            {
+                Results[touches]++;
+            }
+            else
+            {
+                Results.Add(touches, 1);
+            }
+        }
+
+        string toDisplay = ($"{testName} : ");
+
+        foreach (KeyValuePair<int, int> rslt in Results)
+        {
+            if ((((float)rslt.Value / (float)iterations) * 100f) > 0.5f)
+            {
+                toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
+            }
         }
 
         Debug.Log(toDisplay);

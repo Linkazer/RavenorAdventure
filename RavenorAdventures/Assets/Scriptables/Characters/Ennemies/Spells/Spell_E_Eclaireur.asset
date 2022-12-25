@@ -18,7 +18,7 @@ MonoBehaviour:
     texts:
     - "Ceci est le texte <b>Fran\xE7ais</b>"
     - This text is in <b>English</b>
-  castingAnimation: 2
+  castingAnimation: 3
   castAnimationDuration: 1
   spellAnimationTarget: 0
   projectile: {fileID: 0}

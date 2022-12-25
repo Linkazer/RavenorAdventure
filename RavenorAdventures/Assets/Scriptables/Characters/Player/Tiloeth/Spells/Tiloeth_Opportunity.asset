@@ -15,12 +15,11 @@ MonoBehaviour:
   nom: "\xC9p\xE9e longue"
   icon: {fileID: 21300000, guid: f75177b867f1162478be973d21729ec7, type: 3}
   description:
-    texts:
-    - 
-    - 
-  castingAnimation: 4
+    frenchText: 
+    englishText: 
+  castingAnimation: 5
   castAnimationDuration: 0.25
-  playSpellAnimationOnlyTarget: 0
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   animationDuration: 0
@@ -36,7 +35,7 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 3
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

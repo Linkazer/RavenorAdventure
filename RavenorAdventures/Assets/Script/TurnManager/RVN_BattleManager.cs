@@ -51,7 +51,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private void Start()
     {
-        TimerManager.CreateGameTimer(1f, SetBattle);
+        TimerManager.CreateGameTimer(Time.deltaTime * 2f, SetBattle);
     }
 
     public void SetBattle()
@@ -59,22 +59,24 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         for(int i = 0; i < level.GetTeam(0).Count; i++)
         {
             AddCharacter(level.GetTeam(0)[i], 0);
-            /*teams[0].characters.Add(level.GetTeam(0)[i]);
-
-            teams[0].characters[i].SetCharacter();*/
         }
 
         for (int i = 0; i < level.GetTeam(1).Count; i++)
         {
             AddCharacter(level.GetTeam(1)[i], 1);
-            /*teams[1].characters.Add(level.GetTeam(1)[i]);
-
-            teams[1].characters[i].SetCharacter();*/
         }
 
         OnSetPlayerTeam?.Invoke(teams[0].characters);
 
-        StartBattle();
+        if (level.startDialogue != null)
+        {
+            RVN_DialogueManager.PlayDialogue(level.startDialogue, StartBattle);
+
+        }
+        else
+        {
+            StartBattle();
+        }
     }
 
     public void StartBattle()

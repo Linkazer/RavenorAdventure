@@ -19,9 +19,9 @@ MonoBehaviour:
     - "Attaque \xE0 distance avec 3 d\xE9s. En cas de touche, la cible subit un malus
       en D\xE9fense et en Pr\xE9cision de 1."
     - 
-  castingAnimation: 6
+  castingAnimation: 7
   castAnimationDuration: 0
-  playSpellAnimationOnlyTarget: 1
+  spellAnimationTarget: 0
   projectile: {fileID: 2016346504167992779, guid: 4d22e8a7bc9722d47be6078b4eca543a, type: 3}
   spellAnimation: {fileID: 0}
   animationDuration: 0.5

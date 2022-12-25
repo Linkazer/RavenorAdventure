@@ -24,9 +24,18 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
     private DialogueScriptable currentDialogue;
     private int currentSentenceIndex;
 
+    private Action onDialogueEndCallback;
+
     public static void PlayDialogue(DialogueScriptable toPlay)
     {
         instance.DisplayDialogue(toPlay);
+    }
+
+    public static void PlayDialogue(DialogueScriptable toPlay, Action callback)
+    {
+        instance.onDialogueEndCallback = callback;
+
+        PlayDialogue(toPlay);
     }
 
     private void DisplayDialogue(DialogueScriptable toPlay)
@@ -48,6 +57,12 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
     public void DisplayNextSentence()
     {
+        if (currentSentenceIndex >= currentDialogue.Sentences.Length)
+        {
+            EndDialogue();
+            return;
+        }
+
         DialogueSentence sentence = currentDialogue.Sentences[currentSentenceIndex];
 
         if (sentence.talker != null)
@@ -83,10 +98,10 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
         currentSentenceIndex++;
 
-        if (currentSentenceIndex >= currentDialogue.Sentences.Length)
+        /*if (currentSentenceIndex >= currentDialogue.Sentences.Length)
         {
             DisplayResponses(currentDialogue);
-        }
+        }*/
     }
 
     private void DisplayResponses(DialogueScriptable toPlay)
@@ -110,9 +125,11 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
     private void EndDialogue()
     {
+        onDialogueEndCallback?.Invoke();
         onEndDialogue?.Invoke();
 
         currentDialogue = null;
+        onDialogueEndCallback = null;
     }
 
     public void SelectResponse(int index)

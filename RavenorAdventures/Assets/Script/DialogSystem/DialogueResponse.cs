@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class DialogueResponse
 {
-    [SerializeField] private RVN_Text text;
+    [SerializeField] private RVN_Text text = new RVN_Text();
     [SerializeField] private DialogueScriptable nextDialogue;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(DialogueResponseEffect))] private List<DialogueResponseEffect> effects;
 

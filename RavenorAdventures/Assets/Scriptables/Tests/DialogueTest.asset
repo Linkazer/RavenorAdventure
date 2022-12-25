@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: DialogueTest
+  m_EditorClassIdentifier: 
+  sentences:
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Apr\xE8s plusieurs jours de marche \xE0 suivre la piste laiss\xE9
+        par les voleurs, le groupe s\u2019approcha d\u2019une ancienne crypte. Des
+        traces de pas r\xE9centes indiquaient que de nombreuses personnes \xE9taient
+        entr\xE9e, mais peu d\u2019entre elles \xE9taient sorties. "
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Descendant les escaliers, le groupe arriva dans une petit chambre
+        fun\xE9raire."
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CRien. Tu es s\xFBr que c\u2019est l\u2019endroit que l\u2019on
+        cherche ?\u201D"
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CLes traces m\xE8nent \xE0 cette crypte. A moins que nos
+        voleur n\u2019aient appris \xE0 voler. . .\u201D"
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est bien ici. Je peux sentir la magie du grimoire,
+        bien qu\u2019elle soit assez faible.\u201D"
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CDans ce cas, fouillons la crypte, nous avons peut-\xEAtre
+        manqu\xE9 quelq...\u201D Eral est interrompu par un bruit de verre bris\xE9.
+        Alors qu\u2019il se retourne, il voit les morceaux d'un vase au pieds de
+        Lisbeth."
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CEuh... Oups ?\u201D"
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Ramassant les pi\xE8ces du vase, Caen s\u2019arr\xEAte pour observer
+        le sol.\r\n \u201CEral, Lisbeth, vous pouvez essayer de pousser cette tombe
+        ?\u201D\r\n"
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Perplexes, Eral et Lisbeth pouss\xE8rent la tombe. A leur surprise,
+        la tombe bougea, laissant apparaitre en dessous un escalier.\r"
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Descendant l\u2019escalier, le groupe arriva au niveau d\u2019une
+        porte derri\xE8re laquelle ils pouvaient entendre discuter."
+      englishText: 
+  responses:
+  - text:
+      frenchText: 
+      englishText: 
+    nextDialogue: {fileID: 0}
+    effects: []
+  references:
+    version: 1

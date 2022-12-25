@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Caen_IngredientArmure
   m_EditorClassIdentifier: 
   nom: Armure
-  icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
+  icon: {fileID: 21300000, guid: 654ba76aee145634fa8ea442ca4952a7, type: 3}
   description:
     texts:
     - "La prochaine attaque de Caen r\xE9duire l'Armure de la cible de 3."

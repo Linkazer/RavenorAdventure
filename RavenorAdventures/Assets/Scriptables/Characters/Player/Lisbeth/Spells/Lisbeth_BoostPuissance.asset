@@ -18,9 +18,9 @@ MonoBehaviour:
     texts:
     - 
     - 
-  castingAnimation: 2
+  castingAnimation: 3
   castAnimationDuration: 0.5
-  playSpellAnimationOnlyTarget: 0
+  spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 3d4da6ffba1696f46bbd07da19d58fea, type: 3}
   animationDuration: 1
