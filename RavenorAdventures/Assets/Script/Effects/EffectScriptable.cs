@@ -10,6 +10,9 @@ public class EffectScriptable : ScriptableObject
     [Header("Affichage")]
     [SerializeField] private bool hideOnApply;
     [SerializeField] private Sprite icon;
+
+    [SerializeField] private RVN_Text effectName;
+    [SerializeField] private RVN_Text effectDescription;
     //Voir les affichages
 
     [Header("Effect")]
@@ -22,4 +25,7 @@ public class EffectScriptable : ScriptableObject
     public int Duration => duration + 1;
 
     public List<Effect> GetEffects => effects;
+
+    public string Name => effectName.GetText();
+    public string Description => effectDescription.GetText();
 }

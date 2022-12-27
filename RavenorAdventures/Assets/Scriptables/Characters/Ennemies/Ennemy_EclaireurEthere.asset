@@ -39,6 +39,7 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives: []
+  wantedDistanceFromTarget: {x: 0, y: 15}
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
     wantedActionIndex: 0

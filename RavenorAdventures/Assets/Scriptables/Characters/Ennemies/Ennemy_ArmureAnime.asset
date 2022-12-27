@@ -32,7 +32,7 @@ MonoBehaviour:
   defensiveRerolls: 0
   movementByTurn: 55
   speed: 5
-  opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  opportunitySpell: {fileID: 0}
   availableSpells:
   - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
   usableSpellByTurn: 1
@@ -40,6 +40,7 @@ MonoBehaviour:
     id: 0
   passives:
   - {fileID: 11400000, guid: 3b8173aaac10b724da8bae692a794e02, type: 2}
+  wantedDistanceFromTarget: {x: 0, y: 15}
   comportement:
   - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
     wantedActionIndex: 0

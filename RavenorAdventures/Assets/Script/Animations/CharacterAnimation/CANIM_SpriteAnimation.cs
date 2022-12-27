@@ -31,6 +31,8 @@ public class CANIM_SpriteAnimation : CharacterAnimation
 
     public override void Play(Vector2 _targetPosition)
     {
+        Debug.Log("Play Here");
+
         currentFrameTime = 0;
         currentFrameIndex = 0;
 

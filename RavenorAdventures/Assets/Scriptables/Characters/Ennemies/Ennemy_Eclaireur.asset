@@ -23,7 +23,7 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 3
+  health: 2
   armor: 0
   defense: 1
   accuracy: 1
@@ -55,10 +55,10 @@ MonoBehaviour:
     00000001:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
-        calculImportance: -1
+        calculImportance: 0
         abscissaValue: 3
-        abscissaCoeficient: 1
-        constantToAdd: 0
+        abscissaCoeficient: -1
+        constantToAdd: 1
         maxValue: 1
     00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}

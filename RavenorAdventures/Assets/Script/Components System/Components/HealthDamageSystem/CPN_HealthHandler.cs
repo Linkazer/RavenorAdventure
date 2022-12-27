@@ -128,6 +128,9 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     private void Die()
     {
         actOnDeath?.Invoke(Handler);
+
+        Debug.Log("Death");
+
         OnDeath?.Invoke();
     }
 

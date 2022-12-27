@@ -115,11 +115,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
             if (!isDoneMoving)
             {
-                if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
+                /*if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
                 {
                     currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
                 }
-                else
+                else*/
                 {
                     currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
                 }
@@ -262,7 +262,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (possibleActions.Count > 0)
         {
-            List<Ai_PlannedAction> closestActions = new List<Ai_PlannedAction>();
+            /*List<Ai_PlannedAction> closestActions = new List<Ai_PlannedAction>(); Permet de n'effectuer que l'action qui demande le moins de déplacement
 
             float minimalDistance = possibleActions[0].minimalDistance;
 
@@ -279,9 +279,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 {
                     closestActions.Add(pa);
                 }
-            }
+            }*/
 
-            toReturn = closestActions[UnityEngine.Random.Range(0, closestActions.Count)];
+            toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
 
         return toReturn;
@@ -289,8 +289,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private Node SearchForBestMovement()
     {
-        Debug.Log(currentCharacterMovement);
-
         Node casterNode = currentCharacterMovement.CurrentNode;
         AI_CharacterScriptable casterScriptable = (currentCharacter.Scriptable as AI_CharacterScriptable);
 
@@ -330,12 +328,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 distance += opportunityAttackScore;
             }
 
-            if(n == casterNode)
-            {
-                Debug.Log($"Distance with cster node : {distance}");
-            }
-
-            Debug.Log($"Distance : {distance} < {maxScore}");
+            //Debug.Log($"Distance : {distance} < {maxScore}");
 
             if (distance < maxScore)
             {
@@ -345,9 +338,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 toReturn = n;
             }
-            else if(distance == maxScore && Pathfinding.GetDistance(casterNode, toReturn) < Pathfinding.GetDistance(casterNode, n))
+            else if(distance == maxScore && Pathfinding.GetDistance(casterNode, n) < Pathfinding.GetDistance(casterNode, toReturn))
             {
-                Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : {Pathfinding.GetDistance(casterNode, toReturn)} < {Pathfinding.GetDistance(casterNode, GetClosestCharacter(n, true).CurrentNode)}");
+                //Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : { Pathfinding.GetDistance(casterNode, n)} < {Pathfinding.GetDistance(casterNode, toReturn)}");
 
                 toReturn = n;
 
@@ -389,7 +382,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         foreach (Node casterNode in pathNode)
         {
-
             List<Node> casterNeighbours = Grid.GetNeighbours(casterNode);
 
             foreach (Node n in casterNeighbours)

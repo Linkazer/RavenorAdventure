@@ -14,7 +14,7 @@ public class UI_Character_DamageDisplayer : UI_Character_NumberDisplayer
         {
             if(i < dices.Count)
             {
-                dicesResults[i].Display((int)dices[i].Result, dices[i].succeed);
+                dicesResults[i].Display((int)dices[i].Result, dices[i].succeed, dices[i].rerolled);
             }
         }
     }

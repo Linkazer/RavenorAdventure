@@ -98,6 +98,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     protected void SetAnimation(CharacterAnimationType toSet)
     {
+        Debug.Log($"Set Anim : {toSet} != {currentAnimation}");
         if (toSet != currentAnimation)
         {
             UnsetAnimation(currentAnimation);
@@ -119,6 +120,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                     animator.SetTrigger("IsSpellLaunch");
                     break;
                 case CharacterAnimationType.Death:
+                    Debug.Log("Set Death");
                     AnimSetBool("IsDead", true);
                     break;
                 case CharacterAnimationType.Shoot:

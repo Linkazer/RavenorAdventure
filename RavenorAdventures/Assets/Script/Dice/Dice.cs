@@ -10,6 +10,7 @@ public class Dice
     private float result;
 
     public bool succeed = false;
+    public int rerolled = 0;// 1 : Reroll Attaque, 2 : Reroll Defense, 3 : Reroll des deux
 
     public float Result => result;
 

@@ -825,8 +825,6 @@ GameObject:
   - component: {fileID: 4053348106658464090}
   - component: {fileID: 6674373229304437009}
   - component: {fileID: 5140952349797873621}
-  - component: {fileID: 8468142676908402632}
-  - component: {fileID: 7736408165862170031}
   m_Layer: 0
   m_Name: Character (1)
   m_TagString: Untagged
@@ -1198,6 +1196,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5140952349797873621}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5140952349797873643}
         m_TargetAssemblyTypeName: CPN_Movement, ravenor_engine
         m_MethodName: StopMovement
@@ -1533,34 +1543,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8468142676908402632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5140952349797873644}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ec128d24c0eaf4f99387543a708e43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7736408165862170031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5140952349797873644}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f423869110b944c8de1796a78f40bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rnd: {fileID: 5476766876406081633}
-  offset: 0
-  originRnd: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!1 &5165637731750414080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3572,6 +3554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbe6963d7fc778449a1f9e444883bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &9200060583774372131 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
+  m_PrefabInstance: {fileID: 2267033942195826034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2042257126448405469 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 225621240732350127, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
@@ -3583,11 +3570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e323beceb05d45e4eae20144bb476e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &9200060583774372131 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
-  m_PrefabInstance: {fileID: 2267033942195826034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8127994419899400247
 PrefabInstance:
   m_ObjectHideFlags: 0

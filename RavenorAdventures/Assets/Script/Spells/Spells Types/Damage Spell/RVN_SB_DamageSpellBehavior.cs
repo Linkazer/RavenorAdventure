@@ -135,11 +135,13 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             if(usedDefensiveReroll)
             {
                 currentDefensiveRerolls++;
+                diceDamage[i].rerolled += 1;
             }
 
             if(usedOffensiveReroll)
             {
                 currentOffensiveRerolls++;
+                diceDamage[i].rerolled += 2;
             }
 
            
@@ -190,7 +192,6 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             {
                 usedDefensiveReroll = true;
                 dice.Roll();
-
                 return CheckDiceHit(dice, defense, hasOffensiveReroll, false, out usedOffensiveReroll, out bool def);
             }
             else
@@ -201,6 +202,8 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         }
         else if (hasOffensiveReroll)
         {
+            //dice.rerolled += 2;
+
             usedOffensiveReroll = true;
             dice.Roll();
             return CheckDiceHit(dice, defense, false, hasDefensiveReroll, out bool off, out usedDefensiveReroll);

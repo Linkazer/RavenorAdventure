@@ -15,10 +15,11 @@ MonoBehaviour:
   nom: "Module d'Acuit\xE9"
   icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
   description:
-    frenchText: 
+    frenchText: "Lorsque le porteur de l'effet attaque, il peut relancer jusqu'\xE0
+      1 d\xE9 qui n'a pas d\xE9passer la valeur de D\xE9fense de la cible."
     englishText: 
-  castingAnimation: 3
-  castAnimationDuration: 0.5
+  castingAnimation: 0
+  castAnimationDuration: 0
   spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
@@ -29,7 +30,7 @@ MonoBehaviour:
   castTarget: 3
   castType: 1
   isCooldownGlobal: 1
-  cooldown: 2
+  cooldown: 1
   range: 0
   zoneRange: 0
   effectsOnTarget: []

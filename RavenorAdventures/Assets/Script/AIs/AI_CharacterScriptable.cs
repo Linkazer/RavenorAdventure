@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Character Data", menuName = "Character/AI Character")]
 public class AI_CharacterScriptable : CharacterScriptable_Battle
 {
-    [SerializeField] private Vector2 wantedDistanceFromTarget;
+    [SerializeField] private Vector2 wantedDistanceFromTarget = new Vector2(0,15);
 
     /// <summary>
     /// Comportements possibles du personnage.

@@ -146,7 +146,7 @@ public class Pathfinding : MonoBehaviour
 			closedSet.Add(currentNode);
 			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
 			{
-				if (!neighbour.IsWalkable || closedSet.Contains(neighbour))
+				if (!neighbour.IsWalkable || !CanDiagonalBeReached(currentNode, neighbour) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}
@@ -265,4 +265,25 @@ public class Pathfinding : MonoBehaviour
 
 		return usableNode;
 	}
+
+	/// <summary>
+	/// Utilisé pour vérifier si 2 Nodes en diagonales peuvent être utilisées.
+	/// </summary>
+	/// <param name="startNode"></param>
+	/// <param name="targetNode"></param>
+	/// <returns></returns>
+	private static bool CanDiagonalBeReached(Node startNode, Node targetNode)
+    {
+		Vector2Int direction = new Vector2Int(targetNode.gridX - startNode.gridX, targetNode.gridY - startNode.gridY);
+
+		if(direction.x == 0 || direction.y == 0)
+        {
+			return true;
+        }
+
+		bool xAxis = Grid.GetNode(startNode.gridX + direction.x, startNode.gridY).IsWalkable;
+		bool yAxis = Grid.GetNode(startNode.gridX, startNode.gridY + direction.y).IsWalkable;
+
+		return xAxis || yAxis;
+    }
 }

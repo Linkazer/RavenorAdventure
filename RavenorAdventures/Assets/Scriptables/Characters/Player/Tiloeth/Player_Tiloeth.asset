@@ -32,10 +32,10 @@ MonoBehaviour:
   defensiveRerolls: 0
   movementByTurn: 35
   speed: 4
-  opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
+  opportunitySpell: {fileID: 0}
   availableSpells:
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
-  - {fileID: 11400000, guid: fa92f097a814db542b1302eb63e9238d, type: 2}
+  - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
   - {fileID: 11400000, guid: 902a77d5b7a05c14d9cfc28ff71e4bb2, type: 2}
   usableSpellByTurn: 1
   usedRessource:
