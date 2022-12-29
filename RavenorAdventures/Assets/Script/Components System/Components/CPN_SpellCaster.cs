@@ -94,7 +94,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
             if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))
             {
-                List<Node> zoneNodes = Pathfinding.GetAllNodeInDistance(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), currentSelectedSpell.ZoneRange, false);
+                List<Node> zoneNodes = currentSelectedSpell.GetZone(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), CurrentNode);
                 RVN_GridDisplayer.SetGridFeedback(zoneNodes, Color.red);
             }
         }
@@ -245,6 +245,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         launchedSpell.scriptable.UseSpell();
 
         OnCastSpell?.Invoke(launchedSpell);
+        handler.animationController?.PlayAnimation(launchedSpell.scriptable.CastingAnimation.ToString(), launchedSpell);
 
         OnCastSpellToDiection?.Invoke(launchedSpell.targetNode.worldPosition - launchedSpell.caster.transform.position);
 
@@ -268,6 +269,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void UseSpell(LaunchedSpellData launchedSpell, Action callback)
     {
+        if (launchedSpell.scriptable.Projectile == null)
+        {
+            handler.animationController?.PlayAnimation(launchedSpell.scriptable.LaunchSpellAnimation.ToString(), launchedSpell);
+        }
+
         RVN_SpellManager.UseSpell(launchedSpell, () => EndUseSpell(callback));
     }
 

@@ -64,7 +64,12 @@ public class Grid : MonoBehaviour
 
 	public static Node GetNode(int x, int y)
     {
-		return instance.grid[x, y];
+		if(x >= 0 && x < instance.gridSizeX && y >= 0 && y < instance.gridSizeY)
+        {
+			return instance.grid[x, y];
+		}
+
+		return null;
     }
 
 	public static List<Node> GetNeighbours(Node node) {

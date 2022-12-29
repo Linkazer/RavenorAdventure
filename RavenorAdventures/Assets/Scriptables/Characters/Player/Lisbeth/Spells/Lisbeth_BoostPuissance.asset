@@ -15,9 +15,8 @@ MonoBehaviour:
   nom: "Am\xE9lioration de Puissance"
   icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
   description:
-    texts:
-    - 
-    - 
+    frenchText: 
+    englishText: 
   castingAnimation: 3
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
@@ -36,3 +35,4 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster:
   - {fileID: 11400000, guid: 0c8ac2db3e139b945b01000b27428bc3, type: 2}
+  LaunchSpellAnimation: 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CANIM_JumpOnTarget : CharacterAnimation
+public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
 {
     [SerializeField] private Transform toMove;
     [SerializeField] protected Renderer rnd;
@@ -21,10 +21,10 @@ public class CANIM_JumpOnTarget : CharacterAnimation
     /// Play a Jump animation on the target.
     /// </summary>
     /// <param name="_targetPosition"></param>
-    public override void Play(Vector2 _targetPosition)
+    public override void Play(LaunchedSpellData launchedSpell)
     {
         startPosition = toMove.localPosition;
-        direction = _targetPosition - new Vector2(toMove.position.x, toMove.position.y);
+        direction = launchedSpell.targetNode.worldPosition - toMove.position;
         curveDirection = 1;
 
         if (direction.y < 0)
@@ -41,7 +41,22 @@ public class CANIM_JumpOnTarget : CharacterAnimation
 
     public override void Stop()
     {
+        rnd.sortingOrder = 0;
+
+        curveIndex = 0;
+        enabled = false;
+
         
+    }
+
+    public override void End()
+    {
+        Stop();
+
+        if (currentAnimation.linkedAnimation != "")
+        {
+            currentAnimation.endCallback?.Invoke();
+        }
     }
 
     private void Update()
@@ -57,10 +72,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation
         }
         else if(curveIndex < 0)
         {
-            rnd.sortingOrder = 0;
-
-            curveIndex = 0;
-            enabled = false;
+            End();
         }
 
         toMove.localPosition = startPosition + new Vector2(direction.x * curveIndex, direction.y * curveIndex + jumpCurve.Evaluate(curveIndex));

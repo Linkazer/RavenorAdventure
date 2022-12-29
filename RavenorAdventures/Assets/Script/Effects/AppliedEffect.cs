@@ -7,20 +7,20 @@ using UnityEngine;
 public class AppliedEffect
 {
     [SerializeField] private EffectScriptable effect;
-    [SerializeField] private int durationLeft;
+    [SerializeField] private float durationLeft;
 
     public EffectScriptable GetEffect => effect;
-    public int Duration => durationLeft;
+    public float Duration => durationLeft;
 
     public void UpdateDuration()
     {
-        if (durationLeft > -1)
+        if (durationLeft >= 0)
         {
-            durationLeft--;
+            durationLeft-=.5f;
         }
     }
 
-    public void ResetEffect(int resetDuration)
+    public void ResetEffect(float resetDuration)
     {
         if (durationLeft < resetDuration)
         {
@@ -49,7 +49,7 @@ public class AppliedEffect
 
     }
 
-    public AppliedEffect(EffectScriptable nEffect, int nDuration)
+    public AppliedEffect(EffectScriptable nEffect, float nDuration)
     {
         effect = nEffect;
         durationLeft = nDuration;

@@ -18,6 +18,7 @@ MonoBehaviour:
     frenchText: 
     englishText: 
   castingAnimation: 3
+  launchAnimation: 4
   castAnimationDuration: 0.75
   spellAnimationTarget: 0
   projectile: {fileID: 0}

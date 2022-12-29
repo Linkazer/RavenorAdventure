@@ -15,9 +15,8 @@ MonoBehaviour:
   nom: "\xC9p\xE9e de duel"
   icon: {fileID: 21300000, guid: 6ca9483bb8dc4bc4fb429122b3b75837, type: 3}
   description:
-    texts:
-    - 
-    - 
+    frenchText: 
+    englishText: 
   castingAnimation: 5
   castAnimationDuration: 0.25
   spellAnimationTarget: 0
@@ -35,6 +34,7 @@ MonoBehaviour:
   zoneRange: 0
   effectsOnTarget: []
   effectsOnCaster: []
+  LaunchSpellAnimation: 
   type: 0
   diceUsed: 3
   baseDamage: 0

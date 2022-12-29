@@ -15,8 +15,10 @@ MonoBehaviour:
   nom: 
   icon: {fileID: 0}
   description:
-    texts: []
+    frenchText: 
+    englishText: 
   castingAnimation: 3
+  launchAnimation: 4
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
   projectile: {fileID: 0}

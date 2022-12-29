@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: EFF_Ylia_EnchantedArmor
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
+  effectName:
+    frenchText: 
+    englishText: 
+  effectDescription:
+    frenchText: 
+    englishText: 
   duration: 2
   effects:
   - id: 0

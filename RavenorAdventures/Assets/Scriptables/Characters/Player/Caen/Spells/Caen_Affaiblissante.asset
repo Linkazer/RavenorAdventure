@@ -15,10 +15,8 @@ MonoBehaviour:
   nom: Munition Affaiblissante
   icon: {fileID: 21300000, guid: a3e48fb07ed03724c9a07c0f9464eee9, type: 3}
   description:
-    texts:
-    - "Attaque \xE0 distance avec 3 d\xE9s. En cas de touche, la cible subit un malus
-      en D\xE9fense et en Pr\xE9cision de 1."
-    - 
+    frenchText: 
+    englishText: 
   castingAnimation: 7
   castAnimationDuration: 0
   spellAnimationTarget: 0
@@ -36,6 +34,7 @@ MonoBehaviour:
   zoneRange: 0
   effectsOnTarget: []
   effectsOnCaster: []
+  LaunchSpellAnimation: 
   type: 0
   diceUsed: 3
   baseDamage: 0

@@ -34,6 +34,7 @@ MonoBehaviour:
   zoneRange: 15
   effectsOnTarget: []
   effectsOnCaster: []
+  LaunchSpellAnimation: 
   type: 0
   diceUsed: 2
   baseDamage: 0

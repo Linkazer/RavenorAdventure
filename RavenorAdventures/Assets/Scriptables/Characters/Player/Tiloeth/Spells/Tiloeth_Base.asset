@@ -15,10 +15,10 @@ MonoBehaviour:
   nom: "\xC9p\xE9e longue"
   icon: {fileID: 21300000, guid: f75177b867f1162478be973d21729ec7, type: 3}
   description:
-    texts:
-    - 
-    - 
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
+    englishText: 
   castingAnimation: 5
+  launchAnimation: 0
   castAnimationDuration: 0.25
   spellAnimationTarget: 0
   projectile: {fileID: 0}
@@ -33,6 +33,8 @@ MonoBehaviour:
   cooldown: 0
   range: 15
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0

@@ -601,6 +601,7 @@ GameObject:
   - component: {fileID: 5972871693876766062}
   - component: {fileID: 2932560560375911783}
   - component: {fileID: 2785623517578289533}
+  - component: {fileID: 1643602181192785703}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -662,6 +663,39 @@ MonoBehaviour:
   handsSprites:
   - {fileID: 7623800616649253514}
   - {fileID: 284234767151647252}
+  animations:
+  - animationName: Idle
+    animationUsed: {fileID: 2785623517578289533}
+    doesLoop: 1
+    linkedAnimation: 
+  - animationName: Character_Walk
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 1
+    linkedAnimation: 
+  - animationName: Character_CastSpell
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 1
+    linkedAnimation: 
+  - animationName: Character_LaunchSpell
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 0
+    linkedAnimation: Idle
+  - animationName: Character_JumpOnTarget
+    animationUsed: {fileID: 5972871693876766062}
+    doesLoop: 0
+    linkedAnimation: Idle
+  - animationName: Character_Death
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 0
+    linkedAnimation: 
+  - animationName: Character_Shoot
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 0
+    linkedAnimation: Idle
+  - animationName: Character_Throw
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 0
+    linkedAnimation: Idle
   jumpOnTargetAnimation: {fileID: 5972871693876766062}
   idleSpriteAnim: {fileID: 2785623517578289533}
 --- !u!114 &5972871693876766062
@@ -730,10 +764,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rnd: {fileID: 5476766876406081633}
-  animation:
-  - {fileID: 21300000, guid: fee3e0b2a552c684fb371bc07147dda2, type: 3}
-  - {fileID: 21300000, guid: 0e11a0829cc06c44395c22aae1a79ecf, type: 3}
   animationFps: 1.4
+--- !u!114 &1643602181192785703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044616657378150128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c454f404fdb9e534c8eb7ce221afe7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6987722732372388516}
 --- !u!1 &4808586254413126335
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +913,7 @@ MonoBehaviour:
   - {fileID: 5140952349797873620}
   - {fileID: 8205510481207194533}
   - {fileID: 6674373229304437009}
+  animationController: {fileID: 7894508926239594657}
   scriptable: {fileID: 0}
   actions:
   - {fileID: 5140952349797873643}
@@ -1016,7 +1061,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
   characterOnMelee: []
 --- !u!114 &8205510481207194533
 MonoBehaviour:
@@ -1192,7 +1237,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 3
+          m_FloatArgument: 0.91
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3554,11 +3599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbe6963d7fc778449a1f9e444883bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &9200060583774372131 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
-  m_PrefabInstance: {fileID: 2267033942195826034}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2042257126448405469 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 225621240732350127, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
@@ -3570,6 +3610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e323beceb05d45e4eae20144bb476e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &9200060583774372131 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6979225926523694161, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
+  m_PrefabInstance: {fileID: 2267033942195826034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8127994419899400247
 PrefabInstance:
   m_ObjectHideFlags: 0

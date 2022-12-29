@@ -42,7 +42,7 @@ public class UI_PlayerSpell : MonoBehaviour
         icon.sprite = toSet.Icon;
 
         spellName.text = toSet.Name;
-        spellDescription.text = toSet.Description;
+        spellDescription.SetText(toSet.GetDescription());
 
         if(toSet.RessourceCost != 0)
         {

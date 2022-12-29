@@ -143,8 +143,6 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                 currentOffensiveRerolls++;
                 diceDamage[i].rerolled += 2;
             }
-
-           
         }
 
         if(totalDamage > 0)

@@ -9,7 +9,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         public int actionIndex;
         public Node movementTarget;
-        public Node actionTarget;
+        public Node spellNodeTarget;
+        public CPN_Character actualTarget;
+        public List<Node> hitedTargets = new List<Node>();
         public float minimalDistance;
     }
 
@@ -104,7 +106,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             else
             {
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
-                currentCharacterSpell.TryDoAction(plannedAction.actionTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
+                currentCharacterSpell.TryDoAction(plannedAction.spellNodeTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 
                 plannedAction = null;
             }
@@ -195,58 +197,66 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 float minimumDistance = 99999;
 
-                foreach (Node n in possibleMovements)
+                foreach (Node movementNode in possibleMovements)
                 {
-                    Ai_PlannedAction actionToCheck = new Ai_PlannedAction();
-                    actionToCheck.actionTarget = target.CurrentNode;
-                    actionToCheck.movementTarget = n;
-                    actionToCheck.actionIndex = consideration.wantedActionIndex;
+                    //List<Node> spellUsableNodes = GetReachTargetNode(casterNode, target.CurrentNode, consideration.wantedAction);
 
-                    if (CanDoAction(caster, actionToCheck, consideration, forNextTurn))
+                    //foreach (Node spellNode in spellUsableNodes)
                     {
-                        float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
+                        Node spellNode = target.CurrentNode;
+                        Ai_PlannedAction actionToCheck = new Ai_PlannedAction();
+                        actionToCheck.spellNodeTarget = spellNode;
+                        actionToCheck.actualTarget = target;
+                        actionToCheck.movementTarget = movementNode;
+                        actionToCheck.actionIndex = consideration.wantedActionIndex;
+                        actionToCheck.hitedTargets = consideration.wantedAction.GetZone(spellNode, movementNode);
 
-                        //Debug.Log($"AVANT : {currentCharacter} on {target} : {calculatedScore}");
-
-                        if(n != casterNode)
+                        if (CanDoAction(caster, actionToCheck, consideration, forNextTurn))
                         {
-                            calculatedScore -= opportunityAttackScore;
-                        }
+                            float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
 
-                        //Debug.Log($"APRES : {currentCharacter} on {target} : {calculatedScore}");
+                            //Debug.Log($"AVANT : {currentCharacter} on {target} : {calculatedScore}");
 
-                        if(forNextTurn)
-                        {
-                            actionToCheck.minimalDistance = Mathf.Abs(Pathfinding.GetDistance(actionToCheck.movementTarget, target.CurrentNode) - consideration.wantedAction.Range);
-                        }
-                        else
-                        {
-                            if (n != casterNode)
+                            if (movementNode != casterNode)
                             {
-                                actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                                calculatedScore -= opportunityAttackScore;
+                            }
+
+                            //Debug.Log($"APRES : {currentCharacter} on {target} : {calculatedScore}");
+
+                            if (forNextTurn)
+                            {
+                                actionToCheck.minimalDistance = Mathf.Abs(Pathfinding.GetDistance(actionToCheck.movementTarget, spellNode) - consideration.wantedAction.Range);
                             }
                             else
                             {
-                                actionToCheck.minimalDistance = -1f;
-                            }
-                        }
-
-                        //if (!forNextTurn || (n != casterNode || Pathfinding.GetDistance(casterNode, target.CurrentNode) <= 15))
-                        {
-                            if (calculatedScore > maxScore)
-                            {
-                                possibleActions = new List<Ai_PlannedAction>();
-
-                                maxScore = calculatedScore;
-                            }
-
-                            if (calculatedScore == maxScore)
-                            {
-                                if (actionToCheck.minimalDistance <= minimumDistance)
+                                if (movementNode != casterNode)
                                 {
-                                    minimumDistance = actionToCheck.minimalDistance;
+                                    actionToCheck.minimalDistance = Pathfinding.GetDistance(actionToCheck.movementTarget, casterNode);
+                                }
+                                else
+                                {
+                                    actionToCheck.minimalDistance = -1f;
+                                }
+                            }
 
-                                    actionOnTarget = actionToCheck;
+                            //if (!forNextTurn || (n != casterNode || Pathfinding.GetDistance(casterNode, target.CurrentNode) <= 15))
+                            {
+                                if (calculatedScore > maxScore)
+                                {
+                                    possibleActions = new List<Ai_PlannedAction>();
+
+                                    maxScore = calculatedScore;
+                                }
+
+                                if (calculatedScore == maxScore)
+                                {
+                                    if (actionToCheck.minimalDistance <= minimumDistance)
+                                    {
+                                        minimumDistance = actionToCheck.minimalDistance;
+
+                                        actionOnTarget = actionToCheck;
+                                    }
                                 }
                             }
                         }
@@ -369,7 +379,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        opportunityAttackDiceCounter = ((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
+        opportunityAttackDiceCounter = (Mathf.Clamp((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor),0,Mathf.Infinity) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
 
         return opportunityAttackDiceCounter / casterHealthHandler.CurrentHealth;
     }
@@ -436,6 +446,43 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return possibleMovements;
     }
 
+    private List<Node> GetReachTargetNode(Node casterNode, Node targetNode, SpellScriptable spellToCheck)
+    {
+        List<Node> toReturn = new List<Node>();
+
+        foreach (Node n in spellToCheck.GetZone(targetNode, casterNode))
+        {
+            if (Pathfinding.GetAllNodeInDistance(casterNode, spellToCheck.Range, true).Contains(n))
+            {
+                toReturn.Add(n);
+            }
+        }
+
+        /*foreach(Node spellNode in )
+        {
+            List<Node> zoneNodes = spellToCheck.GetZone(spellNode, casterNode);
+
+            if(zoneNodes.Count > 0)
+            {
+                foreach(Node n in zoneNodes)
+                {
+                    if(n == targetNode)
+                    {
+                        toReturn.Add(spellNode);
+                        break;
+                    }
+                }
+            }
+            else if(spellNode == targetNode)
+            {
+                toReturn.Add(spellNode);
+                break;
+            }
+        }*/
+
+        return toReturn;
+    }
+
     /// <summary>
     /// Vérifie si le personnage IA peut faire l'action voulue.
     /// </summary>
@@ -446,13 +493,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// <returns>Renvoie TRUE si l'action peut être effectuée. Sinon, renvoie FALSE.</returns>
     private bool CanDoAction(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration, bool isForNextTurn) //TO DO : Prise en compte des tours prochains
     {
-        List<CPN_Character> targets = actionToCheck.actionTarget.GetNodeComponent<CPN_Character>();
-
-        CPN_Character target = null;
-        if(targets.Count > 0)
-        {
-            target = targets[0];
-        }
+        CPN_Character target = actionToCheck.actualTarget;
 
         SpellScriptable action = consideration.wantedAction;
 
@@ -488,12 +529,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (!isForNextTurn)
         {
-            if (!Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.actionTarget))
+            if (!Grid.IsNodeVisible(actionToCheck.movementTarget, actionToCheck.spellNodeTarget))
             {
                 return false;
             }
 
-            if (!currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.actionTarget.worldPosition, consideration.wantedAction))
+            if (!currentCharacterSpell.IsActionUsable(actionToCheck.movementTarget.worldPosition, actionToCheck.spellNodeTarget.worldPosition, consideration.wantedAction))
             {
                 return false;
             }
@@ -565,15 +606,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         CPN_Character caster = casterCurrentNode.GetNodeComponent<CPN_Character>()[0];
 
-        CPN_Character target = actionToCheck.actionTarget.GetNodeComponent<CPN_Character>()[0];
+        CPN_Character target = actionToCheck.actualTarget;
 
         switch(abscissaWanted)
         {
             case AiAbscissaType.DistanceFromTarget_CalculatedPosition:
-                toReturn = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.actionTarget);
+                toReturn = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.spellNodeTarget);
                 break;
             case AiAbscissaType.DistranceFromTarget_BasePosition:
-                toReturn = Pathfinding.GetDistance(casterCurrentNode, actionToCheck.actionTarget);
+                toReturn = Pathfinding.GetDistance(casterCurrentNode, actionToCheck.spellNodeTarget);
                 break;
             case AiAbscissaType.CasterMaxHp:
                 if(caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterMaxHealth))
@@ -626,6 +667,40 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             case AiAbscissaType.TargetDangerosity:
                 break;
             case AiAbscissaType.TargetVulnerability:
+                break;
+            case AiAbscissaType.NumberAllyArea:
+                foreach(Node n in actionToCheck.hitedTargets)
+                {
+                    if(n != casterCurrentNode)
+                    {
+                        List<CPN_Character> alliesInArea = n.GetNodeComponent<CPN_Character>();
+
+                        foreach(CPN_Character c in alliesInArea)
+                        {
+                            if(RVN_BattleManager.AreCharacterAllies(caster, c))
+                            {
+                                toReturn++;
+                            }
+                        }
+                    }
+                }
+                break;
+            case AiAbscissaType.NumberEnnemyArea:
+                foreach (Node n in actionToCheck.hitedTargets)
+                {
+                    if (n != casterCurrentNode)
+                    {
+                        List<CPN_Character> enemiesInArea = n.GetNodeComponent<CPN_Character>();
+
+                        foreach (CPN_Character c in enemiesInArea)
+                        {
+                            if (!RVN_BattleManager.AreCharacterAllies(caster, c))
+                            {
+                                toReturn++;
+                            }
+                        }
+                    }
+                }
                 break;
         }
 

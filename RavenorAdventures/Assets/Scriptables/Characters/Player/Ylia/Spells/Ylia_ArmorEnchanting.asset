@@ -15,10 +15,10 @@ MonoBehaviour:
   nom: "Armure Enchant\xE9e"
   icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
   description:
-    texts:
-    - 
-    - 
+    frenchText: 
+    englishText: 
   castingAnimation: 3
+  launchAnimation: 4
   castAnimationDuration: 0.75
   spellAnimationTarget: 0
   projectile: {fileID: 0}

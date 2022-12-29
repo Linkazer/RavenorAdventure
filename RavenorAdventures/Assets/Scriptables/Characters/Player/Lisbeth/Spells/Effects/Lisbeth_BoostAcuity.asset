@@ -32,7 +32,7 @@ MonoBehaviour:
       data:
         trigger: 0
         effects:
-        - stat: 5
+        - stat: 4
           valueToChange: 1
     00000001:
       type: {class: EFF_RemoveSpecificEffect, ns: , asm: ravenor_engine}

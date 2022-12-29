@@ -6,12 +6,14 @@ public class CANIM_SpriteAnimation : CharacterAnimation
 {
     [SerializeField] private SpriteRenderer rnd;
 
-    [SerializeField] private Sprite[] animation;
+    [SerializeField] private Dictionary<string, Sprite[]> spriteAnimations = new Dictionary<string, Sprite[]>();
 
     [SerializeField] private float animationFps;
 
     private int currentFrameIndex;
     private float currentFrameTime;
+
+    private Sprite[] currentSpriteAnimation;
 
     private float frameTime => 1 / animationFps;
 
@@ -23,22 +25,27 @@ public class CANIM_SpriteAnimation : CharacterAnimation
         {
             currentFrameTime -= frameTime;
 
-            currentFrameIndex = (currentFrameIndex + 1) % animation.Length;
+            currentFrameIndex = (currentFrameIndex + 1) % currentSpriteAnimation.Length;
 
-            rnd.sprite = animation[currentFrameIndex];
+            if(currentFrameIndex == 0 && !currentAnimation.doesLoop)
+            {
+                End();
+            }
+
+            rnd.sprite = currentSpriteAnimation[currentFrameIndex];
         }
     }
 
-    public override void Play(Vector2 _targetPosition)
+    public override void Play(object animationdata)
     {
-        Debug.Log("Play Here");
-
         currentFrameTime = 0;
         currentFrameIndex = 0;
 
-        rnd.sprite = animation[currentFrameIndex];
+        currentSpriteAnimation = spriteAnimations[currentAnimation.AnimationName];
 
-        if (animation.Length > 0)
+        rnd.sprite = currentSpriteAnimation[currentFrameIndex];
+
+        if (currentSpriteAnimation.Length > 0)
         {
             enabled = true;
         }
@@ -49,16 +56,21 @@ public class CANIM_SpriteAnimation : CharacterAnimation
         enabled = false;
     }
 
+    public override void End()
+    {
+        Stop();
+
+        if (currentAnimation.linkedAnimation != "")
+        {
+            currentAnimation.endCallback?.Invoke();
+        }
+    }
+
     public override void SetCharacter(CharacterScriptable_Battle character)
     {
-        animation = new Sprite[character.characterIdleAnimation.Count];
-
-        int i = 0;
-
-        foreach(Sprite spr in character.characterIdleAnimation)
+        foreach(SpriteAnimation anim in character.animations)
         {
-            animation[i] = spr;
-            i++;
+            spriteAnimations.Add(anim.animationName, anim.animation);
         }
     }
 }

@@ -16,13 +16,13 @@ public class EffectScriptable : ScriptableObject
     //Voir les affichages
 
     [Header("Effect")]
-    [SerializeField] private int duration;
+    [SerializeField] private float duration;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(Effect))] private List<Effect> effects; //, [SerializeReference, ReferenceEditor(typeof(Effect))]
 
     public bool HideOnApply => hideOnApply;
     public Sprite Icon => icon;
 
-    public int Duration => duration + 1;
+    public float Duration => duration + 1;
 
     public List<Effect> GetEffects => effects;
 

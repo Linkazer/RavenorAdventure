@@ -15,9 +15,8 @@ MonoBehaviour:
   nom: Damage Simple
   icon: {fileID: 21300000, guid: f41b2210e1e89db419b2d7df22463e6f, type: 3}
   description:
-    texts:
-    - "Ceci est le texte <b>Fran\xE7ais</b>"
-    - This text is in <b>English</b>
+    frenchText: 
+    englishText: 
   castingAnimation: 5
   castAnimationDuration: 0.25
   spellAnimationTarget: 0
@@ -35,6 +34,7 @@ MonoBehaviour:
   zoneRange: 0
   effectsOnTarget: []
   effectsOnCaster: []
+  LaunchSpellAnimation: 
   type: 0
   diceUsed: 2
   baseDamage: 0

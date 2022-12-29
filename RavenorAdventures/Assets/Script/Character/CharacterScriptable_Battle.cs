@@ -10,6 +10,7 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField] private Sprite characterSprite;
 
     public List<Sprite> characterIdleAnimation;
+    public SpriteAnimation[] animations;
 
     [SerializeField] private Sprite handSprite;
     [SerializeField] private bool displayHand;

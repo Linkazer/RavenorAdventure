@@ -102,7 +102,10 @@ public class DiceTests : MonoBehaviour
                         currentHealth -= damage - currentArmor;
                     }
 
-                    currentArmor--;
+                    if (currentArmor > 0)
+                    {
+                        currentArmor--;
+                    }
                 }
             }
 
@@ -118,15 +121,19 @@ public class DiceTests : MonoBehaviour
 
         string toDisplay = ($"{testName} : ");
 
+        float moyenne = 0;
+
         foreach (KeyValuePair<int, int> rslt in Results)
         {
             if ((((float)rslt.Value / (float)iterations) * 100f) > 0.5f)
             {
                 toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
             }
+
+            moyenne += rslt.Key * (float)rslt.Value;
         }
 
-        Debug.Log(toDisplay);
+        Debug.Log("Moyenne : " + (moyenne / (float)iterations) + "\n" +  toDisplay);
     }
 
     private int CalculateDamage()

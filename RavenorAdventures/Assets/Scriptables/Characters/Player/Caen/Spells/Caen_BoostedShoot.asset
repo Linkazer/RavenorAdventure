@@ -15,9 +15,8 @@ MonoBehaviour:
   nom: "Munition Am\xE9lior\xE9e"
   icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
   description:
-    texts:
-    - 
-    - 
+    frenchText: 
+    englishText: 
   castingAnimation: 7
   castAnimationDuration: 0
   spellAnimationTarget: 0
@@ -35,6 +34,7 @@ MonoBehaviour:
   zoneRange: 0
   effectsOnTarget: []
   effectsOnCaster: []
+  LaunchSpellAnimation: 
   type: 0
   diceUsed: 4
   baseDamage: 0

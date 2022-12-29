@@ -19,6 +19,11 @@ MonoBehaviour:
   characterIdleAnimation:
   - {fileID: 21300000, guid: 8a6e9885a1a5edb41973912355d85a72, type: 3}
   - {fileID: 21300000, guid: 78444bf3cd53d4747a396b270bbde7b2, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: 8a6e9885a1a5edb41973912355d85a72, type: 3}
+    - {fileID: 21300000, guid: 78444bf3cd53d4747a396b270bbde7b2, type: 3}
   handSprite: {fileID: 21300000, guid: 16be4fcbd98fe8a4ba69fdac9536d280, type: 3}
   displayHand: 0
   handHeight: 0

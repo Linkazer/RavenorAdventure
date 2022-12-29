@@ -164,6 +164,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private void EndMovement()
     {
+		handler.animationController?.EndAnimation();
 		OnEndMovement?.Invoke();
 
 		OnEndMovementAction?.Invoke();
@@ -187,6 +188,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		Debug.Log("End movement callback");
 
 		OnEndMovementAction = null;
+		handler.animationController?.EndAnimation();
 		OnStopMovement?.Invoke();
 	}
 
@@ -199,6 +201,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		Node currentWaypoint = path[targetIndex];
 
 		OnStartMovement?.Invoke();
+		handler.animationController?.PlayAnimation("Character_Walk");
 
 		float lerpValue = 0;
 		float distance = 0;
@@ -249,6 +252,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				{
 					currentMovementLeft -= currentNode.gCost;
 
+					handler.animationController?.EndAnimation();
 					OnStopMovement?.Invoke();
 					StopCoroutine(currentMovement);
 				}

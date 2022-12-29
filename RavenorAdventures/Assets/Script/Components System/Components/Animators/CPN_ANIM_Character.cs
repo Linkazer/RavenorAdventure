@@ -1,17 +1,19 @@
+using ravenor.referencePicker;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public enum CharacterAnimationType
 {
     None,
     Idle,
-    Walk,
-    CastSpell,
-    LaunchSpell,
-    JumpOnTarget,
-    Death,
-    Shoot,
-    Throw,
+    Character_Walk,
+    Character_CastSpell,
+    Character_LaunchSpell,
+    Character_JumpOnTarget,
+    Character_Death,
+    Character_Shoot,
+    Character_Throw,
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
@@ -22,9 +24,13 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     [SerializeField] private List<SpriteRenderer> handsSprites;
 
     [Header("Character Animations")]
+    [SerializeField] private CharacterAnimationData[] animations;
+
     [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
     [SerializeField] private CharacterAnimation idleSpriteAnim;
     private CharacterAnimationType currentAnimation = CharacterAnimationType.None;
+
+    private CharacterAnimationData currentAnim;
 
     public void SetCharacter(CharacterScriptable_Battle character)
     {
@@ -43,7 +49,8 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
             }
         }
 
-        SetAnimation(CharacterAnimationType.Idle);
+        //SetAnimation(CharacterAnimationType.Idle);
+        PlayAnimation("Idle");
     }
 
     public void SetOrientation(Vector2 direction)
@@ -58,7 +65,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
-    public void SetWalkAnimation(bool value)
+   /*public void SetWalkAnimation(bool value)
     {
         if(value)
         {
@@ -87,16 +94,48 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         switch(launchedSpell.scriptable.CastingAnimation)
         {
             case CharacterAnimationType.JumpOnTarget:
-                jumpOnTargetAnimation.Play(launchedSpell.targetNode.worldPosition);
+                //jumpOnTargetAnimation.Play((Vector2)launchedSpell.targetNode.worldPosition);
                 break;
             default:
                 SetAnimation(launchedSpell.scriptable.CastingAnimation);
                 TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => SetAnimation(CharacterAnimationType.LaunchSpell));
                 break;
         }
+    }*/
+
+    public void PlayAnimation(string animationName)
+    {
+        PlayAnimation(animationName, null);
     }
 
-    protected void SetAnimation(CharacterAnimationType toSet)
+    public void PlayAnimation(string animationName, object animationData)
+    {
+        if (currentAnim == null || currentAnim.AnimationName != animationName)
+        {
+            foreach (CharacterAnimationData anim in animations)
+            {
+                if (animationName == anim.AnimationName)
+                {
+                    if (currentAnim != null)
+                    {
+                        currentAnim.Stop();
+                    }
+
+                    currentAnim = anim;
+
+                    currentAnim.Play(animationData, () => PlayAnimation(currentAnim.linkedAnimation, animationData));
+                }
+            }
+        }
+    }
+
+    public void EndAnimation()
+    {
+        PlayAnimation("Idle");
+        currentAnim = null;
+    }
+
+    /*protected void SetAnimation(CharacterAnimationType toSet)
     {
         Debug.Log($"Set Anim : {toSet} != {currentAnimation}");
         if (toSet != currentAnimation)
@@ -108,7 +147,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
             {
                 case CharacterAnimationType.Idle:
                     AnimSetBool("IsIdle", true);
-                    idleSpriteAnim.Play(Vector2.zero);
+                    //idleSpriteAnim.Play(Vector2.zero);
                     break;
                 case CharacterAnimationType.Walk:
                     AnimSetBool("IsWalking", true);
@@ -163,5 +202,5 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
                 SetAnimation(currentAnimation);
             }
         }
-    }
+    }*/
 }

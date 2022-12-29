@@ -6,6 +6,8 @@ public class RVN_ComponentHandler : RVN_Component
 {
     [SerializeField] private List<RVN_Component> components;
 
+    [SerializeField] public CPN_ANIM_Character animationController;
+
     public Node CurrentNode => Grid.GetNodeFromWorldPoint(transform.position);
 
     /// <summary>
