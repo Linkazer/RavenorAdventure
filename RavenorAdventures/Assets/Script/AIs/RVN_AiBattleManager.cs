@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,9 +75,14 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private void SearchNextAction(float timeToWait)
     {
-        plannedAction = SearchForBestAction(currentCharacter, false);
+        StartCoroutine(SearchForBestAction(currentCharacter, false, FindNextAction));
+    }
 
-        PrepareNextAction(timeToWait);
+    private void FindNextAction(Ai_PlannedAction findedAction)
+    {
+        plannedAction = findedAction;
+
+        PrepareNextAction(1f);
     }
 
     /// <summary>
@@ -113,7 +119,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         }
         else if (currentCharacterMovement.CanMove)
         {
-            Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
+            //Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
 
             if (!isDoneMoving)
             {
@@ -145,7 +151,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// <param name="caster">Le personnage IA qui cherche à faire l'action.</param>
     /// <param name="forNextTurn">Si TRUE, le personnage cherche une action pour son prochain tour.</param>
     /// <returns>L'action que le personnage IA doit faire.</returns>
-    private Ai_PlannedAction SearchForBestAction(CPN_Character caster, bool forNextTurn)
+    private IEnumerator SearchForBestAction(CPN_Character caster, bool forNextTurn, Action<Ai_PlannedAction> callback)
     {
         Ai_PlannedAction toReturn = null;
 
@@ -199,11 +205,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 foreach (Node movementNode in possibleMovements)
                 {
-                    //List<Node> spellUsableNodes = GetReachTargetNode(casterNode, target.CurrentNode, consideration.wantedAction);
+                    List<Node> spellUsableNodes = GetReachTargetNode(movementNode, target.CurrentNode, consideration.wantedAction);
 
-                    //foreach (Node spellNode in spellUsableNodes)
+                    foreach (Node spellNode in spellUsableNodes)
                     {
-                        Node spellNode = target.CurrentNode;
+                        //Node spellNode = target.CurrentNode;
                         Ai_PlannedAction actionToCheck = new Ai_PlannedAction();
                         actionToCheck.spellNodeTarget = spellNode;
                         actionToCheck.actualTarget = target;
@@ -260,6 +266,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                                 }
                             }
                         }
+
+                        yield return new WaitForSeconds(Time.deltaTime);
                     }
                 }
 
@@ -294,7 +302,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
 
-        return toReturn;
+        yield return new WaitForSeconds(Time.deltaTime);
+
+        callback?.Invoke(toReturn);
     }
 
     private Node SearchForBestMovement()
@@ -443,6 +453,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
             }
         }
+
+        Debug.Log(possibleMovements.Contains(startNode));
+
         return possibleMovements;
     }
 

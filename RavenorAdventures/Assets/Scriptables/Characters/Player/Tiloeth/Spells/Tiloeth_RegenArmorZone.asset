@@ -19,6 +19,7 @@ MonoBehaviour:
       la zone."
     englishText: 
   castingAnimation: 3
+  launchAnimation: 4
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
   projectile: {fileID: 0}
@@ -33,9 +34,10 @@ MonoBehaviour:
   cooldown: 3
   range: 5
   zoneRange: 25
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: Character_LaunchSpell
   type: 3
   diceUsed: 1
   baseDamage: 0
