@@ -10,7 +10,6 @@ public abstract class Effect
 
     public void ApplyEffect(RVN_ComponentHandler effectTarget)
     {
-
         switch (trigger)
         {
             case EffectTrigger.OnApply:

@@ -18,6 +18,7 @@ MonoBehaviour:
     frenchText: 
     englishText: 
   castingAnimation: 3
+  launchAnimation: 0
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
   projectile: {fileID: 0}
@@ -29,14 +30,15 @@ MonoBehaviour:
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 3
+  cooldown: 0
   range: 5
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: Character_LaunchSpell
   type: 1
-  diceUsed: 2
+  diceUsed: 4
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

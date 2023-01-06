@@ -32,7 +32,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     private CharacterAnimationData currentAnim;
 
-    public void SetCharacter(CharacterScriptable_Battle character)
+    public void SetSprite(CharacterScriptable_Battle character)
     {
         characterSprite.sprite = character.GameSprite();
 
@@ -42,14 +42,18 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
             {
                 spr.sprite = character.HandSprite;
 
-                if(character.DisplayHand)
+                if (character.DisplayHand)
                 {
                     spr.gameObject.SetActive(true);
                 }
             }
         }
+    }
 
-        //SetAnimation(CharacterAnimationType.Idle);
+    public void SetCharacter(CharacterScriptable_Battle character)
+    {
+        SetSprite(character);
+
         PlayAnimation("Idle");
     }
 

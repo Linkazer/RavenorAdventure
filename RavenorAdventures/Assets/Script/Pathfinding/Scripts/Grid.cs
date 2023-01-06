@@ -122,94 +122,94 @@ public class Grid : MonoBehaviour
 
 	public static bool IsNodeVisible(Node startNode, Node targetNode, float distanceMax = -1)
 	{
-		if(distanceMax > 0 && Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
-        {
+		if (Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
+		{
 			return false;
-        }
-
-		int x = targetNode.gridX;
-		int y = targetNode.gridY;
-		int j = y;
-
-		float realJ = y;
-
-		int diffX = targetNode.gridX - startNode.gridX;
-		int diffY = targetNode.gridY - startNode.gridY;
-
-		float absX = Mathf.Abs((float)diffX);
-		float absY = Mathf.Abs((float)diffY);
-
-		int xCoef = 1;
-		int yCoef = 1;
-
-		if (diffX < 0)
-		{
-			xCoef = -1;
 		}
-		else if (diffX == 0)
+		else
 		{
-			xCoef = 0;
+			return instance.CalculateVision(startNode.gridX, startNode.gridY, targetNode.gridX, targetNode.gridY);
 		}
+	}
 
-		if (diffY < 0)
-		{
-			yCoef = -1;
-		}
-		else if (diffY == 0)
-		{
-			yCoef = 0;
-		}
+	public bool CalculateVision(int x1, int y1, int x2, int y2)
+	{
+		int startX = x1;
+		int startY = y1;
 
-		if (absX == absY)
+		int dx = Mathf.Abs(x1 - x2);
+		int dy = Mathf.Abs(y1 - y2);
+
+		int sx = (x1 < x2) ? 1 : -1;
+		int sy = (y1 < y2) ? 1 : -1;
+
+		int lastX1 = x1;
+		int lastY1 = y1;
+
+		int err = dx - dy;
+
+		int e2 = 2 * err;
+
+		while (true)
 		{
-			for (int i = x; i != startNode.gridX; i -= xCoef)
+			if (lastY1 != y1 && lastX1 != x1)
 			{
-				if (!GetNode(i, j).IsVisible)
+				if (Mathf.Abs(startX - x1) == Mathf.Abs(startY - y1))
 				{
-					return false;
+					if (!GetNode(x1, lastY1).IsVisible && !GetNode(lastX1, y1).IsVisible)
+					{
+						return false;
+					}
 				}
-
-				realJ -= yCoef;
-				j = Mathf.RoundToInt(realJ);
-			}
-		}
-		else if (absX > absY)
-		{
-			for (int i = x; i != startNode.gridX; i -= xCoef)
-			{
-				if (!GetNode(i, j).IsVisible)
+				else if (Mathf.Abs(startX - x1) > Mathf.Abs(startY - y1))
 				{
-					return false;
+					if (lastY1 != y1 && !GetNode(lastX1, y1).IsVisible)
+					{
+						return false;
+					}
 				}
-
-				if (yCoef != 0 && diffY != 0)
+				else if (Mathf.Abs(startY - y1) > Mathf.Abs(startX - x1))
 				{
-					realJ -= (absY / absX) * (float)yCoef;
-					j = Mathf.RoundToInt(realJ);
+					if (lastX1 != x1 && !GetNode(x1, lastY1).IsVisible)
+					{
+						return false;
+					}
 				}
 			}
-		}
-		else if (absX < absY)
-		{
-			realJ = x;
-			j = x;
-			for (int i = y; i != startNode.gridY; i -= yCoef)
-			{
-				if (!GetNode(j, i).IsVisible)
-				{
-					return false;
-				}
 
-				if (xCoef != 0 && diffX != 0)
-				{
-					realJ -= (absX / absY) * (float)xCoef;
-					j = Mathf.RoundToInt(realJ);
-				}
+			if (!GetNode(x1, y1).IsVisible)
+			{
+				return false;
 			}
+
+			if (x1 == x2 && y1 == y2)
+			{
+				break;
+			}
+
+			lastX1 = x1;
+			lastY1 = y1;
+
+			e2 = 2 * err;
+
+			if (e2 > -dy)
+			{
+				err = err - dy;
+				x1 = x1 + sx;
+			}
+
+			if (e2 < dx)
+			{
+				err = err + dx;
+				y1 = y1 + sy;
+			}
+
+			
 		}
 
 		return true;
 	}
+
 
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y,1));

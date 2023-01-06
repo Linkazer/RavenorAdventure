@@ -39,7 +39,7 @@ MonoBehaviour:
   speed: 5
   opportunitySpell: {fileID: 0}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
   usableSpellByTurn: 1
   usedRessource:
@@ -56,7 +56,7 @@ MonoBehaviour:
       baseValue: 0
     bonusScore: 100
     calculs: []
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0

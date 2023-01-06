@@ -18,6 +18,7 @@ MonoBehaviour:
     frenchText: 
     englishText: 
   castingAnimation: 8
+  launchAnimation: 0
   castAnimationDuration: 0.15
   spellAnimationTarget: 0
   projectile: {fileID: 858645855968176571, guid: f71903c77545bf9499b2c9330537d28d, type: 3}
@@ -32,9 +33,10 @@ MonoBehaviour:
   cooldown: 0
   range: 55
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: 
   type: 0
   diceUsed: 2
   baseDamage: 0

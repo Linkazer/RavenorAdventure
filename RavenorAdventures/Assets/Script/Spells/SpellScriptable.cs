@@ -189,7 +189,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         if (zoneDefined.Count > 0)
         {
             Vector2 direction = Vector2.one;
-            if (zoneFaceCaster)
+            if (zoneFaceCaster && casterNode != null)
             {
                 direction = new Vector2(startNode.gridX, startNode.gridY) - new Vector2(casterNode.gridX, casterNode.gridY);
             }

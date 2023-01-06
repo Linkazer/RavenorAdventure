@@ -42,7 +42,9 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
 
             if (behaviorUsed != null)
             {
-                List<Node> targetsNodes = spellToUse.scriptable.GetZone(spellToUse.targetNode, spellToUse.caster.CurrentNode);
+                CPN_SpellCaster caster = spellToUse.caster;
+
+                List<Node> targetsNodes = spellToUse.scriptable.GetZone(spellToUse.targetNode, spellToUse.caster?.CurrentNode);
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
                     if (!targetsNodes[i].IsStaticObstacle)
