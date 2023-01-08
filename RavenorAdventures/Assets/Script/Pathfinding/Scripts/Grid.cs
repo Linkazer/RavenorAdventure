@@ -122,7 +122,7 @@ public class Grid : MonoBehaviour
 
 	public static bool IsNodeVisible(Node startNode, Node targetNode, float distanceMax = -1)
 	{
-		if (Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
+		if (distanceMax > 0 && Pathfinding.GetDistance(startNode, targetNode) > distanceMax)
 		{
 			return false;
 		}

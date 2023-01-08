@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: Ennemy_SansAme_Armure
+  m_EditorClassIdentifier: 
+  nom: Sans ame en armure
+  UIPortrait: {fileID: 21300000, guid: 23c78bc4f636cdf44b795cba95e74d0f, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: e339f147b2205e147a8728a61dd7e0e0, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: e339f147b2205e147a8728a61dd7e0e0, type: 3}
+    - {fileID: 21300000, guid: 146f1de7c2175bd438c3263746fc4ce8, type: 3}
+  handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
+  displayHand: 0
+  handHeight: 0
+  uiHeight: 1.25
+  health: 5
+  armor: 2
+  defense: 4
+  accuracy: 0
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 35
+  speed: 5
+  opportunitySpell: {fileID: 0}
+  availableSpells:
+  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  wantedDistanceFromTarget: {x: 0, y: 15}
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 10
+      condition: 3
+      baseValue: 0
+    bonusScore: 100
+    calculs: []
+  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+    wantedActionIndex: 0
+    conditions: []
+    bonusScore: 0
+    calculs:
+    - id: 1
+    - id: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 13
+        condition: 3
+        baseValue: 25
+    00000002:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 11
+        abscissaCoeficient: 1
+        constantToAdd: 0
+        maxValue: 3

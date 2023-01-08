@@ -40,7 +40,6 @@ MonoBehaviour:
   opportunitySpell: {fileID: 0}
   availableSpells:
   - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
-  - {fileID: 11400000, guid: db89cea0714b594459f9b7d7612c82a3, type: 2}
   - {fileID: 11400000, guid: a1f40f17b2b583e4ab2f699baf24d625, type: 2}
   - {fileID: 11400000, guid: 9f7ea61c399fd4f4f8f80abe4d860960, type: 2}
   usableSpellByTurn: 1
