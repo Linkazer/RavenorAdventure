@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ennemy_SansAme_Armure
   m_EditorClassIdentifier: 
   nom: Sans ame en armure
-  UIPortrait: {fileID: 21300000, guid: 23c78bc4f636cdf44b795cba95e74d0f, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 46f47f25614fa744c8da0d8ee1cc9d33, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: e339f147b2205e147a8728a61dd7e0e0, type: 3}
   animations:

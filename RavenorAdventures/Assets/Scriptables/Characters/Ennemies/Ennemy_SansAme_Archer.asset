@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ennemy_SansAme_Archer
   m_EditorClassIdentifier: 
   nom: "Sans \xE2me archer"
-  UIPortrait: {fileID: 21300000, guid: 18ccfd0af91f0734b95dc85702e53414, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 9459fd149f2f1a844913e829d166d67c, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: 35098e1fbb126884a880e0839e7053a9, type: 3}
   animations:

@@ -19,7 +19,7 @@ public class Grid : MonoBehaviour
 	private float nodeDiameter;
 	private int gridSizeX, gridSizeY;
 
-	[SerializeField] private UnityEvent<Node[,], int, int> OnCreateGrid;
+	[SerializeField] private RVN_GridDisplayer gridDisplayer;
 
 	void Awake() {
 		instance = this;
@@ -59,7 +59,7 @@ public class Grid : MonoBehaviour
 			}
 		}
 
-		OnCreateGrid?.Invoke(grid, gridSizeX, gridSizeY);
+		gridDisplayer.OnSetGrid(grid, gridSizeX, gridSizeY);
 	}
 
 	public static Node GetNode(int x, int y)
@@ -211,6 +211,7 @@ public class Grid : MonoBehaviour
 	}
 
 
+#if UNITY_EDITOR
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y,1));
 		if (grid != null && displayGridGizmos) {
@@ -221,4 +222,5 @@ public class Grid : MonoBehaviour
 			}
 		}
 	}
+#endif
 }
