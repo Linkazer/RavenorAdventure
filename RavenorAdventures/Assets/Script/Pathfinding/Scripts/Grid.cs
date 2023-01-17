@@ -35,7 +35,7 @@ public class Grid : MonoBehaviour
 		}
 	}
 
-	private void CreateGrid() {
+	public void CreateGrid() {
 		if (grid == null)
 		{
 			grid = new Node[gridSizeX, gridSizeY];

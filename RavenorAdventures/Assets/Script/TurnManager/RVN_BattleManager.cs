@@ -41,6 +41,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     public static Action OnEnnemyTeamDie;
     public static Action<CPN_Character> ActOnCharacterDie;
 
+    [Header("Combat Start")]
+    [SerializeField] private UnityEvent beforeBattleStart;
+
     [Header("Combat End")]
     [SerializeField] private UnityEvent OnWinBattle;
     [SerializeField] private UnityEvent OnLoseBattle;
@@ -51,12 +54,34 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private void Start()
     {
-        TimerManager.CreateGameTimer(Time.deltaTime * 2f, SetBattle);
+        if (RVN_SceneManager.CurrentLevel != null)
+        {
+            if(level != null)
+            {
+                Destroy(level.gameObject);
+            }
+        }
+
+        RVN_SceneManager.ToDoAfterLoad += SetBattle;
+    }
+
+    private void OnDestroy()
+    {
+        OnPlayerTeamDie = null;
+        OnEnnemyTeamDie = null;
+        ActOnCharacterDie = null;
     }
 
     public void SetBattle()
     {
-        for(int i = 0; i < level.GetTeam(0).Count; i++)
+        if (RVN_SceneManager.CurrentLevel != null)
+        {
+            level = Instantiate(RVN_SceneManager.CurrentLevel);
+        }
+
+        beforeBattleStart?.Invoke();
+
+        for (int i = 0; i < level.GetTeam(0).Count; i++)
         {
             AddCharacter(level.GetTeam(0)[i], 0);
         }
@@ -364,13 +389,49 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
     }
 
-    public static void WinBattle()
+    public void EndBattle(bool didWin)
+    {
+        if(level.endDialogue != null)
+        {
+            if (didWin)
+            {
+                RVN_DialogueManager.PlayDialogue(level.startDialogue, WinBattle);
+            }
+            else
+            {
+                RVN_DialogueManager.PlayDialogue(level.startDialogue, LoseBattle);
+            }
+        }
+        else
+        {
+            if(didWin)
+            {
+                WinBattle();
+            }
+            else
+            {
+                LoseBattle();
+            }
+        }
+    }
+
+    private void WinBattle()
     {
         instance.OnWinBattle?.Invoke();
     }
 
-    public static void LoseBattle()
+    private void LoseBattle()
     {
         instance.OnLoseBattle?.Invoke();
+    }
+
+    public void RetryBattle()
+    {
+        RVN_SceneManager.LoadBattle(level);
+    }
+
+    public void LoadNextBattle()
+    {
+        RVN_SceneManager.LoadBattle(level.nextLevel);
     }
 }

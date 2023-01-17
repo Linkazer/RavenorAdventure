@@ -6,10 +6,12 @@ using UnityEngine;
 public class CharacterScriptable : ScriptableObject
 {
     [SerializeField] protected string nom;
+    [SerializeField] protected RVN_Text description;
     [SerializeField] protected Sprite UIPortrait;
     [SerializeField] protected Color nameColor = Color.black;
 
     public string Nom => nom;
+    public string Description => description.GetText();
     public Color NameColor => nameColor;
     public Sprite Portrait => UIPortrait;
 }

@@ -30,8 +30,9 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
     [SerializeField] protected string nom;
+    [SerializeField] protected RVN_Text displayName;
     [SerializeField] protected Sprite icon;
-    [SerializeField] protected RVN_Text description = new RVN_Text();
+    [SerializeField] protected RVN_Text description;
 
     [Header("Animations")]
     [SerializeField] protected CharacterAnimationType castingAnimation;
@@ -72,7 +73,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public Action<int> OnUpdateCooldown;
     public Action<int> OnUpdateUtilisationLeft;
 
-    public string Name => nom;
+    public string Name => displayName.GetText();
     public Sprite Icon => icon;
 
     public virtual string GetDescription()
@@ -97,7 +98,17 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         {
             foreach (EffectScriptable eff in effectsOnCaster)
             {
-                toRetrun += $"\nApplique {eff.Name} sur le lanceur : {eff.Description}";
+                switch(RVN_LanguageManager.Language)
+                {
+                    case PossibleLanguage.Francais:
+                        toRetrun += $"\nApplique {eff.Name} sur le lanceur : {eff.Description}";
+                        break;
+                    case PossibleLanguage.English:
+                        toRetrun += $"\nApply {eff.Name} on the caster : {eff.Description}";
+                        break;
+                }
+
+                
             }
         }
 
@@ -105,7 +116,15 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         {
             foreach (EffectScriptable eff in effectsOnTarget)
             {
-                toRetrun += $"\nApplique {eff.Name} sur la cible : {eff.Description}";
+                switch (RVN_LanguageManager.Language)
+                {
+                    case PossibleLanguage.Francais:
+                        toRetrun += $"\nApplique {eff.Name} sur la cible : {eff.Description}";
+                        break;
+                    case PossibleLanguage.English:
+                        toRetrun += $"\nApply {eff.Name} on the target : {eff.Description}";
+                        break;
+                }
             }
         }
 

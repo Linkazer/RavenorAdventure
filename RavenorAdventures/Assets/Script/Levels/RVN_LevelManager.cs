@@ -8,6 +8,8 @@ public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
     public DialogueScriptable startDialogue;
     public DialogueScriptable endDialogue;
 
+    public RVN_LevelManager nextLevel;
+
     [Serializable]
     private struct CharacterTeam
     {

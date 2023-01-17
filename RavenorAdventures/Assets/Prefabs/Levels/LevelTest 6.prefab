@@ -26773,8 +26773,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d481fe932325945b2f5e6255058975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDialogue: {fileID: 0}
-  endDialogue: {fileID: 0}
+  startDialogue: {fileID: 11400000, guid: 0c97b60e5bbfc7549b782c547dd05e87, type: 2}
+  endDialogue: {fileID: 11400000, guid: 0c97b60e5bbfc7549b782c547dd05e87, type: 2}
+  nextLevel: {fileID: 429593234369219505, guid: f809dfa2118611644be45d5558a2d739, type: 3}
   teams:
   - characters:
     - {fileID: 8240848136643932755}
@@ -26806,13 +26807,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   wantedEnnemyDeads:
-  - {fileID: 7810500052035538403}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 434276021399085110}
 --- !u!1 &429593234731626683
 GameObject:
   m_ObjectHideFlags: 0

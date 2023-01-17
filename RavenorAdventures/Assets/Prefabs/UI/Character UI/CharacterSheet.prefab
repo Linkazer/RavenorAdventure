@@ -304,10 +304,10 @@ MonoBehaviour:
   characterName: {fileID: 3440819940442769309}
   characterIcon: {fileID: 3440819940623834896}
   stats:
+  - {fileID: 206698663169898002}
   - {fileID: 3509438447795330328}
   - {fileID: 206698663371768406}
   - {fileID: 206698662516760474}
-  - {fileID: 206698663169898002}
   effects:
   - {fileID: 4534643957685125422}
   - {fileID: 5075699450967090232}
@@ -964,6 +964,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3440819939903013626}
     m_Modifications:
+    - target: {fileID: 2197707843987602021, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 11400000, guid: 124f586873c198241b9934e77e28d7a9, type: 2}
     - target: {fileID: 5393142363682309119, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1437,6 +1441,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3440819939903013626}
     m_Modifications:
+    - target: {fileID: 2197707843987602021, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 11400000, guid: 97e2b598e3a80f94b9c72deb79e4b05b, type: 2}
     - target: {fileID: 5393142363682309119, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2785,6 +2793,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3440819939903013626}
     m_Modifications:
+    - target: {fileID: 2197707843987602021, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
+      propertyPath: tooltip
+      value: 
+      objectReference: {fileID: 11400000, guid: 1da8db11a834cc04495924559a4eedd1, type: 2}
     - target: {fileID: 5393142363682309119, guid: 935298b723b735f4e88bd4b3ce2f742d, type: 3}
       propertyPath: m_Sprite
       value: 

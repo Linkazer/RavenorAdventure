@@ -31,7 +31,7 @@ public abstract class RVN_LevelEnd : MonoBehaviour
 
         OnWinBattle?.Invoke();
 
-        RVN_BattleManager.WinBattle();
+        RVN_BattleManager.Instance.EndBattle(true);
     }
 
     protected void LoseLevel()
@@ -40,6 +40,6 @@ public abstract class RVN_LevelEnd : MonoBehaviour
 
         OnLoseBattle?.Invoke();
 
-        RVN_BattleManager.LoseBattle();
+        RVN_BattleManager.Instance.EndBattle(false);
     }
 }
