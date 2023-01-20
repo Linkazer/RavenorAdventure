@@ -150,11 +150,11 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             didHit = true;
         }
 
-        if (diceDamage.Count <= 0 || totalDamage > 0)
+        /*if (diceDamage.Count <= 0 || totalDamage > 0)
         {
             target.RemoveArmor(spellUsed.ArmorPierced);
-        }
-
+        }*/
+        
         if (totalDamage > 0)
         {
             totalDamage += spellUsed.BaseDamage;
@@ -169,9 +169,16 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                 {
                     totalDamage = 0;
                 }
-            }
 
-            target.RemoveArmor(1);
+                if (spellUsed.ArmorPierced <= 0)
+                {
+                    target.RemoveArmor(1);
+                }
+                else
+                {
+                    target.RemoveArmor(spellUsed.ArmorPierced);
+                }
+            }
         }
 
         return totalDamage;

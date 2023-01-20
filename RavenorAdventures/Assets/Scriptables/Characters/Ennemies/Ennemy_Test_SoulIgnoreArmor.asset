@@ -10,48 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
-  m_Name: Ennemy_SansAme_PerceArmor
+  m_Name: Ennemy_Test_SoulIgnoreArmor
   m_EditorClassIdentifier: 
-  nom: Sans ame ???
-  UIPortrait: {fileID: 21300000, guid: 96685a42503219b40bd709b3b7493f56, type: 3}
+  nom: "Eclaireur \xE9th\xE9r\xE9"
+  description:
+    frenchText: 
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: 1b89bda4b964be547b011d762303566e, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
-  characterSprite: {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
+  characterSprite: {fileID: 21300000, guid: fee3e0b2a552c684fb371bc07147dda2, type: 3}
   animations:
   - animationName: Idle
     animation:
-    - {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
-    - {fileID: 21300000, guid: d76769b15ca79fd4e91c7a0833c7ff76, type: 3}
+    - {fileID: 21300000, guid: fee3e0b2a552c684fb371bc07147dda2, type: 3}
+    - {fileID: 21300000, guid: ef2ea7fe1d6bafe48bee5e0f5af6b419, type: 3}
   handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 3
-  armor: 2
+  health: 4
+  armor: 0
   defense: 2
   accuracy: 1
   power: 0
   offensiveRerolls: 0
-  defensiveRerolls: 0
+  defensiveRerolls: 2
   movementByTurn: 45
   speed: 5
   opportunitySpell: {fileID: 0}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
-  - {fileID: 11400000, guid: 497cd2930cbb95f4991a89dbc62eb322, type: 2}
+  - {fileID: 11400000, guid: b3c538a09768d1a438bb3170ebe02f6c, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 497cd2930cbb95f4991a89dbc62eb322, type: 2}
-    wantedActionIndex: 1
-    conditions: []
-    bonusScore: 0.1
-    calculs:
-    - id: 1
-    - id: 2
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - wantedAction: {fileID: 11400000, guid: b3c538a09768d1a438bb3170ebe02f6c, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0
@@ -69,11 +64,3 @@ MonoBehaviour:
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
-    00000002:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 0
-        abscissaValue: 10
-        abscissaCoeficient: 1
-        constantToAdd: 0
-        maxValue: 3

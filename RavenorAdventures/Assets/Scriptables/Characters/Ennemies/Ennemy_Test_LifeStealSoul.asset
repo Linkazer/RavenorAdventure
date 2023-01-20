@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
-  m_Name: Ennemy_AdepteEthere
+  m_Name: Ennemy_Test_LifeStealSoul
   m_EditorClassIdentifier: 
   nom: "Adepte \xE9th\xE9r\xE9"
   description:
@@ -28,25 +28,25 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 3
-  armor: 1
+  health: 7
+  armor: 0
   defense: 2
   accuracy: 0
-  power: 0
+  power: 1
   offensiveRerolls: 0
-  defensiveRerolls: 1
+  defensiveRerolls: 2
   movementByTurn: 45
   speed: 5
   opportunitySpell: {fileID: 0}
   availableSpells:
-  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - {fileID: 11400000, guid: 84bc62695a09aef4189b9ecc377be01b, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 84bc62695a09aef4189b9ecc377be01b, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0

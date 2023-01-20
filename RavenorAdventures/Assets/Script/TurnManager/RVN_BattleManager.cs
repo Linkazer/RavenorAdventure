@@ -100,7 +100,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
         else
         {
-            StartBattle();
+            TimerManager.CreateGameTimer(Time.deltaTime, StartBattle);
         }
     }
 

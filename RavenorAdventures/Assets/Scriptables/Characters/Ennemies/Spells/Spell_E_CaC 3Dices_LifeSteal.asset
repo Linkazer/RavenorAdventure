@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Spell_E_CaC 3Dices
+  m_Name: Spell_E_CaC 3Dices_LifeSteal
   m_EditorClassIdentifier: 
   nom: Damage Simple
   displayName:
@@ -44,6 +44,6 @@ MonoBehaviour:
   diceUsed: 3
   baseDamage: 0
   armorPierced: 0
-  lifestealPercent: 0
+  lifestealPercent: 1
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

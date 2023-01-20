@@ -26406,7 +26406,7 @@ GameObject:
   - component: {fileID: 429593234369219505}
   - component: {fileID: 429593234369219511}
   m_Layer: 0
-  m_Name: LevelTest 8
+  m_Name: Level_2_Prison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26452,6 +26452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startDialogue: {fileID: 0}
   endDialogue: {fileID: 0}
+  nextLevel: {fileID: 0}
   teams:
   - characters:
     - {fileID: 8240848136643932755}
@@ -28061,7 +28062,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: "Sans \xE2me archer"
+      value: "Archer sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -28807,7 +28808,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame ???
+      value: "Assassin sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -28840,7 +28841,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c1883dfdc7bdbe429f235e34a004264, type: 3}
+      objectReference: {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -30640,7 +30641,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame
+      value: "Sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -31820,7 +31821,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame ???
+      value: "Guerrier sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -31853,7 +31854,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
+      objectReference: {fileID: 21300000, guid: 1c1883dfdc7bdbe429f235e34a004264, type: 3}
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -33205,7 +33206,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: "Sans \xE2me archer"
+      value: "Archer sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -33786,7 +33787,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: "Sans \xE2me archer"
+      value: "Archer sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -34433,7 +34434,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame
+      value: "Sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -35014,7 +35015,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame
+      value: "Sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -35595,7 +35596,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: "Sans \xE2me archer"
+      value: "Archer sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -36253,7 +36254,7 @@ PrefabInstance:
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 102a12b98b50bcc429d89fa7a823ecb1, type: 2}
+      objectReference: {fileID: 11400000, guid: ba6b645a24b8a864a8e6d6909af85a91, type: 2}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnMouseClic.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -36308,7 +36309,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 3adaf274b3b8b6f46b75c39a5632e868, type: 3}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Sans ame ???
+      value: "Chevalier sans \xE2me"
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -36341,7 +36342,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1c1883dfdc7bdbe429f235e34a004264, type: 3}
+      objectReference: {fileID: 21300000, guid: e339f147b2205e147a8728a61dd7e0e0, type: 3}
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

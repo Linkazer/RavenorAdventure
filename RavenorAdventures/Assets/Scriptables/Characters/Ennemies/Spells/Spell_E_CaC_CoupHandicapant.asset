@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Spell_E_CaC_CoupHandicapant
   m_EditorClassIdentifier: 
   nom: Damage Simple
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: f41b2210e1e89db419b2d7df22463e6f, type: 3}
   description:
     frenchText: 
@@ -39,7 +42,7 @@ MonoBehaviour:
   effectsOnCaster: []
   type: 0
   diceUsed: 2
-  baseDamage: -1
+  baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
   hitEffectsOnTarget:

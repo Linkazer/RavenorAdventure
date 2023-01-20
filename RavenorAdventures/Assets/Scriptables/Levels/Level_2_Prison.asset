@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 497929001a3975146911dc0f282afd77, type: 3}
-  m_Name: Level_6
+  m_Name: Level_2_Prison
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 429593234369219505, guid: 90579ddd33769c8448dc95b885cd6f0e, type: 3}
+  levelPrefab: {fileID: 429593234369219505, guid: f809dfa2118611644be45d5558a2d739, type: 3}
   ID: 
-  nom: Le bureau
-  description: Ceci est le niveau avec le bureau
+  nom: La prison
+  description: Ceci est le niveau avec les prisonniers
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

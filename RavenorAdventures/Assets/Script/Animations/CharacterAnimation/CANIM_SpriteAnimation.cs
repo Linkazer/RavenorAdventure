@@ -13,6 +13,8 @@ public class CANIM_SpriteAnimation : CharacterAnimation
     private int currentFrameIndex;
     private float currentFrameTime;
 
+    private Sprite baseSprite;
+
     private Sprite[] currentSpriteAnimation;
 
     private float frameTime => 1 / animationFps;
@@ -53,6 +55,8 @@ public class CANIM_SpriteAnimation : CharacterAnimation
 
     public override void Stop()
     {
+        rnd.sprite = baseSprite;
+
         enabled = false;
     }
 
@@ -68,7 +72,9 @@ public class CANIM_SpriteAnimation : CharacterAnimation
 
     public override void SetCharacter(CharacterScriptable_Battle character)
     {
-        foreach(SpriteAnimation anim in character.animations)
+        baseSprite = character.GameSprite();
+
+        foreach (SpriteAnimation anim in character.animations)
         {
             spriteAnimations.Add(anim.animationName, anim.animation);
         }

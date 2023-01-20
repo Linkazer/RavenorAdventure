@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_SansAme_Armure
   m_EditorClassIdentifier: 
-  nom: Sans ame en armure
+  nom: "Chevalier sans \xE2me"
+  description:
+    frenchText: 
+    englishText: 
   UIPortrait: {fileID: 21300000, guid: 46f47f25614fa744c8da0d8ee1cc9d33, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
   characterSprite: {fileID: 21300000, guid: e339f147b2205e147a8728a61dd7e0e0, type: 3}

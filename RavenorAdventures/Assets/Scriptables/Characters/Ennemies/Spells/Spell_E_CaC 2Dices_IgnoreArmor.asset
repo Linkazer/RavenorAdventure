@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Spell_E_CaC 3Dices
+  m_Name: Spell_E_CaC 2Dices_IgnoreArmor
   m_EditorClassIdentifier: 
   nom: Damage Simple
   displayName:
@@ -29,7 +29,7 @@ MonoBehaviour:
   animationDuration: 0
   ressourceCost: 0
   maxUtilisations: -1
-  hitableTarget: 1
+  hitableTarget: 3
   castTarget: 1
   castType: 0
   isCooldownGlobal: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
   zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  type: 0
-  diceUsed: 3
+  type: 2
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
