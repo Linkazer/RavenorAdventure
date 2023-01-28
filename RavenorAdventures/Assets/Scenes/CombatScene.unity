@@ -6519,42 +6519,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testName: Attack 3 Dices
-  calculType: 1
-  usedDungeonSaga: 0
+  calculType: 0
+  usedDungeonSaga: 1
   usedDnD: 0
   attackers:
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 0
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 0
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 0
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 0
   - AttackDice: 3
     OffensiveRerolls: 0
     Accuracy: 0
     Power: 1
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  Defense: 0
+  Defense: 3
   DefensiveRerolls: 0
-  health: 11
-  armor: 0
+  health: 5
+  armor: 2
   iterations: 100000
-  diceNb: 5
+  oneHitByAttack: 1
+  diceNb: 4
   diceResultNeeded: 6
   diceNumberNeeded: 2
   randomWanted: 8
-  attackDice: 3
-  defenseDice: 4
-  defenseArmor: 4
+  attackDice: 4
+  defenseDice: 5
+  defenseArmor: 3
   dsOffReroll: 0
   dsDefReroll: 0
   advantage: 1
@@ -10075,7 +10076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -10083,7 +10084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y

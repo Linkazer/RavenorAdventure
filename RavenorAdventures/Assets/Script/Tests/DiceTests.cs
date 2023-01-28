@@ -25,6 +25,9 @@ public class DiceTests : MonoBehaviour
     public bool usedDungeonSaga;
     public bool usedDnD;
 
+    [Header("Behavior")]
+    [SerializeField] private bool baseDamageDone;
+
     [Header("Attack")]
     [SerializeField] private AttackTest[] attackers;
 
@@ -255,7 +258,7 @@ public class DiceTests : MonoBehaviour
             }
         }
 
-        if(totalDamage > 0)
+        if(totalDamage > 0 || baseDamageDone)
         {
             totalDamage += attacker.Power;
         }

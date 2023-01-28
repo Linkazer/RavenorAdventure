@@ -52,6 +52,6 @@ MonoBehaviour:
     00000000:
       type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
       data:
-        startAmount: 5
-        limits: {x: 0, y: 5}
-        currentAmount: 5
+        startAmount: 6
+        limits: {x: 0, y: 6}
+        currentAmount: 6
