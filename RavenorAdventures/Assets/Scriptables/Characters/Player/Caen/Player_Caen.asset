@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Player_Caen
   m_EditorClassIdentifier: 
   nom: Caen
+  description:
+    frenchText: Alchimiste humain
+    englishText: 
   UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
   nameColor: {r: 0.16570203, g: 0.6698113, b: 0.14217694, a: 1}
   characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
-  characterIdleAnimation:
-  - {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
-  - {fileID: 21300000, guid: dffd536c8c7169b4fb89664890a87147, type: 3}
   animations:
   - animationName: Idle
     animation:
@@ -28,10 +28,10 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.15
-  health: 6
+  health: 7
   armor: 0
-  defense: 3
-  accuracy: 0
+  defense: 2
+  accuracy: 1
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
   opportunitySpell: {fileID: 0}
   availableSpells:
   - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
-  - {fileID: 11400000, guid: a1f40f17b2b583e4ab2f699baf24d625, type: 2}
-  - {fileID: 11400000, guid: 9f7ea61c399fd4f4f8f80abe4d860960, type: 2}
+  - {fileID: 11400000, guid: 9e8dc1e8f279a804db1d8257d2f95c35, type: 2}
+  - {fileID: 11400000, guid: 0d5e9e8c03106364b9e615abc0ea8fc9, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

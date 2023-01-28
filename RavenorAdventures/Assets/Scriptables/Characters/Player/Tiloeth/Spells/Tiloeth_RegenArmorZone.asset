@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Tiloeth_RegenArmorZone
   m_EditorClassIdentifier: 
   nom: "Lev\xE9 de bouclier"
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
   description:
     frenchText: "Fait regagner %diceUsed% d'Armures \xE0 tous les alli\xE9s dans
@@ -39,7 +42,7 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 3
-  diceUsed: 1
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

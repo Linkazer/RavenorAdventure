@@ -6523,18 +6523,14 @@ MonoBehaviour:
   usedDungeonSaga: 0
   usedDnD: 0
   attackers:
-  - AttackDice: 2
+  - AttackDice: 3
     OffensiveRerolls: 0
-    Accuracy: 1
+    Accuracy: 0
     Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 1
-    Power: 0
-  Defense: 2
+  Defense: 3
   DefensiveRerolls: 0
-  health: 8
-  armor: 0
+  health: 3
+  armor: 2
   iterations: 100000
   diceNb: 5
   diceResultNeeded: 6
@@ -6759,7 +6755,7 @@ PrefabInstance:
     - target: {fileID: 505821208446622730, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+      objectReference: {fileID: 11400000, guid: 0036bb158b315854db2d7e0e6792d1ef, type: 2}
     - target: {fileID: 571034560898158143, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7331,7 +7327,7 @@ PrefabInstance:
     - target: {fileID: 3021797457304277713, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+      objectReference: {fileID: 11400000, guid: 102a12b98b50bcc429d89fa7a823ecb1, type: 2}
     - target: {fileID: 3167460915773787044, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8248,6 +8244,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6978996552683088384, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7060291881336414090, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8419,7 +8419,7 @@ PrefabInstance:
     - target: {fileID: 7810500052035538403, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+      objectReference: {fileID: 11400000, guid: f2e94c80f115adc4cb368a19f45378ef, type: 2}
     - target: {fileID: 8177113912992115099, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10059,7 +10059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -10067,7 +10067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y

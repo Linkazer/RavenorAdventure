@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Tiloeth_SecondSouffle
   m_EditorClassIdentifier: 
   nom: Second Souffle
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: bb2ff8d054fa0a14d914439285d7df4b, type: 3}
   description:
     frenchText: 
@@ -38,7 +41,7 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 1
-  diceUsed: 4
+  diceUsed: 5
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
