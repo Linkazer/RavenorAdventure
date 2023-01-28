@@ -90,6 +90,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         if (currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount))
         {
             List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, currentSelectedSpell.Range, true);
+
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
 
             if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))

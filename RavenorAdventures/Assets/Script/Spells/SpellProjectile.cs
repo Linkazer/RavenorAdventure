@@ -27,6 +27,15 @@ public class SpellProjectile : MonoBehaviour
 
     public void SetProjectile(Node nStartNode, Node nTargetNode, Action callback)
     {
+        if(nStartNode == nTargetNode)
+        {
+            callback?.Invoke();
+
+            Destroy(gameObject);
+
+            return;
+        }
+
         transform.position = nStartNode.worldPosition;
 
         currentPosition = nStartNode.worldPosition;

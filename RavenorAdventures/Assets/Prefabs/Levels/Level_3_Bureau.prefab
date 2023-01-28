@@ -26807,7 +26807,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   wantedEnnemyDeads:
+  - {fileID: 7810500052035538403}
+  - {fileID: 3021797457304277713}
+  - {fileID: 505821208446622730}
   - {fileID: 434276021399085110}
+  - {fileID: 6978996552683088446}
+  - {fileID: 106384502407653421}
+  - {fileID: 4772750978898560537}
+  - {fileID: 9113170469738054752}
+  - {fileID: 5420257558036149880}
+  - {fileID: 7400253745701796576}
+  - {fileID: 418764680058708086}
 --- !u!1 &429593234731626683
 GameObject:
   m_ObjectHideFlags: 0
