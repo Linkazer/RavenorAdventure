@@ -9,9 +9,10 @@ using TMPro;
 public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 {
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private CanvasGroup characterGroup;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image leftCharacterDisplay;
-    [SerializeField] private Image rightCharacterDisplay;
+    //[SerializeField] private Image rightCharacterDisplay;
     [SerializeField] private List<DialogueResponseHandler> responses;
 
     [SerializeField] private CanvasGroup dialogueGroup;
@@ -79,14 +80,17 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
         if (sentence.leftCharacter != null)
         {
-            leftCharacterDisplay.enabled = true;
+            characterGroup.alpha = 1;
+            characterGroup.blocksRaycasts = true;
+
             leftCharacterDisplay.sprite = sentence.leftCharacter.Portrait;
         }
         else
         {
-            leftCharacterDisplay.enabled = false;
+            characterGroup.alpha = 0;
+            characterGroup.blocksRaycasts = false;
         }
-        if (sentence.rightCharacter != null)
+        /*if (sentence.rightCharacter != null)
         {
             rightCharacterDisplay.enabled = true;
             rightCharacterDisplay.sprite = sentence.rightCharacter.Portrait;
@@ -94,7 +98,7 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
         else
         {
             rightCharacterDisplay.enabled = false;
-        }
+        }*/
 
         currentSentenceIndex++;
 
