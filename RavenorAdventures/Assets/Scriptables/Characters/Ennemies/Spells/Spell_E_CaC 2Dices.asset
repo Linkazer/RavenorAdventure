@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Spell_E_CaC 2Dices
   m_EditorClassIdentifier: 
   nom: Damage Simple
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: f41b2210e1e89db419b2d7df22463e6f, type: 3}
   description:
     frenchText: 
     englishText: 
   castingAnimation: 5
+  launchAnimation: 0
   castAnimationDuration: 0.25
   spellAnimationTarget: 0
   projectile: {fileID: 0}
@@ -32,12 +36,13 @@ MonoBehaviour:
   cooldown: 0
   range: 15
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: 
   type: 0
-  diceUsed: 2
-  baseDamage: 0
+  diceUsed: 1
+  baseDamage: 1
   armorPierced: 0
   lifestealPercent: 0
   hitEffectsOnTarget: []

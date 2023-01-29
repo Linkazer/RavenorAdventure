@@ -145,19 +145,11 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             }
         }
 
-        if(totalDamage > 0)
-        {
-            didHit = true;
-        }
+        totalDamage += spellUsed.BaseDamage;
 
-        /*if (diceDamage.Count <= 0 || totalDamage > 0)
-        {
-            target.RemoveArmor(spellUsed.ArmorPierced);
-        }*/
-        
         if (totalDamage > 0)
         {
-            totalDamage += spellUsed.BaseDamage;
+            didHit = true;
 
             if (spellUsed.Type != DamageType.IgnoreArmor)
             {

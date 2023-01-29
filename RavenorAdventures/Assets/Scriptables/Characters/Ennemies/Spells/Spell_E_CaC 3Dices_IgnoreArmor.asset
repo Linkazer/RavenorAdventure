@@ -41,8 +41,8 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 2
-  diceUsed: 3
-  baseDamage: 0
+  diceUsed: 1
+  baseDamage: 2
   armorPierced: 0
   lifestealPercent: 0
   hitEffectsOnTarget: []
