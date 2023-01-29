@@ -6520,39 +6520,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testName: Attack 3 Dices
   calculType: 0
-  usedDungeonSaga: 1
+  usedDungeonSaga: 0
   usedDnD: 0
+  baseDamageDone: 0
   attackers:
   - AttackDice: 2
     OffensiveRerolls: 0
     Accuracy: 0
-    Power: 0
-  - AttackDice: 2
+    Power: 2
+  - AttackDice: 1
     OffensiveRerolls: 0
     Accuracy: 0
-    Power: 0
-  - AttackDice: 2
+    Power: 1
+  - AttackDice: 1
     OffensiveRerolls: 0
     Accuracy: 0
-    Power: 0
-  - AttackDice: 2
+    Power: 1
+  - AttackDice: 1
     OffensiveRerolls: 0
     Accuracy: 0
-    Power: 0
-  - AttackDice: 3
+    Power: 1
+  - AttackDice: 1
     OffensiveRerolls: 0
     Accuracy: 0
     Power: 1
   Defense: 3
   DefensiveRerolls: 0
-  health: 5
+  health: 8
   armor: 2
   iterations: 100000
-  oneHitByAttack: 1
   diceNb: 4
-  diceResultNeeded: 6
+  diceResultNeeded: 2
   diceNumberNeeded: 2
-  randomWanted: 8
+  randomWanted: 6
   attackDice: 4
   defenseDice: 5
   defenseArmor: 3
@@ -8970,7 +8970,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.048889, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10076,7 +10076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -10084,7 +10084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -10856,6 +10856,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2776722208541840012, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3533763982120724536, guid: e2daffa5a976ce046b935242ec876353, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11083,6 +11087,30 @@ PrefabInstance:
     - target: {fileID: 6117539654575273570, guid: e2daffa5a976ce046b935242ec876353, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1582.2043
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 167.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 791.1022
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151951425343851732, guid: e2daffa5a976ce046b935242ec876353, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.955
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2daffa5a976ce046b935242ec876353, type: 3}
