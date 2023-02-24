@@ -10,47 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
-  m_Name: DialogueTest
+  m_Name: DialogueTest 1
   m_EditorClassIdentifier: 
   sentences:
   - leftCharacter: {fileID: 0}
     rightCharacter: {fileID: 0}
     talker: {fileID: 0}
     text:
-      frenchText: "Apr\xE8s plusieurs jours de marche, le groupe arriva au niveau
-        du village abandonn\xE9 en bordure du duch\xE9 de Bresmia. Envoy\xE9 par
-        l\u2019arm\xE9e d\u2019Aren, le groupe devait retrouver la trace d\u2019une
-        escouade de soldat qui avait disparut au abords de ce village."
+      frenchText: "En p\xE9n\xE9trant dans la crypte, Orlaf sentit un frisson lui
+        parcourir l'\xE9chine. Cela faisait des ann\xE9es qu'il ne s'\xE9tait plus
+        laiss\xE9 aller \xE0 la superstition, mais il ne put s'emp\xEAcher de se
+        demander ce que cela signifiait."
       englishText: 
   - leftCharacter: {fileID: 0}
     rightCharacter: {fileID: 0}
     talker: {fileID: 0}
     text:
-      frenchText: "S\u2019approchant du village, une ambiance pesante se fit de plus
-        en plus sentir. Avan\xE7ant prudemment dans le village, le long moment de
-        silence fut soudainement bris\xE9."
+      frenchText: "La pi\xE8ce \xE9tait domin\xE9e par un pilier de pierre massif,
+        orn\xE9 de runes qui semblaient danser sous ses yeux. D'autres marques avaient
+        visiblement \xE9t\xE9 grossi\xE8rement grav\xE9es dans la roche, et il sentit
+        monter en lui une vague de naus\xE9e en les prcourant du regard."
       englishText: 
   - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     rightCharacter: {fileID: 0}
     talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CEh oh ! Y a quelqu\u2019un dans ce trou paum\xE9 ?\u201D
-        cria Ryn, faisant sursauter le reste du groupe."
+      frenchText: "A ses c\xF4t\xE9s, Madriga laissa \xE9chapper une mal\xE9diction
+        sifflante dans la langue de son peuple et cracha sur le sol."
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: '"Il profane la Gardienne."'
       englishText: 
   - leftCharacter: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     rightCharacter: {fileID: 0}
     talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "Caen lan\xE7a un regard noir \xE0 Ryn. \u201CComment une si petite
-        personne peut faire autant de bruit ? Ca te dit quelque chose, la discr\xE9tion
-        ?\u201D"
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CLe village est vide. A part l\u2019ennuie, je vois pas ce
-        qui peut nous tomber dessus.\u201D"
+      frenchText: "Danor la fixa du regard et Orlaf remarqua la teinte verd\xE2tre
+        du visage du mage. \"Il l'a li\xE9e \xE0 cet endroit. Elle ne peut pa quitter
+        la crypte.\""
       englishText: 
   - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     rightCharacter: {fileID: 0}

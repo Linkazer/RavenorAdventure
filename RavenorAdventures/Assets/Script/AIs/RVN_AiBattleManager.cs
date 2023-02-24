@@ -454,8 +454,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        Debug.Log(possibleMovements.Contains(startNode));
-
         return possibleMovements;
     }
 

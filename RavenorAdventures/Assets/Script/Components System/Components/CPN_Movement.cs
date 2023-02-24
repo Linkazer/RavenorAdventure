@@ -185,8 +185,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		currentMovementLeft -= currentNode.gCost;
 
-		Debug.Log("End movement callback");
-
 		OnEndMovementAction = null;
 		handler.animationController?.EndAnimation();
 		OnStopMovement?.Invoke();

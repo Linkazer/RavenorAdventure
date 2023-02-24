@@ -19,6 +19,13 @@ public class UI_Health_RuntimeCharacter : UI_HealthDisplayer
     [Header("Effect Displayer")]
     [SerializeField] private UI_Character_EffectApplyDisplayer effectApplyDisplayerPrefab;
 
+    public void DisplayText(string text, Color color)
+    {
+        UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);
+
+        newDamageText.Display(text, color);
+    }
+
     public void TakeDamage(int damageAmount)
     {
         UI_Character_DamageDisplayer newDamageText = Instantiate(damageDisplayerPrefab, damageDisplayerHandler);

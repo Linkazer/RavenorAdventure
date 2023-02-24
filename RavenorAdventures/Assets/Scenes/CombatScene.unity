@@ -6518,36 +6518,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d0c72c1939abd4783e46efb36230d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testName: Attack 3 Dices
-  calculType: 0
+  testName: Rerolls
+  calculType: 1
   usedDungeonSaga: 0
   usedDnD: 0
   baseDamageDone: 0
   attackers:
-  - AttackDice: 2
+  - AttackDice: 3
     OffensiveRerolls: 0
     Accuracy: 0
-    Power: 2
-  - AttackDice: 1
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  - AttackDice: 1
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  - AttackDice: 1
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  - AttackDice: 1
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  Defense: 3
-  DefensiveRerolls: 0
-  health: 8
-  armor: 2
+    Power: 0
+  Defense: 2
+  DefensiveRerolls: 2
+  health: 3
+  armor: 0
   iterations: 100000
   diceNb: 4
   diceResultNeeded: 2
@@ -6772,7 +6756,19 @@ PrefabInstance:
     - target: {fileID: 505821208446622730, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 0036bb158b315854db2d7e0e6792d1ef, type: 2}
+      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+    - target: {fileID: 505821208446622768, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Name
+      value: "Eclaireur \xE9th\xE9r\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 505821208446622772, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 505821208446622772, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 571034560898158143, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6821,6 +6817,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 890656292718756797, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a15b62d22f0c4b4ca65f6bedd07808b, type: 3}
     - target: {fileID: 920352018897907084, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7149,6 +7149,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2501365170227039590, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a15b62d22f0c4b4ca65f6bedd07808b, type: 3}
     - target: {fileID: 2625843377569185976, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7344,7 +7348,19 @@ PrefabInstance:
     - target: {fileID: 3021797457304277713, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 102a12b98b50bcc429d89fa7a823ecb1, type: 2}
+      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+    - target: {fileID: 3021797457304277739, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Name
+      value: "Eclaireur \xE9th\xE9r\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021797457304277743, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3021797457304277743, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3167460915773787044, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8265,6 +8281,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6978996552683088388, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Name
+      value: "Eclaireur \xE9th\xE9r\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978996552683088446, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: scriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f5a047b0d798634f82164564aac5d13, type: 2}
     - target: {fileID: 7060291881336414090, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8385,6 +8409,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7439188961825231444, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a15b62d22f0c4b4ca65f6bedd07808b, type: 3}
     - target: {fileID: 7675482077060682428, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8409,6 +8437,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7747131420220323209, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a15b62d22f0c4b4ca65f6bedd07808b, type: 3}
     - target: {fileID: 7749928388475644523, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8432,11 +8464,15 @@ PrefabInstance:
     - target: {fileID: 7749928388475644523, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7810500052035538393, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_Name
+      value: "Eclaireur \xE9th\xE9r\xE9"
       objectReference: {fileID: 0}
     - target: {fileID: 7810500052035538403, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: f2e94c80f115adc4cb368a19f45378ef, type: 2}
+      objectReference: {fileID: 11400000, guid: 3c338ba2d260b2b44ae08ecd35c0f057, type: 2}
     - target: {fileID: 8177113912992115099, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8970,7 +9006,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 2.048889, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

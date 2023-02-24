@@ -19,4 +19,10 @@ public class UI_Character_NumberDisplayer : MonoBehaviour
         damageText.color = textColor;
         damageText.text = damageAmount.ToString();
     }
+
+    public void Display(string toDisplay, Color textColor)
+    {
+        damageText.color = textColor;
+        damageText.text = toDisplay;
+    }
 }

@@ -57,7 +57,7 @@ MonoBehaviour:
   - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
     wantedActionIndex: 0
     conditions: []
-    bonusScore: 0
+    bonusScore: 99
     calculs:
     - id: 1
   references:
