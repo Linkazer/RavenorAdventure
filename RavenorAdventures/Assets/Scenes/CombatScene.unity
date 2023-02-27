@@ -6518,20 +6518,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d0c72c1939abd4783e46efb36230d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testName: Rerolls
+  testName: 
   calculType: 1
   usedDungeonSaga: 0
   usedDnD: 0
   baseDamageDone: 0
   attackers:
-  - AttackDice: 3
+  - AttackDice: 2
     OffensiveRerolls: 0
     Accuracy: 0
     Power: 0
-  Defense: 2
-  DefensiveRerolls: 2
-  health: 3
-  armor: 0
+  - AttackDice: 3
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 1
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 1
+    Power: 0
+  Defense: 3
+  DefensiveRerolls: 0
+  health: 4
+  armor: 2
   iterations: 100000
   diceNb: 4
   diceResultNeeded: 2
@@ -6753,10 +6761,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 429593234858301300, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 429593234858301300, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 505821208446622730, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+      objectReference: {fileID: 11400000, guid: f004f503ba5af7c47a7d057aae6688f4, type: 2}
     - target: {fileID: 505821208446622768, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_Name
       value: "Eclaireur \xE9th\xE9r\xE9"
@@ -7348,7 +7364,7 @@ PrefabInstance:
     - target: {fileID: 3021797457304277713, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: cbdb345fb53426842950e309060285af, type: 2}
+      objectReference: {fileID: 11400000, guid: f004f503ba5af7c47a7d057aae6688f4, type: 2}
     - target: {fileID: 3021797457304277739, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_Name
       value: "Eclaireur \xE9th\xE9r\xE9"
@@ -8288,7 +8304,11 @@ PrefabInstance:
     - target: {fileID: 6978996552683088446, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 4f5a047b0d798634f82164564aac5d13, type: 2}
+      objectReference: {fileID: 11400000, guid: f004f503ba5af7c47a7d057aae6688f4, type: 2}
+    - target: {fileID: 7001105682176408232, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7060291881336414090, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8472,7 +8492,15 @@ PrefabInstance:
     - target: {fileID: 7810500052035538403, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 3c338ba2d260b2b44ae08ecd35c0f057, type: 2}
+      objectReference: {fileID: 11400000, guid: f004f503ba5af7c47a7d057aae6688f4, type: 2}
+    - target: {fileID: 7885227821095040266, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885227821095040266, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8177113912992115099, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8496,6 +8524,10 @@ PrefabInstance:
     - target: {fileID: 8177113912992115099, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240848136643932781, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8291208647313327019, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_AnchorMax.y

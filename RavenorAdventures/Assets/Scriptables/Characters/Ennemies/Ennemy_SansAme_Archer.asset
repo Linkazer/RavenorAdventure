@@ -40,6 +40,7 @@ MonoBehaviour:
   opportunitySpell: {fileID: 0}
   availableSpells:
   - {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
+  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
@@ -48,11 +49,26 @@ MonoBehaviour:
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
     wantedActionIndex: 0
-    conditions: []
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 13
+      condition: 0
+      baseValue: 15
     bonusScore: 0
     calculs:
     - id: 1
     - id: 2
+    - id: 3
+  - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 13
+      condition: 3
+      baseValue: 15
+    bonusScore: 0
+    calculs:
+    - id: 4
   references:
     version: 1
     00000000:
@@ -73,3 +89,17 @@ MonoBehaviour:
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 45
+    00000003:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: -0.7
+        abscissaValue: 10
+        condition: 3
+        baseValue: 1
+    00000004:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 13
+        condition: 3
+        baseValue: 15

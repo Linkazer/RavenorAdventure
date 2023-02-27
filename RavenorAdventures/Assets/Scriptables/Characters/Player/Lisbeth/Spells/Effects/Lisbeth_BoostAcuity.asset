@@ -21,7 +21,7 @@ MonoBehaviour:
     frenchText: "Lorsque le personnage attaque, il peut relancer jusqu'\xE0 1 d\xE9
       qui n'a pas d\xE9passer la valeur de D\xE9fense de la cible."
     englishText: 
-  duration: -1
+  duration: 1
   effects:
   - id: 0
   - id: 1
