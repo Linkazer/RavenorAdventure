@@ -28,7 +28,7 @@ MonoBehaviour:
   spellAnimation: {fileID: 9159210273921008915, guid: 3c5ab0e2a93f14a4dbe8504b271fcdf9, type: 3}
   animationDuration: 0
   ressourceCost: 0
-  maxUtilisations: 0
+  maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
   effectsOnCaster: []
   type: 0
-  diceUsed: 1
+  diceUsed: 0
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

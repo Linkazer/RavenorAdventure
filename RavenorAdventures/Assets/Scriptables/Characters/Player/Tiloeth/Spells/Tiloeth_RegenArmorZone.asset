@@ -29,12 +29,12 @@ MonoBehaviour:
   spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
   animationDuration: 0.5
   ressourceCost: 0
-  maxUtilisations: -1
+  maxUtilisations: 2
   hitableTarget: 0
   castTarget: 2
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 3
+  cooldown: 1
   range: 5
   zoneRange: 25
   zoneFaceCaster: 0
