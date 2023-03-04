@@ -28,9 +28,9 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 3
+  health: 4
   armor: 2
-  defense: 2
+  defense: 3
   accuracy: 0
   power: 1
   offensiveRerolls: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives: []
-  wantedDistanceFromTarget: {x: 0, y: 15}
+  wantedDistanceFromTarget: {x: 10, y: 15}
   comportement:
   - wantedAction: {fileID: 11400000, guid: 497cd2930cbb95f4991a89dbc62eb322, type: 2}
     wantedActionIndex: 1

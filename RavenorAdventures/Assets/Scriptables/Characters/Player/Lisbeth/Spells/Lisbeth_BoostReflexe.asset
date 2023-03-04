@@ -18,7 +18,7 @@ MonoBehaviour:
     englishText: 
   icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
   description:
-    frenchText: "Bonus de R\xE9fl\xE8xe pendant 2 tours."
+    frenchText: "Bonus de R\xE9fl\xE8xe pour le tour actuel."
     englishText: 
   castingAnimation: 0
   launchAnimation: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   castTarget: 3
   castType: 1
   isCooldownGlobal: 1
-  cooldown: 3
+  cooldown: 2
   range: 0
   zoneRange: 0
   zoneFaceCaster: 0

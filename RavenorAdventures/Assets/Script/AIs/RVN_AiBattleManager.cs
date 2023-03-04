@@ -57,8 +57,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         isDoneMoving = false;
 
-        Debug.Log("New Turn : " +  currentCharacter.gameObject);
-
         SearchNextAction(timeDelayBeginTurn);
     }
 
@@ -341,6 +339,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             else
             {
                 distance = 0;
+
+                if(n == casterNode)
+                {
+                    return n;
+                }
             }
 
             if(n != casterNode)
