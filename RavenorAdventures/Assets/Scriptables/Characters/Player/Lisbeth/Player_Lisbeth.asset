@@ -30,9 +30,9 @@ MonoBehaviour:
   uiHeight: 1.1
   health: 8
   armor: 2
-  defense: 3
+  defense: 2
   accuracy: 0
-  power: 0
+  power: 1
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 55

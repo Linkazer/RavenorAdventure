@@ -6524,22 +6524,14 @@ MonoBehaviour:
   usedDnD: 0
   baseDamageDone: 0
   attackers:
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
   - AttackDice: 3
     OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  - AttackDice: 2
-    OffensiveRerolls: 0
     Accuracy: 1
-    Power: 0
+    Power: 1
   Defense: 3
-  DefensiveRerolls: 0
-  health: 4
-  armor: 2
+  DefensiveRerolls: 2
+  health: 5
+  armor: 0
   iterations: 100000
   diceNb: 4
   diceResultNeeded: 2

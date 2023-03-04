@@ -35,7 +35,7 @@ MonoBehaviour:
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
-  movementByTurn: 45
+  movementByTurn: 55
   speed: 5
   opportunitySpell: {fileID: 0}
   availableSpells:
@@ -45,7 +45,7 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives: []
-  wantedDistanceFromTarget: {x: 40, y: 50}
+  wantedDistanceFromTarget: {x: 50, y: 55}
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
     wantedActionIndex: 0
