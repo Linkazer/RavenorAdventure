@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Spell_E_IDK_MalusDefense
   m_EditorClassIdentifier: 
   nom: 
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 0}
   description:
     frenchText: 
@@ -30,7 +33,7 @@ MonoBehaviour:
   castTarget: 1
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 1
+  cooldown: 2
   range: 35
   zoneRange: 0
   zoneFaceCaster: 0

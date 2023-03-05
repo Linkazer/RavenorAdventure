@@ -21,6 +21,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     [Header("Character Display")]
     [SerializeField] private Transform rendererTransform;
     [SerializeField] private SpriteRenderer characterSprite;
+    [SerializeField] private Transform handHolder;
     [SerializeField] private List<SpriteRenderer> handsSprites;
 
     [Header("Character Animations")]
@@ -38,6 +39,8 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
         if (character.HandSprite != null)
         {
+            handHolder.localPosition += new Vector3(0, character.HandHeight, 0);
+
             foreach (SpriteRenderer spr in handsSprites)
             {
                 spr.sprite = character.HandSprite;

@@ -30,14 +30,16 @@ MonoBehaviour:
   uiHeight: 1.1
   health: 2
   armor: 0
-  defense: 1
+  defense: 2
   accuracy: 1
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 55
   speed: 5
-  opportunitySpell: {fileID: 0}
+  dangerosityMaxDistance: 55
+  dangerosityMinimumDistance: 35
+  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
@@ -46,6 +48,7 @@ MonoBehaviour:
     id: 0
   passives: []
   wantedDistanceFromTarget: {x: 50, y: 55}
+  oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
     wantedActionIndex: 0

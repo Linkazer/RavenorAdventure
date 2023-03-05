@@ -28,6 +28,8 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [Header("Movement")]
     [SerializeField] private int movementByTurn = 35;
     [SerializeField] private float speed = 5;
+    [SerializeField, Tooltip("Score de dangerosité pour 10 de distance (soit une case en ligne droite)")] private float dangerosityMaxDistance;
+    [SerializeField, Tooltip("Distance à partir de laquelle le score de dangerosité diminue")] private int dangerosityMinimumDistance;
 
     [Header("Spells")]
     [SerializeField] private SpellScriptable opportunitySpell;
@@ -51,6 +53,8 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
 
     public bool DisplayHand => displayHand;
 
+    public float HandHeight => handHeight;
+
     /// <summary>
     /// La position de l'UI par rapport au pieds du personnage.
     /// </summary>
@@ -70,6 +74,13 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     {
         return movementByTurn;
     }
+
+    public int DangerosityMinimumDistance => dangerosityMinimumDistance;
+
+    /// <summary>
+    /// Différence entre la Min distance et la Max distance de la dangerosité
+    /// </summary>
+    public float DangerosityLerpDistance => dangerosityMaxDistance - dangerosityMinimumDistance;// + 5f; //Le +5 est là pour faire en sorte que la dernière case de la distance max soit prise en compte
 
     public float Speed()
     {

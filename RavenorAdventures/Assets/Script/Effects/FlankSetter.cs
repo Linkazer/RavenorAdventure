@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Used to detect all character around the current character
 /// </summary>
+[System.Obsolete("Fanlk non utilisé")]
 public class FlankSetter : MonoBehaviour
 {
     public void SetFlank(CPN_Character flankingCharacter)

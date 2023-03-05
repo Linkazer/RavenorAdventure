@@ -391,7 +391,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void EndBattle(bool didWin)
     {
-        if(level.endDialogue != null)
+        RVN_AiBattleManager.instance.Stop();
+
+        if (level.endDialogue != null)
         {
             if (didWin)
             {
@@ -406,11 +408,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if(didWin)
             {
-                WinBattle();
+                TimerManager.CreateRealTimer(1f, WinBattle);
             }
             else
             {
-                LoseBattle();
+                TimerManager.CreateRealTimer(1f, LoseBattle);
             }
         }
     }

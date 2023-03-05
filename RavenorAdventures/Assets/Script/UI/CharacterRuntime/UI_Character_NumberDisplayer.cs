@@ -9,9 +9,19 @@ public class UI_Character_NumberDisplayer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private float displayDuration;
 
+    private TimerManager.Timer displayTimer = null;
+
     private void OnEnable()
     {
         TimerManager.CreateGameTimer(displayDuration, () => Destroy(gameObject));
+    }
+
+    private void OnDisable()
+    {
+        if(displayTimer != null)
+        {
+            displayTimer.Stop();
+        }
     }
 
     public void Display(int damageAmount, Color textColor)

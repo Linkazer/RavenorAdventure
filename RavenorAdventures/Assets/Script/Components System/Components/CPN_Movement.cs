@@ -108,7 +108,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 				StopCoroutine(currentMovement);
 			}
 			
-			if(!CheckForOpportunityAttack())
+			//if(!CheckForOpportunityAttack())
             {
 				StartMovement();
             }
@@ -196,69 +196,73 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <returns></returns>
 	private IEnumerator FollowPath()
 	{
-		Node currentWaypoint = path[targetIndex];
-
-		OnStartMovement?.Invoke();
-		handler.animationController?.PlayAnimation("Character_Walk");
-
-		float lerpValue = 0;
-		float distance = 0;
-
-		posUnit = new Vector2(transform.position.x, transform.position.y);
-		posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
-
-		OnChangeDirection?.Invoke(posTarget - posUnit);
-
-		distance = Vector2.Distance(posUnit, posTarget);
-
-		while (true)
+		if (!CheckForOpportunityAttack())
 		{
-			lerpValue += Time.deltaTime * speed / distance;
+			Node currentWaypoint = path[targetIndex];
 
-			if (currentNode != currentWaypoint && lerpValue >= 1)
+			OnStartMovement?.Invoke();
+			handler.animationController?.PlayAnimation("Character_Walk");
+
+			float lerpValue = 0;
+			float distance = 0;
+
+			posUnit = new Vector2(transform.position.x, transform.position.y);
+			posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+			OnChangeDirection?.Invoke(posTarget - posUnit);
+
+			distance = Vector2.Distance(posUnit, posTarget);
+
+
+			while (true)
 			{
-				ChangeNode(currentWaypoint);
-			}
+				lerpValue += Time.deltaTime * speed / distance;
 
-			if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
-			{
-				targetIndex++;
-
-				if (targetIndex >= path.Length)
+				if (currentNode != currentWaypoint && lerpValue >= 1)
 				{
-					currentMovementLeft -= currentNode.gCost;
-
-					EndMovement();
-
-					transform.position = currentWaypoint.worldPosition;
-
-					break;
+					ChangeNode(currentWaypoint);
 				}
 
-				currentWaypoint = path[targetIndex];
-
-				lerpValue = 0;
-
-				posUnit = new Vector2(transform.position.x, transform.position.y);
-				posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
-
-				OnChangeDirection?.Invoke(posTarget - posUnit);
-
-				distance = Vector2.Distance(posUnit, posTarget);
-
-				if (CheckForOpportunityAttack())
+				if (lerpValue >= 1)// Vector2.Distance(posUnit, posTarget) < (Time.deltaTime * speed))
 				{
-					currentMovementLeft -= currentNode.gCost;
+					targetIndex++;
 
-					handler.animationController?.EndAnimation();
-					OnStopMovement?.Invoke();
-					StopCoroutine(currentMovement);
+					if (targetIndex >= path.Length)
+					{
+						currentMovementLeft -= currentNode.gCost;
+
+						EndMovement();
+
+						transform.position = currentWaypoint.worldPosition;
+
+						break;
+					}
+
+					currentWaypoint = path[targetIndex];
+
+					lerpValue = 0;
+
+					posUnit = new Vector2(transform.position.x, transform.position.y);
+					posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
+
+					OnChangeDirection?.Invoke(posTarget - posUnit);
+
+					distance = Vector2.Distance(posUnit, posTarget);
+
+					if (CheckForOpportunityAttack())
+					{
+						currentMovementLeft -= currentNode.gCost;
+
+						handler.animationController?.EndAnimation();
+						OnStopMovement?.Invoke();
+						StopCoroutine(currentMovement);
+					}
 				}
+
+
+				transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
+				yield return null;
 			}
-
-
-			transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
-			yield return null;
 		}
 	}
 
@@ -366,13 +370,17 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 							{
 								ennemyCaster.OpportunityAttack(CurrentNode.worldPosition, StartMovement);
 								hasBeenHited = true;
+
+								ennemyCaster.hasOpportunityAttack = false;
+
+								return true;
 							}
 							else
 							{
 								ennemyCaster.OpportunityAttack(CurrentNode.worldPosition, null);
 							}
 
-							ennemyCaster.hasOpportunityAttack = false;
+							
 						}
 					}
 				}

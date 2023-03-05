@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RVN_LvlEnd_EnnemyTeamDeath : RVN_LevelEnd
+public class RVN_LvlEnd_CharacterDeath : RVN_LevelEnd
 {
+    [SerializeField] private bool looseOnAchieve = false;
+
+    [SerializeField] private int wantedCharacterDeath = -1;
+
     [SerializeField] private List<CPN_Character> wantedEnnemyDeads = new List<CPN_Character>();
 
+    private int currentCharacterDeath = 0;
 
     protected override void OnSetLevelEnd()
     {
@@ -23,9 +28,18 @@ public class RVN_LvlEnd_EnnemyTeamDeath : RVN_LevelEnd
         {
             wantedEnnemyDeads.Remove(diedCharacter);
 
-            if(wantedEnnemyDeads.Count <= 0)
+            currentCharacterDeath++;
+
+            if(currentCharacterDeath == wantedCharacterDeath || wantedEnnemyDeads.Count <= 0)
             {
-                WinLevel();
+                if (!looseOnAchieve)
+                {
+                    WinLevel();
+                }
+                else
+                {
+                    LoseLevel();
+                }
             }
         }
     }

@@ -26,7 +26,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 18f80c26585a2f745beb657e6ce0cf6c, type: 3}
   handSprite: {fileID: 21300000, guid: 7eaea7f6ab88a414799e149ce55163a4, type: 3}
   displayHand: 0
-  handHeight: 0
+  handHeight: 0.025
   uiHeight: 1.2
   health: 6
   armor: 1
@@ -37,7 +37,9 @@ MonoBehaviour:
   defensiveRerolls: 0
   movementByTurn: 45
   speed: 5
-  opportunitySpell: {fileID: 0}
+  dangerosityMaxDistance: 35
+  dangerosityMinimumDistance: 25
+  opportunitySpell: {fileID: 11400000, guid: c9d381595a09eb342b9411e865e61d61, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 0e90293666764474aaf0625b8d205cdd, type: 2}
   - {fileID: 11400000, guid: bf7de4bd3db647842a8801fe8407d19d, type: 2}
@@ -52,6 +54,6 @@ MonoBehaviour:
     00000000:
       type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
       data:
-        startAmount: 6
-        limits: {x: 0, y: 6}
-        currentAmount: 6
+        startAmount: 5
+        limits: {x: 0, y: 5}
+        currentAmount: 4

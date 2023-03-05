@@ -112,6 +112,7 @@ public class CPN_Character : RVN_ComponentHandler
         OnEndTurn?.Invoke();
     }
 
+    [Obsolete("Flank non utilisé")]
     public void AddMeleeCharacter(CPN_Character toAdd)
     {
         if(!characterOnMelee.Contains(toAdd))
@@ -138,6 +139,7 @@ public class CPN_Character : RVN_ComponentHandler
         }
     }
 
+    [Obsolete("Flank non utilisé")]
     public void RemoveMeleeCharacter(CPN_Character toRemove)
     {
         if (characterOnMelee.Contains(toRemove))

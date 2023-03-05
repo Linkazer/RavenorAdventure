@@ -20,9 +20,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     [SerializeField] private float timeDelayBeginTurn = 1f;
     [SerializeField] private float timeDelayEndTurn = 0.5f;
 
-    [Header("Calcul Values")]
-    [SerializeField] private float opportunityDefenseCoef = 0.2f;
-
     [Header("Debugs")]
     [SerializeField] private CPN_Character currentCharacter;
     [SerializeField] private CPN_HealthHandler currentCharacterHealth;
@@ -58,6 +55,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         isDoneMoving = false;
 
         SearchNextAction(timeDelayBeginTurn);
+    }
+
+
+    public void Stop()
+    {
+        enabled = false;
     }
 
     /// <summary>
@@ -97,9 +100,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     private void DoNextMove()
     {
-        if (currentCharacterHealth.CurrentHealth <= 0)
+        if (currentCharacterHealth.CurrentHealth <= 0 || enabled == false)
         {
-            return;// EndCharacterTurn(currentCharacter);
+            return;
         }
         else if (plannedAction != null && plannedAction.actionIndex >= 0)
         {
@@ -117,18 +120,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         }
         else if (currentCharacterMovement.CanMove)
         {
-            //Ai_PlannedAction nextTurnAction = SearchForBestAction(currentCharacter, true);
-
             if (!isDoneMoving)
             {
-                /*if (nextTurnAction != null && nextTurnAction.movementTarget != currentCharacterMovement.CurrentNode)
-                {
-                    currentCharacterMovement.AskToMoveTo(nextTurnAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
-                }
-                else*/
-                {
+                
                     currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
-                }
 
                 isDoneMoving = true;
             }
@@ -278,25 +273,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (possibleActions.Count > 0)
         {
-            /*List<Ai_PlannedAction> closestActions = new List<Ai_PlannedAction>(); Permet de n'effectuer que l'action qui demande le moins de déplacement
-
-            float minimalDistance = possibleActions[0].minimalDistance;
-
-            foreach (Ai_PlannedAction pa in possibleActions)
-            {
-                if (pa.minimalDistance < minimalDistance)
-                {
-                    closestActions = new List<Ai_PlannedAction>();
-
-                    minimalDistance = pa.minimalDistance;
-                }
-
-                if(minimalDistance == pa.minimalDistance)
-                {
-                    closestActions.Add(pa);
-                }
-            }*/
-
             toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
 
@@ -318,56 +294,57 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         Node toReturn = null;
 
-        foreach(Node n in possibleMovements)
+        if (OpportunityAttackScore(currentCharacterHealth, casterNode) >= 1)
         {
-            float distance = Pathfinding.GetDistance(n, GetClosestCharacter(n, true).CurrentNode);
-
-            float opportunityAttackScore = 0;
-
-            List<Node> path = Pathfinding.CalculatePathfinding(casterNode, n, currentCharacterMovement.MovementLeft);
-
-            opportunityAttackScore += OpportunityAttackScore(currentCharacterHealth, path);
-
-            if (distance > casterScriptable.DistanceFromTarget.y)
+            toReturn = casterNode;
+        }
+        else
+        {
+            foreach (Node n in possibleMovements)
             {
-                distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.y) / casterScriptable.DistanceFromTarget.y;
-            }
-            else if (distance < casterScriptable.DistanceFromTarget.x)
-            {
-                distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.x) / casterScriptable.DistanceFromTarget.x;
-            }
-            else
-            {
-                distance = 0;
-
-                if(n == casterNode)
+                if (OpportunityAttackScore(currentCharacterHealth, casterNode) >= 1)
                 {
-                    return n;
+                    continue;
                 }
-            }
 
-            if(n != casterNode)
-            {
-                distance += opportunityAttackScore;
-            }
+                float distance = Pathfinding.GetDistance(n, GetClosestCharacter(n, true).CurrentNode);
 
-            //Debug.Log($"Distance : {distance} < {maxScore}");
+                List<Node> path = Pathfinding.CalculatePathfinding(casterNode, n, currentCharacterMovement.MovementLeft);
 
-            if (distance < maxScore)
-            {
-                possibleTargetNodes = new List<Node>();
+                if (distance > casterScriptable.DistanceFromTarget.y)
+                {
+                    distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.y) / casterScriptable.DistanceFromTarget.y;
+                }
+                else if (distance < casterScriptable.DistanceFromTarget.x)
+                {
+                    distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.x) / casterScriptable.DistanceFromTarget.x;
+                }
+                else
+                {
+                    distance = 0;
 
-                maxScore = distance;
+                    if (n == casterNode)
+                    {
+                        return n;
+                    }
+                }
 
-                toReturn = n;
-            }
-            else if(distance == maxScore && Pathfinding.GetDistance(casterNode, n) < Pathfinding.GetDistance(casterNode, toReturn))
-            {
-                //Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : { Pathfinding.GetDistance(casterNode, n)} < {Pathfinding.GetDistance(casterNode, toReturn)}");
+                if (distance < maxScore)
+                {
+                    possibleTargetNodes = new List<Node>();
 
-                toReturn = n;
+                    maxScore = distance;
 
-                possibleTargetNodes.Add(n);
+                    toReturn = n;
+                }
+                else if (distance == maxScore && Pathfinding.GetDistance(casterNode, n) < Pathfinding.GetDistance(casterNode, toReturn))
+                {
+                    //Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : { Pathfinding.GetDistance(casterNode, n)} < {Pathfinding.GetDistance(casterNode, toReturn)}");
+
+                    toReturn = n;
+
+                    possibleTargetNodes.Add(n);
+                }
             }
         }
 
@@ -392,9 +369,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        opportunityAttackDiceCounter = (Mathf.Clamp((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor),0,Mathf.Infinity) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
-
-        return opportunityAttackDiceCounter / casterHealthHandler.CurrentHealth;
+        return CalculateOpportunityScore(opportunityAttackDiceCounter, casterHealthHandler.CurrentArmor, casterHealthHandler.CurrentHealth, (currentCharacter.Scriptable as AI_CharacterScriptable).OppportunityHealthBonus);
     }
 
     private float OpportunityAttackScore(CPN_HealthHandler casterHealthHandler, List<Node> pathNode)
@@ -412,7 +387,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 List<CPN_SpellCaster> casters = n.GetNodeComponent<CPN_SpellCaster>();
                 foreach (CPN_SpellCaster c in casters)
                 {
-                    if (!alreadyAttackedCaster.Contains(c) && c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                    if (!alreadyAttackedCaster.Contains(c) && !RVN_BattleManager.AreCharacterAllies(c.Handler as CPN_Character, currentCharacter) && c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
                     {
                         opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
 
@@ -421,9 +396,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
             }
         }
-        opportunityAttackDiceCounter = ((opportunityAttackDiceCounter - casterHealthHandler.CurrentArmor) * (1f - ((casterHealthHandler.Defense / 6f) * opportunityDefenseCoef)));
 
-        return opportunityAttackDiceCounter / casterHealthHandler.CurrentHealth;
+        return CalculateOpportunityScore(opportunityAttackDiceCounter, casterHealthHandler.CurrentArmor, casterHealthHandler.CurrentHealth, (currentCharacter.Scriptable as AI_CharacterScriptable).OppportunityHealthBonus);
+    }
+
+    private float CalculateOpportunityScore(float damage, int armor, float health, int bonus)
+    {
+        return (Mathf.Clamp((damage - armor), 0, Mathf.Infinity)) / (health + bonus);
     }
 
     private List<Node> GetPossibleMovements(Node startNode, List<CPN_Character> possibleTargets, bool forNextTurn)
@@ -679,8 +658,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
                 break;
             case AiAbscissaType.TargetDangerosity:
+                toReturn = CalculateDangerosityVulnerability(target, true);
                 break;
             case AiAbscissaType.TargetVulnerability:
+                toReturn = CalculateDangerosityVulnerability(target, false);
                 break;
             case AiAbscissaType.NumberAllyArea:
                 foreach(Node n in actionToCheck.hitedTargets)
@@ -717,6 +698,65 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
                 break;
         }
+
+        return toReturn;
+    }
+
+    private float CalculateDangerosityVulnerability(CPN_Character character, bool isDangerosity)
+    {
+        float toReturn = 0;
+        float distanceScore = 0;
+        float distance = 0;
+
+        foreach (CPN_Character chara in RVN_BattleManager.GetEnnemyCharacters(character))
+        {
+            if (Grid.IsNodeVisible(character.CurrentNode, chara.CurrentNode))
+            {
+                distance = Pathfinding.GetDistance(character.CurrentNode, chara.CurrentNode);
+
+                if (isDangerosity && (character.Scriptable.DangerosityMinimumDistance > 0 || character.Scriptable.DangerosityLerpDistance > 0))
+                {
+                    if (distance <= character.Scriptable.DangerosityMinimumDistance)
+                    {
+                        distanceScore = 1;
+                    }
+                    else if (character.Scriptable.DangerosityLerpDistance > 0)
+                    {
+                        distance -= character.Scriptable.DangerosityMinimumDistance;
+
+                        distanceScore = (character.Scriptable.DangerosityLerpDistance - distance) / character.Scriptable.DangerosityLerpDistance;
+
+                        if (distanceScore < 0)
+                        {
+                            distanceScore = 0;
+                        }
+                    }
+
+                }
+                else if(chara.Scriptable.DangerosityMinimumDistance > 0 || chara.Scriptable.DangerosityLerpDistance > 0)
+                {
+                    if (distance <= chara.Scriptable.DangerosityMinimumDistance)
+                    {
+                        distanceScore = 1;
+                    }
+                    else if(chara.Scriptable.DangerosityLerpDistance > 0)
+                    {
+                        distance -= chara.Scriptable.DangerosityMinimumDistance;
+
+                        distanceScore = (chara.Scriptable.DangerosityLerpDistance - distance) / chara.Scriptable.DangerosityLerpDistance;
+
+                        if (distanceScore < 0)
+                        {
+                            distanceScore = 0;
+                        }
+                    }
+                }
+
+                toReturn += distanceScore;
+            }
+        }
+
+        Debug.Log(character + "Danger : " + isDangerosity + " Score : " + toReturn);
 
         return toReturn;
     }

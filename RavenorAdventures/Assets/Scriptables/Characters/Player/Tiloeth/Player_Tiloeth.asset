@@ -26,7 +26,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 78444bf3cd53d4747a396b270bbde7b2, type: 3}
   handSprite: {fileID: 21300000, guid: 16be4fcbd98fe8a4ba69fdac9536d280, type: 3}
   displayHand: 0
-  handHeight: 0
+  handHeight: 0.05
   uiHeight: 1.2
   health: 12
   armor: 4
@@ -37,7 +37,9 @@ MonoBehaviour:
   defensiveRerolls: 0
   movementByTurn: 45
   speed: 4
-  opportunitySpell: {fileID: 0}
+  dangerosityMaxDistance: 0
+  dangerosityMinimumDistance: 15
+  opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
   - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
