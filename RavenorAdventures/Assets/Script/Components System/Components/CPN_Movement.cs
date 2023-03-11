@@ -76,7 +76,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	public bool CanMove => currentMovementLeft >= 10;
 
-	void Start()
+	private void Start()
 	{
 		currentNode = Grid.GetNodeFromWorldPoint(transform.position);
 	}
@@ -107,7 +107,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 			{
 				StopCoroutine(currentMovement);
 			}
-			
+
 			//if(!CheckForOpportunityAttack())
             {
 				StartMovement();
@@ -152,6 +152,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		OnEndMovementAction += callback;
 
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+	}
+
+	public void ForceToMove(Vector2 targetPosition, Action callback)
+    {
+		OnEndMovementAction += callback;
+
+		PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
 	}
 
 	private void StartMovement()

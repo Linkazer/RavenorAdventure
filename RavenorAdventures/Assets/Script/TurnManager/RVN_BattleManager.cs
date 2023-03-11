@@ -111,6 +111,48 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         StartNextTeamRound();
     }
 
+    public void PauseBattle()
+    {
+        RVN_CombatInputController.instance.DisableCombatInput(this);
+
+        RVN_AiBattleManager.instance.Pause();
+    }
+
+    public void RestartBattle()
+    {
+        RVN_CombatInputController.instance.EnableCombatInput(this);
+
+        RVN_AiBattleManager.instance.Restart();
+    }
+
+    public void EndBattle(bool didWin)
+    {
+        PauseBattle();
+
+        if (level.endDialogue != null)
+        {
+            if (didWin)
+            {
+                RVN_DialogueManager.PlayDialogue(level.startDialogue, WinBattle);
+            }
+            else
+            {
+                RVN_DialogueManager.PlayDialogue(level.startDialogue, LoseBattle);
+            }
+        }
+        else
+        {
+            if (didWin)
+            {
+                TimerManager.CreateRealTimer(1f, WinBattle);
+            }
+            else
+            {
+                TimerManager.CreateRealTimer(1f, LoseBattle);
+            }
+        }
+    }
+
     /// <summary>
     /// Set a character turn if it's available.
     /// </summary>
@@ -385,34 +427,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
                 {
                     OnEnnemyTeamDie?.Invoke();
                 }
-            }
-        }
-    }
-
-    public void EndBattle(bool didWin)
-    {
-        RVN_AiBattleManager.instance.Stop();
-
-        if (level.endDialogue != null)
-        {
-            if (didWin)
-            {
-                RVN_DialogueManager.PlayDialogue(level.startDialogue, WinBattle);
-            }
-            else
-            {
-                RVN_DialogueManager.PlayDialogue(level.startDialogue, LoseBattle);
-            }
-        }
-        else
-        {
-            if(didWin)
-            {
-                TimerManager.CreateRealTimer(1f, WinBattle);
-            }
-            else
-            {
-                TimerManager.CreateRealTimer(1f, LoseBattle);
             }
         }
     }

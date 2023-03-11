@@ -31,7 +31,7 @@ public class Pathfinding : MonoBehaviour
 		Node startNode = Grid.GetNodeFromWorldPoint(startPos);
 		Node targetNode = Grid.GetNodeFromWorldPoint(targetPos);
 
-		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance, false).ToArray();
+		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance).ToArray();
 
 		if (waypoints.Length <= 0 || waypoints[0] == null)
         {
@@ -82,7 +82,7 @@ public class Pathfinding : MonoBehaviour
 
 		List<Node> checkedNodes = new List<Node>();
 
-		while (currentNode.gCost > maxDistance && !checkedNodes.Contains(currentNode))
+		while (maxDistance >= 0 && currentNode.gCost > maxDistance && !checkedNodes.Contains(currentNode))
         {
 			checkedNodes.Add(currentNode);
 			if (currentNode.parent != null)
@@ -129,7 +129,7 @@ public class Pathfinding : MonoBehaviour
 	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
 	/// <param name="pathCalcul"></param>
 	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool isDistanceLimitated = true)
+	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
@@ -153,7 +153,7 @@ public class Pathfinding : MonoBehaviour
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 
-				if (!isDistanceLimitated || distance <= 0 || newMovementCostToNeighbour <= distance)
+				if (distance <= 0 || newMovementCostToNeighbour <= distance)
 				{
 					int newDistanceFromTargetCost = -1;
 
