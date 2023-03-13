@@ -23,6 +23,7 @@ MonoBehaviour:
   duration: 1
   effects:
   - id: 0
+  - id: 1
   references:
     version: 1
     00000000:
@@ -32,3 +33,8 @@ MonoBehaviour:
         effects:
         - stat: 4
           valueToChange: -1
+    00000001:
+      type: {class: EFF_AfflictionEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 0
+        toApply: 0

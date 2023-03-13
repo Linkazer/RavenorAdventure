@@ -9,6 +9,8 @@ public class AppliedEffect
     [SerializeField] private EffectScriptable effect;
     [SerializeField] private float durationLeft;
 
+    private GameObject effectDisplay;
+
     public EffectScriptable GetEffect => effect;
     public float Duration => durationLeft;
 
@@ -42,6 +44,11 @@ public class AppliedEffect
         {
             eff.RemoveEffect(toRemoveFrom);
         }
+
+        if (effectDisplay != null)
+        {
+            GameObject.Destroy(effectDisplay); //TODO : Voir si on a besoin d'un pool ou pas
+        }
     }
 
     public AppliedEffect()
@@ -49,9 +56,10 @@ public class AppliedEffect
 
     }
 
-    public AppliedEffect(EffectScriptable nEffect, float nDuration)
+    public AppliedEffect(EffectScriptable nEffect, GameObject effectDisplayer, float nDuration)
     {
         effect = nEffect;
         durationLeft = nDuration;
+        effectDisplay = effectDisplayer;
     }
 }

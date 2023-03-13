@@ -17,6 +17,8 @@ public class CPN_Character : RVN_ComponentHandler
 
     [SerializeField] private List<CPN_Character> characterOnMelee = new List<CPN_Character>();
 
+    public int canPlay;
+
     public Action<RVN_ComponentHandler> ActOnBeginTurn;
     public Action<RVN_ComponentHandler> ActOnEndTeamTurn;
     public Action<RVN_ComponentHandler> ActOnEndSelfTurn;
@@ -89,7 +91,7 @@ public class CPN_Character : RVN_ComponentHandler
         ActOnBeginTurn?.Invoke(this);
         OnStartTurn?.Invoke();
 
-        for(int i = 0; i < actions.Count; i++)
+        for (int i = 0; i < actions.Count; i++)
         {
             actions[i].ResetData();
         }
@@ -128,14 +130,6 @@ public class CPN_Character : RVN_ComponentHandler
                     enemyCount++;
                 }
             }
-
-            if(enemyCount >= 2)
-            {
-                if(GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler eff))
-                {
-                    eff.AddFlank();
-                }
-            }
         }
     }
 
@@ -153,14 +147,6 @@ public class CPN_Character : RVN_ComponentHandler
                 if (!RVN_BattleManager.AreCharacterAllies(chara, this))
                 {
                     enemyCount++;
-                }
-            }
-
-            if (enemyCount <= 1)
-            {
-                if (GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler eff))
-                {
-                    eff.RemoveFlank();
                 }
             }
         }

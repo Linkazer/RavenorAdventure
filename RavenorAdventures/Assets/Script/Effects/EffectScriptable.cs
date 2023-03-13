@@ -15,12 +15,15 @@ public class EffectScriptable : ScriptableObject
     [SerializeField] private RVN_Text effectDescription;
     //Voir les affichages
 
+    [SerializeField] private GameObject effectDisplay;
+
     [Header("Effect")]
     [SerializeField] private float duration;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(Effect))] private List<Effect> effects; //, [SerializeReference, ReferenceEditor(typeof(Effect))]
 
     public bool HideOnApply => hideOnApply;
     public Sprite Icon => icon;
+    public GameObject EffectDisplay => effectDisplay;
 
     public float Duration => duration + 1;
 

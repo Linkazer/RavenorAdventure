@@ -761,8 +761,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        Debug.Log(character + "Danger : " + isDangerosity + " Score : " + toReturn);
-
         return toReturn;
     }
 

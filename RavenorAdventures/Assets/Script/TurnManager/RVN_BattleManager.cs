@@ -171,10 +171,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <param name="characterToPlay">The character.</param>
     public void StartCharacterTurn(CPN_Character characterToPlay)
     {
+        currentPlayingCharacter = characterToPlay;
+
         if (CanCharacterStartTurn(characterToPlay))
         {
-            currentPlayingCharacter = characterToPlay;
-
             OnStartCharacterTurn?.Invoke(characterToPlay);
 
             if (teams[0].characters.Contains(characterToPlay))
@@ -186,6 +186,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
                 OnStartAICharacterTurn?.Invoke(characterToPlay);
             }
         }
+        else
+        {
+            EndCharacterTurn();
+        }
     }
 
     /// <summary>
@@ -195,7 +199,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <returns></returns>
     public static bool CanCharacterStartTurn(CPN_Character characterToCheck)
     {
-        return !instance.playedThisTurn.Contains(characterToCheck) && instance.teams[instance.currentPlayingTeam].characters.Contains(characterToCheck);
+        return characterToCheck.canPlay <= 0 && !instance.playedThisTurn.Contains(characterToCheck) && instance.teams[instance.currentPlayingTeam].characters.Contains(characterToCheck);
     }
 
     /// <summary>

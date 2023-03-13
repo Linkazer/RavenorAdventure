@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Events;
 
 public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 {
-    [SerializeField] private EffectScriptable flankEffect;
+    [SerializeField] private Transform effectDisplayHolder;
 
     [SerializeField] private List<AppliedEffect> currentAppliedEffects;
 
@@ -51,7 +52,14 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         }
         else
         {
-            potentialAppliedEffect = new AppliedEffect(toApply, toApply.Duration);
+            GameObject effectDisplay = null;
+
+            if (toApply.EffectDisplay != null)
+            {
+                effectDisplay = Instantiate(toApply.EffectDisplay, effectDisplayHolder);
+            }
+
+            potentialAppliedEffect = new AppliedEffect(toApply, effectDisplay, toApply.Duration);
 
             potentialAppliedEffect.ApplyEffect(Handler);
 
@@ -91,15 +99,5 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
             }
         }
         return null;
-    }
-
-    public void AddFlank()
-    {
-        ApplyEffect(flankEffect);
-    }
-
-    public void RemoveFlank()
-    {
-        RemoveEffect(flankEffect);
     }
 }

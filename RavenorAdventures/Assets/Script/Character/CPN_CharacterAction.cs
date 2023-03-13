@@ -10,6 +10,8 @@ using UnityEngine;
 /// </summary>
 public abstract class CPN_CharacterAction : RVN_Component
 {
+
+
     /// <summary>
     /// Actions to do when the action is unslected.
     /// </summary>
