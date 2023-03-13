@@ -1877,6 +1877,7 @@ GameObject:
   - component: {fileID: 523912212}
   - component: {fileID: 523912211}
   - component: {fileID: 523912213}
+  - component: {fileID: 523912214}
   m_Layer: 0
   m_Name: Spell Manager
   m_TagString: Untagged
@@ -1925,6 +1926,7 @@ MonoBehaviour:
   spellsBehaviors:
   - {fileID: 523912211}
   - {fileID: 523912213}
+  - {fileID: 523912214}
 --- !u!114 &523912213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,6 +1937,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d5795af5ad52f34f865dac540f7ee32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &523912214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523912209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fbe28289324d644864d2104677963f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &591400906 stripped
@@ -5612,22 +5626,14 @@ MonoBehaviour:
   usedDnD: 0
   baseDamageDone: 0
   attackers:
-  - AttackDice: 2
+  - AttackDice: 3
     OffensiveRerolls: 0
-    Accuracy: 0
+    Accuracy: 1
     Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
-  Defense: 2
-  DefensiveRerolls: 0
-  health: 10
-  armor: 2
+  Defense: 3
+  DefensiveRerolls: 2
+  health: 4
+  armor: 0
   iterations: 100000
   diceNb: 4
   diceResultNeeded: 2
@@ -9522,7 +9528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -9530,7 +9536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y

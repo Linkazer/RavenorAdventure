@@ -273,6 +273,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		}
 	}
 
+	public void Teleport(Node teleportNode)
+    {
+		ChangeNode(teleportNode);
+
+		transform.position = teleportNode.worldPosition;
+    }
+
 	private void ChangeNode(Node newNode)
     {
 		OnExitNode?.Invoke(currentNode);

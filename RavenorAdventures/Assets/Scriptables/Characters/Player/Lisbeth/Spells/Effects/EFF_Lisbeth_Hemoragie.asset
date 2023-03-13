@@ -10,34 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Caen_BoostedShoot
+  m_Name: EFF_Lisbeth_Hemoragie
   m_EditorClassIdentifier: 
-  nom: "Munition Am\xE9lior\xE9e"
-  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
+  nom: 
+  displayName:
+    frenchText: 
+    englishText: 
+  icon: {fileID: 0}
   description:
     frenchText: 
     englishText: 
-  castingAnimation: 7
+  castingAnimation: 0
+  launchAnimation: 0
   castAnimationDuration: 0
   spellAnimationTarget: 0
-  projectile: {fileID: 2016346504167992779, guid: 4d22e8a7bc9722d47be6078b4eca543a, type: 3}
-  spellAnimation: {fileID: 7282106008027488376, guid: b7351a8ed28e7d24ba240a2405693e09, type: 3}
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 0}
   animationDuration: 0
   ressourceCost: 0
-  maxUtilisations: 2
+  maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0
   cooldown: 0
-  range: 55
+  range: 5
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: 
-  type: 0
-  diceUsed: 4
-  baseDamage: 0
+  type: 2
+  diceUsed: 0
+  baseDamage: 1
   armorPierced: 0
   lifestealPercent: 0
   hitEffectsOnTarget: []

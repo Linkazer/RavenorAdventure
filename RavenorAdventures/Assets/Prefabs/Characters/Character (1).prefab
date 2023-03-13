@@ -697,6 +697,10 @@ MonoBehaviour:
     animationUsed: {fileID: 1643602181192785703}
     doesLoop: 0
     linkedAnimation: Idle
+  - animationName: Character_Jump
+    animationUsed: {fileID: 1643602181192785703}
+    doesLoop: 0
+    linkedAnimation: Idle
   jumpOnTargetAnimation: {fileID: 5972871693876766062}
   idleSpriteAnim: {fileID: 2785623517578289533}
 --- !u!114 &5972871693876766062
@@ -1076,6 +1080,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   characterOnMelee: []
+  canPlay: 0
 --- !u!114 &8205510481207194533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,7 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 5140952349797873622}
-  flankEffect: {fileID: 11400000, guid: fad0e4d3e94124b4799c18a01e3f4833, type: 2}
+  effectDisplayHolder: {fileID: 0}
   currentAppliedEffects: []
   OnApplyEffect:
     m_PersistentCalls:

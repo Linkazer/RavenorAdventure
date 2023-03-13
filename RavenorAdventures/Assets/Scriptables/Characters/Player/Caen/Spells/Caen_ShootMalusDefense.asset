@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Caen_Base
+  m_Name: Caen_ShootMalusDefense
   m_EditorClassIdentifier: 
-  nom: Lancer de potion
+  nom: Malus Accuracy
   displayName:
-    frenchText: 
+    frenchText: Malus Accuracy
     englishText: 
-  icon: {fileID: 21300000, guid: 4e2ee657bf534db47b729076b1dd92be, type: 3}
+  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
   description:
     frenchText: 
     englishText: 
-  castingAnimation: 8
+  castingAnimation: 7
   launchAnimation: 0
-  castAnimationDuration: 0.15
+  castAnimationDuration: 0
   spellAnimationTarget: 0
-  projectile: {fileID: 858645855968176571, guid: f71903c77545bf9499b2c9330537d28d, type: 3}
-  spellAnimation: {fileID: 9159210273921008915, guid: 3c5ab0e2a93f14a4dbe8504b271fcdf9, type: 3}
+  projectile: {fileID: 2016346504167992779, guid: 4d22e8a7bc9722d47be6078b4eca543a, type: 3}
+  spellAnimation: {fileID: 7282106008027488376, guid: b7351a8ed28e7d24ba240a2405693e09, type: 3}
   animationDuration: 0
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0
-  isCooldownGlobal: 0
-  cooldown: 0
-  range: 65
+  isCooldownGlobal: 1
+  cooldown: 3
+  range: 55
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
@@ -45,5 +45,6 @@ MonoBehaviour:
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
-  hitEffectsOnTarget: []
+  hitEffectsOnTarget:
+  - {fileID: 11400000, guid: 7f730e4daa51b3746966e7a0106a5d2e, type: 2}
   hitEffectsOnCaster: []

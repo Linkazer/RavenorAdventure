@@ -41,9 +41,9 @@ MonoBehaviour:
   dangerosityMinimumDistance: 45
   opportunitySpell: {fileID: 11400000, guid: 4c0851a9f67c2c34aab31dcdf9fcce10, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: 459febc8298a4f341967ea835da46dc8, type: 2}
-  - {fileID: 11400000, guid: 9e8dc1e8f279a804db1d8257d2f95c35, type: 2}
-  - {fileID: 11400000, guid: 0d5e9e8c03106364b9e615abc0ea8fc9, type: 2}
+  - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
+  - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
+  - {fileID: 11400000, guid: 094b5e58f53f0d54bab38e29fb77951c, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

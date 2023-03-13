@@ -14,6 +14,7 @@ public enum CharacterAnimationType
     Character_Death,
     Character_Shoot,
     Character_Throw,
+    Character_Jump,
 }
 
 public class CPN_ANIM_Character : CPN_AnimationHandler
