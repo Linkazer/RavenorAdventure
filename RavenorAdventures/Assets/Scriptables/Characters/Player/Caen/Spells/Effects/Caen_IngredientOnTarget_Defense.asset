@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Caen_IngredientOnTarget_Defense
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 21300000, guid: 1ab633b11476bbd4cb9a90f26e846c56, type: 3}
+  icon: {fileID: 21300000, guid: f487779e7e37ce940afce2512067183b, type: 3}
   effectName:
     frenchText: 
     englishText: 
   effectDescription:
     frenchText: 
     englishText: 
-  duration: 1
+  effectDisplay: {fileID: 0}
+  duration: 2
   effects:
   - id: 0
   references:

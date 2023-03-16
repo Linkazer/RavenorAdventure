@@ -22,7 +22,8 @@ MonoBehaviour:
       qui n'a pas d\xE9passer la valeur de D\xE9fense de la cible. Au d\xE9but de
       son prochain tour, le porteur est soign\xE9 de 2 points de vie."
     englishText: 
-  duration: 0.5
+  effectDisplay: {fileID: 0}
+  duration: 1.5
   effects:
   - id: 0
   - id: 1

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
   m_Name: Caen_ShootMalusDefense
   m_EditorClassIdentifier: 
-  nom: Malus Accuracy
+  nom: Malus Defense
   displayName:
     frenchText: Malus Accuracy
     englishText: 
-  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
+  icon: {fileID: 21300000, guid: f487779e7e37ce940afce2512067183b, type: 3}
   description:
     frenchText: 
     englishText: 

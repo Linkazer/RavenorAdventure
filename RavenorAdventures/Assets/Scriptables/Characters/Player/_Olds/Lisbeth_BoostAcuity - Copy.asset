@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
-  m_Name: Lisbeth_BoostPuissance
+  m_Name: Lisbeth_BoostAcuity - Copy
   m_EditorClassIdentifier: 
-  nom: "Am\xE9lioration de Puissance"
-  icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
-  description:
+  nom: "Module d'Acuit\xE9"
+  displayName:
     frenchText: 
     englishText: 
-  castingAnimation: 3
-  castAnimationDuration: 0.5
+  icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
+  description:
+    frenchText: "Bonus de Pr\xE9cision pour le tour actuel."
+    englishText: 
+  castingAnimation: 0
+  launchAnimation: 0
+  castAnimationDuration: 0
   spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 3603624626837706201, guid: 3d4da6ffba1696f46bbd07da19d58fea, type: 3}
+  spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
   animationDuration: 1
   ressourceCost: 0
   maxUtilisations: -1
@@ -29,10 +33,11 @@ MonoBehaviour:
   castTarget: 3
   castType: 1
   isCooldownGlobal: 1
-  cooldown: 3
+  cooldown: 2
   range: 0
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster:
-  - {fileID: 11400000, guid: 0c8ac2db3e139b945b01000b27428bc3, type: 2}
-  LaunchSpellAnimation: 
+  - {fileID: 11400000, guid: 973e396a8be862d4e942edfc7c1ea615, type: 2}

@@ -107,16 +107,19 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         if (currentCharacterHealth.CurrentHealth <= 0 || enabled == false)
         {
+            //Debug.Log("No turn needed");
             return;
         }
         else if (plannedAction != null && plannedAction.actionIndex >= 0)
         {
             if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
+                //Debug.Log("Movement Action");
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
             }
             else
             {
+                //Debug.Log("Spell Action");
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.spellNodeTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 
@@ -127,18 +130,21 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (!isDoneMoving)
             {
-                
-                    currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
+                //Debug.Log("Movement Action Second");
 
+                currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
                 isDoneMoving = true;
             }
             else
             {
+                //Debug.Log("Movement End");
+
                 EndCharacterTurn(currentCharacter);
             }
         }
         else
         {
+            //Debug.Log("No Action End");
             EndCharacterTurn(currentCharacter);
         }
     }

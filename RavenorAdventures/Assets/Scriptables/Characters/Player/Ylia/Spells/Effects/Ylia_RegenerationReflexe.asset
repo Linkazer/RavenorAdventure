@@ -20,7 +20,8 @@ MonoBehaviour:
   effectDescription:
     frenchText: 
     englishText: 
-  duration: 0.5
+  effectDisplay: {fileID: 0}
+  duration: 1.5
   effects:
   - id: 0
   - id: 1

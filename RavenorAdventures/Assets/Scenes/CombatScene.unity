@@ -3635,7 +3635,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4600,7 +4600,7 @@ MonoBehaviour:
   cameraLimit: {x: -10, y: 10, z: -14, w: 14}
   zoomForce: 1
   zoomSpeed: 5
-  zoomLimits: {x: 3, y: 8}
+  zoomLimits: {x: 3, y: 10}
   currentFocus: {fileID: 0}
 --- !u!1 &1356199061
 GameObject:
@@ -5626,13 +5626,13 @@ MonoBehaviour:
   usedDnD: 0
   baseDamageDone: 0
   attackers:
-  - AttackDice: 3
+  - AttackDice: 2
     OffensiveRerolls: 0
-    Accuracy: 1
-    Power: 0
-  Defense: 3
-  DefensiveRerolls: 2
-  health: 4
+    Accuracy: 0
+    Power: 1
+  Defense: 2
+  DefensiveRerolls: 0
+  health: 3
   armor: 0
   iterations: 100000
   diceNb: 4
@@ -8409,7 +8409,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1037067513}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 6
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -9528,7 +9528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -9536,7 +9536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -11,8 +11,6 @@ public class EFF_ActionEffect : Effect
     {
         LaunchedSpellData launchedSpell = new LaunchedSpellData(spellToUse, null, Grid.GetNodeFromWorldPoint(effectTarget.transform.position));
 
-        Debug.Log(RVN_SpellManager.CanUseSpell(launchedSpell));
-
         if (RVN_SpellManager.CanUseSpell(launchedSpell))
         {
             RVN_SpellManager.UseSpell(launchedSpell, null);

@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
-  m_Name: Lisbeth_BoostAcuity
+  m_Name: Lisbeth_BoostReflexe - Copy
   m_EditorClassIdentifier: 
-  nom: "Module d'Acuit\xE9"
+  nom: "Module de R\xE9fl\xE8xes"
   displayName:
     frenchText: 
     englishText: 
-  icon: {fileID: 21300000, guid: 222aca6c65a452e45b0427e70512a7d1, type: 3}
+  icon: {fileID: 21300000, guid: affeed439f85fbd4aaaaf73066bc113c, type: 3}
   description:
-    frenchText: "Bonus de Pr\xE9cision pour le tour actuel."
+    frenchText: "Bonus de R\xE9fl\xE8xe pour le tour actuel."
     englishText: 
   castingAnimation: 0
   launchAnimation: 0
   castAnimationDuration: 0
   spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 3603624626837706201, guid: 0c11810ee27162647b865a08107a24fc, type: 3}
+  spellAnimation: {fileID: 3603624626837706201, guid: f70a985ca442ccb4899cd8211a42bf7a, type: 3}
   animationDuration: 1
   ressourceCost: 0
   maxUtilisations: -1
@@ -40,4 +40,4 @@ MonoBehaviour:
   zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster:
-  - {fileID: 11400000, guid: 973e396a8be862d4e942edfc7c1ea615, type: 2}
+  - {fileID: 11400000, guid: 2ce7183062a69574e98d9c636121c165, type: 2}

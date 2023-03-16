@@ -18,6 +18,8 @@ public class EFF_AfflictionEffect : Effect
             case Afflicition.Stun:
                 if(effectTarget is CPN_Character)
                 {
+                    Debug.Log("Un stun ??");
+
                     (effectTarget as CPN_Character).canPlay++;
                 }
                 break;
@@ -31,6 +33,8 @@ public class EFF_AfflictionEffect : Effect
             case Afflicition.Stun:
                 if (effectTarget is CPN_Character)
                 {
+                    Debug.Log("Fin du stun ??");
+
                     (effectTarget as CPN_Character).canPlay--;
                 }
                 break;
