@@ -28,8 +28,8 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0.025
   uiHeight: 1.2
-  health: 8
-  armor: 1
+  health: 10
+  armor: 0
   defense: 1
   accuracy: 0
   power: 0
@@ -56,4 +56,4 @@ MonoBehaviour:
       data:
         startAmount: 5
         limits: {x: 0, y: 5}
-        currentAmount: 5
+        currentAmount: 0

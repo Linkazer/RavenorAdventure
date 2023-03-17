@@ -135,9 +135,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             {
                 Debug.Log("Movement Action Second");
 
-                Debug.Log(currentCharacterMovement);
-                Debug.Log(SearchForBestMovement());
-
                 currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
                 isDoneMoving = true;
             }

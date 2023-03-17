@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Ylia_HealReflexe
   m_EditorClassIdentifier: 
   nom: "R\xE9g\xE9n\xE9ration Reflexe"
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: 141f4741e0b1db14e9a6b5d74e2ee72d, type: 3}
   description:
     frenchText: 
@@ -39,7 +42,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d3ce3269b7561b44878e10121609329, type: 2}
   effectsOnCaster: []
   type: 1
-  diceUsed: 2
+  diceUsed: 4
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
