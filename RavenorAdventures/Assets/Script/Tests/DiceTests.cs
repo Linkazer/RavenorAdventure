@@ -116,14 +116,15 @@ public class DiceTests : MonoBehaviour
     {
         Results = new SortedDictionary<int, int>();
 
-        for (int i = 0; i < attackers[0].AttackDice + 1; i++)
-        {
-            Results.Add(i, 0);
-        }
 
         for (int i = 0; i < iterations; i++)
         {
-            int r = CalculateDamage(attackers[0]);
+            int r = 0;
+
+            for (int j = 0; j < attackers.Length; j++)
+            {
+                r += CalculateDamage(attackers[j]);
+            }
 
             if (Results.ContainsKey(r))
             {

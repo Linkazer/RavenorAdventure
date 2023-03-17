@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Spell_E_CaC 3Dices_BreakArmor
+  m_Name: Spell_E_CaC 1Dices_BreakArmor
   m_EditorClassIdentifier: 
   nom: Damage Simple
   displayName:
@@ -41,9 +41,9 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 2
+  diceUsed: 1
   baseDamage: 0
-  armorPierced: 2
+  armorPierced: 3
   lifestealPercent: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []
