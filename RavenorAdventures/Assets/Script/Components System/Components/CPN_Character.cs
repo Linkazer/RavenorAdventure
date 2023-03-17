@@ -151,11 +151,4 @@ public class CPN_Character : RVN_ComponentHandler
             }
         }
     }
-
-    public void TestTruc()
-    {
-        OnStartTurn.RemoveListener(TestTruc);
-
-        Debug.Log(OnStartTurn.ToString());
-    }
 }

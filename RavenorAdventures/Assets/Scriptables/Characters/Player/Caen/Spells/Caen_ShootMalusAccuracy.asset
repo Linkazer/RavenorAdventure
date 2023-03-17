@@ -38,13 +38,13 @@ MonoBehaviour:
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
-  effectsOnTarget: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
   effectsOnCaster: []
   type: 0
-  diceUsed: 2
+  diceUsed: 1
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
-  hitEffectsOnTarget:
-  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
+  hitEffectsOnTarget: []
   hitEffectsOnCaster: []

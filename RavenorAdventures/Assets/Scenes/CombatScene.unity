@@ -5628,11 +5628,19 @@ MonoBehaviour:
   attackers:
   - AttackDice: 2
     OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 1
-  Defense: 2
+    Accuracy: 1
+    Power: 0
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 1
+    Power: 0
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 1
+    Power: 0
+  Defense: 1
   DefensiveRerolls: 0
-  health: 3
+  health: 6
   armor: 0
   iterations: 100000
   diceNb: 4

@@ -328,7 +328,37 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		if (Grid.GetNodeFromWorldPoint(actionTargetPosition) != null)
 		{
-			RVN_GridDisplayer.SetGridFeedback(Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft), Color.green);
+			List<Node> path = Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft);
+
+			List<Node> validPath = new List<Node>();
+			List<Node> opportunityPath = new List<Node>();
+
+			bool foundOpportunityAttack = false;
+
+			if(CheckForOpportunityAttack(currentNode))
+            {
+				foundOpportunityAttack = true;
+            }
+
+			foreach(Node n in path)
+            {
+				if (!foundOpportunityAttack)
+				{
+					if (CheckForOpportunityAttack(n))
+					{
+						foundOpportunityAttack = true;
+					}
+
+					validPath.Add(n);
+				}
+                else
+                {
+					opportunityPath.Add(n);
+				}
+            }
+
+			RVN_GridDisplayer.SetGridFeedback(validPath, Color.green);
+			RVN_GridDisplayer.SetGridFeedback(opportunityPath, Color.red);
 		}
     }
 
@@ -402,5 +432,31 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		}
 
 		return hasBeenHited;
+	}
+
+	private bool CheckForOpportunityAttack(Node nodeToCheck)
+    {
+		List<Node> neighbours = Grid.GetNeighbours(nodeToCheck);
+
+		foreach (Node n in neighbours)
+		{
+			List<CPN_Character> characterOnMelee = n.GetNodeComponent<CPN_Character>();
+
+			foreach (CPN_Character chara in characterOnMelee)
+			{
+				if (!RVN_BattleManager.AreCharacterAllies(chara, handler as CPN_Character))
+				{
+					if (chara.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ennemyCaster))
+					{
+						if (ennemyCaster.hasOpportunityAttack)
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 }

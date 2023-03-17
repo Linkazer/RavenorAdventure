@@ -62,6 +62,7 @@ MonoBehaviour:
     - id: 1
     - id: 2
     - id: 3
+    - id: 4
   - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
     wantedActionIndex: 1
     conditions:
@@ -71,7 +72,7 @@ MonoBehaviour:
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 4
+    - id: 5
   references:
     version: 1
     00000000:
@@ -100,6 +101,14 @@ MonoBehaviour:
         condition: 3
         baseValue: 1
     00000004:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: -0.5
+        abscissaValue: 14
+        abscissaCoeficient: -1
+        constantToAdd: 35
+        maxValue: 35
+    00000005:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0

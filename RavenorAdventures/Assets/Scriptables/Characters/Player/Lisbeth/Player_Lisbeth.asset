@@ -28,7 +28,7 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0
   uiHeight: 1.1
-  health: 10
+  health: 12
   armor: 2
   defense: 2
   accuracy: 1
@@ -44,7 +44,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
   - {fileID: 11400000, guid: 6e51529f14f9d5f4a9860ded88a7bd31, type: 2}
   - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
-  - {fileID: 11400000, guid: 51754d0c3a58e4b4e9129dd9de429e48, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

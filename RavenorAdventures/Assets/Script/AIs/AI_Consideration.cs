@@ -22,7 +22,9 @@ public enum AiAbscissaType
     TargetCurrentArmor,
     NumberEnnemyArea,
     NumberAllyArea, 
-    DistranceFromTarget_BasePosition
+    DistranceFromTarget_BasePosition,
+    MovementToMake,
+    IsTargetVisible_BasePosition,
 }
 
 /// <summary>

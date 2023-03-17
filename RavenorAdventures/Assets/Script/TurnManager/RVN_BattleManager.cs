@@ -272,7 +272,16 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             OnStartAITurn?.Invoke();
         }
 
-        StartCharacterTurn(teams[currentPlayingTeam].characters[0]);
+        if (teams[currentPlayingTeam].characters.Count > 0)
+        {
+            Debug.Log("New Round : " + teams[currentPlayingTeam].characters[0]);
+
+            StartCharacterTurn(teams[currentPlayingTeam].characters[0]);
+        }
+        else
+        {
+            StartNextTeamRound();
+        }
     }
 
     /// <summary>

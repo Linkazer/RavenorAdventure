@@ -112,7 +112,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override bool CanSelectAction()
     {
-        return spells.Count > 0 && actionsLeftThisTurn > 0 && currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount);
+        return spells.Count > 0 && /*actionsLeftThisTurn > 0 &&*/ currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount);
     }
 
     /// <summary>
@@ -122,14 +122,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <returns></returns>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return  actionsLeftThisTurn > 0 &&
-                spells.Count > 0 && currentSelectedSpell != null &&
+        return  spells.Count > 0 && currentSelectedSpell != null &&
+                (currentSelectedSpell.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
                 IsActionUsable(nodeData.CurrentNode.worldPosition, actionTargetPosition, currentSelectedSpell);
     }
 
     public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SpellScriptable spellToCheck)
     {
-        return actionsLeftThisTurn > 0 &&
+        return  (spellToCheck.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
                 spellToCheck != null &&
                 spellToCheck.IsUsable &&
                 (ressource == null || spellToCheck.RessourceCost <= ressource.CurrentAmount) &&

@@ -33,7 +33,7 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void CheckUsable(int actionLeft)
     {
-        button.interactable = actionLeft > 0 && (currentSpell.MaxUtilisation <= 0 || currentSpell.UtilisationLeft > 0) && currentSpell.CurrentCooldown <= 0;
+        button.interactable = (actionLeft > 0 || currentSpell.CastType == SpellCastType.Fast) && (currentSpell.MaxUtilisation <= 0 || currentSpell.UtilisationLeft > 0) && currentSpell.CurrentCooldown <= 0;
     }
 
     public void SetSpell(SpellScriptable toSet)
