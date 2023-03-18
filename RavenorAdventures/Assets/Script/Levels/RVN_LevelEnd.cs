@@ -10,14 +10,17 @@ public abstract class RVN_LevelEnd : MonoBehaviour
 
     private void Start()
     {
-        RVN_BattleManager.OnPlayerTeamDie += LoseLevel;
+        RVN_BattleManager.Instance.OnPlayerTeamDie += LoseLevel;
 
         OnSetLevelEnd();
     }
 
     private void UnsetLevelEnd()
     {
-        RVN_BattleManager.OnPlayerTeamDie -= LoseLevel;
+        if (RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnPlayerTeamDie -= LoseLevel;
+        }
 
         OnUnsetLevelEnd();
     }
@@ -31,7 +34,7 @@ public abstract class RVN_LevelEnd : MonoBehaviour
 
         OnWinBattle?.Invoke();
 
-        RVN_BattleManager.Instance.EndBattle(true);
+        RVN_BattleManager.Instance.EndLevel(true);
     }
 
     protected void LoseLevel()
@@ -40,6 +43,6 @@ public abstract class RVN_LevelEnd : MonoBehaviour
 
         OnLoseBattle?.Invoke();
 
-        RVN_BattleManager.Instance.EndBattle(false);
+        RVN_BattleManager.Instance.EndLevel(false);
     }
 }

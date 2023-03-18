@@ -81,6 +81,21 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         SelectSpell(-1);
     }
 
+    public override void OnEnterBattle()
+    {
+        
+    }
+
+    public override void OnExitBattle()
+    {
+        ResetData();
+
+        foreach(SpellScriptable spell in spells)
+        {
+            spell.SetCooldown(0);
+        }
+    }
+
     /// <summary>
     /// Display every node on which the action can be used.
     /// </summary>
@@ -184,14 +199,17 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
                 launchedSpell.scriptable.ResetCooldown();
             }
 
-            if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
+            if (RVN_BattleManager.IsInBattle)
             {
-                StopMovementAction();
-                SetActionLeft(actionsLeftThisTurn - 1);
-            }
-            else
-            {
-                SetActionLeft(actionsLeftThisTurn);
+                if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
+                {
+                    StopMovementAction();
+                    SetActionLeft(actionsLeftThisTurn - 1);
+                }
+                else
+                {
+                    SetActionLeft(actionsLeftThisTurn);
+                }
             }
         }
         else

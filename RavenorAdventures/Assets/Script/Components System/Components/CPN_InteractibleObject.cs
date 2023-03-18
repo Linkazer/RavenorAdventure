@@ -21,6 +21,16 @@ public class CPN_InteractibleObject : RVN_Component
         }
     }
 
+    public override void OnEnterBattle()
+    {
+
+    }
+
+    public override void OnExitBattle()
+    {
+
+    }
+
     /// <summary>
     /// Essaye de faire intéragir le personnage actuel avec l'objet.
     /// </summary>

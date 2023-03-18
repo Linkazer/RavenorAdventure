@@ -15,6 +15,16 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
     public List<AppliedEffect> Effects => currentAppliedEffects;
 
+    public override void OnEnterBattle()
+    {
+        
+    }
+
+    public override void OnExitBattle()
+    {
+        
+    }
+
     public override void SetData(CPN_Data_EffectHandler toSet)
     {
         foreach(EffectScriptable eff in toSet.Effects())

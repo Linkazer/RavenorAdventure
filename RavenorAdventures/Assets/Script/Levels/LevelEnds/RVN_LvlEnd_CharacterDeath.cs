@@ -14,12 +14,15 @@ public class RVN_LvlEnd_CharacterDeath : RVN_LevelEnd
 
     protected override void OnSetLevelEnd()
     {
-        RVN_BattleManager.ActOnCharacterDie += CheckCharacterDeath;
+        RVN_BattleManager.Instance.ActOnCharacterDie += CheckCharacterDeath;
     }
 
     protected override void OnUnsetLevelEnd()
     {
-        RVN_BattleManager.ActOnCharacterDie -= CheckCharacterDeath;
+        if (RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.ActOnCharacterDie -= CheckCharacterDeath;
+        }
     }
 
     private void CheckCharacterDeath(CPN_Character diedCharacter)

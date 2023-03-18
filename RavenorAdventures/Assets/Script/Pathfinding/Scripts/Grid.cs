@@ -35,6 +35,11 @@ public class Grid : MonoBehaviour
 		}
 	}
 
+	public static void GenerateGrid()
+    {
+		instance.CreateGrid();
+    }
+
 	public void CreateGrid() {
 		if (grid == null)
 		{

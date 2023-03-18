@@ -34,6 +34,16 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     private CharacterAnimationData currentAnim;
 
+    public override void OnEnterBattle()
+    {
+
+    }
+
+    public override void OnExitBattle()
+    {
+        
+    }
+
     public void SetSprite(CharacterScriptable_Battle character)
     {
         characterSprite.sprite = character.GameSprite();

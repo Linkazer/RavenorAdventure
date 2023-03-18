@@ -27,6 +27,18 @@ public class CPN_Character : RVN_ComponentHandler
 
     public CharacterScriptable_Battle Scriptable => scriptable;
 
+    public override void OnEnterBattle()
+    {
+        base.OnEnterBattle();
+    }
+
+    public override void OnExitBattle()
+    {
+        base.OnExitBattle();
+
+        ActOnBeginTurn?.Invoke(this);
+    }
+
     [ContextMenu("Set Character")]
     public void SetCharacter()
     {

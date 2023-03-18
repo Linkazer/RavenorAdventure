@@ -7,6 +7,8 @@ using TMPro;
 
 public class UI_PlayerBattleController : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup actionGroup;
+    [SerializeField] private CanvasGroup battleOnlyActionGroup;
     [SerializeField] private Image characterPortrait;
 
     [SerializeField] private UnityEvent<RVN_ComponentHandler> OnSetCharacter;
@@ -14,20 +16,66 @@ public class UI_PlayerBattleController : MonoBehaviour
 
     private CPN_Character displayedCharacter;
 
+    private void Start()
+    {
+        RVN_BattleManager.Instance.OnCharacterStartTurn += SetCharacter;
+        RVN_BattleManager.Instance.OnStartCombat += SetBattleActionInteractable;
+        RVN_BattleManager.Instance.OnEndCombat += SetBattleActionNonInteractable;
+        RVN_CombatInputController.Instance.OnSetPlayerInputState += SetInteractibleAction;
+    }
+
+    private void OnDestroy()
+    {
+        if (RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnCharacterStartTurn -= SetCharacter;
+            RVN_BattleManager.Instance.OnStartCombat -= SetBattleActionInteractable;
+            RVN_BattleManager.Instance.OnEndCombat -= SetBattleActionNonInteractable;
+        }
+
+        if (RVN_CombatInputController.Instance != null)
+        {
+            RVN_CombatInputController.Instance.OnSetPlayerInputState -= SetInteractibleAction;
+        }
+    }
+
+    private void SetInteractibleAction(bool toSet)
+    {
+        actionGroup.interactable = toSet;
+    }
+
+    private void SetBattleActionInteractable()
+    {
+        SetBattleInteractibleAction(true);
+    }
+
+    private void SetBattleActionNonInteractable()
+    {
+        SetBattleInteractibleAction(false);
+    }
+
+    private void SetBattleInteractibleAction(bool toSet)
+    {
+        battleOnlyActionGroup.interactable = toSet;
+    }
+
     public void SetCharacter(CPN_Character nCharacter)
     {
-        if (nCharacter != displayedCharacter)
+        if (RVN_BattleManager.GetPlayerTeam.Contains(nCharacter))
         {
-            UnsetCharacter();
-
-            if (nCharacter != null)
+            if (nCharacter != displayedCharacter)
             {
-                displayedCharacter = nCharacter;
+                UnsetCharacter();
 
-                OnSetCharacter?.Invoke(displayedCharacter);
+                if (nCharacter != null)
+                {
+                    displayedCharacter = nCharacter;
 
-                characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
-                characterPortrait.color = Color.white;
+                    OnSetCharacter?.Invoke(displayedCharacter);
+
+                    characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
+                    characterPortrait.color = Color.white;
+                }
             }
         }
     }

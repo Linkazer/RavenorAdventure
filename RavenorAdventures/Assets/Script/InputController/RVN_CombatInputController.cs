@@ -17,16 +17,26 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     [SerializeField] private bool canPlayerDoInput = true;
 
-    [Header("Unity Events")]
-    [SerializeField] private UnityEvent<CPN_CharacterAction> OnSelectAction;
-    [SerializeField] private UnityEvent<CPN_CharacterAction> OnRefreshActionDisplay;
-    [SerializeField] private UnityEvent<CPN_CharacterAction> OnUnselectAction;
-    [SerializeField] private UnityEvent OnEnablePlayerInput;
-    [SerializeField] private UnityEvent OnDisablePlayerInput;
-
     private Node lastFrameMouseNode = null;
 
     [SerializeField] private List<MonoBehaviour> disableCount;
+
+    public Action<bool> OnSetPlayerInputState;
+
+    private void Start()
+    {
+        RVN_BattleManager.Instance.OnCharacterStartTurn += SetCurrentCharacter;
+        RVN_BattleManager.Instance.OnStartTeamRound += SetCombatInput;
+    }
+
+    private void OnDestroy()
+    {
+        if(RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnCharacterStartTurn -= SetCurrentCharacter;
+            RVN_BattleManager.Instance.OnStartTeamRound -= SetCombatInput;
+        }
+    }
 
     private void Update()
     {
@@ -35,7 +45,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
             lastFrameMouseNode = Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition);
             if (canPlayerDoInput && selectedAction != null)
             {
-                OnRefreshActionDisplay?.Invoke(selectedAction);
+                ResetActionDisplay(selectedAction);
             }
         }
     }
@@ -56,14 +66,17 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// <param name="nCharacter">The character that will be controlled.</param>
     public void SetCurrentCharacter(CPN_Character nCharacter)
     {
-        if (nCharacter != currentCharacter)
+        if (RVN_BattleManager.GetPlayerTeam.Contains(nCharacter))
         {
-            UnselectAction();
+            if (nCharacter != currentCharacter)
+            {
+                UnselectAction();
+            }
+
+            currentCharacter = nCharacter;
+
+            SelectAction(0);
         }
-
-        currentCharacter = nCharacter;
-
-        SelectAction(0);
     }
 
     /// <summary>
@@ -126,7 +139,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
                 selectedAction = nextAction;
 
-                OnSelectAction?.Invoke(selectedAction);
+                DisplayAction(selectedAction);
             }
         }
     }
@@ -141,7 +154,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
             selectedAction.UnselectAction();
         }
 
-        OnUnselectAction?.Invoke(selectedAction);
+        UndisplayAction(selectedAction);
 
         selectedAction = null;
     }
@@ -168,7 +181,10 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             if (selectedAction!= null && selectedAction.IsActionUsable(actionPosition))
             {
-                DisableCombatInput(this);
+                if (!(selectedAction is CPN_Movement) || RVN_BattleManager.IsInBattle)
+                {
+                    DisableCombatInput(this);
+                }
 
                 selectedAction.TryDoAction(actionPosition, OnEndAction);
 
@@ -187,7 +203,6 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         EnableCombatInput(this);
     }
 
-    //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?
     public void DisplayAction(CPN_CharacterAction toDisplay)
     {
         if (toDisplay != null)
@@ -204,6 +219,24 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
     }
 
+    private void ResetActionDisplay(CPN_CharacterAction toReset)
+    {
+        UndisplayAction(toReset);
+        DisplayAction(toReset);
+    }
+
+    private void SetCombatInput(int teamIndex)
+    {
+        if(teamIndex == 0)
+        {
+            EnableCombatInput(this);
+        }
+        else
+        {
+            DisableCombatInput(this);
+        }
+    }
+
     public void EnableCombatInput(MonoBehaviour asker)
     {
         if (disableCount.Contains(asker))
@@ -215,7 +248,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             canPlayerDoInput = true;
 
-            OnEnablePlayerInput?.Invoke();
+            OnSetPlayerInputState?.Invoke(true);
         }
     }
 
@@ -225,7 +258,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             canPlayerDoInput = false;
 
-            OnDisablePlayerInput?.Invoke();
+            OnSetPlayerInputState?.Invoke(false);
         }
 
         disableCount.Add(asker);

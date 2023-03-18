@@ -31,33 +31,49 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
     private bool isDoneMoving;
 
+    private void Start()
+    {
+        RVN_BattleManager.Instance.OnCharacterStartTurn += BeginCharacterTurn;
+    }
+
+    private void OnDestroy()
+    {
+        if(RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnCharacterStartTurn -= BeginCharacterTurn;
+        }
+    }
+
     /// <summary>
     /// Débute le tour d'un personnage IA. (Appelé par UnityEvent)
     /// </summary>
     /// <param name="toBeginTurn">Le personnage qui commence son tour.</param>
     public void BeginCharacterTurn(CPN_Character toBeginTurn)
     {
-        Debug.Log("New AI Turn : " + toBeginTurn);
-
-        currentCharacter = toBeginTurn;
-        if(currentCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler nHealth))
+        if (RVN_BattleManager.GetEnemyTeam.Contains(toBeginTurn))
         {
-            currentCharacterHealth = nHealth;
+            Debug.Log("New AI Turn : " + toBeginTurn);
+
+            currentCharacter = toBeginTurn;
+            if (currentCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler nHealth))
+            {
+                currentCharacterHealth = nHealth;
+            }
+
+            if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster nCaster))
+            {
+                currentCharacterSpell = nCaster;
+            }
+
+            if (currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement nMovement))
+            {
+                currentCharacterMovement = nMovement;
+            }
+
+            isDoneMoving = false;
+
+            SearchNextAction(timeDelayBeginTurn);
         }
-
-        if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster nCaster))
-        {
-            currentCharacterSpell = nCaster;
-        }
-
-        if (currentCharacter.GetComponentOfType<CPN_Movement>(out CPN_Movement nMovement))
-        {
-            currentCharacterMovement = nMovement;
-        }
-
-        isDoneMoving = false;
-
-        SearchNextAction(timeDelayBeginTurn);
     }
 
 

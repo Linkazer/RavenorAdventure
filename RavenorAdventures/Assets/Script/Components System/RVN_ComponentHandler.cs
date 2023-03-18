@@ -4,11 +4,33 @@ using UnityEngine;
 
 public class RVN_ComponentHandler : RVN_Component
 {
-    [SerializeField] private List<RVN_Component> components;
+    [SerializeField] protected List<RVN_Component> components;
 
     [SerializeField] public CPN_ANIM_Character animationController;
 
     public Node CurrentNode => Grid.GetNodeFromWorldPoint(transform.position);
+
+    public override void OnEnterBattle()
+    {
+        foreach (RVN_Component cmpt in components)
+        {
+            if (cmpt != this)
+            {
+                cmpt.OnEnterBattle();
+            }
+        }
+    }
+
+    public override void OnExitBattle()
+    {
+        foreach (RVN_Component cmpt in components)
+        {
+            if (cmpt != this)
+            {
+                cmpt.OnExitBattle();
+            }
+        }
+    }
 
     /// <summary>
     /// Search for a component of type T.

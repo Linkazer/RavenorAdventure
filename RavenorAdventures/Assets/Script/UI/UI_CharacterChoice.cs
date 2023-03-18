@@ -7,6 +7,19 @@ public class UI_CharacterChoice : MonoBehaviour
 {
     [SerializeField] private List<UI_CharacterSelector> characterSelectors;
 
+    private void Start()
+    {
+        RVN_BattleManager.Instance.OnSpawnAlly += AddCharacter;
+    }
+
+    private void OnDestroy()
+    {
+        if(RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnSpawnAlly -= AddCharacter;
+        }
+    }
+
     public void SelectCharacter(int index)
     {
         RVN_CombatInputController.ChangeCharacter(index);

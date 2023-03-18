@@ -25,32 +25,24 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private CPN_Character currentPlayingCharacter;
 
-    [SerializeField] private UnityEvent<List<CPN_Character>> OnSetPlayerTeam;
+    public Action OnPlayerTeamDie;
+    public Action OnEnnemyTeamDie;
+    public Action<CPN_Character> OnCharacterStartTurn;
+    public Action<CPN_Character> ActOnCharacterDie;
+    public Action<bool> OnEndBattle;
+    public Action<CPN_Character> OnSpawnAlly;
+    public Action<CPN_Character> OnSpawnEnnemy;
+    public Action<int> OnStartTeamRound;
+    public Action OnStartCombat;
+    public Action OnEndCombat;
 
-    [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
-    [SerializeField] private UnityEvent<CPN_Character> OnStartPlayerCharacterTurn;
-    [SerializeField] private UnityEvent<CPN_Character> OnStartAICharacterTurn;
-    [SerializeField] private UnityEvent OnStartPlayerTurn;
-    [SerializeField] private UnityEvent OnStartAITurn;
-    [SerializeField] private UnityEvent<CPN_Character> OnEndCharacterSelfTurn;
-    [SerializeField] private UnityEvent OnBeginNewRound;
-    [SerializeField] private UnityEvent<CPN_Character> OnSpawnAlly;
-    [SerializeField] private UnityEvent<CPN_Character> OnSpawnEnnemy;
-
-    public static Action OnPlayerTeamDie;
-    public static Action OnEnnemyTeamDie;
-    public static Action<CPN_Character> ActOnCharacterDie;
-
-    [Header("Combat Start")]
-    [SerializeField] private UnityEvent beforeBattleStart;
-
-    [Header("Combat End")]
-    [SerializeField] private UnityEvent OnWinBattle;
-    [SerializeField] private UnityEvent OnLoseBattle;
+    private TimerManager.Timer outsideCombatTimer = null;
 
     public static CPN_Character CurrentCharacter => instance.currentPlayingCharacter;
     public static List<CPN_Character> GetPlayerTeam => instance.teams[0].characters;
     public static List<CPN_Character> GetEnemyTeam => instance.teams[1].characters;
+
+    public static bool IsInBattle = false;
 
     private void Start()
     {
@@ -62,7 +54,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
         }
 
-        RVN_SceneManager.ToDoAfterLoad += SetBattle;
+        RVN_SceneManager.ToDoAfterLoad += SetLevel;
     }
 
     private void OnDestroy()
@@ -72,14 +64,14 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         ActOnCharacterDie = null;
     }
 
-    public void SetBattle()
+    public void SetLevel()
     {
         if (RVN_SceneManager.CurrentLevel != null)
         {
             level = Instantiate(RVN_SceneManager.CurrentLevel);
         }
 
-        beforeBattleStart?.Invoke();
+        Grid.GenerateGrid();
 
         for (int i = 0; i < level.GetTeam(0).Count; i++)
         {
@@ -91,21 +83,35 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             AddCharacter(level.GetTeam(1)[i], 1);
         }
 
-        OnSetPlayerTeam?.Invoke(teams[0].characters);
+        EndBattle();
 
         if (level.startDialogue != null)
         {
-            RVN_DialogueManager.PlayDialogue(level.startDialogue, StartBattle);
-
+            RVN_DialogueManager.PlayDialogue(level.startDialogue, () => OnStartTeamRound?.Invoke(0)); //TODO : Voir pour ne pas appeler directement l'action mais passer par une fonction ?
         }
         else
         {
-            TimerManager.CreateGameTimer(Time.deltaTime, StartBattle);
+            OnStartTeamRound?.Invoke(0);
         }
     }
 
     public void StartBattle()
     {
+        if(outsideCombatTimer != null)
+        {
+            outsideCombatTimer.Stop();
+            outsideCombatTimer = null;
+        }
+
+        IsInBattle = true;
+
+        foreach (CPN_Character chara in GetPlayerTeam)
+        {
+            chara.OnEnterBattle();
+        }
+
+        OnStartCombat?.Invoke();
+
         currentPlayingTeam = -1;
 
         StartNextTeamRound();
@@ -125,9 +131,27 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         RVN_AiBattleManager.instance.Restart();
     }
 
-    public void EndBattle(bool didWin)
+    public void EndBattle()
+    {
+        IsInBattle = false;
+
+        foreach (CPN_Character chara in GetPlayerTeam)
+        {
+            chara.OnExitBattle();
+        }
+
+        OnEndCombat?.Invoke();
+
+        currentPlayingTeam = 0;
+
+        RoundUpdate();
+    }
+
+    public void EndLevel(bool didWin)
     {
         PauseBattle();
+
+        EndBattle();
 
         if (level.endDialogue != null)
         {
@@ -175,16 +199,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (CanCharacterStartTurn(characterToPlay))
         {
-            OnStartCharacterTurn?.Invoke(characterToPlay);
-
-            if (teams[0].characters.Contains(characterToPlay))
-            {
-                OnStartPlayerCharacterTurn?.Invoke(characterToPlay);//TO DO  : Mettre un vérification une fois les IA faites
-            }
-            else
-            {
-                OnStartAICharacterTurn?.Invoke(characterToPlay);
-            }
+            OnCharacterStartTurn?.Invoke(characterToPlay);
         }
         else
         {
@@ -225,8 +240,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             characterToEnd.EndSelfTurn();
         }
 
-        OnEndCharacterSelfTurn?.Invoke(characterToEnd);
-
         for(int i = 0; i < teams[currentPlayingTeam].characters.Count; i++)
         {
             if(!playedThisTurn.Contains(teams[currentPlayingTeam].characters[i]))
@@ -237,6 +250,29 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
 
         StartNextTeamRound();
+    }
+
+    private void RoundUpdate()
+    {
+        if (!IsInBattle)
+        {
+            for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+            {
+                teams[currentPlayingTeam].characters[j].EndTeamTurn();
+            }
+
+            outsideCombatTimer = TimerManager.CreateGameTimer(6f, RoundUpdate);
+        }
+
+        for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
+        {
+            teams[currentPlayingTeam].characters[j].StartTurn();
+        }
+
+        if (currentPlayingTeam == 0)
+        {
+            StartNewRound();
+        }
     }
 
     /// <summary>
@@ -257,20 +293,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             currentPlayingTeam = (currentPlayingTeam + 1) % teams.Count;
         } while (teams[currentPlayingTeam].characters.Count <= 0);
 
-        for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
-        {
-            teams[currentPlayingTeam].characters[j].StartTurn();
-        }
+        RoundUpdate();
 
-        if (currentPlayingTeam == 0)
-        {
-            OnStartPlayerTurn?.Invoke();
-            StartNewRound();
-        }
-        else
-        {
-            OnStartAITurn?.Invoke();
-        }
+        OnStartTeamRound?.Invoke(currentPlayingTeam);
 
         if (teams[currentPlayingTeam].characters.Count > 0)
         {
@@ -290,8 +315,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     private void StartNewRound()
     {
         playedThisTurn = new List<CPN_Character>();
-
-        OnBeginNewRound?.Invoke();
     }
 
     public static void SpawnCharacter(CPN_Character toAdd, int teamIndex)
@@ -310,8 +333,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         if (!teams[teamIndex].characters.Contains(toAdd))
         {
-            teams[teamIndex].characters.Add(toAdd);
-
             toAdd.SetCharacter();
 
             if(teamIndex == 0)
@@ -320,8 +341,15 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
             else
             {
+                if(teams[teamIndex].characters.Count == 0)
+                {
+                    StartBattle();
+                }
+
                 OnSpawnEnnemy?.Invoke(toAdd);
             }
+
+            teams[teamIndex].characters.Add(toAdd);
         }
     }
     /// <summary>
@@ -336,6 +364,16 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             if (teams[i].characters.Contains(toRemove))
             {
                 teams[i].characters.Remove(toRemove);
+
+                if (i != 0 && teams[i].characters.Count == 0)
+                {
+                    EndBattle();
+
+                    foreach (CPN_Character chara in GetPlayerTeam)
+                    {
+                        chara.OnExitBattle();
+                    }
+                }
                 break;
             }
         }
@@ -446,12 +484,12 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private void WinBattle()
     {
-        instance.OnWinBattle?.Invoke();
+        OnEndBattle?.Invoke(true);
     }
 
     private void LoseBattle()
     {
-        instance.OnLoseBattle?.Invoke();
+        OnEndBattle?.Invoke(false);
     }
 
     public void RetryBattle()

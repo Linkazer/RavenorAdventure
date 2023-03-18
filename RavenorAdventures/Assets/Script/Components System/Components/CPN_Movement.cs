@@ -81,7 +81,17 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		currentNode = Grid.GetNodeFromWorldPoint(transform.position);
 	}
 
-	public void AddMovement(int amount)
+    public override void OnEnterBattle()
+    {
+		Debug.Log("Enter");
+	}
+
+    public override void OnExitBattle()
+    {
+		Debug.Log("Exit");
+	}
+
+    public void AddMovement(int amount)
     {
 		maxDistance += amount;
 		currentMovementLeft += amount;
@@ -139,7 +149,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		Node toCheck = Grid.GetNodeFromWorldPoint(destination);
 
-		return GetPossibleMovementTarget().Contains(toCheck);
+		return !RVN_BattleManager.IsInBattle || GetPossibleMovementTarget().Contains(toCheck);
     }
 
 	/// <summary>
@@ -151,7 +161,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		OnEndMovementAction += callback;
 
-		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+		if (RVN_BattleManager.IsInBattle)
+		{
+			PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+		}
+        else
+        {
+			PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
+		}
 	}
 
 	public void ForceToMove(Vector2 targetPosition, Action callback)
@@ -322,6 +339,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
+		if(!RVN_BattleManager.IsInBattle)
+        {
+			return;
+        }
+
 		Color colorMovement = Color.green;
 		colorMovement.a = 0.5f;
 		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);
@@ -388,7 +410,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-		return CanMove && CanMoveToDestination(actionTargetPosition);
+		return !RVN_BattleManager.IsInBattle || (CanMove && CanMoveToDestination(actionTargetPosition));
     }
 
 	public bool CheckForOpportunityAttack()//CODE REVIEW : Voir si on peut pas le mettre autre part que dans le déplacement (Créer un lien entre le Déplacement et le SpellCaster qui est pas ouf)

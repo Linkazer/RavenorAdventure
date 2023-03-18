@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
 {
@@ -34,11 +35,19 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
     private float targetZoom;
     private float zoomDirection;
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-
         targetZoom = virtualCamera.m_Lens.OrthographicSize;
+
+        RVN_BattleManager.Instance.OnCharacterStartTurn += SetCameraFocus;
+    }
+
+    private void OnDestroy()
+    {
+        if(RVN_BattleManager.Instance != null)
+        {
+            RVN_BattleManager.Instance.OnCharacterStartTurn -= SetCameraFocus;
+        }
     }
 
     /// <summary>
