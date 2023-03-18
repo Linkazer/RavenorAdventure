@@ -18,8 +18,6 @@ public abstract class Effect
             case EffectTrigger.OnBeginTurn:
                 if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
                 {
-                    Debug.Log("Begin turn effect");
-
                     beginTurnCharacter.ActOnBeginTurn += UseEffect;
                 }
                 break;

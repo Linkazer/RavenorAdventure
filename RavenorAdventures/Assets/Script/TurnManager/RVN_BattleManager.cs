@@ -78,20 +78,32 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             AddCharacter(level.GetTeam(0)[i], 0);
         }
 
-        for (int i = 0; i < level.GetTeam(1).Count; i++)
-        {
-            AddCharacter(level.GetTeam(1)[i], 1);
-        }
-
-        EndBattle();
-
         if (level.startDialogue != null)
         {
-            RVN_DialogueManager.PlayDialogue(level.startDialogue, () => OnStartTeamRound?.Invoke(0)); //TODO : Voir pour ne pas appeler directement l'action mais passer par une fonction ?
+            RVN_DialogueManager.PlayDialogue(level.startDialogue, StartExploration); //TODO : Voir pour ne pas appeler directement l'action mais passer par une fonction ?
         }
         else
         {
-            OnStartTeamRound?.Invoke(0);
+            TimerManager.CreateRealTimer(Time.deltaTime, StartExploration);
+        }
+    }
+
+    private void StartExploration()
+    {
+        OnStartTeamRound?.Invoke(0);
+
+        if (level.GetTeam(1).Count > 0)
+        {
+            for (int i = 0; i < level.GetTeam(1).Count; i++)
+            {
+                AddCharacter(level.GetTeam(1)[i], 1);
+            }
+
+            StartBattle();
+        }
+        else
+        {
+            EndBattle();
         }
     }
 
@@ -322,6 +334,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         toAdd.gameObject.SetActive(true);
 
         instance.AddCharacter(toAdd, teamIndex);
+
+        if (teamIndex != 0 && instance.teams[teamIndex].characters.Count == 1)
+        {
+            instance.StartBattle();
+        }
     }
 
     /// <summary>
@@ -341,11 +358,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
             else
             {
-                if(teams[teamIndex].characters.Count == 0)
-                {
-                    StartBattle();
-                }
-
                 OnSpawnEnnemy?.Invoke(toAdd);
             }
 
@@ -368,11 +380,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
                 if (i != 0 && teams[i].characters.Count == 0)
                 {
                     EndBattle();
-
-                    foreach (CPN_Character chara in GetPlayerTeam)
-                    {
-                        chara.OnExitBattle();
-                    }
                 }
                 break;
             }
