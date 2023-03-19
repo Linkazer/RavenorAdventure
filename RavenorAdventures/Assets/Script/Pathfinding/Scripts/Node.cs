@@ -19,6 +19,8 @@ public class Node : IHeapItem<Node> {
 	public Node children;
 	int heapIndex;
 
+	public Vector2 worldPosition2D => worldPosition;
+
 	public Node(bool _walkable, bool _visible, Vector3 _worldPos, int _gridX, int _gridY) {
 
 		SetNode(_walkable, _visible, _worldPos, _gridX, _gridY);

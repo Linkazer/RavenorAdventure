@@ -36,7 +36,7 @@ MonoBehaviour:
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 55
-  speed: 6
+  speed: 5
   dangerosityMaxDistance: 25
   dangerosityMinimumDistance: 15
   opportunitySpell: {fileID: 11400000, guid: 59fb311f2c750fc458c2da6eb42637eb, type: 2}

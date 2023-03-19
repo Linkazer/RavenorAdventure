@@ -84,11 +84,21 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     public override void OnEnterBattle()
     {
 		Debug.Log("Enter");
+
+		foreach (NodeDataHanlder ndh in nodesDatas)
+		{
+			ndh.SetWalkable(false);
+		}
 	}
 
     public override void OnExitBattle()
     {
 		Debug.Log("Exit");
+
+		foreach(NodeDataHanlder ndh in nodesDatas)
+        {
+			ndh.SetWalkable(true);
+        }
 	}
 
     public void AddMovement(int amount)

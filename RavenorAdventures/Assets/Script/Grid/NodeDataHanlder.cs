@@ -45,6 +45,11 @@ public class NodeDataHanlder : MonoBehaviour
         SetNodeDataFromPosition();
     }
 
+    public void SetWalkable(bool toSet)
+    {
+        walkable = toSet;
+    }
+
     /// <summary>
     /// Assign a new node to the component.
     /// </summary>

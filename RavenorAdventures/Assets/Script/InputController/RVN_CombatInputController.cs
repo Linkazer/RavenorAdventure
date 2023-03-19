@@ -9,6 +9,9 @@ using UnityEngine.Events;
 /// </summary>
 public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController>
 {
+    [SerializeField] private List<CPN_Character> allPlayerChara;
+    [SerializeField] private List<Vector2Int> positions;
+
     [SerializeField] private CPN_Character currentCharacter;
 
     private CPN_Character nextCharacter;
@@ -177,7 +180,40 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// <param name="actionPosition">La position à laquelle faire l'action.</param>
     public void DoAction(Vector2 actionPosition)
     {
-        if (currentCharacter != null && canPlayerDoInput)
+        /*if (!RVN_BattleManager.IsInBattle)
+        {
+            if (!(selectedAction is CPN_Movement))
+            {
+                DisableCombatInput(this);
+            }
+
+            if (selectedAction is CPN_Movement)
+            {
+                Debug.Log("??");
+
+                List<Node> teamTargetNodes = GetNodeForTeam(currentCharacter.CurrentNode, actionPosition);
+
+                int i = 0;
+                foreach (CPN_Character chara in allPlayerChara)
+                {
+                    if (chara.GetComponentOfType<CPN_Movement>(out CPN_Movement mvt))
+                    {
+                        Debug.Log(teamTargetNodes[i].worldPosition);
+
+                        mvt.TryDoAction(teamTargetNodes[i].worldPosition, null);
+                    }
+
+                    i++;
+                }
+            }
+            else
+            {
+                selectedAction.TryDoAction(actionPosition, OnEndAction);
+            }
+
+            RVN_GridDisplayer.UnsetGridFeedback();
+        }
+        else */if (currentCharacter != null && canPlayerDoInput)
         {
             if (selectedAction!= null && selectedAction.IsActionUsable(actionPosition))
             {
@@ -185,7 +221,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
                 {
                     DisableCombatInput(this);
                 }
-
+                
                 selectedAction.TryDoAction(actionPosition, OnEndAction);
 
                 RVN_GridDisplayer.UnsetGridFeedback();
@@ -262,5 +298,71 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         }
 
         disableCount.Add(asker);
+    }
+
+    private List<Node> GetNodeForTeam(Node startPosition, Vector2 mainPosition)
+    {
+        List<Node> toReturn = new List<Node>();
+
+        Node mainNode = Grid.GetNodeFromWorldPoint(mainPosition);
+
+        List<Node> path = Pathfinding.CalculatePathfinding(startPosition, mainNode, -1);
+
+        if (path.Count > 0)
+        {
+            Vector2 pathDirection = mainNode.worldPosition2D - path[path.Count - 1].worldPosition2D;
+
+            List<Vector2Int> otherPositions = new List<Vector2Int>();
+
+            if(Mathf.Abs(pathDirection.x) >= Mathf.Abs(pathDirection.y))
+            {
+                otherPositions.Add(new Vector2Int(0, 1));
+                otherPositions.Add(new Vector2Int(1, 0));
+                otherPositions.Add(new Vector2Int(1, 1));
+            }
+            else
+            {
+                otherPositions.Add(new Vector2Int(1, 0));
+                otherPositions.Add(new Vector2Int(0, 1));
+                otherPositions.Add(new Vector2Int(1, 1));
+            }
+
+            List<Node> positions = GetSquareNodes(mainNode, otherPositions);
+
+            toReturn = positions;
+
+           /* int i = path.Count - 1;
+            foreach (CPN_Character chara in allPlayerChara)
+            {
+                
+            }
+
+            for (i = 1; i < path.Count; i++)
+            {
+                toReturn.Add(path[path.Count - i - 1]);
+            }
+
+            if (i < allPlayerChara.Count - 1)
+            {
+                for (int j = 0; j < allPlayerChara.Count; j++)
+                {
+                    toReturn.Add(allPlayerChara[j].CurrentNode);
+                }
+            }*/
+        }
+        return toReturn;
+    }
+
+    private List<Node> GetSquareNodes(Node mainNode, List<Vector2Int> directions)
+    {
+        List<Node> toReturn = new List<Node>();
+
+        toReturn.Add(mainNode);
+        for (int i = 0; i < directions.Count; i++)
+        {
+            toReturn.Add(Grid.GetNode(mainNode.gridX + directions[i].x, mainNode.gridY + directions[i].y));
+        }
+
+        return toReturn;
     }
 }
