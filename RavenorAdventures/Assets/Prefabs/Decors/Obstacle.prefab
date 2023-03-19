@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4632161435264093804}
   - component: {fileID: 2607414954135833831}
   m_Layer: 0
-  m_Name: DCO_Table
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,4 +188,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
