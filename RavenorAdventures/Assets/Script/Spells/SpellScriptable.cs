@@ -47,6 +47,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected int ressourceCost;
     [SerializeField] protected int maxUtilisations = -1;
     protected int utilisationLeft;
+    protected bool isSpellLocked;
 
     [Header("Cast Data")]
     [SerializeField] protected SpellTargets hitableTarget = SpellTargets.All;
@@ -72,6 +73,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public Action<int> OnUpdateCooldown;
     public Action<int> OnUpdateUtilisationLeft;
+    public Action<bool> OnLockSpell;
 
     public string Name => displayName.GetText();
     public Sprite Icon => icon;
@@ -101,10 +103,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
                 switch(RVN_LanguageManager.Language)
                 {
                     case PossibleLanguage.Francais:
-                        toRetrun += $"\nApplique {eff.Name} sur le lanceur : {eff.Description}";
+                        toRetrun += $"Applique {eff.Name} sur le lanceur : {eff.Description}";
                         break;
                     case PossibleLanguage.English:
-                        toRetrun += $"\nApply {eff.Name} on the caster : {eff.Description}";
+                        toRetrun += $"Apply {eff.Name} on the caster : {eff.Description}";
                         break;
                 }
 
@@ -119,10 +121,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
                 switch (RVN_LanguageManager.Language)
                 {
                     case PossibleLanguage.Francais:
-                        toRetrun += $"\nApplique {eff.Name} sur la cible : {eff.Description}";
+                        toRetrun += $"Applique {eff.Name} sur la cible : {eff.Description}";
                         break;
                     case PossibleLanguage.English:
-                        toRetrun += $"\nApply {eff.Name} on the target : {eff.Description}";
+                        toRetrun += $"Apply {eff.Name} on the target : {eff.Description}";
                         break;
                 }
             }
@@ -157,7 +159,9 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public int Range => range;
     public int ZoneRange => zoneRange;
 
-    public bool IsUsable => currentCooldown <= 0 && (maxUtilisations <= 0 || utilisationLeft > 0);
+    public bool IsUsable => !isSpellLocked && currentCooldown <= 0 && (maxUtilisations <= 0 || utilisationLeft > 0);
+
+    public bool IsLocked => isSpellLocked;
 
     public List<EffectScriptable> Effects()
     {
@@ -193,6 +197,12 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     {
         currentCooldown = valueToSet;
         OnUpdateCooldown?.Invoke(currentCooldown);
+    }
+
+    public void LockSpell(bool toSet)
+    {
+        isSpellLocked = toSet;
+        OnLockSpell?.Invoke(isSpellLocked);
     }
 
     public void UseSpell()

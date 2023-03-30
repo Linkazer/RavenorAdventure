@@ -15,11 +15,12 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
   effectName:
-    frenchText: 
+    frenchText: "\xC2me Protectrice"
     englishText: 
   effectDescription:
-    frenchText: 
+    frenchText: Augmente l'armure maximum du personnage de 2.
     englishText: 
+  effectDisplay: {fileID: 0}
   duration: 2
   effects:
   - id: 0

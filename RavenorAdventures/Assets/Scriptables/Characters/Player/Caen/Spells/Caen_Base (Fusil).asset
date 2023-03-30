@@ -35,7 +35,7 @@ MonoBehaviour:
   isCooldownGlobal: 0
   cooldown: 0
   range: 65
-  zoneRange: 0
+  zoneRange: 15
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget: []

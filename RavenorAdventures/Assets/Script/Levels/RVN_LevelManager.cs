@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
 {
@@ -9,6 +10,8 @@ public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
     public DialogueScriptable endDialogue;
 
     public RVN_LevelManager nextLevel;
+
+    public UnityEvent onStartLevel;
 
     [Serializable]
     private struct CharacterTeam

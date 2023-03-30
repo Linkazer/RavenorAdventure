@@ -106,28 +106,34 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void StartBattle()
     {
+        level.onStartLevel?.Invoke();
+
         currentPlayingTeam = -1;
 
         StartNextTeamRound();
     }
 
-    public void PauseBattle()
+    public void PauseBattle(MonoBehaviour pauseCaller)
     {
-        RVN_CombatInputController.instance.DisableCombatInput(this);
+        Debug.Log("Pause ?");
+
+        RVN_CombatInputController.instance.DisableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Pause();
     }
 
-    public void RestartBattle()
+    public void RestartBattle(MonoBehaviour pauseCaller)
     {
-        RVN_CombatInputController.instance.EnableCombatInput(this);
+        Debug.Log("Unpause ?");
+
+        RVN_CombatInputController.instance.EnableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Restart();
     }
 
     public void EndBattle(bool didWin)
     {
-        PauseBattle();
+        PauseBattle(this);
 
         if (level.endDialogue != null)
         {

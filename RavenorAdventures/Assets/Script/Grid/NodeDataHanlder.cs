@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class NodeDataHanlder : MonoBehaviour
     [SerializeField] private UnityEvent<Node> OnExitNode;           // Player when the component exit a node.
     [SerializeField] private UnityEvent<NodeDataHanlder> OnDataEnter;// Played when an other component enter the node on which the component is.
     [SerializeField] private UnityEvent<NodeDataHanlder> OnDataExit;// Played when an other component exit the node on which the component is.
+
+    public Action<NodeDataHanlder> actOnDataEnter;
+    public Action<NodeDataHanlder> actOnDataExit;
 
     /// <summary>
     /// The node on which the component is.
@@ -96,6 +100,7 @@ public class NodeDataHanlder : MonoBehaviour
     public void OnDataEnterCurrentNode(NodeDataHanlder dataEnter)
     {
         OnDataEnter?.Invoke(dataEnter);
+        actOnDataEnter?.Invoke(dataEnter);
     }
     /// <summary>
     /// Called when an other component exit the current node.
@@ -104,6 +109,7 @@ public class NodeDataHanlder : MonoBehaviour
     public void OnDataExitCurrentNode(NodeDataHanlder dataExit)
     {
         OnDataExit?.Invoke(dataExit);
+        actOnDataExit?.Invoke(dataExit);
     }
 
     private void OnDisable()

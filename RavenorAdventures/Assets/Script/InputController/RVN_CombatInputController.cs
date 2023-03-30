@@ -33,6 +33,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         if (lastFrameMouseNode != Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition))
         {
             lastFrameMouseNode = Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition);
+
             if (canPlayerDoInput && selectedAction != null)
             {
                 OnRefreshActionDisplay?.Invoke(selectedAction);
@@ -224,6 +225,8 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         if (disableCount.Count <= 0)
         {
             canPlayerDoInput = false;
+
+            Debug.Log(canPlayerDoInput);
 
             OnDisablePlayerInput?.Invoke();
         }

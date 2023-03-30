@@ -26,18 +26,36 @@ public class UI_PlayerSpell : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent OnSelectSpell;
     [SerializeField] private UnityEvent OnUnselectSpell;
+    [SerializeField] private UnityEvent OnLockSpell;
+    [SerializeField] private UnityEvent OnUnlockSpell;
 
     private SpellScriptable currentSpell;
+    private int lastActionLeft = 1;
 
     public SpellScriptable Spell => currentSpell;
 
     public void CheckUsable(int actionLeft)
     {
-        button.interactable = (actionLeft > 0 || currentSpell.CastType == SpellCastType.Fast) && (currentSpell.MaxUtilisation <= 0 || currentSpell.UtilisationLeft > 0) && currentSpell.CurrentCooldown <= 0;
+        lastActionLeft = actionLeft;
+
+        if (!currentSpell.IsLocked)
+        {
+            OnUnlockSpell?.Invoke();
+
+            button.interactable = (actionLeft > 0 || currentSpell.CastType == SpellCastType.Fast) && (currentSpell.IsUsable);
+        }
+        else
+        {
+            OnLockSpell?.Invoke();
+
+            button.interactable = false;
+        }
     }
 
     public void SetSpell(SpellScriptable toSet)
     {
+        Debug.Log("Set Spell");
+
         currentSpell = toSet;
         icon.sprite = toSet.Icon;
 
@@ -100,6 +118,7 @@ public class UI_PlayerSpell : MonoBehaviour
             currentSpell.OnUpdateUtilisationLeft += UpdateUtilisationLeft;
         }
 
+        currentSpell.OnLockSpell += SetLock;
 
         gameObject.SetActive(true);
     }
@@ -111,6 +130,8 @@ public class UI_PlayerSpell : MonoBehaviour
             currentSpell.OnUpdateCooldown -= UpdateCooldown;
 
             currentSpell.OnUpdateUtilisationLeft -= UpdateUtilisationLeft;
+
+            currentSpell.OnLockSpell -= SetLock;
         }
 
         currentSpell = null;
@@ -126,6 +147,11 @@ public class UI_PlayerSpell : MonoBehaviour
     public void UnselectSpell()
     {
         OnUnselectSpell?.Invoke();
+    }
+
+    private void SetLock(bool toSet)
+    {
+        CheckUsable(lastActionLeft);
     }
 
     public void UpdateCooldown(int currentCooldown)

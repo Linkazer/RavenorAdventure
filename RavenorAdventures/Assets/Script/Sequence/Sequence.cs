@@ -26,12 +26,12 @@ public class Sequence : SequenceAction
         }
         else
         {
-            steps[currentStep].mainAction.StartAction(NextStep);
-
             foreach (SequenceAction act in steps[currentStep].secondaryActions)
             {
                 act.StartAction(null);
             }
+
+            steps[currentStep].mainAction.StartAction(NextStep);
         }
     }
 
