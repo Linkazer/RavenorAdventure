@@ -9,18 +9,49 @@ public class Sequence : SequenceAction
     public class SequenceStep
     {
         public SequenceAction mainAction;
-        public SequenceAction[] secondaryActions;
+        public List<SequenceAction> secondaryActions = new List<SequenceAction>();
     }
 
-    [SerializeField] private SequenceStep[] steps;
+    [SerializeField] private List<SequenceStep> steps = new List<SequenceStep>();
 
     private int currentStep = 0;
+
+    [ContextMenu("Fill Sequence")]
+    public void FillSequence()
+    {
+        steps = new List<SequenceStep>();
+
+        foreach (Transform child in transform)
+        {
+            SequenceStep newStep = new SequenceStep();
+
+            newStep.mainAction = child.GetComponent<SequenceAction>();
+
+            if(newStep.mainAction != null && newStep.mainAction.enabled)
+            {
+                foreach (Transform secondaryChild in child)
+                {
+                    SequenceAction toAdd = secondaryChild.GetComponent<SequenceAction>();
+                    if (toAdd != null && toAdd.enabled)
+                    {
+                        newStep.secondaryActions.Add(toAdd);
+                    }
+                }
+
+                steps.Add(newStep);
+            }
+        }
+
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(gameObject);
+#endif
+    }
 
     private void NextStep()
     {
         currentStep++;
 
-        if (currentStep >= steps.Length)
+        if (currentStep >= steps.Count)
         {
             EndAction();
         }
@@ -28,7 +59,7 @@ public class Sequence : SequenceAction
         {
             foreach (SequenceAction act in steps[currentStep].secondaryActions)
             {
-                act.StartAction(null);
+                act.StartAction();
             }
 
             steps[currentStep].mainAction.StartAction(NextStep);

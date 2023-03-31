@@ -197,10 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teams:
   - teamIndex: 1
-    charaToSpawns:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    charaToSpawns: []
   OnOpenDoor:
     m_PersistentCalls:
       m_Calls: []

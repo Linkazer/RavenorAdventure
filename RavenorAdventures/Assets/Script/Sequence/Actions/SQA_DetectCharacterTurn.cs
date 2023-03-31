@@ -5,22 +5,26 @@ using UnityEngine;
 public class SQA_DetectCharacterTurn : SequenceAction
 {
     [SerializeField] private CPN_Character characterToCheck;
+    [SerializeField, Tooltip("Si mit à VRAI, l'action sera pas déclenché si c'est déjà le tour du personnage.")] private bool checkBeginTurn;
 
     protected override void OnStartAction()
     {
-        if (RVN_BattleManager.CurrentCharacter == characterToCheck)
+        if (!checkBeginTurn && RVN_BattleManager.CurrentCharacter == characterToCheck)
         {
+            Debug.Log("Already turn" + gameObject);
             EndAction();
         }
         else
         {
-            characterToCheck.ActOnBeginTurn += DetectTurn;
+            Debug.Log("StartAction" + gameObject);
+            characterToCheck.ActOnBeginSelfTurn += DetectTurn;
         }
     }
 
     protected override void OnEndAction()
     {
-        characterToCheck.ActOnBeginTurn -= DetectTurn;
+        Debug.Log("EndAction" + gameObject);
+        characterToCheck.ActOnBeginSelfTurn -= DetectTurn;
     }
 
     protected override void OnSkipAction()
@@ -30,6 +34,8 @@ public class SQA_DetectCharacterTurn : SequenceAction
 
     private void DetectTurn(RVN_ComponentHandler handler)
     {
+        Debug.Log("Detect turn" + gameObject);
+
         EndAction();
     }
 }

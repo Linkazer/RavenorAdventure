@@ -21,7 +21,7 @@ public class UI_CharacterSelector : MonoBehaviour
     {
         currentCharacter = nCharacter;
 
-        currentCharacter.ActOnBeginTurn += Show;
+        currentCharacter.ActOnBeginTeamTurn += Show;
         currentCharacter.ActOnEndSelfTurn += Hide;
 
         gameObject.SetActive(true);
@@ -37,7 +37,7 @@ public class UI_CharacterSelector : MonoBehaviour
 
         if (currentCharacter != null)
         {
-            currentCharacter.ActOnBeginTurn -= Show;
+            currentCharacter.ActOnBeginTeamTurn -= Show;
             currentCharacter.ActOnEndSelfTurn -= Hide;
         }
 

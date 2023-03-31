@@ -19,7 +19,8 @@ public class CPN_Character : RVN_ComponentHandler
 
     public int canPlay;
 
-    public Action<RVN_ComponentHandler> ActOnBeginTurn;
+    public Action<RVN_ComponentHandler> ActOnBeginTeamTurn;
+    public Action<RVN_ComponentHandler> ActOnBeginSelfTurn;
     public Action<RVN_ComponentHandler> ActOnEndTeamTurn;
     public Action<RVN_ComponentHandler> ActOnEndSelfTurn;
 
@@ -88,7 +89,7 @@ public class CPN_Character : RVN_ComponentHandler
     /// </summary>
     public void StartTurn()
     {
-        ActOnBeginTurn?.Invoke(this);
+        ActOnBeginTeamTurn?.Invoke(this);
         OnStartTurn?.Invoke();
 
         for (int i = 0; i < actions.Count; i++)

@@ -200,6 +200,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             //Recherche des mouvements possibles
             List<Node> possibleMovements = GetPossibleMovements(casterNode, possibleTargets, forNextTurn);
 
+            if(!currentCharacterMovement.CanMove)
+            {
+                possibleMovements = new List<Node>();
+                possibleMovements.Add(casterNode);
+            }
+
             float opportunityAttackScore = OpportunityAttackScore(currentCharacterHealth, casterNode); // On fait le calcul ici puisque le résultat de changera pas pendant la recherche de l'attaque
 
             foreach (CPN_Character target in possibleTargets)

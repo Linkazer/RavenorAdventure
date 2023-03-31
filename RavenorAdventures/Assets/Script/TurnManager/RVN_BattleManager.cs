@@ -181,6 +181,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (CanCharacterStartTurn(characterToPlay))
         {
+            characterToPlay.ActOnBeginSelfTurn?.Invoke(characterToPlay);
+
             OnStartCharacterTurn?.Invoke(characterToPlay);
 
             if (teams[0].characters.Contains(characterToPlay))

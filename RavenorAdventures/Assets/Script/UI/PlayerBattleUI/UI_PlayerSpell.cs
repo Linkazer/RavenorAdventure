@@ -54,8 +54,6 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void SetSpell(SpellScriptable toSet)
     {
-        Debug.Log("Set Spell");
-
         currentSpell = toSet;
         icon.sprite = toSet.Icon;
 

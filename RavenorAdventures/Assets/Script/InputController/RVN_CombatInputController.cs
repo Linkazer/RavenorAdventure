@@ -226,8 +226,6 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             canPlayerDoInput = false;
 
-            Debug.Log(canPlayerDoInput);
-
             OnDisablePlayerInput?.Invoke();
         }
 

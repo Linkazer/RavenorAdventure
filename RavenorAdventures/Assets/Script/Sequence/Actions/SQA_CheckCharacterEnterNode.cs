@@ -5,16 +5,22 @@ using UnityEngine;
 public class SQA_CheckCharacterEnterNode : SequenceAction
 {
     [SerializeField] private NodeDataHanlder nodeDataToCheck;
-    [SerializeField] private NodeDataHanlder node;
+    [SerializeField] private List<NodeDataHanlder> nodes;
 
     protected override void OnStartAction()
     {
-        node.actOnDataEnter += DetectEntry;
+        foreach (NodeDataHanlder node in nodes)
+        {
+            node.actOnDataEnter += DetectEntry;
+        }
     }
 
     protected override void OnEndAction()
     {
-        node.actOnDataEnter -= DetectEntry;
+        foreach (NodeDataHanlder node in nodes)
+        {
+            node.actOnDataEnter -= DetectEntry;
+        }
     }
 
     protected override void OnSkipAction()

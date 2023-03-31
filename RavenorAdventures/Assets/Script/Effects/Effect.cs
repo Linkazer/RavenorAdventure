@@ -20,7 +20,7 @@ public abstract class Effect
                 {
                     Debug.Log("Begin turn effect");
 
-                    beginTurnCharacter.ActOnBeginTurn += UseEffect;
+                    beginTurnCharacter.ActOnBeginTeamTurn += UseEffect;
                 }
                 break;
             case EffectTrigger.OnDealDamageTowardSelf:
@@ -105,7 +105,7 @@ public abstract class Effect
             case EffectTrigger.OnBeginTurn:
                 if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
                 {
-                    beginTurnCharacter.ActOnBeginTurn -= UseEffect;
+                    beginTurnCharacter.ActOnBeginTeamTurn -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnDealDamageTowardSelf:
