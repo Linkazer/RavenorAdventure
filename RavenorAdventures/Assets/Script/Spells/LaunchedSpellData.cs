@@ -9,7 +9,7 @@ using UnityEngine;
 /// - Le sort lancé (Scriptable)
 /// - Le lanceur du sort (Caster)
 /// </summary>
-public class LaunchedSpellData
+public class LaunchedSpellData : ISoundHolder
 {
     public SpellScriptable scriptable;
 
@@ -24,6 +24,11 @@ public class LaunchedSpellData
             return scriptable as T;
         }
         return null;
+    }
+
+    public List<AudioClip> GetClips()
+    {
+        return scriptable.AllAnimationAudioClips;
     }
 
     public LaunchedSpellData()

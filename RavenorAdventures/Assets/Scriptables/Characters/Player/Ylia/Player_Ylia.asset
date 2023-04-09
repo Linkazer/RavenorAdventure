@@ -26,7 +26,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 18f80c26585a2f745beb657e6ce0cf6c, type: 3}
   handSprite: {fileID: 21300000, guid: 7eaea7f6ab88a414799e149ce55163a4, type: 3}
   displayHand: 0
-  handHeight: 0.025
+  handHeight: 0
   uiHeight: 1.2
   health: 10
   armor: 0
@@ -54,6 +54,6 @@ MonoBehaviour:
     00000000:
       type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
       data:
-        startAmount: 5
+        startAmount: 10
         limits: {x: 0, y: 5}
-        currentAmount: 0
+        currentAmount: 9

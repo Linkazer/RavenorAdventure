@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
+  heightByDistance: 0
   heightCurve:
     serializedVersion: 2
     m_Curve:
@@ -70,6 +71,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  faceDirection: 0
 --- !u!82 &8019585013184695944
 AudioSource:
   m_ObjectHideFlags: 0
@@ -77,7 +79,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6984492656446843745}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1bb718fbbd38d394e93de5c3a36e3eb7, type: 3}

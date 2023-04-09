@@ -27,6 +27,8 @@ MonoBehaviour:
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 14226e07f77d8f742b7e36f913a3b2d5, type: 3}
   animationDuration: 0
+  animationAudioClips:
+  - {fileID: 8300000, guid: eae856d47992141438b5807d1e4bd1ee, type: 3}
   ressourceCost: 1
   maxUtilisations: -1
   hitableTarget: 3

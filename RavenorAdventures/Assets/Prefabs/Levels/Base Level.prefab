@@ -25390,6 +25390,9 @@ MonoBehaviour:
   startDialogue: {fileID: 0}
   endDialogue: {fileID: 0}
   nextLevel: {fileID: 0}
+  onStartLevel:
+    m_PersistentCalls:
+      m_Calls: []
   teams:
   - characters:
     - {fileID: 8240848136643932755}
@@ -26944,10 +26947,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 16be4fcbd98fe8a4ba69fdac9536d280, type: 3}
-    - target: {fileID: 284234767151647252, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1102522251615681165, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

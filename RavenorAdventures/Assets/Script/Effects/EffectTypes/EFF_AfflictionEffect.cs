@@ -5,6 +5,7 @@ using UnityEngine;
 public enum Afflicition
 {
     Stun,
+    Evasive,
 }
 
 public class EFF_AfflictionEffect : Effect

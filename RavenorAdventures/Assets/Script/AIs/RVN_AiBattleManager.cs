@@ -748,6 +748,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             {
                 distance = Pathfinding.GetDistance(character.CurrentNode, chara.CurrentNode);
 
+                Debug.Log(character);
+                Debug.Log(character.Scriptable);
+
                 if (isDangerosity && (character.Scriptable.DangerosityMinimumDistance > 0 || character.Scriptable.DangerosityLerpDistance > 0))
                 {
                     if (distance <= character.Scriptable.DangerosityMinimumDistance)

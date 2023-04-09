@@ -423,8 +423,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 							{
 								ennemyCaster.OpportunityAttack(CurrentNode.worldPosition, null);
 							}
-
-							
 						}
 					}
 				}

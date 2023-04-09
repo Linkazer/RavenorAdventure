@@ -28,7 +28,7 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0.1
   uiHeight: 1.3
-  health: 4
+  health: 1
   armor: 0
   defense: 5
   accuracy: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
   - wantedAction: {fileID: 11400000, guid: ff96236a8f3784645a5c9b90f5c99bcb, type: 2}
     wantedActionIndex: 1
     conditions: []
-    bonusScore: 0
+    bonusScore: 0.1
     calculs:
     - id: 1
     - id: 3
@@ -74,8 +74,8 @@ MonoBehaviour:
         calculImportance: 0
         abscissaValue: 13
         abscissaCoeficient: -1
-        constantToAdd: 50
-        maxValue: 50
+        constantToAdd: 75
+        maxValue: 75
     00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:

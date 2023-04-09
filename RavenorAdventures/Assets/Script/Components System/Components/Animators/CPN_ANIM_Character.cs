@@ -28,9 +28,8 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
     [Header("Character Animations")]
     [SerializeField] private CharacterAnimationData[] animations;
 
-    [SerializeField] private CharacterAnimation jumpOnTargetAnimation;
-    [SerializeField] private CharacterAnimation idleSpriteAnim;
-    private CharacterAnimationType currentAnimation = CharacterAnimationType.None;
+    [Header("Audio")]
+    [SerializeField] private RVN_AudioPlayer audioPlayer;
 
     private CharacterAnimationData currentAnim;
 
@@ -73,44 +72,6 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
-   /*public void SetWalkAnimation(bool value)
-    {
-        if(value)
-        {
-            SetAnimation(CharacterAnimationType.Walk);
-        }
-        else
-        {
-            SetAnimation(CharacterAnimationType.Idle);
-        }
-    }
-
-    public void SetDeathAnimation(bool value)
-    {
-        if(value)
-        {
-            SetAnimation(CharacterAnimationType.Death);
-        }
-        else
-        {
-            SetAnimation(CharacterAnimationType.Idle);
-        }
-    }
-
-    public void SetCastSpellAnimation(LaunchedSpellData launchedSpell)
-    {
-        switch(launchedSpell.scriptable.CastingAnimation)
-        {
-            case CharacterAnimationType.JumpOnTarget:
-                //jumpOnTargetAnimation.Play((Vector2)launchedSpell.targetNode.worldPosition);
-                break;
-            default:
-                SetAnimation(launchedSpell.scriptable.CastingAnimation);
-                TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => SetAnimation(CharacterAnimationType.LaunchSpell));
-                break;
-        }
-    }*/
-
     public void PlayAnimation(string animationName)
     {
         PlayAnimation(animationName, null);
@@ -137,78 +98,19 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
+    public void UE_PlayAnimationSound()
+    {
+        PlaySound();
+    }
+
+    private void PlaySound()
+    {
+        audioPlayer.PlaySound(currentAnim.GetClip());
+    }
+
     public void EndAnimation()
     {
         PlayAnimation("Idle");
         currentAnim = null;
     }
-
-    /*protected void SetAnimation(CharacterAnimationType toSet)
-    {
-        Debug.Log($"Set Anim : {toSet} != {currentAnimation}");
-        if (toSet != currentAnimation)
-        {
-            UnsetAnimation(currentAnimation);
-
-            currentAnimation = toSet;
-            switch(toSet)
-            {
-                case CharacterAnimationType.Idle:
-                    AnimSetBool("IsIdle", true);
-                    //idleSpriteAnim.Play(Vector2.zero);
-                    break;
-                case CharacterAnimationType.Walk:
-                    AnimSetBool("IsWalking", true);
-                    break;
-                case CharacterAnimationType.CastSpell:
-                    AnimSetBool("IsCasting", true);
-                    break;
-                case CharacterAnimationType.LaunchSpell:
-                    animator.SetTrigger("IsSpellLaunch");
-                    break;
-                case CharacterAnimationType.Death:
-                    Debug.Log("Set Death");
-                    AnimSetBool("IsDead", true);
-                    break;
-                case CharacterAnimationType.Shoot:
-                    AnimSetTrigger("Shoot");
-                    break;
-                case CharacterAnimationType.Throw:
-                    AnimSetTrigger("Throw");
-                    break;
-            }
-        }
-    }
-
-    protected void UnsetAnimation(CharacterAnimationType toUnset)
-    {
-        if(toUnset == currentAnimation)
-        {
-            currentAnimation = CharacterAnimationType.Idle;
-            switch (toUnset)
-            {
-                case CharacterAnimationType.Idle:
-                    AnimSetBool("IsIdle", false);
-                    idleSpriteAnim.Stop();
-                    break;
-                case CharacterAnimationType.Walk:
-                    AnimSetBool("IsWalking", false);
-                    break;
-                case CharacterAnimationType.CastSpell:
-                    AnimSetBool("IsCasting", false);
-                    break;
-                case CharacterAnimationType.LaunchSpell:
-                    AnimSetBool("IsSpellLaunch", false);
-                    break;
-                case CharacterAnimationType.Death:
-                    AnimSetBool("IsDead", false);
-                    break;
-            }
-
-            if(toUnset != CharacterAnimationType.Idle)
-            {
-                SetAnimation(currentAnimation);
-            }
-        }
-    }*/
 }

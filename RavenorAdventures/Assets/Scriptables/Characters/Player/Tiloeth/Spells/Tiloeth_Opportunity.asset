@@ -13,16 +13,24 @@ MonoBehaviour:
   m_Name: Tiloeth_Opportunity
   m_EditorClassIdentifier: 
   nom: "\xC9p\xE9e longue"
+  displayName:
+    frenchText: 
+    englishText: 
   icon: {fileID: 21300000, guid: f75177b867f1162478be973d21729ec7, type: 3}
   description:
     frenchText: 
     englishText: 
   castingAnimation: 5
+  launchAnimation: 0
   castAnimationDuration: 0.25
   spellAnimationTarget: 0
   projectile: {fileID: 0}
   spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   animationDuration: 0
+  animationAudioClips:
+  - {fileID: 8300000, guid: d16c65199f048aa4382381f88b73174d, type: 3}
+  - {fileID: 8300000, guid: d44534ed543cb1d4e9b9e3e849da00ce, type: 3}
+  - {fileID: 8300000, guid: 26fed8649034f3f43af75d5ab696b496, type: 3}
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3
@@ -32,9 +40,10 @@ MonoBehaviour:
   cooldown: 0
   range: 15
   zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
-  LaunchSpellAnimation: 
   type: 0
   diceUsed: 2
   baseDamage: 0

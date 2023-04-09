@@ -169,6 +169,148 @@ MonoBehaviour:
   offset: 1
   originRnd: {fileID: 0}
   canvas: {fileID: 0}
+--- !u!1 &747320388587721878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3341013507823092955}
+  - component: {fileID: 658071169430408363}
+  - component: {fileID: 1712750428234847124}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3341013507823092955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747320388587721878}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2436014866520188403}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &658071169430408363
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747320388587721878}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1712750428234847124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747320388587721878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f069d752fa2d6814e9881c14ba95901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips: []
+  source: {fileID: 658071169430408363}
 --- !u!1 &1264747494927976007
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +764,7 @@ Transform:
   m_Children:
   - {fileID: 4654903809659989778}
   - {fileID: 4853170726187526969}
+  - {fileID: 3341013507823092955}
   m_Father: {fileID: 7397478209732093516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -667,42 +810,59 @@ MonoBehaviour:
   animations:
   - animationName: Idle
     animationUsed: {fileID: 2785623517578289533}
+    clips: []
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_Walk
     animationUsed: {fileID: 1643602181192785703}
+    clips:
+    - {fileID: 8300000, guid: ccc3de3582b3c7e4e997b89f290b9576, type: 3}
+    - {fileID: 8300000, guid: e68de7cc94707de4c8bef0007a3b6924, type: 3}
+    - {fileID: 8300000, guid: 4ead1b174e44d5c449b217ba52150142, type: 3}
+    - {fileID: 8300000, guid: 56d7fd1a7e44956469570c78e091a1f9, type: 3}
+    - {fileID: 8300000, guid: 45c14d3a18d7c114a81e76c5a4d05357, type: 3}
+    - {fileID: 8300000, guid: 670e387e3ff1a544c9a9c0e0004af1df, type: 3}
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_CastSpell
     animationUsed: {fileID: 1643602181192785703}
+    clips: []
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_LaunchSpell
     animationUsed: {fileID: 1643602181192785703}
+    clips: []
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_JumpOnTarget
     animationUsed: {fileID: 5972871693876766062}
+    clips: []
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Death
     animationUsed: {fileID: 1643602181192785703}
+    clips: []
     doesLoop: 0
     linkedAnimation: 
   - animationName: Character_Shoot
     animationUsed: {fileID: 1643602181192785703}
+    clips:
+    - {fileID: 8300000, guid: 0ad2b1a44af81e142922fc393a979083, type: 3}
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Throw
     animationUsed: {fileID: 1643602181192785703}
+    clips: []
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Jump
     animationUsed: {fileID: 1643602181192785703}
+    clips:
+    - {fileID: 8300000, guid: ed65861af20efb34da335a345e3f44ab, type: 3}
+    - {fileID: 8300000, guid: 7878b285d78137246a38bc755d0349a3, type: 3}
     doesLoop: 0
     linkedAnimation: Idle
-  jumpOnTargetAnimation: {fileID: 5972871693876766062}
-  idleSpriteAnim: {fileID: 2785623517578289533}
+  audioPlayer: {fileID: 1712750428234847124}
 --- !u!114 &5972871693876766062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc06a4c59743b841bf7431698fe39cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationHandler: {fileID: 7894508926239594657}
   toMove: {fileID: 2436014866520188403}
   rnd: {fileID: 5476766876406081633}
   jumpCurve:
@@ -754,6 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471ee65dd1df2041a34141cede9819b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationHandler: {fileID: 7894508926239594657}
   sprRnd: {fileID: 5476766876406081633}
   animationTime: 0.5
 --- !u!114 &2785623517578289533
@@ -768,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b4094c28161594ea6fe7a559027310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationHandler: {fileID: 7894508926239594657}
   rnd: {fileID: 5476766876406081633}
   animationFps: 1.4
 --- !u!114 &1643602181192785703
@@ -782,6 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c454f404fdb9e534c8eb7ce221afe7be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationHandler: {fileID: 7894508926239594657}
   animator: {fileID: 6987722732372388516}
 --- !u!1 &4808586254413126335
 GameObject:

@@ -2,15 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ANIM_TakingDamage : MonoBehaviour
+public class ANIM_TakingDamage : CharacterAnimation
 {
     [SerializeField] private SpriteRenderer sprRnd;
     [SerializeField] private float animationTime;
 
-    //TODO : Refaire un script plus global.
     public void Play()
     {
         sprRnd.color = Color.red;
         TimerManager.CreateGameTimer(animationTime, () => sprRnd.color = Color.white);
+    }
+
+    public override void Play(object animationdata)
+    {
+        Play();
+    }
+
+    public override void Stop()
+    {
+        
+    }
+
+    public override void End()
+    {
+
     }
 }

@@ -9,7 +9,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     [SerializeField] protected Renderer rnd;
     [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float animationTime;
-
+    
     private Vector2 startPosition;
     private Vector2 direction;
 
@@ -45,8 +45,6 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
 
         curveIndex = 0;
         enabled = false;
-
-        
     }
 
     public override void End()
@@ -69,6 +67,8 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
         {
             curveIndex = 1;
             curveDirection = -1;
+
+            animationHandler.UE_PlayAnimationSound();
         }
         else if(curveIndex < 0)
         {
