@@ -26,9 +26,9 @@ public class LaunchedSpellData : ISoundHolder
         return null;
     }
 
-    public List<AudioClip> GetClips()
+    public AudioData GetAudioData()
     {
-        return scriptable.AllAnimationAudioClips;
+        return scriptable.AnimationAudioData;
     }
 
     public LaunchedSpellData()

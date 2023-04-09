@@ -5,21 +5,21 @@ using UnityEngine.Audio;
 
 public class RVN_AudioPlayer : MonoBehaviour
 {
-    [SerializeField] private List<AudioClip> clips;
+    [SerializeField] protected AudioData audioData;
+    [SerializeField] protected AudioSource source;
 
-    [SerializeField] private AudioSource source;
-
-    public void PlaySound(AudioClip toPlay)
+    public void PlaySound(AudioData toPlay)
     {
         if (toPlay != null)
         {
-            source.clip = toPlay;
+            source.clip = toPlay.Clip;
             source.Play();
         }
     }
 
     public void PlaySound()
     {
-        PlaySound(clips[Random.Range(0, clips.Count)]);
+        source.clip = audioData.Clip;
+        source.Play();
     }
 }

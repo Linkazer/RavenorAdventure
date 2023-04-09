@@ -44,7 +44,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [SerializeField] protected float animationDuration;
 
     [Header("Sounds")]
-    [SerializeField] protected List<AudioClip> animationAudioClips;
+    [SerializeField] protected AudioData launchAudioData;
 
     [Header("Ressources")]
     [SerializeField] protected int ressourceCost;
@@ -140,8 +140,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public CharacterAnimationType LaunchSpellAnimation => launchAnimation;
 
-    public List<AudioClip> AllAnimationAudioClips => animationAudioClips;
-    public AudioClip AnimationAudioClip => animationAudioClips[UnityEngine.Random.Range(0, animationAudioClips.Count)];
+    public AudioData AnimationAudioData => launchAudioData;
 
     public float CastDuration => castAnimationDuration;
 

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed1448b59c7eab4eacbc376b8aa046b, type: 3}
+  m_Name: Attack_Impact
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: a67e757178519384eaf53600ddad4e2f, type: 3}
+  - {fileID: 8300000, guid: cefbf18dd23a2c447a70c25c9b46c6c0, type: 3}
+  - {fileID: 8300000, guid: 9cfa57188d62a3b4a92066b3ea817ac5, type: 3}

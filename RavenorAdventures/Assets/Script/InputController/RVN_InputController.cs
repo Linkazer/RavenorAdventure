@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class RVN_InputController : RVN_Singleton<RVN_InputController>
 {
-
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
     [SerializeField] private UnityEvent<CPN_ClicHandler> OnMouseLeftDownOnObject;
@@ -46,6 +45,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     private Vector2 moveCameraDirection;
 
     private bool isMiddleMouseDown;
+
+    public PlayerControl PlayerControl => playerControl;
 
     protected override void OnAwake()
     {

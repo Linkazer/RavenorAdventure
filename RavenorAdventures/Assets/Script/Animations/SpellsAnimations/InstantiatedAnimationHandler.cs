@@ -17,6 +17,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
     /// The lifespan of the animation.
     [SerializeField] private float playTime;
     [SerializeField] private ActionOnEnd endAction = ActionOnEnd.Destroy;
+    [SerializeField] private RVN_AudioPlayer audioPlayer;
 
     public float PlayTime => playTime;
 
@@ -48,6 +49,11 @@ public class InstantiatedAnimationHandler : MonoBehaviour
         if (playTime > 0)
         {
             TimerManager.CreateGameTimer(PlayTime, End);
+        }
+
+        if(endCallback != null && audioPlayer != null && audioPlayer.enabled)
+        {
+            audioPlayer.PlaySound();
         }
     }
 

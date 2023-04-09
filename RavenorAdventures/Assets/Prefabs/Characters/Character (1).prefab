@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playTime: 0
   endAction: 2
+  audioPlayer: {fileID: 0}
   onSetTime:
     m_PersistentCalls:
       m_Calls: []
@@ -210,7 +211,7 @@ AudioSource:
   m_GameObject: {fileID: 747320388587721878}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -402044194736664575, guid: 2ff9c10c76c39d24792dda7d57d846ee, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f069d752fa2d6814e9881c14ba95901a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips: []
+  audioData: {fileID: 0}
   source: {fileID: 658071169430408363}
 --- !u!1 &1264747494927976007
 GameObject:
@@ -810,56 +811,47 @@ MonoBehaviour:
   animations:
   - animationName: Idle
     animationUsed: {fileID: 2785623517578289533}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_Walk
     animationUsed: {fileID: 1643602181192785703}
-    clips:
-    - {fileID: 8300000, guid: ccc3de3582b3c7e4e997b89f290b9576, type: 3}
-    - {fileID: 8300000, guid: e68de7cc94707de4c8bef0007a3b6924, type: 3}
-    - {fileID: 8300000, guid: 4ead1b174e44d5c449b217ba52150142, type: 3}
-    - {fileID: 8300000, guid: 56d7fd1a7e44956469570c78e091a1f9, type: 3}
-    - {fileID: 8300000, guid: 45c14d3a18d7c114a81e76c5a4d05357, type: 3}
-    - {fileID: 8300000, guid: 670e387e3ff1a544c9a9c0e0004af1df, type: 3}
+    audioData: {fileID: 11400000, guid: 3e9517ee476c55144959fe82a3f7a008, type: 2}
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_CastSpell
     animationUsed: {fileID: 1643602181192785703}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 1
     linkedAnimation: 
   - animationName: Character_LaunchSpell
     animationUsed: {fileID: 1643602181192785703}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_JumpOnTarget
     animationUsed: {fileID: 5972871693876766062}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Death
     animationUsed: {fileID: 1643602181192785703}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 0
     linkedAnimation: 
   - animationName: Character_Shoot
     animationUsed: {fileID: 1643602181192785703}
-    clips:
-    - {fileID: 8300000, guid: 0ad2b1a44af81e142922fc393a979083, type: 3}
+    audioData: {fileID: 0}
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Throw
     animationUsed: {fileID: 1643602181192785703}
-    clips: []
+    audioData: {fileID: 0}
     doesLoop: 0
     linkedAnimation: Idle
   - animationName: Character_Jump
     animationUsed: {fileID: 1643602181192785703}
-    clips:
-    - {fileID: 8300000, guid: ed65861af20efb34da335a345e3f44ab, type: 3}
-    - {fileID: 8300000, guid: 7878b285d78137246a38bc755d0349a3, type: 3}
+    audioData: {fileID: 11400000, guid: 13d366a5e1a767a459192b5f3c60dbca, type: 2}
     doesLoop: 0
     linkedAnimation: Idle
   audioPlayer: {fileID: 1712750428234847124}

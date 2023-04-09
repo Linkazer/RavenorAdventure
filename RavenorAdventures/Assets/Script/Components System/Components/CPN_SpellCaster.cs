@@ -204,25 +204,32 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// Select a spell.
     /// </summary>
     /// <param name="spellIndex">The index of the spell to choose.</param>
-    public void SelectSpell(int spellIndex, bool displayAction = true)
+    /// <returns> Return TRUE if a spell has been select. </returns>
+    public bool SelectSpell(int spellIndex, bool displayAction = true)
     {
+        bool hasSelectedSpell = false;
+
         SpellScriptable lastSpell = currentSelectedSpell;
         if (currentSelectedSpell != null)
         {
             UnselectSpell();
         }
 
-        if (spellIndex >= 0 && spells[spellIndex] != lastSpell)
+        if (spellIndex < spells.Count && spellIndex >= 0 && spells[spellIndex] != lastSpell)
         {
             currentSelectedSpell = spells[spellIndex];
 
             actOnSelectSpell?.Invoke(currentSelectedSpell);
+
+            hasSelectedSpell = true;
         }
 
         if (displayAction)
         {
             DisplayAction(RVN_InputController.MousePosition);
         }
+
+        return hasSelectedSpell;
     }
 
     public void UnselectSpell()

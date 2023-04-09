@@ -4415,7 +4415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce275cf4285cd649b8c906184d49aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCharacter: {fileID: 0}
+  mainInputController: {fileID: 1346031331}
   canPlayerDoInput: 1
   OnSelectAction:
     m_PersistentCalls:

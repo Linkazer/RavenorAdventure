@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ISoundHolder
 {
-    public List<AudioClip> GetClips();
+    public AudioData GetAudioData();
 }

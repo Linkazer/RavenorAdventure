@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 5088325124065952552}
   - component: {fileID: 7282106008027488376}
   - component: {fileID: 2940697763242904250}
-  - component: {fileID: 8680997619567028162}
   m_Layer: 0
   m_Name: SpellAnim_Sprite_UpFade_ArmorBonus
   m_TagString: Untagged
@@ -114,6 +113,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8966007613857912589}
+  - {fileID: 6458801020237149524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playTime: 1
   endAction: 0
+  audioPlayer: {fileID: 0}
   onSetTime:
     m_PersistentCalls:
       m_Calls:
@@ -165,18 +166,64 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!82 &8680997619567028162
+--- !u!1 &4098103786172029452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6458801020237149524}
+  - component: {fileID: 408627090300858735}
+  - component: {fileID: 4159147146516168957}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6458801020237149524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098103786172029452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5088325124065952552}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &408627090300858735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4098103786172029452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f069d752fa2d6814e9881c14ba95901a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioData: {fileID: 11400000, guid: d831ca8e8c197fc4db8e2743b1db73a2, type: 2}
+  source: {fileID: 4159147146516168957}
+--- !u!82 &4159147146516168957
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296962444868983952}
+  m_GameObject: {fileID: 4098103786172029452}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2997586a0cb121d4dacaffd0fe116e72, type: 3}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: -402044194736664575, guid: 2ff9c10c76c39d24792dda7d57d846ee, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

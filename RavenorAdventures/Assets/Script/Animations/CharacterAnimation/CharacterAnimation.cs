@@ -9,13 +9,13 @@ public abstract class CharacterAnimation : MonoBehaviour
 
     protected CharacterAnimationData currentAnimation;
 
-    protected List<AudioClip> audioClips = new List<AudioClip>();
+    protected AudioData audioData;
 
-    public virtual AudioClip GetClip()
+    public virtual AudioData GetClip()
     {
-        if (audioClips.Count > 0)
+        if (audioData != null)
         {
-            return audioClips[UnityEngine.Random.Range(0, audioClips.Count)];
+            return audioData;
         }
         return null;
     }
@@ -26,11 +26,11 @@ public abstract class CharacterAnimation : MonoBehaviour
 
         if(animationData is ISoundHolder)
         {
-            audioClips = (animationData as ISoundHolder).GetClips();
+            audioData = (animationData as ISoundHolder).GetAudioData();
         }
         else
         {
-            audioClips = new List<AudioClip>();
+            audioData = null;
         }
 
         Play(animationData);

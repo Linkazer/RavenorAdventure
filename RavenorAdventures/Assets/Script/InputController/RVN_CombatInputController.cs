@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Manage the Input of the player in the Combat Phase.
 /// </summary>
 public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController>
 {
-    [SerializeField] private CPN_Character currentCharacter;
+    [SerializeField] private RVN_InputController mainInputController;
+
+    private CPN_Character currentCharacter;
 
     private CPN_Character nextCharacter;
 
@@ -37,6 +40,52 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
             if (canPlayerDoInput && selectedAction != null)
             {
                 OnRefreshActionDisplay?.Invoke(selectedAction);
+            }
+        }
+
+        if (canPlayerDoInput)
+        {
+            if (mainInputController.PlayerControl.BattleActionMap.SelectCharacter_1.triggered)
+            {
+                ChangeCharacter(RVN_BattleManager.GetPlayerTeam[0]);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectCharacter_2.triggered)
+            {
+                ChangeCharacter(RVN_BattleManager.GetPlayerTeam[1]);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectCharacter_3.triggered)
+            {
+                ChangeCharacter(RVN_BattleManager.GetPlayerTeam[2]);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectCharacter_4.triggered)
+            {
+                ChangeCharacter(RVN_BattleManager.GetPlayerTeam[3]);
+            }
+
+            if (mainInputController.PlayerControl.BattleActionMap.SelectSpell_1.triggered)
+            {
+                SelectSpell(0);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectSpell_2.triggered)
+            {
+                SelectSpell(1);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectSpell_3.triggered)
+            {
+                SelectSpell(2);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectSpell_4.triggered)
+            {
+                SelectSpell(3);
+            }
+            else if (mainInputController.PlayerControl.BattleActionMap.SelectSpell_5.triggered)
+            {
+                SelectSpell(4);
+            }
+
+            if (mainInputController.PlayerControl.BattleActionMap.EndTurn.triggered)
+            {
+                RVN_BattleManager.EndCharacterTurn();
             }
         }
     }
@@ -155,7 +204,14 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     {
         if(currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
-            caster.SelectSpell(spellIndex);
+            if (caster.SelectSpell(spellIndex))
+            {
+                SelectAction(1);
+            }
+            else
+            {
+                SelectAction(0);
+            }
         }
     }
 

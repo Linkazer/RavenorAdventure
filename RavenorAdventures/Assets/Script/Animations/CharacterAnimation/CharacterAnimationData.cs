@@ -8,7 +8,7 @@ public class CharacterAnimationData
 {
     [SerializeField] private string animationName;
     [SerializeField] private CharacterAnimation animationUsed;
-    [SerializeField] private List<AudioClip> clips;
+    [SerializeField] private AudioData audioData;
     public bool doesLoop;
     public string linkedAnimation = "";
 
@@ -23,13 +23,13 @@ public class CharacterAnimationData
         animationUsed.Play(animationdata, this);
     }
 
-    public AudioClip GetClip()
+    public AudioData GetClip()
     {
-        AudioClip toReturn = animationUsed.GetClip();
+        AudioData toReturn = animationUsed.GetClip();
 
-        if(toReturn == null && clips.Count > 0)
+        if(toReturn == null && audioData != null)
         {
-            toReturn = clips[UnityEngine.Random.Range(0, clips.Count)];
+            toReturn = audioData;
         }
 
         return toReturn;

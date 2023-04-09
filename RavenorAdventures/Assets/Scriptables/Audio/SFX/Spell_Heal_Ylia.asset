@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed1448b59c7eab4eacbc376b8aa046b, type: 3}
+  m_Name: Spell_Heal_Ylia
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 886a3451a0ef50a42bfb76cf1e1ced25, type: 3}
+  - {fileID: 8300000, guid: 1a23667f36a117c4bae6d5bf86560f4a, type: 3}
