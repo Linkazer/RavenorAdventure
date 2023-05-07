@@ -1437,13 +1437,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5402240944067752494}
     - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1453,8 +1457,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UE_SelectSpell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SelectSpell
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI_PlayerSpell, ravenor_engine
       objectReference: {fileID: 0}
     - target: {fileID: 6231416037635421257, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -1506,17 +1518,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6231416037635421255, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
   m_PrefabInstance: {fileID: 4102875825346984176}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2974729497274169760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1276783021516587344, guid: 8bb2b72225a50494083a0ce88f899eef, type: 3}
-  m_PrefabInstance: {fileID: 4102875825346984176}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f069d752fa2d6814e9881c14ba95901a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5124969177903661305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1562,22 +1563,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2974729497274169760}
-          m_TargetAssemblyTypeName: RVN_AudioPlayer, ravenor_engine
-          m_MethodName: PlaySound
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &5402240944067752494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,6 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74577b96dd96d9847a22cb62786d851e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellIndex: 0
   button: {fileID: 7965240523029367993}
   icon: {fileID: 1725822713851415357}
   descriptionHandler: {fileID: 2790907907835178923}

@@ -38,6 +38,7 @@ public class DiceTests : MonoBehaviour
     [Header("Target")]
     [SerializeField] private int health;
     [SerializeField] private int armor;
+    [SerializeField] private int damageReduction;
 
     [Header("Tests")]
     [SerializeField] private int iterations;
@@ -162,10 +163,15 @@ public class DiceTests : MonoBehaviour
                 for (int j = 0; j < attackers.Length; j++)
                 {
                     int damage = CalculateDamage(attackers[j]);
-                    
 
                     if (damage > 0)
                     {
+
+                        if (damage >= damageReduction)
+                        {
+                            damage -= damageReduction;
+                        }
+
                         if (damage >= currentArmor)
                         {
                             currentHealth -= damage - currentArmor;

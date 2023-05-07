@@ -41,4 +41,14 @@ public class UI_PlayerBattleController : MonoBehaviour
             displayedCharacter = null;
         }
     }
+
+    public void SelectAction(int actionIndex)
+    {
+        RVN_CombatInputController.Instance.SelectAction(actionIndex);
+    }
+
+    public void EndTurn()
+    {
+        RVN_CombatInputController.Instance.EndTurn();
+    }
 }

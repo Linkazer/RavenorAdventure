@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d251498842a4f742a837c2d693ec91b, type: 3}
+  m_Name: UIPrefabHolder
+  m_EditorClassIdentifier: 
+  TextPrefab: {fileID: 6663174849247036378, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
+  Button: {fileID: 1558502424834264595, guid: 739811d69efac9741be3d018a808cef6, type: 3}
+  ButtonWithText: {fileID: 7940284546194596632, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}

@@ -46,7 +46,7 @@ public class UI_CharacterSelector : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SelectCharacter()
+    public void UE_SelectCharacter()
     {
         RVN_CombatInputController.ChangeCharacter(currentCharacter);
     }

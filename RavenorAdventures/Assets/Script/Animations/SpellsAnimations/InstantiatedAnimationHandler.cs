@@ -51,7 +51,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
             TimerManager.CreateGameTimer(PlayTime, End);
         }
 
-        if(endCallback != null && audioPlayer != null && audioPlayer.enabled)
+        if(endCallback != null && audioPlayer != null)
         {
             audioPlayer.PlaySound();
         }

@@ -8,6 +8,9 @@ using TMPro;
 
 public class UI_PlayerSpell : MonoBehaviour
 {
+    [SerializeField] private int spellIndex;
+
+    [Header("UI")]
     [SerializeField] private Button button;
     [SerializeField] private Image icon;
 
@@ -137,12 +140,17 @@ public class UI_PlayerSpell : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SelectSpell()
+    public void UE_SelectSpell()
+    {
+        RVN_CombatInputController.SelectSpell(spellIndex);
+    }
+
+    public void SetSelectSpell()
     {
         OnSelectSpell?.Invoke();
     }
 
-    public void UnselectSpell()
+    public void SetUnselectSpell()
     {
         OnUnselectSpell?.Invoke();
     }

@@ -62,7 +62,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         {
             if (spl.Spell == selectedSpell)
             {
-                spl.SelectSpell();
+                spl.SetSelectSpell();
             }
         }
     }
@@ -73,7 +73,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         {
             if(spl.Spell == unselectedSpell)
             {
-                spl.UnselectSpell();
+                spl.SetUnselectSpell();
             }
         }
     }
@@ -96,7 +96,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
 
             foreach (UI_PlayerSpell spl in spellIcons)
             {
-                spl.UnselectSpell();
+                spl.SetUnselectSpell();
             }
         }
     }

@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playTime: 0.5
   endAction: 0
-  audioPlayer: {fileID: 9214895822355214584}
+  audioPlayer: {fileID: 0}
   onSetTime:
     m_PersistentCalls:
       m_Calls: []

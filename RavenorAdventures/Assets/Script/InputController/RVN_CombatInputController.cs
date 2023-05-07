@@ -85,7 +85,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
             if (mainInputController.PlayerControl.BattleActionMap.EndTurn.triggered)
             {
-                RVN_BattleManager.EndCharacterTurn();
+                EndTurn();
             }
         }
     }
@@ -98,6 +98,11 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
             nextCharacter = null;
         }
+    }
+
+    public void EndTurn()
+    {
+        RVN_BattleManager.EndCharacterTurn();
     }
 
     /// <summary>
@@ -200,17 +205,17 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// Select a spell.
     /// </summary>
     /// <param name="spellIndex">The ID of the spell.</param>
-    public void SelectSpell(int spellIndex) //CODE REVIEW : Voir si on peut mettre la sélection du spell dans le CPN_SpellCaster
+    public static void SelectSpell(int spellIndex) //CODE REVIEW : Voir si on peut mettre la sélection du spell dans le CPN_SpellCaster
     {
-        if(currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
+        if(instance.currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
             if (caster.SelectSpell(spellIndex))
             {
-                SelectAction(1);
+                instance.SelectAction(1);
             }
             else
             {
-                SelectAction(0);
+                instance.SelectAction(0);
             }
         }
     }

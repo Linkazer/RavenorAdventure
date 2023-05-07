@@ -19,7 +19,14 @@ public class RVN_AudioPlayer : MonoBehaviour
 
     public void PlaySound()
     {
-        source.clip = audioData.Clip;
-        source.Play();
+        if (audioData != null)
+        {
+            source.clip = audioData.Clip;
+            source.Play();
+        }
+        else
+        {
+            Debug.Log("Miss audio data on : " + gameObject);
+        }
     }
 }

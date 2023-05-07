@@ -1837,7 +1837,7 @@ TilemapRenderer:
   m_SortingLayer: -4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0.5, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -27099,6 +27099,9 @@ MonoBehaviour:
   startDialogue: {fileID: 0}
   endDialogue: {fileID: 0}
   nextLevel: {fileID: 0}
+  onStartLevel:
+    m_PersistentCalls:
+      m_Calls: []
   teams:
   - characters:
     - {fileID: 8240848136643932755}
@@ -27197,7 +27200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429593234731626683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 429593234327127947}
@@ -28436,7 +28439,7 @@ TilemapRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0.5, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -30085,6 +30088,10 @@ PrefabInstance:
       propertyPath: teams.Array.data[0].charaToSpawns.Array.data[5]
       value: 
       objectReference: {fileID: 8422737099542087615}
+    - target: {fileID: 5559192539048513101, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8045413502921490467, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -36912,6 +36919,10 @@ PrefabInstance:
       propertyPath: teams.Array.data[0].charaToSpawns.Array.data[4]
       value: 
       objectReference: {fileID: 5123457205480794001}
+    - target: {fileID: 5559192539048513101, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8045413502921490467, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -38844,6 +38855,10 @@ PrefabInstance:
       propertyPath: teams.Array.data[0].charaToSpawns.Array.data[2]
       value: 
       objectReference: {fileID: 2856266735571564028}
+    - target: {fileID: 5559192539048513101, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8045413502921490467, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_RootOrder
       value: 0
