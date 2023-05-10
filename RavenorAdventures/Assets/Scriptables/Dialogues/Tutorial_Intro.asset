@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Tutorial_Intro
+  m_EditorClassIdentifier: 
+  sentences:
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: 'En entrant dans la crypte, le groupe se retrouva dans une immense
+        salle. '
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "S\u2019approchant de l\u2019imposante porte qui se trouvait de
+        l\u2019autre c\xF4t\xE9, Ryn remarqua que cette derni\xE8re ne poss\xE9dait
+        aucune poign\xE9e. Poussant de toutes leurs forces, Ryn et Eral se rendirent
+        \xE0 l\u2019\xE9vidence."
+      englishText: 
+  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CElle est bloqu\xE9e. Si les soldats ont p\xFB pass\xE9,
+        c\u2019est qu\u2019il doit y avoir un moyen de passer. S\xE9parons-nous,
+        nous trouverons s\xFBrement quelques chose pour ouvrir cette porte.\u201D"
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Alors que le reste du groupe continua de chercher dans la salle
+        principale, Ryn aper\xE7ue un petit couloir dans lequel elle s\u2019enfon\xE7a.
+        Arriv\xE9 au bout, elle trouva une petite salle."
+      englishText: 
+  - leftCharacter: {fileID: 0}
+    rightCharacter: {fileID: 0}
+    talker: {fileID: 0}
+    text:
+      frenchText: "Sur l\u2019un des murs, un trou avait \xE9t\xE9 creus\xE9, permettant
+        de voir la porte de la salle principale. Fouillant la salle, elle trouva
+        un levier \xE0 c\xF4t\xE9 du trou. \xC0 peine l\u2019avait-elle actionn\xE9
+        qu\u2019elle entendit des cris venir de la salle principale."
+      englishText: 
+  responses: []
+  references:
+    version: 1

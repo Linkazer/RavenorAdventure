@@ -10,6 +10,10 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
 
     [SerializeField] private CanvasGroup loadingScreen;
 
+    [SerializeField] private Animator loadingAnimation;
+
+    [SerializeField] private float minimumLoadTime = 1f;
+
     public static Action ToDoAfterLoad;
 
     public static RVN_LevelManager CurrentLevel => instance.currentLevel;
@@ -51,6 +55,7 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
     private IEnumerator LoadAsyncScene(int sceneIndex, Action callback)
     {
         loadingScreen.alpha = 1;
+        loadingAnimation.enabled = true;
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
 
@@ -60,7 +65,7 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(minimumLoadTime);
 
         OnSceneLoaded(callback);
     }
@@ -73,5 +78,6 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
         callback?.Invoke();
 
         loadingScreen.alpha = 0;
+        loadingAnimation.enabled = false;
     }
 }

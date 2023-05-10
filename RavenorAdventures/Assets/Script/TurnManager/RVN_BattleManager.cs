@@ -131,31 +131,30 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         RVN_AiBattleManager.instance.Restart();
     }
 
+    [ContextMenu("Force Win")]
+    public void SetWin()
+    {
+        EndBattle(true);
+    }
+
     public void EndBattle(bool didWin)
     {
         PauseBattle(this);
 
-        if (level.endDialogue != null)
+        if (didWin)
         {
-            if (didWin)
+            if (level.endDialogue != null)
             {
-                RVN_DialogueManager.PlayDialogue(level.startDialogue, WinBattle);
+                RVN_DialogueManager.PlayDialogue(level.endDialogue, WinBattle);
             }
             else
             {
-                RVN_DialogueManager.PlayDialogue(level.startDialogue, LoseBattle);
+                TimerManager.CreateRealTimer(1f, WinBattle);
             }
         }
         else
         {
-            if (didWin)
-            {
-                TimerManager.CreateRealTimer(1f, WinBattle);
-            }
-            else
-            {
-                TimerManager.CreateRealTimer(1f, LoseBattle);
-            }
+            TimerManager.CreateRealTimer(1f, LoseBattle);
         }
     }
 

@@ -29,4 +29,14 @@ public class RVN_AudioPlayer : MonoBehaviour
             Debug.Log("Miss audio data on : " + gameObject);
         }
     }
+
+    public void StopSound()
+    {
+        source.Stop();
+    }
+
+    public void SetVolume(float volume)
+    {
+        source.volume = volume;
+    }
 }

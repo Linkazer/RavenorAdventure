@@ -9,6 +9,19 @@ public class AudioManager : RVN_Singleton<AudioManager>
 
     [SerializeField] private Vector2 soundLimits;
 
+    [SerializeField] private List<string> soundParameters;
+
+    private void Start()
+    {
+        foreach (string param in soundParameters)
+        {
+            if (PlayerPrefs.HasKey(param))
+            {
+                SetMixerSound(param, PlayerPrefs.GetFloat(param));
+            }
+        }
+    }
+
     /// <summary>
     /// Met à jour le niveau sonore d'un mixer.
     /// </summary>

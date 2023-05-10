@@ -14,10 +14,32 @@ public class UIOptionHandler : MonoBehaviour
         public Slider slider;
     }
 
+    [Header("Menus")]
+    [SerializeField] private GameObject optionMenu;
+
+    [Header("Options - Sound")]
     [SerializeField] private List<SoundSlider> soundSliders;
+
+    public void UE_OpenOptionMenu(bool state)
+    {
+        optionMenu.gameObject.SetActive(state);
+
+        foreach(SoundSlider soundSlider in soundSliders)
+        {
+            if (PlayerPrefs.HasKey(soundSlider.parameter))
+            {
+                soundSlider.slider.value = PlayerPrefs.GetFloat(soundSlider.parameter);
+            }
+        }
+    }
 
     public void UE_SetSound(int sliderIndex)
     {
-        AudioManager.SetMixerSound(soundSliders[sliderIndex].parameter, soundSliders[sliderIndex].slider.value);
+        string parameter = soundSliders[sliderIndex].parameter;
+        float value = soundSliders[sliderIndex].slider.value;
+
+        PlayerPrefs.SetFloat(parameter, value);
+
+        AudioManager.SetMixerSound(parameter, value);
     }
 }

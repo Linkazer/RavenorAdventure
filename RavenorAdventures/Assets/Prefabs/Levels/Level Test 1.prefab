@@ -27096,9 +27096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d481fe932325945b2f5e6255058975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDialogue: {fileID: 0}
-  endDialogue: {fileID: 0}
-  nextLevel: {fileID: 0}
+  startDialogue: {fileID: 11400000, guid: 0c97b60e5bbfc7549b782c547dd05e87, type: 2}
+  endDialogue: {fileID: 11400000, guid: 1753443cf33f4bb4f916eacbf3a5c9f1, type: 2}
+  nextLevel: {fileID: 429593234369219505, guid: 6499d9f95d6a0974a9bba8e31666cbe4, type: 3}
   onStartLevel:
     m_PersistentCalls:
       m_Calls: []
