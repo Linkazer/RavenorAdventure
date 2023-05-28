@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 2 - End
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors que le dernier Sans- me tombait au sol, les portes se claqu\xE8rent
+        subitement. Le groupe observa la salle, cherchant d\u2019o\xF9 l\u2019ennemi
+        pourrait surgir. "
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: Soudain, les membres du groupe entendirent une voix.
+      englishText: 
+  - talker: {fileID: 11400000, guid: 10382a76801f591498a78f8d82aae0ce, type: 2}
+    text:
+      frenchText: "\u201CQu\u2019avons-nous l\xE0 ?\u201D. La voix semblait provenir
+        de partout, laissant son \xE9cho r\xE9sonner dans les oreilles des aventuriers."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+    text:
+      frenchText: "Soudainement, une silhouette fantomatique fit son apparition au
+        centre de la salle. \u201CJe vois que vous avez fait connaissance avec mes
+        cr\xE9ations.\u201D dit la silhouette en survolant les cadavres."
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Observant un \xE0 un les aventuriers, ses orbites vides se fix\xE8rent
+        sur Ylia. Voyant la liche approcher lentement, Ylia se figea sur place, les
+        l\xE8vres tremblantes, incapable de d\xE9tourner le regard."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral s\u2019interposa et brandit son \xE9p\xE9e en direction du
+        fant\xF4me. \u201CQu\u2019est-ce que vous avez fait des villageois ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+    text:
+      frenchText: "\u201CCe que je leur ai fait ? Disons que je les ai lib\xE9r\xE9
+        de leur prison de chair et permis de transcender la mort en servant une cause
+        plus grande.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+    text:
+      frenchText: "\u201CQuant \xE0 ces choses,\u201D dit la cr\xE9ature en d\xE9signant
+        les cadavres. \u201CNe sont-elles pas fascinantes ? Je suis moi-m\xEAme surprit
+        que ces corps aient p\xFB tenir debout d\u2019eux-m\xEAmes aussi longtemps
+        sans une once d\u2019\xE2mes.\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Voyant la liche distraite par Eral, Sadrif et Ryn saisirent l\u2019occasion.
+        Le premier lui tira en plein dans la poitrine. Quant \xE0 la deuxi\xE8me,
+        elle lan\xE7a une de ses dagues qui vint de planter dans le dos de la cr\xE9ature."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+    text:
+      frenchText: "La liche se retourna lentement, retirant le couteau comme si de
+        rien n\u2019\xE9tait. Elle soupira. \u201CTant d\u2019imp\xE9tuosit\xE9.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+    text:
+      frenchText: "Une \xE9trange lueur verte \xE9mana de la main de la liche. \u201CVoyons
+        si cela sera toujours le cas quand vos \xE2mes et vos corps seront s\xE9par\xE9s.\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: TO BE CONTINUED...
+      englishText: 
+  responses: []
+  references:
+    version: 1

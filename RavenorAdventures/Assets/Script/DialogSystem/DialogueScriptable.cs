@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public struct DialogueSentence
 {
-    public CharacterScriptable leftCharacter;
-    public CharacterScriptable rightCharacter;
+    //public CharacterScriptable leftCharacter;
+    //public CharacterScriptable rightCharacter;
     public CharacterScriptable talker;
 
     public RVN_Text text;

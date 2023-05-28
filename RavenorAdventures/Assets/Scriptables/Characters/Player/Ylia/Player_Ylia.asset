@@ -17,7 +17,7 @@ MonoBehaviour:
     frenchText: "\xC9veill\xE9e demi-elfe"
     englishText: 
   UIPortrait: {fileID: 21300000, guid: eac86b572decff04b9c34c62e1830160, type: 3}
-  nameColor: {r: 0.48718405, g: 0.8679245, b: 0.8520406, a: 1}
+  nameColor: {r: 0.2028302, g: 0.55463046, b: 1, a: 1}
   characterSprite: {fileID: 21300000, guid: 930fb84ba5ec0d442a262985eb058c5a, type: 3}
   animations:
   - animationName: Idle
@@ -56,4 +56,4 @@ MonoBehaviour:
       data:
         startAmount: 5
         limits: {x: 0, y: 5}
-        currentAmount: 5
+        currentAmount: 4

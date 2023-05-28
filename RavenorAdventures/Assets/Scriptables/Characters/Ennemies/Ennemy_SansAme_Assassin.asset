@@ -46,14 +46,15 @@ MonoBehaviour:
   usableSpellByTurn: 1
   usedRessource:
     id: 0
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: eba48e0d41a79af4990211282dfe118d, type: 2}
   wantedDistanceFromTarget: {x: 0, y: 15}
   oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: e0590b50570c4a5418370d4e27d959bd, type: 2}
     wantedActionIndex: 1
     conditions: []
-    bonusScore: 0.1
+    bonusScore: 5
     calculs:
     - id: 1
     - id: 2

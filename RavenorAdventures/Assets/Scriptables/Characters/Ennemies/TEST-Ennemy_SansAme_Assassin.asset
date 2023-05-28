@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: TEST-Ennemy_SansAme_Assassin
+  m_EditorClassIdentifier: 
+  nom: "Assassin sans \xE2me"
+  description:
+    frenchText: 
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: 96685a42503219b40bd709b3b7493f56, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: 07ef423c9238f424f80d1cd53eb392ea, type: 3}
+    - {fileID: 21300000, guid: d76769b15ca79fd4e91c7a0833c7ff76, type: 3}
+  handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
+  displayHand: 0
+  handHeight: 0.025
+  uiHeight: 1.1
+  health: 6
+  armor: 2
+  defense: 3
+  accuracy: 1
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 55
+  speed: 5
+  dangerosityMaxDistance: 25
+  dangerosityMinimumDistance: 15
+  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - {fileID: 11400000, guid: 10583bca2e1f54c40a571fe12255acaf, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  wantedDistanceFromTarget: {x: 0, y: 15}
+  oppportunityHealthBonus: 0
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 10583bca2e1f54c40a571fe12255acaf, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abscissaValue: 13
+      condition: 1
+      baseValue: 20
+    bonusScore: 1
+    calculs:
+    - id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abscissaValue: 13
+        condition: 1
+        baseValue: 20

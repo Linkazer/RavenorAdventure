@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 1 - Intro
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "L\u2019entr\xE9e de la crypte donnait sur une grande salle, au
+        bout de laquelle se trouvait une imposante double porte. En s\u2019approchant,
+        Sadrif remarqua que la porte ne poss\xE9dait aucune poign\xE9e."
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Poussant la porte de toutes ses forces, Eral se rendit rapidement
+        \xE0 l\u2019\xE9vidence."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CIl doit y avoir un autre moyen de l\u2019ouvrir. Fouillons
+        les env\u2026\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Eral fut interrompu par Ryn qui s'\xE9lan\xE7a \xE0 toute vitesse
+        avant de s\u2019\xE9craser contre la porte."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CJe confirme, elle est bien ferm\xE9e\u201D dit-elle en attrapant
+        la main d'Ylia qui l'aida \xE0 se relever."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral reprit en adressant un sourire \xE0 Ryn. \u201CComme je le
+        disais, fouillons les environs. Nous trouverons peut-\xEAtre un moyen d\u2019ouvrir
+        cette porte.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CEt \xE9vitez de toucher \xE0 quoi que ce soit. Si vous trouvez
+        quelque chose, pr\xE9venez les autres.\u201D dit Sadrif en fixant Ryn."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CQuoi ? C\u2019est arriv\xE9 qu\u2019une seule fois ?!\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors que le reste du groupe chercha dans la salle principale,
+        Ryn aper\xE7ut une porte au bout d\u2019un des couloirs. Ouvrant la porte,
+        Ryn entra dans une petite salle avec quelques chaises, une petite table et
+        un levier."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "S\u2019approchant du levier, Ryn sortie l\u2019une de ses dagues.
+        \u201CTechniquement, je touche uniquement \xE0 ma dague.\u201D se dit-elle
+        avant de pousser le levier \xE0 l\u2019aide de sa dague."
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Apr\xE8s quelques secondes, elle entendit le bruit d'une lourde
+        pierre se d\xE9pla\xE7ant, rapidement suivi de cris provenant de la salle
+        principale."
+      englishText: 
+  responses: []
+  references:
+    version: 1

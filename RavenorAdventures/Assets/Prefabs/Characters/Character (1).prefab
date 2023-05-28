@@ -80,7 +80,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5192585948570395345}
   - component: {fileID: 284234767151647252}
-  - component: {fileID: 4212822439699361503}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -154,22 +153,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4212822439699361503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 604944171315260708}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f423869110b944c8de1796a78f40bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rnd: {fileID: 284234767151647252}
-  offset: 1
-  originRnd: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!1 &747320388587721878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,7 +2160,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6638203035532585060}
   - component: {fileID: 7623800616649253514}
-  - component: {fileID: 7785858619016065439}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -2251,22 +2233,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7785858619016065439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5848475621350575331}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f423869110b944c8de1796a78f40bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rnd: {fileID: 7623800616649253514}
-  offset: 1
-  originRnd: {fileID: 0}
-  canvas: {fileID: 0}
 --- !u!1 &5887456766363017554
 GameObject:
   m_ObjectHideFlags: 0

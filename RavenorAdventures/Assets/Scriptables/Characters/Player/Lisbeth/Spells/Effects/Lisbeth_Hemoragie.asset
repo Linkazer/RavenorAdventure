@@ -15,10 +15,10 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
   effectName:
-    frenchText: 
+    frenchText: "H\xE9moragie"
     englishText: 
   effectDescription:
-    frenchText: 
+    frenchText: "Au d\xE9but de chaque tour, le personnage subit 1 point de d\xE9g\xE2t."
     englishText: 
   effectDisplay: {fileID: 0}
   duration: 2

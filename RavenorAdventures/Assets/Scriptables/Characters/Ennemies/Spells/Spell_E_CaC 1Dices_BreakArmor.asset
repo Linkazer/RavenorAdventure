@@ -34,7 +34,7 @@ MonoBehaviour:
   castTarget: 1
   castType: 0
   isCooldownGlobal: 0
-  cooldown: 2
+  cooldown: -1
   range: 15
   zoneRange: 0
   zoneFaceCaster: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 1
+  diceUsed: 3
   baseDamage: 0
   armorPierced: 3
   lifestealPercent: 0

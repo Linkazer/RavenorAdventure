@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: Inconnu_Lich
+  m_EditorClassIdentifier: 
+  nom: ???
+  description:
+    frenchText: ???
+    englishText: 
+  UIPortrait: {fileID: 0}
+  nameColor: {r: 0, g: 0, b: 0, a: 1}
+  characterSprite: {fileID: 0}
+  animations: []
+  handSprite: {fileID: 0}
+  displayHand: 0
+  handHeight: 0
+  uiHeight: 0
+  health: 0
+  armor: 0
+  defense: 0
+  accuracy: 0
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 35
+  speed: 5
+  dangerosityMaxDistance: 0
+  dangerosityMinimumDistance: 0
+  opportunitySpell: {fileID: 0}
+  availableSpells: []
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  wantedDistanceFromTarget: {x: 0, y: 15}
+  oppportunityHealthBonus: 0
+  comportement: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

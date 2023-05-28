@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
-  m_Name: Player_Caen
+  m_Name: Player_Sadrif
   m_EditorClassIdentifier: 
-  nom: Cael
+  nom: Sadrif
   description:
-    frenchText: Alchimiste humain
+    frenchText: Thaumaturge humain
     englishText: 
   UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
-  nameColor: {r: 0.16570203, g: 0.6698113, b: 0.14217694, a: 1}
+  nameColor: {r: 0.8679245, g: 0.75939375, b: 0.30704877, a: 1}
   characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
   animations:
   - animationName: Idle

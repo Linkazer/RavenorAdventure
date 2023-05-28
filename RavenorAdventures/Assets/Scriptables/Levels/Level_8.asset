@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497929001a3975146911dc0f282afd77, type: 3}
+  m_Name: Level_8
+  m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 429593234369219505, guid: 5203f838b7fec3d41a711b339fdbe340, type: 3}
+  ID: 
+  nom: Le bureau
+  description: Ceci est le niveau avec le bureau
+  charactersInLevel:
+  - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+  - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+  - {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+  - {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}

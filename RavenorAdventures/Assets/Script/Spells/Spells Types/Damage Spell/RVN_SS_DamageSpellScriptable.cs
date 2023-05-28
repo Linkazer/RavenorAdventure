@@ -44,4 +44,27 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
         bonusBaseDamage = caster.Power;
         offensiveRerolls = caster.OffensiveRerolls;
     }
+
+    public override string GetDescription()
+    {
+        string toReturn = base.GetDescription();
+
+        if (hitEffectsOnTarget.Count > 0)
+        {
+            foreach (EffectScriptable eff in hitEffectsOnTarget)
+            {
+                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+            }
+        }
+
+        if (hitEffectsOnCaster.Count > 0)
+        {
+            foreach (EffectScriptable eff in hitEffectsOnCaster)
+            {
+                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+            }
+        }
+
+        return toReturn;
+    }
 }

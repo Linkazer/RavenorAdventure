@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
   m_Name: Ylia_ArmorEnchanting
   m_EditorClassIdentifier: 
-  nom: "Armure Enchant\xE9e"
   displayName:
-    frenchText: "\xC2me Protectrive"
+    frenchText: "\xC2me Protectrice"
     englishText: 
   icon: {fileID: 21300000, guid: 1cc5391b5e44e0b4cb0e51f9e5de7280, type: 3}
   description:
-    frenchText: 
+    frenchText: "Applique \"\xC2me protectrice\" sur la cible."
     englishText: 
   castingAnimation: 3
   launchAnimation: 4
@@ -27,8 +26,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   spellAnimation: {fileID: 3603624626837706201, guid: 14226e07f77d8f742b7e36f913a3b2d5, type: 3}
   animationDuration: 0
-  animationAudioClips:
-  - {fileID: 8300000, guid: eae856d47992141438b5807d1e4bd1ee, type: 3}
+  launchAudioData: {fileID: 0}
   ressourceCost: 1
   maxUtilisations: -1
   hitableTarget: 3

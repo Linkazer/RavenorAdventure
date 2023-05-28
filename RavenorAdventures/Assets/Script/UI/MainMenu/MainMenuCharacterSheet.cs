@@ -15,10 +15,13 @@ public class MainMenuCharacterSheet : MonoBehaviour
 
     public void SetCharacter(CharacterScriptable_Battle nCharacter)
     {
-        if (nCharacter != currentCharacter)
+        if (nCharacter == currentCharacter)
         {
             UnsetCharacter();
-
+            return;
+        }
+        else
+        {
             gameObject.SetActive(true);
         }
 

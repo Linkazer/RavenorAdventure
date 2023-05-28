@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 1 - End
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CC\u2019\xE9tait quoi ces trucs ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral rengaina son \xE9p\xE9e. \u201C\xC7a ressemblait \xE0 des
+        morts-vivants, mais je n\u2019en avais jamais vu des comme \xE7a.\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Ylia s\u2019abaissa au niveau de l\u2019un des corps, posa sa
+        main sur son torse et ferma les yeux. Apr\xE8s plusieurs secondes, Ylia retira
+        sa main subitement et se releva d\u2019une traite."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTu as trouv\xE9 quelque chose ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "H\xE9sitant quelques secondes, Ylia r\xE9pondit par un encha\xEEnement
+        de signes."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CElle dit que ces corps n'avaient pas d\u2019\xE2me. Mais
+        ce n\u2019est pas le cas de tous les morts-vivants ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia secoua la t\xEAte avant de reprendre."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CComment \xE7a ils \xE9taient vivants ?\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors qu\u2019Ylia r\xE9fl\xE9chissait, cherchant un moyen d\u2019expliquer
+        clairement, Sadrif intervint."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTu veux dire que leur enveloppe charnelle \xE9tait encore
+        vivante ? \xC7a voudrait dire que\u2026\u201D Sadrif laissa sa phrase en
+        suspens, mais Eral compris o\xF9 il voulait en venir."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CQue ? Que quoi ? Si tu finis pas tes phrases, faut pas s\u2019\xE9tonner
+        qu\u2019on comprenne rien.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201C\xC7a veut dire que leurs \xE2mes leur ont \xE9t\xE9 retir\xE9es
+        pendant qu\u2019ils \xE9taient encore en vie. Et cela ne peut \xEAtre l\u2019oeuvre
+        que d\u2019un puissant n\xE9cromancien.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CCette histoire de villageois disparut commence \xE0 prendre
+        une tournure qui me pla\xEEt moyennement.\u201D"
+      englishText: 
+  responses: []
+  references:
+    version: 1

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 1 - Salle3
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Ouvrant la porte, Ryn se retrouva nez \xE0 nez avec une des cr\xE9atures.
+        Avant de pouvoir r\xE9agir, une d\xE9tonation se fit entendre et la cr\xE9ature
+        tomba \xE0 terre."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTe voil\xE0 toi ! Qu\u2019est-ce que tu as encore fait ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est vrai \xE7a Ylia ! Qu\u2019est-ce que t\u2019as
+        fait ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Sadrif laissa tomber sa t\xEAte et soupira."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201COn verra \xE7a plus tard, il y en a d\u2019autres qui arrivent.\u201D"
+      englishText: 
+  responses: []
+  references:
+    version: 1

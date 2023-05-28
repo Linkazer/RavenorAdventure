@@ -78,12 +78,12 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
         dialogueText.text = sentence.text.GetText();
 
-        if (sentence.leftCharacter != null)
+        if (sentence.talker != null)
         {
             characterGroup.alpha = 1;
             characterGroup.blocksRaycasts = true;
 
-            leftCharacterDisplay.sprite = sentence.leftCharacter.Portrait;
+            leftCharacterDisplay.sprite = sentence.talker.Portrait;
         }
         else
         {

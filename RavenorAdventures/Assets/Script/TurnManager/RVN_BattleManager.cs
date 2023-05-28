@@ -145,7 +145,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if (level.endDialogue != null)
             {
-                RVN_DialogueManager.PlayDialogue(level.endDialogue, WinBattle);
+                TimerManager.CreateRealTimer(1f, () => RVN_DialogueManager.PlayDialogue(level.endDialogue, WinBattle));
             }
             else
             {

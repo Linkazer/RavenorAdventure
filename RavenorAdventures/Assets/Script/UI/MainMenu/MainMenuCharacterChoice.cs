@@ -17,7 +17,7 @@ public class MainMenuCharacterChoice : MonoBehaviour
         portrait.sprite = character.Portrait;
     }
 
-    public void OnClick()
+    public void UE_SetCharacter()
     {
         characterSheet.SetCharacter(character);
     }

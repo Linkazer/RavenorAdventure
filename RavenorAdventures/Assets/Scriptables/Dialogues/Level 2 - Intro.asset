@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 2 - Intro
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia sentie un frisson lui parcourir l\u2019\xE9chine. Depuis
+        qu\u2019elle avait franchi la porte, l\u2019aura que d\xE9gageait la crypte
+        la mettait mal \xE0 l\u2019aise."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Vagabondant dans ses pens\xE9es, elle sursauta quand la voix de
+        Ryn lui parvint."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CEnfin !\u201D dit Ryn, avec un air soulag\xE9. \u201C\xC7a
+        fait plusieurs fois que je t\u2019appelle, j\u2019avais peur que tu sois
+        aussi devenu sourde.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201C\xC7a, tu vois, c\u2019est ce qui se passe quand quelqu\u2019un
+        r\xE9fl\xE9chit. Tu devrais essayer de temps \xE0 autre.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn : \u201CTu dis \xE7a parce que t\u2019es jaloux que ce soit
+        moi qui aie trouv\xE9 comment ouvrir la porte.\u201D dit-elle avec un air
+        enjou\xE9."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Sadrif soupira. \u201CJe ne sais m\xEAme pas pourquoi j\u2019essaye
+        encore.\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Ryn et Sadrif continu\xE8rent d\u2019avancer, laissant de nouveau
+        Ylia avec ses pens\xE9es."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CAu moins, on peut dire qu\u2019ils mettent de l\u2019ambiance.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia tourna rapidement la t\xEAte vers Eral."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CTu es s\xFBre que \xE7a va aller ?\u201D demanda calmement
+        Eral."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "En guise de r\xE9ponse, Ylia sourit timidement et hocha la t\xEAte."
+      englishText: 
+  responses: []
+  references:
+    version: 1

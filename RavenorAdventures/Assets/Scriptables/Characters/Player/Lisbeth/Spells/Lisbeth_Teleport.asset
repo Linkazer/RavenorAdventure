@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e350710ceda1d924691bdd6b38fe227f, type: 3}
   m_Name: Lisbeth_Teleport
   m_EditorClassIdentifier: 
-  nom: 
   displayName:
     frenchText: Saut
     englishText: 
   icon: {fileID: 21300000, guid: 1a7088e309bbda64babb86dda104a45a, type: 3}
   description:
-    frenchText: 
+    frenchText: "Le personnage se d\xE9place sur la case cibl\xE9."
     englishText: 
   castingAnimation: 9
   launchAnimation: 0
@@ -27,6 +26,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   spellAnimation: {fileID: 0}
   animationDuration: 0.2
+  launchAudioData: {fileID: 0}
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3

@@ -29,7 +29,6 @@ public enum SpellAnimationTarget
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]
-    [SerializeField] protected string nom;
     [SerializeField] protected RVN_Text displayName;
     [SerializeField] protected Sprite icon;
     [SerializeField] protected RVN_Text description;
@@ -85,35 +84,17 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     {
         string[] subText = description.GetText().Split('%');
 
-        string toRetrun = "";
+        string toReturn = "";
 
         for(int i = 0; i < subText.Length; i++)
         {
             if(i%2 == 0)
             {
-                toRetrun += subText[i];
+                toReturn += subText[i];
             }
             else
             {
-                toRetrun += this.GetType().GetField(subText[i], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this).ToString();
-            }
-        }
-
-        if (effectsOnCaster.Count > 0)
-        {
-            foreach (EffectScriptable eff in effectsOnCaster)
-            {
-                switch(RVN_LanguageManager.Language)
-                {
-                    case PossibleLanguage.Francais:
-                        toRetrun += $"Applique {eff.Name} sur le lanceur : {eff.Description}";
-                        break;
-                    case PossibleLanguage.English:
-                        toRetrun += $"Apply {eff.Name} on the caster : {eff.Description}";
-                        break;
-                }
-
-                
+                toReturn += this.GetType().GetField(subText[i], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this).ToString();
             }
         }
 
@@ -121,19 +102,39 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         {
             foreach (EffectScriptable eff in effectsOnTarget)
             {
-                switch (RVN_LanguageManager.Language)
-                {
-                    case PossibleLanguage.Francais:
-                        toRetrun += $"Applique {eff.Name} sur la cible : {eff.Description}";
-                        break;
-                    case PossibleLanguage.English:
-                        toRetrun += $"Apply {eff.Name} on the target : {eff.Description}";
-                        break;
-                }
+                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
             }
         }
 
-        return toRetrun;
+        if (effectsOnCaster.Count > 0)
+        {
+            foreach (EffectScriptable eff in effectsOnCaster)
+            {
+                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+            }
+        }
+
+        /*if (effectsOnCaster.Count > 0)
+        {
+            foreach (EffectScriptable eff in effectsOnCaster)
+            {
+                switch(RVN_LanguageManager.Language)
+                {
+                    case PossibleLanguage.Francais:
+                        toRetrun += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                        break;
+                    case PossibleLanguage.English:
+                        toRetrun += $"\nApply {eff.Name} on the caster : {eff.Description}";
+                        break;
+                }
+
+                
+            }
+        }*/
+
+
+
+        return toReturn;
     }
 
     public CharacterAnimationType CastingAnimation => castingAnimation;

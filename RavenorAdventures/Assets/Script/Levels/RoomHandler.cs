@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
+public class SpawnableCharacterTeam
+{
+    public int teamIndex = 1;
+    public List<CPN_Character> charaToSpawns;
+}
+
 public class RoomHandler : MonoBehaviour
 {
-    [Serializable]
-    private class SpawnableCharacterTeam
-    {
-        public int teamIndex = 1;
-        public List<CPN_Character> charaToSpawns;
-        
-    }
 
     [SerializeField] private List<SpawnableCharacterTeam> teams;
     [SerializeField] private UnityEvent OnOpenDoor;

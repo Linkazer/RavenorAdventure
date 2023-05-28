@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 1 - Salle2
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: Entrant dans la salle, Ryn vit Ylia.
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CYlia ! \xC7a va ? O\xF9 sont les autres ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia hocha la t\xEAte et pointa vers la grande salle."
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors que Ryn s\u2019approcha des portes, elle entendit des grognements
+        venant de l\u2019autre c\xF4t\xE9 de la pi\xE8ce. Tournant la t\xEAte, elle
+        aper\xE7ut deux autres cr\xE9atures sortant du couloir."
+      englishText: 
+  responses: []
+  references:
+    version: 1
