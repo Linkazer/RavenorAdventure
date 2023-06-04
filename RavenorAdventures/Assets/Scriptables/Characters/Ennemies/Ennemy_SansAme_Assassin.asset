@@ -42,22 +42,13 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
-  - {fileID: 11400000, guid: e0590b50570c4a5418370d4e27d959bd, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
-  passives:
-  - {fileID: 11400000, guid: eba48e0d41a79af4990211282dfe118d, type: 2}
+  passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: e0590b50570c4a5418370d4e27d959bd, type: 2}
-    wantedActionIndex: 1
-    conditions: []
-    bonusScore: 5
-    calculs:
-    - id: 1
-    - id: 2
   - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
     wantedActionIndex: 0
     conditions: []
@@ -76,11 +67,3 @@ MonoBehaviour:
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
-    00000002:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 0
-        abscissaValue: 10
-        abscissaCoeficient: 1
-        constantToAdd: 0
-        maxValue: 2

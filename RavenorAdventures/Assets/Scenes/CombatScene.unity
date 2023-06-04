@@ -4880,19 +4880,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testName: 
-  calculType: 0
+  calculType: 1
   usedDungeonSaga: 0
   usedDnD: 0
   baseDamageDone: 0
   attackers:
   - AttackDice: 3
-    OffensiveRerolls: 2
-    Accuracy: -1
-    Power: 0
-  Defense: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 1
+  Defense: 3
   DefensiveRerolls: 0
-  health: 14
-  armor: 0
+  health: 12
+  armor: 1
   damageReduction: 0
   iterations: 100000
   diceNb: 4

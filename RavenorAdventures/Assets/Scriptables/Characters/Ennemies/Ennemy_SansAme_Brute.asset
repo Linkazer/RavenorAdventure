@@ -32,7 +32,7 @@ MonoBehaviour:
   armor: 2
   defense: 3
   accuracy: 0
-  power: 1
+  power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 45
@@ -41,7 +41,6 @@ MonoBehaviour:
   dangerosityMinimumDistance: 15
   opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
   - {fileID: 11400000, guid: 497cd2930cbb95f4991a89dbc62eb322, type: 2}
   usableSpellByTurn: 1
   usedRessource:
@@ -52,18 +51,12 @@ MonoBehaviour:
   oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: 497cd2930cbb95f4991a89dbc62eb322, type: 2}
-    wantedActionIndex: 1
+    wantedActionIndex: 0
     conditions: []
     bonusScore: 0.1
     calculs:
     - id: 1
     - id: 2
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
-    wantedActionIndex: 0
-    conditions: []
-    bonusScore: 0
-    calculs:
-    - id: 1
   references:
     version: 1
     00000000:

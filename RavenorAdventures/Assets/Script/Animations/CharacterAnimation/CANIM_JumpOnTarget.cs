@@ -33,7 +33,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
 
         if (direction.y > 0)
         {
-            baseSortingOrder = rnd.sortingOrder - 1;
+            baseSortingOrder = rnd.sortingOrder;
         }
         else
         {
@@ -65,11 +65,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     {
         curveIndex += (Time.deltaTime * curveDirection) / animationTime;
 
-        //rnd.sortingOrder = baseSortingOrder; //TO DO: Trouver une meilleure solution pour éviter d'avoir le personnage qui s'affiche derrière/devant la target ou les personnages qui l'entoure.
-
         rnd.sortingOrder = baseSortingOrder;// + (Mathf.FloorToInt((toMove.localPosition.y - startPosition.y) / -0.5f));
-
-        Debug.Log(rnd.sortingOrder);
 
         if (curveIndex > 1)
         {
