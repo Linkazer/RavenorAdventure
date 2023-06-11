@@ -44,7 +44,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
   - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
   - {fileID: 11400000, guid: a2b651b31841e304091d1b5f48e6e043, type: 2}
-  usableSpellByTurn: 1
+  usableSpellByTurn: 10
   usedRessource:
     id: 0
   passives: []

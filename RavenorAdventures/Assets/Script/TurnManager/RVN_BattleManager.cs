@@ -468,6 +468,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void LoadNextBattle()
     {
-        RVN_SceneManager.LoadBattle(level.nextLevel);
+        RVN_SceneManager.LoadBattle(level.nextLevel.levelPrefab);
     }
 }

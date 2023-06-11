@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2577217931544767700}
   - component: {fileID: 9161389365810529248}
+  - component: {fileID: 1997303123142076821}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -48,6 +49,17 @@ MonoBehaviour:
   handler: {fileID: 9161389365810529248}
   components: []
   animationController: {fileID: 0}
+--- !u!210 &1997303123142076821
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577217931544767710}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &4741466325633146095
 GameObject:
   m_ObjectHideFlags: 0

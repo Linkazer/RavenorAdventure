@@ -9,7 +9,7 @@ public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
     public DialogueScriptable startDialogue;
     public DialogueScriptable endDialogue;
 
-    public RVN_LevelManager nextLevel;
+    public LevelInformation nextLevel;
 
     public UnityEvent onStartLevel;
 

@@ -669,7 +669,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250960353
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 3fadd29579ecb6b4596c67eb2f87fef0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -691,6 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7397478209732093516}
+  - component: {fileID: 8621115964766900107}
   m_Layer: 0
   m_Name: Render Offset
   m_TagString: Untagged
@@ -713,6 +714,17 @@ Transform:
   m_Father: {fileID: 5140952349797873640}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &8621115964766900107
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3835640380687138522}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &4044616657378150128
 GameObject:
   m_ObjectHideFlags: 0

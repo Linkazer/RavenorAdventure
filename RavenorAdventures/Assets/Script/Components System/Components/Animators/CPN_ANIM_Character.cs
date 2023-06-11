@@ -70,6 +70,9 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         {
             rendererTransform.localEulerAngles = new Vector3(0, -180, 0);
         }
+
+        animator.SetFloat("OrientationX", direction.x);
+        animator.SetFloat("OrientationY", direction.y);
     }
 
     public void PlayAnimation(string animationName)

@@ -37,7 +37,8 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
         }
         else
         {
-            baseSortingOrder = rnd.sortingOrder + 1;
+            //baseSortingOrder = rnd.sortingOrder + 1;
+            baseSortingOrder = rnd.sortingOrder;
         }
 
         enabled = true;
