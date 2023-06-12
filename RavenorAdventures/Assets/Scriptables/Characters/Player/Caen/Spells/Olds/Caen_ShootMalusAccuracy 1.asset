@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Caen_Base (Fusil)
+  m_Name: Caen_ShootMalusAccuracy 1
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: Tir de fusil
+    frenchText: Module aveuglant
     englishText: 
-  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
+  icon: {fileID: 21300000, guid: 285b3141b5532074ab21e7d3eff80493, type: 3}
   description:
-    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9 et applique \"Aveugl\xE9\"."
     englishText: 
   castingAnimation: 7
   launchAnimation: 0
@@ -32,16 +32,17 @@ MonoBehaviour:
   hitableTarget: 3
   castTarget: 3
   castType: 0
-  isCooldownGlobal: 0
-  cooldown: 0
-  range: 65
+  isCooldownGlobal: 1
+  cooldown: 2
+  range: 55
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
-  effectsOnTarget: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
   effectsOnCaster: []
   type: 0
-  diceUsed: 2
+  diceUsed: 1
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

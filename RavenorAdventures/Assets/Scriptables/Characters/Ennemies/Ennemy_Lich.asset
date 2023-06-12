@@ -18,12 +18,12 @@ MonoBehaviour:
     englishText: 
   UIPortrait: {fileID: 0}
   nameColor: {r: 0.09011215, g: 0.4245283, b: 0.23348224, a: 1}
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: b3961ac248f330646be75c9aa4cc58e9, type: 3}
   animations: []
   handSprite: {fileID: 0}
   displayHand: 0
   handHeight: 0
-  uiHeight: 0
+  uiHeight: 0.5
   health: 0
   armor: 0
   defense: 0

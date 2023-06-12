@@ -25441,7 +25441,7 @@ MonoBehaviour:
   OnLoseBattle:
     m_PersistentCalls:
       m_Calls: []
-  looseOnAchieve: 0
+  looseOnAchieve: 1
   wantedCharacterDeath: 1
   wantedEnnemyDeads:
   - {fileID: 429593234858301258}

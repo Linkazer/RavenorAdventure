@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Caen_MalusDefense
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Module affaiblissant
+    englishText: 
+  icon: {fileID: 21300000, guid: f487779e7e37ce940afce2512067183b, type: 3}
+  description:
+    frenchText: "Attaque avec %diceUsed% d\xE9 et applique \"Affaiblit\""
+    englishText: 
+  castingAnimation: 7
+  launchAnimation: 0
+  castAnimationDuration: 0
+  spellAnimationTarget: 0
+  projectile: {fileID: 5453536855631355870, guid: 4470ebf8fb8a67847ba0161fadcbfa96, type: 3}
+  spellAnimation: {fileID: 4071321388199400130, guid: 11c4d631bcacebf46ac92c1f0b28bc24, type: 3}
+  animationDuration: 0
+  launchAudioData: {fileID: 11400000, guid: e268e93d9365a25479b5264b0f8e8c48, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 2
+  range: 55
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 7f730e4daa51b3746966e7a0106a5d2e, type: 2}
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 1
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []

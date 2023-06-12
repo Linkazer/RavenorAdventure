@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Caen_ShootMalusAccuracy
+  m_Name: Caen_Base
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: Module aveuglant
+    frenchText: Tir de fusil
     englishText: 
-  icon: {fileID: 21300000, guid: 285b3141b5532074ab21e7d3eff80493, type: 3}
+  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
   description:
-    frenchText: "Attaque la cible avec %diceUsed% d\xE9 et applique \"Aveugl\xE9\"."
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
     englishText: 
   castingAnimation: 7
   launchAnimation: 0
   castAnimationDuration: 0
   spellAnimationTarget: 0
-  projectile: {fileID: 2016346504167992779, guid: 4d22e8a7bc9722d47be6078b4eca543a, type: 3}
-  spellAnimation: {fileID: 7282106008027488376, guid: b7351a8ed28e7d24ba240a2405693e09, type: 3}
+  projectile: {fileID: 5453536855631355870, guid: 58fb28e09f17e864a9d0bdc52f81c7dd, type: 3}
+  spellAnimation: {fileID: 4071321388199400130, guid: 31557a23223dea144a5b022e88f0d223, type: 3}
   animationDuration: 0
   launchAudioData: {fileID: 11400000, guid: e268e93d9365a25479b5264b0f8e8c48, type: 2}
   ressourceCost: 0
@@ -32,17 +32,16 @@ MonoBehaviour:
   hitableTarget: 3
   castTarget: 3
   castType: 0
-  isCooldownGlobal: 1
-  cooldown: 3
-  range: 55
+  isCooldownGlobal: 0
+  cooldown: 0
+  range: 65
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
-  effectsOnTarget:
-  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
+  effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 1
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

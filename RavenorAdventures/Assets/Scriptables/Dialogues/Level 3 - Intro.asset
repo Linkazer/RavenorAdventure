@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 3 - Intro
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: 10382a76801f591498a78f8d82aae0ce, type: 2}
+    text:
+      frenchText: '"...yn... Ryn."'
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Ryn se r\xE9veilla en sursaut."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Sadrif soupira de soulagement. \u201CJ\u2019ai bien cru qu\u2019on
+        allait devoir te porter jusqu\u2019\xE0 la sortie. M\xEAme so pour cela,
+        il faudrait d\u2019j\xE0 que l\u2019on arrive \xE0 sortir.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn regarda autour d\u2019elle. Elle et Sadrif se trouvaient dans
+        une petite salle, entour\xE9s de mur en pierre et d\u2019une porte robuste."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CO\xF9 sont les Eral et Ylia ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "La voix \xE9touff\xE9e d\u2019Eral provenait de derri\xE8re les
+        murs. \u201CJe suis bloqu\xE9 dans une autre cellule. Quant \xE0 Ylia...\u201D
+        dit-il en empoignant son \xE9p\xE9e."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CJe ne pense pas qu\u2019il lui fasse du mal. Du moins pas
+        dans l'imm\xE9diat. Elle avait l\u2019air de l\u2019int\xE9resser, \xE7a
+        devrait nous faire gagner un peu de temps pour la retrouver.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CJe sais. Mais tant qu\u2019on sera enferm\xE9 ici, on ne
+        pourra pas faire grand chose.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Soudain, Sadrif entendit un clic venant de la porte. Accroupit
+        au niveau de la serrure, Ryn rangea quelque chose dans sa poche et poussa
+        la porte, qui s\u2019ouvra lentement."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CSi c\u2019est que \xE7a, \xE7a devrait pas \xEAtre un gros
+        probl\xE8me.\u201D dit-elle avec un grand sourire\u201D"
+      englishText: 
+  responses: []
+  references:
+    version: 1

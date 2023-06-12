@@ -9,6 +9,7 @@ public class UI_CharacterCanvas : MonoBehaviour
 
     public void SetCanvas(CharacterScriptable_Battle character)
     {
+        Debug.Log(character.UIHeight);
         canvasTransform.localPosition = new Vector2(0, character.UIHeight);
     }
 }
