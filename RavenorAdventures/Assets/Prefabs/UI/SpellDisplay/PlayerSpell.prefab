@@ -1193,7 +1193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4259255442106824571, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_margin.x
-      value: 160
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 4259255442106824571, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_fontSizeBase
@@ -1229,7 +1229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4716548960058025644, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 4716548960058025644, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1265,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4716548960058025644, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 4716548960058025644, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1289,7 +1289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302742844022032273, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_text
-      value: 'Cooldown : '
+      value: "R\xE9cup\xE9ration : "
       objectReference: {fileID: 0}
     - target: {fileID: 8302742844022032273, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_fontSize

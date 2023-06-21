@@ -76,7 +76,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         if (RVN_SceneManager.CurrentLevel != null)
         {
-            level = Instantiate(RVN_SceneManager.CurrentLevel);
+            level = Instantiate(RVN_SceneManager.CurrentLevel.levelPrefab);
         }
 
         beforeBattleStart?.Invoke();
@@ -266,7 +266,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
         {
-            teams[currentPlayingTeam].characters[j].StartTurn();
+            if(!teams[currentPlayingTeam].characters[j].StartTurn())
+            {
+                j--;
+            }
         }
 
         if (currentPlayingTeam == 0)
@@ -342,6 +345,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if (teams[i].characters.Contains(toRemove))
             {
+                Debug.Log("Remove : " + toRemove.gameObject.name);
                 teams[i].characters.Remove(toRemove);
                 break;
             }
@@ -463,11 +467,18 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void RetryBattle()
     {
-        RVN_SceneManager.LoadBattle(level);
+        RVN_SceneManager.LoadCurrentBattle();
     }
 
     public void LoadNextBattle()
     {
-        RVN_SceneManager.LoadBattle(level.nextLevel.levelPrefab);
+        if (level.nextLevel != null)
+        {
+            RVN_SceneManager.LoadBattle(level.nextLevel);
+        }
+        else
+        {
+            RVN_SceneManager.LoadScene(2);
+        }
     }
 }

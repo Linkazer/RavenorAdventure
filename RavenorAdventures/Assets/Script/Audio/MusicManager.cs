@@ -10,20 +10,24 @@ public class MusicManager : RVN_Singleton<MusicManager>
 
     [SerializeField] private float transitionTime;
 
+    private AudioData substituteMusic;
+
+    public AudioData CurrentMusic => music;
+
     protected override void Awake()
     {
         if(instance != null)
         {
             if (music != null && music != instance.music)
             {
-                instance.SetMusic(music);
+                instance.SetMainMusic(music);
 
-                instance.AskToPlayMusic(false);
+                instance.AskToPlayMusic(music, false);;
             }
         }
         else if(music != null)
         {
-            AskToPlayMusic(false);
+            AskToPlayMusic(music, false);
         }
 
         base.Awake();
@@ -31,32 +35,56 @@ public class MusicManager : RVN_Singleton<MusicManager>
         
     }
 
-    public void SetMusic(AudioData toSet)
+    private void SetMainMusic(AudioData toSet)
     {
         music = toSet;
+    }
+
+    public void PlayMainMusic()
+    {
+        substituteMusic = null;
+
+        AskToPlayMusic(music, false);
+    }
+
+    public void PlayMainMusic(AudioData toSet)
+    {
+        music = toSet;
+
+        PlayMainMusic();
+    }
+
+    public void PlaySubsituteMusic(AudioData toPlay, bool forcePlay)
+    {
+        if (substituteMusic != toPlay)
+        {
+            substituteMusic = toPlay;
+
+            AskToPlayMusic(toPlay, forcePlay);
+        }
     }
 
     /// <summary>
     /// Set a new music track
     /// </summary>
     /// <param name="forcePlay">If TRUE, there will be no transition between the 2 musics.</param>
-    public void AskToPlayMusic(bool forcePlay)
+    public void AskToPlayMusic(AudioData toPlay, bool forcePlay)
     {
         StopAllCoroutines();
         if (!forcePlay)
         {
-            StartCoroutine(SlowStopMusic(PlayMusic));
+            StartCoroutine(SlowStopMusic(() => PlayMusic(toPlay)));
         }
         else
         {
             audioPlayer.SetVolume(1);
-            PlayMusic();
+            PlayMusic(toPlay);
         }
     }
 
-    private void PlayMusic()
+    private void PlayMusic(AudioData toPlay)
     {
-        audioPlayer.PlaySound(music);
+        audioPlayer.PlaySound(toPlay);
     }
 
     public void StopMusic()

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
+  m_Name: _Player_Ryn
+  m_EditorClassIdentifier: 
+  nom: Ryn
+  description:
+    frenchText: "R\xF4deuse tiefline"
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: 92fd6c3e51dcfc248aa5c7bccb4f385a, type: 3}
+  nameColor: {r: 0.8490566, g: 0.42241287, b: 0.25231397, a: 1}
+  characterSprite: {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
+    - {fileID: 21300000, guid: 1e3eb10232338fc4a8dd293c45220601, type: 3}
+  handSprite: {fileID: 21300000, guid: 28c34988060472e448246683eab2eec0, type: 3}
+  displayHand: 0
+  handHeight: 0
+  uiHeight: 1.1
+  health: 12
+  armor: 2
+  defense: 3
+  accuracy: 1
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 55
+  speed: 6
+  dangerosityMaxDistance: 25
+  dangerosityMinimumDistance: 15
+  opportunitySpell: {fileID: 11400000, guid: 59fb311f2c750fc458c2da6eb42637eb, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
+  - {fileID: 11400000, guid: 6e51529f14f9d5f4a9860ded88a7bd31, type: 2}
+  - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

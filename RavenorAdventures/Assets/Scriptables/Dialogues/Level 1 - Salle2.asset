@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: Level 1 - Salle2
   m_EditorClassIdentifier: 
   sentences:
-  - talker: {fileID: 0}
-    text:
-      frenchText: Entrant dans la salle, Ryn vit Ylia.
-      englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CYlia ! \xC7a va ? O\xF9 sont les autres ?\u201D"

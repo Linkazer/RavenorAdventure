@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
+  m_Name: _Player_Sadrif
+  m_EditorClassIdentifier: 
+  nom: Sadrif
+  description:
+    frenchText: Thaumaturge humain
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
+  nameColor: {r: 0.6132076, g: 0.3571654, b: 0.15908688, a: 1}
+  characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}
+    - {fileID: 21300000, guid: dffd536c8c7169b4fb89664890a87147, type: 3}
+  handSprite: {fileID: 21300000, guid: 771d8ca52f078a7468d4a87afbc5ebd4, type: 3}
+  displayHand: 0
+  handHeight: 0
+  uiHeight: 1.15
+  health: 12
+  armor: 0
+  defense: 2
+  accuracy: 0
+  power: 1
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 55
+  speed: 5
+  dangerosityMaxDistance: 65
+  dangerosityMinimumDistance: 45
+  opportunitySpell: {fileID: 11400000, guid: 4c0851a9f67c2c34aab31dcdf9fcce10, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
+  - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
+  - {fileID: 11400000, guid: a2b651b31841e304091d1b5f48e6e043, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

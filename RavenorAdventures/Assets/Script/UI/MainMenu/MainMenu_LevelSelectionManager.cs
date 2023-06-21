@@ -43,6 +43,6 @@ public class MainMenu_LevelSelectionManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        RVN_SceneManager.LoadBattle(selectedLevel.levelPrefab);
+        RVN_SceneManager.LoadBattle(selectedLevel);
     }
 }

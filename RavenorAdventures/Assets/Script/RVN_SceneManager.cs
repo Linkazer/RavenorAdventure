@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
 {
-    [SerializeField] private RVN_LevelManager currentLevel;
+    [SerializeField] private LevelInformation currentLevel;
 
     [SerializeField] private CanvasGroup loadingScreen;
 
@@ -16,7 +16,7 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
 
     public static Action ToDoAfterLoad;
 
-    public static RVN_LevelManager CurrentLevel => instance.currentLevel;
+    public static LevelInformation CurrentLevel => instance.currentLevel;
 
     protected override void Awake()
     {
@@ -35,10 +35,15 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
         instance.LaunchSceneLoading(0, null);
     }
 
-    public static void LoadBattle(RVN_LevelManager newLevel)
+    public static void LoadBattle(LevelInformation newLevel)
     {
         instance.currentLevel = newLevel;
 
+        LoadCurrentBattle();
+    }
+
+    public static void LoadCurrentBattle()
+    {
         instance.LaunchSceneLoading(1, null);
     }
 

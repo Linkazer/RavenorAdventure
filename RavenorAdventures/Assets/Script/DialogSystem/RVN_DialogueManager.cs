@@ -8,6 +8,9 @@ using TMPro;
 
 public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 {
+    [SerializeField] private AudioData dialogueMusic;
+
+    [Header("Dialogue setup")]
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private CanvasGroup characterGroup;
     [SerializeField] private TextMeshProUGUI characterName;
@@ -22,6 +25,7 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
     [SerializeField] private UnityEvent onStartDialogue;
     [SerializeField] private UnityEvent onEndDialogue;
 
+    private AudioData musicOutsideDialogue;
     private DialogueScriptable currentDialogue;
     private int currentSentenceIndex;
 
@@ -44,6 +48,8 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
         if(currentDialogue == null)
         {
             onStartDialogue?.Invoke();
+
+            MusicManager.instance.AskToPlayMusic(dialogueMusic, false);
         }
 
         currentDialogue = toPlay;
@@ -131,6 +137,8 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
     {
         onDialogueEndCallback?.Invoke();
         onEndDialogue?.Invoke();
+
+        MusicManager.instance.PlayMainMusic();
 
         currentDialogue = null;
         onDialogueEndCallback = null;

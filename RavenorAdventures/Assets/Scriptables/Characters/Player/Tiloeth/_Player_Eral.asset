@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
+  m_Name: _Player_Eral
+  m_EditorClassIdentifier: 
+  nom: Eral
+  description:
+    frenchText: Gardien humain
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: b9777391ee6c68d48ab090b1e39e094a, type: 3}
+  nameColor: {r: 0.3773585, g: 0.19434643, b: 0.062299743, a: 1}
+  characterSprite: {fileID: 21300000, guid: 8a6e9885a1a5edb41973912355d85a72, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: 8a6e9885a1a5edb41973912355d85a72, type: 3}
+    - {fileID: 21300000, guid: 78444bf3cd53d4747a396b270bbde7b2, type: 3}
+  handSprite: {fileID: 21300000, guid: 16be4fcbd98fe8a4ba69fdac9536d280, type: 3}
+  displayHand: 0
+  handHeight: 0.05
+  uiHeight: 1.2
+  health: 14
+  armor: 4
+  defense: 2
+  accuracy: 0
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 45
+  speed: 4
+  dangerosityMaxDistance: 0
+  dangerosityMinimumDistance: 15
+  opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
+  - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
+  - {fileID: 11400000, guid: 902a77d5b7a05c14d9cfc28ff71e4bb2, type: 2}
+  usableSpellByTurn: 1
+  usedRessource:
+    id: 0
+  passives: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }

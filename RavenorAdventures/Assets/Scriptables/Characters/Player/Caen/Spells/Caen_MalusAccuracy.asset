@@ -26,13 +26,13 @@ MonoBehaviour:
   projectile: {fileID: 5453536855631355870, guid: ae94db2d2490ef843bddc4d749698cff, type: 3}
   spellAnimation: {fileID: 4071321388199400130, guid: 6d81cec997fd5c243b08ee6ac778c80e, type: 3}
   animationDuration: 0
-  launchAudioData: {fileID: 11400000, guid: e268e93d9365a25479b5264b0f8e8c48, type: 2}
+  launchAudioData: {fileID: 0}
   ressourceCost: 0
   maxUtilisations: -1
   hitableTarget: 3
   castTarget: 3
   castType: 0
-  isCooldownGlobal: 0
+  isCooldownGlobal: 1
   cooldown: 2
   range: 55
   zoneRange: 0

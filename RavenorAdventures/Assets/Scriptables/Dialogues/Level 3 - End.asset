@@ -12,7 +12,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
   m_Name: Level 3 - End
   m_EditorClassIdentifier: 
-  sentences: []
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Eral s\u2019approcha du levier et ouvrit la porte. Les aventuriers
+        d\xE9couvrirent alors un pi\xE8ce remplie de cuves. Toutes \xE9taient vide,
+        \xE0 l\u2019exception d\u2019une."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Approchant d\u2019abords prudemment, Ryn se mit \xE0 courir vers
+        la cuve quant elle se rendit de compte son contenu."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CYlia !\u201D dit-elle en martelant la cuve. \u201CYlia !\u201D"
+      englishText: 
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Flottant dans un liquide transparent, le corps d\u2019Ylia restait
+        inerte."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral posa sa main sur l\u2019\xE9paule de Ryn et la d\xE9pla\xE7a
+        sur le c\xF4t\xE9. Saisissant son \xE9p\xE9e, il donna un violent coup qui
+        brisa la cuve, et attrapa Ylia avant qu\u2019elle ne tombe."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CElle va bien ?! Elle respire ?! Eral !\u201D dit-elle en
+        s\u2019accroupissant."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Apr\xE8s plusieurs secondes, Ylia ouvrit doucement les yeux. Elle
+        essaya difficilement de se lever."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral la rattrapa avant qu\u2019elle ne tr\xE9buche. \u201CDoucement.\u201D
+        dit-il en l\u2019aidant \xE0 se relever. \u201CComment tu te sens ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia tourna sa t\xEAte vers Eral, et lui lan\xE7a un regard perdu.
+        Elle mit quelques seconde avant de r\xE9pondre avec des gestes h\xE9sitants."
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CQu\u2019est-ce qu\u2019elle dit ? Il lui a fait quelque
+        chose ? Si je recroise ce cadavre ambulant je...\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CElle va bien. Elle est juste compl\xE8tement perdue en plus
+        d\u2019\xEAtre fatigu\xE9e.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CPas \xE9tonnant qu\u2019elle soit fatigu\xE9.\u201D dit
+        Sadrif en inspectant les cuves. \u201CCela ressemble \xE0 des extracteurs
+        de maana. Ces machines \xE9taient tr\xE8s utilis\xE9es lors de la chasse
+        aux mages.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia tourna soudainement la t\xEAte vers Sadrif, le regard inquiet."
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CTu penses que \xE7a va aller pour Ylia ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201COn dirait qu\u2019elle n\u2019est pas rest\xE9 assez longtemps
+        pour que les effets soient irr\xE9versible. Apr\xE8s un peu de repos, elle
+        devrait retrouver la forme.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CAlors c\u2019est quoi cette t\xEAte que tu nous fais ?\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Sadrif r\xE9fl\xE9chit pendant quelques secondes. \u201CC\u2019est
+        juste que... Ces cuves sont un peu diff\xE9rentes de celles que j\u2019avais
+        \xE9tudier, et je n\u2019arrive pas \xE0 comprendre en quoi elles le sont.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201COn aura toute le temps pour y r\xE9fl\xE9chir quand on sera
+        dehors. Pour l\u2019instant, trouvons un moyen de quitter cet endroit.\u201D"
+      englishText: 
   responses: []
   references:
     version: 1

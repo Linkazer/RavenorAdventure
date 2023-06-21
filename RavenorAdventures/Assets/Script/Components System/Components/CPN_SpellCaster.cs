@@ -73,6 +73,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actionsLeftThisTurn = amount;
 
+        Debug.Log("Set action left on " + gameObject.name + " : " + actionsLeftThisTurn);
+
         actOnSetActionLeft?.Invoke(actionsLeftThisTurn);
     }
 
@@ -129,6 +131,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SpellScriptable spellToCheck)
     {
+        //Debug.Log($"{spellToCheck?.CastType == SpellCastType.Fast} || {actionsLeftThisTurn} > 0) && {spellToCheck != null} && {spellToCheck?.IsUsable} && ({ressource} == null || {spellToCheck?.RessourceCost} <= {ressource?.CurrentAmount}) && {Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range)}");
+        //Debug.Log($"{Grid.GetNodeFromWorldPoint(actionCasterPosition)}, { Grid.GetNodeFromWorldPoint(actionTargetPosition)}, {spellToCheck?.Range}");
+
         return  (spellToCheck.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
                 spellToCheck != null &&
                 spellToCheck.IsUsable &&

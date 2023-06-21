@@ -91,6 +91,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         plannedAction = findedAction;
 
+        Debug.Log($"Found action : {findedAction?.actionIndex}");
+
         PrepareNextAction(1f);
     }
 
@@ -108,6 +110,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     private void DoNextMove()
     {
+        Debug.Log($"{currentCharacter.name} Action : {plannedAction?.actionIndex} | Score : {plannedAction?.score} | Target : {plannedAction?.actualTarget}");
+
         if (currentCharacterHealth.CurrentHealth <= 0 || enabled == false)
         {
             Debug.Log("No turn needed");

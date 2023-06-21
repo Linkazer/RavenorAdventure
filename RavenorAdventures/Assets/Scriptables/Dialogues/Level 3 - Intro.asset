@@ -15,7 +15,7 @@ MonoBehaviour:
   sentences:
   - talker: {fileID: 11400000, guid: 10382a76801f591498a78f8d82aae0ce, type: 2}
     text:
-      frenchText: '"...yn... Ryn."'
+      frenchText: "\u201C ...yn ... Ryn.\u201D"
       englishText: 
   - talker: {fileID: 0}
     text:
@@ -23,46 +23,51 @@ MonoBehaviour:
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "Sadrif soupira de soulagement. \u201CJ\u2019ai bien cru qu\u2019on
-        allait devoir te porter jusqu\u2019\xE0 la sortie. M\xEAme so pour cela,
-        il faudrait d\u2019j\xE0 que l\u2019on arrive \xE0 sortir.\u201D"
+      frenchText: "Sadrif soupira de soulagement. \u201CJ\u2019ai bien cru que nous
+        allions devoir te porter jusqu\u2019\xE0 la sortie\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Ryn regarda autour d\u2019elle. Elle et Sadrif se trouvaient dans
-        une petite salle, entour\xE9s de mur en pierre et d\u2019une porte robuste."
+      frenchText: "Ryn regarda autour d\u2019elle. Elle se trouvait dans une petite
+        salle, entour\xE9e de mur de pierre et d\u2019une porte robuste \xE0 c\xF4t\xE9
+        de laquelle se trouvait Eral."
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CO\xF9 sont les Eral et Ylia ?\u201D"
+      frenchText: "\u201C... Ylia ?\u201D Ryn se releva d\u2019un coup. \u201CO\xF9
+        est Ylia ?!\u201D dit-elle en secouant Eral."
       englishText: 
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "La voix \xE9touff\xE9e d\u2019Eral provenait de derri\xE8re les
-        murs. \u201CJe suis bloqu\xE9 dans une autre cellule. Quant \xE0 Ylia...\u201D
-        dit-il en empoignant son \xE9p\xE9e."
+      frenchText: "En guise de r\xE9ponse, Eral baissa la t\xEAte."
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CJe ne pense pas qu\u2019il lui fasse du mal. Du moins pas
-        dans l'imm\xE9diat. Elle avait l\u2019air de l\u2019int\xE9resser, \xE7a
-        devrait nous faire gagner un peu de temps pour la retrouver.\u201D"
+      frenchText: "\u201CLa liche avait l\u2019air de s\u2019int\xE9resser particuli\xE8rement
+        \xE0 elle. J\u2019imagine qu\u2019ils ont du l\u2019emmener autre part.\u201D"
+      englishText: 
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CQu\u2019est-ce qu\u2019on fait encore ici alors ?!\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CJe sais. Mais tant qu\u2019on sera enferm\xE9 ici, on ne
-        pourra pas faire grand chose.\u201D"
+      frenchText: "\u201CCrois bien que si on avait pu sortir d\u2019ici, je me serais
+        empress\xE9 de partir \xE0 sa recherche, quitte \xE0 te prendre sur mon dos.\u201D
+        Eral donna un coup d\u2019\xE9paule \xE0 la porte. \u201CMais cette foutu
+        porte ne veut pas bouger d\u2019un pouce.\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Soudain, Sadrif entendit un clic venant de la porte. Accroupit
-        au niveau de la serrure, Ryn rangea quelque chose dans sa poche et poussa
-        la porte, qui s\u2019ouvra lentement."
+      frenchText: "Ryn soupira. Elle se pla\xE7a entre la porte et Eral, poussant
+        l\xE9g\xE8rement ce dernier. Elle sorti des outils de sa poche et s\u2019accroupi
+        au niveau de la serrure."
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CSi c\u2019est que \xE7a, \xE7a devrait pas \xEAtre un gros
-        probl\xE8me.\u201D dit-elle avec un grand sourire\u201D"
+      frenchText: "Rapidement, un l\xE9ger clic se fit entendre, suivit du grincement
+        de la porte qui s\u2019ouvrit. \u201COn se demande ce que vous feriez sans
+        moi, hein ?\u201D"
       englishText: 
   responses: []
   references:

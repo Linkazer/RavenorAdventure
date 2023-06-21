@@ -22,6 +22,15 @@ public class UIOptionHandler : MonoBehaviour
 
     public void UE_OpenOptionMenu(bool state)
     {
+        if(state)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
         optionMenu.gameObject.SetActive(state);
 
         foreach(SoundSlider soundSlider in soundSliders)
@@ -41,5 +50,10 @@ public class UIOptionHandler : MonoBehaviour
         PlayerPrefs.SetFloat(parameter, value);
 
         AudioManager.SetMixerSound(parameter, value);
+    }
+
+    public void UE_QuitGame()
+    {
+        Application.Quit();
     }
 }

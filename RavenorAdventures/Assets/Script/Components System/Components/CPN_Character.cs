@@ -87,7 +87,8 @@ public class CPN_Character : RVN_ComponentHandler
     /// <summary>
     /// Début du tour du personnage.
     /// </summary>
-    public void StartTurn()
+    /// <returns>TRUE if the character is still alive.</returns>
+    public bool StartTurn()
     {
         ActOnBeginTeamTurn?.Invoke(this);
         OnStartTurn?.Invoke();
@@ -96,6 +97,16 @@ public class CPN_Character : RVN_ComponentHandler
         {
             actions[i].ResetData();
         }
+
+        if(GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler selfHealth))
+        {
+            if(!selfHealth.IsAlive)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>

@@ -27,24 +27,25 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CEnfin !\u201D dit Ryn, avec un air soulag\xE9. \u201C\xC7a
-        fait plusieurs fois que je t\u2019appelle, j\u2019avais peur que tu sois
+        fait plusieurs fois que je t\u2019appelle. J\u2019avais peur que tu sois
         aussi devenu sourde.\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201C\xC7a, tu vois, c\u2019est ce qui se passe quand quelqu\u2019un
-        r\xE9fl\xE9chit. Tu devrais essayer de temps \xE0 autre.\u201D"
+      frenchText: "\u201CAvec tout ce que tu d\xE9blat\xE8re \xE0 la minute, je me
+        demande si \xE7a serait une si mauvaise chose.\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Ryn : \u201CTu dis \xE7a parce que t\u2019es jaloux que ce soit
-        moi qui aie trouv\xE9 comment ouvrir la porte.\u201D dit-elle avec un air
-        enjou\xE9."
+      frenchText: "\u201CC\u2019est s\xFBr que c\u2019est pas avec toi qu\u2019on
+        va s\u2019amuser pendant nos aventures. C\u2019est pas trop fatiguant de
+        tirer une tronche pareil \xE0 longueur de journ\xE9e ?\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "Sadrif soupira. \u201CJe ne sais m\xEAme pas pourquoi j\u2019essaye
-        encore.\u201D"
+      frenchText: "\u201CC\u2019est ce qu\u2019on appelle rester attentif. Tu devrais
+        essayer de temps \xE0 autres, \xE7a t\u2019\xE9viterai peut-\xEAtre d\u2019actionner
+        le premier levier que tu croise.\u201D"
       englishText: 
   - talker: {fileID: 0}
     text:

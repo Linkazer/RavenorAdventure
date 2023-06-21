@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2558868667114157278}
   - component: {fileID: 3253170769206184000}
   - component: {fileID: 2911013817654050802}
+  - component: {fileID: 2477283442572968331}
   m_Layer: 0
   m_Name: Tuto
   m_TagString: Untagged
@@ -153,6 +154,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &2477283442572968331
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3123674608969876564}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aea3f8432190d9342b1bf7d3c6f24d45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &3271941232225889888
 PrefabInstance:
   m_ObjectHideFlags: 0

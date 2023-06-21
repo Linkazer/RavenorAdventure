@@ -20,12 +20,12 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "Eral rengaina son \xE9p\xE9e. \u201C\xC7a ressemblait \xE0 des
-        morts-vivants, mais je n\u2019en avais jamais vu des comme \xE7a.\u201D"
+        morts-vivants, mais je n\u2019en avais jamais vu de la sorte.\u201D"
       englishText: 
-  - talker: {fileID: 0}
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia s\u2019abaissa au niveau de l\u2019un des corps, posa sa
-        main sur son torse et ferma les yeux. Apr\xE8s plusieurs secondes, Ylia retira
+        main sur son torse et ferma les yeux. Apr\xE8s plusieurs secondes, elle retira
         sa main subitement et se releva d\u2019une traite."
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
@@ -68,14 +68,15 @@ MonoBehaviour:
       englishText: 
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201C\xC7a veut dire que leurs \xE2mes leur ont \xE9t\xE9 retir\xE9es
-        pendant qu\u2019ils \xE9taient encore en vie. Et cela ne peut \xEAtre l\u2019oeuvre
-        que d\u2019un puissant n\xE9cromancien.\u201D"
+      frenchText: "\u201CLes n\xE9cromanciens utilisent la magie pour r\xE9animer
+        des cadavres, des \xEAtre vivant d\xE9j\xE0 mort. Si les corps que nous avons
+        combattus \xE9taient encore vivant, cela veut dire que leurs \xE2mes leur
+        ont \xE9t\xE9 retir\xE9es pendant qu\u2019ils \xE9taient encore en vie.\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CCette histoire de villageois disparut commence \xE0 prendre
-        une tournure qui me pla\xEEt moyennement.\u201D"
+      frenchText: "\u201CIl semblerait que cette histoire de villageois soit plus
+        complexe que pr\xE9vu.\u201D"
       englishText: 
   responses: []
   references:

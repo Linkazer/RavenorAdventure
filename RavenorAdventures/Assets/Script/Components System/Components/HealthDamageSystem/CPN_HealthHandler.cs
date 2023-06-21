@@ -38,6 +38,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public int Defense => defense;
     public int DefensiveRerolls => defensiveRerolls;
 
+    public bool IsAlive => currentHealth > 0;
+
     public override void SetData(CPN_Data_HealthHandler toSet)
     {
         maxHealth = toSet.MaxHealth();

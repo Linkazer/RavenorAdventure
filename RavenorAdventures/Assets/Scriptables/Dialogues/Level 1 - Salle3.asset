@@ -16,17 +16,18 @@ MonoBehaviour:
   - talker: {fileID: 0}
     text:
       frenchText: "Ouvrant la porte, Ryn se retrouva nez \xE0 nez avec une des cr\xE9atures.
-        Avant de pouvoir r\xE9agir, une d\xE9tonation se fit entendre et la cr\xE9ature
-        tomba \xE0 terre."
+        Avant de pouvoir r\xE9agir, quelque chose explosa au pied de la cr\xE9ature
+        qui tomba \xE0 terre."
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CTe voil\xE0 toi ! Qu\u2019est-ce que tu as encore fait ?\u201D"
+      frenchText: "\u201CVous voil\xE0 ! Qu\u2019est-ce que vous avez encore fait
+        ?\u201D"
       englishText: 
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CC\u2019est vrai \xE7a Ylia ! Qu\u2019est-ce que t\u2019as
-        fait ?\u201D"
+      frenchText: "\u201CJ\u2019ai fait exactement comme tu l\u2019as dit. J\u2019ai
+        cri\xE9 avant d\u2019actionner le levier.\u201D\r"
       englishText: 
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
