@@ -20,6 +20,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     [SerializeField] private float timeBetweenActions = 0.5f;
     [SerializeField] private float timeDelayBeginTurn = 1f;
     [SerializeField] private float timeDelayEndTurn = 0.5f;
+    [SerializeField] private int checksByFrame = 50;
 
     [Header("Debugs")]
     [SerializeField] private CPN_Character currentCharacter;
@@ -110,23 +111,23 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     private void DoNextMove()
     {
-        Debug.Log($"{currentCharacter.name} Action : {plannedAction?.actionIndex} | Score : {plannedAction?.score} | Target : {plannedAction?.actualTarget}");
+        //Debug.Log($"{currentCharacter.name} Action : {plannedAction?.actionIndex} | Score : {plannedAction?.score} | Target : {plannedAction?.actualTarget}");
 
         if (currentCharacterHealth.CurrentHealth <= 0 || enabled == false)
         {
-            Debug.Log("No turn needed");
+            //Debug.Log("No turn needed");
             return;
         }
         else if (plannedAction != null && plannedAction.actionIndex >= 0)
         {
             if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
-                Debug.Log("Movement Action");
+                //Debug.Log("Movement Action");
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
             }
             else
             {
-                Debug.Log("Spell Action");
+                //Debug.Log("Spell Action");
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.spellNodeTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 
@@ -137,21 +138,21 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (!isDoneMoving)
             {
-                Debug.Log("Movement Action Second");
+                //Debug.Log("Movement Action Second");
 
                 currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
                 isDoneMoving = true;
             }
             else
             {
-                Debug.Log("Movement End");
+                //Debug.Log("Movement End");
 
                 EndCharacterTurn(currentCharacter);
             }
         }
         else
         {
-            Debug.Log("No Action End");
+            //Debug.Log("No Action End");
             EndCharacterTurn(currentCharacter);
         }
     }
@@ -175,6 +176,8 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         List<Ai_PlannedAction> possibleActions = new List<Ai_PlannedAction>();
 
         float maxScore = -1;
+
+        int currentCheckDone = 0;
 
         foreach (AI_Consideration consideration in currentAi.Comportement) //Check de chacune des considérations de l'IA
         {
@@ -280,7 +283,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                             }
                         }
 
-                        yield return new WaitForSeconds(Time.deltaTime);
+                        currentCheckDone++;
+
+                        if (currentCheckDone % checksByFrame == 0)
+                        {
+                            yield return new WaitForSeconds(Time.deltaTime);
+                        }
                     }
                 }
 
