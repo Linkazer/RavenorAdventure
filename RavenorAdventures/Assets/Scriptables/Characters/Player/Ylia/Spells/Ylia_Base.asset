@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName:
     frenchText: "Blessure d'\xE2me"
-    englishText: 
+    englishText: Soul wound
   icon: {fileID: 21300000, guid: 1b955d0279e35724d9243c3fa27b454c, type: 3}
   description:
     frenchText: "Attaque la cible avec %diceUsed% d\xE9s. Les d\xE9g\xE2ts ignorent
       l'Armure de la cible."
-    englishText: 
+    englishText: Attacks the target with %diceUsed% dice. Damages ignore the target's
+      Armor.
   castingAnimation: 3
   launchAnimation: 4
   castAnimationDuration: 0.5

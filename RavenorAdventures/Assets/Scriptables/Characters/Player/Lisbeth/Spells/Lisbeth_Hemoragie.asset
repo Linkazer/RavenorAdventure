@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Lisbeth_Hemoragie
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: "H\xE9moragie"
-    englishText: 
+    frenchText: "H\xE9morragie"
+    englishText: Bleeding
   icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
   description:
     frenchText: "Attaque la cible avec %diceUsed% d\xE9s. En cas de touche, applique
-      \"H\xE9moragie\"."
-    englishText: 
+      \"H\xE9morragie\"."
+    englishText: Attacks the target with %diceUsed% dice. If hit, apply "Bleeding".
   castingAnimation: 5
   launchAnimation: 0
   castAnimationDuration: 0.25

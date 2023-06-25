@@ -89,13 +89,22 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
             characterGroup.alpha = 1;
             characterGroup.blocksRaycasts = true;
 
-            leftCharacterDisplay.sprite = sentence.talker.Portrait;
+            if (sentence.talker.Portrait != null)
+            {
+                leftCharacterDisplay.color = Color.white;
+                leftCharacterDisplay.sprite = sentence.talker.Portrait;
+            }
+            else
+            {
+                leftCharacterDisplay.color = new Color(0, 0, 0, 0);
+            }
         }
         else
         {
             characterGroup.alpha = 0;
             characterGroup.blocksRaycasts = false;
         }
+
         /*if (sentence.rightCharacter != null)
         {
             rightCharacterDisplay.enabled = true;

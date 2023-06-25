@@ -7,6 +7,11 @@ public class Node : IHeapItem<Node> {
 
 	private List<NodeDataHanlder> datasOnNode = new List<NodeDataHanlder>();
 
+	public string testName;
+	public string parentName;
+	public string childName;
+	public bool testVisible = true;
+
 	public bool walkable;
 	public bool visible;
 	public Vector3 worldPosition;

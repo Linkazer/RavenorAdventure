@@ -16,10 +16,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f487779e7e37ce940afce2512067183b, type: 3}
   effectName:
     frenchText: Affaiblit
-    englishText: 
+    englishText: Weakened
   effectDescription:
     frenchText: "R\xE9duit la D\xE9fense du personnage de 1."
-    englishText: 
+    englishText: Reduces the character's Defense by 1.
   effectDisplay: {fileID: 0}
   duration: 2
   effects:

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_Lich
   m_EditorClassIdentifier: 
-  nom: Liche
+  nom:
+    frenchText: Liche
+    englishText: Lich
   description:
     frenchText: Liche
-    englishText: 
+    englishText: Lich
   UIPortrait: {fileID: 21300000, guid: 9b2c906b5c6788b4b995105f9baed60f, type: 3}
   nameColor: {r: 0.09011215, g: 0.4245283, b: 0.23348224, a: 1}
   characterSprite: {fileID: 21300000, guid: b3961ac248f330646be75c9aa4cc58e9, type: 3}

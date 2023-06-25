@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPrefab: {fileID: 1847241994724509736, guid: 48101cab7b0d2e14f9bbd0883085fb72, type: 3}
   ID: 
-  nom: "L'\xE9vasion"
-  description: "Apr\xE8s la rencontre avec l'h\xF4te de la crypte, nos aventuriers
-    se r\xE9veille avec un membre manquant."
+  levelName:
+    frenchText: "L'\xE9vasion"
+    englishText: The escape
+  levelDescription:
+    frenchText: "Apr\xE8s la rencontre avec l'h\xF4te de la crypte, nos aventuriers
+      se r\xE9veillent avec un membre manquant."
+    englishText: After an encounter with the crypt's host, our adventurers wake up
+      with one of them missing.
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

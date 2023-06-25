@@ -11,7 +11,7 @@ public class MainMenu_LevelSelector : MonoBehaviour
 
     private void OnEnable()
     {
-        levelName.text = level.nom;
+        levelName.text = level.Nom;
     }
 
     public void SelectLevel()

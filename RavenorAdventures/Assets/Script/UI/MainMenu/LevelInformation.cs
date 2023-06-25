@@ -7,10 +7,13 @@ public class LevelInformation : ScriptableObject
 {
     public RVN_LevelManager levelPrefab;
     public string ID;
-    public string nom;
-    //public string winCondition;
-    //public string looseCondition;
-    [TextArea(2,4)]
-    public string description;
+
+    [SerializeField] private RVN_Text levelName;
+    [SerializeField] private RVN_Text levelDescription;
+
     public List<CharacterScriptable_Battle> charactersInLevel;
+
+    public string Nom => levelName.GetText();
+
+    public string Description => levelDescription.GetText();
 }

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName:
     frenchText: Second souffle
-    englishText: 
+    englishText: Second breath
   icon: {fileID: 21300000, guid: bb2ff8d054fa0a14d914439285d7df4b, type: 3}
   description:
-    frenchText: Le personnage regagne %diceUsed% points de vie.
-    englishText: 
+    frenchText: Le personnage regagne %diceUsed% Points de vie.
+    englishText: The character heals %diceUsed% Health points.
   castingAnimation: 0
   launchAnimation: 0
   castAnimationDuration: 0.5

@@ -16,92 +16,112 @@ MonoBehaviour:
   - talker: {fileID: 0}
     text:
       frenchText: "Le dernier Sans-\xC2me tomba au sol, laissant place \xE0 un grand
-        silence. Tous ressentirent un frisson remonter le long de leur colonnes vert\xE9brales."
-      englishText: 
+        silence. Tous ressentirent un frisson remonter le long de leur colonne vert\xE9brale."
+      englishText: The last Soulless fell to the ground, giving way to a great silence.
+        Everyone felt a chill run up their spine.
   - talker: {fileID: 0}
     text:
       frenchText: "Ils observaient attentivement la salle, cherchant d\u2019o\xF9
         le danger pourrait venir, quand ils se mirent \xE0 entendre une voix caverneuse."
-      englishText: 
-  - talker: {fileID: 11400000, guid: 10382a76801f591498a78f8d82aae0ce, type: 2}
+      englishText: They were staring intently around the room, looking to see where
+        the danger might come from, when they began to hear a cavernous voice.
+  - talker: {fileID: 11400000, guid: d3b370a21ce62f545b867ae04a92fe4b, type: 2}
     text:
       frenchText: "\u201CQu\u2019avons-nous l\xE0 ?\u201D La voix semblait provenir
         de partout, laissant son \xE9cho r\xE9sonner dans les oreilles des aventuriers."
-      englishText: 
+      englishText: '"What do we have here?" The voice seemed to come from everywhere,
+        letting its echo reverberate in the adventurers'' ears.'
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "Soudainement, une silhouette squelettique fit son apparition au
         centre de la salle. \u201CJe vois que vous avez fait connaissance avec mes
         cr\xE9ations.\u201D dit la silhouette en survolant les cadavres."
-      englishText: 
+      englishText: Suddenly, a skeletal figure appeared in the center of the room.
+        "I see you've become acquainted with my creations," said the figure, hovering
+        over the corpses.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CJ\u2019imagine que c\u2019est \xE0 vous que l\u2019on doit
         ces disparitions.\u201D Eral brandit son \xE9p\xE9e en direction du fant\xF4me.
         \u201CQu\u2019avez-vous fait des villageois ?\u201D"
-      englishText: 
+      englishText: '"I suppose we owe these disappearances to you." Eral brandished
+        his sword in the ghost''s direction. "What have you done with the villagers?"'
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "La voix de la cr\xE9ature resta calme. \u201CCe que je leur ai
         fait ? Disons que je les ai lib\xE9r\xE9 de leur prison de chair et permis
         de transcender la mort en servant une cause plus grande.\u201D"
-      englishText: 
+      englishText: The creature's voice remained calm. "What I've done to them? Let's
+        say I freed them from their prison of flesh and allowed them to transcend
+        death by serving a greater cause."
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "\u201CQuant \xE0 ces choses,\u201D dit le mort-vivant en d\xE9signant
         les cadavres. \u201CNe sont-elles pas fascinantes ? Je suis moi-m\xEAme surprit
-        que ces corps aient p\xFB tenir debout d\u2019eux-m\xEAmes aussi longtemps.\u201D"
-      englishText: 
+        que ces corps aient pu tenir debout d\u2019eux-m\xEAmes aussi longtemps.\u201D"
+      englishText: '"As for these things," said the undead, pointing to the corpses.
+        "Aren''t they fascinating? I''m amazed myself that these bodies were able
+        to stand up on their own for so long."'
   - talker: {fileID: 0}
     text:
       frenchText: "Voyant la liche distraite par Eral, Sadrif et Ryn saisirent l\u2019occasion.
-        Le premier utilisa son gantelet pour lui tirer une projectile magique en
-        plein dans la poitrine. Quant \xE0 la deuxi\xE8me, elle lan\xE7a une de ses
-        dagues qui vint se planter dans le dos de la cr\xE9ature."
-      englishText: 
+        Le premier utilisa son gantelet pour lui tirer un projectile magique en plein
+        dans la poitrine. Quant \xE0 la deuxi\xE8me, elle lan\xE7a une de ses dagues
+        qui vint se planter dans le dos de la cr\xE9ature."
+      englishText: Seeing the lich distracted by Eral, Sadrif and Ryn seized the
+        opportunity. The former used his gauntlet to fire a magical projectile straight
+        into the creature's chest. As for the second, she threw one of her daggers,
+        which came to rest in the creature's back.
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "Comme seule r\xE9action, le mort-vivant laissa s\u2019\xE9chapper
         un soupir en retirant la dague comme si de rien n\u2019\xE9tait. \u201CMoi
         qui pensais pouvoir enfin avoir un semblant de discussion.\u201D"
-      englishText: 
+      englishText: As his only reaction, the undead let out a sigh as he withdrew
+        the dagger as if nothing had happened. "Just when I thought we could finally
+        have some semblance of a discussion."
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "Survolant la pi\xE8ce du regard, les cavit\xE9s vides qui lui
-        servait d\u2019yeux s'arr\xEAt\xE8rent sur Ylia."
-      englishText: 
+        servaient d\u2019yeux s'arr\xEAt\xE8rent sur Ylia."
+      englishText: Glancing around the room, the empty hollows that served as his
+        eyes locked on Ylia.
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Voyant la liche approcher lentement, Ylia se figea sur place,
         les l\xE8vres tremblantes, incapable de faire le moindre mouvement."
-      englishText: 
+      englishText: Seeing the lich slowly approaching, Ylia froze in place, lips
+        trembling, unable to make the slightest movement.
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "\u201CVoil\xE0 une magie des plus int\xE9ressantes. Exactement
         ce que je cherchais.\u201D"
-      englishText: 
+      englishText: '"It is a really interesting magic we have here. Just what I was
+        looking for."'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "Eral s\u2019interposa devant Ylia, et pointa son \xE9p\xE9e en
         direction du mort-vivant."
-      englishText: 
+      englishText: Eral stepped in front of Ylia, pointing his sword at the undead.
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
-      frenchText: "La cr\xE9ature continua d\u2019avancer, enfon\xE7ant d\u2019elle
-        m\xEAme l\u2019\xE9p\xE9e d\u2019Eral dans le torse, sans que cela ne vienne
-        la ralentir."
-      englishText: 
+      frenchText: "La cr\xE9ature continua d\u2019avancer, enfon\xE7ant d\u2019elle-m\xEAme
+        l\u2019\xE9p\xE9e d\u2019Eral dans le torse, sans que cela ne vienne la ralentir."
+      englishText: The creature continued forward, thrusting Eral's sword into its
+        own torso without slowing it down.
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "\u201CQuant \xE0 vous.\u201D dit le mort-vivant en jetant un oeil
         au reste du groupe. \u201CQui sait, vous pourriez aussi vous r\xE9v\xE9ler
         utile.\u201D "
-      englishText: 
+      englishText: '"As for you." said the undead, glancing at the rest of the group.
+        "Who knows, you might prove useful too."'
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
       frenchText: "Terminant sa phrase, le mort-vivant laissa s\u2019\xE9chapper
         de sa main une \xE9trange lumi\xE8re verte qui vint aveugler les aventuriers."
-      englishText: 
+      englishText: Finishing his sentence, the undead let a strange green light escape
+        from his hand, blinding the adventurers.
   responses: []
   references:
     version: 1

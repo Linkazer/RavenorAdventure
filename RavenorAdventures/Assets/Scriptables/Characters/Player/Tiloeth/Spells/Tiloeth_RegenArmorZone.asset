@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName:
     frenchText: Serment du gardien
-    englishText: 
+    englishText: Guardian's oath
   icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
   description:
     frenchText: "Fait regagner %diceUsed% d'Armures \xE0 tous les alli\xE9s dans
       la zone."
-    englishText: 
+    englishText: Every ally in the area regains %diceUsed% Armors.
   castingAnimation: 3
   launchAnimation: 4
   castAnimationDuration: 0.5

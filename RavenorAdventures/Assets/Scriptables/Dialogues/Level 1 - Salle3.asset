@@ -18,25 +18,27 @@ MonoBehaviour:
       frenchText: "Ouvrant la porte, Ryn se retrouva nez \xE0 nez avec une des cr\xE9atures.
         Avant de pouvoir r\xE9agir, quelque chose explosa au pied de la cr\xE9ature
         qui tomba \xE0 terre."
-      englishText: 
+      englishText: Opening the door, Ryn came face to face with one of the creatures.
+        Before she could react, something exploded at the creature's feet and it
+        fell to the ground.
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201CVous voil\xE0 ! Qu\u2019est-ce que vous avez encore fait
         ?\u201D"
-      englishText: 
+      englishText: '"There you are! What have you done now?"'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CJ\u2019ai fait exactement comme tu l\u2019as dit. J\u2019ai
         cri\xE9 avant d\u2019actionner le levier.\u201D\r"
-      englishText: 
+      englishText: '"I did exactly as you said. I screamed before I pulled the lever."'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "Sadrif laissa tomber sa t\xEAte et soupira."
-      englishText: 
+      englishText: Sadrif dropped his head and sighed.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201COn verra \xE7a plus tard, il y en a d\u2019autres qui arrivent.\u201D"
-      englishText: 
+      englishText: '"We''ll see about that later, there''s more to come."'
   responses: []
   references:
     version: 1

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_SansAme_Chevalier
   m_EditorClassIdentifier: 
-  nom: "Chevalier sans \xE2me"
+  nom:
+    frenchText: "Chevalier Sans-\xC2me"
+    englishText: Soulless knight
   description:
     frenchText: 
     englishText: 

@@ -16,17 +16,19 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CYlia ! \xC7a va ? O\xF9 sont les autres ?\u201D"
-      englishText: 
+      englishText: '"Ylia! Are you alright? Where are the others?"'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia hocha la t\xEAte et pointa vers la grande salle."
-      englishText: 
+      englishText: Ylia nodded and pointed towards the great hall.
   - talker: {fileID: 0}
     text:
       frenchText: "Alors que Ryn s\u2019approcha des portes, elle entendit des grognements
         venant de l\u2019autre c\xF4t\xE9 de la pi\xE8ce. Tournant la t\xEAte, elle
         aper\xE7ut deux autres cr\xE9atures sortant du couloir."
-      englishText: 
+      englishText: As Ryn approached the doors, she heard growling coming from the
+        other side of the room. Turning her head, she saw two more creatures emerging
+        from the corridor.
   responses: []
   references:
     version: 1

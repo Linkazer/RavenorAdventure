@@ -48,6 +48,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Ressources")]
     [SerializeField] protected int ressourceCost;
     [SerializeField] protected int maxUtilisations = -1;
+    [SerializeField] protected bool removeOnNoUutlisation = false;
     protected int utilisationLeft;
     protected bool isSpellLocked;
 
@@ -79,6 +80,8 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public string Name => displayName.GetText();
     public Sprite Icon => icon;
+
+    public bool RemoveOnNoUtilisation => removeOnNoUutlisation;
 
     public virtual string GetDescription()
     {

@@ -247,6 +247,7 @@ public class Pathfinding : MonoBehaviour
 					if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
 					{
 						neighbour.gCost = newMovementCostToNeighbour;
+						neighbour.hCost = 0;
 						neighbour.parent = currentNode;
 						currentNode.children = neighbour;
 

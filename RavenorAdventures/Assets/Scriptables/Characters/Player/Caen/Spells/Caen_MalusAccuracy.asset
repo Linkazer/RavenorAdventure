@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Caen_MalusAccuracy
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: Module aveuglant
-    englishText: 
+    frenchText: 'Gantelet : Projectile aveuglant'
+    englishText: 'Gauntlet : Blinding projectile'
   icon: {fileID: 21300000, guid: 285b3141b5532074ab21e7d3eff80493, type: 3}
   description:
     frenchText: "Attaque la cible avec %diceUsed% d\xE9 et applique \"Aveugl\xE9\"."
-    englishText: 
+    englishText: Attacks the target with %diceUsed% dice and apply "Blinded".
   castingAnimation: 7
   launchAnimation: 0
   castAnimationDuration: 0

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
   m_Name: _Player_Ryn
   m_EditorClassIdentifier: 
-  nom: Ryn
+  nom:
+    frenchText: Ryn
+    englishText: 
   description:
     frenchText: "R\xF4deuse tiefline"
-    englishText: 
+    englishText: Rogue tiefling
   UIPortrait: {fileID: 21300000, guid: 92fd6c3e51dcfc248aa5c7bccb4f385a, type: 3}
   nameColor: {r: 0.8490566, g: 0.42241287, b: 0.25231397, a: 1}
   characterSprite: {fileID: 21300000, guid: 6fa86ab77c0fc57458c9fda2d3812e12, type: 3}
@@ -44,6 +46,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
   - {fileID: 11400000, guid: 6e51529f14f9d5f4a9860ded88a7bd31, type: 2}
   - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
+  - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

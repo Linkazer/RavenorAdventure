@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
 {
-    public class DisplayNode
-    {
-        public SpriteRenderer renderer;
-    }
+    [SerializeField] private GridNodeDisplay prefab;
 
-    [SerializeField] private SpriteRenderer prefab;
+    private GridNodeDisplay[,] displayedGrid = null;
 
-    private DisplayNode[,] displayedGrid;
-
-    private List<DisplayNode> currentDisplayedNodes = new List<DisplayNode>();
+    private List<GridNodeDisplay> currentDisplayedNodes = new List<GridNodeDisplay>();
 
     /// <summary>
     /// Set every wanted nodes at the color wanted.
@@ -41,15 +36,23 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
     /// <param name="ySize">The size of the grid on the Y axis</param>
     public void OnSetGrid(Node[,] grid, int xSize, int ySize)
     {
-        displayedGrid = new DisplayNode[xSize, ySize];
-
-        for(int i = 0; i < xSize; i++)
+        if (displayedGrid == null)
         {
-            for(int j = 0; j < ySize; j++)
+            displayedGrid = new GridNodeDisplay[xSize, ySize];
+
+            for (int i = 0; i < xSize; i++)
             {
-                displayedGrid[i, j] = new DisplayNode();
-                displayedGrid[i, j].renderer = Instantiate(prefab, gameObject.transform);
-                displayedGrid[i, j].renderer.transform.position = grid[i, j].worldPosition;
+                for (int j = 0; j < ySize; j++)
+                {
+                    if (displayedGrid[i, j] == null)
+                    {
+                        displayedGrid[i, j] = Instantiate(prefab, gameObject.transform);
+                        displayedGrid[i, j].transform.position = grid[i, j].worldPosition;
+                        displayedGrid[i, j].node = grid[i, j];
+                        displayedGrid[i, j].node.testName = $"Grid [{i},{j}]";
+                        displayedGrid[i, j].gameObject.name = $"Grid [{i},{j}]";
+                    }
+                }
             }
         }
     }
@@ -67,7 +70,9 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
         {
             Node currentFeedbacked = toFeedbacks[i];
 
-            displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.color = color;
+            displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].SetColor(color);
+
+            /*displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.color = color;
             if (displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled && color.a == 0)
             {
                 displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled = false;
@@ -75,7 +80,7 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
             else if (!displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled && color.a != 0)
             {
                 displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled = true;
-            }
+            }*/
 
             currentDisplayedNodes.Add(displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY]);
         }
@@ -86,24 +91,22 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
     /// </summary>
     public void OnUnsetGridFeedback()
     {
-        OnUnsetGridFeedback(new List<DisplayNode>(currentDisplayedNodes));
+        OnUnsetGridFeedback(new List<GridNodeDisplay>(currentDisplayedNodes));
 
-        currentDisplayedNodes = new List<DisplayNode>();
+        currentDisplayedNodes = new List<GridNodeDisplay>();
     }
     
     /// <summary>
     /// Unset the color of a list of Node.
     /// </summary>
     /// <param name="toFeedbacks">The list of node to reset.</param>
-    public void OnUnsetGridFeedback(List<DisplayNode> toFeedbacks) //CODE REVIEW : Voir pour le faire plus proprement
+    public void OnUnsetGridFeedback(List<GridNodeDisplay> toFeedbacks) //CODE REVIEW : Voir pour le faire plus proprement
     {
-        Color nullColor = Color.white;
-        nullColor.a = 0;
+        Color nullColor = new Color(0, 0, 0, 0);
 
         for(int i = 0; i < toFeedbacks.Count; i++)
         {
-            toFeedbacks[i].renderer.color = nullColor;
-            toFeedbacks[i].renderer.enabled = false;
+            toFeedbacks[i].SetColor(nullColor);
 
             currentDisplayedNodes.Remove(toFeedbacks[i]);
         }

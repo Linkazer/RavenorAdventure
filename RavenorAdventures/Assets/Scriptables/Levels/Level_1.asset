@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPrefab: {fileID: 429593234369219505, guid: b85e222c48bffa141b9219be746e7c07, type: 3}
   ID: 
-  nom: "L'entr\xE9e de la crypte"
-  description: "Apr\xE8s plusieurs jours de marches, les aventuriers arrivent \xE0
-    l'ancienne crypte o\xF9 plusieurs disparitions de villageois ont \xE9t\xE9 signal\xE9."
+  levelName:
+    frenchText: "L'entr\xE9e de la crypte"
+    englishText: The crypt entrance
+  levelDescription:
+    frenchText: "Apr\xE8s plusieurs jours de marche, les aventuriers arrivent \xE0
+      l'ancienne crypte o\xF9 plusieurs disparitions de villageois ont \xE9t\xE9
+      signal\xE9."
+    englishText: After several days' walking, the adventurers arrive at the ancient
+      crypte where nearby villagers have been reported missing.
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

@@ -30,6 +30,11 @@ public class RVN_SceneManager : RVN_Singleton<RVN_SceneManager>
         TimerManager.CreateRealTimer(Time.deltaTime, () => OnSceneLoaded(null));
     }
 
+    public static void ReloadScene()
+    {
+        instance.LaunchSceneLoading(SceneManager.GetActiveScene().buildIndex, null);
+    }
+
     public static void LoadMainMenu()
     {
         instance.LaunchSceneLoading(0, null);

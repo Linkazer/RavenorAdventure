@@ -848,7 +848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7758c5ee9b1ee094c8648cc0176af437, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caec476e3507db647b2a22b0497cec63, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1286,6 +1286,18 @@ PrefabInstance:
     - target: {fileID: 4975807950791171579, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_Name
       value: Cooldown Amount
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306599006944956911, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: m_text
+      value: "R\xE9cup\xE9ration :"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808346190428041914, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: text.frenchText
+      value: "R\xE9cup\xE9ration :"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808346190428041914, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: text.englishText
+      value: 'Recovery :'
       objectReference: {fileID: 0}
     - target: {fileID: 8302742844022032273, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_text
@@ -1750,6 +1762,18 @@ PrefabInstance:
     - target: {fileID: 4975807950791171579, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_Name
       value: Cost Amount
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306599006944956911, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: m_text
+      value: "Co\xFBt :"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808346190428041914, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: text.frenchText
+      value: "Co\xFBt :"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808346190428041914, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
+      propertyPath: text.englishText
+      value: 'Cost :'
       objectReference: {fileID: 0}
     - target: {fileID: 8302742844022032273, guid: b2ad2a76e7ee9cc418f14b9c4e33d05c, type: 3}
       propertyPath: m_fontSize

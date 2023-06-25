@@ -22,9 +22,13 @@ public class RVN_Text
             case PossibleLanguage.Francais:
                 return frenchText;
             case PossibleLanguage.English:
-                return englishText;
+                if (englishText != "")
+                {
+                    return englishText;
+                }
+                break;
         }
 
-        return "";
+        return frenchText;
     }
 }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_SansAme_Armure
   m_EditorClassIdentifier: 
-  nom: "Sans \xE2me en armure"
+  nom:
+    frenchText: "Sans-\xC2me en armure"
+    englishText: Armored Soulless
   description:
     frenchText: 
     englishText: 

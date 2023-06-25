@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7cc32be1e8009443b9ccfe0489da338, type: 3}
   m_Name: _Player_Sadrif
   m_EditorClassIdentifier: 
-  nom: Sadrif
+  nom:
+    frenchText: Sadrif
+    englishText: 
   description:
     frenchText: Thaumaturge humain
-    englishText: 
+    englishText: Thaumaturge human
   UIPortrait: {fileID: 21300000, guid: c5b97ca8ae178c340baff268e467863a, type: 3}
   nameColor: {r: 0.6132076, g: 0.3571654, b: 0.15908688, a: 1}
   characterSprite: {fileID: 21300000, guid: e6269e4796902e643a6499f6779c7902, type: 3}

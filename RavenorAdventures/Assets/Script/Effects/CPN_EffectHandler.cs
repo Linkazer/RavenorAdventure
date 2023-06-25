@@ -64,6 +64,11 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
             potentialAppliedEffect.ApplyEffect(Handler);
 
             currentAppliedEffects.Add(potentialAppliedEffect);
+
+            if (toApply.Duration == 0)
+            {
+                RemoveEffect(toApply);
+            }
         }
 
         if (potentialAppliedEffect != null)

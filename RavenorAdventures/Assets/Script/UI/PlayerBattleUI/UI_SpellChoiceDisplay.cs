@@ -32,6 +32,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 }
 
                 SetSpells(caster);
+                caster.actOnUpdateSpell += SetSpells;
 
                 CheckSpellUsabilities(caster.ActionLeftThisTurn);
             }
@@ -87,6 +88,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 caster.actOnSetActionLeft -= CheckSpellUsabilities;
                 caster.actOnSelectSpell -= OnSelectSpell;
                 caster.actOnUnselectSpell -= OnUnselectSpell;
+                caster.actOnUpdateSpell -= SetSpells;
 
                 if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
                 {

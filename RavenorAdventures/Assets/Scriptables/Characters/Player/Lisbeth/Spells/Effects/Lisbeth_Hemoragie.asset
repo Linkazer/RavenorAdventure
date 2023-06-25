@@ -15,11 +15,11 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
   effectName:
-    frenchText: "H\xE9moragie"
-    englishText: 
+    frenchText: "H\xE9morragie"
+    englishText: Bleeding
   effectDescription:
     frenchText: "Au d\xE9but de chaque tour, le personnage subit 1 point de d\xE9g\xE2t."
-    englishText: 
+    englishText: At the start of each turn, the character suffers 1 point of damage.
   effectDisplay: {fileID: 0}
   duration: 2
   effects:

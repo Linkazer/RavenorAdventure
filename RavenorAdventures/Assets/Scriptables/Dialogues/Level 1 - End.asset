@@ -16,68 +16,79 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CC\u2019\xE9tait quoi ces trucs ?\u201D"
-      englishText: 
+      englishText: '"What were those things?"'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "Eral rengaina son \xE9p\xE9e. \u201C\xC7a ressemblait \xE0 des
         morts-vivants, mais je n\u2019en avais jamais vu de la sorte.\u201D"
-      englishText: 
+      englishText: Eral sheathed his sword. "It looked like undeads, but I'd never
+        seen one like it."
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia s\u2019abaissa au niveau de l\u2019un des corps, posa sa
         main sur son torse et ferma les yeux. Apr\xE8s plusieurs secondes, elle retira
         sa main subitement et se releva d\u2019une traite."
-      englishText: 
+      englishText: Ylia lowered herself to the level of one of the bodies, placed
+        her hand on its chest and closed her eyes. After several seconds, she suddenly
+        withdrew her hand and rose to her feet.
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201CTu as trouv\xE9 quelque chose ?\u201D"
-      englishText: 
+      englishText: '"Did you find something?"'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "H\xE9sitant quelques secondes, Ylia r\xE9pondit par un encha\xEEnement
         de signes."
-      englishText: 
+      englishText: Hesitating for a few seconds, Ylia replied with a series of signs.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CElle dit que ces corps n'avaient pas d\u2019\xE2me. Mais
         ce n\u2019est pas le cas de tous les morts-vivants ?\u201D"
-      englishText: 
+      englishText: '"She says these bodies had no souls. But isn''t that the case
+        with every undeads ?"'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia secoua la t\xEAte avant de reprendre."
-      englishText: 
+      englishText: Ylia shook her head and continued.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CComment \xE7a ils \xE9taient vivants ?\u201D"
-      englishText: 
+      englishText: '"What do you mean they were alive?"'
   - talker: {fileID: 0}
     text:
       frenchText: "Alors qu\u2019Ylia r\xE9fl\xE9chissait, cherchant un moyen d\u2019expliquer
         clairement, Sadrif intervint."
-      englishText: 
+      englishText: As Ylia pondered, looking for a way to explain clearly, Sadrif
+        intervened.
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201CTu veux dire que leur enveloppe charnelle \xE9tait encore
         vivante ? \xC7a voudrait dire que\u2026\u201D Sadrif laissa sa phrase en
         suspens, mais Eral compris o\xF9 il voulait en venir."
-      englishText: 
+      englishText: '"You mean their carnal envelope was still alive? That would mean
+        that..." Sadrif left his sentence hanging, but Eral understood what he was
+        getting at.'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CQue ? Que quoi ? Si tu finis pas tes phrases, faut pas s\u2019\xE9tonner
         qu\u2019on comprenne rien.\u201D"
-      englishText: 
+      englishText: '"That ? Mean that what ? If you don''t finish your sentences,
+        don''t be surprised if we don''t understand anything."'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CLes n\xE9cromanciens utilisent la magie pour r\xE9animer
-        des cadavres, des \xEAtre vivant d\xE9j\xE0 mort. Si les corps que nous avons
-        combattus \xE9taient encore vivant, cela veut dire que leurs \xE2mes leur
-        ont \xE9t\xE9 retir\xE9es pendant qu\u2019ils \xE9taient encore en vie.\u201D"
-      englishText: 
+        des cadavres, des \xEAtres vivants d\xE9j\xE0 morts. Si les corps que nous
+        avons combattus \xE9taient encore vivant, cela veut dire que leurs \xE2mes
+        leur ont \xE9t\xE9 retir\xE9es pendant qu\u2019ils \xE9taient encore en vie.\u201D"
+      englishText: '"Necromancers use magic to reanimate corpses, living beings that
+        are already dead. If the bodies we fought were still alive, that means their
+        souls were taken from them while they were still alive."'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201CIl semblerait que cette histoire de villageois soit plus
         complexe que pr\xE9vu.\u201D"
-      englishText: 
+      englishText: '"It would appear that this villager business is more complex
+        than expected."'
   responses: []
   references:
     version: 1

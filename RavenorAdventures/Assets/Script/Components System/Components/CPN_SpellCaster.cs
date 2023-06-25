@@ -35,6 +35,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public Action<int> actOnSetActionLeft;
     public Action<SpellScriptable> actOnSelectSpell;
     public Action<SpellScriptable> actOnUnselectSpell;
+    public Action<CPN_SpellCaster> actOnUpdateSpell;
 
     public List<SpellScriptable> Spells => spells;
     public SpellScriptable OpportunitySpell => opportunitySpell;
@@ -310,9 +311,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         spells = new List<SpellScriptable>();
         foreach (SpellScriptable spell in toSet.AvailableSpells())
         {
-            spells.Add(Instantiate(spell));
-
-            spells[spells.Count - 1].SetSpell();
+            AddSpell(spell);
         }
 
         opportunitySpell = toSet.OpportunitySpell();
@@ -326,6 +325,28 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         power = toSet.Power();
 
         ResetData();
+    }
+
+    public void AddSpell(SpellScriptable toAdd)
+    {
+        spells.Add(Instantiate(toAdd));
+        spells[spells.Count - 1].SetSpell();
+
+        actOnUpdateSpell?.Invoke(this);
+    }
+
+    public void RemoveSpell(SpellScriptable toRemove)
+    {
+        for(int i = 0; i < spells.Count;i++)
+        {
+            if(spells[i].name.Contains(toRemove.name))
+            {
+                spells.RemoveAt(i);
+
+                actOnUpdateSpell?.Invoke(this);
+                break;
+            }
+        }
     }
 
     public void UpdateCooldowns()

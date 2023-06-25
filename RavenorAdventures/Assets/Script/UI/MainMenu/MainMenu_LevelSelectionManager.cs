@@ -23,8 +23,8 @@ public class MainMenu_LevelSelectionManager : MonoBehaviour
 
         selectedLevel = newLevel;
 
-        levelName.text = selectedLevel.nom;
-        levelDescription.text = selectedLevel.description;
+        levelName.text = selectedLevel.Nom;
+        levelDescription.text = selectedLevel.Description;
 
         for(int i = 0; i < characters.Length; i++)
         {

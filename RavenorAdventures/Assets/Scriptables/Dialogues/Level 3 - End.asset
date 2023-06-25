@@ -16,95 +16,111 @@ MonoBehaviour:
   - talker: {fileID: 0}
     text:
       frenchText: "Eral s\u2019approcha du levier et ouvrit la porte. Les aventuriers
-        d\xE9couvrirent alors un pi\xE8ce remplie de cuves. Toutes \xE9taient vide,
+        d\xE9couvrirent alors une pi\xE8ce remplie de cuves. Toutes \xE9taient vides,
         \xE0 l\u2019exception d\u2019une."
-      englishText: 
+      englishText: Eral approached the lever and opened the door. The adventurers
+        discovered a room filled with vats. All but one were empty.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Approchant d\u2019abords prudemment, Ryn se mit \xE0 courir vers
-        la cuve quant elle se rendit de compte son contenu."
-      englishText: 
+      frenchText: "Approchant d\u2019abord prudemment, Ryn se mit \xE0 courir vers
+        la cuve quand elle se rendit de compte son contenu."
+      englishText: Approaching cautiously at first, Ryn ran towards the vat when
+        she realized its contents.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CYlia !\u201D dit-elle en martelant la cuve. \u201CYlia !\u201D"
-      englishText: 
+      englishText: '"Ylia!" she said, pounding the vat. "Ylia!"'
   - talker: {fileID: 0}
     text:
       frenchText: "Flottant dans un liquide transparent, le corps d\u2019Ylia restait
         inerte."
-      englishText: 
+      englishText: Floating in a transparent liquid, Ylia's body remained inert.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "Eral posa sa main sur l\u2019\xE9paule de Ryn et la d\xE9pla\xE7a
         sur le c\xF4t\xE9. Saisissant son \xE9p\xE9e, il donna un violent coup qui
         brisa la cuve, et attrapa Ylia avant qu\u2019elle ne tombe."
-      englishText: 
+      englishText: Eral put his hand on Ryn's shoulder and moved her aside. Grabbing
+        his sword, he delivered a violent blow that shattered the vat, and caught
+        Ylia before she could fall.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CElle va bien ?! Elle respire ?! Eral !\u201D dit-elle en
         s\u2019accroupissant."
-      englishText: 
+      englishText: '"Is she okay?! Is she breathing?! Eral!" she said, crouching
+        down.'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Apr\xE8s plusieurs secondes, Ylia ouvrit doucement les yeux. Elle
         essaya difficilement de se lever."
-      englishText: 
+      englishText: After several seconds, Ylia slowly opened her eyes. She struggled
+        to stand up.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "Eral la rattrapa avant qu\u2019elle ne tr\xE9buche. \u201CDoucement.\u201D
         dit-il en l\u2019aidant \xE0 se relever. \u201CComment tu te sens ?\u201D"
-      englishText: 
+      englishText: Eral caught her before she stumbled. "Easy now." he said, helping
+        her to her feet. "How do you feel?"
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia tourna sa t\xEAte vers Eral, et lui lan\xE7a un regard perdu.
-        Elle mit quelques seconde avant de r\xE9pondre avec des gestes h\xE9sitants."
-      englishText: 
+        Elle mit quelques secondes avant de r\xE9pondre avec des gestes h\xE9sitants."
+      englishText: Ylia turned her head towards Eral, and gave him a confused look.
+        It took her a few seconds to answer with hesitant gestures.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CQu\u2019est-ce qu\u2019elle dit ? Il lui a fait quelque
         chose ? Si je recroise ce cadavre ambulant je...\u201D"
-      englishText: 
+      englishText: '"What''s she saying? Did he do something to her? If I run into
+        that walking corpse again I''ll..."'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CElle va bien. Elle est juste compl\xE8tement perdue en plus
         d\u2019\xEAtre fatigu\xE9e.\u201D"
-      englishText: 
+      englishText: '"She''s fine. She''s just completely lost on top of being tired."'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201CPas \xE9tonnant qu\u2019elle soit fatigu\xE9.\u201D dit
         Sadrif en inspectant les cuves. \u201CCela ressemble \xE0 des extracteurs
         de maana. Ces machines \xE9taient tr\xE8s utilis\xE9es lors de la chasse
         aux mages.\u201D"
-      englishText: 
+      englishText: '"No wonder she''s tired," says Sadrif, inspecting the vats. "These
+        look like maana extractors. These machines were widely used when hunting
+        mages."'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia tourna soudainement la t\xEAte vers Sadrif, le regard inquiet."
-      englishText: 
+      englishText: Ylia suddenly turned her head towards Sadrif, her gaze worried.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201CTu penses que \xE7a va aller pour Ylia ?\u201D"
-      englishText: 
+      englishText: '"Do you think Ylia''s going to be okay?"'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\u201COn dirait qu\u2019elle n\u2019est pas rest\xE9 assez longtemps
-        pour que les effets soient irr\xE9versible. Apr\xE8s un peu de repos, elle
+        pour que les effets soient irr\xE9versibles. Apr\xE8s un peu de repos, elle
         devrait retrouver la forme.\u201D"
-      englishText: 
+      englishText: '"It doesn''t look like she stayed long enough for the effects
+        to be irreversible. After a little rest, she should be back in shape."'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CAlors c\u2019est quoi cette t\xEAte que tu nous fais ?\u201D"
-      englishText: 
+      englishText: '"So what''s with your face?"'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "Sadrif r\xE9fl\xE9chit pendant quelques secondes. \u201CC\u2019est
         juste que... Ces cuves sont un peu diff\xE9rentes de celles que j\u2019avais
-        \xE9tudier, et je n\u2019arrive pas \xE0 comprendre en quoi elles le sont.\u201D"
-      englishText: 
+        \xE9tudi\xE9es, et je n\u2019arrive pas \xE0 comprendre en quoi elles le
+        sont.\u201D"
+      englishText: Sadrif thought for a few seconds. "It's just that... These vats
+        are a little different from the ones I'd been studying, and I can't figure
+        out how they're different."
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201COn aura toute le temps pour y r\xE9fl\xE9chir quand on sera
         dehors. Pour l\u2019instant, trouvons un moyen de quitter cet endroit.\u201D"
-      englishText: 
+      englishText: '"We''ll have plenty of time to think about it when we get outside.
+        For now, let''s find a way out of this place."'
   responses: []
   references:
     version: 1

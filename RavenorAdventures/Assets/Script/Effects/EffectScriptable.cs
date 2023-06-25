@@ -25,7 +25,7 @@ public class EffectScriptable : ScriptableObject
     public Sprite Icon => icon;
     public GameObject EffectDisplay => effectDisplay;
 
-    public float Duration => duration != 0 ? duration : 0.5f;
+    public float Duration => duration; //duration != 0 ? duration : 0.5f;
 
     public List<Effect> GetEffects => effects;
 

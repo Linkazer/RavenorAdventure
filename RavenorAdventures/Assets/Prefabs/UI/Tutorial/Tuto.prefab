@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 266f87585bb3a7b43b21e51fe3041cc7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9494ca1aa1fda1440be060bb91cdc896, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -181,6 +181,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1862740192184131287}
     m_Modifications:
     - target: {fileID: 6263275517715938762, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
+      propertyPath: m_text
+      value: Valider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6263275517715938762, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
       propertyPath: m_fontSize
       value: 32
       objectReference: {fileID: 0}
@@ -267,6 +271,14 @@ PrefabInstance:
     - target: {fileID: 7113042182282328740, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868568073864617631, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
+      propertyPath: text.frenchText
+      value: Valider
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868568073864617631, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
+      propertyPath: text.englishText
+      value: Validate
       objectReference: {fileID: 0}
     - target: {fileID: 7940284546194596632, guid: fa89a20112c358f42bc82313ad34ad0d, type: 3}
       propertyPath: m_Name
