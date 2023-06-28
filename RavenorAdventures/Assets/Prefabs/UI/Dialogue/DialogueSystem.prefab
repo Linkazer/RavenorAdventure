@@ -856,6 +856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueMusic: {fileID: 11400000, guid: b0c49cedd7d811c45a58b98a4725a3c7, type: 2}
+  speakColor: '#000000'
+  descriptionColor: '#5f2a0d'
   dialogueText: {fileID: 3277128326766240014}
   characterGroup: {fileID: 4988021234763891093}
   characterName: {fileID: 595228651290446264}

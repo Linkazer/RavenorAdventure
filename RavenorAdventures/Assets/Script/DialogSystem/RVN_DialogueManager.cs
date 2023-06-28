@@ -9,6 +9,8 @@ using TMPro;
 public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 {
     [SerializeField] private AudioData dialogueMusic;
+    [SerializeField] private string speakColor = "#FFFFFF";
+    [SerializeField] private string descriptionColor = "#FFFFFF";
 
     [Header("Dialogue setup")]
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -82,7 +84,39 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
             characterName.text = "";
         }
 
-        dialogueText.text = sentence.text.GetText();
+        string[] formedSentence = sentence.text.GetText().Split('“', '”');
+
+        string fullSentence = "";
+        bool isSpeaking = true;
+
+        foreach (string str in formedSentence)
+        {
+            isSpeaking = !isSpeaking;
+
+            if(fullSentence != "")
+            {
+                if(!isSpeaking)
+                {
+                    fullSentence += "”";
+                }
+                fullSentence += "</color>";
+            }
+
+            if (isSpeaking)
+            {
+                fullSentence +=  $"<color={speakColor}>“";
+            }
+            else
+            {
+                fullSentence += $"<color={descriptionColor}>";
+            }
+
+            fullSentence += str;
+        }
+
+        fullSentence += "</color>";
+
+        dialogueText.text = fullSentence;
 
         if (sentence.talker != null)
         {
