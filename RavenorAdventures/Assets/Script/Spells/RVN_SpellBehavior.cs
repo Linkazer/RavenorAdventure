@@ -73,7 +73,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     /// </summary>
     /// <param name="spellData"></param>
     /// <returns>Le scriptable avec le bon type.</returns>
-    protected T GetScriptable(LaunchedSpellData spellData)
+    protected virtual T GetScriptable(LaunchedSpellData spellData)
     {
         return spellData.GetScriptableAs<T>();
     }

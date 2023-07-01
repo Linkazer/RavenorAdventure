@@ -8,6 +8,7 @@ public class AppliedEffect
 {
     [SerializeField] private EffectScriptable effect;
     [SerializeField] private float durationLeft;
+    [SerializeField] private int currentStack;
 
     private GameObject effectDisplay;
 
@@ -22,11 +23,17 @@ public class AppliedEffect
         }
     }
 
-    public void ResetEffect(float resetDuration)
+    public void ResetEffect(RVN_ComponentHandler toResetFrom, float resetDuration)
     {
         if (durationLeft < resetDuration)
         {
             durationLeft = resetDuration;
+        }
+
+        if(currentStack < effect.MaxStack)
+        {
+            currentStack++;
+            ApplyEffect(toResetFrom);
         }
     }
 
@@ -40,9 +47,12 @@ public class AppliedEffect
 
     public void RemoveEffect(RVN_ComponentHandler toRemoveFrom)
     {
-        foreach (Effect eff in effect.GetEffects)
+        for (int i = 0; i < currentStack; i++)
         {
-            eff.RemoveEffect(toRemoveFrom);
+            foreach (Effect eff in effect.GetEffects)
+            {
+                eff.RemoveEffect(toRemoveFrom);
+            }
         }
 
         if (effectDisplay != null)
@@ -61,5 +71,6 @@ public class AppliedEffect
         effect = nEffect;
         durationLeft = nDuration;
         effectDisplay = effectDisplayer;
+        currentStack = 1;
     }
 }

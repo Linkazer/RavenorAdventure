@@ -5089,6 +5089,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 429593234369219505, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: startDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e53d385230f5c7a49b8518e6323a1251, type: 2}
     - target: {fileID: 429593234369219506, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_Name
       value: Level_CompositionTester
@@ -7365,7 +7369,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1101322, y: 1}
+    m_SensorSize: {x: 2.1772728, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8587,7 +8591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -8595,7 +8599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y

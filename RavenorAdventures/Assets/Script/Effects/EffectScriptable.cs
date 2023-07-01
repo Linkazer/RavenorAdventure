@@ -19,13 +19,15 @@ public class EffectScriptable : ScriptableObject
 
     [Header("Effect")]
     [SerializeField] private float duration;
+    [SerializeField] private int maxStack = 1;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(Effect))] private List<Effect> effects; //, [SerializeReference, ReferenceEditor(typeof(Effect))]
 
     public bool HideOnApply => hideOnApply;
     public Sprite Icon => icon;
     public GameObject EffectDisplay => effectDisplay;
 
-    public float Duration => duration; //duration != 0 ? duration : 0.5f;
+    public float Duration => duration;
+    public int MaxStack => maxStack;
 
     public List<Effect> GetEffects => effects;
 

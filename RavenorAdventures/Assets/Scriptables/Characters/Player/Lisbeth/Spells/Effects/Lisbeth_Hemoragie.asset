@@ -22,6 +22,7 @@ MonoBehaviour:
     englishText: At the start of each turn, the character suffers 1 point of damage.
   effectDisplay: {fileID: 0}
   duration: 2
+  maxStack: 1
   effects:
   - id: 0
   references:

@@ -29,9 +29,10 @@ MonoBehaviour:
   launchAudioData: {fileID: 0}
   ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
-  castType: 1
+  castType: 0
   isCooldownGlobal: 0
   cooldown: 2
   range: 25

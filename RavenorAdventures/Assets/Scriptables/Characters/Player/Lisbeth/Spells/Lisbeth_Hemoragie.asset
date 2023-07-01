@@ -30,6 +30,7 @@ MonoBehaviour:
   launchAudioData: {fileID: 11400000, guid: 9c28c750c815cca4881cf42b3ed28ef6, type: 2}
   ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
   castType: 0

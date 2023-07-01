@@ -74,8 +74,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actionsLeftThisTurn = amount;
 
-        Debug.Log("Set action left on " + gameObject.name + " : " + actionsLeftThisTurn);
-
         actOnSetActionLeft?.Invoke(actionsLeftThisTurn);
     }
 

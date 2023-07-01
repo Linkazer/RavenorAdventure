@@ -48,7 +48,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
         if (potentialAppliedEffect != null)
         {
-            potentialAppliedEffect.ResetEffect(toApply.Duration);
+            potentialAppliedEffect.ResetEffect(Handler, toApply.Duration);
         }
         else
         {

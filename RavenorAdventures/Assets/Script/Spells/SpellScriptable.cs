@@ -220,7 +220,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
     }
 
-    public List<Node> GetZone(Node startNode, Node casterNode)
+    public virtual List<Node> GetZone(Node startNode, Node casterNode)
     {
         List<Node> toReturn = new List<Node>();
 
