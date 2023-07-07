@@ -213,7 +213,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 possibleMovements.Add(casterNode);
             }
 
-            float opportunityAttackScore = OpportunityAttackScore(currentCharacterHealth, casterNode); // On fait le calcul ici puisque le résultat de changera pas pendant la recherche de l'attaque
+            float opportunityAttackScore = OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode); // On fait le calcul ici puisque le résultat de changera pas pendant la recherche de l'attaque
 
             foreach (CPN_Character target in possibleTargets)
             {
@@ -323,7 +323,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         Node toReturn = null;
 
-        if (OpportunityAttackScore(currentCharacterHealth, casterNode) >= 1)
+        if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
         {
             toReturn = casterNode;
         }
@@ -331,7 +331,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             foreach (Node n in possibleMovements)
             {
-                if (OpportunityAttackScore(currentCharacterHealth, casterNode) >= 1)
+                if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
                 {
                     continue;
                 }
@@ -390,8 +390,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return toReturn;
     }
 
-    private float OpportunityAttackScore(CPN_HealthHandler casterHealthHandler, Node casterNode)
+    private float OpportunityAttackScore(int evasiveAmount, CPN_HealthHandler casterHealthHandler, Node casterNode)
     {
+        if(evasiveAmount > 0)
+        {
+            return 0;
+        }
+
         float opportunityAttackDiceCounter = 0;
 
         List<Node> casterNeighbours = Grid.GetNeighbours(casterNode);

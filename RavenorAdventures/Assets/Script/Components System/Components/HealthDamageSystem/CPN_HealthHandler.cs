@@ -77,13 +77,13 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     /// <param name="damage"></param>
     public void TakeDamage(CPN_SpellCaster caster, float damage)
     {
+        TakeDamage(damage);
+
         actOnTakeDamageSelf?.Invoke(Handler);
         if (caster != null)
         {
             actOnTakeDamageTarget?.Invoke(caster.Handler);
         }
-
-        TakeDamage(damage);
     }
 
     /// <summary>

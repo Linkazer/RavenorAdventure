@@ -15,6 +15,11 @@ public abstract class RVN_LevelEnd : MonoBehaviour
         OnSetLevelEnd();
     }
 
+    private void OnDestroy()
+    {
+        RVN_BattleManager.OnPlayerTeamDie -= LoseLevel;
+    }
+
     private void UnsetLevelEnd()
     {
         RVN_BattleManager.OnPlayerTeamDie -= LoseLevel;

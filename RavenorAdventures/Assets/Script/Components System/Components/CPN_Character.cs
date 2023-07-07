@@ -56,7 +56,7 @@ public class CPN_Character : RVN_ComponentHandler
     {
         scriptable = nScriptable;
 
-        gameObject.name = scriptable.Nom;
+        gameObject.name = scriptable.name;
         gameObject.SetActive(true);
 
         OnSetCharacter?.Invoke(scriptable);

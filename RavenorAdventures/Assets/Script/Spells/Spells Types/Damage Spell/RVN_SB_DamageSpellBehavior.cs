@@ -97,9 +97,16 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                 {
                     if (hitedObject.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                     {
-                        foreach (EffectScriptable eff in usedScriptable.HitEffectsOnTarget)
+                        if (usedScriptable.AreEffectRandom)
                         {
-                            ApplyEffects(effectHandler, eff);
+                            ApplyEffects(effectHandler, usedScriptable.HitEffectsOnTarget[UnityEngine.Random.Range(0, usedScriptable.HitEffectsOnTarget.Count)]);
+                        }
+                        else
+                        {
+                            foreach (EffectScriptable eff in usedScriptable.HitEffectsOnTarget)
+                            {
+                                ApplyEffects(effectHandler, eff);
+                            }
                         }
                     }
                 }
@@ -109,9 +116,16 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             {
                 if (spellToUse.caster.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler effectHandler))
                 {
-                    foreach (EffectScriptable eff in usedScriptable.HitEffectsOnCaster)
+                    if (usedScriptable.AreEffectRandom)
                     {
-                        ApplyEffects(effectHandler, eff);
+                        ApplyEffects(effectHandler, usedScriptable.HitEffectsOnCaster[UnityEngine.Random.Range(0, usedScriptable.HitEffectsOnCaster.Count)]);
+                    }
+                    else
+                    {
+                        foreach (EffectScriptable eff in usedScriptable.HitEffectsOnCaster)
+                        {
+                            ApplyEffects(effectHandler, eff);
+                        }
                     }
                 }
             }

@@ -39,7 +39,7 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
         if (character.HandSprite != null)
         {
-            handHolder.localPosition += new Vector3(0, character.HandHeight, 0);
+            handHolder.localPosition = new Vector3(0, 0.2f + character.HandHeight, 0);
 
             foreach (SpriteRenderer spr in handsSprites)
             {

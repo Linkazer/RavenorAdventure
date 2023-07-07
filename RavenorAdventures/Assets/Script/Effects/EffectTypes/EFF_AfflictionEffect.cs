@@ -24,6 +24,12 @@ public class EFF_AfflictionEffect : Effect
                     (effectTarget as CPN_Character).canPlay++;
                 }
                 break;
+            case Afflicition.Evasive:
+                if(effectTarget.GetComponentOfType<CPN_Movement>(out CPN_Movement evasiveMovement))
+                {
+                    evasiveMovement.currentEvasiveAmount++;
+                }
+                break;
         }
     }
 
@@ -37,6 +43,12 @@ public class EFF_AfflictionEffect : Effect
                     Debug.Log("Fin du stun ??");
 
                     (effectTarget as CPN_Character).canPlay--;
+                }
+                break;
+            case Afflicition.Evasive:
+                if (effectTarget.GetComponentOfType<CPN_Movement>(out CPN_Movement evasiveMovement))
+                {
+                    evasiveMovement.currentEvasiveAmount--;
                 }
                 break;
         }

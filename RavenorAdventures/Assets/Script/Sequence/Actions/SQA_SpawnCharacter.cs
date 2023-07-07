@@ -5,12 +5,20 @@ using UnityEngine;
 public class SQA_SpawnCharacter : SequenceAction
 {
     [SerializeField] private SpawnableCharacterTeam charactersToSpawn;
+    [SerializeField] private Transform[] spawnPositions;
 
     protected override void OnStartAction()
     {
-        foreach (CPN_Character chara in charactersToSpawn.charaToSpawns)
+        for(int i = 0; i < charactersToSpawn.charaToSpawns.Count; i++)
         {
-            RVN_BattleManager.SpawnCharacter(chara, charactersToSpawn.teamIndex);
+            if(spawnPositions.Length != 0)
+            {
+                RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnPositions[i].position);
+            }
+            else
+            {
+                RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex);
+            }
         }
     }
 

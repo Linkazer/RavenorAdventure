@@ -64,6 +64,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private Coroutine currentMovement;
 
+	public int currentEvasiveAmount;
+
 	/// <summary>
 	/// The amount of movement left for the current turn.
 	/// </summary>
@@ -393,6 +395,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	public bool CheckForOpportunityAttack()//CODE REVIEW : Voir si on peut pas le mettre autre part que dans le déplacement (Créer un lien entre le Déplacement et le SpellCaster qui est pas ouf)
 	{
+		if(currentEvasiveAmount > 0)
+        {
+			return false;
+        }
+
 		bool hasBeenHited = false;
 
 		List<Node> neighbours = Grid.GetNeighbours(CurrentNode);

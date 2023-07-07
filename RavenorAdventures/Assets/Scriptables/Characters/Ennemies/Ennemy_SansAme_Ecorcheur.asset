@@ -52,12 +52,6 @@ MonoBehaviour:
   wantedDistanceFromTarget: {x: 0, y: 15}
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
-    wantedActionIndex: 1
-    conditions: []
-    bonusScore: 1
-    calculs:
-    - id: 1
   - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
     wantedActionIndex: 0
     conditions: []
@@ -72,7 +66,7 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 11
-        abscissaCoeficient: 1
-        constantToAdd: 0
-        maxValue: 2
+        abscissaValue: 13
+        abscissaCoeficient: -1
+        constantToAdd: 125
+        maxValue: 100

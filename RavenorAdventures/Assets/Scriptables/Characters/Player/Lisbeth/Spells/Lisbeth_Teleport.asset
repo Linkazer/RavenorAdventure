@@ -32,7 +32,7 @@ MonoBehaviour:
   removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
-  castType: 0
+  castType: 1
   isCooldownGlobal: 0
   cooldown: 2
   range: 25

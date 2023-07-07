@@ -304,6 +304,13 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         OnBeginNewRound?.Invoke();
     }
 
+    public static void SpawnCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition)
+    {
+        CPN_Character newCharacter = Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
+
+        SpawnCharacter(newCharacter, teamIndex);
+    }
+
     public static void SpawnCharacter(CPN_Character toAdd, int teamIndex)
     {
         toAdd.gameObject.SetActive(true);

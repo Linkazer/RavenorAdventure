@@ -13,6 +13,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     [SerializeField, Range(0f, 1f)] private float lifestealPercent;
 
     [Header("Hit effects")]
+    [SerializeField] private bool areEffectsRandom;
     [SerializeField] private List<EffectScriptable> hitEffectsOnTarget;
     [SerializeField] private List<EffectScriptable> hitEffectsOnCaster;
 
@@ -35,6 +36,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
 
     public int OffensiveRerolls => offensiveRerolls;
 
+    public bool AreEffectRandom => areEffectsRandom;
     public List<EffectScriptable> HitEffectsOnTarget => hitEffectsOnTarget;
     public List<EffectScriptable> HitEffectsOnCaster => hitEffectsOnCaster;
 
