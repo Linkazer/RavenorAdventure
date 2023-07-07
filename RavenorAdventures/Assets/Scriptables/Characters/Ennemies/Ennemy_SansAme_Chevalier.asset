@@ -57,6 +57,8 @@ MonoBehaviour:
     conditions:
     - calculImportance: 0
       abscissaValue: 10
+      abcissaCalcul:
+        id: 1
       condition: 3
       baseValue: 2
     bonusScore: 100
@@ -66,16 +68,22 @@ MonoBehaviour:
     conditions: []
     bonusScore: 0
     calculs:
-    - id: 1
+    - id: 2
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
+      type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}
+    00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abscissaValue: 13
+        abcissaCalcul:
+          id: 3
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
+    00000003:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

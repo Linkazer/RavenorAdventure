@@ -68,6 +68,8 @@ MonoBehaviour:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 14
+        abscissaValue: 0
+        abcissaCalcul:
+          id: 0
         condition: 3
         baseValue: 55

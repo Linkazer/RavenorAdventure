@@ -94,6 +94,18 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         currentAppliedEffects.Remove(toRemove);
     }
 
+    public bool HasEffect(EffectScriptable toCheck)
+    {
+        foreach (AppliedEffect eff in currentAppliedEffects)
+        {
+            if (eff.GetEffect.name == toCheck.name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private AppliedEffect TryGetAppliedEffect(EffectScriptable toCheck)
     {
         foreach(AppliedEffect eff in currentAppliedEffects)

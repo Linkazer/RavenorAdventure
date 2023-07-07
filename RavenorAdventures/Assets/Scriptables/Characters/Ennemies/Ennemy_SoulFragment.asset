@@ -57,11 +57,12 @@ MonoBehaviour:
     conditions:
     - calculImportance: 0
       abscissaValue: 13
+      abcissaCalcul:
+        id: 1
       condition: 0
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 1
     - id: 2
     - id: 3
     - id: 4
@@ -70,50 +71,65 @@ MonoBehaviour:
     conditions:
     - calculImportance: 0
       abscissaValue: 13
+      abcissaCalcul:
+        id: 5
       condition: 3
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 5
+    - id: 6
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 1
         abscissaValue: 13
+        abcissaCalcul:
+          id: 7
         abscissaCoeficient: -1
         constantToAdd: 100
         maxValue: 100
-    00000002:
+    00000003:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abscissaValue: 0
+        abcissaCalcul:
+          id: 8
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 45
-    00000003:
-      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: -0.7
-        abscissaValue: 10
-        condition: 3
-        baseValue: 1
     00000004:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: -0.5
         abscissaValue: 14
+        abcissaCalcul:
+          id: 9
         abscissaCoeficient: -1
         constantToAdd: 35
         maxValue: 35
     00000005:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000006:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abscissaValue: 13
+        abcissaCalcul:
+          id: 10
         condition: 3
         baseValue: 15
+    00000007:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000008:
+      type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
+    00000009:
+      type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}
+    0000000A:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

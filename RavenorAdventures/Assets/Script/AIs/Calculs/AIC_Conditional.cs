@@ -18,11 +18,13 @@ public class AIC_Conditional : AI_Calcul
     [SerializeField] private ConditionalWanted condition = ConditionalWanted.Equal;
     [SerializeField] private float baseValue;
 
-    public override float Calculate(float abscissa)
+    public override float Calculate(Ai_PlannedAction plannedAction)
     {
         float toReturn = 0;
 
-        switch(condition)
+        float abscissa = abcissaCalcul.GetAbcissaValue(plannedAction);
+
+        switch (condition)
         {
             case ConditionalWanted.More:
                 if(abscissa > baseValue)

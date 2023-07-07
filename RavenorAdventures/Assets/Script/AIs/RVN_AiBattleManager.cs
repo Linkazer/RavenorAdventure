@@ -3,20 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class Ai_PlannedAction
+{
+    public int actionIndex;
+    public CPN_Character caster;
+    public Node movementTarget;
+    public Node spellNodeTarget;
+    public CPN_Character actualTarget;
+    public List<Node> hitedTargets = new List<Node>();
+    public float minimalDistance;
+    public float score;
+}
+
 public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 {
-    [Serializable]
-    public class Ai_PlannedAction
-    {
-        public int actionIndex;
-        public Node movementTarget;
-        public Node spellNodeTarget;
-        public CPN_Character actualTarget;
-        public List<Node> hitedTargets = new List<Node>();
-        public float minimalDistance;
-        public float score;
-    }
-
     [SerializeField] private float timeBetweenActions = 0.5f;
     [SerializeField] private float timeDelayBeginTurn = 1f;
     [SerializeField] private float timeDelayEndTurn = 0.5f;
@@ -228,6 +229,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     foreach (Node spellNode in spellUsableNodes)
                     {
                         Ai_PlannedAction actionToCheck = new Ai_PlannedAction();
+                        actionToCheck.caster = caster;
                         actionToCheck.spellNodeTarget = spellNode;
                         actionToCheck.actualTarget = target;
                         actionToCheck.movementTarget = movementNode;
@@ -236,7 +238,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                         if (CanDoAction(caster, actionToCheck, consideration, forNextTurn))
                         {
-                            float calculatedScore = CalculateActionScore(actionToCheck, consideration, casterNode);
+                            float calculatedScore = CalculateActionScore(actionToCheck, consideration);
 
                             //Debug.Log($"AVANT : {currentCharacter} on {target} : {calculatedScore}");
 
@@ -559,7 +561,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        if (!CheckConsiderationCondition(caster, actionToCheck, consideration))
+        if (!CheckConsiderationCondition(actionToCheck, consideration))
         {
             return false;
         }
@@ -580,15 +582,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return true;
     }
 
-    private bool CheckConsiderationCondition(CPN_Character caster, Ai_PlannedAction actionToCheck, AI_Consideration consideration)
+    private bool CheckConsiderationCondition(Ai_PlannedAction actionToCheck, AI_Consideration consideration)
     {
-        float abscissa = 0;
+        float conditionResult = 0;
 
         foreach (AIC_Conditional condition in consideration.conditions)
         {
-            abscissa = GetAbscissaValue(condition.abscissaValue, actionToCheck, caster.CurrentNode);
+            conditionResult = condition.Calculate(actionToCheck);
 
-            if(condition.Calculate(abscissa) <= 0)
+            if(conditionResult <= 0)
             {
                 return false;
             }
@@ -602,16 +604,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     /// <param name="plannedAction">L'action à effectuer.</param>
     /// <param name="consideration">La considération à calculer.</param>
-    /// <param name="casterCurrentNode">La case sur laquelle se trouve le personnage IA.</param>
     /// <returns>Le score de l'action.</returns>
-    private float CalculateActionScore(Ai_PlannedAction plannedAction, AI_Consideration consideration, Node casterCurrentNode)
+    private float CalculateActionScore(Ai_PlannedAction plannedAction, AI_Consideration consideration)
     {
         float result = 0;
         float coef = 0;
 
         foreach(AI_Calcul calculValue in consideration.calculs)
         {
-            result += CalculateConsideration(plannedAction, calculValue, casterCurrentNode) * (calculValue.calculImportance + 1);
+            result += CalculateConsideration(plannedAction, calculValue) * (calculValue.calculImportance + 1);
             coef += calculValue.calculImportance + 1;
         }
 
@@ -628,132 +629,15 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     /// <param name="plannedAction">L'action à vérifier.</param>
     /// <param name="calcul">Les calculs à effectuer.</param>
-    /// <param name="casterCurrentNode">La case sur laquelle se trouve le personnage IA.</param>
     /// <returns>Le score de la considération.</returns>
-    private float CalculateConsideration(Ai_PlannedAction plannedAction, AI_Calcul calcul, Node casterCurrentNode)
+    private float CalculateConsideration(Ai_PlannedAction plannedAction, AI_Calcul calcul)
     {
-        float abscissa = GetAbscissaValue(calcul.abscissaValue, plannedAction, casterCurrentNode);
+        float calculResult = calcul.Calculate(plannedAction); ;
 
-        return Mathf.Clamp(calcul.Calculate(abscissa), 0, 1);
+        return Mathf.Clamp(calculResult, 0, 1);
     }
 
-    private float GetAbscissaValue(AiAbscissaType abscissaWanted, Ai_PlannedAction actionToCheck, Node casterCurrentNode)
-    {
-        float toReturn = 0;
-
-        CPN_Character caster = casterCurrentNode.GetNodeComponent<CPN_Character>()[0];
-
-        CPN_Character target = actionToCheck.actualTarget;
-
-        switch(abscissaWanted)
-        {
-            case AiAbscissaType.DistanceFromTarget_CalculatedPosition:
-                toReturn = Pathfinding.GetDistance(actionToCheck.movementTarget, actionToCheck.spellNodeTarget);
-                break;
-            case AiAbscissaType.DistranceFromTarget_BasePosition:
-                toReturn = Pathfinding.GetDistance(casterCurrentNode, actionToCheck.spellNodeTarget);
-                break;
-            case AiAbscissaType.MovementToMake:
-                Pathfinding.CalculatePathfinding(casterCurrentNode, actionToCheck.movementTarget, -1);
-                toReturn = actionToCheck.movementTarget.gCost;
-                break;
-            case AiAbscissaType.IsTargetVisible_BasePosition:
-                toReturn = Grid.IsNodeVisible(casterCurrentNode, actionToCheck.spellNodeTarget) ? 1 : 0;
-                break;
-            case AiAbscissaType.CasterMaxHp:
-                if(caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterMaxHealth))
-                {
-                    toReturn = casterMaxHealth.MaxHealth;
-                }
-                break;
-            case AiAbscissaType.CasterCurrentHp:
-                if (caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterCurrentHealth))
-                {
-                    toReturn = casterCurrentHealth.CurrentHealth;
-                }
-                break;
-            case AiAbscissaType.CasterPercentHp:
-                if (caster != null && caster.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler casterPercentHealth))
-                {
-                    toReturn = casterPercentHealth.CurrentHealth / casterPercentHealth.MaxHealth;
-                }
-                break;
-            case AiAbscissaType.TargetMaxHp:
-                if(target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetMaxHealth))
-                {
-                    toReturn = targetMaxHealth.MaxHealth;
-                }
-                break;
-            case AiAbscissaType.TargetCurrentHp:
-                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetCurrentHealth))
-                {
-                    toReturn = targetCurrentHealth.CurrentHealth;
-                }
-                break;
-            case AiAbscissaType.TargetPercentHp:
-                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetPercentHealth))
-                {
-                    toReturn = targetPercentHealth.CurrentHealth / targetPercentHealth.MaxHealth;
-                }
-                break;
-            case AiAbscissaType.TargetMaxArmor:
-                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetMaxArmor))
-                {
-                    toReturn = targetMaxArmor.MaxArmor;
-                }
-                break;
-            case AiAbscissaType.TargetCurrentArmor:
-                if (target != null && target.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler targetCurrentArmor))
-                {
-                    toReturn = targetCurrentArmor.CurrentArmor;
-                }
-                break;
-            case AiAbscissaType.TargetDangerosity:
-                toReturn = CalculateDangerosityVulnerability(target, true);
-                break;
-            case AiAbscissaType.TargetVulnerability:
-                toReturn = CalculateDangerosityVulnerability(target, false);
-                break;
-            case AiAbscissaType.NumberAllyArea:
-                foreach(Node n in actionToCheck.hitedTargets)
-                {
-                    if(n != casterCurrentNode)
-                    {
-                        List<CPN_Character> alliesInArea = n.GetNodeComponent<CPN_Character>();
-
-                        foreach(CPN_Character c in alliesInArea)
-                        {
-                            if(RVN_BattleManager.AreCharacterAllies(caster, c))
-                            {
-                                toReturn++;
-                            }
-                        }
-                    }
-                }
-                break;
-            case AiAbscissaType.NumberEnnemyArea:
-                foreach (Node n in actionToCheck.hitedTargets)
-                {
-                    if (n != casterCurrentNode)
-                    {
-                        List<CPN_Character> enemiesInArea = n.GetNodeComponent<CPN_Character>();
-
-                        foreach (CPN_Character c in enemiesInArea)
-                        {
-                            if (!RVN_BattleManager.AreCharacterAllies(caster, c))
-                            {
-                                toReturn++;
-                            }
-                        }
-                    }
-                }
-                break;
-        }
-
-        return toReturn;
-    }
-
-    private float CalculateDangerosityVulnerability(CPN_Character character, bool isDangerosity)
+    public static float CalculateDangerosityVulnerability(CPN_Character character, bool isDangerosity)
     {
         float toReturn = 0;
         float distanceScore = 0;

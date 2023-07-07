@@ -27,33 +27,6 @@ public enum AiAbscissaType
     IsTargetVisible_BasePosition,
 }
 
-/// <summary>
-/// Type de calcul d'une IA.
-/// </summary>
-public enum AiCalculType
-{
-    Conditionnal, Affine, Logarythm,
-    Exponential, ReverseExponential,
-    Logistical
-}
-
-[Serializable]
-public class ValueForCalcul
-{
-    public AiCalculType calculType;
-    public AiAbscissaType abscissaValue;
-    public bool checkAroundMax;
-    public float maxValue;
-    public float constant;
-    public float coeficient;
-    public float calculImportance = 1;
-
-    public ValueForCalcul()
-    {
-        calculImportance = 1;
-    }
-}
-
 [Serializable]
 public class AI_Consideration
 {

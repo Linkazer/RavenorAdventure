@@ -65,7 +65,10 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 13
+        abcissaCalcul:
+          id: 2
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
+    00000002:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

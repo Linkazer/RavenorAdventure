@@ -68,6 +68,8 @@ MonoBehaviour:
       data:
         calculImportance: 0
         abscissaValue: 13
+        abcissaCalcul:
+          id: 3
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
@@ -76,6 +78,12 @@ MonoBehaviour:
       data:
         calculImportance: 0
         abscissaValue: 10
+        abcissaCalcul:
+          id: 4
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 2
+    00000003:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000004:
+      type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}

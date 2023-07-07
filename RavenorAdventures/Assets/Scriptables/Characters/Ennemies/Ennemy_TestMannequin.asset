@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_TestMannequin
   m_EditorClassIdentifier: 
-  nom: Spectre
+  nom:
+    frenchText: 
+    englishText: 
   description:
     frenchText: 
     englishText: 
@@ -73,6 +75,8 @@ MonoBehaviour:
       data:
         calculImportance: 0
         abscissaValue: 13
+        abcissaCalcul:
+          id: 4
         abscissaCoeficient: -1
         constantToAdd: 50
         maxValue: 50
@@ -81,6 +85,8 @@ MonoBehaviour:
       data:
         calculImportance: 1
         abscissaValue: 7
+        abcissaCalcul:
+          id: 5
         abscissaCoeficient: 0
         constantToAdd: 0
         maxValue: 4
@@ -89,6 +95,14 @@ MonoBehaviour:
       data:
         calculImportance: 1
         abscissaValue: 8
+        abcissaCalcul:
+          id: 6
         abscissaCoeficient: 0
         constantToAdd: 0
         maxValue: 4
+    00000004:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000005:
+      type: {class: AI_CA_TargetDangerosity, ns: , asm: ravenor_engine}
+    00000006:
+      type: {class: AI_CA_TargetVulnerability, ns: , asm: ravenor_engine}
