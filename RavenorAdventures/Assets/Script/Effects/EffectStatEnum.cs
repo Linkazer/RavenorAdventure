@@ -4,16 +4,14 @@ using UnityEngine;
 
 public enum EffectStatEnum
 {
-    //HealthHandler
     Armor,
     MaxArmor,
     Defense,
-    //SpellCaster
     BaseDamage,
     Accuracy,
     OffensiveRerolls,
     ActionByTurn,
-    //Movement
     Movement,
     DefenseiveRerolls,
+    MaxHealth
 }

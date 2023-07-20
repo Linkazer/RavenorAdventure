@@ -127,6 +127,34 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
         }
     }
 
+    public void AddMaxHealth(int healthToAdd)
+    {
+        if(healthToAdd > 0)
+        {
+            maxHealth += healthToAdd;
+
+            currentHealth += healthToAdd;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            OnChangeHealth?.Invoke(currentHealth);
+            actOnChangeHealth(currentHealth);
+        }
+    }
+
+    public void RemoveMaxHealth(int healthToRemove)
+    {
+        if (healthToRemove > 0)
+        {
+            maxHealth -= healthToRemove;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            OnChangeHealth?.Invoke(currentHealth);
+            actOnChangeHealth(currentHealth);
+        }
+    }
+
     private void Die()
     {
         actOnDeath?.Invoke(Handler);

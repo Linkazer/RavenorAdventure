@@ -178,9 +178,12 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
             if(launchedSpell.scriptable.IsCooldownGlobal)
             {
-                for(int i = 1; i < spells.Count; i++)
+                for(int i = 0; i < spells.Count; i++)
                 {
-                    spells[i].SetCooldown(launchedSpell.scriptable.StartCooldown);
+                    if (spells[i].IsCooldownGlobal)
+                    {
+                        spells[i].SetCooldown(launchedSpell.scriptable.StartCooldown);
+                    }
                 }
             }
             else

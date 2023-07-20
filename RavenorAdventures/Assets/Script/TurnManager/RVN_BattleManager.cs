@@ -352,7 +352,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if (teams[i].characters.Contains(toRemove))
             {
-                Debug.Log("Remove : " + toRemove.gameObject.name);
                 teams[i].characters.Remove(toRemove);
                 break;
             }

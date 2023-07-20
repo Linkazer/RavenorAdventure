@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8716802209285284121}
-  - component: {fileID: 4921299765232839294}
   - component: {fileID: 7640406661400301609}
+  - component: {fileID: 6311557672667765870}
   m_Layer: 0
   m_Name: SpecialEffect
   m_TagString: Untagged
@@ -32,20 +32,6 @@ Transform:
   m_Father: {fileID: 2982950257873823883}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4921299765232839294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7677078605749546164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705c16536a1a3ef41ae004ccfd233f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectToRemove: {fileID: 11400000, guid: 4e9516ce66c3e0442b17f88b3d96f88a, type: 2}
-  characterHealthToCheck: {fileID: 2297418374068219078}
 --- !u!114 &7640406661400301609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +47,19 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: a3c946d722776a34c91c42d1cbe50f6c, type: 2}
   spellToUse: {fileID: 11400000, guid: 11494d622c59d4f4a8b9f3cf558e168d, type: 2}
   characterHealthToCheck: {fileID: 2297418374068219078}
+--- !u!114 &6311557672667765870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677078605749546164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0924b657a069db489e7cfb3f7ece4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToCheck: {fileID: 11400000, guid: c7f2b5b626c56ac45af6e82c94884119, type: 2}
 --- !u!1001 &7943722574911102819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: 65d9509710127dc4c9a3ef83ac4c5c82, type: 2}
+      objectReference: {fileID: 11400000, guid: dbb637724e0a960489c3562414e7c1ba, type: 2}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnMouseClic.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -599,6 +598,22 @@ PrefabInstance:
     - target: {fileID: 8205510481207194533, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: currentHealth
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205510481207194533, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205510481207194533, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 6311557672667765870}
+    - target: {fileID: 8205510481207194533, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: RemoveCharacterLink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8205510481207194533, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: SpecialEffect_SoulFragment_LinkToCharacter, ravenor_engine
       objectReference: {fileID: 0}
     - target: {fileID: 9197122539180289542, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_AnchorMax.y

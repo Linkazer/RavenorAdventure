@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: Ennemy_GardienneKnight
+  m_EditorClassIdentifier: 
+  nom:
+    frenchText: Gardienne corrompue
+    englishText: Corrupted guardian
+  description:
+    frenchText: 
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: 785fcbb50ba698249b872044cee29562, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: 785fcbb50ba698249b872044cee29562, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: 785fcbb50ba698249b872044cee29562, type: 3}
+    - {fileID: 21300000, guid: 0b9d1b5643fe1074ea935bc8077b33e2, type: 3}
+  handSprite: {fileID: 21300000, guid: aac899c10bf51f749bad1280880651f2, type: 3}
+  displayHand: 0
+  handHeight: 0.55
+  uiHeight: 1.75
+  health: 10
+  armor: 0
+  defense: 2
+  accuracy: 1
+  power: 1
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 55
+  speed: 5
+  dangerosityMaxDistance: 0
+  dangerosityMinimumDistance: 0
+  opportunitySpell: {fileID: 11400000, guid: a2424105e02ed8c40a6a7966c84a9805, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: ad0552a232ae4f24fafb02f6f51b0a93, type: 2}
+  - {fileID: 11400000, guid: fbbfc85b7323ddb419e8b9e7ea8d0654, type: 2}
+  - {fileID: 11400000, guid: 8ea733fdf9afecf4da7a18b94f1e2e8f, type: 2}
+  usableSpellByTurn: 2
+  usedRessource:
+    id: 0
+  passives:
+  - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
+  - {fileID: 11400000, guid: 28b285eca00107043984f8cd49c6eae2, type: 2}
+  - {fileID: 11400000, guid: 013de526e2af03a459c911eaa0f3e628, type: 2}
+  wantedDistanceFromTarget: {x: 0, y: 15}
+  oppportunityHealthBonus: 0
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: ad0552a232ae4f24fafb02f6f51b0a93, type: 2}
+    wantedActionIndex: 0
+    conditions: []
+    bonusScore: 0
+    calculs:
+    - id: 1
+  - wantedAction: {fileID: 11400000, guid: fbbfc85b7323ddb419e8b9e7ea8d0654, type: 2}
+    wantedActionIndex: 1
+    conditions: []
+    bonusScore: 0
+    calculs:
+    - id: 2
+  - wantedAction: {fileID: 11400000, guid: 8ea733fdf9afecf4da7a18b94f1e2e8f, type: 2}
+    wantedActionIndex: 2
+    conditions: []
+    bonusScore: 1
+    calculs:
+    - id: 3
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 4
+        abscissaCoeficient: -1
+        constantToAdd: 125
+        maxValue: 100
+    00000002:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 5
+        abscissaCoeficient: 1
+        constantToAdd: 0
+        maxValue: 3
+    00000003:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 6
+        condition: 2
+        baseValue: 0
+    00000004:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000005:
+      type: {class: AI_CA_NumberEnnemyArea, ns: , asm: ravenor_engine}
+    00000006:
+      type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}

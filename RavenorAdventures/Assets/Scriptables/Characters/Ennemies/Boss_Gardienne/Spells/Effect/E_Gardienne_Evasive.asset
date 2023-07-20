@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
+  m_Name: E_Gardienne_Evasive
+  m_EditorClassIdentifier: 
+  hideOnApply: 0
+  icon: {fileID: 21300000, guid: cdaea52a9b52a02409dc96eb6fb50807, type: 3}
+  effectName:
+    frenchText: "\xC9vasif"
+    englishText: Evasive
+  effectDescription:
+    frenchText: "Le personnage ne provoque pas d'attaque d'opportunit\xE9 quand il
+      se d\xE9place."
+    englishText: The character doesn't provoke an attack of opportunity when moving.
+  effectDisplay: {fileID: 0}
+  duration: -1
+  maxStack: 1
+  effects:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: EFF_AfflictionEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 0
+        toApply: 1

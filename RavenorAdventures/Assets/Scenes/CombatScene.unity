@@ -6066,11 +6066,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testName: 
-  calculType: 0
+  calculType: 1
   usedDungeonSaga: 0
   usedDnD: 0
   baseDamageDone: 0
   attackers:
+  - AttackDice: 2
+    OffensiveRerolls: 0
+    Accuracy: 0
+    Power: 0
   - AttackDice: 3
     OffensiveRerolls: 0
     Accuracy: 1
@@ -6079,10 +6083,6 @@ MonoBehaviour:
     OffensiveRerolls: 0
     Accuracy: 0
     Power: 1
-  - AttackDice: 2
-    OffensiveRerolls: 0
-    Accuracy: 0
-    Power: 0
   - AttackDice: 1
     OffensiveRerolls: 0
     Accuracy: 0
@@ -6307,7 +6307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 429593235093642912, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 429593235283435762, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_SortingOrder

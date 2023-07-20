@@ -26,10 +26,10 @@ MonoBehaviour:
       character is healed by 2 Health points.
   effectDisplay: {fileID: 0}
   duration: 1.5
+  maxStack: 1
   effects:
   - id: 0
   - id: 1
-  - id: 2
   references:
     version: 1
     00000000:
@@ -44,8 +44,3 @@ MonoBehaviour:
         effects:
         - stat: 5
           valueToChange: 1
-    00000002:
-      type: {class: EFF_AddSpell, ns: , asm: ravenor_engine}
-      data:
-        trigger: 0
-        spellToAdd: {fileID: 11400000, guid: 0e90293666764474aaf0625b8d205cdd, type: 2}

@@ -32,6 +32,22 @@ public class EFF_StatEffect : Effect
 
             switch (statEff.stat)
             {
+                case EffectStatEnum.MaxHealth:
+                    if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthMaxHealth))
+                    {
+                        if (value > 0)
+                        {
+                            healthMaxHealth.AddMaxHealth((int)value);
+                        }
+                        else if (value < 0)
+                        {
+                            if(-value < healthMaxHealth.MaxHealth)
+                            {
+                                healthMaxHealth.RemoveMaxHealth((int)-value);
+                            }
+                        }
+                    }
+                    break;
                 case EffectStatEnum.BaseDamage:
 
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster damageCaster))

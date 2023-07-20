@@ -7,18 +7,20 @@ public class SQA_SpawnCharacter : SequenceAction
     [SerializeField] private SpawnableCharacterTeam charactersToSpawn;
     [SerializeField] private Transform[] spawnPositions;
 
+    private int maxSpawnDistance = 35;
+
     protected override void OnStartAction()
     {
         for(int i = 0; i < charactersToSpawn.charaToSpawns.Count; i++)
         {
-            if(spawnPositions.Length != 0)
+            Node spawnNode = GetSpawnNode(charactersToSpawn.charaToSpawns[i].CurrentNode.worldPosition);
+
+            if (spawnPositions.Length != 0)
             {
-                RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnPositions[i].position);
+                GetSpawnNode(spawnPositions[i].position);
             }
-            else
-            {
-                RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex);
-            }
+
+            RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnNode.worldPosition);
         }
     }
 
@@ -30,5 +32,34 @@ public class SQA_SpawnCharacter : SequenceAction
     protected override void OnSkipAction()
     {
 
+    }
+
+    protected Node GetSpawnNode(Vector2 positionTarget)
+    {
+        Node targetNode = Grid.GetNodeFromWorldPoint(positionTarget);
+        Node currentSpawnNode = null;
+
+        if (targetNode != null)
+        {
+            if (!targetNode.IsWalkable)
+            {
+                List<Node> nodesToCheck = Pathfinding.GetAllNodeInDistance(targetNode, maxSpawnDistance, false);
+
+                foreach (Node node in nodesToCheck)
+                {
+                    if (node.IsWalkable)
+                    {
+                        currentSpawnNode = node;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                currentSpawnNode = targetNode;
+            }
+        }
+
+        return currentSpawnNode;
     }
 }
