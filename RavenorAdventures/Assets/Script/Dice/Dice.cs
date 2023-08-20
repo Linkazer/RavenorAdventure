@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Dice
 {
+    public static Dictionary<MonoBehaviour, List<int>> dicesHistory = new Dictionary<MonoBehaviour, List<int>>();
+
     private int faceNumber;
     private int faceBonus;
 
@@ -27,7 +30,68 @@ public class Dice
 
     public float Roll()
     {
-        result = Random.Range(1, faceNumber+1) + faceBonus;
+        result = UnityEngine.Random.Range(1, faceNumber+1) + faceBonus;
+
+        return result;
+    }
+
+    public float Roll(MonoBehaviour asker)
+    {
+        result = 0;
+
+        List<int> history = new List<int>();
+        if (dicesHistory.ContainsKey(asker))
+        {
+            history = dicesHistory[asker];
+        }
+        else
+        {
+            dicesHistory[asker] = new List<int>();
+        }
+
+        List<float> weights = new List<float>() { 1f, 1f, 1f, 1f, 1f, 1f };
+
+        foreach(int hist in history)
+        {
+            weights[hist - 1] *= 0.15f;
+        }
+
+        float maxWeight = 0;
+
+        foreach(float f in weights)
+        {
+            maxWeight += f;
+        }
+
+        float rng = UnityEngine.Random.Range(0, maxWeight);
+
+        float currentCount = 0;
+        int index = 0;
+
+        foreach (float f in weights)
+        {
+            currentCount += f;
+            index++;
+            if (rng < currentCount)
+            {
+                result = index;
+                break;
+            }
+        }
+
+        try
+        {
+            dicesHistory[asker].Add((int)result);
+        }
+        catch(Exception e)
+        {
+            Debug.Log((int)result);
+        }
+
+        if(dicesHistory[asker].Count > 10)
+        {
+            dicesHistory[asker].RemoveAt(0);
+        }
 
         return result;
     }

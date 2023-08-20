@@ -120,6 +120,7 @@ public class DiceTests : MonoBehaviour
 
         for (int i = 0; i < iterations; i++)
         {
+            ResetDiceHistory();
             int r = 0;
 
             for (int j = 0; j < attackers.Length; j++)
@@ -248,7 +249,7 @@ public class DiceTests : MonoBehaviour
                 }
 
                 Dice d = new Dice(6, attacker.Accuracy);
-                d.Roll();
+                d.Roll(this);
 
 
                 totalDamage += CheckDiceHit(d, Defense, currentOffensiveRerolls < attacker.OffensiveRerolls, currentDefensiveRerolls < DefensiveRerolls, out bool usedOff, out bool usedDef);
@@ -285,7 +286,7 @@ public class DiceTests : MonoBehaviour
             if (hasDefensiveReroll)
             {
                 usedDefensiveReroll = true;
-                dice.Roll();
+                dice.Roll(this);
 
                 return CheckDiceHit(dice, defense, hasOffensiveReroll, false, out usedOffensiveReroll, out bool def);
             }
@@ -297,7 +298,7 @@ public class DiceTests : MonoBehaviour
         else if (hasOffensiveReroll)
         {
             usedOffensiveReroll = true;
-            dice.Roll();
+            dice.Roll(this);
 
             return CheckDiceHit(dice, defense, false, hasDefensiveReroll, out bool off, out usedDefensiveReroll);
         }
@@ -389,4 +390,9 @@ public class DiceTests : MonoBehaviour
         return (diceToUse.Result > dndAC) ? 1 : 0; 
     }
 
+    [ContextMenu("Reset History")]
+    public void ResetDiceHistory()
+    {
+        Dice.dicesHistory.Clear();
+    }
 }

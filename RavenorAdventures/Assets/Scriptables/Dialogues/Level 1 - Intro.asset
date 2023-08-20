@@ -60,9 +60,11 @@ MonoBehaviour:
         Maybe we'll find a way to open that door."
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: '"And if you find anything, let the others know before you do anything.
-        We don''t know what''s waiting for us on the other side."'
-      englishText: 
+      frenchText: "\"Et si vous trouvez quelques chose, pr\xE9venez les autres avant
+        de faire quoi que ce soit. On ne sait pas ce qui nous attend d l\u2019autre
+        c\xF4t\xE9.\""
+      englishText: '"And if you find anything, let the others know before you do
+        anything. We don''t know what''s waiting for us on the other side."'
   - talker: {fileID: 0}
     text:
       frenchText: "Alors que le reste du groupe fouillait le hall d\u2019entr\xE9e,

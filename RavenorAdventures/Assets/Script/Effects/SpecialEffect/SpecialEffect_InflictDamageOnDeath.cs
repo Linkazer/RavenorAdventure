@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpecialEffect_InflictDamageOnDeath : MonoBehaviour
 {
-    [SerializeField] private CharacterScriptable_Battle target;
+    [SerializeField] private List<CharacterScriptable_Battle> targets;
     [SerializeField] private SpellScriptable spellToUse;
     [SerializeField] private CPN_HealthHandler characterHealthToCheck;
 
@@ -22,13 +22,18 @@ public class SpecialEffect_InflictDamageOnDeath : MonoBehaviour
     {
         LaunchedSpellData launchedSpell = null;
 
-        foreach(CPN_Character chara in RVN_BattleManager.GetAllCharacter())
+        foreach (CharacterScriptable_Battle target in targets)
         {
-            if(chara.Scriptable.name.Contains(target.name))
+            foreach (CPN_Character chara in RVN_BattleManager.GetAllCharacter())
             {
-                launchedSpell = new LaunchedSpellData(spellToUse, null, chara.CurrentNode);
+                if (chara.Scriptable.name.Contains(target.name))
+                {
+                    launchedSpell = new LaunchedSpellData(spellToUse, null, chara.CurrentNode);
 
-                RVN_SpellManager.UseSpell(launchedSpell, null);
+                    RVN_SpellManager.UseSpell(launchedSpell, null);
+
+                    break;
+                }
             }
         }
 

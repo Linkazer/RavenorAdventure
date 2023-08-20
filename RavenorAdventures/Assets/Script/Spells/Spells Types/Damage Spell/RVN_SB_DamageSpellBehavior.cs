@@ -50,9 +50,9 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
                         break;
                     default:
-                        List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, usedScriptable.Accuracy);
+                        List<Dice> damageDices = DiceManager.GetDices(usedScriptable.DiceUsed, 6, spellToUse.caster, usedScriptable.Accuracy);
 
-                        float damage = CalculateDamage(damageDices, usedScriptable, hitedObject, out bool doesHit);
+                        float damage = CalculateDamage(spellToUse.caster, damageDices, usedScriptable, hitedObject, out bool doesHit);
 
                         if (!doesHit)
                         {
@@ -138,7 +138,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return toReturn;
     }
 
-    private float CalculateDamage(List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target, out bool didHit)
+    private float CalculateDamage(CPN_SpellCaster caster, List<Dice> diceDamage, RVN_SS_DamageSpellScriptable spellUsed, CPN_HealthHandler target, out bool didHit)
     {
         didHit = false;
 
@@ -148,7 +148,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
         for (int i = 0; i < diceDamage.Count; i++)
         {
-            totalDamage += CheckDiceHit(diceDamage[i], target.Defense, currentOffensiveRerolls < spellUsed.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);
+            totalDamage += CheckDiceHit(caster, diceDamage[i], target.Defense, currentOffensiveRerolls < spellUsed.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);
 
             if(usedDefensiveReroll)
             {
@@ -194,7 +194,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         return totalDamage;
     }
 
-    private int CheckDiceHit(Dice dice, int defense, bool hasOffensiveReroll, bool hasDefensiveReroll, out bool usedOffensiveReroll, out bool usedDefensiveReroll)
+    private int CheckDiceHit(CPN_SpellCaster caster, Dice dice, int defense, bool hasOffensiveReroll, bool hasDefensiveReroll, out bool usedOffensiveReroll, out bool usedDefensiveReroll)
     {
         int toReturn = 0;
 
@@ -206,8 +206,8 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             if (hasDefensiveReroll)
             {
                 usedDefensiveReroll = true;
-                dice.Roll();
-                return CheckDiceHit(dice, defense, hasOffensiveReroll, false, out usedOffensiveReroll, out bool def);
+                dice.Roll(caster);
+                return CheckDiceHit(caster, dice, defense, hasOffensiveReroll, false, out usedOffensiveReroll, out bool def);
             }
             else
             {
@@ -217,11 +217,9 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         }
         else if (hasOffensiveReroll)
         {
-            //dice.rerolled += 2;
-
             usedOffensiveReroll = true;
-            dice.Roll();
-            return CheckDiceHit(dice, defense, false, hasDefensiveReroll, out bool off, out usedDefensiveReroll);
+            dice.Roll(caster);
+            return CheckDiceHit(caster, dice, defense, false, hasDefensiveReroll, out bool off, out usedDefensiveReroll);
         }
 
         return toReturn;
