@@ -74,13 +74,13 @@ public abstract class Effect
             case EffectTrigger.OnGetAttackedTowardSelf:
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedSelf))
                 {
-                    getAttackedSelf.actOnTakeDamageSelf += UseEffect;
+                    getAttackedSelf.actOnAttackReceivedTowardSelf += UseEffect;
                 }
                 break;
             case EffectTrigger.OnGetAttackedTowardTarget:
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedTarget))
                 {
-                    getAttackedTarget.actOnTakeDamageTarget += UseEffect;
+                    getAttackedTarget.actOnAttackReceivedTowardTarget += UseEffect;
                 }
                 break;
             case EffectTrigger.OnAttackTowardSelf:
@@ -159,13 +159,13 @@ public abstract class Effect
             case EffectTrigger.OnGetAttackedTowardSelf:
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedSelf))
                 {
-                    getAttackedSelf.actOnTakeDamageSelf -= UseEffect;
+                    getAttackedSelf.actOnAttackReceivedTowardSelf -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnGetAttackedTowardTarget:
                 if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler getAttackedTarget))
                 {
-                    getAttackedTarget.actOnTakeDamageTarget -= UseEffect;
+                    getAttackedTarget.actOnAttackReceivedTowardTarget -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnAttackTowardSelf:

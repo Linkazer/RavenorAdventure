@@ -5,12 +5,20 @@ using UnityEngine;
 public class EFF_AddSpell : Effect
 {
     [SerializeField] private SpellScriptable spellToAdd;
+    [SerializeField] private SpellScriptable spellToChange;
 
     protected override void UseEffect(RVN_ComponentHandler effectTarget)
     {
         if(effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
-            caster.AddSpell(spellToAdd);
+            if (spellToChange != null)
+            {
+                caster.ChangeSpell(spellToAdd, spellToChange);
+            }
+            else
+            {
+                caster.AddSpell(spellToAdd);
+            }
         }
     }
 
@@ -18,7 +26,14 @@ public class EFF_AddSpell : Effect
     {
         if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
-            caster.RemoveSpell(spellToAdd);
+            if (spellToChange != null)
+            {
+                caster.ResetChangeSpell(spellToAdd);
+            }
+            else
+            {
+                caster.RemoveSpell(spellToAdd);
+            }
         }
     }
 }

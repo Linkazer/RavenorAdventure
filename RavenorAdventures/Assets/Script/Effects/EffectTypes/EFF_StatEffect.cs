@@ -67,6 +67,12 @@ public class EFF_StatEffect : Effect
                         rerollCaster.AddOffensiveRerolls((int)value);
                     }
                     break;
+                case EffectStatEnum.OffensiveRerollsMalus:
+                    if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster rerollMalusCaster))
+                    {
+                        rerollMalusCaster.AddOffensiveRerollsMalus((int)value);
+                    }
+                    break;
                 case EffectStatEnum.ActionByTurn:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster actionCaster))
                     {
@@ -109,6 +115,12 @@ public class EFF_StatEffect : Effect
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefensiveReroll))
                     {
                         healthDefensiveReroll.AddDefensiveRerolls((int)value);
+                    }
+                    break;
+                case EffectStatEnum.DefensiveRerollsMalus:
+                    if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefensiveRerollMalus))
+                    {
+                        healthDefensiveRerollMalus.AddDefensiveRerollsMalus((int)value);
                     }
                     break;
                 case EffectStatEnum.Movement:

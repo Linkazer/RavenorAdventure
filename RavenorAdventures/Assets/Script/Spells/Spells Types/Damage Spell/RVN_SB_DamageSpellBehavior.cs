@@ -84,9 +84,8 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         if (spellToUse.caster != null)
                         {
                             hitedObject.actOnAttackReceivedTowardTarget?.Invoke(spellToUse.caster.Handler);
+                            hitedObject.actOnAttackReceivedTowardSelf?.Invoke(hitedObject.Handler);
                         }
-
-                        hitedObject.actOnAttackReceivedTowardSelf?.Invoke(hitedObject.Handler);
 
                         break;
                 }
@@ -143,18 +142,9 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         didHit = false;
 
         float totalDamage = 0;
-        int currentOffensiveRerolls = 0;
-        int currentDefensiveRerolls = 0;
+        int currentOffensiveRerolls = -target.DefensiveRerollsMalus;
+        int currentDefensiveRerolls = -spellUsed.OffensiveRerollsMalus;
 
-        if(target.DefensiveRerolls < 0)
-        {
-            currentOffensiveRerolls = -target.DefensiveRerolls;
-        }
-
-        if(spellUsed.OffensiveRerolls < 0)
-        {
-            currentDefensiveRerolls = -spellUsed.OffensiveRerolls;
-        }
 
         for (int i = 0; i < diceDamage.Count; i++)
         {

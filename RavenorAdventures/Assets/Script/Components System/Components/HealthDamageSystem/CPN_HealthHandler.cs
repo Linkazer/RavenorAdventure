@@ -13,6 +13,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     [SerializeField] private int defense;
     [SerializeField] private int defensiveRerolls;
+    [SerializeField] private int defensiveRerollsMalus;
 
     [SerializeField] private UnityEvent<float> OnSetMaxHealth;
     [SerializeField] private UnityEvent<int> OnSetMaxArmor;
@@ -37,6 +38,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public int CurrentArmor => currentArmor;
     public int Defense => defense;
     public int DefensiveRerolls => defensiveRerolls;
+    public int DefensiveRerollsMalus => defensiveRerollsMalus;
 
     public bool IsAlive => currentHealth > 0;
 
@@ -221,5 +223,10 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public void AddDefensiveRerolls(int toAdd)
     {
         defensiveRerolls += toAdd;
+    }
+
+    public void AddDefensiveRerollsMalus(int toAdd)
+    {
+        defensiveRerollsMalus += toAdd;
     }
 }

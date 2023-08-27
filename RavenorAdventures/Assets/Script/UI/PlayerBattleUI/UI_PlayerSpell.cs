@@ -55,9 +55,15 @@ public class UI_PlayerSpell : MonoBehaviour
             {
                 OnUnlockSpell?.Invoke();
 
+                if (currentSpell.name == "Lisbeth_ComboFast")
+                {
+                    Debug.Log(currentSpell.IsUsable);
+                    Debug.Log(currentSpell.CurrentCooldown);
+                }
+
                 button.interactable = (caster.ActionLeftThisTurn > 0 || currentSpell.CastType == SpellCastType.Fast)
-                                        && (currentSpell.IsUsable) 
-                                        && (caster.Ressource == null || currentSpell.RessourceCost <= caster.Ressource.CurrentAmount);
+                                    && (currentSpell.IsUsable)
+                                    && (caster.Ressource == null || currentSpell.RessourceCost <= caster.Ressource.CurrentAmount);
             }
             else
             {

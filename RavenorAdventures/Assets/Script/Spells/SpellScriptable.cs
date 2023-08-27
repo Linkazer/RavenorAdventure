@@ -189,6 +189,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void SetSpell()
     {
+        currentCooldown = 0;
         utilisationLeft = maxUtilisations;
         OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
     }
@@ -210,6 +211,8 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void SetCooldown(int valueToSet)
     {
+        Debug.Log("Set cooldown of " + name);
+
         currentCooldown = valueToSet;
         OnUpdateCooldown?.Invoke(currentCooldown);
     }

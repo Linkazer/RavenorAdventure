@@ -14,5 +14,7 @@ public enum EffectStatEnum
     Movement,
     DefenseiveRerolls,
     MaxHealth,
-    SpellRessource
+    SpellRessource,
+    OffensiveRerollsMalus,
+    DefensiveRerollsMalus,
 }

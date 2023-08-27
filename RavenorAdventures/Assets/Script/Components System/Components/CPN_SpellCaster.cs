@@ -22,10 +22,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     //Base datas
     [SerializeField] private int offensiveRerolls;
+    [SerializeField] private int offensiveRerollsMalus;
     [SerializeField] private int accuracy;
     [SerializeField] private int power;
 
     [SerializeField] private SpellRessource ressource;
+
+    private Dictionary<int, SpellScriptable> changeSpellWithIndex = new Dictionary<int, SpellScriptable>();
 
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
@@ -42,6 +45,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public int ActionByTurn => actionByTurn;
     public int ActionLeftThisTurn => actionsLeftThisTurn;
     public int OffensiveRerolls => offensiveRerolls;
+    public int OffensiveRerollsMalus => offensiveRerollsMalus;
     public int Accuracy => accuracy;
     public int Power => power;
 
@@ -52,6 +56,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public void AddOffensiveRerolls(int amount)
     {
         offensiveRerolls += amount;
+    }
+
+    public void AddOffensiveRerollsMalus(int amount)
+    {
+        offensiveRerollsMalus += amount;
     }
 
     public void AddAccuracy(int amount)
@@ -174,8 +183,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
         if (currentSelectedSpell != null && RVN_SpellManager.CanUseSpell(launchedSpell))
         {
-            CastSpell(launchedSpell, callback);
-
             if(launchedSpell.scriptable.IsCooldownGlobal)
             {
                 for(int i = 0; i < spells.Count; i++)
@@ -190,6 +197,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             {
                 launchedSpell.scriptable.ResetCooldown();
             }
+
+            CastSpell(launchedSpell, callback);
 
             if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
             {
@@ -343,6 +352,40 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             if(spells[i].name.Contains(toRemove.name))
             {
                 spells.RemoveAt(i);
+
+                actOnUpdateSpell?.Invoke(this);
+                break;
+            }
+        }
+    }
+
+    public void ChangeSpell(SpellScriptable toSet, SpellScriptable toChange)
+    {
+        for (int i = 0; i < spells.Count; i++)
+        {
+            if (spells[i].name.Contains(toChange.name))
+            {
+                Debug.Log("Change spell");
+
+                changeSpellWithIndex.Add(i, spells[i]);
+                spells[i] = Instantiate(toSet);
+                spells[i].SetSpell();
+
+                actOnUpdateSpell?.Invoke(this);
+                break;
+            }
+        }
+    }
+
+    public void ResetChangeSpell(SpellScriptable toSet)
+    {
+        for (int i = 0; i < spells.Count; i++)
+        {
+            if (spells[i].name.Contains(toSet.name))
+            {
+                spells[i] = changeSpellWithIndex[i];
+
+                changeSpellWithIndex.Remove(i);
 
                 actOnUpdateSpell?.Invoke(this);
                 break;

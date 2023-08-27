@@ -10,43 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Ylia_HealReflexe
+  m_Name: Lisbeth_ComboFast
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: "\xC2me volatile"
-    englishText: Volatile Soul
-  icon: {fileID: 21300000, guid: 141f4741e0b1db14e9a6b5d74e2ee72d, type: 3}
+    frenchText: "Coup de rapi\xE8res (FAST)"
+    englishText: Rapier's strike
+  icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
   description:
-    frenchText: "Soigne la cible de %diceUsed% points de vie et applique \"\xC2me
-      volatile\""
-    englishText: Heal the target of %diceUsed% Health points and apply "Volatile
-      Soul".
-  castingAnimation: 3
-  launchAnimation: 4
-  castAnimationDuration: 0.75
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
+    englishText: Attacks the target with %diceUsed% dice.
+  castingAnimation: 5
+  launchAnimation: 0
+  castAnimationDuration: 0.25
   spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
+  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
   animationDuration: 0
-  launchAudioData: {fileID: 0}
-  ressourceCost: 1
+  launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
+  ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
-  castType: 0
+  castType: 1
   isCooldownGlobal: 0
-  cooldown: 0
-  range: 25
+  cooldown: 1
+  range: 15
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
-  effectsOnTarget:
-  - {fileID: 11400000, guid: 3d3ce3269b7561b44878e10121609329, type: 2}
+  effectsOnTarget: []
   effectsOnCaster: []
-  type: 1
-  diceUsed: 4
+  type: 0
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

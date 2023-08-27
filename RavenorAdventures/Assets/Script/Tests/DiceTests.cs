@@ -26,6 +26,7 @@ public class DiceTests : MonoBehaviour
     public bool usedDnD;
 
     [Header("Behavior")]
+    [SerializeField] private bool doesNeedFirstHit;
     [SerializeField] private bool baseDamageDone;
 
     [Header("Attack")]
@@ -125,7 +126,10 @@ public class DiceTests : MonoBehaviour
 
             for (int j = 0; j < attackers.Length; j++)
             {
-                r += CalculateDamage(attackers[j]);
+                if (!doesNeedFirstHit || j == 0 || r > 0)
+                {
+                    r += CalculateDamage(attackers[j]);
+                }
             }
 
             if (Results.ContainsKey(r))
@@ -158,30 +162,36 @@ public class DiceTests : MonoBehaviour
             int currentHealth = health;
 
             int touches = 0;
+            int lastDamage = 0;
 
             while (currentHealth > 0)
             {
                 for (int j = 0; j < attackers.Length; j++)
                 {
-                    int damage = CalculateDamage(attackers[j]);
-
-                    if (damage > 0)
+                    if (!doesNeedFirstHit || j == 0 || lastDamage > 0)
                     {
+                        int damage = CalculateDamage(attackers[j]);
 
-                        if (damage >= damageReduction)
+                        if (damage > 0)
                         {
-                            damage -= damageReduction;
+
+                            if (damage >= damageReduction)
+                            {
+                                damage -= damageReduction;
+                            }
+
+                            if (damage >= currentArmor)
+                            {
+                                currentHealth -= damage - currentArmor;
+                            }
+
+                            if (currentArmor > 0)
+                            {
+                                currentArmor--;
+                            }
                         }
 
-                        if (damage >= currentArmor)
-                        {
-                            currentHealth -= damage - currentArmor;
-                        }
-
-                        if (currentArmor > 0)
-                        {
-                            currentArmor--;
-                        }
+                        lastDamage = damage;
                     }
                 }
 

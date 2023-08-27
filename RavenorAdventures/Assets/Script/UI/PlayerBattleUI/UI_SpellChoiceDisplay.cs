@@ -32,8 +32,6 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 SetSpells(caster);
                 caster.actOnUpdateSpell += SetSpells;
 
-                CheckSpellUsabilities(caster.ActionLeftThisTurn);
-
                 if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
                 {
                     ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource += CheckSpellUsabilities;
@@ -59,6 +57,8 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 spellIcons[i].UnsetSpell();
             }
         }
+
+        CheckSpellUsabilities(caster.ActionLeftThisTurn);
     }
 
     public void OnSelectSpell(SpellScriptable selectedSpell)
@@ -76,10 +76,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
     {
         foreach(UI_PlayerSpell spl in spellIcons)
         {
-            if(spl.Spell == unselectedSpell)
-            {
-                spl.SetUnselectSpell();
-            }
+            spl.SetUnselectSpell();
         }
     }
 

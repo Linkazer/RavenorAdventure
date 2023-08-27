@@ -10,40 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Lisbeth_Combo
+  m_Name: Ylia_AccuityMalus
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: "Coup de rapi\xE8res"
-    englishText: Rapier's strike
-  icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
+    frenchText: ACCUITY MALUS
+    englishText: Volatile Soul
+  icon: {fileID: 21300000, guid: 141f4741e0b1db14e9a6b5d74e2ee72d, type: 3}
   description:
-    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
-    englishText: Attacks the target with %diceUsed% dice.
-  castingAnimation: 5
-  launchAnimation: 0
-  castAnimationDuration: 0.25
+    frenchText: "Soigne la cible de %diceUsed% points de vie et applique \"\xC2me
+      volatile\""
+    englishText: Heal the target of %diceUsed% Health points and apply "Volatile
+      Soul".
+  castingAnimation: 3
+  launchAnimation: 4
+  castAnimationDuration: 0.75
   spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  spellAnimation: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
   animationDuration: 0
-  launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
-  ressourceCost: 0
+  launchAudioData: {fileID: 0}
+  ressourceCost: 1
   maxUtilisations: -1
   removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
-  castType: 0
+  castType: 1
   isCooldownGlobal: 0
   cooldown: 0
-  range: 15
+  range: 35
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
-  effectsOnTarget: []
-  effectsOnCaster:
-  - {fileID: 11400000, guid: 3c58374483d7a84439fad984fe56f1a3, type: 2}
-  type: 0
-  diceUsed: 2
+  effectsOnTarget:
+  - {fileID: 11400000, guid: f92683e556b8d50468a916ab7340df96, type: 2}
+  effectsOnCaster: []
+  type: 1
+  diceUsed: 0
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0

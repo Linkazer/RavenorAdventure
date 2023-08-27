@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
-  m_Name: Lisbeth_Combo
+  m_Name: EFF_Caen_Damage
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: "Coup de rapi\xE8res"
-    englishText: Rapier's strike
-  icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
+    frenchText: 
+    englishText: 
+  icon: {fileID: 0}
   description:
-    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
-    englishText: Attacks the target with %diceUsed% dice.
-  castingAnimation: 5
+    frenchText: 
+    englishText: 
+  castingAnimation: 0
   launchAnimation: 0
-  castAnimationDuration: 0.25
+  castAnimationDuration: 0
   spellAnimationTarget: 0
   projectile: {fileID: 0}
-  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  spellAnimation: {fileID: 0}
   animationDuration: 0
-  launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
+  launchAudioData: {fileID: 0}
   ressourceCost: 0
   maxUtilisations: -1
   removeOnNoUutlisation: 0
@@ -35,16 +35,15 @@ MonoBehaviour:
   castType: 0
   isCooldownGlobal: 0
   cooldown: 0
-  range: 15
+  range: 0
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget: []
-  effectsOnCaster:
-  - {fileID: 11400000, guid: 3c58374483d7a84439fad984fe56f1a3, type: 2}
-  type: 0
-  diceUsed: 2
-  baseDamage: 0
+  effectsOnCaster: []
+  type: 2
+  diceUsed: 0
+  baseDamage: 1
   armorPierced: 0
   lifestealPercent: 0
   areEffectsRandom: 0

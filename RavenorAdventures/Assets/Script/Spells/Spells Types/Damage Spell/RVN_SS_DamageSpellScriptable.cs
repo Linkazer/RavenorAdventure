@@ -20,6 +20,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     private int bonusAccuracy;
     private int bonusBaseDamage;
     private int offensiveRerolls;
+    private int offensiveRerollsMalus;
 
 
     public DamageType Type => type;
@@ -35,6 +36,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     public int Accuracy => bonusAccuracy;
 
     public int OffensiveRerolls => offensiveRerolls;
+    public int OffensiveRerollsMalus => offensiveRerollsMalus;
 
     public bool AreEffectRandom => areEffectsRandom;
     public List<EffectScriptable> HitEffectsOnTarget => hitEffectsOnTarget;
@@ -45,6 +47,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
         bonusAccuracy = caster.Accuracy;
         bonusBaseDamage = caster.Power;
         offensiveRerolls = caster.OffensiveRerolls;
+        offensiveRerollsMalus = caster.OffensiveRerollsMalus;
     }
 
     public override string GetDescription()

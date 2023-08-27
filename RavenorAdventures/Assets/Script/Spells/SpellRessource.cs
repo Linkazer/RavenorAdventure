@@ -6,7 +6,7 @@ using UnityEngine;
 public enum SpellRessourceType
 {
     None = -1,
-    Mana = 0,
+    Maana = 0,
     Rage = 1,
     Combo = 2,
 }
@@ -62,28 +62,24 @@ public class SpellRessource
 
 public class SpellRessource_Maana : SpellRessource
 {
-    public override SpellRessourceType RessourceType => SpellRessourceType.Mana;
+    public override SpellRessourceType RessourceType => SpellRessourceType.Maana;
+    public override void Initialize(CPN_Character characterLinked)
+    {
+        base.Initialize(characterLinked);
+
+        if (characterLinked != null)
+        {
+            characterLinked.ActOnBeginTeamTurn += OnCharacterTurn;
+        }
+    }
+
+    private void OnCharacterTurn(RVN_ComponentHandler casterHandler)
+    {
+        RegainRessource(1);
+    }
 }
 
 public class SpellRessource_Combo : SpellRessource
 {
     public override SpellRessourceType RessourceType => SpellRessourceType.Combo;
-
-    public override void Initialize(CPN_Character characterLinked)
-    {
-        base.Initialize(characterLinked);
-
-        if(characterLinked != null)
-        {
-            if(characterLinked.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
-            {
-                caster.actOnDealDamageSelf += OnTouchTarget;
-            }
-        }
-    }
-
-    private void OnTouchTarget(RVN_ComponentHandler casterHandler)
-    {
-        //RegainRessource(1);
-    }
 }
