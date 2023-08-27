@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class UI_RessourceDisplay : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI currentRessource;
 
     protected RVN_ComponentHandler currentCharacter;
+
+    public Action<int> actOnUpdateRessource;
 
     public virtual void SetCharacter(RVN_ComponentHandler nCharacter)
     {
@@ -52,5 +55,7 @@ public class UI_RessourceDisplay : MonoBehaviour
     protected virtual void SetCharacterRessource(int amount)
     {
         currentRessource.text = amount.ToString();
+
+        actOnUpdateRessource?.Invoke(amount);
     }
 }

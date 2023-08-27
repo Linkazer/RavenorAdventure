@@ -8,6 +8,14 @@ using TMPro;
 
 public class UI_PlayerSpell : MonoBehaviour
 {
+    [System.Serializable]
+    private class RessourceHolder
+    {
+        public GameObject gameObject;
+        public TextMeshProUGUI text;
+    }
+
+    [SerializeField] private UI_SpellChoiceDisplay spellChoiceUI;
     [SerializeField] private int spellIndex;
 
     [Header("UI")]
@@ -18,13 +26,16 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private RectTransform descriptionHandler;
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] private TextMeshProUGUI spellCost;
-    [SerializeField] private GameObject spellUtilisationLeftHolder;
-    [SerializeField] private TextMeshProUGUI spellUtilisationLeft;
-    [SerializeField] private GameObject spellRessourceCostHolder;
-    [SerializeField] private TextMeshProUGUI spellRessourceCost;
     [SerializeField] private TextMeshProUGUI spellCooldown;
     [SerializeField] private TextMeshProUGUI spellDescription;
     [SerializeField] private Image cooldown;
+
+    [Header("Utilisation")]
+    [SerializeField] private GameObject spellUtilisationLeftHolder;
+    [SerializeField] private TextMeshProUGUI spellUtilisationLeft;
+
+    [Header("Ressources")]
+    [SerializeField] private RessourceHolder[] ressourceHolders;
 
     [Header("Events")]
     [SerializeField] private UnityEvent OnSelectSpell;
@@ -33,24 +44,30 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private UnityEvent OnUnlockSpell;
 
     private SpellScriptable currentSpell;
-    private int lastActionLeft = 1;
 
     public SpellScriptable Spell => currentSpell;
 
-    public void CheckUsable(int actionLeft)
+    public void CheckUsable(RVN_ComponentHandler characterHandler)
     {
-        lastActionLeft = actionLeft;
-
-        if (!currentSpell.IsLocked)
+        if (characterHandler.GetComponentOfType(out CPN_SpellCaster caster))
         {
-            OnUnlockSpell?.Invoke();
+            if (!currentSpell.IsLocked)
+            {
+                OnUnlockSpell?.Invoke();
 
-            button.interactable = (actionLeft > 0 || currentSpell.CastType == SpellCastType.Fast) && (currentSpell.IsUsable);
+                button.interactable = (caster.ActionLeftThisTurn > 0 || currentSpell.CastType == SpellCastType.Fast)
+                                        && (currentSpell.IsUsable) 
+                                        && (caster.Ressource == null || currentSpell.RessourceCost <= caster.Ressource.CurrentAmount);
+            }
+            else
+            {
+                OnLockSpell?.Invoke();
+
+                button.interactable = false;
+            }
         }
         else
         {
-            OnLockSpell?.Invoke();
-
             button.interactable = false;
         }
     }
@@ -68,13 +85,33 @@ public class UI_PlayerSpell : MonoBehaviour
             spellCost.text = toSet.RessourceCost.ToString();
 
             spellCost.gameObject.SetActive(true);
+
+            if (spellChoiceUI.CurrentCharacter.GetComponentOfType(out CPN_SpellCaster caster))
+            {
+                if (caster.Ressource != null)
+                {
+                    ressourceHolders[(int)caster.Ressource.RessourceType].text.text = toSet.RessourceCost.ToString();
+
+                    ressourceHolders[(int)caster.Ressource.RessourceType].gameObject.SetActive(true);
+                }
+            }
         }
         else
         {
             spellCost.gameObject.SetActive(false);
+
+            foreach(RessourceHolder ress in ressourceHolders)
+            {
+                if (ress.gameObject != null)
+                {
+                    ress.gameObject.SetActive(false);
+                }
+            }
         }
 
-        if(toSet.MaxUtilisation >= 0)
+        
+
+        if (toSet.MaxUtilisation >= 0)
         {
             spellUtilisationLeft.text = toSet.UtilisationLeft.ToString();
 
@@ -83,17 +120,6 @@ public class UI_PlayerSpell : MonoBehaviour
         else
         {
             spellUtilisationLeftHolder.gameObject.SetActive(false);
-        }
-
-        if(toSet.RessourceCost != 0)
-        {
-            spellRessourceCost.text = toSet.RessourceCost.ToString();
-
-            spellRessourceCostHolder.SetActive(true);
-        }
-        else
-        {
-            spellRessourceCostHolder.SetActive(false);
         }
 
         if(toSet.StartCooldown > 0)
@@ -135,6 +161,14 @@ public class UI_PlayerSpell : MonoBehaviour
             currentSpell.OnLockSpell -= SetLock;
         }
 
+        foreach (RessourceHolder ress in ressourceHolders)
+        {
+            if (ress.gameObject != null)
+            {
+                ress.gameObject.SetActive(false);
+            }
+        }
+
         currentSpell = null;
 
         gameObject.SetActive(false);
@@ -157,7 +191,7 @@ public class UI_PlayerSpell : MonoBehaviour
 
     private void SetLock(bool toSet)
     {
-        CheckUsable(lastActionLeft);
+        spellChoiceUI.CheckSpellUsability(this);
     }
 
     public void UpdateCooldown(int currentCooldown)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
     [SerializeField] private List<UI_RessourceDisplay> ressources;
 
     private RVN_ComponentHandler currentCharacter;
+
+    public RVN_ComponentHandler CurrentCharacter => currentCharacter;
 
     public void SetCharacter(RVN_ComponentHandler nCharacter)
     {
@@ -26,15 +29,16 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 caster.actOnSelectSpell += OnSelectSpell;
                 caster.actOnUnselectSpell += OnUnselectSpell;
 
-                if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
-                {
-                    ressources[(int)caster.Ressource.RessourceType].SetCharacter(nCharacter);
-                }
-
                 SetSpells(caster);
                 caster.actOnUpdateSpell += SetSpells;
 
                 CheckSpellUsabilities(caster.ActionLeftThisTurn);
+
+                if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
+                {
+                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource += CheckSpellUsabilities;
+                    ressources[(int)caster.Ressource.RessourceType].SetCharacter(nCharacter);
+                }
             }
         }
     }
@@ -93,6 +97,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
                 {
                     ressources[(int)caster.Ressource.RessourceType].UnsetCharacter();
+                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource -= CheckSpellUsabilities;
                 }
             }
 
@@ -109,8 +114,14 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         {
             if (spl.Spell != null)
             {
-                spl.CheckUsable(actionLeft);
+                CheckSpellUsability(spl);
             }
         }
+    }
+
+
+    public void CheckSpellUsability(UI_PlayerSpell uI_PlayerSpell)
+    {
+        uI_PlayerSpell.CheckUsable(currentCharacter);
     }
 }

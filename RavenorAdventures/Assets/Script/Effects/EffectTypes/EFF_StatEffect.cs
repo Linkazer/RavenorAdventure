@@ -117,6 +117,19 @@ public class EFF_StatEffect : Effect
                         movement.AddMovement((int)value);
                     }
                     break;
+                case EffectStatEnum.SpellRessource:
+                    if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ressourceCaster))
+                    {
+                        if (value > 0)
+                        {
+                            ressourceCaster.Ressource.RegainRessource((int)value);
+                        }
+                        else
+                        {
+                            ressourceCaster.Ressource.UseRessource((int)value);
+                        }
+                    }
+                    break;
             }
         }
     }

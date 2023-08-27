@@ -105,7 +105,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         {
             foreach (EffectScriptable eff in effectsOnTarget)
             {
-                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                if (!eff.HideOnApply)
+                {
+                    toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                }
             }
         }
 
@@ -113,7 +116,10 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         {
             foreach (EffectScriptable eff in effectsOnCaster)
             {
-                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                if (!eff.HideOnApply)
+                {
+                    toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                }
             }
         }
 

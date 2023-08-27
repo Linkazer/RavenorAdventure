@@ -8,6 +8,7 @@ public enum SpellRessourceType
     None = -1,
     Mana = 0,
     Rage = 1,
+    Combo = 2,
 }
 
 [Serializable]
@@ -24,7 +25,7 @@ public class SpellRessource
 
     public int CurrentAmount => currentAmount;
 
-    public void Initialize()
+    public virtual void Initialize(CPN_Character characterLinked)
     {
         currentAmount = startAmount;
     }
@@ -62,4 +63,27 @@ public class SpellRessource
 public class SpellRessource_Maana : SpellRessource
 {
     public override SpellRessourceType RessourceType => SpellRessourceType.Mana;
+}
+
+public class SpellRessource_Combo : SpellRessource
+{
+    public override SpellRessourceType RessourceType => SpellRessourceType.Combo;
+
+    public override void Initialize(CPN_Character characterLinked)
+    {
+        base.Initialize(characterLinked);
+
+        if(characterLinked != null)
+        {
+            if(characterLinked.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
+            {
+                caster.actOnDealDamageSelf += OnTouchTarget;
+            }
+        }
+    }
+
+    private void OnTouchTarget(RVN_ComponentHandler casterHandler)
+    {
+        //RegainRessource(1);
+    }
 }

@@ -146,6 +146,16 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
         int currentOffensiveRerolls = 0;
         int currentDefensiveRerolls = 0;
 
+        if(target.DefensiveRerolls < 0)
+        {
+            currentOffensiveRerolls = -target.DefensiveRerolls;
+        }
+
+        if(spellUsed.OffensiveRerolls < 0)
+        {
+            currentDefensiveRerolls = -spellUsed.OffensiveRerolls;
+        }
+
         for (int i = 0; i < diceDamage.Count; i++)
         {
             totalDamage += CheckDiceHit(caster, diceDamage[i], target.Defense, currentOffensiveRerolls < spellUsed.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);

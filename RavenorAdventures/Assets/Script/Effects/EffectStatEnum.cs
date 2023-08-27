@@ -13,5 +13,6 @@ public enum EffectStatEnum
     ActionByTurn,
     Movement,
     DefenseiveRerolls,
-    MaxHealth
+    MaxHealth,
+    SpellRessource
 }

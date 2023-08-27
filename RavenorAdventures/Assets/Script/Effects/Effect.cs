@@ -15,6 +15,9 @@ public abstract class Effect
             case EffectTrigger.OnApply:
                 UseEffect(effectTarget);
                 break;
+            case EffectTrigger.OnApplyWithoutCancel:
+                UseEffect(effectTarget);
+                break;
             case EffectTrigger.OnBeginTurn:
                 if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
                 {

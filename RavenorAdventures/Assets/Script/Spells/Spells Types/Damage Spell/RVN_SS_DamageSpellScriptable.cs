@@ -55,7 +55,10 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
         {
             foreach (EffectScriptable eff in hitEffectsOnTarget)
             {
-                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                if (!eff.HideOnApply)
+                {
+                    toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                }
             }
         }
 
@@ -63,7 +66,10 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
         {
             foreach (EffectScriptable eff in hitEffectsOnCaster)
             {
-                toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                if (!eff.HideOnApply)
+                {
+                    toReturn += $"\n <b> {eff.Name} </b>  : {eff.Description}";
+                }
             }
         }
 

@@ -318,7 +318,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         opportunitySpell = toSet.OpportunitySpell();
 
         ressource = toSet.Ressource();
-        ressource?.Initialize();
+        ressource?.Initialize(handler as CPN_Character);
 
         offensiveRerolls = toSet.OffensiveRerolls();
 
