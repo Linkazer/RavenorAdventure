@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
   m_Name: Lisbeth_Opportunity
   m_EditorClassIdentifier: 
-  nom: "\xC9p\xE9e de duel"
   displayName:
     frenchText: 
     englishText: 
@@ -30,6 +29,7 @@ MonoBehaviour:
   launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
   ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
   castType: 1
@@ -42,9 +42,10 @@ MonoBehaviour:
   effectsOnTarget: []
   effectsOnCaster: []
   type: 0
-  diceUsed: 3
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

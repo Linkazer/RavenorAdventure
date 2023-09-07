@@ -277,6 +277,8 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             canPlayerDoInput = true;
 
+            DisplayAction(selectedAction);
+
             OnEnablePlayerInput?.Invoke();
         }
     }
@@ -289,6 +291,8 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
             OnDisablePlayerInput?.Invoke();
         }
+
+        UndisplayAction(selectedAction);
 
         disableCount.Add(asker);
     }

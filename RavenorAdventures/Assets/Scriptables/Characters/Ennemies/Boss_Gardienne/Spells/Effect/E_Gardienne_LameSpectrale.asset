@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: E_Gardienne_LameSpectrale
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 931e5867e3533d940bb9d4821a2d4421, type: 3}
   effectName:
     frenchText: Lame Spectrale
     englishText: Spectral blade

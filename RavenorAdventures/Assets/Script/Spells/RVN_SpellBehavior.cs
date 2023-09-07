@@ -87,35 +87,21 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     {
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
+        PlaySpellAnimation(spellToUse, targetNode);
+
         if (CanUseOnNode(hitableObjects, spellToUse.scriptable.HitableTargets, spellToUse.caster))
         {
             OnUseSpell(spellToUse, targetNode, callback);
 
             T usedScriptable = GetScriptable(spellToUse);
 
-            if (usedScriptable.SpellAnimation != null)
+            if (usedScriptable.AnimationDuration < 0.5f)
             {
-                if (usedScriptable.AnimationDuration > 0)
-                {
-                    TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
-
-                    AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
-                }
-                else
-                {
-                    AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
-                }
+                TimerManager.CreateGameTimer(0.5f, callback);
             }
-            else if (callback != null)
+            else
             {
-                if (usedScriptable.AnimationDuration < 0.5f)
-                {
-                    TimerManager.CreateGameTimer(0.5f, callback);
-                }
-                else
-                {
-                    TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
-                }
+                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
             }
 
             foreach (CPN_HealthHandler hitedObject in hitableObjects)
@@ -153,6 +139,16 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         else if(callback != null)
         {
             TimerManager.CreateGameTimer(0.5f, callback);
+        }
+    }
+
+    private void PlaySpellAnimation(LaunchedSpellData spellToUse, Node targetNode)
+    {
+        T usedScriptable = GetScriptable(spellToUse);
+
+        if (usedScriptable.SpellAnimation != null)
+        {
+            AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
         }
     }
 

@@ -19,5 +19,6 @@ public enum EffectTrigger
     OnGetAttackedTowardTarget,
     OnAttackTowardSelf,
     OnAttackTowardTarget,
-    OnApplyWithoutCancel
+    OnApplyWithoutCancel,
+    OnRemoveAllArmor
 }

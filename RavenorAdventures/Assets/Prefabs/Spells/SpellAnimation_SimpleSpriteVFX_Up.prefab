@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3296962444868983952, guid: d3b45b322a4c3cc419d02d832aff9d84, type: 3}
       propertyPath: m_Name
-      value: SpellAnimation_SimpleSpriteVFX
+      value: SpellAnimation_SimpleSpriteVFX_Up
       objectReference: {fileID: 0}
     - target: {fileID: 5088325124065952552, guid: d3b45b322a4c3cc419d02d832aff9d84, type: 3}
       propertyPath: m_RootOrder

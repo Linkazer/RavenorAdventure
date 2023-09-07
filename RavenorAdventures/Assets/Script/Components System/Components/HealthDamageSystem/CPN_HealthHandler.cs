@@ -31,6 +31,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public Action<RVN_ComponentHandler> actOnTakeDamageTarget;
     public Action<RVN_ComponentHandler> actOnAttackReceivedTowardSelf;
     public Action<RVN_ComponentHandler> actOnAttackReceivedTowardTarget;
+    public Action<RVN_ComponentHandler> actOnRemoveAllArmor;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
@@ -140,7 +141,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
             OnChangeHealth?.Invoke(currentHealth);
-            actOnChangeHealth(currentHealth);
+            actOnChangeHealth?.Invoke(currentHealth);
         }
     }
 
@@ -153,7 +154,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
             OnChangeHealth?.Invoke(currentHealth);
-            actOnChangeHealth(currentHealth);
+            actOnChangeHealth?.Invoke(currentHealth);
         }
     }
 
@@ -186,6 +187,11 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             currentArmor = Mathf.Clamp(currentArmor, 0, maxArmor);
 
             OnLoseArmor?.Invoke(currentArmor);
+
+            if(currentArmor <= 0)
+            {
+                actOnRemoveAllArmor?.Invoke(handler);
+            }
         }
     }
 

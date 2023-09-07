@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playTime: 0.8
   endAction: 0
+  audioPlayer: {fileID: 0}
   onSetTime:
     m_PersistentCalls:
       m_Calls: []

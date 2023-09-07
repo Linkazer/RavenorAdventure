@@ -44,7 +44,41 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
             {
                 CPN_SpellCaster caster = spellToUse.caster;
 
-                List<Node> targetsNodes = spellToUse.scriptable.GetZone(spellToUse.targetNode, spellToUse.caster?.CurrentNode);
+                List<Node> targetsNodes = new List<Node>();
+
+                switch(spellToUse.scriptable.ZoneType)
+                {
+                    case SpellZoneType.Normal:
+                        targetsNodes = spellToUse.scriptable.GetZone(spellToUse.targetNode, spellToUse.caster?.CurrentNode);
+                        break;
+                    case SpellZoneType.AllPossibleTarget:
+                        switch(spellToUse.scriptable.HitableTargets)
+                        {
+                            case SpellTargets.All:
+                                foreach (CPN_Character chara in RVN_BattleManager.GetAllCharacter())
+                                {
+                                    targetsNodes.Add(chara.CurrentNode);
+                                }
+                                break;
+                            case SpellTargets.Allies:
+                                foreach (CPN_Character chara in RVN_BattleManager.GetAllyCharacters(spellToUse.caster.Handler as CPN_Character))
+                                {
+                                    targetsNodes.Add(chara.CurrentNode);
+                                }
+                                break;
+                            case SpellTargets.Ennemies:
+                                foreach (CPN_Character chara in RVN_BattleManager.GetEnnemyCharacters(spellToUse.caster.Handler as CPN_Character))
+                                {
+                                    targetsNodes.Add(chara.CurrentNode);
+                                }
+                                break;
+                            case SpellTargets.Self:
+                                targetsNodes.Add(spellToUse.caster.Handler.CurrentNode);
+                                break;
+                        }
+                        break;
+                }
+
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
                     if (!targetsNodes[i].IsStaticObstacle)

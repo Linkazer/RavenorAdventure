@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hideOnApply: 0
   icon: {fileID: 0}
+  effectName:
+    frenchText: 
+    englishText: 
+  effectDescription:
+    frenchText: 
+    englishText: 
+  effectDisplay: {fileID: 0}
   duration: -1
+  maxStack: 1
   effects:
   - id: 0
   references:

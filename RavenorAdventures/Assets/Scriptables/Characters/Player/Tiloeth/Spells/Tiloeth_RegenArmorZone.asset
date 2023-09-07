@@ -23,18 +23,20 @@ MonoBehaviour:
   castingAnimation: 3
   launchAnimation: 4
   castAnimationDuration: 0.5
-  spellAnimationTarget: 0
+  spellAnimationTarget: 2
   projectile: {fileID: 0}
   spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
   animationDuration: 0.5
   launchAudioData: {fileID: 11400000, guid: d831ca8e8c197fc4db8e2743b1db73a2, type: 2}
   ressourceCost: 0
   maxUtilisations: 2
+  removeOnNoUutlisation: 0
   hitableTarget: 0
   castTarget: 2
   castType: 0
   isCooldownGlobal: 0
   cooldown: 1
+  zoneType: 0
   range: 5
   zoneRange: 25
   zoneFaceCaster: 0
@@ -46,5 +48,6 @@ MonoBehaviour:
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

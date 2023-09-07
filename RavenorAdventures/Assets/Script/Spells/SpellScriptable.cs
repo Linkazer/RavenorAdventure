@@ -13,6 +13,12 @@ public enum SpellTargets
     All
 }
 
+public enum SpellZoneType
+{
+    Normal,
+    AllPossibleTarget,
+}
+
 public enum SpellCastType
 {
     Normal,
@@ -63,6 +69,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     protected int currentCooldown;
 
     [Header("Forme")]
+    [SerializeField] protected SpellZoneType zoneType = SpellZoneType.Normal;
     [SerializeField] protected int range;
     [SerializeField] protected int zoneRange;
     [SerializeField] protected bool zoneFaceCaster;
@@ -123,26 +130,6 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
             }
         }
 
-        /*if (effectsOnCaster.Count > 0)
-        {
-            foreach (EffectScriptable eff in effectsOnCaster)
-            {
-                switch(RVN_LanguageManager.Language)
-                {
-                    case PossibleLanguage.Francais:
-                        toRetrun += $"\n <b> {eff.Name} </b>  : {eff.Description}";
-                        break;
-                    case PossibleLanguage.English:
-                        toRetrun += $"\nApply {eff.Name} on the caster : {eff.Description}";
-                        break;
-                }
-
-                
-            }
-        }*/
-
-
-
         return toReturn;
     }
 
@@ -171,6 +158,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public bool IsCooldownGlobal => isCooldownGlobal;
     public int CurrentCooldown => currentCooldown;
 
+    public SpellZoneType ZoneType => zoneType;
     public int Range => range;
     public int ZoneRange => zoneRange;
 
@@ -211,8 +199,6 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void SetCooldown(int valueToSet)
     {
-        Debug.Log("Set cooldown of " + name);
-
         currentCooldown = valueToSet;
         OnUpdateCooldown?.Invoke(currentCooldown);
     }

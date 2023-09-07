@@ -84,7 +84,7 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
             characterName.text = "";
         }
 
-        string[] formedSentence = sentence.text.GetText().Split('“', '”');
+        string[] formedSentence = sentence.text.GetText().Split('“', '”', '"');
 
         string fullSentence = "";
         bool isSpeaking = true;

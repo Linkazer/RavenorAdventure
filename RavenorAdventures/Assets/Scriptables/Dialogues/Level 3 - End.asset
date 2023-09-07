@@ -15,34 +15,43 @@ MonoBehaviour:
   sentences:
   - talker: {fileID: 0}
     text:
-      frenchText: "Eral s\u2019approcha du levier et ouvrit la porte. Les aventuriers
-        d\xE9couvrirent alors une pi\xE8ce remplie de cuves. Toutes \xE9taient vides,
-        \xE0 l\u2019exception d\u2019une."
-      englishText: Eral approached the lever and opened the door. The adventurers
-        discovered a room filled with vats. All but one were empty.
+      frenchText: "Eral enfon\xE7a la porte. La salle \xE9tait plong\xE9e dans le
+        noir. Au centre de la salle, Ryn aper\xE7ut un scintillement qui semblait
+        venir d\u2019un cercle magique."
+      englishText: Eral pushed open the door. The room was pitch-black. In the center
+        of the room, Ryn saw a flickering light that seemed to come from a magic
+        circle.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Approchant d\u2019abord prudemment, Ryn se mit \xE0 courir vers
-        la cuve quand elle se rendit de compte son contenu."
-      englishText: Approaching cautiously at first, Ryn ran towards the vat when
-        she realized its contents.
+      frenchText: "Approchant d\u2019abord prudemment, elle se mit \xE0 courir vers
+        le cercle quand elle se rendit de compte de ce qui flottait au-dessus des
+        glyphes."
+      englishText: Approaching cautiously at first, she began to run towards the
+        circle when she realized what was floating above the glyphs.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CYlia !\u201D dit-elle en martelant la cuve. \u201CYlia !\u201D"
-      englishText: '"Ylia!" she said, pounding the vat. "Ylia!"'
-  - talker: {fileID: 0}
-    text:
-      frenchText: "Flottant dans un liquide transparent, le corps d\u2019Ylia restait
-        inerte."
-      englishText: Floating in a transparent liquid, Ylia's body remained inert.
+      frenchText: "\u201CYlia ! Ylia !\u201D. Avant de pouvoir poser un pied sur
+        le cercle magique, Eral attrapa son bras pour l\u2019arr\xEAter."
+      englishText: '"Ylia! Ylia!". Before she could set foot on the magic circle,
+        Eral grabbed her arm to stop her.'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "Eral posa sa main sur l\u2019\xE9paule de Ryn et la d\xE9pla\xE7a
-        sur le c\xF4t\xE9. Saisissant son \xE9p\xE9e, il donna un violent coup qui
-        brisa la cuve, et attrapa Ylia avant qu\u2019elle ne tombe."
-      englishText: Eral put his hand on Ryn's shoulder and moved her aside. Grabbing
-        his sword, he delivered a violent blow that shattered the vat, and caught
-        Ylia before she could fall.
+      frenchText: "\u201CSadrif !\u201D"
+      englishText: "\u201CSadrif !\u201D"
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CJe sais, je sais. Donnez moi une seconde.\u201D Sadrif s\u2019accroupit
+        au bord du cercle."
+      englishText: '"I know, I know. Just give me a second." Sadrif crouched at the
+        edge of the circle.'
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Apr\xE8s plusieurs manipulations, les scintillements s\u2019arr\xEAt\xE8rent.\r\nAvant
+        qu\u2019elle ne touche le sol, Eral rattrapa Ylia.\r"
+      englishText: 'After several manipulations, the flickering stopped.
+
+        Before
+        she hit the ground, Eral caught up with Ylia.'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CElle va bien ?! Elle respire ?! Eral !\u201D dit-elle en
@@ -59,7 +68,7 @@ MonoBehaviour:
     text:
       frenchText: "Eral la rattrapa avant qu\u2019elle ne tr\xE9buche. \u201CDoucement.\u201D
         dit-il en l\u2019aidant \xE0 se relever. \u201CComment tu te sens ?\u201D"
-      englishText: Eral caught her before she stumbled. "Easy now." he said, helping
+      englishText: Eral caught her before she stumbled. "Easy." he said, helping
         her to her feet. "How do you feel?"
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
@@ -80,13 +89,13 @@ MonoBehaviour:
       englishText: '"She''s fine. She''s just completely lost on top of being tired."'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CPas \xE9tonnant qu\u2019elle soit fatigu\xE9.\u201D dit
-        Sadrif en inspectant les cuves. \u201CCela ressemble \xE0 des extracteurs
-        de maana. Ces machines \xE9taient tr\xE8s utilis\xE9es lors de la chasse
-        aux mages.\u201D"
-      englishText: '"No wonder she''s tired," says Sadrif, inspecting the vats. "These
-        look like maana extractors. These machines were widely used when hunting
-        mages."'
+      frenchText: "\u201CPas \xE9tonnant qu\u2019elle soit fatigu\xE9e.\u201D dit
+        Sadrif en inspectant le cercle magique d\xE9sactiv\xE9. \u201CCela ressemblait
+        \xE0 un sort pour extraire des \xE2mes. J\u2019imagine que c\u2019est ici
+        que la liche cr\xE9ait de nouveaux Sans-\xC2mes.\u201D"
+      englishText: '"No wonder she''s tired," Sadrif said, inspecting the deactivated
+        magic circle. "It looked like a spell to extract souls. I imagine this is
+        where the lich was creating new Soulless."'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia tourna soudainement la t\xEAte vers Sadrif, le regard inquiet."
@@ -97,11 +106,11 @@ MonoBehaviour:
       englishText: '"Do you think Ylia''s going to be okay?"'
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201COn dirait qu\u2019elle n\u2019est pas rest\xE9 assez longtemps
+      frenchText: "\u201CIl semblerait qu\u2019elle ne soit pas rest\xE9 assez longtemps
         pour que les effets soient irr\xE9versibles. Apr\xE8s un peu de repos, elle
         devrait retrouver la forme.\u201D"
-      englishText: '"It doesn''t look like she stayed long enough for the effects
-        to be irreversible. After a little rest, she should be back in shape."'
+      englishText: '"It seems she hasn''t stayed long enough for the effects to be
+        irreversible. After a little rest, she should be back in shape."'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "\u201CAlors c\u2019est quoi cette t\xEAte que tu nous fais ?\u201D"
@@ -109,12 +118,10 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "Sadrif r\xE9fl\xE9chit pendant quelques secondes. \u201CC\u2019est
-        juste que... Ces cuves sont un peu diff\xE9rentes de celles que j\u2019avais
-        \xE9tudi\xE9es, et je n\u2019arrive pas \xE0 comprendre en quoi elles le
-        sont.\u201D"
-      englishText: Sadrif thought for a few seconds. "It's just that... These vats
-        are a little different from the ones I'd been studying, and I can't figure
-        out how they're different."
+        juste que... Si tous les Sans-\xC2mes que nous avons crois\xE9s ont \xE9t\xE9
+        cr\xE9\xE9 ici, qu\u2019est-il advenu de leurs \xE2mes ?\u201D"
+      englishText: Sadrif thought for a few seconds. "It's just that... If all the
+        Soulless we came across were created here, what happened to their souls?"
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
       frenchText: "\u201COn aura toute le temps pour y r\xE9fl\xE9chir quand on sera

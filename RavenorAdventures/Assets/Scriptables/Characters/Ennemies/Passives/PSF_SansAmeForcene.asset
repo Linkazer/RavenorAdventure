@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PSF_SansAmeForcene
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 80eda488687d67b4c9d3e07469ff5452, type: 3}
   effectName:
     frenchText: "Forcen\xE9"
     englishText: 
@@ -23,6 +23,7 @@ MonoBehaviour:
     englishText: 
   effectDisplay: {fileID: 0}
   duration: -1
+  maxStack: 1
   effects: []
   references:
     version: 1

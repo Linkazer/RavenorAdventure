@@ -72,17 +72,10 @@ public class RVN_GridDisplayer : RVN_Singleton<RVN_GridDisplayer>
 
             displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].SetColor(color);
 
-            /*displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.color = color;
-            if (displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled && color.a == 0)
+            if (!currentDisplayedNodes.Contains(displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY]))
             {
-                displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled = false;
+                currentDisplayedNodes.Add(displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY]);
             }
-            else if (!displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled && color.a != 0)
-            {
-                displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY].renderer.enabled = true;
-            }*/
-
-            currentDisplayedNodes.Add(displayedGrid[currentFeedbacked.gridX, currentFeedbacked.gridY]);
         }
     }
 

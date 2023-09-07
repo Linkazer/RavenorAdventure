@@ -39,8 +39,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// <param name="toBeginTurn">Le personnage qui commence son tour.</param>
     public void BeginCharacterTurn(CPN_Character toBeginTurn)
     {
-        Debug.Log("New AI Turn : " + toBeginTurn);
-
         currentCharacter = toBeginTurn;
         if(currentCharacter.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler nHealth))
         {
@@ -92,8 +90,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     private void FindNextAction(Ai_PlannedAction findedAction)
     {
         plannedAction = findedAction;
-
-        Debug.Log($"Found action : {findedAction?.actionIndex}");
 
         PrepareNextAction(1f);
     }

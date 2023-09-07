@@ -22,9 +22,11 @@ public class SpecialEffect_InflictDamageOnDeath : MonoBehaviour
     {
         LaunchedSpellData launchedSpell = null;
 
+        List<CPN_Character> allCharacters = new List<CPN_Character>(RVN_BattleManager.GetAllCharacter());
+
         foreach (CharacterScriptable_Battle target in targets)
         {
-            foreach (CPN_Character chara in RVN_BattleManager.GetAllCharacter())
+            foreach (CPN_Character chara in allCharacters)
             {
                 if (chara.Scriptable.name.Contains(target.name))
                 {

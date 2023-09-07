@@ -95,6 +95,12 @@ public abstract class Effect
                     attackTarget.actOnUseSkillTarget += UseEffect;
                 }
                 break;
+            case EffectTrigger.OnRemoveAllArmor:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler removeFullArmorHealth))
+                {
+                    removeFullArmorHealth.actOnRemoveAllArmor += UseEffect;
+                }
+                break;
         }
     }
 
@@ -178,6 +184,12 @@ public abstract class Effect
                 if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster attackTarget))
                 {
                     attackTarget.actOnUseSkillTarget -= UseEffect;
+                }
+                break;
+            case EffectTrigger.OnRemoveAllArmor:
+                if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler removeFullArmorHealth))
+                {
+                    removeFullArmorHealth.actOnRemoveAllArmor -= UseEffect;
                 }
                 break;
         }

@@ -37,6 +37,10 @@ public class UI_PlayerSpell : MonoBehaviour
     [Header("Ressources")]
     [SerializeField] private RessourceHolder[] ressourceHolders;
 
+    [Header("Cast Time")]
+    [SerializeField] private GameObject actionCostNormal;
+    [SerializeField] private GameObject actionCostFast;
+
     [Header("Events")]
     [SerializeField] private UnityEvent OnSelectSpell;
     [SerializeField] private UnityEvent OnUnselectSpell;
@@ -85,6 +89,18 @@ public class UI_PlayerSpell : MonoBehaviour
 
         spellName.text = toSet.Name;
         spellDescription.SetText(toSet.GetDescription());
+
+        switch(toSet.CastType)
+        {
+            case SpellCastType.Normal:
+                actionCostNormal.SetActive(true);
+                actionCostFast.SetActive(false);
+                break;
+            case SpellCastType.Fast:
+                actionCostFast.SetActive(true);
+                actionCostNormal.SetActive(false);
+                break;
+        }
 
         if(toSet.RessourceCost != 0)
         {
@@ -166,6 +182,9 @@ public class UI_PlayerSpell : MonoBehaviour
 
             currentSpell.OnLockSpell -= SetLock;
         }
+
+        actionCostNormal.SetActive(false);
+        actionCostFast.SetActive(false);
 
         foreach (RessourceHolder ress in ressourceHolders)
         {

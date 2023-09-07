@@ -19,8 +19,8 @@ MonoBehaviour:
       englishText: '"What were those things?"'
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "Eral rengaina son \xE9p\xE9e. \u201C\xC7a ressemblait \xE0 des
-        morts-vivants, mais je n\u2019en avais jamais vu de la sorte.\u201D"
+      frenchText: "Eral rengaina son \xE9p\xE9e. \"\xC7a ressemblait \xE0 des morts-vivants,
+        mais je n\u2019en avais jamais vu de la sorte.\""
       englishText: Eral sheathed his sword. "It looked like undeads, but I'd never
         seen one like it."
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
@@ -33,7 +33,7 @@ MonoBehaviour:
         withdrew her hand and rose to her feet.
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CTu as trouv\xE9 quelque chose ?\u201D"
+      frenchText: "\"Tu as trouv\xE9 quelque chose ?\""
       englishText: '"Did you find something?"'
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:

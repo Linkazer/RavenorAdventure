@@ -32,7 +32,7 @@ MonoBehaviour:
   uiHeight: 1.1
   health: 12
   armor: 2
-  defense: 3
+  defense: 2
   accuracy: 1
   power: 0
   offensiveRerolls: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: 59fb311f2c750fc458c2da6eb42637eb, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
-  - {fileID: 11400000, guid: 36c5069efe737da4f8ed7dc8ac38a808, type: 2}
+  - {fileID: 11400000, guid: 6e51529f14f9d5f4a9860ded88a7bd31, type: 2}
   - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
   usableSpellByTurn: 1
   usedRessource:
@@ -53,8 +53,4 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: SpellRessource_Combo, ns: , asm: ravenor_engine}
-      data:
-        startAmount: 0
-        limits: {x: 0, y: 5}
-        currentAmount: 2
+      type: {class: , ns: , asm: }

@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6ae1195693191408d48cc45c9170c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 11400000, guid: a3c946d722776a34c91c42d1cbe50f6c, type: 2}
+  targets:
+  - {fileID: 11400000, guid: a3c946d722776a34c91c42d1cbe50f6c, type: 2}
   spellToUse: {fileID: 11400000, guid: 11494d622c59d4f4a8b9f3cf558e168d, type: 2}
   characterHealthToCheck: {fileID: 2297418374068219078}
 --- !u!114 &6311557672667765870

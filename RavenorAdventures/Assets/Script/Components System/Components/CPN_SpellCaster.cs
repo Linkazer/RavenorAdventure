@@ -202,7 +202,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
             if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
             {
-                StopMovementAction();
+                //StopMovementAction();
                 SetActionLeft(actionsLeftThisTurn - 1);
             }
             else
@@ -365,8 +365,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         {
             if (spells[i].name.Contains(toChange.name))
             {
-                Debug.Log("Change spell");
-
                 changeSpellWithIndex.Add(i, spells[i]);
                 spells[i] = Instantiate(toSet);
                 spells[i].SetSpell();

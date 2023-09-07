@@ -32,7 +32,7 @@ MonoBehaviour:
   uiHeight: 1.1
   health: 6
   armor: 0
-  defense: 3
+  defense: 4
   accuracy: 0
   power: 0
   offensiveRerolls: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
-  usableSpellByTurn: 1
+  usableSpellByTurn: 2
   usedRessource:
     id: 0
   passives:

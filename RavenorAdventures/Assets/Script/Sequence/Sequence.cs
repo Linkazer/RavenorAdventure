@@ -29,12 +29,16 @@ public class Sequence : SequenceAction
 
             if(newStep.mainAction != null && newStep.mainAction.enabled)
             {
-                foreach (Transform secondaryChild in child)
+                if (newStep.mainAction as Sequence == null && newStep.mainAction as SequenceCutscene == null)
                 {
-                    SequenceAction toAdd = secondaryChild.GetComponent<SequenceAction>();
-                    if (toAdd != null && toAdd.enabled)
+                    foreach (Transform secondaryChild in child)
                     {
-                        newStep.secondaryActions.Add(toAdd);
+                        SequenceAction toAdd = secondaryChild.GetComponent<SequenceAction>();
+
+                        if (toAdd != null && toAdd.enabled)
+                        {
+                            newStep.secondaryActions.Add(toAdd);
+                        }
                     }
                 }
 

@@ -12,8 +12,8 @@ public enum PossibleLanguage
 [Serializable]
 public class RVN_Text
 {
-    [SerializeField, TextArea(2,3)] private string frenchText = "";
-    [SerializeField, TextArea(2,3)] private string englishText = "";
+    [SerializeField, TextArea(2,5)] private string frenchText = "";
+    [SerializeField, TextArea(2,5)] private string englishText = "";
 
     public string GetText()
     {

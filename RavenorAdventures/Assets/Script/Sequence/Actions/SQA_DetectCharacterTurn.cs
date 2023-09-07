@@ -11,19 +11,16 @@ public class SQA_DetectCharacterTurn : SequenceAction
     {
         if (!checkBeginTurn && RVN_BattleManager.CurrentCharacter == characterToCheck)
         {
-            Debug.Log("Already turn" + gameObject);
             EndAction();
         }
         else
         {
-            Debug.Log("StartAction" + gameObject);
             characterToCheck.ActOnBeginSelfTurn += DetectTurn;
         }
     }
 
     protected override void OnEndAction()
     {
-        Debug.Log("EndAction" + gameObject);
         characterToCheck.ActOnBeginSelfTurn -= DetectTurn;
     }
 
@@ -34,8 +31,6 @@ public class SQA_DetectCharacterTurn : SequenceAction
 
     private void DetectTurn(RVN_ComponentHandler handler)
     {
-        Debug.Log("Detect turn" + gameObject);
-
         EndAction();
     }
 }

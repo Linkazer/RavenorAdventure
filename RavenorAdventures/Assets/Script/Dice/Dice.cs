@@ -53,7 +53,10 @@ public class Dice
 
         foreach(int hist in history)
         {
-            weights[hist - 1] *= 0.15f;
+            if(hist > 0)
+            {
+                weights[hist - 1] *= 0.15f;
+            }
         }
 
         float maxWeight = 0;

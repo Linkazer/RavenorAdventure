@@ -17,8 +17,12 @@ MonoBehaviour:
     englishText: Rapier's strike
   icon: {fileID: 21300000, guid: 6ca9483bb8dc4bc4fb429122b3b75837, type: 3}
   description:
-    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
-    englishText: Attacks the target with %diceUsed% dice.
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s.\nPeut \xEAtre utilis\xE9
+      2 fois par tour."
+    englishText: 'Attacks the target with %diceUsed% dice.
+
+      Can be use 2 times
+      in the same round.'
   castingAnimation: 5
   launchAnimation: 0
   castAnimationDuration: 0.25
@@ -40,13 +44,13 @@ MonoBehaviour:
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget: []
-  effectsOnCaster: []
+  effectsOnCaster:
+  - {fileID: 11400000, guid: 3c58374483d7a84439fad984fe56f1a3, type: 2}
   type: 0
-  diceUsed: 3
+  diceUsed: 2
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
   areEffectsRandom: 0
   hitEffectsOnTarget: []
-  hitEffectsOnCaster:
-  - {fileID: 11400000, guid: 32d46539053f4124bb0ddfce791accd1, type: 2}
+  hitEffectsOnCaster: []

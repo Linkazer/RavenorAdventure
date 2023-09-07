@@ -24,7 +24,7 @@ public class RVN_LvlEnd_CharacterDeath : RVN_LevelEnd
 
     private void CheckCharacterDeath(CPN_Character diedCharacter)
     {
-        if(wantedEnnemyDeads.Contains(diedCharacter))
+        if (wantedEnnemyDeads.Contains(diedCharacter))
         {
             wantedEnnemyDeads.Remove(diedCharacter);
 

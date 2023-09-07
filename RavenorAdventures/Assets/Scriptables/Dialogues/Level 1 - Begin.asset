@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 1 - Begin
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Malgr\xE9 les efforts d\u2019Eral, la porte ne bougeait pas d\u2019un
+        pouce."
+      englishText: Despite Eral's best efforts, the door wouldn't budge an inch.
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\"Tu es s\xFBr que les villageois sont ici ? Parce que je vois
+        mal comment ils auraient pu passer cette porte.\""
+      englishText: '"Are you sure the villagers are here? Because I don''t see how
+        they could have gotten through that door."'
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CLa piste s\u2019arr\xEAtait \xE0 l\u2019entr\xE9e de la
+        crypte. \xC2 moins qu\u2019ils se soient mis \xE0 voler, ils sont forc\xE9ment
+        ici.\u201D"
+      englishText: '"The trail stopped at the entrance to the crypt. Unless they''ve
+        learned to flying, they''re bound to be here."'
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral se rendit \xE0 l\u2019\xE9vidence. \u201CIl doit y avoir
+        un autre moyen d\u2019ouvrir cette porte. Fouillons les env...\u201D Eral
+        fut subitement interrompu par un fracas venant de la porte."
+      englishText: Eral realized the obvious. "There must be another way to open
+        this door. Let's search the surroun..." Eral was suddenly interrupted by
+        a crash coming from the door.
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn venait de s\u2019\xE9lancer \xE0 toute vitesse avant de s\u2019\xE9craser
+        contre la porte."
+      englishText: Ryn had just taken off at full speed before crashing into the
+        door.
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CJe confirme, la porte est bien ferm\xE9e.\u201D Dit-elle
+        en attrapant la main d\u2019Ylia qui l\u2019aida \xE0 se relever."
+      englishText: '"I confirm, the door is locked." She said, grabbing Ylia''s hand
+        and helping her to her feet.'
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral laissa s\u2019\xE9chapper une l\xE9ger rire. \u201CComme
+        je le disais, fouillons les environs. Nous trouverons peut-\xEAtre un moyen
+        d\u2019ouvrir cette porte.\u201D"
+      englishText: Eral let out a light laugh. "As I was saying, let's look around.
+        Maybe we'll find a way to open that door."
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\"Et si vous trouvez quelques chose, pr\xE9venez les autres avant
+        de faire quoi que ce soit. On ne sait pas ce qui nous attend d l\u2019autre
+        c\xF4t\xE9.\""
+      englishText: '"And if you find anything, let the others know before you do
+        anything. We don''t know what''s waiting for us on the other side."'
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors que le reste du groupe fouillait le hall d\u2019entr\xE9e,
+        Ryn s\u2019enfon\xE7a dans un des couloirs \xE0 c\xF4t\xE9 de l\u2019entr\xE9e.
+        Au fond de ce dernier, Ryn tomba sur une petite salle avec quelques chaises
+        autour d\u2019une table, ainsi qu\u2019un levier."
+      englishText: While the rest of the group searched the entrance hall, Ryn wandered
+        into one of the corridors next to the entrance. At the end of the latter,
+        Ryn came upon a small room with a few chairs around a table, as well as a
+        lever.
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn s\u2019approcha du levier. \u201CJ\u2019ai trouv\xE9 un levier
+        !\u201D cria-t-elle avant de l\u2019actionner."
+      englishText: Ryn approached the lever. "I've found a lever!" she shouted, before
+        flicking it.
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Apr\xE8s quelques secondes, elle entendit le bruit d\u2019une
+        lourde pierre se d\xE9pla\xE7ant, rapidement suivit de cris provenant du
+        hall d\u2019entr\xE9e."
+      englishText: After a few seconds, she heard the sound of a heavy stone moving,
+        quickly followed by shouts from the entrance hall.
+  responses: []
+  references:
+    version: 1

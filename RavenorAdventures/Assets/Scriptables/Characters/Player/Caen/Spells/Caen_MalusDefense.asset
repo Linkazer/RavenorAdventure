@@ -29,13 +29,15 @@ MonoBehaviour:
   launchAudioData: {fileID: 0}
   ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
   castType: 0
   isCooldownGlobal: 1
-  cooldown: 2
+  cooldown: 3
+  zoneType: 0
   range: 55
-  zoneRange: 0
+  zoneRange: 10
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget:
@@ -46,5 +48,6 @@ MonoBehaviour:
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

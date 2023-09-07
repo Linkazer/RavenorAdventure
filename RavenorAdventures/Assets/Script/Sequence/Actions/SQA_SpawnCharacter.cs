@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SQA_SpawnCharacter : SequenceAction
 {
+    [SerializeField] private bool spawnAsInstance = false;
     [SerializeField] private SpawnableCharacterTeam charactersToSpawn;
     [SerializeField] private Transform[] spawnPositions;
 
@@ -20,7 +21,14 @@ public class SQA_SpawnCharacter : SequenceAction
                 GetSpawnNode(spawnPositions[i].position);
             }
 
-            RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnNode.worldPosition);
+            if (spawnAsInstance)
+            {
+                RVN_BattleManager.SpawnCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnNode.worldPosition);
+            }
+            else
+            {
+                RVN_BattleManager.ActivateCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnNode.worldPosition);
+            }
         }
     }
 

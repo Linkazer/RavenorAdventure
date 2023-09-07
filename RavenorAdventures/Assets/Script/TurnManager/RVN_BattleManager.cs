@@ -180,13 +180,15 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (CanCharacterStartTurn(characterToPlay))
         {
+            Debug.Log("Start character turn : " + characterToPlay);
+
             characterToPlay.ActOnBeginSelfTurn?.Invoke(characterToPlay);
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
 
             if (teams[0].characters.Contains(characterToPlay))
             {
-                OnStartPlayerCharacterTurn?.Invoke(characterToPlay);//TO DO  : Mettre un vérification une fois les IA faites
+                OnStartPlayerCharacterTurn?.Invoke(characterToPlay);
             }
             else
             {
@@ -223,6 +225,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <param name="characterToEnd">The character that has his turn end.</param>
     public void EndCharacterTurn(CPN_Character characterToEnd)
     {
+        Debug.Log("End character turn : " + characterToEnd);
+
         RVN_GridDisplayer.UnsetGridFeedback();
 
         if (!playedThisTurn.Contains(characterToEnd))
@@ -272,21 +276,23 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
         }
 
-        if (currentPlayingTeam == 0)
+        if(currentPlayingTeam == 0)
         {
-            OnStartPlayerTurn?.Invoke();
             StartNewRound();
-        }
-        else
-        {
-            OnStartAITurn?.Invoke();
         }
 
         if (teams[currentPlayingTeam].characters.Count > 0)
         {
-            Debug.Log("New Round : " + teams[currentPlayingTeam].characters[0]);
-
             StartCharacterTurn(teams[currentPlayingTeam].characters[0]);
+
+            if (currentPlayingTeam == 0)
+            {
+                OnStartPlayerTurn?.Invoke();
+            }
+            else
+            {
+                OnStartAITurn?.Invoke();
+            }
         }
         else
         {
@@ -302,6 +308,13 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         playedThisTurn = new List<CPN_Character>();
 
         OnBeginNewRound?.Invoke();
+    }
+
+    public static void ActivateCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition)
+    {
+        characterPrefab.transform.position = spawnPosition;
+
+        SpawnCharacter(characterPrefab, teamIndex);
     }
 
     public static void SpawnCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition)

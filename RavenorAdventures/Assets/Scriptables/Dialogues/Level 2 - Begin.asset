@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 2 - Begin
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia sentie un frisson lui parcourir l\u2019\xE9chine. Depuis
+        qu\u2019elle avait franchi la porte, l\u2019aura que d\xE9gageait la crypte
+        la mettait mal \xE0 l\u2019aise."
+      englishText: Ylia felt a shiver run down her spine. Ever since she had stepped
+        through the door, the aura emanating from the crypt had made her uneasy.
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Vagabondant dans ses pens\xE9es, elle sursauta quand la voix de
+        Ryn lui parvint."
+      englishText: Wandering in her thoughts, she was startled to hear Ryn's voice.
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CEnfin !\u201D dit Ryn, avec un air soulag\xE9. \u201C\xC7a
+        fait plusieurs fois que je t\u2019appelle. J\u2019avais peur que tu sois
+        aussi devenu sourde.\u201D"
+      englishText: '"Finally!" said Ryn, with an air of relief. "I''ve been calling
+        you for several times now. I was afraid you''d gone deaf too."'
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CAvec tout ce que tu d\xE9blat\xE8res \xE0 la minute, je
+        me demande si \xE7a serait une si mauvaise chose.\u201D"
+      englishText: '"With everything you''re blathering on by the minute, I wonder
+        if that would be such a bad thing."'
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est s\xFBr que c\u2019est pas avec toi qu\u2019on
+        va s\u2019amuser pendant nos aventures. C\u2019est pas trop fatigant de tirer
+        une tronche pareil \xE0 longueur de journ\xE9e ?\u201D"
+      englishText: '"You''re sure not the one we''re going to have fun with on our
+        adventures. Isn''t it too tiring to pull a face like that all day long?"'
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est ce qu\u2019on appelle rester attentif. Tu devrais
+        essayer de temps \xE0 autre, \xE7a t\u2019\xE9viterai peut-\xEAtre d\u2019actionner
+        le premier levier que tu croises.\u201D"
+      englishText: '"That''s what we call staying alert. You should try it sometime,
+        it might save you from pulling the first lever you come across."'
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Ryn et Sadrif continu\xE8rent d\u2019avancer, laissant de nouveau
+        Ylia avec ses pens\xE9es."
+      englishText: Ryn and Sadrif moved on, leaving Ylia to her own thoughts once
+        again.
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CAu moins, on peut dire qu\u2019ils mettent de l\u2019ambiance.\u201D"
+      englishText: '"At least they set the mood."'
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia tourna rapidement la t\xEAte vers Eral."
+      englishText: Ylia quickly turned her head to Eral.
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CTu es s\xFBre que \xE7a va aller ?\u201D demanda calmement
+        Eral."
+      englishText: '"Are you sure you''re alright ?" asked Eral calmly.'
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "En guise de r\xE9ponse, Ylia sourit timidement et hocha la t\xEAte."
+      englishText: In response, Ylia smiled shyly and nodded.
+  responses: []
+  references:
+    version: 1
