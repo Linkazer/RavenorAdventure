@@ -22,7 +22,7 @@ PrefabInstance:
     - target: {fileID: 853959253304966710, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9f194607ae5bbc94694a926f9a590279, type: 2}
+      objectReference: {fileID: 2100000, guid: 2afc486830d017e4e8021ae46f571295, type: 2}
     - target: {fileID: 1200365367193521594, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -33,19 +33,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200365367193521594, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1200365367193521594, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1200365367193521594, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3296962444868983952, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_Name
-      value: SpellAnimation_Ylia_BonusLoop
+      value: SpellAnimation_KnightGuardian_SecondPhase
       objectReference: {fileID: 0}
     - target: {fileID: 5088325124065952552, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: m_RootOrder
@@ -113,7 +113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.type
-      value: 5
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.enabled
@@ -125,15 +129,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.m_Scale.y
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.arc.spread
@@ -145,11 +149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: VelocityModule.x.scalar
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: VelocityModule.y.scalar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: VelocityModule.z.scalar
@@ -157,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.m_Position.y
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ShapeModule.m_Position.z
@@ -217,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -229,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: VelocityModule.orbitalZ.scalar
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -249,11 +253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.startRotation.scalar
@@ -277,10 +281,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: VelocityModule.speedModifier.scalar
-      value: 1.8
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+      propertyPath: LifetimeByEmitterSpeedModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
@@ -297,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime2
-      value: 58982
+      value: 39321
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime3
@@ -353,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.a
-      value: 1
+      value: 0.5882353
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key2.b
@@ -508,6 +516,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+      propertyPath: LifetimeByEmitterSpeedModule.m_Curve.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ClampVelocityModule.multiplyDragByParticleSize
       value: 0
       objectReference: {fileID: 0}
@@ -518,6 +530,10 @@ PrefabInstance:
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
+      propertyPath: LifetimeByEmitterSpeedModule.m_Curve.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7437834997555922551, guid: 4cc5348fffa3d02488a25ee2ae8a6d15, type: 3}
       propertyPath: ClampVelocityModule.multiplyDragByParticleVelocity
