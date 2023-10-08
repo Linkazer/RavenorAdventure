@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b35f8205ec48cc4fb22db2d236f89d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetHealth: 15
+  targetHealth: 8
   characterToCheck: {fileID: 2951849195826858197}
 --- !u!1 &682316989
 GameObject:

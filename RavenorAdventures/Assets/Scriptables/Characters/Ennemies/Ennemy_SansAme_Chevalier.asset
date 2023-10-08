@@ -38,7 +38,7 @@ MonoBehaviour:
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 35
-  speed: 5
+  speed: 3
   dangerosityMaxDistance: 0
   dangerosityMinimumDistance: 15
   opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
@@ -56,7 +56,6 @@ MonoBehaviour:
     wantedActionIndex: 1
     conditions:
     - calculImportance: 0
-      abscissaValue: 10
       abcissaCalcul:
         id: 1
       condition: 3
@@ -79,7 +78,6 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 13
         abcissaCalcul:
           id: 3
         abscissaCoeficient: -1

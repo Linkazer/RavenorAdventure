@@ -121,6 +121,18 @@ public class Pathfinding : MonoBehaviour
 		return 15*dstX + 10 * (dstY-dstX);
 	}
 
+	public static int GetPathLength(Node startNode, List<Node> path)
+	{
+		int distance = GetDistance(startNode, path[0]);
+
+		for(int i = 0; i < path.Count - 2; i++)
+		{
+			distance += GetDistance(path[i], path[i + 1]);
+		}
+
+		return distance;
+	}
+
 	/// <summary>
 	/// Calcul of the pathfinding.
 	/// </summary>

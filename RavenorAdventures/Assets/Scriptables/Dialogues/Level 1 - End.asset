@@ -42,53 +42,38 @@ MonoBehaviour:
       englishText: Hesitating for a few seconds, Ylia replied with a series of signs.
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CElle dit que ces corps n'avaient pas d\u2019\xE2me. Mais
-        ce n\u2019est pas le cas de tous les morts-vivants ?\u201D"
-      englishText: '"She says these bodies had no souls. But isn''t that the case
-        with every undeads ?"'
-  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    text:
-      frenchText: "Ylia secoua la t\xEAte avant de reprendre."
-      englishText: Ylia shook her head and continued.
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CComment \xE7a ils \xE9taient vivants ?\u201D"
-      englishText: '"What do you mean they were alive?"'
-  - talker: {fileID: 0}
-    text:
-      frenchText: "Alors qu\u2019Ylia r\xE9fl\xE9chissait, cherchant un moyen d\u2019expliquer
-        clairement, Sadrif intervint."
-      englishText: As Ylia pondered, looking for a way to explain clearly, Sadrif
-        intervened.
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "\u201CTu veux dire que leur enveloppe charnelle \xE9tait encore
-        vivante ? \xC7a voudrait dire que\u2026\u201D Sadrif laissa sa phrase en
-        suspens, mais Eral compris o\xF9 il voulait en venir."
-      englishText: '"You mean their carnal envelope was still alive? That would mean
-        that..." Sadrif left his sentence hanging, but Eral understood what he was
-        getting at.'
+      frenchText: "\u201CElle dit que ces corps n'avaient pas d\u2019\xE2me.\u201D"
+      englishText: '"She says these bodies had no souls."'
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CQue ? Que quoi ? Si tu finis pas tes phrases, faut pas s\u2019\xE9tonner
-        qu\u2019on comprenne rien.\u201D"
-      englishText: '"That ? Mean that what ? If you don''t finish your sentences,
-        don''t be surprised if we don''t understand anything."'
+      frenchText: "\u201CPourquoi cet air \xE9tonn\xE9 ? C\u2019est pas le principe
+        d\u2019un mort-vivant de plus avoir d\u2019\xE2me ?\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CLes n\xE9cromanciens utilisent la magie pour r\xE9animer
-        des cadavres, des \xEAtres vivants d\xE9j\xE0 morts. Si les corps que nous
-        avons combattus \xE9taient encore vivant, cela veut dire que leurs \xE2mes
-        leur ont \xE9t\xE9 retir\xE9es pendant qu\u2019ils \xE9taient encore en vie.\u201D"
-      englishText: '"Necromancers use magic to reanimate corpses, living beings that
-        are already dead. If the bodies we fought were still alive, that means their
-        souls were taken from them while they were still alive."'
+      frenchText: "\u201CPas exactement. Quand un n\xE9cromancien fait revenir un
+        mort-vivant, il y enferme une \xE2me, et c\u2019est cette derni\xE8re qui
+        permet au mort-vivant de se mouvoir.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "\u201CJ\u2019imagine que c\u2019est \xE0 cause des r\xE9sidus
+        de magie. A l\u2019\xE9poque de la Guerre des damn\xE9s, certaines l\xE9gendes
+        racontent que cet endroit avaient servit \xE0 de nombreux rituels de la part
+        du culte de Maelazar.\""
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CIl semblerait que cette histoire de villageois soit plus
-        complexe que pr\xE9vu.\u201D"
-      englishText: '"It would appear that this villager business is more complex
-        than expected."'
+      frenchText: "\"\xC0 force d\u2019essayer d\u2019invoquer des \xE2mes ou d\u2019ouvrir
+        des portail vers l\u2019Ether, cette magie \xE0 fini par impr\xE9gner les
+        lieux.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CTu veux dire qu\u2019on risque d\u2019en rencontrer d\u2019autre
+        ? Et moi qui pensait que cette journ\xE9e allait barbante !\u201D dit-elle
+        avec un grand sourire."
+      englishText: TODO
   responses: []
   references:
     version: 1

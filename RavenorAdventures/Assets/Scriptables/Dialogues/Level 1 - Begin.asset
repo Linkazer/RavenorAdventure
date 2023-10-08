@@ -15,30 +15,22 @@ MonoBehaviour:
   sentences:
   - talker: {fileID: 0}
     text:
-      frenchText: "Malgr\xE9 les efforts d\u2019Eral, la porte ne bougeait pas d\u2019un
-        pouce."
-      englishText: Despite Eral's best efforts, the door wouldn't budge an inch.
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\"Tu es s\xFBr que les villageois sont ici ? Parce que je vois
-        mal comment ils auraient pu passer cette porte.\""
-      englishText: '"Are you sure the villagers are here? Because I don''t see how
-        they could have gotten through that door."'
+      frenchText: "Apr\xE8s plusieurs minutes \xE0 essayer de faire bouger la porte,
+        Eral se rendit \xE0 l\u2019\xE9vidence."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CLa piste s\u2019arr\xEAtait \xE0 l\u2019entr\xE9e de la
-        crypte. \xC2 moins qu\u2019ils se soient mis \xE0 voler, ils sont forc\xE9ment
-        ici.\u201D"
-      englishText: '"The trail stopped at the entrance to the crypt. Unless they''ve
-        learned to flying, they''re bound to be here."'
+      frenchText: "\u201CIl fallait s\u2019y attendre. La crypte est cach\xE9e depuis
+        des centaines d\u2019ann\xE9es, ils n\u2019allaient quand m\xEAme pas laisser
+        la porte ouverte.\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "Eral se rendit \xE0 l\u2019\xE9vidence. \u201CIl doit y avoir
-        un autre moyen d\u2019ouvrir cette porte. Fouillons les env...\u201D Eral
-        fut subitement interrompu par un fracas venant de la porte."
-      englishText: Eral realized the obvious. "There must be another way to open
-        this door. Let's search the surroun..." Eral was suddenly interrupted by
-        a crash coming from the door.
+      frenchText: "\u201CIl doit bien y avoir un moyen d\u2019ouvrir cette porte.
+        Fouillons les env...\u201D Eral fut subitement interrompu par un fracas venant
+        de la porte."
+      englishText: There must be way to open this door. Let's search the surroun..."
+        Eral was suddenly interrupted by a crash coming from the door.
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
       frenchText: "Ryn venait de s\u2019\xE9lancer \xE0 toute vitesse avant de s\u2019\xE9craser
@@ -61,7 +53,7 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
       frenchText: "\"Et si vous trouvez quelques chose, pr\xE9venez les autres avant
-        de faire quoi que ce soit. On ne sait pas ce qui nous attend d l\u2019autre
+        de faire quoi que ce soit. On ne sait pas ce qui nous attend de l\u2019autre
         c\xF4t\xE9.\""
       englishText: '"And if you find anything, let the others know before you do
         anything. We don''t know what''s waiting for us on the other side."'

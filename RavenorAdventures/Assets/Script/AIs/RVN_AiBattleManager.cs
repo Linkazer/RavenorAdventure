@@ -312,7 +312,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         Node casterNode = currentCharacterMovement.CurrentNode;
         AI_CharacterScriptable casterScriptable = (currentCharacter.Scriptable as AI_CharacterScriptable);
 
-        float maxScore = 9999;
+        float maxScore = -1;
         bool hasVision = false;
 
         List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
@@ -334,55 +334,82 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     continue;
                 }
 
-                Node targetNode = GetClosestCharacter(n, true).CurrentNode;
+                Node targetNode = Grid.GetClosestNeighbour(n, GetClosestCharacter(n, true).CurrentNode, true);
 
-                float distance = Pathfinding.GetDistance(n, targetNode);
-
-                List<Node> path = Pathfinding.CalculatePathfinding(casterNode, n, currentCharacterMovement.MovementLeft);
-
-                if (distance > casterScriptable.DistanceFromTarget.y)
+                float distanceMovementPosTargetPos = -1;
+                
+                if(!hasVision && !Grid.IsNodeVisible(n, targetNode))
                 {
-                    distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.y) / casterScriptable.DistanceFromTarget.y;
+                    List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1);
+
+                    if (path.Count > 0)
+                    {
+                        if (path.Count > 0)
+                        {
+                            distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
+                        }
+                        else
+                        {
+                            distanceMovementPosTargetPos = 0;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
-                else if (distance < casterScriptable.DistanceFromTarget.x)
+                else if(Grid.IsNodeVisible(n, targetNode))
                 {
-                    distance = Mathf.Abs(distance - casterScriptable.DistanceFromTarget.x) / casterScriptable.DistanceFromTarget.x;
+                    if(!hasVision)
+                    {
+                        maxScore = -1;
+                        hasVision = true;
+                    }
+
+                    distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
+
+                    //Pourcentage par rapport à la distance voulue
+                    if (distanceMovementPosTargetPos > casterScriptable.DistanceFromTarget.y)
+                    {
+                        distanceMovementPosTargetPos = Mathf.Abs(distanceMovementPosTargetPos - casterScriptable.DistanceFromTarget.y) / casterScriptable.DistanceFromTarget.y;
+                    }
+                    else if (distanceMovementPosTargetPos < casterScriptable.DistanceFromTarget.x)
+                    {
+                        distanceMovementPosTargetPos = Mathf.Abs(distanceMovementPosTargetPos - casterScriptable.DistanceFromTarget.x) / casterScriptable.DistanceFromTarget.x;
+                    }
+                    else //La position est à la bonne distance voulue
+                    {
+                        distanceMovementPosTargetPos = 0;
+
+                        if (n == casterNode)
+                        {
+                            return n;
+                        }
+                    }
                 }
                 else
                 {
-                    distance = 0;
-
-                    if (n == casterNode)
-                    {
-                        return n;
-                    }
+                    continue;
                 }
 
-                if (Grid.IsNodeVisible(n, targetNode) || hasVision || (!Grid.IsNodeVisible(n, targetNode) && !hasVision))
+                if (maxScore < 0 || distanceMovementPosTargetPos < maxScore)
                 {
-                    if (distance < maxScore)
-                    {
-                        possibleTargetNodes = new List<Node>();
+                    possibleTargetNodes = new List<Node>();
 
-                        maxScore = distance;
+                    possibleTargetNodes.Add(n);
 
-                        toReturn = n;
-                    }
-                    else if (distance == maxScore && Pathfinding.GetDistance(casterNode, n) < Pathfinding.GetDistance(casterNode, toReturn))
-                    {
-                        //Debug.Log($"Equal distance for {GetClosestCharacter(n, true)} : { Pathfinding.GetDistance(casterNode, n)} < {Pathfinding.GetDistance(casterNode, toReturn)}");
-
-                        toReturn = n;
-
-                        possibleTargetNodes.Add(n);
-                    }
-
-                    if(!hasVision)
-                    {
-                        hasVision = Grid.IsNodeVisible(n, targetNode);
-                    }
+                    maxScore = distanceMovementPosTargetPos;
+                }
+                else if (distanceMovementPosTargetPos == maxScore)// && Pathfinding.GetDistance(casterNode, n) < Pathfinding.GetDistance(casterNode, toReturn))
+                {
+                    possibleTargetNodes.Add(n);
                 }
             }
+        }
+
+        if(toReturn == null && possibleTargetNodes.Count > 0)
+        {
+            toReturn = possibleTargetNodes[UnityEngine.Random.Range(0, possibleTargetNodes.Count)];
         }
 
         return toReturn;

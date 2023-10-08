@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 4406091627812209195}
   - component: {fileID: 1953303209543998562}
   - component: {fileID: 4214192874067489731}
+  - component: {fileID: 3576760566987667139}
   m_Layer: 5
   m_Name: DialogHandler
   m_TagString: Untagged
@@ -534,6 +535,62 @@ MonoBehaviour:
   animator: {fileID: 1953303209543998562}
   animatorParameter: IsShown
   wantedState: 0
+--- !u!114 &3576760566987667139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3533763982120724536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1847417441113511869}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1115491863494149883}
+        m_TargetAssemblyTypeName: RVN_DialogueManager, ravenor_engine
+        m_MethodName: DisplayNextSentence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3590691973533011728
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +728,6 @@ GameObject:
   - component: {fileID: 6217262510477418973}
   - component: {fileID: 1847417441113511869}
   - component: {fileID: 9118486768862940066}
-  - component: {fileID: 634474527346177763}
   m_Layer: 5
   m_Name: Dialog (1)
   m_TagString: Untagged
@@ -750,62 +806,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &634474527346177763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6025377398026058382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1847417441113511869}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1115491863494149883}
-        m_TargetAssemblyTypeName: RVN_DialogueManager, ravenor_engine
-        m_MethodName: DisplayNextSentence
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6117539653913877295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1615,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+--- !u!224 &4556881700109969763 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+  m_PrefabInstance: {fileID: 6117539654632825364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8254781977002086365 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2768374152015441353, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
@@ -1626,11 +1631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f230940ea08fb3d4db2dd527e5f7522b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &4556881700109969763 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
-  m_PrefabInstance: {fileID: 6117539654632825364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6117539654911328205
 PrefabInstance:
   m_ObjectHideFlags: 0

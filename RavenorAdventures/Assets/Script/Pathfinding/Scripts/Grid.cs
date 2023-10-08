@@ -97,6 +97,31 @@ public class Grid : MonoBehaviour
 		List<Node> neighbours = GetNeighbours(node);
 		return neighbours[Random.Range(0, neighbours.Count)];
     }
+
+	public static Node GetClosestNeighbour(Node node, Node nodeForNeighbours, bool searchWalkable)
+	{
+        List<Node> neighbours = GetNeighbours(nodeForNeighbours);
+
+		Node toReturn = null;
+
+		for(int i = 0; i < neighbours.Count; i++)
+		{
+			if (!searchWalkable || neighbours[i].IsWalkable)
+			{
+				if (toReturn == null)
+				{
+					toReturn = neighbours[i];
+				}
+				else if (Pathfinding.GetDistance(node, neighbours[i]) < Pathfinding.GetDistance(node, toReturn))
+				{
+					toReturn = neighbours[i];
+				}
+			}
+		}
+
+		return toReturn;
+
+    }
 	
 	public static Node GetNodeFromWorldPoint(Vector3 worldPoint)
     {

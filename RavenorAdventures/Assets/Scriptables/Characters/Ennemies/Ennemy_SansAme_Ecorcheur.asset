@@ -41,10 +41,9 @@ MonoBehaviour:
   speed: 5
   dangerosityMaxDistance: 25
   dangerosityMinimumDistance: 15
-  opportunitySpell: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
+  opportunitySpell: {fileID: 11400000, guid: 9408f1b2a21169141a8a50291c50e899, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
-  - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
+  - {fileID: 11400000, guid: 9408f1b2a21169141a8a50291c50e899, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
@@ -52,7 +51,7 @@ MonoBehaviour:
   wantedDistanceFromTarget: {x: 0, y: 15}
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 9408f1b2a21169141a8a50291c50e899, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0
@@ -66,7 +65,6 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 13
         abcissaCalcul:
           id: 2
         abscissaCoeficient: -1

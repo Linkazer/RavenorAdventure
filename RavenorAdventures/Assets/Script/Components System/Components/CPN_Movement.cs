@@ -11,6 +11,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	//Distance de déplacement possible pendant 1 tour.
 	[SerializeField] private int maxDistance = 100;
 
+	private bool isMovementCosting = true;
+
 	/// <summary>
 	/// Played when the component enter a new Node.
 	/// </summary>
@@ -151,16 +153,27 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		OnEndMovementAction += callback;
+		isMovementCosting = true;
+
+        OnEndMovementAction += callback;
 
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
 	public void ForceToMove(Vector2 targetPosition, Action callback)
     {
-		OnEndMovementAction += callback;
+		isMovementCosting = false;
+
+        OnEndMovementAction += () => EndForceMove(callback);
 
 		PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
+	}
+
+	private void EndForceMove(Action callback)
+	{
+		isMovementCosting = true;
+
+        callback?.Invoke();
 	}
 
 	private void StartMovement()
@@ -205,7 +218,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <returns></returns>
 	private IEnumerator FollowPath()
 	{
-		if (!CheckForOpportunityAttack())
+		if (!isMovementCosting || !CheckForOpportunityAttack())
 		{
 			Node currentWaypoint = path[targetIndex];
 
@@ -238,7 +251,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					if (targetIndex >= path.Length)
 					{
-						currentMovementLeft -= currentNode.gCost;
+						if (isMovementCosting)
+						{
+							currentMovementLeft -= currentNode.gCost;
+						}
 
 						EndMovement();
 
@@ -258,7 +274,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					distance = Vector2.Distance(posUnit, posTarget);
 
-					if (CheckForOpportunityAttack())
+					if (isMovementCosting && CheckForOpportunityAttack())
 					{
 						currentMovementLeft -= currentNode.gCost;
 
@@ -297,7 +313,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		{
 			for (int i = targetIndex; i < path.Length; i++)
 			{
-				Gizmos.color = Color.black;
+				Gizmos.color = Color.white;
 				Gizmos.DrawCube(path[i].worldPosition, Vector3.one * 0.1f);
 
 				if (i == targetIndex)

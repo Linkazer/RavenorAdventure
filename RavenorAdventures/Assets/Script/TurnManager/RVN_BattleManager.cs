@@ -180,8 +180,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (CanCharacterStartTurn(characterToPlay))
         {
-            Debug.Log("Start character turn : " + characterToPlay);
-
             characterToPlay.ActOnBeginSelfTurn?.Invoke(characterToPlay);
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
@@ -225,8 +223,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <param name="characterToEnd">The character that has his turn end.</param>
     public void EndCharacterTurn(CPN_Character characterToEnd)
     {
-        Debug.Log("End character turn : " + characterToEnd);
-
         RVN_GridDisplayer.UnsetGridFeedback();
 
         if (!playedThisTurn.Contains(characterToEnd))
