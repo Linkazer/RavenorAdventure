@@ -344,18 +344,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                     if (path.Count > 0)
                     {
-                        if (path.Count > 0)
-                        {
-                            distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
-                        }
-                        else
-                        {
-                            distanceMovementPosTargetPos = 0;
-                        }
+                        distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
                     }
                     else
                     {
-                        continue;
+                        distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
                     }
                 }
                 else if(Grid.IsNodeVisible(n, targetNode))

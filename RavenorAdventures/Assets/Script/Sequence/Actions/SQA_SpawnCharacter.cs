@@ -18,7 +18,7 @@ public class SQA_SpawnCharacter : SequenceAction
 
             if (spawnPositions.Length != 0)
             {
-                GetSpawnNode(spawnPositions[i].position);
+                spawnNode = GetSpawnNode(spawnPositions[i].position);
             }
 
             if (spawnAsInstance)
@@ -30,6 +30,8 @@ public class SQA_SpawnCharacter : SequenceAction
                 RVN_BattleManager.ActivateCharacter(charactersToSpawn.charaToSpawns[i], charactersToSpawn.teamIndex, spawnNode.worldPosition);
             }
         }
+
+        EndAction();
     }
 
     protected override void OnEndAction()

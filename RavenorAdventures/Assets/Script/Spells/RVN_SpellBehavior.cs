@@ -87,21 +87,38 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     {
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
-        PlaySpellAnimation(spellToUse, targetNode);
+        if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.All)
+        {
+            PlaySpellAnimation(spellToUse, targetNode);
+        }
 
         if (CanUseOnNode(hitableObjects, spellToUse.scriptable.HitableTargets, spellToUse.caster))
         {
+           
+
             OnUseSpell(spellToUse, targetNode, callback);
 
             T usedScriptable = GetScriptable(spellToUse);
 
-            if (usedScriptable.AnimationDuration < 0.5f)
+            if (callback != null)
             {
-                TimerManager.CreateGameTimer(0.5f, callback);
+                if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters || spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.Target)
+                {
+                    PlaySpellAnimation(spellToUse, targetNode);
+                }
+
+                if (usedScriptable.AnimationDuration < 0.5f)
+                {
+                    TimerManager.CreateGameTimer(0.5f, callback);
+                }
+                else
+                {
+                    TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+                }
             }
-            else
+            else if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters)
             {
-                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+                PlaySpellAnimation(spellToUse, targetNode);
             }
 
             foreach (CPN_HealthHandler hitedObject in hitableObjects)
