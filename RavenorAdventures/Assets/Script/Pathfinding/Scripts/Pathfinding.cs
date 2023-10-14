@@ -148,7 +148,7 @@ public class Pathfinding : MonoBehaviour
 	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
 	/// <param name="pathCalcul"></param>
 	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance)
+	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool checkNonStaticObstacle = true)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
@@ -173,7 +173,7 @@ public class Pathfinding : MonoBehaviour
 					isTarget = true;
                 }
 
-				if (!neighbour.IsWalkable || !CanDiagonalBeReached(currentNode, neighbour) || closedSet.Contains(neighbour))
+				if ((checkNonStaticObstacle && !neighbour.IsWalkable) || (!checkNonStaticObstacle && neighbour.IsStaticObstacle) || !CanDiagonalBeReached(currentNode, neighbour) || closedSet.Contains(neighbour))
 				{
 					continue;
 				}

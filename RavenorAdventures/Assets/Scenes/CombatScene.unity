@@ -8581,6 +8581,10 @@ PrefabInstance:
       propertyPath: gridDisplayer
       value: 
       objectReference: {fileID: 825969271}
+    - target: {fileID: 114118512083767938, guid: 4f471b08f33214a46a43ce72aa1f3bf2, type: 3}
+      propertyPath: unwalkableMask.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f471b08f33214a46a43ce72aa1f3bf2, type: 3}
 --- !u!114 &1608120481 stripped

@@ -367,7 +367,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     }
                     else if(pathType == PathType.NoVisionNoPath)
                     {
-                        distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
+                        path = Pathfinding.CalculatePathfinding(n, targetNode, -1, false);
+
+                        if (path.Count > 0)
+                        {
+                            distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
+                        }
+                        else
+                        {
+                            distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
+                        }
                     }
                     else
                     {
