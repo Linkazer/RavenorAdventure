@@ -31,12 +31,19 @@ public class Pathfinding : MonoBehaviour
 		Node startNode = Grid.GetNodeFromWorldPoint(startPos);
 		Node targetNode = Grid.GetNodeFromWorldPoint(targetPos);
 
+		Debug.Log($"Try to find from {startPos} to {targetPos} with max {walkDistance}");
+
 		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance).ToArray();
+
+		Debug.Log("Target node cost : " + targetNode.gCost);
 
 		if (waypoints.Length <= 0 || waypoints[0] == null)
         {
 			pathSuccess = false;
         }
+
+		Debug.Log("Found path : " + pathSuccess);
+
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 		//yield return null;
 	}
@@ -158,6 +165,14 @@ public class Pathfinding : MonoBehaviour
 			closedSet.Add(currentNode);
 			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
 			{
+                bool isTarget = false;
+
+                if (distance > 0 && neighbour.worldPosition == new Vector3(-13.5f, -1.5f, 0.0f))
+				{
+					Debug.Log("Check on Target Node : " + CanDiagonalBeReached(currentNode, neighbour));
+					isTarget = true;
+                }
+
 				if (!neighbour.IsWalkable || !CanDiagonalBeReached(currentNode, neighbour) || closedSet.Contains(neighbour))
 				{
 					continue;
@@ -165,18 +180,49 @@ public class Pathfinding : MonoBehaviour
 
 				int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
 
-				if (distance <= 0 || newMovementCostToNeighbour <= distance)
+				/*if(isTarget)
 				{
-					int newDistanceFromTargetCost = -1;
+					Debug.Log("Check distance");
+
+                    Debug.Log(currentNode.worldPosition);
+                    Debug.Log($"{currentNode.gCost} + {GetDistance(currentNode, neighbour)} = {newMovementCostToNeighbour}");
+
+                    int security = 100;
+					Node lastNode = currentNode;
+					Node checkNode = currentNode;
+					while(security > 0 && checkNode.parent != null)
+					{
+						lastNode = checkNode;
+                        checkNode = checkNode.parent;
+
+						Debug.Log(checkNode.worldPosition);
+                        Debug.Log($"{checkNode.gCost} + {GetDistance(checkNode, lastNode)} = {currentNode.gCost + GetDistance(checkNode, lastNode)}");
+
+						security--;
+                    }
+				}*/
+
+                if (distance <= 0 || newMovementCostToNeighbour <= distance)
+				{
+                    if (isTarget)
+                    {
+                        Debug.Log("Distance valid");
+                    }
+                    int newDistanceFromTargetCost = -1;
 
 					if (targetNode != null)
 					{
-						newDistanceFromTargetCost = GetDistance(currentNode, targetNode);
+						//newDistanceFromTargetCost = GetDistance(currentNode, targetNode);
 					}
 
-					if (newMovementCostToNeighbour == neighbour.gCost && (newDistanceFromTargetCost >= 0 && newDistanceFromTargetCost < neighbour.hCost))
+					/*if (newMovementCostToNeighbour == neighbour.gCost)// && (newDistanceFromTargetCost >= 0 && newDistanceFromTargetCost < neighbour.hCost))
 					{
-						neighbour.gCost = newMovementCostToNeighbour;
+                        if (isTarget)
+                        {
+                            Debug.Log("Distance Equal");
+                        }
+
+                        neighbour.gCost = newMovementCostToNeighbour;
 						neighbour.hCost = newDistanceFromTargetCost;
 						neighbour.parent = currentNode;
 						currentNode.children = neighbour;
@@ -190,9 +236,14 @@ public class Pathfinding : MonoBehaviour
 							}
 						}
 					}
-					else if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
+					else*/ if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
 					{
-						neighbour.gCost = newMovementCostToNeighbour;
+                        if (isTarget)
+                        {
+                            Debug.Log("Distance Better");
+                        }
+
+                        neighbour.gCost = newMovementCostToNeighbour;
 						if (newDistanceFromTargetCost < 0)
 						{
 							neighbour.hCost = 0;

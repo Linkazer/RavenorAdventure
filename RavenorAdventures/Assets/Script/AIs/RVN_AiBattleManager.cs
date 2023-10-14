@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [Serializable]
@@ -18,6 +19,14 @@ public class Ai_PlannedAction
 
 public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 {
+    enum PathType { 
+        NoVisionNoPath = -1,
+        NoVision = 0,
+        HasVision = 1,
+    }
+
+    private List<Node> lastCalculatedPath = new List<Node>();
+
     [SerializeField] private float timeBetweenActions = 0.5f;
     [SerializeField] private float timeDelayBeginTurn = 1f;
     [SerializeField] private float timeDelayEndTurn = 0.5f;
@@ -313,9 +322,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         AI_CharacterScriptable casterScriptable = (currentCharacter.Scriptable as AI_CharacterScriptable);
 
         float maxScore = -1;
-        bool hasVision = false;
+
+        PathType pathType = PathType.NoVisionNoPath;
 
         List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
+
+        lastCalculatedPath = new List<Node>(possibleMovements);
 
         List<Node> possibleTargetNodes = new List<Node>();
 
@@ -323,6 +335,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
         {
+            Debug.Log("Cant move without dying");
             toReturn = casterNode;
         }
         else
@@ -338,25 +351,35 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                 float distanceMovementPosTargetPos = -1;
                 
-                if(!hasVision && !Grid.IsNodeVisible(n, targetNode))
+                if(pathType != PathType.HasVision && !Grid.IsNodeVisible(n, targetNode))
                 {
                     List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1);
 
                     if (path.Count > 0)
                     {
+                        if (pathType == PathType.NoVisionNoPath)
+                        {
+                            pathType = PathType.NoVision;
+                            maxScore = -1;
+                        }
+
                         distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
+                    }
+                    else if(pathType == PathType.NoVisionNoPath)
+                    {
+                        distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
                     }
                     else
                     {
-                        distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
+                        continue;
                     }
                 }
                 else if(Grid.IsNodeVisible(n, targetNode))
                 {
-                    if(!hasVision)
+                    if(pathType != PathType.HasVision)
                     {
                         maxScore = -1;
-                        hasVision = true;
+                        pathType = PathType.HasVision;
                     }
 
                     distanceMovementPosTargetPos = Pathfinding.GetDistance(n, targetNode);
@@ -376,6 +399,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                         if (n == casterNode)
                         {
+                            Debug.Log("Return Caster Node");
                             return n;
                         }
                     }
@@ -424,14 +448,19 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             List<CPN_SpellCaster> casters = n.GetNodeComponent<CPN_SpellCaster>();
             foreach(CPN_SpellCaster c in casters)
             {
-                if(c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                if (!RVN_BattleManager.AreCharacterAllies(casterHealthHandler.Handler as CPN_Character, c.Handler as CPN_Character))
                 {
-                    opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
+                    if (c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                    {
+                        opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
+                    }
                 }
             }
         }
 
-        return CalculateOpportunityScore(opportunityAttackDiceCounter, casterHealthHandler.CurrentArmor, casterHealthHandler.CurrentHealth, (currentCharacter.Scriptable as AI_CharacterScriptable).OppportunityHealthBonus);
+        float toReturn = CalculateOpportunityScore(opportunityAttackDiceCounter, casterHealthHandler.CurrentArmor, casterHealthHandler.CurrentHealth, (currentCharacter.Scriptable as AI_CharacterScriptable).OppportunityHealthBonus); ;
+
+        return toReturn;
     }
 
     private float OpportunityAttackScore(CPN_HealthHandler casterHealthHandler, List<Node> pathNode)
@@ -747,6 +776,25 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         return toReturn;
     }
+
+
+    public void OnDrawGizmos()
+    {
+        if (lastCalculatedPath != null)
+        {
+            for (int i = 0; i < lastCalculatedPath.Count; i++)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawCube(lastCalculatedPath[i].worldPosition, Vector3.one * 0.5f);
+
+                /*if (i > 0)
+                {
+                    Gizmos.DrawLine(lastCalculatedPath[i - 1].worldPosition, lastCalculatedPath[i].worldPosition);
+                }*/
+            }
+        }
+    }
+
 
     #region Calculs de Considérations
     public float CalculConditionnal(float abscissa, float constant, float coeficient)

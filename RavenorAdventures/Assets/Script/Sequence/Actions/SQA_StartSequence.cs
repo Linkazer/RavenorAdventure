@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class SQA_StartSequence : SequenceAction
 {
+    [SerializeField] private int loopAmount = -1;
     [SerializeField] private Sequence toStart;
 
     protected override void OnStartAction()
     {
-        toStart.StartAction();
+        EndAction();
+
+        if (loopAmount != 0)
+        {
+            loopAmount--;
+            toStart.StartAction();
+        }
     }
 
     protected override void OnEndAction()

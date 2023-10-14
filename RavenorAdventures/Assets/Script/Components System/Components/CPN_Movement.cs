@@ -157,6 +157,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
         OnEndMovementAction += callback;
 
+		Debug.Log("------Request Path------");
+		Debug.Log("Move at position : " + targetPosition);
+
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 
@@ -305,27 +308,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		currentNode = newNode;
 
 		OnEnterNode?.Invoke(currentNode);
-	}
-
-	public void OnDrawGizmos()
-	{
-		if (path != null)
-		{
-			for (int i = targetIndex; i < path.Length; i++)
-			{
-				Gizmos.color = Color.white;
-				Gizmos.DrawCube(path[i].worldPosition, Vector3.one * 0.1f);
-
-				if (i == targetIndex)
-				{
-					Gizmos.DrawLine(transform.position, path[i].worldPosition);
-				}
-				else
-				{
-					Gizmos.DrawLine(path[i - 1].worldPosition, path[i].worldPosition);
-				}
-			}
-		}
 	}
 
     public override void UnselectAction()
@@ -480,4 +462,27 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		return false;
 	}
+
+
+    public void OnDrawGizmos()
+    {
+        if (path != null)
+        {
+            for (int i = targetIndex; i < path.Length; i++)
+            {
+                Gizmos.color = Color.white;
+                Gizmos.DrawCube(path[i].worldPosition, Vector3.one * 0.1f);
+
+                if (i == targetIndex)
+                {
+                    Gizmos.DrawLine(transform.position, path[i].worldPosition);
+                }
+                else
+                {
+                    Gizmos.DrawLine(path[i - 1].worldPosition, path[i].worldPosition);
+                }
+            }
+        }
+    }
+
 }

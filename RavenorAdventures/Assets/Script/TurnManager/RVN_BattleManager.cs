@@ -374,11 +374,14 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private CombatTeam GetCharacterTeam(CPN_Character character)
     {
-        for (int i = 0; i < teams.Count; i++)
+        if (character != null)
         {
-            if (teams[i].characters.Contains(character))
+            for (int i = 0; i < teams.Count; i++)
             {
-                return teams[i];
+                if (teams[i].characters.Contains(character))
+                {
+                    return teams[i];
+                }
             }
         }
 
