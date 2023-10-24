@@ -15,119 +15,65 @@ MonoBehaviour:
   sentences:
   - talker: {fileID: 0}
     text:
-      frenchText: "Eral enfon\xE7a la porte. La salle \xE9tait plong\xE9e dans le
-        noir. Au centre de la salle, Ryn aper\xE7ut un scintillement qui semblait
-        venir d\u2019un cercle magique."
-      englishText: Eral pushed open the door. The room was pitch-black. In the center
-        of the room, Ryn saw a flickering light that seemed to come from a magic
-        circle.
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "Approchant d\u2019abord prudemment, elle se mit \xE0 courir vers
-        le cercle quand elle se rendit de compte de ce qui flottait au-dessus des
-        glyphes."
-      englishText: Approaching cautiously at first, she began to run towards the
-        circle when she realized what was floating above the glyphs.
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CYlia ! Ylia !\u201D. Avant de pouvoir poser un pied sur
-        le cercle magique, Eral attrapa son bras pour l\u2019arr\xEAter."
-      englishText: '"Ylia! Ylia!". Before she could set foot on the magic circle,
-        Eral grabbed her arm to stop her.'
+      frenchText: "Eral et Ryn bloqu\xE8rent rapidement la porte avec tout ce qu\u2019ils
+        trouvaient dans la salle. Apr\xE8s plusieurs longues secondes, les aventuriers
+        reprirent leur souffle dans un moment de calme."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CSadrif !\u201D"
-      englishText: "\u201CSadrif !\u201D"
+      frenchText: "\u201CC\u2019\xE9tait quoi cette cr\xE9ature qui est sortie de
+        la tombe ?\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "\u201CJe sais, je sais. Donnez moi une seconde.\u201D Sadrif s\u2019accroupit
-        au bord du cercle."
-      englishText: '"I know, I know. Just give me a second." Sadrif crouched at the
-        edge of the circle.'
-  - talker: {fileID: 0}
-    text:
-      frenchText: "Apr\xE8s plusieurs manipulations, les scintillements s\u2019arr\xEAt\xE8rent.\r\nAvant
-        qu\u2019elle ne touche le sol, Eral rattrapa Ylia.\r"
-      englishText: 'After several manipulations, the flickering stopped.
-
-        Before
-        she hit the ground, Eral caught up with Ylia.'
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CElle va bien ?! Elle respire ?! Eral !\u201D dit-elle en
-        s\u2019accroupissant."
-      englishText: '"Is she okay?! Is she breathing?! Eral!" she said, crouching
-        down.'
+      frenchText: "\u201CJe ne sais pas. Une liche peut-\xEAtre ? Tout ce que je
+        peux dire, c\u2019est qu\u2019au vu de son accoutrement, il doit s\u2019agir
+        du cadavre d\u2019un des g\xE9n\xE9raux de la Guerre des \xE2mes.\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Apr\xE8s plusieurs secondes, Ylia ouvrit doucement les yeux. Elle
-        essaya difficilement de se lever."
-      englishText: After several seconds, Ylia slowly opened her eyes. She struggled
-        to stand up.
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "Eral la rattrapa avant qu\u2019elle ne tr\xE9buche. \u201CDoucement.\u201D
-        dit-il en l\u2019aidant \xE0 se relever. \u201CComment tu te sens ?\u201D"
-      englishText: Eral caught her before she stumbled. "Easy." he said, helping
-        her to her feet. "How do you feel?"
-  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    text:
-      frenchText: "Ylia tourna sa t\xEAte vers Eral, et lui lan\xE7a un regard perdu.
-        Elle mit quelques secondes avant de r\xE9pondre avec des gestes h\xE9sitants."
-      englishText: Ylia turned her head towards Eral, and gave him a confused look.
-        It took her a few seconds to answer with hesitant gestures.
+      frenchText: "Ylia tremblait. Elle commen\xE7a \xE0 faire quelques signes avant
+        d\u2019\xEAtre interrompue par Ryn."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CQu\u2019est-ce qu\u2019elle dit ? Il lui a fait quelque
-        chose ? Si je recroise ce cadavre ambulant je...\u201D"
-      englishText: '"What''s she saying? Did he do something to her? If I run into
-        that walking corpse again I''ll..."'
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CElle va bien. Elle est juste compl\xE8tement perdue en plus
-        d\u2019\xEAtre fatigu\xE9e.\u201D"
-      englishText: '"She''s fine. She''s just completely lost on top of being tired."'
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "\u201CPas \xE9tonnant qu\u2019elle soit fatigu\xE9e.\u201D dit
-        Sadrif en inspectant le cercle magique d\xE9sactiv\xE9. \u201CCela ressemblait
-        \xE0 un sort pour extraire des \xE2mes. J\u2019imagine que c\u2019est ici
-        que la liche cr\xE9ait de nouveaux Sans-\xC2mes.\u201D"
-      englishText: '"No wonder she''s tired," Sadrif said, inspecting the deactivated
-        magic circle. "It looked like a spell to extract souls. I imagine this is
-        where the lich was creating new Soulless."'
+      frenchText: "\u201C\xC9coute-moi bien. Je sais pas ce que t\u2019\xE9tais en
+        train de dire, mais si t\u2019es en train de t\u2019excuser parce que \u2018tout
+        est ta faute\u2019, on va pas \xEAtre pote !\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Ylia tourna soudainement la t\xEAte vers Sadrif, le regard inquiet."
-      englishText: Ylia suddenly turned her head towards Sadrif, her gaze worried.
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CTu penses que \xE7a va aller pour Ylia ?\u201D"
-      englishText: '"Do you think Ylia''s going to be okay?"'
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "\u201CIl semblerait qu\u2019elle ne soit pas rest\xE9 assez longtemps
-        pour que les effets soient irr\xE9versibles. Apr\xE8s un peu de repos, elle
-        devrait retrouver la forme.\u201D"
-      englishText: '"It seems she hasn''t stayed long enough for the effects to be
-        irreversible. After a little rest, she should be back in shape."'
+      frenchText: "Surprise, Ylia arr\xEAta de trembler."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CAlors c\u2019est quoi cette t\xEAte que tu nous fais ?\u201D"
-      englishText: '"So what''s with your face?"'
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "Sadrif r\xE9fl\xE9chit pendant quelques secondes. \u201CC\u2019est
-        juste que... Si tous les Sans-\xC2mes que nous avons crois\xE9s ont \xE9t\xE9
-        cr\xE9\xE9 ici, qu\u2019est-il advenu de leurs \xE2mes ?\u201D"
-      englishText: Sadrif thought for a few seconds. "It's just that... If all the
-        Soulless we came across were created here, what happened to their souls?"
+      frenchText: "\u201CEt puis tu sais, si on a r\xE9ussi \xE0 le faire sortir
+        de son cercueil, je vois pas ce qui nous emp\xEAche de l\u2019y renvoyer\u201D
+        dit-elle en prenant la pose, un grand sourire aux l\xE8vres."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201COn aura toute le temps pour y r\xE9fl\xE9chir quand on sera
-        dehors. Pour l\u2019instant, trouvons un moyen de quitter cet endroit.\u201D"
-      englishText: '"We''ll have plenty of time to think about it when we get outside.
-        For now, let''s find a way out of this place."'
+      frenchText: "\u201CRyn a raison, personne ne pouvait pr\xE9dire ce qui allait
+        se passer. Cependant, pas question d\u2019affronter cette liche.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CHein ?! Tu veux laisser ce cadavre ambulant ici ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTu \xE9tais pourtant bien plac\xE9e pour voir que ton attaque
+        ne lui a rien fait. Comment veux-tu vaincre un ennemi qu\u2019on ne peut
+        m\xEAme pas blesser ? Eral a raison, nous devons pr\xE9venir la guilde au
+        plus vite.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Eral aida Ylia \xE0 se redresser. \u201CJe sais que ce n\u2019est
+        pas id\xE9al, mais on n\u2019a malheureusement pas d\u2019autres choix. Plus
+        vite nous trouverons une sortie, plus vite le cas de ce n\xE9cromancien sera
+        r\xE9gl\xE9.\u201D"
+      englishText: TODO
   responses: []
   references:
     version: 1

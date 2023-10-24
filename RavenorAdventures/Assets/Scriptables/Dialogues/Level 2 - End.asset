@@ -15,113 +15,93 @@ MonoBehaviour:
   sentences:
   - talker: {fileID: 0}
     text:
-      frenchText: "Le dernier Sans-\xC2me tomba au sol, laissant place \xE0 un grand
-        silence. Tous ressentirent un frisson remonter le long de leur colonne vert\xE9brale."
-      englishText: The last Soulless fell to the ground, giving way to a great silence.
-        Everyone felt a chill run up their spine.
-  - talker: {fileID: 0}
+      frenchText: "Ouvrant la porte, les aventuriers avanc\xE8rent prudemment. Au
+        centre de la pi\xE8ce se tenait un imposant cercueil en pierre, parsem\xE9
+        de gravures diverses."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "Ils observaient attentivement la salle, cherchant d\u2019o\xF9
-        le danger pourrait venir, quand ils se mirent \xE0 entendre une voix caverneuse."
-      englishText: They were staring intently around the room, looking to see where
-        the danger might come from, when they began to hear a cavernous voice.
-  - talker: {fileID: 11400000, guid: d3b370a21ce62f545b867ae04a92fe4b, type: 2}
-    text:
-      frenchText: "\u201CQu\u2019avons-nous l\xE0 ?\u201D La voix semblait provenir
-        de partout, laissant son \xE9cho r\xE9sonner dans les oreilles des aventuriers."
-      englishText: '"What do we have here?" The voice seemed to come from everywhere,
-        letting its echo reverberate in the adventurers'' ears.'
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
-    text:
-      frenchText: "Soudainement, une silhouette squelettique fit son apparition au
-        centre de la salle. \u201CJe vois que vous avez fait connaissance avec mes
-        cr\xE9ations.\u201D dit la silhouette en survolant les cadavres."
-      englishText: Suddenly, a skeletal figure appeared in the center of the room.
-        "I see you've become acquainted with my creations," said the figure, hovering
-        over the corpses.
-  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CJ\u2019imagine que c\u2019est \xE0 vous que l\u2019on doit
-        ces disparitions.\u201D Eral brandit son \xE9p\xE9e en direction du fant\xF4me.
-        \u201CQu\u2019avez-vous fait des villageois ?\u201D"
-      englishText: '"I suppose we owe these disappearances to you." Eral brandished
-        his sword in the ghost''s direction. "What have you done with the villagers?"'
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
-    text:
-      frenchText: "La voix de la cr\xE9ature resta calme. \u201CCe que je leur ai
-        fait ? Disons que je les ai lib\xE9r\xE9 de leur prison de chair et permis
-        de transcender la mort en servant une cause plus grande.\u201D"
-      englishText: The creature's voice remained calm. "What I've done to them? Let's
-        say I freed them from their prison of flesh and allowed them to transcend
-        death by serving a greater cause."
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
-    text:
-      frenchText: "\u201CQuant \xE0 ces choses,\u201D dit le mort-vivant en d\xE9signant
-        les cadavres. \u201CNe sont-elles pas fascinantes ? Je suis moi-m\xEAme surprit
-        que ces corps aient pu tenir debout d\u2019eux-m\xEAmes aussi longtemps.\u201D"
-      englishText: '"As for these things," said the undead, pointing to the corpses.
-        "Aren''t they fascinating? I''m amazed myself that these bodies were able
-        to stand up on their own for so long."'
-  - talker: {fileID: 0}
-    text:
-      frenchText: "Voyant la liche distraite par Eral, Sadrif et Ryn saisirent l\u2019occasion.
-        Le premier utilisa son gantelet pour lui tirer un projectile magique en plein
-        dans la poitrine. Quant \xE0 la deuxi\xE8me, elle planta une de ses rapi\xE8res
-        dans le dos de la cr\xE9ature."
-      englishText: Seeing the lich distracted by Eral, Sadrif and Ryn seized the
-        opportunity. The former used his gauntlet to fire a magical projectile straight
-        into the creature's chest. As for the second, she thrust one of her rapiers
-        into the creature's back.
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
-    text:
-      frenchText: "Comme seule r\xE9action, le mort-vivant laissa s\u2019\xE9chapper
-        un soupir en retirant la dague comme si de rien n\u2019\xE9tait. \u201CMoi
-        qui pensais pouvoir enfin avoir un semblant de discussion.\u201D"
-      englishText: As his only reaction, the undead let out a sigh as he withdrew
-        the dagger as if nothing had happened. "Just when I thought we could finally
-        have some semblance of a discussion."
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
-    text:
-      frenchText: "Survolant la pi\xE8ce du regard, les cavit\xE9s vides qui lui
-        servaient d\u2019yeux s'arr\xEAt\xE8rent sur Ylia."
-      englishText: Glancing around the room, the empty hollows that served as his
-        eyes locked on Ylia.
+      frenchText: "Sadrif examina le cercueil. \u201C\xC7a ressemble \xE0 un ancien
+        dialecte elfique, mais je n\u2019arrive pas \xE0 le traduire. Cependant,
+        j\u2019ai d\xE9j\xE0 vu ces gravures. Elles \xE9taient utilis\xE9es par les
+        elfes noirs \xE0 l\u2019\xE9poque de la Guerre des damn\xE9s pour honorer
+        leurs g\xE9n\xE9raux.\u201D"
+      englishText: ???
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Voyant la liche approcher lentement, Ylia se figea sur place,
-        les l\xE8vres tremblantes, incapable de faire le moindre mouvement."
-      englishText: Seeing the lich slowly approaching, Ylia froze in place, lips
-        trembling, unable to make the slightest movement.
+      frenchText: "Ylia approcha du cercueil \xE0 son tour. Essayant de d\xE9chiffrer
+        l\u2019ancien langage elfique, elle fit glisser ses doigts sur les gravures."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CAttends. Tu veux dire que la dessous, il y a un elfe noir
+        vieux de plusieurs milliers d\u2019ann\xE9es qui donnaient des ordres \xE0
+        des morts-vivants ?\u201D"
+      englishText: ???
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CIl n\u2019y a aucune chance. \xC0 la fin de la guerre, les
+        elfes ayant combattu aux c\xF4t\xE9s des hommes ont r\xE9cup\xE9r\xE9 les
+        d\xE9pouilles des g\xE9n\xE9raux et les ont cach\xE9.\u201D"
+      englishText: ???
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Soudain, les gravures se mirent \xE0 briller. Ylia retira sa main
+        par r\xE9flexe et s\u2019\xE9loigna du cercueil. La lueur s\u2019\xE9tendit,
+        illuminant chaque gravure du cercueil."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CQu\u2019est-ce que...\u201D"
+      englishText: ???
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Sadrif n\u2019eut pas le temps de finir sa phrase que le couvercle
+        du cercueil se d\xE9pla\xE7ant doucement sur le c\xF4t\xE9, jusqu\u2019\xE0
+        tomber par terre."
+      englishText: ???
+  - talker: {fileID: 0}
+    text:
+      frenchText: Sortant du cercueil, une grande silhouette squelettique se redressa.
+      englishText: ???
   - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
     text:
-      frenchText: "\u201CVoil\xE0 une magie des plus int\xE9ressantes. Exactement
-        ce que je cherchais.\u201D"
-      englishText: '"It is a really interesting magic we have here. Just what I was
-        looking for."'
+      frenchText: "Observant ses mains, la silhouette pronon\xE7a quelques mots dans
+        une langue qui ressemblait \xE0 de l\u2019elfique, mais que ni Sadrif, ni
+        Ylia, ne comprenait."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: e356a68f4972f834eb229f04c7399549, type: 2}
+    text:
+      frenchText: Remarquant les aventuriers, elle posa finalement son regard sur
+        Ylia, l'observant pendant plusieurs secondes.
+      englishText: ???
+  - talker: {fileID: 11400000, guid: e356a68f4972f834eb229f04c7399549, type: 2}
+    text:
+      frenchText: "Soudainement, elle plissa les sourcils et poussa un cri qui r\xE9sonna
+        dans toute la pi\xE8ce avant de lui lancer un sort."
+      englishText: ???
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "Eral s\u2019interposa devant Ylia, et pointa son \xE9p\xE9e en
-        direction du mort-vivant."
-      englishText: Eral stepped in front of Ylia, pointing his sword at the undead.
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+      frenchText: "Eral bloqua le sort avec son bouclier au dernier moment. \u201CRyn
+        !\u201D"
+      englishText: ???
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "La cr\xE9ature continua d\u2019avancer, enfon\xE7ant d\u2019elle-m\xEAme
-        l\u2019\xE9p\xE9e d\u2019Eral dans le torse, sans que cela ne vienne la ralentir."
-      englishText: The creature continued forward, thrusting Eral's sword into its
-        own torso without slowing it down.
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+      frenchText: "Ryn se jeta sur le squelette. Mais alors que sa rapi\xE8re le
+        toucha, elle fut bloqu\xE9, et Ryn fut projet\xE9e sur plusieurs m\xE8tres."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201CQuant \xE0 vous.\u201D dit le mort-vivant en jetant un oeil
-        au reste du groupe. \u201CQui sait, vous pourriez aussi vous r\xE9v\xE9ler
-        utile.\u201D "
-      englishText: '"As for you." said the undead, glancing at the rest of the group.
-        "Who knows, you might prove useful too."'
-  - talker: {fileID: 11400000, guid: 96311e9e17e258b4c9529c41733890b1, type: 2}
+      frenchText: "Le squelette se retourna vers Ryn. \u201CJe crois qu\u2019on va
+        avoir un probl\xE8me\u201D dit-elle avant d'esquiver une autre attaque du
+        squelette."
+      englishText: ???
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
     text:
-      frenchText: "Terminant sa phrase, le mort-vivant laissa s\u2019\xE9chapper
-        de sa main une \xE9trange lumi\xE8re verte qui vint aveugler les aventuriers."
-      englishText: Finishing his sentence, the undead let a strange green light escape
-        from his hand, blinding the adventurers.
+      frenchText: "\u201CVite ! Par ici !\u201D Sadrif venait de trouver un passage
+        \xE0 l\u2019autre bout de la pi\xE8ce. Sans h\xE9siter, les aventuriers se
+        ru\xE8rent vers la sortie."
+      englishText: ???
   responses: []
   references:
     version: 1

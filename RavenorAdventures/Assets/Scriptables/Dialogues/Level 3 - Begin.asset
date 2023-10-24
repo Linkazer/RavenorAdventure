@@ -13,71 +13,57 @@ MonoBehaviour:
   m_Name: Level 3 - Begin
   m_EditorClassIdentifier: 
   sentences:
-  - talker: {fileID: 11400000, guid: d3b370a21ce62f545b867ae04a92fe4b, type: 2}
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "\u201C ...yn ... Ryn.\u201D"
-      englishText: "\u201C ...yn ... Ryn.\u201D"
+      frenchText: "\u201CT\u2019inqui\xE8te pas Ryn ! Il y a aucune chance qu\u2019un
+        elfe n\xE9cromancien vieux de plusieurs milliers d\u2019ann\xE9es soit enterr\xE9
+        ici Ryn !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CCe n\u2019est pas toi qui trouvais la mission barbante et
+        qui voulais de l\u2019action ? Te voil\xE0 serv...\u201D Sadrif fut interrompu
+        par le sifflement d\u2019une fl\xE8che qui passa juste \xE0 c\xF4t\xE9."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CCalmez-vous, vous deux, et courrez !\u201D"
+      englishText: TODO
   - talker: {fileID: 0}
     text:
-      frenchText: "Ryn se r\xE9veilla en sursaut."
-      englishText: Ryn jolted awake.
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "Sadrif soupira de soulagement. \u201CJ\u2019ai bien cru que nous
-        allions devoir te porter jusqu\u2019\xE0 la sortie\u201D"
-      englishText: Sadrif sighed with relief. "I thought we were going to have to
-        carry you out."
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "Ryn regarda autour d\u2019elle. Elle se trouvait dans une petite
-        salle, entour\xE9e de murs de pierre et d\u2019une porte robuste \xE0 c\xF4t\xE9
-        de laquelle se trouvait Eral."
-      englishText: Ryn looked around. She was in a small room, surrounded by stone
-        walls and a sturdy door beside which stood Eral.
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201C... Ylia ?\u201D Ryn se releva d\u2019un coup. \u201CO\xF9
-        est Ylia ?!\u201D dit-elle en secouant Eral."
-      englishText: '"... Ylia?" Ryn jump on her feet. "Where''s Ylia?!" she said,
-        shaking Eral.'
+      frenchText: "Une dizaine de Sans-\xC2mes poursuivaient les aventuriers. Essayant
+        de perdre leurs poursuivants, ils s\u2019enfonc\xE8rent dans un couloir,
+        mais furent arr\xEAt\xE9s au bout de quelques m\xE8tres."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "En guise de r\xE9ponse, Eral baissa la t\xEAte."
-      englishText: Eral lowered his head in response.
-  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "\u201CLa liche avait l\u2019air de s\u2019int\xE9resser particuli\xE8rement
-        \xE0 elle. J\u2019imagine qu\u2019ils ont d\xFB l\u2019emmener autre part.\u201D"
-      englishText: '"The lich seemed to be particularly interested in her. I guess
-        they must have taken her somewhere else."'
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CQu\u2019est-ce qu\u2019on fait encore ici alors ?!\u201D"
-      englishText: '"Then what are we still doing here?!"'
+      frenchText: "\u201CMerde, le couloir s\u2019est \xE9croul\xE9. Il faut faire
+        demi-tour.\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CCrois bien que si on avait pu sortir d\u2019ici, je me serais
-        empress\xE9 de partir \xE0 sa recherche, quitte \xE0 te prendre sur mon dos.\u201D
-        Eral donna un coup d\u2019\xE9paule \xE0 la porte. \u201CMais cette foutue
-        porte ne veut pas bouger d\u2019un pouce.\u201D"
-      englishText: '"Believe me, if we''d been able to get out of here, I''d have
-        rushed out to find her, even if it meant taking you on my back." Eral nudged
-        the door with his shoulder. "But the damn door won''t budge an inch."'
+      frenchText: "\u201CMerde, le couloir s\u2019est \xE9croul\xE9. Il faut faire
+        demi-tour.\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "\xC0 peine Eral s\u2019\xE9tait-il retourn\xE9 qu\u2019il aper\xE7ut
+        deux Sans-\xC2mes rev\xEAtu d\u2019imposantes armures."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:
-      frenchText: "Ryn soupira. Elle se pla\xE7a entre la porte et Eral, poussant
-        l\xE9g\xE8rement ce dernier. Elle sortit des outils de sa poche et s\u2019accroupit
-        au niveau de la serrure."
-      englishText: Ryn sighed. She placed herself between the door and Eral, giving
-        the latter a gentle push. She pulled some tools from her pocket and crouched
-        down at the lock.
-  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+      frenchText: "\u201CCeux-l\xE0, je suis pas s\xFBr qu\u2019on puisse passer
+        \xE0 travers.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Rapidement, un l\xE9ger clic se fit entendre, suivit du grincement
-        de la porte qui s\u2019ouvrit. \u201COn se demande ce que vous feriez sans
-        moi, hein ?\u201D"
-      englishText: Soon, a soft click was heard, followed by the creak of the door
-        opening. "Makes you wonder what you'd do without me, eh?"
+      frenchText: "Ylia attira l\u2019attention de Sadrif et pointa un mur \xE0 c\xF4t\xE9
+        de l\u2019\xE9boulement."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CUne porte ! Eral, Ryn, par ici !\u201D"
+      englishText: TODO
   responses: []
   references:
     version: 1
