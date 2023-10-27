@@ -345,6 +345,20 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         actOnUpdateSpell?.Invoke(this);
     }
 
+    public void LockSpell(SpellScriptable toLock, bool lockState)
+    {
+        for (int i = 0; i < spells.Count; i++)
+        {
+            if (spells[i].name.Contains(toLock.name))
+            {
+                spells[i].LockSpell(lockState);
+
+                actOnUpdateSpell?.Invoke(this);
+                break;
+            }
+        }
+    }
+
     public void RemoveSpell(SpellScriptable toRemove)
     {
         for(int i = 0; i < spells.Count;i++)

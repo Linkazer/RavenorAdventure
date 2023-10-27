@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
   m_Name: Ennemy_Spectre
   m_EditorClassIdentifier: 
-  nom: Spectre
+  nom:
+    frenchText: 
+    englishText: 
   description:
     frenchText: 
     englishText: 
@@ -28,9 +30,9 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0.1
   uiHeight: 1.3
-  health: 1
+  health: 4
   armor: 0
-  defense: 5
+  defense: 3
   accuracy: 0
   power: 0
   offensiveRerolls: 0
@@ -46,7 +48,8 @@ MonoBehaviour:
   usableSpellByTurn: 1
   usedRessource:
     id: 0
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
   wantedDistanceFromTarget: {x: 25, y: 30}
   oppportunityHealthBonus: 10
   comportement:
@@ -72,7 +75,8 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 13
+        abcissaCalcul:
+          id: 4
         abscissaCoeficient: -1
         constantToAdd: 75
         maxValue: 75
@@ -80,7 +84,8 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 1
-        abscissaValue: 7
+        abcissaCalcul:
+          id: 5
         abscissaCoeficient: 0
         constantToAdd: 0
         maxValue: 4
@@ -88,7 +93,14 @@ MonoBehaviour:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 1
-        abscissaValue: 8
+        abcissaCalcul:
+          id: 6
         abscissaCoeficient: 0
         constantToAdd: 0
         maxValue: 4
+    00000004:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000005:
+      type: {class: AI_CA_TargetDangerosity, ns: , asm: ravenor_engine}
+    00000006:
+      type: {class: AI_CA_TargetVulnerability, ns: , asm: ravenor_engine}

@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
+  m_Name: Ennemy_Phylactere_Assassin
+  m_EditorClassIdentifier: 
+  nom:
+    frenchText: "Sans-\xC2me"
+    englishText: Soulless
+  description:
+    frenchText: 
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: 59bb317be3516ce4eb9cb4b72bf50dca, type: 3}
+  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  characterSprite: {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
+  animations:
+  - animationName: Idle
+    animation:
+    - {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
+    - {fileID: 21300000, guid: 465608a8733a8c2429f1fb58e5329efa, type: 3}
+  handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
+  displayHand: 0
+  handHeight: 0.025
+  uiHeight: 1.1
+  health: 6
+  armor: 0
+  defense: 3
+  accuracy: 0
+  power: 0
+  offensiveRerolls: 0
+  defensiveRerolls: 0
+  movementByTurn: 45
+  speed: 5
+  dangerosityMaxDistance: 0
+  dangerosityMinimumDistance: 15
+  opportunitySpell: {fileID: 11400000, guid: 6e8d6d4e989525c49aa7a91028a56bb3, type: 2}
+  availableSpells:
+  - {fileID: 11400000, guid: 6e8d6d4e989525c49aa7a91028a56bb3, type: 2}
+  - {fileID: 11400000, guid: 293faa11a25d31844b4d441926d7f148, type: 2}
+  usableSpellByTurn: 2
+  usedRessource:
+    id: 0
+  passives:
+  - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
+  wantedDistanceFromTarget: {x: 0, y: 15}
+  oppportunityHealthBonus: 0
+  comportement:
+  - wantedAction: {fileID: 11400000, guid: 6e8d6d4e989525c49aa7a91028a56bb3, type: 2}
+    wantedActionIndex: 0
+    conditions: []
+    bonusScore: 0
+    calculs:
+    - id: 1
+  - wantedAction: {fileID: 11400000, guid: 293faa11a25d31844b4d441926d7f148, type: 2}
+    wantedActionIndex: 1
+    conditions:
+    - calculImportance: 0
+      abcissaCalcul:
+        id: 2
+      condition: 0
+      baseValue: 15
+    - calculImportance: 0
+      abcissaCalcul:
+        id: 3
+      condition: 0
+      baseValue: 0
+    bonusScore: 0
+    calculs:
+    - id: 4
+    - id: 5
+    - id: 6
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 7
+        condition: 3
+        baseValue: 15
+    00000002:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000003:
+      type: {class: AI_CA_ActionLeft, ns: , asm: ravenor_engine}
+    00000004:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 8
+        condition: 3
+        baseValue: 45
+    00000005:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 9
+        abscissaCoeficient: -1
+        constantToAdd: 4
+        maxValue: 4
+    00000006:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 10
+        abscissaCoeficient: -1
+        constantToAdd: 25
+        maxValue: 25
+    00000007:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000008:
+      type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
+    00000009:
+      type: {class: AI_CA_TargetVulnerability, ns: , asm: ravenor_engine}
+    0000000A:
+      type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}

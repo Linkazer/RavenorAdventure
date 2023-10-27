@@ -181,7 +181,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         List<Ai_PlannedAction> possibleActions = new List<Ai_PlannedAction>();
 
-        float maxScore = -1;
+        float maxScore = 0;
 
         int currentCheckDone = 0;
 
@@ -408,7 +408,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
                         if (n == casterNode)
                         {
-                            Debug.Log("Return Caster Node");
                             return n;
                         }
                     }
@@ -702,9 +701,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             if (Grid.IsNodeVisible(character.CurrentNode, chara.CurrentNode))
             {
                 distance = Pathfinding.GetDistance(character.CurrentNode, chara.CurrentNode);
-
-                Debug.Log(character);
-                Debug.Log(character.Scriptable);
 
                 if (isDangerosity && (character.Scriptable.DangerosityMinimumDistance > 0 || character.Scriptable.DangerosityLerpDistance > 0))
                 {

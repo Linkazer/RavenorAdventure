@@ -29,7 +29,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
     /// <param name="spellToUse">The spell to use.</param>
     /// <param name="targetNode">The targeted Node.</param>
     /// <param name="callback">The callback to call at the end of the spell.</param>
-    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback) //TO DO : Mettre à jour lors de la création du système de dégâts/pv
+    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
         bool toReturn = true;
 

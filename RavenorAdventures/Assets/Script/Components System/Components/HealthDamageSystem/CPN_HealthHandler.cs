@@ -140,6 +140,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+            OnSetMaxHealth?.Invoke(maxHealth);
+
             OnChangeHealth?.Invoke(currentHealth);
             actOnChangeHealth?.Invoke(currentHealth);
         }
@@ -152,6 +154,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
             maxHealth -= healthToRemove;
 
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            OnSetMaxHealth?.Invoke(maxHealth);
 
             OnChangeHealth?.Invoke(currentHealth);
             actOnChangeHealth?.Invoke(currentHealth);

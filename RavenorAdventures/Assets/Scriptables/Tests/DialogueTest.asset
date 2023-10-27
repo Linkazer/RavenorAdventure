@@ -13,88 +13,13 @@ MonoBehaviour:
   m_Name: DialogueTest
   m_EditorClassIdentifier: 
   sentences:
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
+  - talker: {fileID: 0}
     text:
       frenchText: "Apr\xE8s plusieurs jours de marche, le groupe arriva au niveau
         du village abandonn\xE9 en bordure du duch\xE9 de Bresmia. Envoy\xE9 par
         l\u2019arm\xE9e d\u2019Aren, le groupe devait retrouver la trace d\u2019une
         escouade de soldat qui avait disparut au abords de ce village."
       englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "S\u2019approchant du village, une ambiance pesante se fit de plus
-        en plus sentir. Avan\xE7ant prudemment dans le village, le long moment de
-        silence fut soudainement bris\xE9."
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CEh oh ! Y a quelqu\u2019un dans ce trou paum\xE9 ?\u201D
-        cria Ryn, faisant sursauter le reste du groupe."
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "Caen lan\xE7a un regard noir \xE0 Ryn. \u201CComment une si petite
-        personne peut faire autant de bruit ? Ca te dit quelque chose, la discr\xE9tion
-        ?\u201D"
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "\u201CLe village est vide. A part l\u2019ennuie, je vois pas ce
-        qui peut nous tomber dessus.\u201D"
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CM\xEAme si la technique laisse \xE0 d\xE9sirer, elle a raison.\u201D
-        Montrant les \xE9talages sur la place encore en place, Eral continua. \u201CMais
-        plus que vide, le village \xE0 l\u2019air d\u2019avoir \xE9t\xE9 abandonner
-        \xE0 la h\xE2te.\""
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\"Continuons de fouiller, on trouvera peut-\xEAtre des informations
-        sur la disparition des villageois.\u201D"
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    text:
-      frenchText: "A ce moment, Ylia tira la manche d\u2019Eral et attira son attention
-        sur un b\xE2timent un peut \xE0 l\u2019\xE9cart du village."
-      englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "S\u2019approchant du b\xE2timent, le groupe d\xE9couvrit une chapelle.
-        Le groupe se s\xE9para pour chercher apr\xE8s quelqu\u2019indice pouvant
-        leur donner des informations sur le voleur."
-      englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "Alors que Ryn fouillant la chambre qui devait appartenir au pr\xEAtre
-        du coin, elle entendit soudainement des cri venir l\u2019entr\xE9e."
-      englishText: 
-  responses:
-  - text:
-      frenchText: 
-      englishText: 
-    nextDialogue: {fileID: 0}
-    effects: []
+  responses: []
   references:
     version: 1

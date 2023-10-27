@@ -13,88 +13,13 @@ MonoBehaviour:
   m_Name: DialogueTest 1
   m_EditorClassIdentifier: 
   sentences:
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
+  - talker: {fileID: 0}
     text:
       frenchText: "En p\xE9n\xE9trant dans la crypte, Orlaf sentit un frisson lui
         parcourir l'\xE9chine. Cela faisait des ann\xE9es qu'il ne s'\xE9tait plus
         laiss\xE9 aller \xE0 la superstition, mais il ne put s'emp\xEAcher de se
         demander ce que cela signifiait."
       englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "La pi\xE8ce \xE9tait domin\xE9e par un pilier de pierre massif,
-        orn\xE9 de runes qui semblaient danser sous ses yeux. D'autres marques avaient
-        visiblement \xE9t\xE9 grossi\xE8rement grav\xE9es dans la roche, et il sentit
-        monter en lui une vague de naus\xE9e en les prcourant du regard."
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: "A ses c\xF4t\xE9s, Madriga laissa \xE9chapper une mal\xE9diction
-        sifflante dans la langue de son peuple et cracha sur le sol."
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
-    text:
-      frenchText: '"Il profane la Gardienne."'
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
-    text:
-      frenchText: "Danor la fixa du regard et Orlaf remarqua la teinte verd\xE2tre
-        du visage du mage. \"Il l'a li\xE9e \xE0 cet endroit. Elle ne peut pa quitter
-        la crypte.\""
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\u201CM\xEAme si la technique laisse \xE0 d\xE9sirer, elle a raison.\u201D
-        Montrant les \xE9talages sur la place encore en place, Eral continua. \u201CMais
-        plus que vide, le village \xE0 l\u2019air d\u2019avoir \xE9t\xE9 abandonner
-        \xE0 la h\xE2te.\""
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
-    text:
-      frenchText: "\"Continuons de fouiller, on trouvera peut-\xEAtre des informations
-        sur la disparition des villageois.\u201D"
-      englishText: 
-  - leftCharacter: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
-    text:
-      frenchText: "A ce moment, Ylia tira la manche d\u2019Eral et attira son attention
-        sur un b\xE2timent un peut \xE0 l\u2019\xE9cart du village."
-      englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "S\u2019approchant du b\xE2timent, le groupe d\xE9couvrit une chapelle.
-        Le groupe se s\xE9para pour chercher apr\xE8s quelqu\u2019indice pouvant
-        leur donner des informations sur le voleur."
-      englishText: 
-  - leftCharacter: {fileID: 0}
-    rightCharacter: {fileID: 0}
-    talker: {fileID: 0}
-    text:
-      frenchText: "Alors que Ryn fouillant la chambre qui devait appartenir au pr\xEAtre
-        du coin, elle entendit soudainement des cri venir l\u2019entr\xE9e."
-      englishText: 
-  responses:
-  - text:
-      frenchText: 
-      englishText: 
-    nextDialogue: {fileID: 0}
-    effects: []
+  responses: []
   references:
     version: 1

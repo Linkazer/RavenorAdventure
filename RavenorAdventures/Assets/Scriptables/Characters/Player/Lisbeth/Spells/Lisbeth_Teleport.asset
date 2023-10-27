@@ -35,9 +35,12 @@ MonoBehaviour:
   castType: 1
   isCooldownGlobal: 0
   cooldown: 2
+  zoneType: 0
   range: 25
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget: []
   effectsOnCaster: []
+  targetCharacter: 0
+  maxDistanceFromTarget: 0

@@ -31,18 +31,12 @@ public class Pathfinding : MonoBehaviour
 		Node startNode = Grid.GetNodeFromWorldPoint(startPos);
 		Node targetNode = Grid.GetNodeFromWorldPoint(targetPos);
 
-		Debug.Log($"Try to find from {startPos} to {targetPos} with max {walkDistance}");
-
 		waypoints = CalculatePathfinding(startNode, targetNode, walkDistance).ToArray();
-
-		Debug.Log("Target node cost : " + targetNode.gCost);
 
 		if (waypoints.Length <= 0 || waypoints[0] == null)
         {
 			pathSuccess = false;
         }
-
-		Debug.Log("Found path : " + pathSuccess);
 
 		requestManager.FinishedProcessingPath(waypoints,pathSuccess);
 		//yield return null;

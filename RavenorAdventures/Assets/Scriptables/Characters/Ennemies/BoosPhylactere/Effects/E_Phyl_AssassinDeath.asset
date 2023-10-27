@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ecc81543fc4c6b49bb97b7428afa8cb, type: 3}
+  m_Name: E_Phyl_AssassinDeath
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: 
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: 
+    englishText: 
+  castingAnimation: 0
+  launchAnimation: 0
+  castAnimationDuration: 0
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 0}
+  animationDuration: 0
+  launchAudioData: {fileID: 0}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
+  range: 0
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: e3cd2e1f3f7dec24684029cfc896aaaa, type: 2}
+  effectsOnCaster: []

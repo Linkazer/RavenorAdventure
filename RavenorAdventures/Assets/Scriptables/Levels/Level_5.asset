@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497929001a3975146911dc0f282afd77, type: 3}
   m_Name: Level_5
   m_EditorClassIdentifier: 
-  levelPrefab: {fileID: 429593234369219505, guid: 5203f838b7fec3d41a711b339fdbe340, type: 3}
+  levelPrefab: {fileID: 1847241994724509736, guid: fb52e47bdb9249f489c4a5b5b8c64caa, type: 3}
   ID: 
-  nom: Le bureau
-  description: Ceci est le niveau avec le bureau
+  levelName:
+    frenchText: Level 5
+    englishText: 
+  levelDescription:
+    frenchText: 
+    englishText: 
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

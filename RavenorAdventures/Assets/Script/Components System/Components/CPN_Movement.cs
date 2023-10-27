@@ -157,9 +157,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
         OnEndMovementAction += callback;
 
-		Debug.Log("------Request Path------");
-		Debug.Log("Move at position : " + targetPosition);
-
 		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
 	}
 

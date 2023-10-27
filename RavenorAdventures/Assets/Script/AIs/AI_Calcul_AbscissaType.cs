@@ -232,3 +232,16 @@ public class AI_CA_TargetHasEffect : AI_Calcul_AbscissaType
         return 0;
     }
 }
+
+public class AI_CA_ActionLeft : AI_Calcul_AbscissaType
+{
+    public override float GetAbcissaValue(Ai_PlannedAction plannedAction)
+    {
+        if (plannedAction.caster != null && plannedAction.caster.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
+        {
+            return caster.ActionLeftThisTurn;
+        }
+
+        return 0;
+    }
+}
