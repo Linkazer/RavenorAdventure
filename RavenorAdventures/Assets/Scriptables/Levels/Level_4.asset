@@ -15,10 +15,10 @@ MonoBehaviour:
   levelPrefab: {fileID: 355431665809068469, guid: 3854ce043a767d648b34b459a40e3cf3, type: 3}
   ID: 
   levelName:
-    frenchText: La Gardienne
+    frenchText: Haeriell
     englishText: 
   levelDescription:
-    frenchText: Premier Boss du jeu
+    frenchText: Cherchant une sortie, les aventuriers font une rencontre inattendue.
     englishText: 
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}

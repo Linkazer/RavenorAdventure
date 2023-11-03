@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbcc188f1f573546ac6a0d14943a871, type: 3}
-  m_Name: Ennemy_GardienneKnight
+  m_Name: Ennemy_Haeriell
   m_EditorClassIdentifier: 
   nom:
-    frenchText: Gardienne corrompue
+    frenchText: Haeriell
     englishText: Corrupted guardian
   description:
     frenchText: 
     englishText: 
   UIPortrait: {fileID: 21300000, guid: 12168c3831ab67d43a5bd46e63027b24, type: 3}
-  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  nameColor: {r: 0.12028302, g: 0.4811321, b: 0.20502616, a: 1}
   characterSprite: {fileID: 21300000, guid: c9b6e0caa51944e4dbf0801bd99d7747, type: 3}
   animations:
   - animationName: Idle

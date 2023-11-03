@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 4 - Begin
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia se figea. Au centre de la pi\xE8ce se tenait la silhouette
+        fantomatique d\u2019une elfe qui ressemblait trait pour trait \xE0 la statue
+        qui tr\xF4nait sur la place de son village."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CYlia ? Tu la connais ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTous les elfes la connaissent. C\u2019est Haeriell, l\u2019une
+        des premi\xE8res h\xE9ro\xEFnes de la Guerre des damn\xE9s. Mais ce fut aussi
+        la premi\xE8re \xE0 tomber.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia fit un pas vers l\u2019elfe, mais fut imm\xE9diatement retenue
+        par Eral."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Ce dernier observa la silhouette. \u201CQuelque chose cloche...
+        Elle est cens\xE9 \xEAtre enterr\xE9 dans un temple \xE0 des lieux d\u2019ici.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia saisit son amulette et observa attentivement la silhouette.
+        Soudain, elle \xE9carquilla les yeux et recula d\u2019un pas."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est ce que je craignais. Quelle que soit la raison
+        de sa pr\xE9sence ici, si elle est dans cette crypte depuis le d\xE9but de
+        la guerre, les r\xE9sidus de magie dont tu parlais ont forc\xE9ment d\xFB
+        l\u2019affecter.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CAttends. \xC7a voudrait dire que...\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Des larmes commenc\xE8rent \xE0 couler sur les joues d\u2019Ylia."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201COui. On a en face de nous, l\u2019\xE2me corrompue d\u2019une
+        des h\xE9ro\xEFne les plus puissantes de la Guerre des damn\xE9s.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn tapa sur l\u2019\xE9paule d\u2019Ylia. \u201CDans ce cas,
+        on a de la chance d\u2019avoir la meilleure gu\xE9risseuse des \xE2mes de
+        notre \xE9poque !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn s\u2019adressa alors \xE0 la silhouette. \u201CExcuse nous
+        d\u2019avance pour la racl\xE9e qu\u2019on va te mettre. Je te promets que
+        c\u2019est pour ton bien !\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "La silhouette se retourna instantan\xE9ment, et fon\xE7a sur Ryn,
+        \xE9p\xE9e en main."
+      englishText: TODO
+  responses: []
+  references:
+    version: 1

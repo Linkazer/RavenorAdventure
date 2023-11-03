@@ -16,13 +16,12 @@ MonoBehaviour:
   ID: 
   levelName:
     frenchText: "L'entr\xE9e de la crypte"
-    englishText: The crypt entrance
+    englishText: TODO
   levelDescription:
     frenchText: "Apr\xE8s plusieurs jours de marche, les aventuriers arrivent \xE0
-      l'ancienne crypte o\xF9 plusieurs disparitions de villageois ont \xE9t\xE9
-      signal\xE9."
-    englishText: After several days' walking, the adventurers arrive at the ancient
-      crypte where nearby villagers have been reported missing.
+      l'ancienne crypte o\xF9 la guild dit avoir trouv\xE9 un ancien art\xE9fact
+      \xE0 r\xE9cup\xE9rer."
+    englishText: TODO
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Ennemy_Phylactere_Assassin
   m_EditorClassIdentifier: 
   nom:
-    frenchText: "Sans-\xC2me"
+    frenchText: "Protectrice damn\xE9e"
     englishText: Soulless
   description:
     frenchText: 
     englishText: 
-  UIPortrait: {fileID: 21300000, guid: 59bb317be3516ce4eb9cb4b72bf50dca, type: 3}
+  UIPortrait: {fileID: 21300000, guid: e529583851d09b44a833faaa3e08957d, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
-  characterSprite: {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
+  characterSprite: {fileID: 21300000, guid: 42c6d2a1d4de80a45b897c4c08cbf9b0, type: 3}
   animations:
   - animationName: Idle
     animation:
-    - {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
-    - {fileID: 21300000, guid: 465608a8733a8c2429f1fb58e5329efa, type: 3}
+    - {fileID: 21300000, guid: 42c6d2a1d4de80a45b897c4c08cbf9b0, type: 3}
+    - {fileID: 21300000, guid: f953a8fa3c93ee8449db55a6841f5b11, type: 3}
   handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
   displayHand: 0
   handHeight: 0.025
@@ -67,16 +67,11 @@ MonoBehaviour:
         id: 2
       condition: 0
       baseValue: 15
-    - calculImportance: 0
-      abcissaCalcul:
-        id: 3
-      condition: 0
-      baseValue: 0
     bonusScore: 0
     calculs:
+    - id: 3
     - id: 4
     - id: 5
-    - id: 6
   references:
     version: 1
     00000000:
@@ -86,21 +81,28 @@ MonoBehaviour:
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 7
+          id: 6
         condition: 3
         baseValue: 15
     00000002:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     00000003:
-      type: {class: AI_CA_ActionLeft, ns: , asm: ravenor_engine}
-    00000004:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 8
+          id: 7
         condition: 3
         baseValue: 45
+    00000004:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 8
+        abscissaCoeficient: -1
+        constantToAdd: 4
+        maxValue: 4
     00000005:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
@@ -108,22 +110,13 @@ MonoBehaviour:
         abcissaCalcul:
           id: 9
         abscissaCoeficient: -1
-        constantToAdd: 4
-        maxValue: 4
-    00000006:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 0
-        abcissaCalcul:
-          id: 10
-        abscissaCoeficient: -1
         constantToAdd: 25
         maxValue: 25
-    00000007:
+    00000006:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
-    00000008:
+    00000007:
       type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
-    00000009:
+    00000008:
       type: {class: AI_CA_TargetVulnerability, ns: , asm: ravenor_engine}
-    0000000A:
+    00000009:
       type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}

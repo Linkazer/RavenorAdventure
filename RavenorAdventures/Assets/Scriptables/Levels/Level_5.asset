@@ -15,10 +15,11 @@ MonoBehaviour:
   levelPrefab: {fileID: 1847241994724509736, guid: fb52e47bdb9249f489c4a5b5b8c64caa, type: 3}
   ID: 
   levelName:
-    frenchText: Level 5
+    frenchText: Vers la sortie
     englishText: 
   levelDescription:
-    frenchText: 
+    frenchText: "Avec les informations d'Haeriell, il devient urgent pour les aventuriers
+      de pr\xE9venir la guilde."
     englishText: 
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}

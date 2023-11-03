@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8bea222ec05c2a4995823238cb45471, type: 3}
+  m_Name: Haeriell_Healed
+  m_EditorClassIdentifier: 
+  nom:
+    frenchText: Haeriell
+    englishText: Haeriell
+  description:
+    frenchText: 
+    englishText: 
+  UIPortrait: {fileID: 21300000, guid: b789af2528f412643a47d6999e02d1ca, type: 3}
+  nameColor: {r: 0.35230508, g: 0.69560844, b: 0.8207547, a: 1}

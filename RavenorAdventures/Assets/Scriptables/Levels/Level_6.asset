@@ -15,10 +15,11 @@ MonoBehaviour:
   levelPrefab: {fileID: 1847241994724509736, guid: 61af3789bcd0dc448a7a373cfc97dc33, type: 3}
   ID: 
   levelName:
-    frenchText: Level 6
+    frenchText: "L'art\xE9fact"
     englishText: 
   levelDescription:
-    frenchText: 
+    frenchText: "Face \xE0 la menace imminente, les aventuriers partent \xE0 la recherche
+      du collier d'Haeriell."
     englishText: 
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}

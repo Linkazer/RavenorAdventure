@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: Level 4 - End
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Voyant Haeriell affaiblit, Ylia saisit l\u2019opportunit\xE9 pour
+        lancer lui lancer un sort de purification. La vague d\u2019\xE9nergie qui
+        en r\xE9sulta fit tomber \xE0 terre tous les Sans-\xC2mes de la salle."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: d1aa323f572a2634ebe23fe2eae37c55, type: 2}
+    text:
+      frenchText: "L\u2019expression de col\xE8re quitta petit \xE0 petit le visage
+        fantomatique de l\u2019elfe. Apr\xE8s quelques secondes, elle observa ses
+        mains."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CLibre... Enfin libre...\u201D Elle tourna la t\xEAte vers
+        le groupe. \u201CMerci pour votre aide aventuriers.\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Soudain, toute la crypte se mit \xE0 trembler."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est quoi \xE7a encore ?!\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CCette magie... Il restait encore des g\xE9n\xE9raux de Maelazar
+        en vie ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "Je ne suis pas s\xFBr que vivant soit le bon terme. Lorsque Ylia
+        est entr\xE9e en contact avec l\u2019un des cercueils, ce dernier c\u2019est
+        ouvert, et un squelette en est sortie."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CJe vois. J\u2019imagine que le contact avec la magie de
+        votre amie a permis \xE0 ce monstre de se r\xE9veiller.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CFort heureusement, c\u2019est cette m\xEAme magie qui causera
+        sa perte.\u201D Haeriell se tourna vers Ylia. \u201CDe la m\xEAme mani\xE8re
+        qu\u2019elle permet de purifier les \xE2mes, ta magie permet aussi de les
+        renvoyer. Tout ce dont vous avez besoin pour cela est de l\u2019art\xE9fact
+        appropri\xE9\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CLorsqu\u2019ils m\u2019ont emprisonn\xE9, j\u2019avais sur
+        moi une amulette permettant de neutraliser une partie des pouvoirs que Maelazar
+        avait donn\xE9s \xE0 ses g\xE9n\xE9raux. Son aura est faible, mais je peux
+        sentir sa pr\xE9sence dans la crypte.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CNous avons \xE9t\xE9 incapables de le toucher la derni\xE8re
+        fois, et vous pensez qu\u2019on pourra le vaincre avec juste une amulette
+        ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CIl le faut. Cette secousse \xE0 l\u2019instant, il essaye
+        d\u2019ouvrir un portail pour faire venir l\u2019arm\xE9e de Maelazar en
+        Ravenor, comme les premiers g\xE9n\xE9raux l\u2019avaient fait \xE0 l'\xE9poque.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 5514960370abe5b45a352e05876b8936, type: 2}
+    text:
+      frenchText: "\u201CR\xE9cup\xE9rez l\u2019art\xE9fact, et emp\xEAchez le g\xE9n\xE9ral
+        d\u2019ouvrir le portail. Vous \xEAtes la seule chose qui s\xE9pare le continent
+        d\u2019une nouvelle guerre des damn\xE9s.\u201D dit-elle avant de disparaitre."
+      englishText: TODO
+  responses: []
+  references:
+    version: 1

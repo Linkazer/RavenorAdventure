@@ -15,13 +15,12 @@ MonoBehaviour:
   levelPrefab: {fileID: 429593234369219505, guid: 2babe1dd17d6cff49bc6245f7cd52331, type: 3}
   ID: 
   levelName:
-    frenchText: "L'h\xF4te"
-    englishText: The host
+    frenchText: Les catacombes des elfes noirs
+    englishText: TODO
   levelDescription:
     frenchText: Maintenant que la porte est ouverte, nos aventuriers partent explorer
       la crypte.
-    englishText: Now that the door is open, our adventurers set off to explore the
-      crypt.
+    englishText: TODO
   charactersInLevel:
   - {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
   - {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}

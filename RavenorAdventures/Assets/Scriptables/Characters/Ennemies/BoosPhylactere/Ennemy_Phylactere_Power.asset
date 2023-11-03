@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Ennemy_Phylactere_Power
   m_EditorClassIdentifier: 
   nom:
-    frenchText: "Sans-\xC2me"
+    frenchText: "Protecteur Damn\xE9"
     englishText: Soulless
   description:
     frenchText: 
     englishText: 
-  UIPortrait: {fileID: 21300000, guid: 59bb317be3516ce4eb9cb4b72bf50dca, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 7c6f3dfb576f5bd40946537104ced0c5, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
-  characterSprite: {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
+  characterSprite: {fileID: 21300000, guid: f3357b9177c51ee42bb7783b0a1b1fd9, type: 3}
   animations:
   - animationName: Idle
     animation:
-    - {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
-    - {fileID: 21300000, guid: 465608a8733a8c2429f1fb58e5329efa, type: 3}
+    - {fileID: 21300000, guid: b2b4512b37710c64ca15e3524df147dc, type: 3}
+    - {fileID: 21300000, guid: f3357b9177c51ee42bb7783b0a1b1fd9, type: 3}
   handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
   displayHand: 0
   handHeight: 0.025

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Ennemy_Phylactere_Accuracy
   m_EditorClassIdentifier: 
   nom:
-    frenchText: "Sans-\xC2me archer"
+    frenchText: "Protectrice damn\xE9e"
     englishText: Soulless archer
   description:
     frenchText: 
     englishText: 
-  UIPortrait: {fileID: 21300000, guid: 9459fd149f2f1a844913e829d166d67c, type: 3}
+  UIPortrait: {fileID: 21300000, guid: 7966eb1cc989bee478171626b8613c64, type: 3}
   nameColor: {r: 0, g: 0, b: 0, a: 0}
-  characterSprite: {fileID: 21300000, guid: 35098e1fbb126884a880e0839e7053a9, type: 3}
+  characterSprite: {fileID: 21300000, guid: ad4ca03c7ce1cb24586116c48100ed1a, type: 3}
   animations:
   - animationName: Idle
     animation:
-    - {fileID: 21300000, guid: 35098e1fbb126884a880e0839e7053a9, type: 3}
-    - {fileID: 21300000, guid: d38071d7a800b8141bbfdf8bd389783d, type: 3}
+    - {fileID: 21300000, guid: ad4ca03c7ce1cb24586116c48100ed1a, type: 3}
+    - {fileID: 21300000, guid: 22ea392cdcdd9d14b931c26d57b5cc69, type: 3}
   handSprite: {fileID: 21300000, guid: f3c25fc5457e1ce4f9134a1ac537f2b3, type: 3}
   displayHand: 0
   handHeight: 0
