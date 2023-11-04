@@ -70555,6 +70555,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646983493600215206, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646983493600215206, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646983493600215206, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5704865184541402744, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

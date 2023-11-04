@@ -107,6 +107,13 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
         }
     }
 
+    public void SetCameraPositionAndZoom(Vector2 position, float zoom)
+    {
+        SetCameraPosition(position);
+        targetZoom = zoom;
+        virtualCamera.m_Lens.OrthographicSize = targetZoom;
+    }
+
     /// <summary>
     /// Focus la camera sur un personnage.
     /// </summary>

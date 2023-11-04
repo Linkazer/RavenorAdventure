@@ -17,9 +17,15 @@ public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
 
     public LevelInformation nextLevel;
 
+    [SerializeField] private Transform cameraStartPosition;
+    [SerializeField] private float cameraStartZoom;
+
     public UnityEvent onStartLevel;
 
     [SerializeField] private List<CharacterTeam> teams;
+
+    public Transform CameraStartPosition => cameraStartPosition;
+    public float CameraStartZoom => cameraStartZoom;
     
     public List<CPN_Character> GetTeam(int teamIndex)
     {

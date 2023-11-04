@@ -29,11 +29,13 @@ MonoBehaviour:
   launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
   ressourceCost: 0
   maxUtilisations: -1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0
   cooldown: 0
+  zoneType: 0
   range: 15
   zoneRange: 0
   zoneFaceCaster: 0
@@ -45,5 +47,6 @@ MonoBehaviour:
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

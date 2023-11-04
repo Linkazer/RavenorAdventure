@@ -91,6 +91,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             AddCharacter(level.GetTeam(1)[i], 1);
         }
 
+        RVN_CameraController.instance.SetCameraPositionAndZoom(level.CameraStartPosition.position, level.CameraStartZoom);
+
         OnSetPlayerTeam?.Invoke(teams[0].characters);
 
         if (level.startDialogue != null)

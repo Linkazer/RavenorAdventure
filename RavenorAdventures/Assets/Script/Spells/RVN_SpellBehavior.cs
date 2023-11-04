@@ -89,13 +89,11 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
         if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.All)
         {
-            PlaySpellAnimation(spellToUse, targetNode);
+            PlaySpellAnimation(spellToUse, targetNode, callback);
         }
 
         if (CanUseOnNode(hitableObjects, spellToUse.scriptable.HitableTargets, spellToUse.caster))
         {
-           
-
             OnUseSpell(spellToUse, targetNode, callback);
 
             T usedScriptable = GetScriptable(spellToUse);
@@ -104,7 +102,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
             {
                 if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters || spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.Target)
                 {
-                    PlaySpellAnimation(spellToUse, targetNode);
+                    PlaySpellAnimation(spellToUse, targetNode, callback);
                 }
 
                 if (usedScriptable.AnimationDuration < 0.5f)
@@ -118,7 +116,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
             }
             else if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters)
             {
-                PlaySpellAnimation(spellToUse, targetNode);
+                PlaySpellAnimation(spellToUse, targetNode, callback);
             }
 
             foreach (CPN_HealthHandler hitedObject in hitableObjects)
@@ -159,13 +157,13 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         }
     }
 
-    private void PlaySpellAnimation(LaunchedSpellData spellToUse, Node targetNode)
+    private void PlaySpellAnimation(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
         T usedScriptable = GetScriptable(spellToUse);
 
         if (usedScriptable.SpellAnimation != null)
         {
-            AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, null);
+            AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
         }
     }
 

@@ -53,6 +53,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
     public void Play(Action callback)
     {
         endCallback = callback;
+
         if (playTime > 0)
         {
             animationTimer = TimerManager.CreateGameTimer(PlayTime, End);
@@ -60,6 +61,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
 
         if(endCallback != null && audioPlayer != null)
         {
+            Debug.Log("Play sound");
             audioPlayer.PlaySound();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 [Serializable]
 public class SpawnableCharacterTeam
@@ -14,11 +15,15 @@ public class SpawnableCharacterTeam
 
 public class RoomHandler : MonoBehaviour
 {
+    private const float cameraTime = 2f;
 
     [SerializeField] private List<SpawnableCharacterTeam> teams;
     [SerializeField] private UnityEvent OnOpenDoor;
 
+    [SerializeField] private CinemachineVirtualCamera doorFocusedCamera;
+
     private bool hasSpawned = false;
+    private TimerManager.Timer doorCameraTimer;
 
     public void OpenRoom()
     {
@@ -44,7 +49,18 @@ public class RoomHandler : MonoBehaviour
 
             OnOpenDoor?.Invoke();
 
+            if(doorFocusedCamera != null)
+            {
+                doorFocusedCamera.enabled = true;
+                doorCameraTimer = TimerManager.CreateGameTimer(cameraTime, () => doorFocusedCamera.enabled = false);
+            }
+
             hasSpawned = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        doorCameraTimer?.Stop();
     }
 }

@@ -5552,6 +5552,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 429593234369219505, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: cameraStartZoom
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 429593234369219505, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+      propertyPath: cameraStartPosition
+      value: 
+      objectReference: {fileID: 1613622364}
     - target: {fileID: 429593234369219506, guid: 278e80b43d756024995dd79211f7049e, type: 3}
       propertyPath: m_Name
       value: Level_CompositionTester
@@ -8301,6 +8309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d481fe932325945b2f5e6255058975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1613622364 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 429593234369219504, guid: 278e80b43d756024995dd79211f7049e, type: 3}
+  m_PrefabInstance: {fileID: 1613622362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1616947834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8488,7 +8501,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9835051, y: 1}
+    m_SensorSize: {x: 2.0714285, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11727,7 +11740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -11735,7 +11748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y
