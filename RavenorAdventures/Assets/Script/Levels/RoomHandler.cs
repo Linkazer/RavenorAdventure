@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class SpawnableCharacterTeam
 {
     public int teamIndex = 1;
-   // public bool playBefore = false;
+    public bool playBefore = false;
     public List<CPN_Character> charaToSpawns;
 }
 
@@ -26,9 +26,19 @@ public class RoomHandler : MonoBehaviour
         {
             foreach (SpawnableCharacterTeam team in teams)
             {
-                foreach (CPN_Character chara in team.charaToSpawns)
+                if (team.playBefore)
                 {
-                    RVN_BattleManager.SpawnCharacter(chara, team.teamIndex);
+                    for(int i = team.charaToSpawns.Count - 1; i >= 0; i--)
+                    {
+                        RVN_BattleManager.SpawnCharacter(team.charaToSpawns[i], team.teamIndex, true);
+                    }
+                }
+                else
+                {
+                    foreach (CPN_Character chara in team.charaToSpawns)
+                    {
+                        RVN_BattleManager.SpawnCharacter(chara, team.teamIndex);
+                    }
                 }
             }
 

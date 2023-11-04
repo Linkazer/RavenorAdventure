@@ -37,7 +37,7 @@ MonoBehaviour:
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
-  movementByTurn: 85
+  movementByTurn: 250
   speed: 8
   dangerosityMaxDistance: 0
   dangerosityMinimumDistance: 15
@@ -54,7 +54,8 @@ MonoBehaviour:
   usableSpellByTurn: 10
   usedRessource:
     id: 0
-  passives: []
+  passives:
+  - {fileID: 11400000, guid: 28b285eca00107043984f8cd49c6eae2, type: 2}
   references:
     version: 1
     00000000:

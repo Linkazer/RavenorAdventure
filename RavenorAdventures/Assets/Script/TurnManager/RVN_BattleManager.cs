@@ -314,18 +314,18 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         SpawnCharacter(characterPrefab, teamIndex);
     }
 
-    public static void SpawnCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition)
+    public static void SpawnCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition, bool playFirst = false)
     {
         CPN_Character newCharacter = Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
 
-        SpawnCharacter(newCharacter, teamIndex);
+        SpawnCharacter(newCharacter, teamIndex, playFirst);
     }
 
-    public static void SpawnCharacter(CPN_Character toAdd, int teamIndex)
+    public static void SpawnCharacter(CPN_Character toAdd, int teamIndex, bool playFirst = false)
     {
         toAdd.gameObject.SetActive(true);
 
-        instance.AddCharacter(toAdd, teamIndex);
+        instance.AddCharacter(toAdd, teamIndex, playFirst);
     }
 
     /// <summary>
@@ -333,11 +333,18 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// </summary>
     /// <param name="toAdd">The character ti add.</param>
     /// <param name="teamIndex">The team index.</param>
-    public void AddCharacter(CPN_Character toAdd, int teamIndex)
+    public void AddCharacter(CPN_Character toAdd, int teamIndex, bool playFirst = false)
     {
         if (!teams[teamIndex].characters.Contains(toAdd))
         {
-            teams[teamIndex].characters.Add(toAdd);
+            if (playFirst)
+            {
+                teams[teamIndex].characters.Insert(0, toAdd);
+            }
+            else
+            {
+                teams[teamIndex].characters.Add(toAdd);
+            }
 
             toAdd.SetCharacter();
 
