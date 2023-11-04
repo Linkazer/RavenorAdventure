@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class SpawnableCharacterTeam
 {
     public int teamIndex = 1;
+   // public bool playBefore = false;
     public List<CPN_Character> charaToSpawns;
 }
 

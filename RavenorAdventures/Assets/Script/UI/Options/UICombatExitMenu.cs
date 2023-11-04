@@ -6,6 +6,6 @@ public class UICombatExitMenu : MonoBehaviour
 {
     public void RestartBattle()
     {
-        RVN_SceneManager.LoadBattle(RVN_SceneManager.CurrentLevel);
+        RVN_SceneManager.LoadCurrentBattle();
     }
 }

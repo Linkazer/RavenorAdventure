@@ -15,10 +15,11 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: 1c291d6d24af2c9419f188ff8f8a51c5, type: 3}
   effectName:
-    frenchText: 
+    frenchText: "D\xE9s\xE9quilibr\xE9"
     englishText: 
   effectDescription:
-    frenchText: 
+    frenchText: "Quand le personnage attaque, la ciblet il peut faire relancer jusqu'\xE0
+      1 d\xE9 qui a d\xE9pass\xE9 sa valeur de D\xE9fense."
     englishText: 
   effectDisplay: {fileID: 0}
   duration: 1.5

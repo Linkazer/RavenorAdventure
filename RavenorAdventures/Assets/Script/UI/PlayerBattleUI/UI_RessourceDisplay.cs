@@ -26,7 +26,7 @@ public class UI_RessourceDisplay : MonoBehaviour
 
                 if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster spellCaster))
                 {
-                    spellCaster.Ressource.actOnRessourceUpdate += SetCharacterRessource;
+                    spellCaster.Ressource.actOnRessourceUpdate = SetCharacterRessource;
 
                     SetCharacterRessource(spellCaster.Ressource.CurrentAmount);
                 }

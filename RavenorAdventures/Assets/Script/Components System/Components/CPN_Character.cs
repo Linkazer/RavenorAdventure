@@ -29,9 +29,14 @@ public class CPN_Character : RVN_ComponentHandler
     public CharacterScriptable_Battle Scriptable => scriptable;
 
     [ContextMenu("Set Character")]
-    public void SetCharacter()
+    public void SetNonCpyCharacter()
     {
         SetCharacterNonCopy(scriptable);
+    }
+
+    public void SetCharacter()
+    {
+        SetCharacter(scriptable);
     }
 
     /// <summary>

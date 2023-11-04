@@ -19,8 +19,8 @@ MonoBehaviour:
   description:
     frenchText: Le personnage regagne %diceUsed% Points de vie.
     englishText: The character heals %diceUsed% Health points.
-  castingAnimation: 0
-  launchAnimation: 0
+  castingAnimation: 3
+  launchAnimation: 4
   castAnimationDuration: 0.5
   spellAnimationTarget: 0
   projectile: {fileID: 0}
@@ -29,11 +29,13 @@ MonoBehaviour:
   launchAudioData: {fileID: 11400000, guid: ef51db604d38b294ca47bd8d90d024cc, type: 2}
   ressourceCost: 0
   maxUtilisations: 1
+  removeOnNoUutlisation: 0
   hitableTarget: 3
   castTarget: 3
   castType: 0
   isCooldownGlobal: 0
   cooldown: 0
+  zoneType: 0
   range: 5
   zoneRange: 0
   zoneFaceCaster: 0
@@ -45,5 +47,6 @@ MonoBehaviour:
   baseDamage: 0
   armorPierced: 0
   lifestealPercent: 0
+  areEffectsRandom: 0
   hitEffectsOnTarget: []
   hitEffectsOnCaster: []

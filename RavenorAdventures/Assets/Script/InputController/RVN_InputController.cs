@@ -25,6 +25,8 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
     [SerializeField] private InputActionReference actionMouseMiddle;
     [SerializeField] private InputActionReference actionMouseScroll;
 
+    public InputActionReference ScrollAction => actionMouseScroll;
+
     [Header("Datas")]
     [SerializeField] private Camera usedCamera;
 

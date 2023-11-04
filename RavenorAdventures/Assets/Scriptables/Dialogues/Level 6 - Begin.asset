@@ -13,11 +13,53 @@ MonoBehaviour:
   m_Name: Level 6 - Begin
   m_EditorClassIdentifier: 
   sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Les aventuriers entr\xE8rent dans une grande salle. Au milieu
+        de cette derni\xE8re se trouvait un pi\xE9destal au-dessus duquel flottait
+        un simple collier."
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Voyant Haeriell affaiblit, Ylia saisit l\u2019opportunit\xE9 pour
-        lancer lui lancer un sort de purification. La vague d\u2019\xE9nergie qui
-        en r\xE9sulta fit tomber \xE0 terre tous les Sans-\xC2mes de la salle."
+      frenchText: "Ylia fut la premi\xE8re \xE0 approcher, confirmant qu\u2019il
+        s\u2019agissait bien du collier d\u2019Haeriell."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CQu\u2019est-ce que tu en penses ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CJe trouve aucun pi\xE8ge, \xE7a devrait \xEAtre bon.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia tendit alors son bras pour r\xE9cup\xE9rer le collier. Mais
+        au moment o\xF9 ses doigts le touch\xE8rent, sa main fut repouss\xE9e. Un
+        bouclier magique apparut autour du collier."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CC\u2019est \xE7a que tu appelles pas de pi\xE8ge ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CJe te ferais remarquer que c\u2019est pas moi l\u2019experte
+        en magie ici !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CConcentrez-vous, vous deux. On a de la compagnie.\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Aux diff\xE9rents coins de la salle, quatre silhouettes fantomatiques
+        avaient fait leur apparition en m\xEAme temps que le bouclier."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201COn se penchera sur le bouclier plus tard. Pour l\u2019instant,
+        occupons-nous d\u2019eux.\u201D"
       englishText: TODO
   responses: []
   references:

@@ -13,11 +13,84 @@ MonoBehaviour:
   m_Name: Level 5 - End
   m_EditorClassIdentifier: 
   sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "D\xE9bloquant la porte, les aventuriers continu\xE8rent jusqu\u2019\xE0
+        arriver \xE0 un croisement."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CEnfin, je reconnais l\u2019endroit. Suivez-moi, la sortie
+        est proche.\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: Alors que que Eral et Ryn suivirent Sadrif, Ylia resta immobile.
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CYlia ? Aller vient, je suis s\xFBr que l\u2019air frais
+        te donnera une meilleure mine.\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Voyant Haeriell affaiblit, Ylia saisit l\u2019opportunit\xE9 pour
-        lancer lui lancer un sort de purification. La vague d\u2019\xE9nergie qui
-        en r\xE9sulta fit tomber \xE0 terre tous les Sans-\xC2mes de la salle."
+      frenchText: "Elle h\xE9sita quelques secondes avant de r\xE9pondre."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CJe ne sais pas ce qu\u2019elle raconte, mais d\xE9p\xEAchez-vous
+        ! Plus vite nous serons sorti de cette crypte, plus vite la guilde pourra
+        \xEAtre pr\xE9venue.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CAttend Sadrif. D\u2019apr\xE8s Ylia, les fant\xF4mes que
+        l\u2019on a combattus avaient la m\xEAme aura que celle du g\xE9n\xE9ral.
+        Si comme elle le pense, ce sont des soldats de Maelazar dont nous a parl\xE9
+        Haeriell, \xE7a veut dire que le portail est d\xE9j\xE0 en train de s\u2019ouvrir.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CVous n\u2019\xEAtes pas en train d\u2019insinuer qu\u2019il
+        faudrait aller affronter le g\xE9n\xE9ral ? Au risque de me r\xE9p\xE9ter,
+        je vous rappelle que la derni\xE8re fois que nous l\u2019avons crois\xE9,
+        nous n\u2019avons m\xEAme pas r\xE9ussi \xE0 le toucher.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia saisit son collier et pointa l\u2019un des couloirs de la
+        crypte."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CTu veux parler du collier d\u2019Haeriell ? Nous ne savons
+        m\xEAme pas si cela fonctionnera !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia lan\xE7a un regard d\xE9termin\xE9 \xE0 Eral."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ce dernier se tourna vers Sadrif. \u201C\xC7a ne me pla\xEEt pas
+        plus qu\u2019\xE0 toi, mais elle a raison. Si des soldats de Maelazar se
+        baladent d\xE9j\xE0 dans la crypte, rien ne nous dit que la guilde arrivera
+        \xE0 temps.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CEt tu es d\u2019accord avec \xE7a toi ?\u201D dit Sadrif
+        en se tournant vers Ryn."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CPour une fois que c\u2019est Ylia qui propose d\u2019aller
+        taper sur quelque chose, c\u2019est pas moi qui vais la laisser seule !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "Sadrif observa chacun de ses compagnons, puis soupira. \u201CSi
+        j\u2019avais su dans quoi je m\u2019embarquais... Allons chercher cet art\xE9fact.\u201D"
       englishText: TODO
   responses: []
   references:

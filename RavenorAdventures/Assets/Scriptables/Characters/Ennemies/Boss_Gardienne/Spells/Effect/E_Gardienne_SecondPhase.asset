@@ -15,11 +15,11 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: 1b85d354b8b29ac43bb91631f1687711, type: 3}
   effectName:
-    frenchText: ??? (Gardienne phase 2)
-    englishText: ??? (Gardienne phase 2)
+    frenchText: "\xC2me corrompue"
+    englishText: TODO
   effectDescription:
-    frenchText: "Augmente la Pr\xE9cision de 2. Le personnage peut effectuer une
-      action suppl\xE9mentaire pendant son tour."
+    frenchText: "Augmente la Pr\xE9cision de 2 et l'Armure de 4. Le personnage peut
+      effectuer une action suppl\xE9mentaire pendant son tour."
     englishText: 
   effectDisplay: {fileID: 8848641657156774193, guid: ace6d5f0b419fc348bc396704774cb11, type: 3}
   duration: -1

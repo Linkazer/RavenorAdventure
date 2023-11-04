@@ -28,8 +28,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 052f46bf6c6549743a251ac9884aab92, type: 3}
   handSprite: {fileID: 21300000, guid: aac899c10bf51f749bad1280880651f2, type: 3}
   displayHand: 0
-  handHeight: 0.55
-  uiHeight: 1.75
+  handHeight: 0.05
+  uiHeight: 1.2
   health: 15
   armor: 0
   defense: 3

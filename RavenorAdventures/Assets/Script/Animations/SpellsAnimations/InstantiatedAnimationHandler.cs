@@ -23,7 +23,14 @@ public class InstantiatedAnimationHandler : MonoBehaviour
 
     private Action endCallback;
 
+    private TimerManager.Timer animationTimer = null;
+
     [SerializeField] private UnityEvent<float> onSetTime;
+
+    private void OnDestroy()
+    {
+        animationTimer?.Stop();
+    }
 
     public void Play()
     {
@@ -48,7 +55,7 @@ public class InstantiatedAnimationHandler : MonoBehaviour
         endCallback = callback;
         if (playTime > 0)
         {
-            TimerManager.CreateGameTimer(PlayTime, End);
+            animationTimer = TimerManager.CreateGameTimer(PlayTime, End);
         }
 
         if(endCallback != null && audioPlayer != null)

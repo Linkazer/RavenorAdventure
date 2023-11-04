@@ -268,6 +268,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             if(!teams[currentPlayingTeam].characters[j].StartTurn())
             {
+                Debug.Log("Is dead");
                 j--;
             }
         }

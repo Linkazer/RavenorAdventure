@@ -41,7 +41,6 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         }
     }
 
-
     private void SetSpells(CPN_SpellCaster caster)
     {
         List<SpellScriptable> spells = caster.Spells;

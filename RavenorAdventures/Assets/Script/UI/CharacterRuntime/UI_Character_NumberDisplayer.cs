@@ -13,7 +13,7 @@ public class UI_Character_NumberDisplayer : MonoBehaviour
 
     private void OnEnable()
     {
-        TimerManager.CreateGameTimer(displayDuration, () => Destroy(gameObject));
+        displayTimer = TimerManager.CreateGameTimer(displayDuration, () => Destroy(gameObject));
     }
 
     private void OnDisable()

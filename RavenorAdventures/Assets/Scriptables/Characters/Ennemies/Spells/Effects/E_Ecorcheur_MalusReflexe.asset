@@ -15,10 +15,11 @@ MonoBehaviour:
   hideOnApply: 0
   icon: {fileID: 21300000, guid: bd19933f32a5bd44eb6fc52c6df4de17, type: 3}
   effectName:
-    frenchText: 
+    frenchText: "Bouscul\xE9"
     englishText: 
   effectDescription:
-    frenchText: 
+    frenchText: "Quand le personnage est attaqu\xE9, l'attaquant peut relancer jusqu'\xE0
+      1 d\xE9 n'ayant pas d\xE9pass\xE9 la D\xE9fense du personnage."
     englishText: 
   effectDisplay: {fileID: 0}
   duration: 1.5

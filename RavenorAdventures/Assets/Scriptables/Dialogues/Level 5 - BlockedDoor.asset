@@ -29,6 +29,11 @@ MonoBehaviour:
         Sans- mes. Mais ce qui attira le plus l\u2019oeil des aventuriers, ce furent
         les quelques silhouettes fantomatiques qui apparurent de nulle part."
       englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CD\u2019abord des cadavres ambulants, et maintenant des fant\xF4mes
+        ! C\u2019est une crypte ou une maison hant\xE9e ?\u201D"
+      englishText: TODO
   responses: []
   references:
     version: 1

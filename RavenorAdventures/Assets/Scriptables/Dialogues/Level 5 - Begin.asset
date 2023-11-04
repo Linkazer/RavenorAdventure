@@ -13,11 +13,49 @@ MonoBehaviour:
   m_Name: Level 5 - Begin
   m_EditorClassIdentifier: 
   sentences:
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "Ryn retira son \xE9p\xE9e d\u2019un cadavre et essuya la sueur
+        sur son front."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CToi qui avais peur que l\u2019aventure soit barbante, je
+        vois que tu commences aussi \xE0 fatiguer.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201CMoi ? Fatigu\xE9e ? Je sais pas o\xF9 t\u2019as vu \xE7a
+        !\u201D dit-elle en se redressant. \u201CMais si toi tu as besoin de repos,
+        je ne dirais pas non pour m\u2019assoir quelques minutes.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CTenez bon encore un peu. Je ressens un l\xE9ger courant
+        d\u2019air, la sortie ne doit plus \xEAtre tr\xE8s loin.\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Alors que Ryn et Sadrif avanc\xE8rent, Eral remarqua l\u2019absence
+        de r\xE9action de la demi-elfe."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CYlia ?\u201D"
+      englishText: TODO
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
-      frenchText: "Voyant Haeriell affaiblit, Ylia saisit l\u2019opportunit\xE9 pour
-        lancer lui lancer un sort de purification. La vague d\u2019\xE9nergie qui
-        en r\xE9sulta fit tomber \xE0 terre tous les Sans-\xC2mes de la salle."
+      frenchText: "Ylia sursauta. Depuis sa rencontre avec Haeriell, elle semblait
+        avoir l\u2019esprit ailleurs."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CTout a bien ?\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia hocha timidement la t\xEAte, puis suivit ses compagnons en
+        replongeant dans ses pens\xE9es."
       englishText: TODO
   responses: []
   references:
