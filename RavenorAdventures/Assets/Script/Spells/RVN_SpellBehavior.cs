@@ -51,7 +51,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     /// <param name="targetNode">Case visée.</param>
     /// <param name="callback">Action à joué à la fin du lancment du sort.</param>
     /// <returns>Return true if the spell has been correctly used.</returns>
-    protected abstract bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback);
+    protected abstract bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode);
 
     /// <summary>
     /// Est appelé quand le sort a finit d'être lancé. Contient la logique spécifique au type de sort du SpellBehavior.
@@ -94,18 +94,20 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
         if (CanUseOnNode(hitableObjects, spellToUse.scriptable.HitableTargets, spellToUse.caster))
         {
-            OnUseSpell(spellToUse, targetNode, callback);
+            OnUseSpell(spellToUse, targetNode);
 
             T usedScriptable = GetScriptable(spellToUse);
 
             if (callback != null)
             {
-                if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters || spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.Target)
+                if (spellToUse.scriptable.SpellAnimation != null)
                 {
-                    PlaySpellAnimation(spellToUse, targetNode, callback);
+                    if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.HitedCharacters || spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.Target)
+                    {
+                        PlaySpellAnimation(spellToUse, targetNode, callback);
+                    }
                 }
-
-                if (usedScriptable.AnimationDuration < 0.5f)
+                else if (usedScriptable.AnimationDuration < 0.5f)
                 {
                     TimerManager.CreateGameTimer(0.5f, callback);
                 }

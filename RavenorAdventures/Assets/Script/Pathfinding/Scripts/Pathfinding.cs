@@ -163,7 +163,6 @@ public class Pathfinding : MonoBehaviour
 
                 if (distance > 0 && neighbour.worldPosition == new Vector3(-13.5f, -1.5f, 0.0f))
 				{
-					Debug.Log("Check on Target Node : " + CanDiagonalBeReached(currentNode, neighbour));
 					isTarget = true;
                 }
 

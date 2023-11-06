@@ -35,7 +35,7 @@ public class RVN_SB_TeleportSpell : RVN_SpellBehavior<RVN_SS_TeleportSpell>
         }
     }
 
-    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
+    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode)
     {
         if (spellToUse.caster.Handler.GetComponentOfType<CPN_Movement>(out CPN_Movement casterMovement))
         {

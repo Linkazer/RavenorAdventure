@@ -117,8 +117,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     /// </summary>
     private void DoNextMove()
     {
-        //Debug.Log($"{currentCharacter.name} Action : {plannedAction?.actionIndex} | Score : {plannedAction?.score} | Target : {plannedAction?.actualTarget}");
-
         if (currentCharacterHealth.CurrentHealth <= 0 || enabled == false)
         {
             //Debug.Log("No turn needed");
@@ -335,7 +333,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
         {
-            Debug.Log("Cant move without dying");
             toReturn = casterNode;
         }
         else

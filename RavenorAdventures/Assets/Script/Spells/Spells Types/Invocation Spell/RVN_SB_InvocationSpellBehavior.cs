@@ -7,7 +7,7 @@ public class RVN_SB_InvocationSpellBehavior : RVN_SpellBehavior<RVN_SS_Invocatio
 {
     [SerializeField] private int maxSpawnDistance;
 
-    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
+    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode)
     {
         Node spawnNode = GetSpawnNode(targetNode);
 

@@ -212,6 +212,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
         else
         {
+            Debug.Log("Invoke without spell");
             callback?.Invoke();
         }
     }

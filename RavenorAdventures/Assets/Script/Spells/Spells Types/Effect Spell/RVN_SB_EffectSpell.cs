@@ -15,7 +15,7 @@ public class RVN_SB_EffectSpell : RVN_SpellBehavior<RVN_SS_EffectSpell>
         return true;
     }
 
-    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
+    protected override bool OnUseSpell(LaunchedSpellData spellToUse, Node targetNode)
     {
         return true;
     }
