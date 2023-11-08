@@ -79,17 +79,23 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
                         break;
                 }
 
+                Action spellCallback = () => EndSpell(spellToUse, callbackEndSpell);
+
                 for (int i = 0; i < targetsNodes.Count; i++)
                 {
                     if (!targetsNodes[i].IsStaticObstacle)
                     {
-                        if (targetsNodes[i] != spellToUse.targetNode)
+                        Debug.Log(spellCallback);
+
+                        if (targetsNodes[i] != spellToUse.targetNode || spellCallback == null)
                         {
                             behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);
                         }
                         else
                         {
-                            behaviorUsed.UseSpell(spellToUse, targetsNodes[i], () => EndSpell(spellToUse, callbackEndSpell));
+                            behaviorUsed.UseSpell(spellToUse, targetsNodes[i], spellCallback);
+
+                            spellCallback = null;
                         }
                     }
                 }

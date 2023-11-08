@@ -88,11 +88,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         currentCharacter = null;
 
-        TimerManager.CreateGameTimer(timeDelayEndTurn, () => RVN_BattleManager.EndCharacterTurn());
+        TimerManager.CreateGameTimer(timeDelayEndTurn, RVN_BattleManager.EndCharacterTurn);
     }
 
     private void SearchNextAction(float timeToWait)
     {
+        Debug.Log("Search for next action");
+
         StartCoroutine(SearchForBestAction(currentCharacter, false, FindNextAction));
     }
 
