@@ -111,6 +111,15 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
     {
         SetCameraPosition(position);
         targetZoom = zoom;
+
+        if(targetZoom < zoomLimits.x)
+        {
+            targetZoom = zoomLimits.x;
+        }
+        else if (targetZoom > zoomLimits.y)
+        {
+            targetZoom = zoomLimits.y;
+        }
         virtualCamera.m_Lens.OrthographicSize = targetZoom;
     }
 

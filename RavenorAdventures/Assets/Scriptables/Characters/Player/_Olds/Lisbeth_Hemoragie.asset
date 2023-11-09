@@ -10,30 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
-  m_Name: E_Phyl_Bonus_Assassin
+  m_Name: Lisbeth_Hemoragie
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 21300000, guid: 4f2c12f4d16a0c84f857650ff6216da0, type: 3}
+  icon: {fileID: 21300000, guid: 4af74b75f4a57f34eb4877cc639457dd, type: 3}
   effectName:
-    frenchText: "Fragment d'\xE2me : Assassin"
-    englishText: Fragmented soul - Accuracy
+    frenchText: "H\xE9morragie"
+    englishText: Bleeding
   effectDescription:
-    frenchText: "Le personnage peut effectuer une action suppl\xE9mentaire pendant
-      son tour."
-    englishText: ???
+    frenchText: "Au d\xE9but de chaque tour, le personnage subit 1 point de d\xE9g\xE2t."
+    englishText: At the start of each turn, the character suffers 1 point of damage.
   effectDisplay: {fileID: 0}
-  duration: -1
+  duration: 2
   maxStack: 1
   effects:
   - id: 0
   references:
     version: 1
     00000000:
-      type: {class: EFF_StatEffect, ns: , asm: ravenor_engine}
+      type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
       data:
-        trigger: 0
-        effects:
-        - stat: 6
-          valueToChange: 1
-        - stat: 9
-          valueToChange: 2
+        trigger: 2
+        spellToUse: {fileID: 11400000, guid: 08b378b4e38421a4eab0df83943899f7, type: 2}

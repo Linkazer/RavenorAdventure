@@ -20,12 +20,12 @@ MonoBehaviour:
     englishText: Guardian human
   UIPortrait: {fileID: 21300000, guid: a6934814b95814e4fb1100439a744c1f, type: 3}
   nameColor: {r: 0.43303904, g: 0, b: 0.8113208, a: 1}
-  characterSprite: {fileID: 21300000, guid: f9da790492710b3438b58feeb4744631, type: 3}
+  characterSprite: {fileID: 21300000, guid: 97eecead9baf86c40bef79a67325d140, type: 3}
   animations:
   - animationName: Idle
     animation:
-    - {fileID: 21300000, guid: f9da790492710b3438b58feeb4744631, type: 3}
-    - {fileID: 21300000, guid: 444fca839a6aec447aa19d6c33233b9d, type: 3}
+    - {fileID: 21300000, guid: 97eecead9baf86c40bef79a67325d140, type: 3}
+    - {fileID: 21300000, guid: 97eecead9baf86c40bef79a67325d140, type: 3}
   handSprite: {fileID: 21300000, guid: 16be4fcbd98fe8a4ba69fdac9536d280, type: 3}
   displayHand: 0
   handHeight: 0.05
@@ -55,7 +55,23 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives:
+  - {fileID: 11400000, guid: e3cd2e1f3f7dec24684029cfc896aaaa, type: 2}
+  - {fileID: 11400000, guid: b5704ace920f0854dbab3920923764a4, type: 2}
+  - {fileID: 11400000, guid: bba6de26d20f5f04e8f5b96dda3ae9f3, type: 2}
+  - {fileID: 11400000, guid: deccb5f806b3d97469235ea7285f45c6, type: 2}
+  - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
   - {fileID: 11400000, guid: 28b285eca00107043984f8cd49c6eae2, type: 2}
+  - {fileID: 11400000, guid: 013de526e2af03a459c911eaa0f3e628, type: 2}
+  - {fileID: 11400000, guid: 9017a6ef48bdd0f49b8af3e690372b59, type: 2}
+  - {fileID: 11400000, guid: e1cc29e2e3ee3cc49aec0921fd551542, type: 2}
+  - {fileID: 11400000, guid: 97a0d44dbf95bfc49831fdcbea4f4526, type: 2}
+  - {fileID: 11400000, guid: 36968741dffd53a44a9b8c363f4f3c2a, type: 2}
+  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
+  - {fileID: 11400000, guid: 7f730e4daa51b3746966e7a0106a5d2e, type: 2}
+  - {fileID: 11400000, guid: 93004bc125c61a84ea192d86eef5e26a, type: 2}
+  - {fileID: 11400000, guid: 3d3ce3269b7561b44878e10121609329, type: 2}
+  - {fileID: 11400000, guid: f92683e556b8d50468a916ab7340df96, type: 2}
+  - {fileID: 11400000, guid: 0d55d198b28fe2c4a84b1eb5bec39ad7, type: 2}
   references:
     version: 1
     00000000:
