@@ -38,14 +38,14 @@ MonoBehaviour:
   offensiveRerolls: 0
   defensiveRerolls: 0
   movementByTurn: 250
-  speed: 8
+  speed: 3
   dangerosityMaxDistance: 0
   dangerosityMinimumDistance: 15
   opportunitySpell: {fileID: 11400000, guid: 32881cd0280d047419212a773e048359, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
   - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
-  - {fileID: 11400000, guid: fbbfc85b7323ddb419e8b9e7ea8d0654, type: 2}
+  - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
   - {fileID: 11400000, guid: a2b651b31841e304091d1b5f48e6e043, type: 2}
   - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
   - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}

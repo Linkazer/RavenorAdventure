@@ -864,7 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationHandler: {fileID: 7894508926239594657}
   toMove: {fileID: 2436014866520188403}
-  rnd: {fileID: 5476766876406081633}
+  sortingGroup: {fileID: 8621115964766900107}
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -890,6 +890,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animationTime: 0.25
+  sortingOrderOffset: 0
 --- !u!114 &2932560560375911783
 MonoBehaviour:
   m_ObjectHideFlags: 0

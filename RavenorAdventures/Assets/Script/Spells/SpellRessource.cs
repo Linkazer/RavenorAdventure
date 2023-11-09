@@ -44,7 +44,7 @@ public class SpellRessource
             currentAmount = limits.x;
         }
 
-        //actOnRessourceUpdate?.Invoke(currentAmount);
+        actOnRessourceUpdate?.Invoke(currentAmount);
     }
 
     public void RegainRessource(int amountToRegain)
@@ -56,7 +56,7 @@ public class SpellRessource
             currentAmount = limits.y;
         }
 
-        //actOnRessourceUpdate?.Invoke(currentAmount);
+        actOnRessourceUpdate?.Invoke(currentAmount);
     }
 }
 

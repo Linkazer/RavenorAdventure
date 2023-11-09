@@ -215,6 +215,17 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         {
             AnimationInstantiater.PlayAnimationAtPosition(usedScriptable.SpellAnimation, targetNode.worldPosition, callback);
         }
+        else if(callback != null)
+        {
+            if (usedScriptable.AnimationDuration >= 0.5f)
+            {
+                TimerManager.CreateGameTimer(usedScriptable.AnimationDuration, callback);
+            }
+            else
+            {
+                TimerManager.CreateGameTimer(0.5f, callback);
+            }
+        }
     }
 
     public override void EndSpell(LaunchedSpellData spellToEnd)

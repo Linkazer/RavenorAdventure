@@ -29,6 +29,11 @@ public class RVN_LevelManager : RVN_Singleton<RVN_LevelManager>
     
     public List<CPN_Character> GetTeam(int teamIndex)
     {
-        return teams[teamIndex].characters;
+        if (teamIndex < teams.Count)
+        {
+            return teams[teamIndex].characters;
+        }
+
+        return new List<CPN_Character>();
     }
 }

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: E_Phyl_Bonus_Assassin
   m_EditorClassIdentifier: 
   hideOnApply: 0
-  icon: {fileID: 21300000, guid: 98a7271ff3cfca54294b0b9f14abd1a5, type: 3}
+  icon: {fileID: 21300000, guid: 4f2c12f4d16a0c84f857650ff6216da0, type: 3}
   effectName:
-    frenchText: "\xC2me fragment\xE9e - ???"
+    frenchText: "\xC2me fragment\xE9e - Enchainement"
     englishText: Fragmented soul - Accuracy
   effectDescription:
-    frenchText: ???
+    frenchText: "Le personnage peut effectuer une action suppl\xE9mentaire pendant
+      son tour."
     englishText: ???
   effectDisplay: {fileID: 0}
   duration: -1

@@ -35,10 +35,11 @@ MonoBehaviour:
   castType: 0
   isCooldownGlobal: 0
   cooldown: 0
+  zoneType: 0
   range: 0
   zoneRange: 0
   zoneFaceCaster: 0
   zoneDefined: []
   effectsOnTarget:
-  - {fileID: 11400000, guid: e3cd2e1f3f7dec24684029cfc896aaaa, type: 2}
+  - {fileID: 11400000, guid: b5704ace920f0854dbab3920923764a4, type: 2}
   effectsOnCaster: []

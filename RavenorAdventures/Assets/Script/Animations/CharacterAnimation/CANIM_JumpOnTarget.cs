@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
 {
     [SerializeField] private Transform toMove;
-    [SerializeField] protected Renderer rnd;
+    [SerializeField] protected SortingGroup sortingGroup;
     [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float animationTime;
-    
+
+    [SerializeField] private int sortingOrderOffset;
+
+
     private Vector2 startPosition;
     private Vector2 direction;
 
@@ -29,16 +33,16 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
         direction = launchedSpell.targetNode.worldPosition - toMove.position;
         curveDirection = 1;
 
-        startSortingOrder = rnd.sortingOrder;
+        startSortingOrder = sortingGroup.sortingOrder;
 
-        if (direction.y > 0)
+        if (direction.y >= 0)
         {
-            baseSortingOrder = rnd.sortingOrder;
+            baseSortingOrder = sortingGroup.sortingOrder;
         }
         else
         {
-            //baseSortingOrder = rnd.sortingOrder + 1;
-            baseSortingOrder = rnd.sortingOrder;
+            baseSortingOrder = sortingGroup.sortingOrder + sortingOrderOffset;
+            //baseSortingOrder = rnd.sortingOrder;
         }
 
         enabled = true;
@@ -46,7 +50,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
 
     public override void Stop()
     {
-        rnd.sortingOrder = 0;
+        sortingGroup.sortingOrder = 0;
 
         curveIndex = 0;
         enabled = false;
@@ -66,7 +70,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     {
         curveIndex += (Time.deltaTime * curveDirection) / animationTime;
 
-        rnd.sortingOrder = baseSortingOrder;// + (Mathf.FloorToInt((toMove.localPosition.y - startPosition.y) / -0.5f));
+        sortingGroup.sortingOrder = baseSortingOrder;// + (Mathf.FloorToInt((toMove.localPosition.y - startPosition.y) / -0.5f));
 
         if (curveIndex > 1)
         {
