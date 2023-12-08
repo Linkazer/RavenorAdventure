@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Dice
 {
+    private const float coefOnUse = 0.25f;
+
     public static Dictionary<MonoBehaviour, List<int>> dicesHistory = new Dictionary<MonoBehaviour, List<int>>();
 
     private int faceNumber;
@@ -40,13 +42,16 @@ public class Dice
         result = 0;
 
         List<int> history = new List<int>();
-        if (dicesHistory.ContainsKey(asker))
+        if (asker != null)
         {
-            history = dicesHistory[asker];
-        }
-        else
-        {
-            dicesHistory[asker] = new List<int>();
+            if (dicesHistory.ContainsKey(asker))
+            {
+                history = dicesHistory[asker];
+            }
+            else
+            {
+                dicesHistory[asker] = new List<int>();
+            }
         }
 
         List<float> weights = new List<float>() { 1f, 1f, 1f, 1f, 1f, 1f };
@@ -55,7 +60,7 @@ public class Dice
         {
             if(hist > 0)
             {
-                weights[hist - 1] *= 0.15f;
+                weights[hist - 1] *= coefOnUse;
             }
         }
 
@@ -84,16 +89,22 @@ public class Dice
 
         try
         {
-            dicesHistory[asker].Add((int)result);
+            if (asker != null)
+            {
+                dicesHistory[asker].Add((int)result);
+            }
         }
         catch(Exception e)
         {
             Debug.Log((int)result);
         }
 
-        if(dicesHistory[asker].Count > 10)
+        if (asker != null)
         {
-            dicesHistory[asker].RemoveAt(0);
+            if (dicesHistory[asker].Count > 10)
+            {
+                dicesHistory[asker].RemoveAt(0);
+            }
         }
 
         return result;

@@ -8,7 +8,7 @@ public class SQA_SpawnCharacter : SequenceAction
     [SerializeField] private SpawnableCharacterTeam charactersToSpawn;
     [SerializeField] private Transform[] spawnPositions;
 
-    private int maxSpawnDistance = 35;
+    [SerializeField] private int maxSpawnDistance = 35;
 
     protected override void OnStartAction()
     {
@@ -47,7 +47,7 @@ public class SQA_SpawnCharacter : SequenceAction
     protected Node GetSpawnNode(Vector2 positionTarget)
     {
         Node targetNode = Grid.GetNodeFromWorldPoint(positionTarget);
-        Node currentSpawnNode = null;
+        Node currentSpawnNode = targetNode;
 
         if (targetNode != null)
         {

@@ -47,8 +47,7 @@ MonoBehaviour:
   usableSpellByTurn: 1
   usedRessource:
     id: 0
-  passives:
-  - {fileID: 11400000, guid: 36968741dffd53a44a9b8c363f4f3c2a, type: 2}
+  passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
   oppportunityHealthBonus: 0
   comportement:

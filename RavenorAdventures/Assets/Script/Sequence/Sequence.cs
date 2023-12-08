@@ -33,11 +33,14 @@ public class Sequence : SequenceAction
                 {
                     foreach (Transform secondaryChild in child)
                     {
-                        SequenceAction toAdd = secondaryChild.GetComponent<SequenceAction>();
-
-                        if (toAdd != null && toAdd.enabled)
+                        if (secondaryChild.gameObject.activeSelf)
                         {
-                            newStep.secondaryActions.Add(toAdd);
+                            SequenceAction toAdd = secondaryChild.GetComponent<SequenceAction>();
+
+                            if (toAdd != null && toAdd.enabled)
+                            {
+                                newStep.secondaryActions.Add(toAdd);
+                            }
                         }
                     }
                 }

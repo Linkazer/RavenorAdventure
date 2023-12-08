@@ -5863,6 +5863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 6
       objectReference: {fileID: 0}
+    - target: {fileID: 429593234369219506, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 429593234369219511, guid: b1e990d729bb6d446af798f058f22baf, type: 3}
       propertyPath: wantedEnnemyDeads.Array.size
       value: 4

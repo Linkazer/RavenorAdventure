@@ -64,8 +64,11 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
         {
             for(int i = 0; i < effectHandler.Effects.Count; i++)
             {
-                effects[i].SetEffect(effectHandler.Effects[i].GetEffect);
-                effects[i].gameObject.SetActive(true);
+                if (!effectHandler.Effects[i].GetEffect.HideOnApply)
+                {
+                    effects[i].SetEffect(effectHandler.Effects[i].GetEffect);
+                    effects[i].gameObject.SetActive(true);
+                }
             }
         }
     }

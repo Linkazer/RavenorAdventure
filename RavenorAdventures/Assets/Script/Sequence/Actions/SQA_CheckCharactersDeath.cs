@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class SQA_CheckCharactersDeath : SequenceAction
 {
+    [SerializeField] private int deathNumberWanted = -1;
     [SerializeField] private List<RVN_ComponentHandler> charactersToCheck;
 
     protected override void OnStartAction()
     {
+        if(deathNumberWanted <= 0)
+        {
+            deathNumberWanted = charactersToCheck.Count;
+        }
+
         foreach(CPN_Character chara in charactersToCheck)
         {
             if(chara.GetComponentOfType(out CPN_HealthHandler healthHandler))
@@ -46,9 +52,13 @@ public class SQA_CheckCharactersDeath : SequenceAction
             healthHandler.actOnDeath -= OnCharacterDeath;
         }
 
-        charactersToCheck.Remove(deadCharacter);
+        if (charactersToCheck.Contains(deadCharacter))
+        {
+            charactersToCheck.Remove(deadCharacter);
+            deathNumberWanted--;
+        }
 
-        if(charactersToCheck.Count == 0)
+        if(deathNumberWanted == 0)
         {
             EndAction();
         }

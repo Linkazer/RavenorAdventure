@@ -942,7 +942,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2118164339000553650, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
       propertyPath: m_text
-      value: "Cette premi\xE8re version ne comporte que 3 niveaux sur les 8 pr\xE9vus."
+      value: "Cette premi\xE8re version ne comporte que 6 niveaux sur les 8 pr\xE9vus."
       objectReference: {fileID: 0}
     - target: {fileID: 2118164339000553650, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
       propertyPath: m_fontSize
@@ -1042,11 +1042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791211563987686375, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
       propertyPath: text.frenchText
-      value: "Cette premi\xE8re version ne comporte que 3 niveaux sur les 8 pr\xE9vus."
+      value: "Cette premi\xE8re version ne comporte que 6 niveaux sur les 8 pr\xE9vus."
       objectReference: {fileID: 0}
     - target: {fileID: 2791211563987686375, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
       propertyPath: text.englishText
-      value: This first version has only 3 levels out of the 8 planned.
+      value: This first version has only 6 levels out of the 8 planned.
       objectReference: {fileID: 0}
     - target: {fileID: 6663174849247036378, guid: 34026115d511f804b8e535171a1c11a8, type: 3}
       propertyPath: m_Name

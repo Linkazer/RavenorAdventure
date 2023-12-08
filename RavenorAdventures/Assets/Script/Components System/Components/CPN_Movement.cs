@@ -259,13 +259,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 						EndMovement();
 
 						transform.position = currentWaypoint.worldPosition;
-
 						break;
 					}
 
 					currentWaypoint = path[targetIndex];
 
-					lerpValue = 0;
+					lerpValue--;
 
 					posUnit = new Vector2(transform.position.x, transform.position.y);
 					posTarget = new Vector2(currentWaypoint.worldPosition.x, currentWaypoint.worldPosition.y);
@@ -286,7 +285,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 
 				transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
-				yield return null;
+                yield return null;
 			}
 		}
 	}

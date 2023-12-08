@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DiceTests : MonoBehaviour
@@ -8,6 +9,7 @@ public class DiceTests : MonoBehaviour
     {
         DamageChance,
         HitsOnTarget,
+        DiceResult,
     }
 
     [System.Serializable]
@@ -22,10 +24,7 @@ public class DiceTests : MonoBehaviour
     [SerializeField] private string testName;
     [SerializeField] private DiceCalculType calculType;
 
-    public bool usedDungeonSaga;
-    public bool usedDnD;
-
-    [Header("Behavior")]
+    [Header("(Old) Behavior")]
     [SerializeField] private bool doesNeedFirstHit;
     [SerializeField] private bool baseDamageDone;
 
@@ -57,61 +56,10 @@ public class DiceTests : MonoBehaviour
             case DiceCalculType.HitsOnTarget:
                 HitsOnTargetTest();
                 break;
+            case DiceCalculType.DiceResult:
+                DiceResultChances();
+                break;
         }
-    }
-
-    [Header("New system")]
-    public int diceNb;
-    public int diceResultNeeded;
-    public int diceNumberNeeded;
-
-    public int randomWanted = 6;
-
-    [ContextMenu("Try New System")]
-    public void NewSystemTest()
-    {
-        Results = new SortedDictionary<int, int>();
-
-        int succeedDice = 0;
-
-        int r = 0;
-
-        for (int i = 0; i < iterations; i++)
-        {
-            succeedDice = 0;
-            r = 0;
-
-            for(int j = 0; j < diceNb; j++)
-            {
-                if(Random.Range(1, randomWanted + 1) >= diceResultNeeded)
-                {
-                    succeedDice++;
-                }
-            }
-
-            if(succeedDice >= diceNumberNeeded)
-            {
-                r = 1;
-            }
-
-            if (Results.ContainsKey(r))
-            {
-                Results[r]++;
-            }
-            else
-            {
-                Results.Add(r, 1);
-            }
-        }
-
-        string toDisplay = ($"{testName} : ");
-
-        foreach (KeyValuePair<int, int> rslt in Results)
-        {
-            toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
-        }
-
-        Debug.Log(toDisplay);
     }
 
     private void DamageChanceTest()
@@ -148,6 +96,47 @@ public class DiceTests : MonoBehaviour
         {
             toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
         }
+
+        Debug.Log(toDisplay);
+    }
+
+    private void DiceResultChances()
+    {
+        Results = new SortedDictionary<int, int>();
+
+        for (int i = 0; i < iterations; i++)
+        {
+            ResetDiceHistory();
+
+            Dice d = new Dice(6, 0);
+            d.Roll(this);
+
+            int diceResult = Mathf.RoundToInt(d.Result);
+
+            if (Results.ContainsKey(diceResult))
+            {
+                Results[diceResult]++;
+            }
+            else
+            {
+                Results.Add(diceResult, 1);
+            }
+        }
+
+        string toDisplay = ($"{testName} : ");
+
+        float total = 0;
+        float coef = 0;
+
+        foreach (KeyValuePair<int, int> rslt in Results)
+        {
+            toDisplay += $"\n {rslt.Key} : {(((float)rslt.Value / (float)iterations) * 100f).ToString("F2")}%";
+
+            total += rslt.Key * rslt.Value;
+            coef += rslt.Value;
+        }
+
+        toDisplay += $"\n Average result : {total / coef}";
 
         Debug.Log(toDisplay);
     }
@@ -229,54 +218,43 @@ public class DiceTests : MonoBehaviour
     {
         int totalDamage = 0;
 
-        if (usedDungeonSaga)
-        {
-            totalDamage += TryDSDices();
-        }
-        else if(usedDnD)
-        {
-            totalDamage += TryDNDDices();
-        }
-        else
-        {
-            int currentOffensiveRerolls = 0;
-            int currentDefensiveRerolls = 0;
+        int currentOffensiveRerolls = 0;
+        int currentDefensiveRerolls = 0;
 
-            for (int i = 0; i < attacker.AttackDice; i++)
+        for (int i = 0; i < attacker.AttackDice; i++)
+        {
+            int bonus = 0;
+
+            if (i < Mathf.Abs(attacker.Accuracy))
             {
-                int bonus = 0;
-
-                if (i < Mathf.Abs(attacker.Accuracy))
+                if (attacker.Accuracy > 0)
                 {
-                    if (attacker.Accuracy > 0)
-                    {
-                        bonus = 1;
-                    }
-                    else
-                    {
-                        bonus = -1;
-                    }
+                    bonus = 1;
                 }
-
-                Dice d = new Dice(6, attacker.Accuracy);
-                d.Roll(this);
-
-
-                totalDamage += CheckDiceHit(d, Defense, currentOffensiveRerolls < attacker.OffensiveRerolls, currentDefensiveRerolls < DefensiveRerolls, out bool usedOff, out bool usedDef);
-
-                if (usedDef)
+                else
                 {
-                    currentDefensiveRerolls++;
+                    bonus = -1;
                 }
+            }
 
-                if (usedOff)
-                {
-                    currentOffensiveRerolls++;
-                }
+            Dice d = new Dice(6, attacker.Accuracy);
+            d.Roll(this);
+
+
+            totalDamage += CheckDiceHit(d, Defense, currentOffensiveRerolls < attacker.OffensiveRerolls, currentDefensiveRerolls < DefensiveRerolls, out bool usedOff, out bool usedDef);
+
+            if (usedDef)
+            {
+                currentDefensiveRerolls++;
+            }
+
+            if (usedOff)
+            {
+                currentOffensiveRerolls++;
             }
         }
 
-        if(totalDamage > 0 || baseDamageDone)
+        if (totalDamage > 0 || baseDamageDone)
         {
             totalDamage += attacker.Power;
         }
@@ -314,90 +292,6 @@ public class DiceTests : MonoBehaviour
         }
 
         return toReturn;
-    }
-
-    [Header("DungeonSaga dices")]
-    public int attackDice;
-    public int defenseDice;
-    public int defenseArmor;
-    public int dsOffReroll;
-    public int dsDefReroll;
-
-    public int TryDSDices()
-    {
-        List<int> attackResult = new List<int>();
-        List<int> defenseResult = new List<int>();
-
-        int leftOffReroll = dsOffReroll;
-        int leftDefReroll = dsDefReroll;
-
-        for (int i = 0; i < attackDice; i++)
-        {
-            attackResult.Add(Random.Range(0, 6) + 1);
-
-            if(leftOffReroll > 0 && attackResult[i] <= defenseArmor)
-            {
-                leftOffReroll--;
-                attackResult[i] = Random.Range(0, 6) + 1;
-            }
-        }
-
-        for (int i = 0; i < defenseDice; i++)
-        {
-            defenseResult.Add(Random.Range(0, 6) + 1);
-
-            if (leftDefReroll > 0 &&  defenseResult[i] <= defenseArmor)
-            {
-                leftDefReroll--;
-                defenseResult[i] = Random.Range(0, 6) + 1;
-            }
-        }
-
-        attackResult.Sort();
-        defenseResult.Sort();
-
-        attackResult.Reverse();
-        defenseResult.Reverse();
-
-        int hitNb = 0;
-
-        for(int i = 0; i < attackResult.Count; i++)
-        {
-            if(attackResult[i] > defenseArmor && (defenseResult.Count <= i || attackResult[i] > defenseResult[i]))
-            {
-                hitNb++;
-            }
-        }
-
-        return hitNb;
-    }
-
-    [Header("D&D dices")]
-    public bool advantage;
-    public bool disadvantage;
-    public int dndAC;
-    public int dndAttackBonus;
-
-    private int TryDNDDices()
-    {
-        Dice baseDice = new Dice(6, dndAttackBonus);
-        baseDice.Roll();
-
-        Dice rerollDice = new Dice(6, dndAttackBonus);
-        rerollDice.Roll();
-
-        Dice diceToUse = baseDice;
-
-        if(advantage && diceToUse.Result < rerollDice.Result)
-        {
-            diceToUse = rerollDice;
-        }
-        else if(disadvantage && diceToUse.Result > rerollDice.Result)
-        {
-            diceToUse = rerollDice;
-        }
-
-        return (diceToUse.Result > dndAC) ? 1 : 0; 
     }
 
     [ContextMenu("Reset History")]

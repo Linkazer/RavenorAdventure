@@ -18,7 +18,7 @@ MonoBehaviour:
     frenchText: "Fragment d'\xE2me : Arch\xE8re"
     englishText: Fragmented soul - Accuracy
   effectDescription:
-    frenchText: "R\xE9duit la Pr\xE9cision du personnage de 1."
+    frenchText: "Augmente la Pr\xE9cision du personnage de 1."
     englishText: Reduces the character's Accuracy by 1.
   effectDisplay: {fileID: 0}
   duration: -1

@@ -15,13 +15,13 @@ public class SQA_DetectCharacterTurn : SequenceAction
         }
         else
         {
-            characterToCheck.ActOnBeginSelfTurn += DetectTurn;
+            characterToCheck.ActOnBeginTeamTurn += DetectTurn;
         }
     }
 
     protected override void OnEndAction()
     {
-        characterToCheck.ActOnBeginSelfTurn -= DetectTurn;
+        characterToCheck.ActOnBeginTeamTurn -= DetectTurn;
     }
 
     protected override void OnSkipAction()
