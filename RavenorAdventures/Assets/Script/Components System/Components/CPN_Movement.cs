@@ -106,6 +106,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		if (pathSuccessful)
 		{
 			path = newPath;
+
 			targetIndex = 0;
 			if (currentMovement != null)
 			{

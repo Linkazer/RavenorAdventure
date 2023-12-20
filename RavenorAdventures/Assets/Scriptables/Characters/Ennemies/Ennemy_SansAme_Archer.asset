@@ -56,7 +56,6 @@ MonoBehaviour:
     wantedActionIndex: 0
     conditions:
     - calculImportance: 0
-      abscissaValue: 13
       abcissaCalcul:
         id: 1
       condition: 0
@@ -66,19 +65,17 @@ MonoBehaviour:
     - id: 2
     - id: 3
     - id: 4
-    - id: 5
   - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
     wantedActionIndex: 1
     conditions:
     - calculImportance: 0
-      abscissaValue: 13
       abcissaCalcul:
-        id: 6
+        id: 5
       condition: 3
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 7
+    - id: 6
   references:
     version: 1
     00000000:
@@ -88,60 +85,43 @@ MonoBehaviour:
     00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
-        calculImportance: 1
-        abscissaValue: 13
-        abcissaCalcul:
-          id: 8
-        abscissaCoeficient: -1
-        constantToAdd: 100
-        maxValue: 100
-    00000003:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
         calculImportance: 0
-        abscissaValue: 0
         abcissaCalcul:
-          id: 9
+          id: 7
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 45
-    00000004:
+    00000003:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: -0.7
-        abscissaValue: 10
         abcissaCalcul:
-          id: 10
+          id: 8
         condition: 3
         baseValue: 1
-    00000005:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+    00000004:
+      type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: -0.5
-        abscissaValue: 14
         abcissaCalcul:
-          id: 11
-        abscissaCoeficient: -1
-        constantToAdd: 35
-        maxValue: 35
-    00000006:
+          id: 9
+        condition: 3
+        baseValue: 25
+    00000005:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
-    00000007:
+    00000006:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
-        abscissaValue: 13
         abcissaCalcul:
-          id: 12
+          id: 10
         condition: 3
         baseValue: 15
-    00000008:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
-    00000009:
+    00000007:
       type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
-    0000000A:
+    00000008:
       type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}
-    0000000B:
+    00000009:
       type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}
-    0000000C:
+    0000000A:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

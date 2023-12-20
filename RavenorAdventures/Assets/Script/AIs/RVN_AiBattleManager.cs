@@ -20,9 +20,8 @@ public class Ai_PlannedAction
 public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 {
     enum PathType { 
-        NoVisionNoPath = -1,
-        NoVision = 0,
-        HasVision = 1,
+        WaitByObstacle,
+        FoundAlternativePath,
     }
 
     private List<Node> lastCalculatedPath = new List<Node>();
@@ -128,12 +127,12 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (plannedAction.movementTarget != currentCharacterMovement.CurrentNode)
             {
-                //Debug.Log("Movement Action");
+                Debug.Log($"Movement Action toward : {plannedAction.movementTarget.worldPosition}");
                 currentCharacterMovement.AskToMoveTo(plannedAction.movementTarget.worldPosition, () => PrepareNextAction(timeBetweenActions));
             }
             else
             {
-                //Debug.Log("Spell Action");
+                Debug.Log("Spell Action");
                 currentCharacterSpell.SelectSpell(plannedAction.actionIndex, false);
                 currentCharacterSpell.TryDoAction(plannedAction.spellNodeTarget.worldPosition, () => SearchNextAction(timeBetweenActions));
 
@@ -144,21 +143,22 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             if (!isDoneMoving)
             {
-                //Debug.Log("Movement Action Second");
+                Node destination = SearchForBestMovement();
+                Debug.Log($"Movement Action Second toward : {destination.worldPosition}");
 
-                currentCharacterMovement.AskToMoveTo(SearchForBestMovement().worldPosition, () => PrepareNextAction(timeBetweenActions));
+                currentCharacterMovement.AskToMoveTo(destination.worldPosition, () => PrepareNextAction(timeBetweenActions));
                 isDoneMoving = true;
             }
             else
             {
-                //Debug.Log("Movement End");
+                Debug.Log("Movement End");
 
                 EndCharacterTurn(currentCharacter);
             }
         }
         else
         {
-            //Debug.Log("No Action End");
+            Debug.Log("No Action End");
             EndCharacterTurn(currentCharacter);
         }
     }
@@ -308,6 +308,13 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (possibleActions.Count > 0)
         {
+            Debug.Log("Possibles actions :");
+
+            foreach(Ai_PlannedAction action in possibleActions)
+            {
+                Debug.Log($"Can use {action.actionIndex} on {action.actualTarget}");
+            }
+
             toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
 
@@ -323,7 +330,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         float maxScore = -1;
 
-        PathType pathType = PathType.NoVisionNoPath;
+        PathType currentPathType = PathType.WaitByObstacle;
 
         List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
 
@@ -341,23 +348,25 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             foreach (Node n in possibleMovements)
             {
+                Node targetNode = GetClosestCharacter(n, true).CurrentNode;
+
                 if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
                 {
                     continue;
                 }
 
-                Node targetNode = Grid.GetClosestNeighbour(n, GetClosestCharacter(n, true).CurrentNode, true);
-
                 float distanceMovementPosTargetPos = -1;
-                
-                if(pathType != PathType.HasVision && !Grid.IsNodeVisible(n, targetNode))
+
+                /*if(pathType != PathType.HasVision && !Grid.IsNodeVisible(n, targetNode, casterScriptable.DistanceFromTarget.y))
                 {
-                    List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1);
+                    List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1, true, true);
 
                     if (path.Count > 0)
                     {
                         if (pathType == PathType.NoVisionNoPath)
                         {
+                            Debug.Log("Found path without vision");
+
                             pathType = PathType.NoVision;
                             maxScore = -1;
                         }
@@ -366,7 +375,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     }
                     else if(pathType == PathType.NoVisionNoPath)
                     {
-                        path = Pathfinding.CalculatePathfinding(n, targetNode, -1, false);
+                        path = Pathfinding.CalculatePathfinding(n, targetNode, -1, false, true);
 
                         if (path.Count > 0)
                         {
@@ -382,7 +391,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                         continue;
                     }
                 }
-                else if(Grid.IsNodeVisible(n, targetNode))
+                else if(Grid.IsNodeVisible(n, targetNode, casterScriptable.DistanceFromTarget.y))
                 {
                     if(pathType != PathType.HasVision)
                     {
@@ -414,6 +423,60 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 else
                 {
                     continue;
+                }*/
+
+                List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1, true, true);
+
+                if (path.Count > 0)
+                {
+                    if(OpportunityAttackScore(currentCharacterHealth, path) >= 1)
+                    {
+                        continue;
+                    }
+
+                    if (currentPathType != PathType.FoundAlternativePath)
+                    {
+                        currentPathType = PathType.FoundAlternativePath;
+                        maxScore = -1;
+                    }
+
+                    distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
+                }
+                else if(currentPathType != PathType.FoundAlternativePath)
+                {
+                    path = Pathfinding.CalculatePathfinding(n, targetNode, -1, false, true);
+
+                    if (OpportunityAttackScore(currentCharacterHealth, path) >= 1)
+                    {
+                        continue;
+                    }
+
+                    if (path.Count > 0)
+                    {
+                        distanceMovementPosTargetPos = Pathfinding.GetPathLength(n, path);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+
+                //Pourcentage par rapport à la distance voulue
+                if (distanceMovementPosTargetPos > casterScriptable.DistanceFromTarget.y)
+                {
+                    distanceMovementPosTargetPos = Mathf.Abs(distanceMovementPosTargetPos - casterScriptable.DistanceFromTarget.y);
+                }
+                else if (distanceMovementPosTargetPos < casterScriptable.DistanceFromTarget.x)
+                {
+                    distanceMovementPosTargetPos = Mathf.Abs(distanceMovementPosTargetPos - casterScriptable.DistanceFromTarget.x);
+                }
+                else //La position est à la bonne distance voulue
+                {
+                    distanceMovementPosTargetPos = 0;
                 }
 
                 if (maxScore < 0 || distanceMovementPosTargetPos < maxScore)
@@ -431,9 +494,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             }
         }
 
-        if(toReturn == null && possibleTargetNodes.Count > 0)
+        if (toReturn == null)
         {
-            toReturn = possibleTargetNodes[UnityEngine.Random.Range(0, possibleTargetNodes.Count)];
+            if (possibleTargetNodes.Count > 0 && !possibleTargetNodes.Contains(casterNode))
+            {
+                toReturn = possibleTargetNodes[UnityEngine.Random.Range(0, possibleTargetNodes.Count)];
+            }
+            else
+            {
+                toReturn = casterNode;
+            }
         }
 
         return toReturn;

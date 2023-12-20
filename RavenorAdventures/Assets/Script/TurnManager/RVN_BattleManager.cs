@@ -12,7 +12,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [Serializable]
     public class CombatTeam
     {
-        public CharacterAllegeance allegeance;
+        public CharacterAllegeance allegeance = CharacterAllegeance.Ennemy;
         [SerializeField] public List<CPN_Character> characters = new List<CPN_Character>();
     }
 
@@ -120,8 +120,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void PauseBattle(MonoBehaviour pauseCaller)
     {
-        Debug.Log("Pause ?");
-
         RVN_CombatInputController.instance.DisableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Pause();
@@ -129,8 +127,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void RestartBattle(MonoBehaviour pauseCaller)
     {
-        Debug.Log("Unpause ?");
-
         RVN_CombatInputController.instance.EnableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Restart();
@@ -340,6 +336,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// <param name="teamIndex">The team index.</param>
     public void AddCharacter(CPN_Character toAdd, int teamIndex, bool playFirst = false)
     {
+        if(teamIndex >= teams.Count)
+        {
+            teams.Add(new CombatTeam());
+        }
+
         if (!teams[teamIndex].characters.Contains(toAdd))
         {
             if (playFirst)
@@ -399,6 +400,16 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
 
         return null;
+    }
+
+    public static List<CPN_Character> GetTeamByIndex(int index)
+    {
+        if (index < instance.teams.Count)
+        {
+            return instance.teams[index].characters;
+        }
+
+        return new List<CPN_Character>();
     }
 
     public static int GetCharacterTeamIndex(CPN_Character character)

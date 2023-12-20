@@ -85,8 +85,6 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
                 {
                     if (!targetsNodes[i].IsStaticObstacle)
                     {
-                        Debug.Log(spellCallback);
-
                         if (targetsNodes[i] != spellToUse.targetNode || spellCallback == null)
                         {
                             behaviorUsed.UseSpell(spellToUse, targetsNodes[i]);

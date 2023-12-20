@@ -85,27 +85,17 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
     public override void UseSpell(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
-        bool hasAnimationBeenMade = false;
-
         List<CPN_HealthHandler> hitableObjects = targetNode.GetNodeComponent<CPN_HealthHandler>();
 
         if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.All)
         {
             if (spellToUse.scriptable.AnimationDuration > 0.5f)
             {
-                if (callback != null)
-                {
-                    Debug.Log("Animation ALL 0.5");
-                }
                 TimerManager.CreateGameTimer(0.5f, callback);
                 PlaySpellAnimation(spellToUse, targetNode, null);
             }
             else
             {
-                if (callback != null)
-                {
-                    Debug.Log("Animation ALL Feedback");
-                }
                 PlaySpellAnimation(spellToUse, targetNode, callback);
             }
 
@@ -197,7 +187,6 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
         }
         else if(callback != null)
         {
-            Debug.Log("SHIT HAPPEN 0.5");
             TimerManager.CreateGameTimer(0.5f, callback);
         }
     }
@@ -205,11 +194,6 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     private void PlaySpellAnimation(LaunchedSpellData spellToUse, Node targetNode, Action callback)
     {
         T usedScriptable = GetScriptable(spellToUse);
-
-        if (callback != null)
-        {
-            Debug.Log("Play animation with callback : " + usedScriptable.SpellAnimation);
-        }
 
         if (usedScriptable.SpellAnimation != null)
         {

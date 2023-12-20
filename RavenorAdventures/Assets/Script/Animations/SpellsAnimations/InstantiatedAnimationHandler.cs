@@ -71,11 +71,6 @@ public class InstantiatedAnimationHandler : MonoBehaviour
     /// </summary>
     public void End()
     {
-        if (endCallback != null)
-        {
-            Debug.Log("End animation: " + gameObject);
-        }
-
         endCallback?.Invoke();
 
         switch(endAction)

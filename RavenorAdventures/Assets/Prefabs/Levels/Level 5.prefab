@@ -2058,6 +2058,7 @@ MonoBehaviour:
     - {fileID: 8986572605344613867}
     - {fileID: 544091306162166313}
   spawnPositions: []
+  maxSpawnDistance: 35
 --- !u!1 &8866096680516586150
 GameObject:
   m_ObjectHideFlags: 0

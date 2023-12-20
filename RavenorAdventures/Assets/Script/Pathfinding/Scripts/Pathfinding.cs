@@ -45,6 +45,7 @@ public class Pathfinding : MonoBehaviour
 	private Node[] RetracePath(Node startNode, Node endNode, int maxDistance) {
 
 		Node[] path = GetPath(startNode, endNode, maxDistance).ToArray();
+
 		Array.Reverse(path);
 		return path;
 	}
@@ -134,15 +135,92 @@ public class Pathfinding : MonoBehaviour
 		return distance;
 	}
 
-	/// <summary>
-	/// Calcul of the pathfinding.
-	/// </summary>
-	/// <param name="startNode">The node where the calcul start.</param>
-	/// <param name="targetNode">The target wanted. If null, the method will return all the node in the distance.</param>
-	/// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
-	/// <param name="pathCalcul"></param>
-	/// <returns></returns>
-	public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool checkNonStaticObstacle = true)
+	private static bool IsNodeUsable(Node nodeToCheck, Node currentNode, Node targetNode,  bool checkNonStaticObstacle, bool targetIsObstacle)
+	{
+		if(!CanDiagonalBeReached(currentNode, nodeToCheck))
+		{
+			return false;
+		}
+
+		if(targetIsObstacle && targetNode != null)
+		{
+			if (nodeToCheck == targetNode)
+			{
+                return true;
+			}
+			else if(checkNonStaticObstacle)
+			{
+                return nodeToCheck.IsWalkable;
+            }
+			else
+			{
+                return !nodeToCheck.IsStaticObstacle;
+            }
+		}
+		else
+		{
+            if (checkNonStaticObstacle)
+            {
+                return nodeToCheck.IsWalkable;
+            }
+            else
+            {
+                return !nodeToCheck.IsStaticObstacle;
+            }
+        }
+    }
+
+    private static bool IsNodeUsableTest(Node nodeToCheck, Node currentNode, Node targetNode, bool checkNonStaticObstacle, bool targetIsObstacle)
+    {
+        if (!CanDiagonalBeReached(currentNode, nodeToCheck))
+        {
+			Debug.Log("Not diagonale");
+            return false;
+        }
+
+        if (targetIsObstacle && targetNode != null)
+        {
+			Debug.Log("Equal ? " + (nodeToCheck == targetNode));
+            if (nodeToCheck == targetNode)
+            {
+                Debug.Log("Node usable because target is obstacle");
+                return true;
+            }
+            else if (checkNonStaticObstacle)
+            {
+                Debug.Log("Node walkable");
+                return nodeToCheck.IsWalkable;
+            }
+            else
+            {
+                Debug.Log("Node static");
+                return !nodeToCheck.IsStaticObstacle;
+            }
+        }
+        else
+        {
+            if (checkNonStaticObstacle)
+            {
+                Debug.Log("Node walkable 2");
+                return nodeToCheck.IsWalkable;
+            }
+            else
+            {
+                Debug.Log("Node static 2");
+                return !nodeToCheck.IsStaticObstacle;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Calcul of the pathfinding.
+    /// </summary>
+    /// <param name="startNode">The node where the calcul start.</param>
+    /// <param name="targetNode">The target wanted. If null, the method will return all the node in the distance.</param>
+    /// <param name="distance">The max distance to check for node. Is only check if more than 0.</param>
+    /// <param name="pathCalcul"></param>
+    /// <returns></returns>
+    public static List<Node> CalculatePathfinding(Node startNode, Node targetNode, int distance, bool checkNonStaticObstacle = true, bool targetIsObstacle = false)
 	{
 		Heap<Node> openSet = new Heap<Node>(instance.grid.MaxSize);
 		List<Node> usableNode = new List<Node>();
@@ -157,16 +235,15 @@ public class Pathfinding : MonoBehaviour
 		{
 			Node currentNode = openSet.RemoveFirst();
 			closedSet.Add(currentNode);
-			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
-			{
-                bool isTarget = false;
 
-                if (distance > 0 && neighbour.worldPosition == new Vector3(-13.5f, -1.5f, 0.0f))
+			foreach (Node neighbour in Grid.GetNeighbours(currentNode))
+			{ 
+                /*if (distance > 0 && neighbour.worldPosition == new Vector3(-13.5f, -1.5f, 0.0f))
 				{
 					isTarget = true;
-                }
+                }*/
 
-				if ((checkNonStaticObstacle && !neighbour.IsWalkable) || (!checkNonStaticObstacle && neighbour.IsStaticObstacle) || !CanDiagonalBeReached(currentNode, neighbour) || closedSet.Contains(neighbour))
+                if (closedSet.Contains(neighbour) || !IsNodeUsable(neighbour, currentNode, targetNode, checkNonStaticObstacle, targetIsObstacle))
 				{
 					continue;
 				}
@@ -197,10 +274,6 @@ public class Pathfinding : MonoBehaviour
 
                 if (distance <= 0 || newMovementCostToNeighbour <= distance)
 				{
-                    if (isTarget)
-                    {
-                        Debug.Log("Distance valid");
-                    }
                     int newDistanceFromTargetCost = -1;
 
 					if (targetNode != null)
@@ -231,11 +304,6 @@ public class Pathfinding : MonoBehaviour
 					}
 					else*/ if (newMovementCostToNeighbour <= neighbour.gCost || !openSet.Contains(neighbour))
 					{
-                        if (isTarget)
-                        {
-                            Debug.Log("Distance Better");
-                        }
-
                         neighbour.gCost = newMovementCostToNeighbour;
 						if (newDistanceFromTargetCost < 0)
 						{
@@ -271,7 +339,7 @@ public class Pathfinding : MonoBehaviour
 			usableNode = new List<Node>();
         }
 
-		return usableNode;
+        return usableNode;
 	}
 
 	public static List<Node> GetAllNodeInDistance(Node startNode, int distance, bool needVision)

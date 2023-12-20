@@ -27,7 +27,7 @@ public class Sequence : SequenceAction
 
             newStep.mainAction = child.GetComponent<SequenceAction>();
 
-            if(newStep.mainAction != null && newStep.mainAction.enabled)
+            if(newStep.mainAction != null && newStep.mainAction.enabled && newStep.mainAction.gameObject.activeSelf)
             {
                 if (newStep.mainAction as Sequence == null && newStep.mainAction as SequenceCutscene == null)
                 {
@@ -43,6 +43,10 @@ public class Sequence : SequenceAction
                             }
                         }
                     }
+                }
+                else
+                {
+                    (newStep.mainAction as Sequence).FillSequence();
                 }
 
                 steps.Add(newStep);
