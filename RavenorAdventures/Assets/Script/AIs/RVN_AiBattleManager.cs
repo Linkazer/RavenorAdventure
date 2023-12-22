@@ -31,6 +31,9 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     [SerializeField] private float timeDelayEndTurn = 0.5f;
     [SerializeField] private int checksByFrame = 50;
 
+    [Header("Equilibrage Comportement")]
+    [SerializeField] private float coverScoreForBestMovement = 50;
+
     [Header("Debugs")]
     [SerializeField] private CPN_Character currentCharacter;
     [SerializeField] private CPN_HealthHandler currentCharacterHealth;
@@ -348,7 +351,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             foreach (Node n in possibleMovements)
             {
-                Node targetNode = GetClosestCharacter(n, true).CurrentNode;
+                Node closestCharacterNode = GetClosestCharacter(n, true).CurrentNode;
 
                 if (OpportunityAttackScore(currentCharacterMovement.currentEvasiveAmount, currentCharacterHealth, casterNode) >= 1)
                 {
@@ -425,7 +428,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     continue;
                 }*/
 
-                List<Node> path = Pathfinding.CalculatePathfinding(n, targetNode, -1, true, true);
+                List<Node> path = Pathfinding.CalculatePathfinding(n, closestCharacterNode, -1, true, true);
 
                 if (path.Count > 0)
                 {
@@ -444,7 +447,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 }
                 else if(currentPathType != PathType.FoundAlternativePath)
                 {
-                    path = Pathfinding.CalculatePathfinding(n, targetNode, -1, false, true);
+                    path = Pathfinding.CalculatePathfinding(n, closestCharacterNode, -1, false, true);
 
                     if (OpportunityAttackScore(currentCharacterHealth, path) >= 1)
                     {
@@ -477,6 +480,16 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 else //La position est à la bonne distance voulue
                 {
                     distanceMovementPosTargetPos = 0;
+                }
+
+                if (!(!Grid.IsNodeVisible(n, closestCharacterNode) && Grid.IsNodeVisible(path[0], closestCharacterNode)))
+                {
+                    Debug.Log("Not covered");
+                    distanceMovementPosTargetPos += coverScoreForBestMovement;
+                }
+                else
+                {
+                    Debug.Log("Covered");
                 }
 
                 if (maxScore < 0 || distanceMovementPosTargetPos < maxScore)

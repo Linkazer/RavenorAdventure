@@ -47,7 +47,9 @@ public class SQA_SpawnCharacter : SequenceAction
     protected Node GetSpawnNode(Vector2 positionTarget)
     {
         Node targetNode = Grid.GetNodeFromWorldPoint(positionTarget);
-        Node currentSpawnNode = targetNode;
+        List<Node> spawnableNodes = new List<Node>();
+        float minDistance = maxSpawnDistance;
+        float calculatedDistance = 0;
 
         if (targetNode != null)
         {
@@ -59,17 +61,26 @@ public class SQA_SpawnCharacter : SequenceAction
                 {
                     if (node.IsWalkable)
                     {
-                        currentSpawnNode = node;
-                        break;
+                        calculatedDistance = Pathfinding.GetDistance(node, targetNode);
+                        if (calculatedDistance <= minDistance)
+                        {
+                            if(calculatedDistance < minDistance)
+                            {
+                                minDistance = calculatedDistance;
+                                spawnableNodes = new List<Node>();
+                            }
+
+                            spawnableNodes.Add(node);
+                        }
                     }
                 }
             }
             else
             {
-                currentSpawnNode = targetNode;
+                spawnableNodes.Add(targetNode);
             }
         }
 
-        return currentSpawnNode;
+        return spawnableNodes[Random.Range(0, spawnableNodes.Count)];
     }
 }

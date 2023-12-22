@@ -2,6 +2,8 @@
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using Codice.Client.BaseCommands;
+using Unity.VisualScripting.YamlDotNet.Serialization;
 
 public class Grid : MonoBehaviour 
 {
@@ -153,11 +155,79 @@ public class Grid : MonoBehaviour
 		}
 		else
 		{
-			return instance.CalculateVision(startNode.gridX, startNode.gridY, targetNode.gridX, targetNode.gridY);
-		}
+            return instance.CalculateVision(startNode, targetNode);
+        }
 	}
 
-	public bool CalculateVision(int x1, int y1, int x2, int y2)
+	private bool CalculateVision(Node startNode, Node visibilityTargetNode)
+	{
+		int dx = visibilityTargetNode.gridX - startNode.gridX;
+        int dy = visibilityTargetNode.gridY - startNode.gridY;
+        int nx = Mathf.Abs(dx);
+        int ny = Mathf.Abs(dy);
+        int signX = dx > 0 ? 1 : -1;
+        int signY = dy > 0 ? 1 : -1;
+
+		Vector2Int p = new Vector2Int(startNode.gridX, startNode.gridY);
+		List<Node> toReturn = new List<Node>();
+		toReturn.Add(GetNode(p.x, p.y));
+
+		for(int ix = 0, iy = 0; ix<nx || iy<ny;)
+		{
+            int decision = (1 + 2 * ix) * ny - (1 + 2 * iy) * nx;
+
+			if(decision == 0)
+			{
+				//Diagonal
+				if (GetNode(p.x, p.y + signY).IsVisible || GetNode(p.x + signX, p.y).IsVisible)
+				{
+					p.x += signX;
+					ix++;
+					p.y += signY;
+					iy++;
+				}
+				else
+				{
+					return false;
+				}
+            }
+			else if(decision < 0)
+			{
+                //Horizontal
+                p.x += signX;
+                ix++;
+            }
+			else
+			{
+                //Vertical
+                p.y += signY;
+                iy++;
+            }
+
+			if(!GetNode(p.x, p.y).IsVisible)
+			{
+				return false;
+			}
+
+            /*if ((0.5f + ix) * ny < (0.5f + iy) * nx)
+			{
+				//Horizontal step
+				p.x += signX;
+				ix++;
+			}
+			else
+			{
+				//Vertical step
+				p.y += signY;
+				iy++;
+			}*/
+        }
+
+		return true;
+	}
+
+	[System.Obsolete]
+    public bool CalculateVision(int x1, int y1, int x2, int y2)
 	{
 		int startX = x1;
 		int startY = y1;
@@ -200,7 +270,7 @@ public class Grid : MonoBehaviour
 						return false;
 					}
 				}
-			}
+            }
 
 			if (!GetNode(x1, y1).IsVisible)
 			{
