@@ -51,6 +51,8 @@ MonoBehaviour:
   passives:
   - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
   wantedDistanceFromTarget: {x: 50, y: 55}
+  movementBehaviorUsed:
+    id: 1
   oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: 3aa3caae06906cb4eb0645fd811ac515, type: 2}
@@ -58,84 +60,86 @@ MonoBehaviour:
     conditions:
     - calculImportance: 0
       abcissaCalcul:
-        id: 1
+        id: 2
       condition: 0
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 2
     - id: 3
     - id: 4
     - id: 5
+    - id: 6
   - wantedAction: {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
     wantedActionIndex: 1
     conditions:
     - calculImportance: 0
       abcissaCalcul:
-        id: 6
+        id: 7
       condition: 3
       baseValue: 15
     bonusScore: 0
     calculs:
-    - id: 7
+    - id: 8
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+      type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}
     00000002:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000003:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 1
         abcissaCalcul:
-          id: 8
+          id: 9
         abscissaCoeficient: -1
         constantToAdd: 100
         maxValue: 100
-    00000003:
+    00000004:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 9
+          id: 10
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 45
-    00000004:
+    00000005:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: -0.7
         abcissaCalcul:
-          id: 10
+          id: 11
         condition: 3
         baseValue: 1
-    00000005:
+    00000006:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: -0.5
         abcissaCalcul:
-          id: 11
+          id: 12
         abscissaCoeficient: -1
         constantToAdd: 35
         maxValue: 35
-    00000006:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     00000007:
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
+    00000008:
       type: {class: AIC_Conditional, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 12
+          id: 13
         condition: 3
         baseValue: 15
-    00000008:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     00000009:
-      type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     0000000A:
-      type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}
+      type: {class: AI_CA_DistanceFromTarget_CalculatedPosition, ns: , asm: ravenor_engine}
     0000000B:
-      type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}
+      type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}
     0000000C:
+      type: {class: AI_CA_MovementToMake, ns: , asm: ravenor_engine}
+    0000000D:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

@@ -44,13 +44,13 @@ MonoBehaviour:
   opportunitySpell: {fileID: 11400000, guid: c9d381595a09eb342b9411e865e61d61, type: 2}
   availableSpells:
   - {fileID: 11400000, guid: 5d559617534837f408471e520ccb9738, type: 2}
+  - {fileID: 11400000, guid: 5458f880cdbeb9d45be5e2044e4f8c59, type: 2}
   - {fileID: 11400000, guid: 2ce5869e1e8beb24882fd801e30acbe0, type: 2}
   - {fileID: 11400000, guid: 7ff34d230ef03d749811be0ddfbc1c73, type: 2}
   - {fileID: 11400000, guid: a2b651b31841e304091d1b5f48e6e043, type: 2}
   - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
   - {fileID: 11400000, guid: 486a76e4452d2b340baa681adc1c6261, type: 2}
   - {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
-  - {fileID: 11400000, guid: 5458f880cdbeb9d45be5e2044e4f8c59, type: 2}
   usableSpellByTurn: 10
   usedRessource:
     id: 0
@@ -75,4 +75,8 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: , ns: , asm: }
+      type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
+      data:
+        startAmount: 5
+        limits: {x: 0, y: 5}
+        currentAmount: 0

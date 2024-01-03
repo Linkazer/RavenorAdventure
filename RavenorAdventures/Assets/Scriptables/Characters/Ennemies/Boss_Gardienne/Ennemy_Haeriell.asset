@@ -53,6 +53,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28b285eca00107043984f8cd49c6eae2, type: 2}
   - {fileID: 11400000, guid: 013de526e2af03a459c911eaa0f3e628, type: 2}
   wantedDistanceFromTarget: {x: 0, y: 15}
+  movementBehaviorUsed:
+    id: 1
   oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: ad0552a232ae4f24fafb02f6f51b0a93, type: 2}
@@ -60,48 +62,50 @@ MonoBehaviour:
     conditions: []
     bonusScore: 0
     calculs:
-    - id: 1
     - id: 2
+    - id: 3
   - wantedAction: {fileID: 11400000, guid: fbbfc85b7323ddb419e8b9e7ea8d0654, type: 2}
     wantedActionIndex: 1
     conditions: []
     bonusScore: 0.1
     calculs:
-    - id: 3
+    - id: 4
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
+      type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}
+    00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 2
         abcissaCalcul:
-          id: 4
+          id: 5
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
-    00000002:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 0
-        abcissaCalcul:
-          id: 5
-        abscissaCoeficient: -1
-        constantToAdd: 2
-        maxValue: 2
     00000003:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
           id: 6
+        abscissaCoeficient: -1
+        constantToAdd: 2
+        maxValue: 2
+    00000004:
+      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
+      data:
+        calculImportance: 0
+        abcissaCalcul:
+          id: 7
         abscissaCoeficient: 1
         constantToAdd: 0
         maxValue: 2
-    00000004:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     00000005:
-      type: {class: AI_CA_TargetCurrentHp, ns: , asm: ravenor_engine}
+      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
     00000006:
+      type: {class: AI_CA_TargetCurrentHp, ns: , asm: ravenor_engine}
+    00000007:
       type: {class: AI_CA_NumberEnnemyArea, ns: , asm: ravenor_engine}

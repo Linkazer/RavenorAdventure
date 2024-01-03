@@ -44,9 +44,13 @@ MonoBehaviour:
     id: 0
   passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
+  movementBehaviorUsed:
+    id: 1
   oppportunityHealthBonus: 0
   comportement: []
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
+    00000001:
+      type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}

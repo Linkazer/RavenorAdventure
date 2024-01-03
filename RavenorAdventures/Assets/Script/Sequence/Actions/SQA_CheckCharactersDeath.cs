@@ -54,9 +54,12 @@ public class SQA_CheckCharactersDeath : SequenceAction
 
         if (charactersToCheck.Contains(deadCharacter))
         {
+            Debug.Log("Remove");
             charactersToCheck.Remove(deadCharacter);
             deathNumberWanted--;
         }
+
+        Debug.Log(deathNumberWanted);
 
         if(deathNumberWanted == 0)
         {

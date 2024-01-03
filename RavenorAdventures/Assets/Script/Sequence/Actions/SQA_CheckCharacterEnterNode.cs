@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SQA_CheckCharacterEnterNode : SequenceAction
 {
-    [SerializeField] private NodeDataHanlder nodeDataToCheck;
+    [SerializeField, System.Obsolete] private NodeDataHanlder nodeDataToCheck;
+    [SerializeField] private List<NodeDataHanlder> movingNodesToCheck;
     [SerializeField] private List<NodeDataHanlder> nodes;
 
     protected override void OnStartAction()
     {
+        if(movingNodesToCheck.Count == 0)
+        {
+            movingNodesToCheck.Add(nodeDataToCheck);
+        }
+
         foreach (NodeDataHanlder node in nodes)
         {
             node.actOnDataEnter += DetectEntry;
@@ -30,9 +36,12 @@ public class SQA_CheckCharacterEnterNode : SequenceAction
 
     private void DetectEntry(NodeDataHanlder nodeData)
     {
-        if (nodeData == nodeDataToCheck)
+        foreach (NodeDataHanlder node in movingNodesToCheck)
         {
-            EndAction();
+            if (nodeData == node)
+            {
+                EndAction();
+            }
         }
     }
 }

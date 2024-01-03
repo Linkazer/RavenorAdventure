@@ -25,7 +25,7 @@ public class SQA_CheckCharacterAliveByNumber : SequenceAction
     private void OnCharacterDeath(RVN_ComponentHandler deadCharacter)
     {
         Debug.Log(RVN_BattleManager.GetTeamByIndex(teamToCheck).Count);
-        if(RVN_BattleManager.GetTeamByIndex(teamToCheck).Count <= numberCharacterAliveWanted)
+        if(RVN_BattleManager.GetTeamByIndex(teamToCheck).Count <= numberCharacterAliveWanted + 1)
         {
             EndAction();
         }

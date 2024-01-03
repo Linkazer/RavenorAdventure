@@ -49,6 +49,8 @@ MonoBehaviour:
     id: 0
   passives: []
   wantedDistanceFromTarget: {x: 0, y: 15}
+  movementBehaviorUsed:
+    id: 1
   oppportunityHealthBonus: 0
   comportement:
   - wantedAction: {fileID: 11400000, guid: 00848a7f9ea45b641a2ced00f3a9f7ee, type: 2}
@@ -56,19 +58,21 @@ MonoBehaviour:
     conditions: []
     bonusScore: 0
     calculs:
-    - id: 1
+    - id: 2
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
+      type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}
+    00000002:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 2
+          id: 3
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
-    00000002:
+    00000003:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
