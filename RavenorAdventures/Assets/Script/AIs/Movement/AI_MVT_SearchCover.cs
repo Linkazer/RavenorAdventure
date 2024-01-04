@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [System.Serializable]
@@ -16,12 +17,14 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
     private const float IsVisibleScoreMalus = 30f;
     private const float NotCoverScoreMalus = 15f;
     private const float OpportunityAttackScoreMalus = 150f;
-    private const float NoClearPathScoreMalus = -1f;
+    private const float NoClearPathScoreMalus = 50f;
+    private const float NoPathScoreMalus = 1000f;
     private const float TooCloseMultipler = 5f;
-    private const float TooFarMultipler = 3f;
-    private const float MinimumDistanceForPathfinding = 80f;
+    private const float DistanceViewOffset = 25f;
 
     [SerializeField] private Vector2 distanceFromTargetWanted = new Vector2(40, 50);
+
+    private float VisibleDistance => distanceFromTargetWanted.y + DistanceViewOffset;
 
     public override List<Node> GetBestMovementNodes(CPN_Character currentCharacter)
     {
@@ -42,7 +45,6 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
         float maxScore = -1;
         float nodeScore = 0;
         float characterScore = -1;
-        float distanceFromCharacter = 0f;
 
         List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
 
@@ -52,27 +54,38 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
 
         Dictionary<VisibilityType, List<CPN_Character>> characterByVisibility = new Dictionary<VisibilityType, List<CPN_Character>>();
 
-        PathType bestPathTypeFound = PathType.TooFar;
+        Dictionary<CPN_Character, List<Node>> pathByCharacterClear = new Dictionary<CPN_Character, List<Node>>();
+        Dictionary<CPN_Character, List<Node>> pathByCharacterBlocked = new Dictionary<CPN_Character, List<Node>>();
+
+        foreach (CPN_Character chara in charactersToCheck)
+        {
+            pathByCharacterClear.Add(chara, Pathfinding.CalculatePathfinding(casterNode, chara.CurrentNode, -1, true, true));
+            pathByCharacterBlocked.Add(chara, Pathfinding.CalculatePathfinding(casterNode, chara.CurrentNode, -1, false, true));
+        }
 
         foreach (Node n in possibleMovements)
         {
             characterByVisibility = new Dictionary<VisibilityType, List<CPN_Character>>();
             nodeScore = 0;
 
+            //Debug.Log(n.worldPosition);
+
             foreach (CPN_Character chara in charactersToCheck)
             {
-                if (!Grid.IsNodeVisible(n, chara.CurrentNode))
+                if (!Grid.IsNodeVisible(n, chara.CurrentNode, VisibleDistance))
                 {
                     bool neighbourFound = false;
                     foreach (Node nNeighbour in Grid.GetNeighbours(n))
                     {
-                        if ((nNeighbour == casterNode || WillNodeBeWalkableNextTurn(n, nNeighbour)) && Grid.IsNodeVisible(nNeighbour, chara.CurrentNode))
+                        if ((nNeighbour == casterNode || WillNodeBeWalkableNextTurn(n, nNeighbour)) && Grid.IsNodeVisible(nNeighbour, chara.CurrentNode, VisibleDistance))
                         {
                             if(!characterByVisibility.ContainsKey(VisibilityType.Cover))
                             {
                                 characterByVisibility.Add(VisibilityType.Cover, new List<CPN_Character>());
                             }
                             characterByVisibility[VisibilityType.Cover].Add(chara);
+
+                            //Debug.Log("Cover");
 
                             neighbourFound = true;
                             break;
@@ -86,6 +99,8 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
                             characterByVisibility.Add(VisibilityType.Lost, new List<CPN_Character>());
                         }
                         characterByVisibility[VisibilityType.Lost].Add(chara);
+
+                        //Debug.Log("Lost");
                     }
                 }
                 else
@@ -95,53 +110,30 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
                         characterByVisibility.Add(VisibilityType.Visible, new List<CPN_Character>());
                     }
                     characterByVisibility[VisibilityType.Visible].Add(chara);
+
+                    //Debug.Log("Visible");
                 }
             }
 
             if (!characterByVisibility.ContainsKey(VisibilityType.Cover) && !characterByVisibility.ContainsKey(VisibilityType.Visible))
             {
+                Node targetCharacterNode = RVN_AiBattleManager.Instance.GetClosestCharacter(casterNode, true).CurrentNode;
+
                 foreach (CPN_Character chara in characterByVisibility[VisibilityType.Lost])
                 {
-                    distanceFromCharacter = Pathfinding.GetDistance(n, chara.CurrentNode);
-                    characterScore = -1;
-
-                    if (distanceFromCharacter <= MinimumDistanceForPathfinding || bestPathTypeFound != PathType.TooFar)
+                    if (pathByCharacterClear[chara].Contains(n))
                     {
-                        List<Node> path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, true, true);
-
-                        if (path.Count > 0)
-                        {
-                            characterScore = Pathfinding.GetPathLength(n, path);
-
-                            if (bestPathTypeFound != PathType.PathClear)
-                            {
-                                bestPathTypeFound = PathType.PathClear;
-                            }
-                        }
-                        else if (bestPathTypeFound != PathType.PathClear)
-                        {
-                            path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, false, true);
-
-                            if (path.Count > 0)
-                            {
-                                characterScore = Pathfinding.GetPathLength(n, path) + NoClearPathScoreMalus;
-
-                                if (bestPathTypeFound == PathType.TooFar)
-                                {
-                                    bestPathTypeFound = PathType.PathBlockByMovingObstacle;
-                                }
-                            }
-                        }
+                        characterScore = Pathfinding.GetDistance(n, chara.CurrentNode) - Pathfinding.GetDistance(n, casterNode);
+                        //Debug.Log($"{characterScore} = {Pathfinding.GetDistance(n, chara.CurrentNode)} - {Pathfinding.GetDistance(n, casterNode)}");
+                    }
+                    else if(pathByCharacterBlocked[chara].Contains(n))
+                    {
+                        characterScore = Pathfinding.GetDistance(n, chara.CurrentNode) - Pathfinding.GetDistance(n, casterNode) + NoClearPathScoreMalus;
+                        //Debug.Log($"{characterScore} = {Pathfinding.GetDistance(n, chara.CurrentNode)} - {Pathfinding.GetDistance(n, casterNode)} + NoClearPathScoreMalus");
                     }
                     else
                     {
-                        characterScore = TooFarMultipler * distanceFromCharacter;
-                    }
-
-                    if(characterScore < 0)
-                    {
-                        Debug.Log("Has no path");
-                        characterScore = NoClearPathScoreMalus;
+                        characterScore = NoPathScoreMalus;
                     }
 
                     nodeScore += characterScore;
