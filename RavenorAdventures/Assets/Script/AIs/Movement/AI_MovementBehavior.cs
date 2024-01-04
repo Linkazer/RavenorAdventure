@@ -9,6 +9,7 @@ public abstract class AI_MovementBehavior
     {
         PathBlockByMovingObstacle,
         PathClear,
+        TooFar,
     }
 
     public abstract List<Node> GetBestMovementNodes(CPN_Character currentCharacter);

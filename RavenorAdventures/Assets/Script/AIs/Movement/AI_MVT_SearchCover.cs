@@ -18,6 +18,8 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
     private const float OpportunityAttackScoreMalus = 150f;
     private const float NoClearPathScoreMalus = -1f;
     private const float TooCloseMultipler = 5f;
+    private const float TooFarMultipler = 3f;
+    private const float MinimumDistanceForPathfinding = 80f;
 
     [SerializeField] private Vector2 distanceFromTargetWanted = new Vector2(40, 50);
 
@@ -40,6 +42,7 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
         float maxScore = -1;
         float nodeScore = 0;
         float characterScore = -1;
+        float distanceFromCharacter = 0f;
 
         List<Node> possibleMovements = Pathfinding.CalculatePathfinding(casterNode, null, currentCharacterMovement.MovementLeft);
 
@@ -49,7 +52,7 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
 
         Dictionary<VisibilityType, List<CPN_Character>> characterByVisibility = new Dictionary<VisibilityType, List<CPN_Character>>();
 
-        PathType bestPathTypeFound = PathType.PathBlockByMovingObstacle;
+        PathType bestPathTypeFound = PathType.TooFar;
 
         foreach (Node n in possibleMovements)
         {
@@ -99,29 +102,40 @@ public class AI_MVT_SearchCover : AI_MovementBehavior
             {
                 foreach (CPN_Character chara in characterByVisibility[VisibilityType.Lost])
                 {
+                    distanceFromCharacter = Pathfinding.GetDistance(n, chara.CurrentNode);
                     characterScore = -1;
 
-                    List<Node> path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, true, true);
-
-                    if (path.Count > 0)
+                    if (distanceFromCharacter <= MinimumDistanceForPathfinding || bestPathTypeFound != PathType.TooFar)
                     {
-                        Debug.Log("Has path");
-                        characterScore = Pathfinding.GetPathLength(n, path);
-
-                        if(bestPathTypeFound == PathType.PathBlockByMovingObstacle)
-                        {
-                            bestPathTypeFound = PathType.PathClear;
-                        }
-                    }
-                    else if(bestPathTypeFound != PathType.PathClear)
-                    {
-                        path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, false, true);
+                        List<Node> path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, true, true);
 
                         if (path.Count > 0)
                         {
-                            Debug.Log("Has not clear path");
-                            characterScore = Pathfinding.GetPathLength(n, path) + NoClearPathScoreMalus;
+                            characterScore = Pathfinding.GetPathLength(n, path);
+
+                            if (bestPathTypeFound != PathType.PathClear)
+                            {
+                                bestPathTypeFound = PathType.PathClear;
+                            }
                         }
+                        else if (bestPathTypeFound != PathType.PathClear)
+                        {
+                            path = Pathfinding.CalculatePathfinding(n, chara.CurrentNode, -1, false, true);
+
+                            if (path.Count > 0)
+                            {
+                                characterScore = Pathfinding.GetPathLength(n, path) + NoClearPathScoreMalus;
+
+                                if (bestPathTypeFound == PathType.TooFar)
+                                {
+                                    bestPathTypeFound = PathType.PathBlockByMovingObstacle;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        characterScore = TooFarMultipler * distanceFromCharacter;
                     }
 
                     if(characterScore < 0)
