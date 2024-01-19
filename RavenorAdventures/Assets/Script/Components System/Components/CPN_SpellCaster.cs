@@ -217,6 +217,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
+    public bool CanSpellBeUsed(int spellIndex)
+    {
+        return !spells[spellIndex].IsLocked
+                    && (ActionLeftThisTurn > 0 || spells[spellIndex].CastType == SpellCastType.Fast)
+                    && (spells[spellIndex].IsUsable)
+                    && (Ressource == null || spells[spellIndex].RessourceCost <= Ressource.CurrentAmount);
+    }
+
     /// <summary>
     /// Select a spell.
     /// </summary>
@@ -234,11 +242,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
         if (spellIndex < spells.Count && spellIndex >= 0 && spells[spellIndex] != lastSpell)
         {
-            currentSelectedSpell = spells[spellIndex];
+            if (CanSpellBeUsed(spellIndex))
+            {
+                currentSelectedSpell = spells[spellIndex];
 
-            actOnSelectSpell?.Invoke(currentSelectedSpell);
+                actOnSelectSpell?.Invoke(currentSelectedSpell);
 
-            hasSelectedSpell = true;
+                hasSelectedSpell = true;
+            }
         }
 
         if (displayAction)
@@ -348,10 +359,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public void LockSpell(SpellScriptable toLock, bool lockState)
     {
+        Debug.Log("Try lock spell : " + toLock);
         for (int i = 0; i < spells.Count; i++)
         {
+            Debug.Log("Contains cjeck : " + spells[i].name + " C " + toLock.name);
             if (spells[i].name.Contains(toLock.name))
             {
+                Debug.Log("Set lock state : " + lockState);
                 spells[i].LockSpell(lockState);
 
                 actOnUpdateSpell?.Invoke(this);

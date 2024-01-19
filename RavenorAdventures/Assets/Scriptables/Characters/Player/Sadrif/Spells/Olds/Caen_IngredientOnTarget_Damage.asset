@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
+  m_Name: Caen_IngredientOnTarget_Damage
+  m_EditorClassIdentifier: 
+  hideOnApply: 0
+  icon: {fileID: 21300000, guid: 285b3141b5532074ab21e7d3eff80493, type: 3}
+  effectName:
+    frenchText: "Aveugl\xE9"
+    englishText: Blinded
+  effectDescription:
+    frenchText: "R\xE9duit la Pr\xE9cision du personnage de 1."
+    englishText: Reduces the character's Accuracy by 1.
+  effectDisplay: {fileID: 0}
+  duration: 2
+  maxStack: 1
+  effects:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 11
+        spellToUse: {fileID: 11400000, guid: eda6d209df9b25049b5015ef10ca849a, type: 2}

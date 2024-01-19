@@ -33,11 +33,11 @@ MonoBehaviour:
   health: 6
   armor: 2
   defense: 3
-  accuracy: 1
+  accuracy: 0
   power: 0
   offensiveRerolls: 0
   defensiveRerolls: 0
-  movementByTurn: 55
+  movementByTurn: 45
   speed: 5
   dangerosityMaxDistance: 25
   dangerosityMinimumDistance: 15
@@ -48,7 +48,6 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives: []
-  wantedDistanceFromTarget: {x: 0, y: 15}
   movementBehaviorUsed:
     id: 1
   oppportunityHealthBonus: 0

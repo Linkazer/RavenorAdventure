@@ -274,7 +274,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					distance = Vector2.Distance(posUnit, posTarget);
 
-					if (isMovementCosting && CheckForOpportunityAttack())
+					if (isMovementCosting && (CheckForOpportunityAttack() || RVN_BattleManager.Instance.IsPaused))
 					{
 						currentMovementLeft -= currentNode.gCost;
 

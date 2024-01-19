@@ -55,26 +55,7 @@ public class UI_PlayerSpell : MonoBehaviour
     {
         if (characterHandler.GetComponentOfType(out CPN_SpellCaster caster))
         {
-            if (!currentSpell.IsLocked)
-            {
-                OnUnlockSpell?.Invoke();
-
-                if (currentSpell.name == "Lisbeth_ComboFast")
-                {
-                    Debug.Log(currentSpell.IsUsable);
-                    Debug.Log(currentSpell.CurrentCooldown);
-                }
-
-                button.interactable = (caster.ActionLeftThisTurn > 0 || currentSpell.CastType == SpellCastType.Fast)
-                                    && (currentSpell.IsUsable)
-                                    && (caster.Ressource == null || currentSpell.RessourceCost <= caster.Ressource.CurrentAmount);
-            }
-            else
-            {
-                OnLockSpell?.Invoke();
-
-                button.interactable = false;
-            }
+            button.interactable = caster.CanSpellBeUsed(spellIndex);
         }
         else
         {
@@ -130,8 +111,6 @@ public class UI_PlayerSpell : MonoBehaviour
                 }
             }
         }
-
-        
 
         if (toSet.MaxUtilisation >= 0)
         {

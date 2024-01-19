@@ -30,7 +30,7 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0.05
   uiHeight: 1.25
-  health: 6
+  health: 9
   armor: 5
   defense: 2
   accuracy: 0
@@ -43,33 +43,29 @@ MonoBehaviour:
   dangerosityMinimumDistance: 15
   opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
-  - {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
+  - {fileID: 11400000, guid: be0606a785bdf594c84c326859d3cccc, type: 2}
+  - {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
-  passives: []
-  wantedDistanceFromTarget: {x: 0, y: 15}
+  passives:
+  - {fileID: 11400000, guid: ed28025c5484d4d4c856df6da9fcfb0b, type: 2}
   movementBehaviorUsed:
     id: 1
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: 25ec07a40bbe8674eb7320524313e9ad, type: 2}
-    wantedActionIndex: 1
-    conditions:
-    - calculImportance: 0
-      abcissaCalcul:
-        id: 2
-      condition: 3
-      baseValue: 2
-    bonusScore: 100
-    calculs: []
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - wantedAction: {fileID: 11400000, guid: be0606a785bdf594c84c326859d3cccc, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0
     calculs:
-    - id: 3
+    - id: 2
+  - wantedAction: {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
+    wantedActionIndex: 1
+    conditions: []
+    bonusScore: 0
+    calculs:
+    - id: 2
   references:
     version: 1
     00000000:
@@ -77,15 +73,13 @@ MonoBehaviour:
     00000001:
       type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}
     00000002:
-      type: {class: AI_CA_TargetCurrentArmor, ns: , asm: ravenor_engine}
-    00000003:
       type: {class: AIC_Affine, ns: , asm: ravenor_engine}
       data:
         calculImportance: 0
         abcissaCalcul:
-          id: 4
+          id: 3
         abscissaCoeficient: -1
         constantToAdd: 125
         maxValue: 100
-    00000004:
+    00000003:
       type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}

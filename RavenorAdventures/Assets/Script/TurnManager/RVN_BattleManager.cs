@@ -49,6 +49,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent OnWinBattle;
     [SerializeField] private UnityEvent OnLoseBattle;
 
+    private bool isPaused = false;
+
+    public bool IsPaused => isPaused;
+
     public static CPN_Character CurrentCharacter => instance.currentPlayingCharacter;
     public static List<CPN_Character> GetPlayerTeam => instance.teams[0].characters;
     public static List<CPN_Character> GetEnemyTeam => instance.teams[1].characters;
@@ -112,6 +116,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void StartBattle()
     {
+        isPaused = false;
+
         level.onStartLevel?.Invoke();
 
         currentPlayingTeam = -1;
@@ -121,6 +127,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void PauseBattle(MonoBehaviour pauseCaller)
     {
+        isPaused = true;
+
         RVN_CombatInputController.instance.DisableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Pause();
@@ -128,6 +136,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void RestartBattle(MonoBehaviour pauseCaller)
     {
+        isPaused = false;
+
         RVN_CombatInputController.instance.EnableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Restart();

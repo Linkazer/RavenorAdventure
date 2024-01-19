@@ -28,6 +28,9 @@ public class NodeDataHanlder : MonoBehaviour
     [SerializeField] private UnityEvent<NodeDataHanlder> OnDataEnter;// Played when an other component enter the node on which the component is.
     [SerializeField] private UnityEvent<NodeDataHanlder> OnDataExit;// Played when an other component exit the node on which the component is.
 
+    [Header("Devs")]
+    [SerializeField] private bool drawGizmos = false;
+
     public Action<NodeDataHanlder> actOnDataEnter;
     public Action<NodeDataHanlder> actOnDataExit;
 
@@ -116,4 +119,15 @@ public class NodeDataHanlder : MonoBehaviour
     {
         UnsetNodeData(false);
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (drawGizmos)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(transform.position, Vector3.one);
+        }
+    }
+#endif
 }

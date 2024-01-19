@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
+  m_Name: PSF_SansAmeChevalier_HasArmor
+  m_EditorClassIdentifier: 
+  hideOnApply: 0
+  icon: {fileID: 21300000, guid: 80eda488687d67b4c9d3e07469ff5452, type: 3}
+  effectName:
+    frenchText: "Armune inadapt\xE9e"
+    englishText: 
+  effectDescription:
+    frenchText: "Le Sans \xC2me est ralenti par son armure."
+    englishText: 
+  effectDisplay: {fileID: 0}
+  duration: -1
+  maxStack: 1
+  effects:
+  - id: 0
+  - id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: EFF_LockSpell, ns: , asm: ravenor_engine}
+      data:
+        trigger: 0
+        spellToLock: {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
+    00000001:
+      type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
+      data:
+        trigger: 16
+        spellToUse: {fileID: 11400000, guid: e94b94f90ce34ce45be29ea0efb0dcfa, type: 2}

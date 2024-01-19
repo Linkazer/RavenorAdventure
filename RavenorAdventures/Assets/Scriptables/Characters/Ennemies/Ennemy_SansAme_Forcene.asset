@@ -48,7 +48,6 @@ MonoBehaviour:
   usedRessource:
     id: 0
   passives: []
-  wantedDistanceFromTarget: {x: 0, y: 15}
   movementBehaviorUsed:
     id: 1
   oppportunityHealthBonus: 0
