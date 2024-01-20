@@ -170,48 +170,6 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    private static bool IsNodeUsableTest(Node nodeToCheck, Node currentNode, Node targetNode, bool checkNonStaticObstacle, bool targetIsObstacle)
-    {
-        if (!CanDiagonalBeReached(currentNode, nodeToCheck))
-        {
-			Debug.Log("Not diagonale");
-            return false;
-        }
-
-        if (targetIsObstacle && targetNode != null)
-        {
-			Debug.Log("Equal ? " + (nodeToCheck == targetNode));
-            if (nodeToCheck == targetNode)
-            {
-                Debug.Log("Node usable because target is obstacle");
-                return true;
-            }
-            else if (checkNonStaticObstacle)
-            {
-                Debug.Log("Node walkable");
-                return nodeToCheck.IsWalkable;
-            }
-            else
-            {
-                Debug.Log("Node static");
-                return !nodeToCheck.IsStaticObstacle;
-            }
-        }
-        else
-        {
-            if (checkNonStaticObstacle)
-            {
-                Debug.Log("Node walkable 2");
-                return nodeToCheck.IsWalkable;
-            }
-            else
-            {
-                Debug.Log("Node static 2");
-                return !nodeToCheck.IsStaticObstacle;
-            }
-        }
-    }
-
     /// <summary>
     /// Calcul of the pathfinding.
     /// </summary>

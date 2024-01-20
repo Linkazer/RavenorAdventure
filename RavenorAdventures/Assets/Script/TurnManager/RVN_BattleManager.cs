@@ -29,6 +29,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent<List<CPN_Character>> OnSetPlayerTeam;
 
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
+    public Action<CPN_Character> ActOnStartCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnStartPlayerCharacterTurn;
     [SerializeField] private UnityEvent<CPN_Character> OnStartAICharacterTurn;
     [SerializeField] private UnityEvent OnStartPlayerTurn;
@@ -41,6 +42,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     public static Action OnPlayerTeamDie;
     public static Action OnEnnemyTeamDie;
     public static Action<CPN_Character> ActOnCharacterDie;
+    public static Action<CPN_Character> ActOnSpawnEnnemy;
 
     [Header("Combat Start")]
     [SerializeField] private UnityEvent beforeBattleStart;
@@ -195,6 +197,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             characterToPlay.ActOnBeginSelfTurn?.Invoke(characterToPlay);
 
             OnStartCharacterTurn?.Invoke(characterToPlay);
+
+            ActOnStartCharacterTurn?.Invoke(characterToPlay);
 
             if (teams[0].characters.Contains(characterToPlay))
             {
@@ -372,6 +376,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             else
             {
                 OnSpawnEnnemy?.Invoke(toAdd);
+                ActOnSpawnEnnemy?.Invoke(toAdd);
             }
         }
     }

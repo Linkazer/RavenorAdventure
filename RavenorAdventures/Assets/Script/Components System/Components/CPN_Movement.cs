@@ -37,6 +37,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	[SerializeField] private List<NodeDataHanlder> nodesDatas;
 
+	public Action ActOnMvtFound;
+
 	/// <summary>
 	/// Played when the component reach its destination.
 	/// </summary>
@@ -79,6 +81,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	public int MovementLeft => currentMovementLeft;
 
 	public bool CanMove => currentMovementLeft >= 10;
+	public Node MovementTarget => path[path.Length - 1];
+
+	public Node PreviousMovmentTarget => path.Length > 1 ? path[path.Length - 2] : currentNode;
 
 	private void Start()
 	{
@@ -142,7 +147,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private bool CanMoveToDestination(Vector2 destination)
     {
-		Node toCheck = Grid.GetNodeFromWorldPoint(destination);
+        Node toCheck = Grid.GetNodeFromWorldPoint(destination);
+
+        if (TEST_FollowOnClear.Instance.IsFreeMovement)
+		{
+			return toCheck.IsWalkable;
+		}
 
 		return GetPossibleMovementTarget().Contains(toCheck);
     }
@@ -154,11 +164,18 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		isMovementCosting = true;
+		if (TEST_FollowOnClear.Instance.IsFreeMovement)
+		{
+			ForceToMove(targetPosition, callback);
+		}
+		else
+		{
+			isMovementCosting = true;
 
-        OnEndMovementAction += callback;
+			OnEndMovementAction += callback;
 
-		PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+			PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
+		}
 	}
 
 	public void ForceToMove(Vector2 targetPosition, Action callback)
@@ -223,7 +240,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		{
 			Node currentWaypoint = path[targetIndex];
 
-			OnStartMovement?.Invoke();
+			ActOnMvtFound?.Invoke();
+
+            OnStartMovement?.Invoke();
 			handler.animationController?.PlayAnimation("Character_Walk");
 
 			float lerpValue = 0;
@@ -319,6 +338,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
+		if (TEST_FollowOnClear.Instance.IsFreeMovement)
+		{
+			return;
+		}
+
 		Color colorMovement = Color.green;
 		colorMovement.a = 0.5f;
 		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);

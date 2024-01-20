@@ -47,6 +47,11 @@ public class NodeDataHanlder : MonoBehaviour
 
     public bool BlockVision => blockVision;
 
+    public void SetWalkable(bool toSet)
+    {
+        walkable = toSet;
+    }
+
     private void Start()
     {
         SetNodeDataFromPosition();

@@ -599,6 +599,7 @@ MonoBehaviour:
   OnDataExit:
     m_PersistentCalls:
       m_Calls: []
+  drawGizmos: 0
 --- !u!1 &3217179022072451956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1103,7 @@ MonoBehaviour:
   - {fileID: 8205510481207194533}
   - {fileID: 6674373229304437009}
   animationController: {fileID: 7894508926239594657}
+  nodeDataHandler: {fileID: 4436041514107514922}
   scriptable: {fileID: 0}
   actions:
   - {fileID: 5140952349797873643}

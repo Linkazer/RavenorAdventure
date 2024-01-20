@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class CPN_Character : RVN_ComponentHandler
 {
+    [SerializeField] private NodeDataHanlder nodeDataHandler;
     [SerializeField] private CharacterScriptable_Battle scriptable;
 
     [SerializeField] private List<CPN_CharacterAction> actions;
@@ -27,6 +28,8 @@ public class CPN_Character : RVN_ComponentHandler
     public bool IsSet => gameObject.activeSelf;
 
     public CharacterScriptable_Battle Scriptable => scriptable;
+
+    public NodeDataHanlder CharacterNodeDataHandler => nodeDataHandler;
 
     [ContextMenu("Set Character")]
     public void SetNonCpyCharacter()
