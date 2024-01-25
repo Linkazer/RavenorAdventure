@@ -26,6 +26,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private CPN_Character currentPlayingCharacter;
 
+    [Header("Real time")]
+    private float turnRealDuration = 6f;
+
+    [Header("Unity Events")]
+
     [SerializeField] private UnityEvent<List<CPN_Character>> OnSetPlayerTeam;
 
     [SerializeField] private UnityEvent<CPN_Character> OnStartCharacterTurn;
@@ -42,6 +47,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     public static Action OnPlayerTeamDie;
     public static Action OnEnnemyTeamDie;
     public static Action<CPN_Character> ActOnCharacterDie;
+    public static Action ActOnSpawnEnnemyTeam;
     public static Action<CPN_Character> ActOnSpawnEnnemy;
 
     [Header("Combat Start")]
@@ -52,6 +58,8 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     [SerializeField] private UnityEvent OnLoseBattle;
 
     private bool isPaused = false;
+
+    private TimerManager.Timer realTimeTimer = null;
 
     public bool IsPaused => isPaused;
 
@@ -120,6 +128,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         isPaused = false;
 
+        if (realTimeTimer != null)
+        {
+            realTimeTimer.Restart();
+        }
+
         level.onStartLevel?.Invoke();
 
         currentPlayingTeam = -1;
@@ -131,14 +144,47 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         isPaused = true;
 
+        if(realTimeTimer != null)
+        {
+            realTimeTimer.Pause();
+        }
+
         RVN_CombatInputController.instance.DisableCombatInput(pauseCaller);
 
         RVN_AiBattleManager.instance.Pause();
     }
 
+    public void SetRealTimeMode()
+    {
+        realTimeTimer = TimerManager.CreateGameTimer(turnRealDuration, EndRealTimeTimer);
+
+        //Mise à jour UI et autres
+    }
+
+    public void SetTurnMode()
+    {
+        realTimeTimer?.Stop();
+        realTimeTimer = null;
+
+        //Mise à jour UI et autres
+    }
+
+    private void EndRealTimeTimer()
+    {
+        realTimeTimer = null;
+        EndEveryoneTurn();
+        StartEveryoneTurn();
+        realTimeTimer = TimerManager.CreateGameTimer(turnRealDuration, EndRealTimeTimer);
+    }
+
     public void RestartBattle(MonoBehaviour pauseCaller)
     {
         isPaused = false;
+
+        if (realTimeTimer != null)
+        {
+            realTimeTimer.Restart();
+        }
 
         RVN_CombatInputController.instance.EnableCombatInput(pauseCaller);
 
@@ -231,6 +277,31 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     public static void EndCharacterTurn()
     {
         instance.EndCharacterTurn(instance.currentPlayingCharacter);
+    }
+
+    private void EndEveryoneTurn()
+    {
+        foreach (CombatTeam team in teams)
+        {
+            foreach (CPN_Character chara in team.characters)
+            {
+                chara.EndSelfTurn();
+                chara.EndTeamTurn();
+            }
+        }
+    }
+
+    private void StartEveryoneTurn()
+    {
+        foreach (CombatTeam team in teams)
+        {
+            foreach (CPN_Character chara in team.characters)
+            {
+                chara.StartTurn();
+            }
+        }
+
+        StartNewRound();
     }
 
     /// <summary>
@@ -375,6 +446,10 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
             else
             {
+                if(teams[teamIndex].characters.Count == 1)
+                {
+                    ActOnSpawnEnnemyTeam?.Invoke();
+                }
                 OnSpawnEnnemy?.Invoke(toAdd);
                 ActOnSpawnEnnemy?.Invoke(toAdd);
             }

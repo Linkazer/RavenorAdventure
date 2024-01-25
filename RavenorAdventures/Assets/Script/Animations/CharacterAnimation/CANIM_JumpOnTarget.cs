@@ -20,6 +20,9 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     private float curveIndex;
     private float curveDirection;
 
+    private int baseSortingOrder;
+    private int startSortingOrder;
+
     /// <summary>
     /// Play a Jump animation on the target.
     /// </summary>
@@ -30,12 +33,23 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
         direction = launchedSpell.targetNode.worldPosition - toMove.position;
         curveDirection = 1;
 
+        startSortingOrder = sortingGroup.sortingOrder;
+
+        if(direction.y >= 0)
+        {
+            baseSortingOrder = startSortingOrder;
+        }
+        else
+        {
+            baseSortingOrder = startSortingOrder += sortingOrderOffset;
+        }
+
         enabled = true;
     }
 
     public override void Stop()
     {
-        sortingGroup.sortingOrder = 0;
+        sortingGroup.sortingOrder = startSortingOrder;
 
         curveIndex = 0;
         enabled = false;
@@ -54,6 +68,8 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     private void Update()
     {
         curveIndex += (Time.deltaTime * curveDirection) / animationTime;
+
+        sortingGroup.sortingOrder = baseSortingOrder;
 
         if (curveIndex > 1)
         {

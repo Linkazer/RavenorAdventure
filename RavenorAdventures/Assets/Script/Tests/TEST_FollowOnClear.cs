@@ -17,7 +17,7 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
     private void OnEnable()
     {
         RVN_BattleManager.OnEnnemyTeamDie += OnClearEnnemies;
-        RVN_BattleManager.ActOnSpawnEnnemy += OnBattleBegin;
+        RVN_BattleManager.ActOnSpawnEnnemyTeam += OnBattleBegin;
         RVN_BattleManager.Instance.ActOnStartCharacterTurn += SetSelectedChara;
 
         foreach (CPN_Character chara in RVN_BattleManager.GetPlayerTeam)
@@ -34,12 +34,11 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
     private void OnDisable()
     {
         RVN_BattleManager.OnEnnemyTeamDie -= OnClearEnnemies;
-        RVN_BattleManager.ActOnSpawnEnnemy -= OnBattleBegin;
+        RVN_BattleManager.ActOnSpawnEnnemyTeam -= OnBattleBegin;
     }
 
-    private void OnBattleBegin(CPN_Character characterToPlay)
+    private void OnBattleBegin()
     {
-        isClear = false;
         foreach (CPN_Character chara in characterMovements)
         {
             if (chara.TryGetComponent<CPN_Movement>(out CPN_Movement charaMvt))
@@ -48,11 +47,16 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
             }
             chara.CharacterNodeDataHandler.SetWalkable(false);
         }
+        isClear = false;
         SetSelectedChara(null);
+
+        RVN_BattleManager.instance.SetTurnMode();
     }
 
     private void OnClearEnnemies()
     {
+        RVN_BattleManager.instance.SetRealTimeMode();
+
         isClear = true;
 
         foreach (CPN_Character chara in characterMovements)
@@ -89,7 +93,7 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
                             posOffsetIndex++;
                         }*/
 
-                        charaMvt.ForceToMove(moveNodes[posOffsetIndex].worldPosition, null);
+                        charaMvt.AskToMoveTo(moveNodes[posOffsetIndex].worldPosition, null);
                         posOffsetIndex++;
                     }
                 }
@@ -152,27 +156,43 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
         int n1Score = 0, n2Score = 0;
 
         n1Score = Pathfinding.GetDistance(startNode, n1);
-        if(direction.x != 0 && ((startNode.gridX - n1.gridX) * direction.x > 0))
+        if(direction.x != 0 && ((n1.gridX - startNode.gridX) * direction.x < 0))
         {
             n1Score += 50;
         }
-        if (direction.y != 0 && ((startNode.gridY - n1.gridY) * direction.y > 0))
+        else if(direction.y == 0 && ((n1.gridX - startNode.gridX) * direction.x > 0))
+        {
+            n1Score -= 25;
+        }
+        if (direction.y != 0 && ((n1.gridY - startNode.gridY) * direction.y < 0))
         {
             n1Score += 50;
         }
-        if(!Grid.IsNodeVisible(startNode, n1))
+        else if (direction.x == 0 && ((n1.gridY - startNode.gridY) * direction.y > 0))
+        {
+            n1Score -= 25;
+        }
+        if (!Grid.IsNodeVisible(startNode, n1))
         {
             n1Score += 100;
         }
 
         n2Score = Pathfinding.GetDistance(startNode, n2);
-        if (direction.x != 0 && ((startNode.gridX - n2.gridX) * direction.x > 0))
+        if (direction.x != 0 && ((n2.gridX - startNode.gridX) * direction.x < 0))
         {
             n2Score += 50;
         }
-        if (direction.y != 0 && ((startNode.gridY - n2.gridY) * direction.y > 0))
+        else if (direction.y == 0 && ((n2.gridX - startNode.gridX) * direction.x > 0))
+        {
+            n2Score -= 25;
+        }
+        if (direction.y != 0 && ((n2.gridY - startNode.gridY) * direction.y < 0))
         {
             n2Score += 50;
+        }
+        else if (direction.x == 0 && ((n2.gridY - startNode.gridY) * direction.y > 0))
+        {
+            n2Score -= 25;
         }
         if (!Grid.IsNodeVisible(startNode, n2))
         {

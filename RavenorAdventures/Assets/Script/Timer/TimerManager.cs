@@ -13,6 +13,8 @@ public class TimerManager : RVN_Singleton<TimerManager>
 
         private float startTime;
 
+        private bool isRealTime =  false;
+
         public Coroutine coroutine;
 
         public Action Callback => callback;
@@ -21,11 +23,14 @@ public class TimerManager : RVN_Singleton<TimerManager>
 
         public float DurationLeft => duration - (Time.time - startTime);
 
+        public bool IsRealTime => isRealTime;
+
         public void SetAsGame(float duration, Action nCallback)
         {
             startTime = Time.time;
             this.duration = duration;
             callback = nCallback;
+            isRealTime = false;
         }
 
         public void SetAsReal(float duration, Action nCallback)
@@ -33,6 +38,22 @@ public class TimerManager : RVN_Singleton<TimerManager>
             startTime = Time.realtimeSinceStartup;
             this.duration = duration;
             callback = nCallback;
+            isRealTime = true;
+        }
+
+        public void Pause()
+        {
+            StopTimerRoutine(coroutine);
+            coroutine = null;
+            duration = DurationLeft;
+        }
+
+        public void Restart()
+        {
+            if (coroutine == null)
+            {
+                StartTimerRoutine(this);
+            }
         }
 
         public void Stop()
@@ -57,7 +78,7 @@ public class TimerManager : RVN_Singleton<TimerManager>
     {
         Timer toReturn = new Timer();
         toReturn.SetAsGame(time, callback);
-        toReturn.coroutine = instance.StartCoroutine(instance.GameTimerRoutine(toReturn));
+        StartTimerRoutine(toReturn);
         return toReturn;
     }
 
@@ -65,7 +86,7 @@ public class TimerManager : RVN_Singleton<TimerManager>
     {
         Timer toReturn = new Timer();
         toReturn.SetAsReal(time, callback);
-        toReturn.coroutine = instance.StartCoroutine(instance.RealTimerRoutine(toReturn));
+        StartTimerRoutine(toReturn);
         return toReturn;
     }
 
@@ -74,6 +95,18 @@ public class TimerManager : RVN_Singleton<TimerManager>
         if (toStop != null && instance != null)
         {
             instance.StopCoroutine(toStop);
+        }
+    }
+
+    private static void StartTimerRoutine(Timer timerToStart)
+    {
+        if (timerToStart.IsRealTime)
+        {
+            timerToStart.coroutine = instance.StartCoroutine(instance.RealTimerRoutine(timerToStart));
+        }
+        else
+        {
+            timerToStart.coroutine = instance.StartCoroutine(instance.GameTimerRoutine(timerToStart));
         }
     }
 

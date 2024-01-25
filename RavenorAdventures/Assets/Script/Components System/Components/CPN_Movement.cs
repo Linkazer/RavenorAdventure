@@ -94,11 +94,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
 		maxDistance += amount;
 		currentMovementLeft += amount;
+        Debug.Log(this + " : " + currentMovementLeft);
     }
 
 	public void SetCurrentMovement(int amount)
     {
 		currentMovementLeft = Mathf.Clamp(amount, 0, maxDistance);
+        Debug.Log(this + " : " + currentMovementLeft);
     }
 
 	/// <summary>
@@ -189,7 +191,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private void EndForceMove(Action callback)
 	{
-		isMovementCosting = true;
+        isMovementCosting = true;
 
         callback?.Invoke();
 	}
@@ -223,7 +225,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
-		currentMovementLeft -= currentNode.gCost;
+		if (isMovementCosting && !TEST_FollowOnClear.Instance.IsFreeMovement)
+		{
+			currentMovementLeft -= currentNode.gCost;
+        }
 
 		OnEndMovementAction = null;
 		handler.animationController?.EndAnimation();
@@ -274,7 +279,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 						if (isMovementCosting)
 						{
 							currentMovementLeft -= currentNode.gCost;
-						}
+                            Debug.Log(this + " : " + currentMovementLeft);
+                        }
 
 						EndMovement();
 
@@ -296,8 +302,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 					if (isMovementCosting && (CheckForOpportunityAttack() || RVN_BattleManager.Instance.IsPaused))
 					{
 						currentMovementLeft -= currentNode.gCost;
+                        Debug.Log(this + " : " + currentMovementLeft);
 
-						handler.animationController?.EndAnimation();
+                        handler.animationController?.EndAnimation();
 						OnStopMovement?.Invoke();
 						StopCoroutine(currentMovement);
 					}
