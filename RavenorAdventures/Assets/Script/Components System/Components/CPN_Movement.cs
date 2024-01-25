@@ -151,7 +151,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
         Node toCheck = Grid.GetNodeFromWorldPoint(destination);
 
-        if (TEST_FollowOnClear.Instance.IsFreeMovement)
+        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
 		{
 			return toCheck.IsWalkable;
 		}
@@ -166,7 +166,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		if (TEST_FollowOnClear.Instance.IsFreeMovement)
+		if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
 		{
 			ForceToMove(targetPosition, callback);
 		}
@@ -225,7 +225,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
-		if (isMovementCosting && !TEST_FollowOnClear.Instance.IsFreeMovement)
+		if (isMovementCosting && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
 		{
 			currentMovementLeft -= currentNode.gCost;
         }
@@ -299,7 +299,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					distance = Vector2.Distance(posUnit, posTarget);
 
-					if (isMovementCosting && (CheckForOpportunityAttack() || RVN_BattleManager.Instance.IsPaused))
+					if (isMovementCosting && (CheckForOpportunityAttack() || RVN_RoundManager.Instance.IsPaused))
 					{
 						currentMovementLeft -= currentNode.gCost;
                         Debug.Log(this + " : " + currentMovementLeft);
@@ -345,7 +345,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-		if (TEST_FollowOnClear.Instance.IsFreeMovement)
+		if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
 		{
 			return;
 		}

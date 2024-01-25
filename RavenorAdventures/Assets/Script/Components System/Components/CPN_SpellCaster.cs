@@ -200,7 +200,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
             CastSpell(launchedSpell, callback);
 
-            if (launchedSpell.scriptable.CastType != SpellCastType.Fast)
+            if (launchedSpell.scriptable.CastType != SpellCastType.Fast && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
             {
                 //StopMovementAction();
                 SetActionLeft(actionsLeftThisTurn - 1);

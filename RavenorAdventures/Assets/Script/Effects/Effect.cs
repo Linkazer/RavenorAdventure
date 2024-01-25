@@ -193,6 +193,11 @@ public abstract class Effect
         }
     }
 
+    public void TryUseEffect(RVN_ComponentHandler effectTarget)
+    {
+        UseEffect(effectTarget);
+    }
+
     protected abstract void UseEffect(RVN_ComponentHandler effectTarget);
 
     protected abstract void UndoEffect(RVN_ComponentHandler effectTarget);

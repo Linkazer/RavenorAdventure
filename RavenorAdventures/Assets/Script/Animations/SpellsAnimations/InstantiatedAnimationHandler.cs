@@ -61,7 +61,6 @@ public class InstantiatedAnimationHandler : MonoBehaviour
 
         if(endCallback != null && audioPlayer != null)
         {
-            Debug.Log("Play sound");
             audioPlayer.PlaySound();
         }
     }

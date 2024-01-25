@@ -7,27 +7,27 @@ using UnityEngine;
 public class AppliedEffect
 {
     [SerializeField] private EffectScriptable effect;
-    [SerializeField] private float durationLeft;
     [SerializeField] private int currentStack;
+
+    private RVN_ComponentHandler target;
+
+    private RoundTimer effectTimer;
 
     private GameObject effectDisplay;
 
     public EffectScriptable GetEffect => effect;
-    public float Duration => durationLeft;
+    public float Duration => effectTimer.roundLeft;
 
     public void UpdateDuration()
     {
-        if (durationLeft >= 0)
-        {
-            durationLeft-=.5f;
-        }
+        effectTimer.ProgressTimer(0.5f);
     }
 
     public void ResetEffect(RVN_ComponentHandler toResetFrom, float resetDuration)
     {
-        if (durationLeft < resetDuration)
+        if (effectTimer.roundLeft < resetDuration)
         {
-            durationLeft = resetDuration;
+            effectTimer.roundLeft = resetDuration;
         }
 
         if(currentStack < effect.MaxStack)
@@ -39,9 +39,22 @@ public class AppliedEffect
 
     public void ApplyEffect(RVN_ComponentHandler toAddFrom)
     {
+        target = toAddFrom;
+
         foreach (Effect eff in effect.GetEffects)
         {
             eff.ApplyEffect(toAddFrom);
+        }
+    }
+
+    private void UpdateRealtimeEffect()
+    {
+        foreach (Effect eff in effect.GetEffects)
+        {
+            if(eff.trigger == EffectTrigger.OnBeginTurn || eff.trigger == EffectTrigger.OnEndTurn)
+            {
+                eff.TryUseEffect(target);
+            }
         }
     }
 
@@ -59,6 +72,8 @@ public class AppliedEffect
         {
             GameObject.Destroy(effectDisplay); //TODO : Voir si on a besoin d'un pool ou pas
         }
+
+        target = null;
     }
 
     public AppliedEffect()
@@ -66,11 +81,12 @@ public class AppliedEffect
 
     }
 
-    public AppliedEffect(EffectScriptable nEffect, GameObject effectDisplayer, float nDuration)
+    public AppliedEffect(EffectScriptable nEffect, GameObject effectDisplayer, float nDuration, Action endEffectCallback)
     {
         effect = nEffect;
-        durationLeft = nDuration;
         effectDisplay = effectDisplayer;
         currentStack = 1;
+
+        effectTimer = RVN_RoundManager.Instance.CreateTimer(nDuration, UpdateRealtimeEffect, endEffectCallback);
     }
 }

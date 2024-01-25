@@ -66,7 +66,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     [Header("Cooldowns")]
     [SerializeField] protected bool isCooldownGlobal = false;
     [SerializeField] protected int cooldown;
-    protected int currentCooldown;
+    protected RoundTimer cooldownTimer;
 
     [Header("Forme")]
     [SerializeField] protected SpellZoneType zoneType = SpellZoneType.Normal;
@@ -156,13 +156,13 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public int StartCooldown => cooldown;
 
     public bool IsCooldownGlobal => isCooldownGlobal;
-    public int CurrentCooldown => currentCooldown;
+    public int CurrentCooldown => cooldownTimer != null ? Mathf.CeilToInt(cooldownTimer.roundLeft) : 0;
 
     public SpellZoneType ZoneType => zoneType;
     public int Range => range;
     public int ZoneRange => zoneRange;
 
-    public bool IsUsable => !isSpellLocked && currentCooldown <= 0 && (maxUtilisations <= 0 || utilisationLeft > 0);
+    public bool IsUsable => !isSpellLocked && CurrentCooldown <= 0 && (maxUtilisations <= 0 || utilisationLeft > 0);
 
     public bool IsLocked => isSpellLocked;
 
@@ -177,18 +177,21 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void SetSpell()
     {
-        currentCooldown = 0;
+        cooldownTimer = null;
         utilisationLeft = maxUtilisations;
         OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
     }
 
     public void UpdateCurrentCooldown()
     {
-        if (currentCooldown > 0)
+        if (cooldownTimer != null && cooldownTimer.roundLeft > 0)
         {
-            currentCooldown--;
+            if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.Round)
+            {
+                cooldownTimer.ProgressTimer(1);
+            }
 
-            OnUpdateCooldown?.Invoke(currentCooldown);
+            OnUpdateCooldown?.Invoke(CurrentCooldown);
         }
     }
 
@@ -199,8 +202,14 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 
     public void SetCooldown(int valueToSet)
     {
-        currentCooldown = valueToSet;
-        OnUpdateCooldown?.Invoke(currentCooldown);
+        cooldownTimer = RVN_RoundManager.Instance.CreateTimer(valueToSet, UpdateCurrentCooldown, EndCooldownTimer);
+        OnUpdateCooldown?.Invoke(CurrentCooldown);
+    }
+
+    private void EndCooldownTimer()
+    {
+        cooldownTimer = null;
+        OnUpdateCooldown?.Invoke(CurrentCooldown);
     }
 
     public void LockSpell(bool toSet)

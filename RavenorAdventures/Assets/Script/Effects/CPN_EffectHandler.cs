@@ -25,20 +25,16 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
     public void UpdateEffectDuration()
     {
-        List<AppliedEffect> toRemove = new List<AppliedEffect>();
+        AppliedEffect effectToCheck = null;
 
-        foreach(AppliedEffect eff in currentAppliedEffects)
+        for (int i = 0; i < currentAppliedEffects.Count; i++)
         {
-            eff.UpdateDuration();
-            if(eff.Duration == 0)
+            effectToCheck = currentAppliedEffects[i];
+            effectToCheck.UpdateDuration();
+            if(effectToCheck.Duration <= 0)
             {
-                toRemove.Add(eff);
+                i--;
             }
-        }
-
-        foreach(AppliedEffect eff in toRemove)
-        {
-            RemoveEffect(eff);
         }
     }
 
@@ -59,7 +55,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
                 effectDisplay = Instantiate(toApply.EffectDisplay, effectDisplayHolder);
             }
 
-            potentialAppliedEffect = new AppliedEffect(toApply, effectDisplay, toApply.Duration);
+            potentialAppliedEffect = new AppliedEffect(toApply, effectDisplay, toApply.Duration, ()=>RemoveEffect(potentialAppliedEffect));
 
             potentialAppliedEffect.ApplyEffect(Handler);
 

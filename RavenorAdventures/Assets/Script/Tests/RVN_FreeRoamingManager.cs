@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
+public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
 {
     List<CPN_Character> characterMovements = new List<CPN_Character>();
 
     CPN_Character selectedChara = null;
-    private bool isClear = false;
-
-    [SerializeField] private List<Vector3> posOffset;
-
-    public bool IsFreeMovement => isClear;
 
     // Start is called before the first frame update
     private void OnEnable()
     {
-        RVN_BattleManager.OnEnnemyTeamDie += OnClearEnnemies;
-        RVN_BattleManager.ActOnSpawnEnnemyTeam += OnBattleBegin;
+        RVN_BattleManager.ActOnExitBattle += OnExitBattle;
+        RVN_BattleManager.ActOnEnterBattle += OnEnterBattle;
         RVN_BattleManager.Instance.ActOnStartCharacterTurn += SetSelectedChara;
 
         foreach (CPN_Character chara in RVN_BattleManager.GetPlayerTeam)
@@ -27,17 +22,18 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
 
         if(RVN_BattleManager.GetEnemyTeam.Count == 0)
         {
-            OnClearEnnemies();
+            OnExitBattle();
         }
     }
 
     private void OnDisable()
     {
-        RVN_BattleManager.OnEnnemyTeamDie -= OnClearEnnemies;
-        RVN_BattleManager.ActOnSpawnEnnemyTeam -= OnBattleBegin;
+        RVN_BattleManager.ActOnExitBattle -= OnExitBattle;
+        RVN_BattleManager.ActOnEnterBattle -= OnEnterBattle;
+        RVN_BattleManager.Instance.ActOnStartCharacterTurn -= SetSelectedChara;
     }
 
-    private void OnBattleBegin()
+    private void OnEnterBattle()
     {
         foreach (CPN_Character chara in characterMovements)
         {
@@ -47,18 +43,12 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
             }
             chara.CharacterNodeDataHandler.SetWalkable(false);
         }
-        isClear = false;
-        SetSelectedChara(null);
 
-        RVN_BattleManager.instance.SetTurnMode();
+        SetSelectedChara(null);
     }
 
-    private void OnClearEnnemies()
+    private void OnExitBattle()
     {
-        RVN_BattleManager.instance.SetRealTimeMode();
-
-        isClear = true;
-
         foreach (CPN_Character chara in characterMovements)
         {
             chara.CharacterNodeDataHandler.SetWalkable(true);
@@ -69,7 +59,7 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
 
     private void OnSelectedCharaMove()
     {
-        if (isClear)
+        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
         {
             int posOffsetIndex = 0;
 
@@ -82,17 +72,6 @@ public class TEST_FollowOnClear : RVN_Singleton<TEST_FollowOnClear>
                 {
                     if (chara != selectedChara && chara.TryGetComponent<CPN_Movement>(out CPN_Movement charaMvt))
                     {
-                        /*while (posOffsetIndex < posOffset.Count && !Grid.GetNodeFromWorldPoint(selectedMvt.MovementTarget.worldPosition + posOffset[posOffsetIndex]).IsWalkable)
-                        {
-                            posOffsetIndex++;
-                        }
-
-                        if (posOffsetIndex < posOffset.Count)
-                        {
-                            charaMvt.ForceToMove(selectedMvt.MovementTarget.worldPosition + posOffset[posOffsetIndex], null);
-                            posOffsetIndex++;
-                        }*/
-
                         charaMvt.AskToMoveTo(moveNodes[posOffsetIndex].worldPosition, null);
                         posOffsetIndex++;
                     }
