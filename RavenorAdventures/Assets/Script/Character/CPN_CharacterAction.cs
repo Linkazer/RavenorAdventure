@@ -10,8 +10,6 @@ using UnityEngine;
 /// </summary>
 public abstract class CPN_CharacterAction : RVN_Component
 {
-
-
     /// <summary>
     /// Actions to do when the action is unslected.
     /// </summary>
@@ -57,9 +55,21 @@ public abstract class CPN_CharacterAction : RVN_Component
 
 public abstract class CPN_CharacterAction<T> : CPN_CharacterAction
 {
+    public override void SetComponent(RVN_ComponentHandler handler)
+    {
+        T healthData = GetDataFromHandler();
+
+        if (healthData != null)
+        {
+            SetData(healthData);
+        }
+    }
+
+    protected abstract T GetDataFromHandler();
+
     /// <summary>
-    /// Set the data. Need to be override for every Component.
+    /// Set the data.
     /// </summary>
     /// <param name="toSet">The values of the data to set.</param>
-    public abstract void SetData(T toSet);
+    protected abstract void SetData(T toSet);
 }

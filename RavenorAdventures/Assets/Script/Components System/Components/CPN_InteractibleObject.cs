@@ -11,16 +11,6 @@ public class CPN_InteractibleObject : RVN_Component
 
     private List<Node> usedNodes = new List<Node>();
 
-    private void Start()
-    {
-        usedNodes = new List<Node>();
-        usedNodes.Add(Grid.GetNodeFromWorldPoint(transform.position));
-        foreach(Vector3 v in usedPositions)
-        {
-            usedNodes.Add(Grid.GetNodeFromWorldPoint(transform.position + v));
-        }
-    }
-
     /// <summary>
     /// Essaye de faire intéragir le personnage actuel avec l'objet.
     /// </summary>
@@ -51,5 +41,25 @@ public class CPN_InteractibleObject : RVN_Component
     public void Interact(RVN_ComponentHandler interactor)
     {
         OnInteract?.Invoke(interactor);
+    }
+
+    public override void SetComponent(RVN_ComponentHandler handler)
+    {
+        
+    }
+
+    public override void Activate()
+    {
+        usedNodes = new List<Node>();
+        usedNodes.Add(Grid.GetNodeFromWorldPoint(transform.position));
+        foreach (Vector3 v in usedPositions)
+        {
+            usedNodes.Add(Grid.GetNodeFromWorldPoint(transform.position + v));
+        }
+    }
+
+    public override void Disactivate()
+    {
+        
     }
 }

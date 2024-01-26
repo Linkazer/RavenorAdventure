@@ -260,7 +260,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             playedThisTurn.Add(characterToEnd);
 
-            characterToEnd.EndSelfTurn();
+            characterToEnd.EndCharacterRound();
         }
 
         OnEndCharacterSelfTurn?.Invoke(characterToEnd);
@@ -286,7 +286,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         {
             for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
             {
-                teams[currentPlayingTeam].characters[j].EndTeamTurn();
+                teams[currentPlayingTeam].characters[j].EndTeamRound();
             }
         }
 
@@ -297,7 +297,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
         {
-            if(!teams[currentPlayingTeam].characters[j].StartTurn())
+            if(!teams[currentPlayingTeam].characters[j].StartCharacterRound())
             {
                 Debug.Log("Is dead");
                 j--;
@@ -383,6 +383,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             }
 
             toAdd.SetCharacter();
+            toAdd.Activate();
 
             if(teamIndex == 0)
             {

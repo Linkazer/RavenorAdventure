@@ -85,12 +85,113 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	public Node PreviousMovmentTarget => path.Length > 1 ? path[path.Length - 2] : currentNode;
 
-	private void Start()
-	{
-		currentNode = Grid.GetNodeFromWorldPoint(transform.position);
-	}
+    protected override CPN_Data_Movement GetDataFromHandler()
+    {
+        if (handler is CPN_Character)
+        {
+            return (handler as CPN_Character).Scriptable;
+        }
 
-	public void AddMovement(int amount)
+        return null;
+    }
+
+    protected override void SetData(CPN_Data_Movement toSet)
+    {
+        speed = toSet.Speed();
+
+        maxDistance = toSet.MaxDistance();
+
+        ResetData();
+    }
+
+    public override void Activate()
+    {
+        currentNode = handler.CurrentNode;
+    }
+
+    public override void Disactivate()
+    {
+
+    }
+
+    public override void ResetData()
+    {
+        currentMovementLeft = maxDistance;
+    }
+
+    public override bool IsActionUsable(Vector2 actionTargetPosition)
+    {
+        return CanMove && CanMoveToDestination(actionTargetPosition);
+    }
+
+    public override bool CanSelectAction()
+    {
+        return true;
+    }
+
+    public override void UnselectAction()
+    {
+
+    }
+
+    public override void DisplayAction(Vector2 actionTargetPosition)
+    {
+        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
+        {
+            return;
+        }
+
+        Color colorMovement = Color.green;
+        colorMovement.a = 0.5f;
+        RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);
+
+        if (Grid.GetNodeFromWorldPoint(actionTargetPosition) != null)
+        {
+            List<Node> path = Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft);
+
+            List<Node> validPath = new List<Node>();
+            List<Node> opportunityPath = new List<Node>();
+
+            bool foundOpportunityAttack = false;
+
+            if (CheckForOpportunityAttack(currentNode))
+            {
+                foundOpportunityAttack = true;
+            }
+
+            foreach (Node n in path)
+            {
+                if (!foundOpportunityAttack)
+                {
+                    if (CheckForOpportunityAttack(n))
+                    {
+                        foundOpportunityAttack = true;
+                    }
+
+                    validPath.Add(n);
+                }
+                else
+                {
+                    opportunityPath.Add(n);
+                }
+            }
+
+            RVN_GridDisplayer.SetGridFeedback(validPath, Color.green);
+            RVN_GridDisplayer.SetGridFeedback(opportunityPath, Color.red);
+        }
+    }
+
+    public override void UndisplayAction(Vector2 actionTargetPosition)
+    {
+        RVN_GridDisplayer.UnsetGridFeedback();
+    }
+
+    public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
+    {
+        AskToMoveTo(actionTargetPosition, callback);
+    }
+
+    public void AddMovement(int amount)
     {
 		maxDistance += amount;
 		currentMovementLeft += amount;
@@ -333,93 +434,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		OnEnterNode?.Invoke(currentNode);
 	}
 
-    public override void UnselectAction()
-    {
-        
-    }
-
-    public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
-    {
-		AskToMoveTo(actionTargetPosition, callback);
-    }
-
-    public override void DisplayAction(Vector2 actionTargetPosition)
-    {
-		if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
-		{
-			return;
-		}
-
-		Color colorMovement = Color.green;
-		colorMovement.a = 0.5f;
-		RVN_GridDisplayer.SetGridFeedback(GetPossibleMovementTarget(), colorMovement);
-
-		if (Grid.GetNodeFromWorldPoint(actionTargetPosition) != null)
-		{
-			List<Node> path = Pathfinding.CalculatePathfinding(currentNode, Grid.GetNodeFromWorldPoint(actionTargetPosition), currentMovementLeft);
-
-			List<Node> validPath = new List<Node>();
-			List<Node> opportunityPath = new List<Node>();
-
-			bool foundOpportunityAttack = false;
-
-			if(CheckForOpportunityAttack(currentNode))
-            {
-				foundOpportunityAttack = true;
-            }
-
-			foreach(Node n in path)
-            {
-				if (!foundOpportunityAttack)
-				{
-					if (CheckForOpportunityAttack(n))
-					{
-						foundOpportunityAttack = true;
-					}
-
-					validPath.Add(n);
-				}
-                else
-                {
-					opportunityPath.Add(n);
-				}
-            }
-
-			RVN_GridDisplayer.SetGridFeedback(validPath, Color.green);
-			RVN_GridDisplayer.SetGridFeedback(opportunityPath, Color.red);
-		}
-    }
-
-    public override void UndisplayAction(Vector2 actionTargetPosition)
-    {
-		RVN_GridDisplayer.UnsetGridFeedback();
-	}
-
-    public override void ResetData()
-	{
-		currentMovementLeft = maxDistance;
-	}
-
-    public override void SetData(CPN_Data_Movement toSet)
-    {
-		speed = toSet.Speed();
-
-		maxDistance = toSet.MaxDistance();
-
-		ResetData();
-    }
-
-    public override bool CanSelectAction()
-    {
-        return true;
-    }
-
-    public override bool IsActionUsable(Vector2 actionTargetPosition)
-    {
-		return CanMove && CanMoveToDestination(actionTargetPosition);
-    }
-
-	public bool CheckForOpportunityAttack()//CODE REVIEW : Voir si on peut pas le mettre autre part que dans le déplacement (Créer un lien entre le Déplacement et le SpellCaster qui est pas ouf)
+    public bool CheckForOpportunityAttack()//CODE REVIEW : Voir si on peut pas le mettre autre part que dans le déplacement (Créer un lien entre le Déplacement et le SpellCaster qui est pas ouf)
 	{
 		if(currentEvasiveAmount > 0)
         {
@@ -432,7 +447,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		foreach (Node n in neighbours)
 		{
-			List<CPN_Character> characterOnMelee = n.GetNodeComponent<CPN_Character>();
+			List<CPN_Character> characterOnMelee = n.GetNodeHandler<CPN_Character>();
 
 			foreach (CPN_Character chara in characterOnMelee)
 			{
@@ -471,12 +486,13 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		foreach (Node n in neighbours)
 		{
-			List<CPN_Character> characterOnMelee = n.GetNodeComponent<CPN_Character>();
+			List<CPN_Character> characterOnMelee = n.GetNodeHandler<CPN_Character>();
 
 			foreach (CPN_Character chara in characterOnMelee)
 			{
 				if (!RVN_BattleManager.AreCharacterAllies(chara, handler as CPN_Character))
 				{
+					Debug.Log(chara);
 					if (chara.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ennemyCaster))
 					{
 						if (ennemyCaster.hasOpportunityAttack)
@@ -490,7 +506,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 		return false;
 	}
-
 
     public void OnDrawGizmos()
     {

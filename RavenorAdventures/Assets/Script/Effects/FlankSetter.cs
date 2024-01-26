@@ -14,13 +14,13 @@ public class FlankSetter : MonoBehaviour
 
         foreach(Node n in neighbours)
         {
-            List<CPN_Character> chara = n.GetNodeComponent<CPN_Character>();
+            List<CPN_Character> chara = n.GetNodeHandler<CPN_Character>();
 
             foreach(CPN_Character c in chara)
             {
-                c.AddMeleeCharacter(flankingCharacter);
+                /*c.AddMeleeCharacter(flankingCharacter);
 
-                flankingCharacter.AddMeleeCharacter(c);
+                flankingCharacter.AddMeleeCharacter(c);*/
             }
         }
     }
@@ -31,13 +31,13 @@ public class FlankSetter : MonoBehaviour
 
         foreach (Node n in neighbours)
         {
-            List<CPN_Character> chara = n.GetNodeComponent<CPN_Character>();
+            List<CPN_Character> chara = n.GetNodeHandler<CPN_Character>();
 
             foreach (CPN_Character c in chara)
             {
-                c.RemoveMeleeCharacter(flankingCharacter);
+                /*c.RemoveMeleeCharacter(flankingCharacter);
 
-                flankingCharacter.RemoveMeleeCharacter(c);
+                flankingCharacter.RemoveMeleeCharacter(c);*/
             }
         }
     }

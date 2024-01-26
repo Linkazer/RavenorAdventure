@@ -43,7 +43,28 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
 
     public bool IsAlive => currentHealth > 0;
 
-    public override void SetData(CPN_Data_HealthHandler toSet)
+
+    protected override CPN_Data_HealthHandler GetDataFromHandler()
+    {
+        if (handler is CPN_Character)
+        {
+            return (handler as CPN_Character).Scriptable;
+        }
+
+        return null;
+    }
+
+    public override void Activate()
+    {
+        
+    }
+
+    public override void Disactivate()
+    {
+        
+    }
+
+    protected override void SetData(CPN_Data_HealthHandler toSet)
     {
         maxHealth = toSet.MaxHealth();
         maxArmor = toSet.MaxArmor();

@@ -106,6 +106,20 @@ public class Node : IHeapItem<Node> {
 		}
 	}
 
+	public List<T> GetNodeHandler<T>() where T : RVN_ComponentHandler
+	{
+        List<T> toReturn = new List<T>();
+
+        for (int i = 0; i < datasOnNode.Count; i++)
+        {
+            if (datasOnNode[i].Handler != null && datasOnNode[i].Handler is T)
+            {
+                toReturn.Add(datasOnNode[i].Handler as T);
+            }
+        }
+        return new List<T>(toReturn);
+    }
+
 	public List<T> GetNodeComponent<T>() where T : RVN_Component
     {
 		List<T> toReturn = new List<T>();

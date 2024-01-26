@@ -8,19 +8,55 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 {
     [SerializeField] private Transform effectDisplayHolder;
 
-    [SerializeField] private List<AppliedEffect> currentAppliedEffects;
+    [SerializeField] private List<EffectScriptable> startingEffects = new List<EffectScriptable>();
+    
+    private List<AppliedEffect> currentAppliedEffects = new List<AppliedEffect>();
 
     [SerializeField] private UnityEvent<AppliedEffect> OnApplyEffect;
     [SerializeField] private UnityEvent<AppliedEffect> OnRemoveEffect;
 
     public List<AppliedEffect> Effects => currentAppliedEffects;
 
-    public override void SetData(CPN_Data_EffectHandler toSet)
+    protected override CPN_Data_EffectHandler GetDataFromHandler()
     {
-        foreach(EffectScriptable eff in toSet.Effects())
+        if (handler is CPN_Character)
+        {
+            return (handler as CPN_Character).Scriptable;
+        }
+
+        return null;
+    }
+
+    protected override void SetData(CPN_Data_EffectHandler toSet)
+    {
+        startingEffects = new List<EffectScriptable>(toSet.Effects());
+    }
+
+    public override void Activate()
+    {
+        foreach (EffectScriptable eff in startingEffects)
         {
             ApplyEffect(eff);
         }
+    }
+
+    public override void Disactivate()
+    {
+
+    }
+
+    public override void OnStartHandlerGroupRound()
+    {
+        base.OnStartHandlerGroupRound();
+
+        UpdateEffectDuration();
+    }
+
+    public override void OnEndHandlerGroupRound()
+    {
+        base.OnEndHandlerGroupRound();
+
+        UpdateEffectDuration();
     }
 
     public void UpdateEffectDuration()

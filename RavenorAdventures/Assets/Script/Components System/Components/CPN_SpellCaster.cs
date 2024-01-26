@@ -1,3 +1,4 @@
+using Codice.CM.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,59 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public SpellRessource Ressource => ressource;
 
     public Node CurrentNode => nodeData.CurrentNode;
+
+    protected override CPN_Data_SpellCaster GetDataFromHandler()
+    {
+        if (handler is CPN_Character)
+        {
+            return (handler as CPN_Character).Scriptable;
+        }
+
+        return null;
+    }
+
+    protected override void SetData(CPN_Data_SpellCaster toSet)
+    {
+        actionByTurn = toSet.MaxSpellUseByTurn();
+
+        spells = new List<SpellScriptable>();
+        foreach (SpellScriptable spell in toSet.AvailableSpells())
+        {
+            AddSpell(spell);
+        }
+
+        opportunitySpell = toSet.OpportunitySpell();
+
+        ressource = toSet.Ressource();
+        ressource?.Initialize(handler as CPN_Character);
+
+        offensiveRerolls = toSet.OffensiveRerolls();
+
+        accuracy = toSet.Accuracy();
+        power = toSet.Power();
+
+        ResetData();
+    }
+
+    public override void Activate()
+    {
+        
+    }
+
+    public override void Disactivate()
+    {
+
+    }
+
+    public override void OnEndHandlerGroupRound()
+    {
+        base.OnEndHandlerGroupRound();
+
+        foreach (SpellScriptable spell in spells)
+        {
+            spell.UpdateCurrentCooldown();
+        }
+    }
 
     public void AddOffensiveRerolls(int amount)
     {
@@ -305,8 +359,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void UseSpell(LaunchedSpellData launchedSpell, Action callback)
     {
+        Debug.Log(launchedSpell.scriptable);
+        Debug.Log(launchedSpell.scriptable.Projectile);
         if (launchedSpell.scriptable.Projectile == null)
         {
+            Debug.Log("?????");
             handler.animationController?.PlayAnimation(launchedSpell.scriptable.LaunchSpellAnimation.ToString(), launchedSpell);
         }
 
@@ -319,34 +376,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call.</param>
     private void EndUseSpell(Action callback)
     {
+        Debug.Log("???");
+
         callback?.Invoke();
 
         actOnEndCastSpell?.Invoke();
 
         SelectSpell(-1);
-    }
-
-    public override void SetData(CPN_Data_SpellCaster toSet)
-    {
-        actionByTurn = toSet.MaxSpellUseByTurn();
-
-        spells = new List<SpellScriptable>();
-        foreach (SpellScriptable spell in toSet.AvailableSpells())
-        {
-            AddSpell(spell);
-        }
-
-        opportunitySpell = toSet.OpportunitySpell();
-
-        ressource = toSet.Ressource();
-        ressource?.Initialize(handler as CPN_Character);
-
-        offensiveRerolls = toSet.OffensiveRerolls();
-
-        accuracy = toSet.Accuracy();
-        power = toSet.Power();
-
-        ResetData();
     }
 
     public void AddSpell(SpellScriptable toAdd)
@@ -420,12 +456,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
-    public void UpdateCooldowns()
+    public void UpdateCooldowns() //A déplacer dans une des fonctions de Round
     {
-        foreach(SpellScriptable spell in spells)
-        {
-            spell.UpdateCurrentCooldown();
-        }
+        Debug.Log("Should not pass here");
     }
 
     //CODE REVIEW : Voir comment on peut faire pour éviter de juste avoir les events ici ?
@@ -433,17 +466,5 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actOnDealDamageSelf?.Invoke(Handler);
         actOnDealDamageTarget?.Invoke(target.Handler);
-    }
-
-    //CODE REVIEW : Voir si il faut mettre cette fonction autre part pour éviter le lien entre Mouvement et SpellCast
-    private void StopMovementAction()
-    {
-        if(handler.TryGetComponent<CPN_Movement>(out CPN_Movement movement))
-        {
-            if(movement.MaxMovement != movement.MovementLeft)
-            {
-                movement.SetCurrentMovement(0);
-            }
-        }
     }
 }

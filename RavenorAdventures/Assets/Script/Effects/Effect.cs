@@ -19,9 +19,9 @@ public abstract class Effect
                 UseEffect(effectTarget);
                 break;
             case EffectTrigger.OnBeginTurn:
-                if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
+                if (effectTarget is CPN_Character)// .GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
                 {
-                    beginTurnCharacter.ActOnBeginTeamTurn += UseEffect;
+                    (effectTarget as CPN_Character).ActOnBeginTeamTurn += UseEffect;
                 }
                 break;
             case EffectTrigger.OnDealDamageTowardSelf:
@@ -46,9 +46,9 @@ public abstract class Effect
                 //TO DO : Mettre dans le EffectHandler ??
                 break;
             case EffectTrigger.OnEndTurn:
-                if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
+                if (effectTarget is CPN_Character) //(effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
                 {
-                    endTurnCharacter.ActOnEndTeamTurn += UseEffect;
+                    (effectTarget as CPN_Character).ActOnEndTeamTurn += UseEffect;
                 }
                 break;
             case EffectTrigger.OnEnterNode:
@@ -110,9 +110,9 @@ public abstract class Effect
                 UndoEffect(effectTarget);
                 break;
             case EffectTrigger.OnBeginTurn:
-                if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
+                if (effectTarget is CPN_Character) //(effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
                 {
-                    beginTurnCharacter.ActOnBeginTeamTurn -= UseEffect;
+                    (effectTarget as CPN_Character).ActOnBeginTeamTurn -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnDealDamageTowardSelf:
@@ -137,9 +137,9 @@ public abstract class Effect
                 //TO DO : Mettre dans le EffectHandler ??
                 break;
             case EffectTrigger.OnEndTurn:
-                if (effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
+                if (effectTarget is CPN_Character) //(effectTarget.GetComponentOfType<CPN_Character>(out CPN_Character endTurnCharacter))
                 {
-                    endTurnCharacter.ActOnEndTeamTurn -= UseEffect;
+                    (effectTarget as CPN_Character).ActOnEndTeamTurn -= UseEffect;
                 }
                 break;
             case EffectTrigger.OnEnterNode:

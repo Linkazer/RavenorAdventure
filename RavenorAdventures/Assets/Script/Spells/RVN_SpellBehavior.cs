@@ -89,7 +89,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
         if (spellToUse.scriptable.AnimationTarget == SpellAnimationTarget.All)
         {
-            if (spellToUse.scriptable.AnimationDuration > 0.5f)
+            if (spellToUse.scriptable.AnimationDuration < 0.5f)
             {
                 TimerManager.CreateGameTimer(0.5f, callback);
                 PlaySpellAnimation(spellToUse, targetNode, null);
@@ -219,6 +219,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
 
     protected void ApplyEffects(CPN_EffectHandler target, EffectScriptable effectToApply)
     {
+        Debug.Log(target);
         target.ApplyEffect(effectToApply);
     }
 

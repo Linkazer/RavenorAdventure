@@ -155,7 +155,7 @@ public class AI_CA_NumberEnnemyArea : AI_Calcul_AbscissaType
         {
             if (n != plannedAction.caster.CurrentNode)
             {
-                List<CPN_Character> enemiesInArea = n.GetNodeComponent<CPN_Character>();
+                List<CPN_Character> enemiesInArea = n.GetNodeHandler<CPN_Character>();
 
                 foreach (CPN_Character c in enemiesInArea)
                 {
@@ -181,7 +181,7 @@ public class AI_CA_NumberAllyArea : AI_Calcul_AbscissaType
         {
             if (n != plannedAction.caster.CurrentNode)
             {
-                List<CPN_Character> alliesInArea = n.GetNodeComponent<CPN_Character>();
+                List<CPN_Character> alliesInArea = n.GetNodeHandler<CPN_Character>();
 
                 foreach (CPN_Character c in alliesInArea)
                 {

@@ -57,8 +57,6 @@ public class RoundTimer
     {
         roundLeft--;
 
-        Debug.Log(roundLeft);
-
         CheckTimerEnd();
     }
 
@@ -69,7 +67,6 @@ public class RoundTimer
             timer = null;
             if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
             {
-                Debug.Log("Timer for real time");
                 onTimerUpdate?.Invoke();
             
                 StartTimer();

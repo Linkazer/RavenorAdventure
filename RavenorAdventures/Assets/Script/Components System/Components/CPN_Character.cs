@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,24 +32,27 @@ public class CPN_Character : RVN_ComponentHandler
 
     public NodeDataHanlder CharacterNodeDataHandler => nodeDataHandler;
 
+    protected override void Start()
+    {
+        //Done to disable the SetHandler at start
+    }
+
     [ContextMenu("Set Character")]
     public void SetNonCpyCharacter()
     {
-        SetCharacterNonCopy(scriptable);
+        SetHandler();
+
+        gameObject.name = scriptable.name;
+        gameObject.SetActive(true);
+
+        OnSetCharacter?.Invoke(scriptable);
     }
 
     public void SetCharacter()
     {
-        SetCharacter(scriptable);
-    }
+        scriptable = Instantiate(scriptable);
 
-    /// <summary>
-    /// Créer une copie du CharacterScriptable et initialise le personnage.
-    /// </summary>
-    /// <param name="nScriptable">Le scriptable de base du personnage.</param>
-    public void SetCharacter(CharacterScriptable_Battle nScriptable)
-    {
-        scriptable = Instantiate(nScriptable);
+        SetHandler();
 
         gameObject.name = scriptable.Nom;
         gameObject.SetActive(true);
@@ -57,25 +61,22 @@ public class CPN_Character : RVN_ComponentHandler
     }
 
     /// <summary>
-    /// Initialise le personnage avec le scriptable voulut.
+    /// Créer une copie du CharacterScriptable et initialise le personnage.
     /// </summary>
-    /// <param name="nScriptable">Le scriptable du personnage.</param>
-    public void SetCharacterNonCopy(CharacterScriptable_Battle nScriptable)
+    /// <param name="nScriptable">Le scriptable de base du personnage.</param>
+    [Obsolete("Check if it is used in UnityEvents")]
+    public void SetCharacter(CharacterScriptable_Battle nScriptable)
     {
-        scriptable = nScriptable;
-
-        gameObject.name = scriptable.name;
-        gameObject.SetActive(true);
-
-        OnSetCharacter?.Invoke(scriptable);
+        Debug.Log("Should pass here");
     }
 
     /// <summary>
     /// Supprime le personnage.
     /// </summary>
     /// <param name="unsetDelay">Délai avant la suppréssion du personnage</param>
-    public void UnsetCharacter(float unsetDelay)
+    public void UnsetCharacter(float unsetDelay) //Called in UnityEvents ?
     {
+        Debug.Log("Called in UnityEvent ?");
         scriptable = null;
 
         RVN_BattleManager.Instance.OnCharacterDie(this);
@@ -93,22 +94,27 @@ public class CPN_Character : RVN_ComponentHandler
     }
 
     /// <summary>
-    /// Début du tour du personnage.
+    /// Début du tour du Character
     /// </summary>
     /// <returns>TRUE if the character is still alive.</returns>
-    public bool StartTurn()
+    public bool StartCharacterRound()
     {
         ActOnBeginTeamTurn?.Invoke(this);
         OnStartTurn?.Invoke();
+
+        foreach(RVN_Component cpnt in components)
+        {
+            cpnt.OnStartHandlerRound();
+        }
 
         for (int i = 0; i < actions.Count; i++)
         {
             actions[i].ResetData();
         }
 
-        if(GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler selfHealth))
+        if (GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler selfHealth))
         {
-            if(!selfHealth.IsAlive)
+            if (!selfHealth.IsAlive)
             {
                 return false;
             }
@@ -116,59 +122,39 @@ public class CPN_Character : RVN_ComponentHandler
 
         return true;
     }
-
     /// <summary>
-    /// Fin du tour du personnage.
+    /// Fin du tour du Character
     /// </summary>
-    public void EndSelfTurn()
+    public void EndCharacterRound()
     {
+        foreach (RVN_Component cpnt in components)
+        {
+            cpnt.OnEndHandlerRound();
+        }
+
         ActOnEndSelfTurn?.Invoke(this);
     }
-
     /// <summary>
-    /// Fin du tour de l'équipe du personnage.
+    /// Début du tour de la Team
     /// </summary>
-    public void EndTeamTurn()
+    public void StartTeamRound()
     {
+        foreach (RVN_Component cpnt in components)
+        {
+            cpnt.OnStartHandlerGroupRound();
+        }
+    }
+    /// <summary>
+    /// Fin du tour de la Team
+    /// </summary>
+    public void EndTeamRound()
+    {
+        foreach (RVN_Component cpnt in components)
+        {
+            cpnt.OnEndHandlerGroupRound();
+        }
+
         ActOnEndTeamTurn?.Invoke(this);
         OnEndTurn?.Invoke();
-    }
-
-    [Obsolete("Flank non utilisé")]
-    public void AddMeleeCharacter(CPN_Character toAdd)
-    {
-        if(!characterOnMelee.Contains(toAdd))
-        {
-            characterOnMelee.Add(toAdd);
-
-            int enemyCount = 0;
-
-            foreach(CPN_Character chara in characterOnMelee)
-            {
-                if(!RVN_BattleManager.AreCharacterAllies(chara, this))
-                {
-                    enemyCount++;
-                }
-            }
-        }
-    }
-
-    [Obsolete("Flank non utilisé")]
-    public void RemoveMeleeCharacter(CPN_Character toRemove)
-    {
-        if (characterOnMelee.Contains(toRemove))
-        {
-            characterOnMelee.Remove(toRemove);
-
-            int enemyCount = 0;
-
-            foreach (CPN_Character chara in characterOnMelee)
-            {
-                if (!RVN_BattleManager.AreCharacterAllies(chara, this))
-                {
-                    enemyCount++;
-                }
-            }
-        }
     }
 }

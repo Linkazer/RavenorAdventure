@@ -5809,6 +5809,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ea33f9e21b4764ba46192974d4f64c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &434849552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Ylia_Heal(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: "\xC2me revigorante"
+    englishText: Invigorating Soul
+  icon: {fileID: 21300000, guid: 7c9d689462686764085eb5f066c2d7d8, type: 3}
+  description:
+    frenchText: "Soigne la cible de %diceUsed% Points de vie et applique \"\xC2me
+      revigorante\""
+    englishText: Heal the target of %diceUsed% Health points and apply "Invigorating
+      Soul".
+  castingAnimation: 3
+  launchAnimation: 4
+  castAnimationDuration: 0.75
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
+  animationDuration: 1.8
+  launchAudioData: {fileID: 0}
+  ressourceCost: 1
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 0
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 1
+  zoneType: 0
+  range: 25
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 0d55d198b28fe2c4a84b1eb5bec39ad7, type: 2}
+  effectsOnCaster: []
+  type: 1
+  diceUsed: 3
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1001 &444445470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6759,6 +6812,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2577217931544767700, guid: 3988abe175f07274db7d235c71665935, type: 3}
   m_PrefabInstance: {fileID: 503831278}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &504427632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Lisbeth_Base(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: "Coup de rapi\xE8res"
+    englishText: Rapier's strike
+  icon: {fileID: 21300000, guid: 6ca9483bb8dc4bc4fb429122b3b75837, type: 3}
+  description:
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s.\nPeut \xEAtre utilis\xE9
+      2 fois par tour."
+    englishText: 'Attacks the target with %diceUsed% dice.
+
+      Can be use 2 times
+      in the same round.'
+  castingAnimation: 5
+  launchAnimation: 0
+  castAnimationDuration: 0.25
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  animationDuration: 0
+  launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
+  zoneType: 0
+  range: 15
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster:
+  - {fileID: 11400000, guid: 3c58374483d7a84439fad984fe56f1a3, type: 2}
+  type: 0
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1 &504900916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7406581563569186139, guid: db6bcc2e386908f4692ec358daeefd55, type: 3}
@@ -8940,6 +9048,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &670092610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Caen_MalusDefense(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: 'Gantelet : Projectile affaiblissant'
+    englishText: 'Gauntlet : Weakening projectile'
+  icon: {fileID: 21300000, guid: f487779e7e37ce940afce2512067183b, type: 3}
+  description:
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9 et applique \"Affaiblit\"."
+    englishText: Attacks the target with %diceUsed% dice and apply "Weakened".
+  castingAnimation: 7
+  launchAnimation: 0
+  castAnimationDuration: 0
+  spellAnimationTarget: 0
+  projectile: {fileID: 5453536855631355870, guid: 4470ebf8fb8a67847ba0161fadcbfa96, type: 3}
+  spellAnimation: {fileID: 4071321388199400130, guid: 11c4d631bcacebf46ac92c1f0b28bc24, type: 3}
+  animationDuration: 1.8
+  launchAudioData: {fileID: 11400000, guid: a5d382e467837e84b8f9dd9977e2c322, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 1
+  cooldown: 3
+  zoneType: 0
+  range: 55
+  zoneRange: 10
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 7f730e4daa51b3746966e7a0106a5d2e, type: 2}
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 1
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1001 &684677631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12475,6 +12634,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae571250efa7044397de514f19aefd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1084799931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e350710ceda1d924691bdd6b38fe227f, type: 3}
+  m_Name: Lisbeth_Teleport(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Saut
+    englishText: Jump
+  icon: {fileID: 21300000, guid: 1a7088e309bbda64babb86dda104a45a, type: 3}
+  description:
+    frenchText: "Le personnage saute sur la case cibl\xE9e."
+    englishText: The character jumps on the targeted position.
+  castingAnimation: 9
+  launchAnimation: 0
+  castAnimationDuration: 0.34
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 0}
+  animationDuration: 0.2
+  launchAudioData: {fileID: 0}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 1
+  isCooldownGlobal: 0
+  cooldown: 2
+  zoneType: 0
+  range: 25
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster: []
+  targetCharacter: 0
+  maxDistanceFromTarget: 0
 --- !u!1 &1088201534
 GameObject:
   m_ObjectHideFlags: 0
@@ -13003,6 +13206,57 @@ RectTransform:
   m_AnchoredPosition: {x: -879, y: 404}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1193794034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Caen_MalusAccuracy(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: 'Gantelet : Projectile aveuglant'
+    englishText: 'Gauntlet : Blinding projectile'
+  icon: {fileID: 21300000, guid: 285b3141b5532074ab21e7d3eff80493, type: 3}
+  description:
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9 et applique \"Aveugl\xE9\"."
+    englishText: Attacks the target with %diceUsed% dice and apply "Blinded".
+  castingAnimation: 7
+  launchAnimation: 0
+  castAnimationDuration: 0
+  spellAnimationTarget: 0
+  projectile: {fileID: 5453536855631355870, guid: ae94db2d2490ef843bddc4d749698cff, type: 3}
+  spellAnimation: {fileID: 4071321388199400130, guid: 6d81cec997fd5c243b08ee6ac778c80e, type: 3}
+  animationDuration: 1.8
+  launchAudioData: {fileID: 11400000, guid: a5d382e467837e84b8f9dd9977e2c322, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 1
+  cooldown: 3
+  zoneType: 0
+  range: 55
+  zoneRange: 10
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget:
+  - {fileID: 11400000, guid: 3715f2188a343be40917887631fdade0, type: 2}
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 1
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1001 &1195428121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28120,6 +28374,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae571250efa7044397de514f19aefd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1650168478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Caen_TestPersoDistance(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: 'Gantelet : Projectile magique'
+    englishText: 'Gauntlet : Magic projectile'
+  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
+  description:
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
+    englishText: Attacks the target with %diceUsed% dice.
+  castingAnimation: 7
+  launchAnimation: 0
+  castAnimationDuration: 0
+  spellAnimationTarget: 0
+  projectile: {fileID: 5453536855631355870, guid: 58fb28e09f17e864a9d0bdc52f81c7dd, type: 3}
+  spellAnimation: {fileID: 4071321388199400130, guid: 31557a23223dea144a5b022e88f0d223, type: 3}
+  animationDuration: 0
+  launchAudioData: {fileID: 11400000, guid: a5d382e467837e84b8f9dd9977e2c322, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
+  zoneType: 0
+  range: 150
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!224 &1681435700 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7965240523029367992, guid: 74b182ba20889454bb160e0aa3fb04db, type: 3}
@@ -28805,6 +29109,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5140952349797873640, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
   m_PrefabInstance: {fileID: 2122957576}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1752392497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Tiloeth_Base(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: "Coup d'\xE9p\xE9e"
+    englishText: Sword strike
+  icon: {fileID: 21300000, guid: f75177b867f1162478be973d21729ec7, type: 3}
+  description:
+    frenchText: "Attaque la cible avec %diceUsed% d\xE9s."
+    englishText: Attacks the target with %diceUsed% dice.
+  castingAnimation: 5
+  launchAnimation: 0
+  castAnimationDuration: 0.25
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
+  animationDuration: 0
+  launchAudioData: {fileID: 11400000, guid: 7c6c3812dba64e44f84abf47be3cefe2, type: 2}
+  ressourceCost: 0
+  maxUtilisations: -1
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 0
+  zoneType: 0
+  range: 15
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster: []
+  type: 0
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1 &1755459860
 GameObject:
   m_ObjectHideFlags: 0
@@ -32376,6 +32730,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74b182ba20889454bb160e0aa3fb04db, type: 3}
+--- !u!114 &1838305776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: Tiloeth_RegenArmorZone(Clone)
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Serment du gardien
+    englishText: Guardian's oath
+  icon: {fileID: 21300000, guid: e67374d1e6062e3458463ef221c03dfd, type: 3}
+  description:
+    frenchText: "Fait regagner %diceUsed% d'Armures \xE0 tous les alli\xE9s dans
+      la zone."
+    englishText: Every ally in the area regains %diceUsed% Armors.
+  castingAnimation: 3
+  launchAnimation: 4
+  castAnimationDuration: 0.5
+  spellAnimationTarget: 2
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
+  animationDuration: 0.5
+  launchAudioData: {fileID: 11400000, guid: d831ca8e8c197fc4db8e2743b1db73a2, type: 2}
+  ressourceCost: 0
+  maxUtilisations: 2
+  removeOnNoUutlisation: 0
+  hitableTarget: 0
+  castTarget: 2
+  castType: 0
+  isCooldownGlobal: 0
+  cooldown: 1
+  zoneType: 0
+  range: 5
+  zoneRange: 25
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster: []
+  type: 3
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
 --- !u!1001 &1847738110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77967,7 +78372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4853170726187526969, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22500001
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5125040737888095501, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_AnchorMax.y
@@ -78000,7 +78405,7 @@ PrefabInstance:
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: scriptable
       value: 
-      objectReference: {fileID: 11400000, guid: f2e94c80f115adc4cb368a19f45378ef, type: 2}
+      objectReference: {fileID: 11400000, guid: f004f503ba5af7c47a7d057aae6688f4, type: 2}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnMouseClic.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -78051,7 +78456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Ennemy_SansAme_Base
+      value: Ennemy_SansAme_Archer
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -78080,7 +78485,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e95639092eaa2374c8c3f62b3c5161c6, type: 3}
+      objectReference: {fileID: 21300000, guid: 35098e1fbb126884a880e0839e7053a9, type: 3}
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -79248,6 +79653,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4853170726187526969, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5125040737888095501, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -79358,7 +79767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: Lisbeth
+      value: _Player_Ryn
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -80788,7 +81197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 520
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -80796,7 +81205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1825804850972986453, guid: f5bab604342273c42b2aaaacc20c26b6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -81844,6 +82253,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ed7f14336f4c6ae45b1671672941e89c, type: 2}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnEndTurn.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnStartTurn.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -81852,8 +82269,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnStartTurn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3820472344554262160}
+    - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnStartTurn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateEffectDuration
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -81866,6 +82291,10 @@ PrefabInstance:
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: OnCharacterDie
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+      propertyPath: OnStartTurn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CPN_EffectHandler, ravenor_engine
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873622, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: OnUnsetCharacter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -81925,7 +82354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Name
-      value: _Player_TestChara
+      value: Player_TestChara
       objectReference: {fileID: 0}
     - target: {fileID: 5140952349797873644, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_IsActive
@@ -81950,7 +82379,7 @@ PrefabInstance:
     - target: {fileID: 5476766876406081633, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f9da790492710b3438b58feeb4744631, type: 3}
+      objectReference: {fileID: 21300000, guid: 97eecead9baf86c40bef79a67325d140, type: 3}
     - target: {fileID: 6772425093490096044, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -82105,6 +82534,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+--- !u!114 &3820472344554262160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6674373229304437009, guid: 3000985171aadd44d89206ee9c52f454, type: 3}
+  m_PrefabInstance: {fileID: 3820472344554262159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0e62dbf11db4d4bb78ec2ebf750579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4024248827920269263
 MonoBehaviour:
   m_ObjectHideFlags: 0

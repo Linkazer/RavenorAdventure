@@ -33,8 +33,12 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
 
     private CharacterAnimationData currentAnim;
 
-    public void SetSprite(CharacterScriptable_Battle character)
+    public override void SetComponent(RVN_ComponentHandler handler)
     {
+        base.SetComponent(handler);
+
+        CharacterScriptable_Battle character = (handler as CPN_Character).Scriptable;
+
         characterSprite.sprite = character.GameSprite();
 
         if (character.HandSprite != null)
@@ -53,14 +57,24 @@ public class CPN_ANIM_Character : CPN_AnimationHandler
         }
     }
 
-    public void SetCharacter(CharacterScriptable_Battle character)
+    public override void Activate()
     {
-        SetSprite(character);
+        base.Activate();
 
         PlayAnimation("Idle");
     }
 
-    public void SetOrientation(Vector2 direction)
+    public void SetSprite()
+    {
+        Debug.Log("Should not pass here");
+    }
+
+    public void SetCharacter(CharacterScriptable_Battle character)
+    {
+        Debug.Log("Should not pass here");
+    }
+
+    public void SetOrientation(Vector2 direction) //Appelé par des Unity Events (voir si besoin de changer)
     {
         if(direction.x > 0)
         {

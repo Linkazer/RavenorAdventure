@@ -22,9 +22,9 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
 
     public static void TrySetCharacter(CPN_ClicHandler touchedObject)
     {
-        if(touchedObject.Handler.GetComponentOfType<CPN_Character>(out CPN_Character character))
+        if(touchedObject.Handler is CPN_Character)
         {
-            instance.SetCharacter(character);
+            instance.SetCharacter(touchedObject.Handler as CPN_Character);
         }
         else
         {
