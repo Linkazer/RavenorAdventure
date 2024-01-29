@@ -80,18 +80,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         ActOnCharacterDie = null;
     }
 
-    private void OnEnable()
-    {
-        if (GetEnemyTeam.Count == 0)
-        {
-            ExitBattleMode();
-        }
-        else
-        {
-            EnterBattleMode();
-        }
-    }
-
     public void SetBattle()
     {
         if (RVN_SceneManager.CurrentLevel != null)
@@ -129,6 +117,15 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
         }
 
         freeRoamingManager.enabled = true;
+
+        if (GetEnemyTeam.Count == 0)
+        {
+            ExitBattleMode();
+        }
+        else
+        {
+            EnterBattleMode();
+        }
     }
 
     public void StartBattle()
@@ -297,7 +294,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         for (int j = 0; j < teams[currentPlayingTeam].characters.Count; j++)
         {
-            if(!teams[currentPlayingTeam].characters[j].StartCharacterRound())
+            if(!teams[currentPlayingTeam].characters[j].StartCharacterRound()) //Code review : A modifier pour mettre le start de la team. Voir où on met le start du personnage
             {
                 Debug.Log("Is dead");
                 j--;
@@ -333,9 +330,13 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     /// </summary>
     private void StartNewRound()
     {
+        roundManager.EndGlobalRound();
+
         playedThisTurn = new List<CPN_Character>();
 
-        OnBeginNewRound?.Invoke();
+        roundManager.StartGlobalRound();
+
+        OnBeginNewRound?.Invoke();//Code review : A déplacer dans le RoundManager
     }
 
     public static void ActivateCharacter(CPN_Character characterPrefab, int teamIndex, Vector2 spawnPosition)

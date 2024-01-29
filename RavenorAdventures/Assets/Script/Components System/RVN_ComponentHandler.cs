@@ -68,6 +68,8 @@ public class RVN_ComponentHandler : MonoBehaviour
 
     public void Activate()
     {
+
+
         foreach (RVN_Component component in components)
         {
             component.Activate();

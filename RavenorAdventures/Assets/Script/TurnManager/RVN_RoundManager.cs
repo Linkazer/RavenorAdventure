@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
 
 public class RoundTimer
@@ -8,8 +9,6 @@ public class RoundTimer
     public TimerManager.Timer timer;
     public float maximumRound;
     public float roundLeft;
-
-    private float timeLeftOnPausedTimer = 0f;
 
     private Action onTimerUpdate;
     private Action onTimerEnd;
@@ -39,7 +38,7 @@ public class RoundTimer
     {
         if (timer != null)
         {
-            timeLeftOnPausedTimer = timer.DurationLeft;
+            roundLeft -= timer.Duration - timer.DurationLeft;
 
             timer.Stop();
             timer = null;
@@ -99,16 +98,53 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
 
     private RoundMode currentRoundMode;
 
+    private List<RVN_ComponentHandler> activeHandlers = new List<RVN_ComponentHandler>();
     private List<RoundTimer> activeTimers = new List<RoundTimer>();
 
-
     private bool isPaused = false;
+
+    private RoundTimer realTimeGeneralRoundTimer = null;
 
     public bool IsPaused => isPaused;
 
     public float RealTimeRoundDuration => realTimeRoundDuration;
 
     public RoundMode CurrentRoundMode => currentRoundMode;
+
+    public RoundTimer CreateTimer(float rounds, Action updateCallback, Action endCallback)
+    {
+        RoundTimer toCreate = new RoundTimer(rounds, updateCallback, endCallback);
+
+        if (CurrentRoundMode == RoundMode.RealTime)
+        {
+            toCreate.StartTimer();
+        }
+
+        activeTimers.Add(toCreate);
+
+        return toCreate;
+    }
+
+    public void RemoveTimer(RoundTimer roundTimer)
+    {
+        activeTimers.Remove(roundTimer);
+    }
+
+    public void AddHandler(RVN_ComponentHandler toAdd)
+    {
+        if(!activeHandlers.Contains(toAdd))
+        {
+            activeHandlers.Add(toAdd);
+        }
+    }
+
+    public void RemoveHandler(RVN_ComponentHandler toRemove)
+    {
+        if (activeHandlers.Contains(toRemove))
+        {
+            activeHandlers.Remove(toRemove);
+        }
+    }
 
     public void SetPause(bool toSet)
     {
@@ -125,6 +161,11 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
             }
             else if(currentRoundMode == RoundMode.RealTime)
             {
+                if (realTimeGeneralRoundTimer == null)
+                {
+                    realTimeGeneralRoundTimer = CreateTimer(1f, null, OnGlobalRoundTimerEnd);
+                }
+
                 foreach (RoundTimer timer in activeTimers)
                 {
                     timer.StartTimer();
@@ -141,6 +182,11 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
 
             if (!isPaused)
             {
+                if(realTimeGeneralRoundTimer == null)
+                {
+                    realTimeGeneralRoundTimer = CreateTimer(1f, null, OnGlobalRoundTimerEnd);
+                }
+
                 foreach (RoundTimer timer in activeTimers)
                 {
                     timer.StartTimer();
@@ -155,6 +201,14 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
         {
             currentRoundMode = RoundMode.Round;
 
+            if(realTimeGeneralRoundTimer != null)
+            {
+                RemoveTimer(realTimeGeneralRoundTimer);
+
+                realTimeGeneralRoundTimer.StopTimer();
+                realTimeGeneralRoundTimer = null;
+            }
+
             foreach (RoundTimer timer in activeTimers)
             {
                 timer.StopTimer();
@@ -162,23 +216,31 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
         }
     }
 
-    public RoundTimer CreateTimer(float rounds, Action updateCallback, Action endCallback)
+    public void StartGlobalRound()
     {
-        RoundTimer toCreate = new RoundTimer(rounds, updateCallback, endCallback);
-
-        if(CurrentRoundMode == RoundMode.RealTime)
+        foreach (RVN_ComponentHandler handler in activeHandlers)
         {
-            toCreate.StartTimer();
+            handler.StartRound();
         }
-
-        activeTimers.Add(toCreate);
-
-        return toCreate;
     }
 
-    public void RemoveTimer(RoundTimer roundTimer)
+    public void EndGlobalRound()
     {
-        activeTimers.Remove(roundTimer);
+        foreach (RVN_ComponentHandler handler in activeHandlers)
+        {
+            handler.EndRound();
+        }
+    }
+
+    private void OnGlobalRoundTimerEnd()
+    {
+        //Update Fin Tour Global (Team?/Personnage?)
+        EndGlobalRound();
+
+        realTimeGeneralRoundTimer = CreateTimer(1f, null, OnGlobalRoundTimerEnd);
+
+        //Update Début Tour Global (Team?/Personnage?)
+        StartGlobalRound();
     }
 
     /*private void EndRealTimeTimer()

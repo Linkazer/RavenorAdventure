@@ -47,7 +47,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <summary>
 	/// The path the component has to take.
 	/// </summary>
-	private Node[] path;
+	private Node[] path = new Node[0];
 	/// <summary>
 	/// The current index of the path the component is taking.
 	/// </summary>
@@ -81,7 +81,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	public int MovementLeft => currentMovementLeft;
 
 	public bool CanMove => currentMovementLeft >= 10;
-	public Node MovementTarget => path[path.Length - 1];
+	public Node MovementTarget => path.Length > 0 ? path[path.Length - 1] : currentNode;
 
 	public Node PreviousMovmentTarget => path.Length > 1 ? path[path.Length - 2] : currentNode;
 
@@ -492,7 +492,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 			{
 				if (!RVN_BattleManager.AreCharacterAllies(chara, handler as CPN_Character))
 				{
-					Debug.Log(chara);
 					if (chara.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ennemyCaster))
 					{
 						if (ennemyCaster.hasOpportunityAttack)

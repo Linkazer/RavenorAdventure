@@ -1,12 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
 {
-    List<CPN_Character> characterMovements = new List<CPN_Character>();
+    private List<CPN_Character> characterMovements = new List<CPN_Character>();
 
-    CPN_Character selectedChara = null;
+    private CPN_Character selectedChara = null;
+
+    private bool areCharacterGrouped = true;
+
+    public Action<bool> actOnEnableRoaming;
+
+    public bool AreCharacterGrouped => areCharacterGrouped && selectedChara != null;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -33,6 +40,16 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
         RVN_BattleManager.Instance.ActOnStartCharacterTurn -= SetSelectedChara;
     }
 
+    public void SetGrouped(bool grouped)
+    {
+        if (areCharacterGrouped != grouped)
+        {
+            areCharacterGrouped = grouped;
+
+            OnSelectedCharaMove();
+        }
+    }
+
     private void OnEnterBattle()
     {
         foreach (CPN_Character chara in characterMovements)
@@ -45,6 +62,8 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
         }
 
         SetSelectedChara(null);
+
+        actOnEnableRoaming?.Invoke(false);
     }
 
     private void OnExitBattle()
@@ -55,25 +74,29 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
         }
 
         SetSelectedChara(RVN_BattleManager.CurrentCharacter);
+
+        actOnEnableRoaming?.Invoke(true);
     }
 
     private void OnSelectedCharaMove()
     {
-        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
+        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime && !RVN_RoundManager.instance.IsPaused)
         {
-            int posOffsetIndex = 0;
-
-            if (selectedChara.TryGetComponent<CPN_Movement>(out CPN_Movement selectedMvt))
+            if (areCharacterGrouped && selectedChara != null)
             {
+                int posOffsetIndex = 0;
 
-                Node[] moveNodes = GetFollowerPositions(selectedMvt.MovementTarget, selectedMvt.PreviousMovmentTarget, characterMovements.Count - 1);
-
-                foreach (CPN_Character chara in characterMovements)
+                if (selectedChara.TryGetComponent<CPN_Movement>(out CPN_Movement selectedMvt))
                 {
-                    if (chara != selectedChara && chara.TryGetComponent<CPN_Movement>(out CPN_Movement charaMvt))
+                    Node[] moveNodes = GetFollowerPositions(selectedMvt.MovementTarget, selectedMvt.PreviousMovmentTarget, characterMovements.Count - 1);
+
+                    foreach (CPN_Character chara in characterMovements)
                     {
-                        charaMvt.AskToMoveTo(moveNodes[posOffsetIndex].worldPosition, null);
-                        posOffsetIndex++;
+                        if (chara != selectedChara && chara.TryGetComponent<CPN_Movement>(out CPN_Movement charaMvt))
+                        {
+                            charaMvt.AskToMoveTo(moveNodes[posOffsetIndex].worldPosition, null);
+                            posOffsetIndex++;
+                        }
                     }
                 }
             }
