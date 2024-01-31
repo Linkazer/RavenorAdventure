@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1e4c3d571ec8647af2551cafe3d642, type: 3}
+  m_Name: TEST-Exploration - End
+  m_EditorClassIdentifier: 
+  sentences:
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Vacillant de plus en plus, le bouclier qui prot\xE9geait le collier
+        finit par dispara\xEEtre avec le dernier fant\xF4me."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: "Ylia s\u2019approcha du pi\xE9destal et tendit doucement la main
+        pour r\xE9cup\xE9rer le collier. Dans sa main, ce dernier \xE9mettait une
+        l\xE9g\xE8re lumi\xE8re bleut\xE9e."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CToutes ces mesures de protection me rassurent au moins sur
+        une chose : le g\xE9n\xE9ral cherche \xE0 ce que personne ne r\xE9cup\xE8re
+        ce collier.\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
+    text:
+      frenchText: "\u201C\xC7a, faut pas \xEAtre un g\xE9nie pour le deviner. M\xEAme
+        moi je l\u2019avais compris !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 1ee0329734208df47bb307d19eefaad3, type: 2}
+    text:
+      frenchText: "\u201CCe que je veux dire, c\u2019est qu\u2019Haeriell avait raison.
+        Le g\xE9n\xE9ral craint l\u2019art\xE9fact. Et maintenant qu\u2019il sait
+        que nous l\u2019avons r\xE9cup\xE9r\xE9, il va s\xFBrement...\u201D"
+      englishText: TODO
+  - talker: {fileID: 0}
+    text:
+      frenchText: "Sadrif fut interrompu par un nouveau tremblement, plus intense
+        que la derni\xE8re fois. L\u2019art\xE9fact se mit alors \xE0 s\u2019\xE9clairer
+        de plus belle."
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
+    text:
+      frenchText: "\u201CLe temps presse. Maintenant que nous avons l\u2019art\xE9fact,
+        d\xE9p\xEAchons-nous !\u201D"
+      englishText: TODO
+  - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
+    text:
+      frenchText: Ylia accrocha le collier autour de son cou, et suivit ses compagnons.
+      englishText: TODO
+  responses: []
+  references:
+    version: 1

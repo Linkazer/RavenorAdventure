@@ -172,6 +172,8 @@ public class Grid : MonoBehaviour
 		List<Node> toReturn = new List<Node>();
 		toReturn.Add(GetNode(p.x, p.y));
 
+		bool foundObstacle = false;
+
 		for(int ix = 0, iy = 0; ix<nx || iy<ny;)
 		{
             int decision = (1 + 2 * ix) * ny - (1 + 2 * iy) * nx;
@@ -204,7 +206,7 @@ public class Grid : MonoBehaviour
                 iy++;
             }
 
-			if(!GetNode(p.x, p.y).IsVisible)
+			if(!GetNode(p.x, p.y).IsVisible && (GetNode(p.x,p.y) != visibilityTargetNode || visibilityTargetNode.IsStaticObstacle))
 			{
 				return false;
 			}
@@ -225,7 +227,7 @@ public class Grid : MonoBehaviour
 
 		return true;
 	}
-
+	/*
 	[System.Obsolete]
     public bool CalculateVision(int x1, int y1, int x2, int y2)
 	{
@@ -245,6 +247,8 @@ public class Grid : MonoBehaviour
 
 		int e2 = 2 * err;
 
+		bool foundObstacle = false;
+
 		while (true)
 		{
 			if (lastY1 != y1 && lastX1 != x1)
@@ -253,33 +257,65 @@ public class Grid : MonoBehaviour
 				{
 					if (!GetNode(x1, lastY1).IsVisible && !GetNode(lastX1, y1).IsVisible)
 					{
-						return false;
+						if (foundObstacle)
+						{
+							//return false;
+						}
+						else
+						{
+							foundObstacle = true;
+						}
 					}
 				}
 				else if (Mathf.Abs(startX - x1) > Mathf.Abs(startY - y1))
 				{
 					if (lastY1 != y1 && !GetNode(lastX1, y1).IsVisible)
 					{
-						return false;
-					}
+                        if (foundObstacle)
+                        {
+                            //return false;
+                        }
+                        else
+                        {
+                            foundObstacle = true;
+                        }
+                    }
 				}
 				else if (Mathf.Abs(startY - y1) > Mathf.Abs(startX - x1))
 				{
 					if (lastX1 != x1 && !GetNode(x1, lastY1).IsVisible)
 					{
-						return false;
-					}
+                        if (foundObstacle)
+                        {
+                            //return false;
+                        }
+                        else
+                        {
+                            foundObstacle = true;
+                        }
+                    }
 				}
             }
 
 			if (!GetNode(x1, y1).IsVisible)
 			{
-				return false;
-			}
+                if (foundObstacle)
+                {
+                    //return false;
+                }
+                else
+                {
+                    foundObstacle = true;
+                }
+            }
 
 			if (x1 == x2 && y1 == y2)
 			{
-				break;
+                if (foundObstacle)
+                {
+					return false;
+                }
+                break;
 			}
 
 			lastX1 = x1;
@@ -304,7 +340,7 @@ public class Grid : MonoBehaviour
 
 		return true;
 	}
-
+	*/
 
 #if UNITY_EDITOR
 	void OnDrawGizmos() {

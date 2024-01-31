@@ -59,6 +59,8 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     {
         Stop();
 
+        toMove.localPosition = startPosition;
+
         if (currentAnimation.linkedAnimation != "")
         {
             currentAnimation.endCallback?.Invoke();

@@ -165,6 +165,12 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
                         nextAction = caster;
                     }
                     break;
+                case 2:
+                    if (currentCharacter.GetComponentOfType<CPN_InventoryHandler>(out CPN_InventoryHandler inventoryHandler))
+                    {
+                        nextAction = inventoryHandler;
+                    }
+                    break;
             }
 
             if (nextAction != selectedAction)
@@ -212,6 +218,21 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
             if (caster.SelectSpell(spellIndex))
             {
                 instance.SelectAction(1);
+            }
+            else
+            {
+                instance.SelectAction(0);
+            }
+        }
+    }
+
+    public static void SelectItem(int itemIndex)
+    {
+        if (instance.currentCharacter.GetComponentOfType<CPN_InventoryHandler>(out CPN_InventoryHandler inventoryHandler))
+        {
+            if (inventoryHandler.SelectItem(itemIndex))
+            {
+                instance.SelectAction(2);
             }
             else
             {

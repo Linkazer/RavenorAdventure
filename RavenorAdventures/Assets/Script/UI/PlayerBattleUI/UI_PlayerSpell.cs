@@ -123,9 +123,9 @@ public class UI_PlayerSpell : MonoBehaviour
             spellUtilisationLeftHolder.gameObject.SetActive(false);
         }
 
-        if(toSet.StartCooldown > 0)
+        if(toSet.CooldownDuration > 0)
         {
-            spellCooldown.text = toSet.StartCooldown.ToString();
+            spellCooldown.text = toSet.CooldownDuration.ToString();
 
             spellCooldown.gameObject.SetActive(true);
         }
@@ -136,7 +136,7 @@ public class UI_PlayerSpell : MonoBehaviour
 
         UpdateCooldown(currentSpell.CurrentCooldown);
 
-        if (currentSpell.StartCooldown > 0)
+        if (currentSpell.CooldownDuration > 0)
         {
             currentSpell.OnUpdateCooldown += UpdateCooldown;
         }
@@ -200,9 +200,9 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void UpdateCooldown(int currentCooldown)
     {
-        if (currentSpell.StartCooldown > 0)
+        if (currentSpell.CooldownDuration > 0)
         {
-            cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.StartCooldown;
+            cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.CooldownDuration;
         }
         else
         {

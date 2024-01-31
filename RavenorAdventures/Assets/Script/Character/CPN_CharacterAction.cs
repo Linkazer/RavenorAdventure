@@ -33,7 +33,7 @@ public abstract class CPN_CharacterAction : RVN_Component
     /// </summary>
     /// <param name="actionTargetPosition">The position where the action will occur.</param>
     /// <param name="callback">The callback to play at the end of the action.</param>
-    public abstract void TryDoAction(Vector2 actionTargetPosition, Action callback);
+    public abstract bool TryDoAction(Vector2 actionTargetPosition, Action callback);
   
     /// <summary>
     /// Display the action.

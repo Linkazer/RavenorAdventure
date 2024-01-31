@@ -541,6 +541,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 150
+--- !u!1 &1805988736483223927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7949927128242437810}
+  - component: {fileID: 6764615997093203826}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7949927128242437810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805988736483223927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5140952349797873640}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6764615997093203826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805988736483223927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 689340b8affa1954c8d6548373075453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 5140952349797873622}
+  spellCaster: {fileID: 5140952349797873620}
 --- !u!1 &2624394474741015537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1125,7 @@ Transform:
   - {fileID: 7397478209732093516}
   - {fileID: 661143262129230156}
   - {fileID: 7529261983947339456}
+  - {fileID: 7949927128242437810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1101,6 +1147,7 @@ MonoBehaviour:
   - {fileID: 8205510481207194533}
   - {fileID: 6674373229304437009}
   - {fileID: 7894508926239594657}
+  - {fileID: 6764615997093203826}
   animationController: {fileID: 7894508926239594657}
   nodeDataHandler: {fileID: 4436041514107514922}
   scriptable: {fileID: 0}

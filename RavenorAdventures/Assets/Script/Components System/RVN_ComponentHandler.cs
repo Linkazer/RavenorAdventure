@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RVN_RoundManager;
 
 public class RVN_ComponentHandler : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class RVN_ComponentHandler : MonoBehaviour
 
     public void Activate()
     {
-
+        RVN_RoundManager.Instance.actOnUpdateRoundMode += OnUpdateRoundMode;
 
         foreach (RVN_Component component in components)
         {
@@ -81,6 +82,16 @@ public class RVN_ComponentHandler : MonoBehaviour
         foreach (RVN_Component component in components)
         {
             component.Disactivate();
+        }
+
+        RVN_RoundManager.Instance.actOnUpdateRoundMode -= OnUpdateRoundMode;
+    }
+
+    public void OnUpdateRoundMode(RoundMode settedRoundMode)
+    {
+        foreach (RVN_Component cpnt in components)
+        {
+            cpnt.OnUpdateRoundMode(settedRoundMode);
         }
     }
 

@@ -153,7 +153,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
     public SpellTargets HitableTargets => hitableTarget;
     public SpellTargets CastTargets => castTarget;
     public SpellCastType CastType => castType;
-    public int StartCooldown => cooldown;
+    public int CooldownDuration => cooldown;
 
     public bool IsCooldownGlobal => isCooldownGlobal;
     public int CurrentCooldown => cooldownTimer != null ? Mathf.CeilToInt(cooldownTimer.roundLeft) : 0;
@@ -195,7 +195,7 @@ public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
         }
     }
 
-    public void ResetCooldown()
+    public void StartCooldown()
     {
         SetCooldown(cooldown);
     }

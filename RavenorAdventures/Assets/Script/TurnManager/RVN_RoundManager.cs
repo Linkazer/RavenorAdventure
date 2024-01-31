@@ -105,6 +105,8 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
 
     private RoundTimer realTimeGeneralRoundTimer = null;
 
+    public Action<RoundMode> actOnUpdateRoundMode;
+
     public bool IsPaused => isPaused;
 
     public float RealTimeRoundDuration => realTimeRoundDuration;
@@ -192,6 +194,8 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
                     timer.StartTimer();
                 }
             }
+
+            actOnUpdateRoundMode?.Invoke(currentRoundMode);
         }
     }
 
@@ -213,6 +217,8 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
             {
                 timer.StopTimer();
             }
+
+            actOnUpdateRoundMode?.Invoke(currentRoundMode);
         }
     }
 

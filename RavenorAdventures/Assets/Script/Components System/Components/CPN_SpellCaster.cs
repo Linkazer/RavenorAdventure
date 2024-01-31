@@ -231,25 +231,25 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// </summary>
     /// <param name="actionTargetPosition">The position of the target wanted.</param>
     /// <param name="callback">The callback to play once the spell end.</param>
-    public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
+    public override bool TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
         LaunchedSpellData launchedSpell = new LaunchedSpellData(currentSelectedSpell, this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
         if (currentSelectedSpell != null && RVN_SpellManager.CanUseSpell(launchedSpell))
         {
-            if(launchedSpell.scriptable.IsCooldownGlobal)
+            if(launchedSpell.scriptable.IsCooldownGlobal && spells.Contains(launchedSpell.scriptable))
             {
                 for(int i = 0; i < spells.Count; i++)
                 {
                     if (spells[i].IsCooldownGlobal)
                     {
-                        spells[i].SetCooldown(launchedSpell.scriptable.StartCooldown);
+                        spells[i].SetCooldown(launchedSpell.scriptable.CooldownDuration);
                     }
                 }
             }
             else
             {
-                launchedSpell.scriptable.ResetCooldown();
+                launchedSpell.scriptable.StartCooldown();
             }
 
             CastSpell(launchedSpell, callback);
@@ -263,20 +263,29 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             {
                 SetActionLeft(actionsLeftThisTurn);
             }
+
+            return true;
         }
         else
         {
             Debug.Log("Invoke without spell");
             callback?.Invoke();
         }
+
+        return false;
     }
 
     public bool CanSpellBeUsed(int spellIndex)
     {
-        return !spells[spellIndex].IsLocked
-                    && (ActionLeftThisTurn > 0 || spells[spellIndex].CastType == SpellCastType.Fast)
-                    && (spells[spellIndex].IsUsable)
-                    && (Ressource == null || spells[spellIndex].RessourceCost <= Ressource.CurrentAmount);
+        return CanSpellBeUsed(spells[spellIndex]);
+    }
+
+    public bool CanSpellBeUsed(SpellScriptable spellToCheck)
+    {
+        return !spellToCheck.IsLocked
+                   && (ActionLeftThisTurn > 0 || spellToCheck.CastType == SpellCastType.Fast)
+                   && (spellToCheck.IsUsable)
+                   && (Ressource == null || spellToCheck.RessourceCost <= Ressource.CurrentAmount);
     }
 
     /// <summary>
@@ -286,6 +295,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <returns> Return TRUE if a spell has been select. </returns>
     public bool SelectSpell(int spellIndex, bool displayAction = true)
     {
+        if (spellIndex < spells.Count && spellIndex >= 0)
+        {
+            return SelectSpell(spells[spellIndex], displayAction);
+        }
+
+        return false;
+    }
+
+    public bool SelectSpell(SpellScriptable spellToSelect, bool displayAction = true)
+    {
         bool hasSelectedSpell = false;
 
         SpellScriptable lastSpell = currentSelectedSpell;
@@ -294,11 +313,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             UnselectSpell();
         }
 
-        if (spellIndex < spells.Count && spellIndex >= 0 && spells[spellIndex] != lastSpell)
+        if (spellToSelect != lastSpell)
         {
-            if (CanSpellBeUsed(spellIndex))
+            if (CanSpellBeUsed(spellToSelect))
             {
-                currentSelectedSpell = spells[spellIndex];
+                currentSelectedSpell = spellToSelect;
 
                 actOnSelectSpell?.Invoke(currentSelectedSpell);
 
@@ -359,11 +378,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void UseSpell(LaunchedSpellData launchedSpell, Action callback)
     {
-        Debug.Log(launchedSpell.scriptable);
-        Debug.Log(launchedSpell.scriptable.Projectile);
         if (launchedSpell.scriptable.Projectile == null)
         {
-            Debug.Log("?????");
             handler.animationController?.PlayAnimation(launchedSpell.scriptable.LaunchSpellAnimation.ToString(), launchedSpell);
         }
 
@@ -376,8 +392,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call.</param>
     private void EndUseSpell(Action callback)
     {
-        Debug.Log("???");
-
         callback?.Invoke();
 
         actOnEndCastSpell?.Invoke();
@@ -398,7 +412,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         Debug.Log("Try lock spell : " + toLock);
         for (int i = 0; i < spells.Count; i++)
         {
-            Debug.Log("Contains cjeck : " + spells[i].name + " C " + toLock.name);
+            Debug.Log("Contains check : " + spells[i].name + " C " + toLock.name);
             if (spells[i].name.Contains(toLock.name))
             {
                 Debug.Log("Set lock state : " + lockState);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static RVN_RoundManager;
 
 public abstract class RVN_Component : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public abstract class RVN_Component : MonoBehaviour
 
     public abstract void Activate();
     public abstract void Disactivate();
+
+    public virtual void OnUpdateRoundMode(RoundMode settedMode)
+    {
+
+    }
 
     /// <summary>
     /// Début d'un nouveau Round

@@ -186,9 +186,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
         RVN_GridDisplayer.UnsetGridFeedback();
     }
 
-    public override void TryDoAction(Vector2 actionTargetPosition, Action callback)
+    public override bool TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
         AskToMoveTo(actionTargetPosition, callback);
+
+		return true;
     }
 
     public void AddMovement(int amount)

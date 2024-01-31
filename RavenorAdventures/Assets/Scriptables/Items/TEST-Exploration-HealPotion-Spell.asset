@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a673cd0936d26e54b9ae821ff8e2c93c, type: 3}
+  m_Name: TEST-Exploration-HealPotion-Spell
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Potion de soin
+    englishText: Second breath
+  icon: {fileID: 21300000, guid: bb2ff8d054fa0a14d914439285d7df4b, type: 3}
+  description:
+    frenchText: Le personnage regagne %diceUsed% Points de vie. Consomme la potion.
+    englishText: The character heals %diceUsed% Health points.
+  castingAnimation: 3
+  launchAnimation: 4
+  castAnimationDuration: 0.5
+  spellAnimationTarget: 0
+  projectile: {fileID: 0}
+  spellAnimation: {fileID: 9051425662884510762, guid: f5d9b32a6d4a21644af00838b98a7925, type: 3}
+  animationDuration: 0.5
+  launchAudioData: {fileID: 11400000, guid: ef51db604d38b294ca47bd8d90d024cc, type: 2}
+  ressourceCost: 0
+  maxUtilisations: 0
+  removeOnNoUutlisation: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 1
+  isCooldownGlobal: 0
+  cooldown: 0
+  zoneType: 0
+  range: 5
+  zoneRange: 0
+  zoneFaceCaster: 0
+  zoneDefined: []
+  effectsOnTarget: []
+  effectsOnCaster: []
+  type: 1
+  diceUsed: 2
+  baseDamage: 0
+  armorPierced: 0
+  lifestealPercent: 0
+  areEffectsRandom: 0
+  hitEffectsOnTarget: []
+  hitEffectsOnCaster: []
