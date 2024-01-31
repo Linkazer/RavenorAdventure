@@ -20,6 +20,7 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
     {
         RVN_BattleManager.ActOnExitBattle += OnExitBattle;
         RVN_BattleManager.ActOnEnterBattle += OnEnterBattle;
+        RVN_BattleManager.ActOnSpawnAlly += AddCharacter;
         RVN_BattleManager.Instance.ActOnStartCharacterTurn += SetSelectedChara;
 
         foreach (CPN_Character chara in RVN_BattleManager.GetPlayerTeam)
@@ -37,6 +38,7 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
     {
         RVN_BattleManager.ActOnExitBattle -= OnExitBattle;
         RVN_BattleManager.ActOnEnterBattle -= OnEnterBattle;
+        RVN_BattleManager.ActOnSpawnAlly -= AddCharacter;
         RVN_BattleManager.Instance.ActOnStartCharacterTurn -= SetSelectedChara;
     }
 
@@ -114,6 +116,11 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
         {
             selectedMvt2.ActOnMvtFound += OnSelectedCharaMove;
         }
+    }
+
+    private void AddCharacter(CPN_Character toAdd)
+    {
+        characterMovements.Add(toAdd);
     }
 
     private Node[] GetFollowerPositions(Node targetNode, Node beforeTargetNode, int numberPositionWanted)

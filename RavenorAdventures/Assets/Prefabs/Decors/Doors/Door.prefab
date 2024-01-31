@@ -1,5 +1,119 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2091218682478468039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870257731135788897}
+  - component: {fileID: 7453494828633426180}
+  m_Layer: 0
+  m_Name: Wait
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870257731135788897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091218682478468039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7174257162745624929}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7453494828633426180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091218682478468039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec9e87faa3e6c14885818c533f701a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 0.5
+--- !u!1 &5894541773611480580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6329248948332364213}
+  - component: {fileID: 4708849018917703426}
+  m_Layer: 0
+  m_Name: OpenDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6329248948332364213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894541773611480580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7174257162745624929}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4708849018917703426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5894541773611480580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1273a030c5534a4497fa005b0603663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToPlay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1759559712738794183}
+        m_TargetAssemblyTypeName: RoomHandler, ravenor_engine
+        m_MethodName: OpenRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8045413502921490473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6451636371087524220
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +227,10 @@ PrefabInstance:
     - target: {fileID: 2703895199303114005, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3746225947131917050, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3834820126779094822, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
       propertyPath: m_RootOrder
@@ -278,6 +396,22 @@ PrefabInstance:
       propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4605506060341475894, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: m_Name
+      value: DoorOpeningSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239949995514355930, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: steps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239949995514355930, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: steps.Array.data[0].mainAction
+      value: 
+      objectReference: {fileID: 7453494828633426180}
+    - target: {fileID: 7239949995514355930, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+      propertyPath: steps.Array.data[1].mainAction
+      value: 
+      objectReference: {fileID: 4708849018917703426}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
 --- !u!1 &8045413502921490473 stripped
@@ -295,6 +429,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6756332099655596931, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
   m_PrefabInstance: {fileID: 5795376559152368539}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &7174257162745624929 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3746225947131917050, guid: 0b12e79415607ec40a4ea104f47dab3f, type: 3}
+  m_PrefabInstance: {fileID: 5795376559152368539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1759559712738794183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +448,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teams:
   - teamIndex: 1
+    playBefore: 0
     charaToSpawns: []
   OnOpenDoor:
     m_PersistentCalls:
       m_Calls: []
+  doorFocusedCamera: {fileID: 0}

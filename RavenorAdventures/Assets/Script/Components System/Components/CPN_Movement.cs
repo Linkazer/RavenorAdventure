@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -75,6 +76,8 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// </summary>
 	[SerializeField] private int currentMovementLeft;
 
+	private List<CPN_InteractibleObject> targetInteractions = new List<CPN_InteractibleObject>();
+
 	public Node CurrentNode => currentNode;
 
 	public int MaxMovement => maxDistance;
@@ -109,6 +112,23 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
         currentNode = handler.CurrentNode;
     }
 
+    public override void OnUpdateRoundMode(RVN_RoundManager.RoundMode settedMode)
+    {
+        base.OnUpdateRoundMode(settedMode);
+
+		switch (settedMode)
+		{
+			case RVN_RoundManager.RoundMode.Round:
+				doesBlockInput = true;
+                isMovementCosting = true;
+                break;
+			case RVN_RoundManager.RoundMode.RealTime:
+				doesBlockInput = false;
+                isMovementCosting = false;
+                break;
+		}
+    }
+
     public override void Disactivate()
     {
 
@@ -131,7 +151,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override void UnselectAction()
     {
-
+		if (currentMovement != null)
+		{
+			StopMovement();
+		}
     }
 
     public override void DisplayAction(Vector2 actionTargetPosition)
@@ -256,7 +279,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
         if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
 		{
-			return toCheck.IsWalkable;
+			return true;
 		}
 
 		return GetPossibleMovementTarget().Contains(toCheck);
@@ -269,51 +292,55 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
-		{
-			ForceToMove(targetPosition, callback);
-		}
-		else
-		{
-			isMovementCosting = true;
+		OnEndMovementAction = null;
 
-			OnEndMovementAction += callback;
+        Node targetNode = Grid.GetNodeFromWorldPoint(targetPosition);
 
-			PathRequestManager.RequestPath(transform.position, targetPosition, currentMovementLeft, OnPathFound);
-		}
+		targetInteractions = targetNode.GetNodeComponent<CPN_InteractibleObject>();
+
+        OnEndMovementAction += callback;
+
+        PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
 	}
 
 	public void ForceToMove(Vector2 targetPosition, Action callback)
     {
-		isMovementCosting = false;
+        //isMovementCosting = false; => Réparer les déplacement dans les tutos
 
-        OnEndMovementAction += () => EndForceMove(callback);
+        OnEndMovementAction = null;
 
-		PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
-	}
+        Node targetNode = Grid.GetNodeFromWorldPoint(targetPosition);
 
-	private void EndForceMove(Action callback)
-	{
-        isMovementCosting = true;
+        targetInteractions = targetNode.GetNodeComponent<CPN_InteractibleObject>();
 
-        callback?.Invoke();
-	}
+        OnEndMovementAction += callback;
+
+        PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
+    }
 
 	private void StartMovement()
 	{
 		if (enabled)
 		{
-			currentMovement = StartCoroutine(FollowPath());
+            currentMovement = StartCoroutine(FollowPath());
 		}
 	}
 
 	private void EndMovement()
     {
-		handler.animationController?.EndAnimation();
+        handler.animationController?.EndAnimation();
 		OnEndMovement?.Invoke();
 
 		OnEndMovementAction?.Invoke();
 		OnEndMovementAction = null;
+
+		if (targetInteractions.Count > 0 && Pathfinding.GetDistance(targetInteractions[0].Handler.CurrentNode, currentNode) <= 15)
+		{
+            targetInteractions[0].Interact(handler);
+			targetInteractions.Clear();
+        }
+
+		StopMovement();
 	}
 
 	/// <summary>
@@ -324,14 +351,17 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		if (currentMovement != null)
 		{
 			StopCoroutine(currentMovement);
-		}
+			currentMovement = null;
+        }
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
-		if (isMovementCosting && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
+		/*if (isMovementCosting && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
 		{
 			currentMovementLeft -= currentNode.gCost;
-        }
+
+			Debug.Log(this + " : " + currentMovementLeft);
+        }*/
 
 		OnEndMovementAction = null;
 		handler.animationController?.EndAnimation();
@@ -381,8 +411,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 					{
 						if (isMovementCosting)
 						{
-							currentMovementLeft -= currentNode.gCost;
-                            Debug.Log(this + " : " + currentMovementLeft);
+                            currentMovementLeft -= currentNode.gCost;
+
+                            Debug.Log(currentMovementLeft);
                         }
 
 						EndMovement();
@@ -404,13 +435,14 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 					if (isMovementCosting && (CheckForOpportunityAttack() || RVN_RoundManager.Instance.IsPaused))
 					{
-						currentMovementLeft -= currentNode.gCost;
-                        Debug.Log(this + " : " + currentMovementLeft);
+						//currentMovementLeft -= currentNode.gCost;
+                        //Debug.Log(this + " : " + currentMovementLeft);
 
                         handler.animationController?.EndAnimation();
 						OnStopMovement?.Invoke();
 						StopCoroutine(currentMovement);
-					}
+						currentMovement = null;
+                    }
 				}
 
 

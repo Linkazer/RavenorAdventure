@@ -124,6 +124,11 @@ public class Grid : MonoBehaviour
 		return toReturn;
 
     }
+
+	public static bool AreNodeNeighbours(Node n1, Node n2)
+	{
+		return GetNeighbours(n1).Contains(n2);
+	}
 	
 	public static Node GetNodeFromWorldPoint(Vector3 worldPoint)
     {

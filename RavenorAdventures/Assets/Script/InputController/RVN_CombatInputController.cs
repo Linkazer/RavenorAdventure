@@ -251,7 +251,10 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         {
             if (selectedAction!= null && selectedAction.IsActionUsable(actionPosition))
             {
-                DisableCombatInput(this);
+                if (selectedAction.DoesBlockInput)
+                {
+                    DisableCombatInput(this);
+                }
 
                 selectedAction.TryDoAction(actionPosition, OnEndAction);
 
@@ -265,9 +268,12 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// </summary>
     private void OnEndAction()
     {
-        SelectAction(0);
+        if (selectedAction.DoesBlockInput)
+        {
+            EnableCombatInput(this);
+        }
 
-        EnableCombatInput(this);
+        SelectAction(0);
     }
 
     //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?

@@ -47,6 +47,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     public static Action ActOnExitBattle;
     public static Action<CPN_Character> ActOnCharacterDie;
     public static Action ActOnEnterBattle;
+    public static Action<CPN_Character> ActOnSpawnAlly;
     public static Action<CPN_Character> ActOnSpawnEnnemy;
 
     [Header("Combat Start")]
@@ -389,6 +390,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
             if(teamIndex == 0)
             {
                 OnSpawnAlly?.Invoke(toAdd);
+                ActOnSpawnAlly?.Invoke(toAdd);
             }
             else
             {
@@ -542,8 +544,12 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     private void ExitBattleMode()
     {
+        playedThisTurn = new List<CPN_Character>();
+        OnBeginNewRound?.Invoke();
+
         ActOnExitBattle?.Invoke();
-        roundManager.SetRealTimeMode();
+
+        roundManager.OnEndBattle();
     }
 
     private void WinBattle()

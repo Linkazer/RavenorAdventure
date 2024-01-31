@@ -12,6 +12,8 @@ public class UI_PlayerBattleController : MonoBehaviour
     [SerializeField] private UnityEvent<RVN_ComponentHandler> OnSetCharacter;
     [SerializeField] private UnityEvent OnUnsetCharacter;
 
+    [SerializeField] private Button endTurnButton;
+
     private CPN_Character displayedCharacter;
 
     public void SetCharacter(CPN_Character nCharacter)
@@ -26,6 +28,9 @@ public class UI_PlayerBattleController : MonoBehaviour
 
                 OnSetCharacter?.Invoke(displayedCharacter);
 
+                RVN_RoundManager.Instance.actOnUpdateRoundMode += OnChangeRoundMode;
+                OnChangeRoundMode(RVN_RoundManager.Instance.CurrentRoundMode);
+
                 characterPortrait.sprite = displayedCharacter.Scriptable.Portrait;
                 characterPortrait.color = Color.white;
             }
@@ -37,6 +42,8 @@ public class UI_PlayerBattleController : MonoBehaviour
         if (displayedCharacter != null)
         {
             OnUnsetCharacter?.Invoke();
+
+            RVN_RoundManager.Instance.actOnUpdateRoundMode -= OnChangeRoundMode;
 
             displayedCharacter = null;
         }
@@ -50,5 +57,18 @@ public class UI_PlayerBattleController : MonoBehaviour
     public void EndTurn()
     {
         RVN_CombatInputController.Instance.EndTurn();
+    }
+
+    private void OnChangeRoundMode(RVN_RoundManager.RoundMode roundMode)
+    {
+        switch(roundMode)
+        {
+            case RVN_RoundManager.RoundMode.Round:
+                endTurnButton.interactable = true;
+                break;
+            case RVN_RoundManager.RoundMode.RealTime:
+                endTurnButton.interactable = false;
+                break;
+        }
     }
 }

@@ -7,11 +7,13 @@ public class CPN_InteractibleObject : RVN_Component
 {
     [SerializeField] private List<Vector3> usedPositions;
 
-    [SerializeField] protected UnityEvent<RVN_ComponentHandler> OnInteract;
+    [SerializeField] private SequenceCutscene interactionCutscene;
+
+    [SerializeField, System.Obsolete("We directly use a Cutscene now")] protected UnityEvent<RVN_ComponentHandler> OnInteract;
 
     private List<Node> usedNodes = new List<Node>();
 
-    /// <summary>
+    /*/// <summary>
     /// Essaye de faire intéragir le personnage actuel avec l'objet.
     /// </summary>
     public void TryInteract()
@@ -32,7 +34,7 @@ public class CPN_InteractibleObject : RVN_Component
                 Interact(interactor);
             }
         }
-    }
+    }*/
 
     /// <summary>
     /// Effectue l'interaction avec l'objet voulant interagir.
@@ -40,7 +42,19 @@ public class CPN_InteractibleObject : RVN_Component
     /// <param name="interactor">L'objet voulant interagir.</param>
     public void Interact(RVN_ComponentHandler interactor)
     {
-        OnInteract?.Invoke(interactor);
+        if (interactionCutscene == null)
+        {
+            OnInteract?.Invoke(interactor);
+        }
+        else
+        {
+            interactionCutscene.StartAction(EndInteraction);
+        }
+    }
+
+    private void EndInteraction()
+    {
+
     }
 
     public override void SetComponent(RVN_ComponentHandler handler)

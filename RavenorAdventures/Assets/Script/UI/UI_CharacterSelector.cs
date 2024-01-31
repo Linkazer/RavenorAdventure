@@ -22,6 +22,7 @@ public class UI_CharacterSelector : MonoBehaviour
         currentCharacter = nCharacter;
 
         currentCharacter.ActOnBeginTeamTurn += Show;
+        RVN_FreeRoamingManager.Instance.actOnEnableRoaming += OnEnableRoaming;
         currentCharacter.ActOnEndSelfTurn += Hide;
 
         gameObject.SetActive(true);
@@ -38,6 +39,7 @@ public class UI_CharacterSelector : MonoBehaviour
         if (currentCharacter != null)
         {
             currentCharacter.ActOnBeginTeamTurn -= Show;
+            RVN_FreeRoamingManager.Instance.actOnEnableRoaming -= OnEnableRoaming;
             currentCharacter.ActOnEndSelfTurn -= Hide;
         }
 
@@ -46,9 +48,19 @@ public class UI_CharacterSelector : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void OnEnableRoaming(bool isRoaming)
+    {
+        if(isRoaming)
+        {
+            Show(currentCharacter);
+        }
+    }
+
     public void UE_SelectCharacter()
     {
         RVN_CombatInputController.ChangeCharacter(currentCharacter);
+
+        RVN_CameraController.Instance.SetCameraFocus(currentCharacter);
     }
 
     public void SetPortrait(Sprite sprite)

@@ -222,6 +222,13 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
         }
     }
 
+    public void OnEndBattle()
+    {
+        EndGlobalRound();
+        StartGlobalRound();
+        SetRealTimeMode();
+    }
+
     public void StartGlobalRound()
     {
         foreach (RVN_ComponentHandler handler in activeHandlers)
@@ -238,12 +245,15 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
         }
     }
 
-    private void OnGlobalRoundTimerEnd()
+    public void OnGlobalRoundTimerEnd()
     {
         //Update Fin Tour Global (Team?/Personnage?)
         EndGlobalRound();
 
-        realTimeGeneralRoundTimer = CreateTimer(1f, null, OnGlobalRoundTimerEnd);
+        if (!isPaused)
+        {
+            realTimeGeneralRoundTimer = CreateTimer(1f, null, OnGlobalRoundTimerEnd);
+        }
 
         //Update Début Tour Global (Team?/Personnage?)
         StartGlobalRound();

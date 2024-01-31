@@ -74,9 +74,8 @@ public class CPN_Character : RVN_ComponentHandler
     /// Supprime le personnage.
     /// </summary>
     /// <param name="unsetDelay">Délai avant la suppréssion du personnage</param>
-    public void UnsetCharacter(float unsetDelay) //Called in UnityEvents ?
+    public void UnsetCharacter(float unsetDelay) //Called in UnityEvents (Death du HealthManager)
     {
-        Debug.Log("Called in UnityEvent ?");
         scriptable = null;
 
         RVN_BattleManager.Instance.OnCharacterDie(this);
@@ -139,6 +138,8 @@ public class CPN_Character : RVN_ComponentHandler
     /// </summary>
     public void StartTeamRound()
     {
+        ActOnBeginTeamTurn?.Invoke(this);
+
         foreach (RVN_Component cpnt in components)
         {
             cpnt.OnStartHandlerGroupRound();

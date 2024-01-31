@@ -142,7 +142,8 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override void UnselectAction()
     {
-        SelectSpell(-1);
+        UnselectSpell();
+        //SelectSpell(-1);
     }
 
     /// <summary>
@@ -201,6 +202,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
                 spellToCheck.IsUsable &&
                 (ressource == null || spellToCheck.RessourceCost <= ressource.CurrentAmount) &&
                 Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range);
+    }
+
+    public override void OnStartRound()
+    {
+        base.OnStartRound();
+
+        SetActionLeft(actionByTurn);
     }
 
     /// <summary>

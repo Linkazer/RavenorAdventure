@@ -10,6 +10,10 @@ using UnityEngine;
 /// </summary>
 public abstract class CPN_CharacterAction : RVN_Component
 {
+    protected bool doesBlockInput = true;
+
+    public bool DoesBlockInput => doesBlockInput;
+
     /// <summary>
     /// Actions to do when the action is unslected.
     /// </summary>
