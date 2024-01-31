@@ -83,4 +83,9 @@ public class RVN_InventoryManager : RVN_Singleton<RVN_InventoryManager>
             RemoveItem(item, (item as StorableItem_Usable).QuantityLostOnUse);
         }
     }
+
+    public bool HasItem(StorableItem item)
+    {
+        return objectsQuantityInInventory.ContainsKey(item);
+    }
 }
