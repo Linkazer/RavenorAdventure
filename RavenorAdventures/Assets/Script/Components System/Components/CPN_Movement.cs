@@ -411,9 +411,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 					{
 						if (isMovementCosting)
 						{
-                            currentMovementLeft -= currentNode.gCost;
-
-                            Debug.Log(currentMovementLeft);
+							currentMovementLeft -= currentNode.gCost;
                         }
 
 						EndMovement();

@@ -20,6 +20,7 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
     //[SerializeField] private Image rightCharacterDisplay;
     [SerializeField] private List<DialogueResponseHandler> responses;
 
+    [SerializeField] private Button dialogueButton;
     [SerializeField] private CanvasGroup dialogueGroup;
     [SerializeField] private CanvasGroup responsesGroup;
 
@@ -60,6 +61,8 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
         dialogueGroup.interactable = true;
         responsesGroup.interactable = false;
         responsesGroup.alpha = 0;
+
+        dialogueButton.interactable = true;
 
         DisplayNextSentence();
     }
@@ -183,6 +186,7 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 
         MusicManager.instance.PlayMainMusic();
 
+        dialogueButton.interactable = false;
         currentDialogue = null;
         onDialogueEndCallback = null;
     }

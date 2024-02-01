@@ -16,7 +16,7 @@ public class GridNodeDisplay : MonoBehaviour
 
     public void SetColor(Color colorToSet)
     {
-        colorsToSet.Add(colorToSet);
+        colorsToSet = new List<Color>() { colorToSet };// .Add(colorToSet);
 
         if(!enabled)
         {

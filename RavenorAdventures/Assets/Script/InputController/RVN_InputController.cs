@@ -61,7 +61,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
         actionMouseMovementInput.action.performed += UpdateMousePosition;
 
-        actionMouseLeftClicInput.action.started += LeftMouseInput;
+        actionMouseLeftClicInput.action.canceled += LeftMouseInput;
 
         actionMouseRightClicInput.action.started += RightMouseInput;
 
@@ -78,7 +78,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
         actionMouseMovementInput.action.performed -= UpdateMousePosition;
 
-        actionMouseLeftClicInput.action.started -= LeftMouseInput;
+        actionMouseLeftClicInput.action.canceled -= LeftMouseInput;
 
         actionMouseRightClicInput.action.started -= RightMouseInput;
 
