@@ -334,9 +334,9 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		OnEndMovementAction?.Invoke();
 		OnEndMovementAction = null;
 
-		if (targetInteractions.Count > 0 && Pathfinding.GetDistance(targetInteractions[0].Handler.CurrentNode, currentNode) <= 15)
+		if (targetInteractions.Count > 0)
 		{
-            targetInteractions[0].Interact(handler);
+            targetInteractions[0].TryInteract(handler);
 			targetInteractions.Clear();
         }
 

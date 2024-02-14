@@ -87,7 +87,7 @@ public class RVN_ComponentHandler : MonoBehaviour
         RVN_RoundManager.Instance.actOnUpdateRoundMode -= OnUpdateRoundMode;
     }
 
-    public void OnUpdateRoundMode(RoundMode settedRoundMode)
+    public virtual void OnUpdateRoundMode(RoundMode settedRoundMode)
     {
         foreach (RVN_Component cpnt in components)
         {

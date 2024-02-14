@@ -58,6 +58,7 @@ MonoBehaviour:
   OnDataExit:
     m_PersistentCalls:
       m_Calls: []
+  drawGizmos: 0
 --- !u!1001 &8991199647964297120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,7 +72,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 6a3e96b23bd9b74419ddcc7676671035, type: 3}
     - target: {fileID: 5559192539048513101, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174257162745624929, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8045413502921490467, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_RootOrder
@@ -117,6 +122,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8045413502921490468, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: interactibleNodes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045413502921490468, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
+      propertyPath: interactibleNodes.Array.data[1]
+      value: 
+      objectReference: {fileID: 4384919451878815014}
     - target: {fileID: 8045413502921490470, guid: a51bf3ecbff18aa4c964643f05844fed, type: 3}
       propertyPath: m_Size.y
       value: 2

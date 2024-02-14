@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class RVN_InputController : RVN_Singleton<RVN_InputController>
 {
+    [SerializeField] public LayerMask layerToIgnore;
+
     [Header("Events")]
     [SerializeField] private UnityEvent<Vector2> OnMouseLeftDown;
     [SerializeField] private UnityEvent<CPN_ClicHandler> OnMouseLeftDownOnObject;
@@ -167,7 +169,7 @@ public class RVN_InputController : RVN_Singleton<RVN_InputController>
 
     private RaycastHit2D GetMouseRaycast() //CODE REVIEW : Voir si on peut améliorer ça (au niveau du ClicHandler)
     {
-        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero, 25f, ~layerToIgnore);
 
         CPN_ClicHandler lastClicHandler = currentClicHandlerTouched;
 

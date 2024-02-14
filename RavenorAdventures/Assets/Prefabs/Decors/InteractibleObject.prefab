@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 4596588289848462270}
-  usedPositions: []
+  interactibleNodes:
+  - {fileID: 7484247598846990994}
   interactionCutscene: {fileID: 7239949995514355930}
   OnInteract:
     m_PersistentCalls:

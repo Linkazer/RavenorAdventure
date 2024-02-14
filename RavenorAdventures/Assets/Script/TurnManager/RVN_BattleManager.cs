@@ -131,8 +131,6 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void StartBattle()
     {
-        roundManager.SetRealTimeMode();
-
         level.onStartLevel?.Invoke();
 
         currentPlayingTeam = -1;

@@ -92,6 +92,21 @@ public class CPN_Character : RVN_ComponentHandler
         }
     }
 
+    public override void OnUpdateRoundMode(RVN_RoundManager.RoundMode settedRoundMode)
+    {
+        switch(settedRoundMode)
+        {
+            case RVN_RoundManager.RoundMode.Round:
+                nodeDataHandler.SetWalkable(false);
+                break;
+            case RVN_RoundManager.RoundMode.RealTime:
+                nodeDataHandler.SetWalkable(true);
+                break;
+        }
+       
+        base.OnUpdateRoundMode(settedRoundMode);
+    }
+
     /// <summary>
     /// Début du tour du Character
     /// </summary>

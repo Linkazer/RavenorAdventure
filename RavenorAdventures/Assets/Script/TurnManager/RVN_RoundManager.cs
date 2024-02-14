@@ -205,7 +205,9 @@ public class RVN_RoundManager : RVN_Singleton<RVN_RoundManager>
         {
             currentRoundMode = RoundMode.Round;
 
-            if(realTimeGeneralRoundTimer != null)
+            Debug.Log(currentRoundMode);
+
+            if (realTimeGeneralRoundTimer != null)
             {
                 RemoveTimer(realTimeGeneralRoundTimer);
 

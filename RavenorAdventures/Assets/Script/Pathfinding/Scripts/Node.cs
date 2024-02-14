@@ -126,7 +126,7 @@ public class Node : IHeapItem<Node> {
 
 		for (int i = 0; i < datasOnNode.Count; i++)
 		{
-			if (datasOnNode[i].Handler != null && datasOnNode[i].Handler.GetComponentOfType<T>(out T foundComponent))
+			if (datasOnNode[i].Handler != null && datasOnNode[i].Handler.GetComponentOfType(out T foundComponent))
 			{
 				toReturn.Add(foundComponent);
 			}
