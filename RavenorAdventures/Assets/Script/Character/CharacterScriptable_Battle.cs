@@ -32,8 +32,8 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
     [SerializeField, Tooltip("Distance à partir de laquelle le score de dangerosité diminue")] private int dangerosityMinimumDistance;
 
     [Header("Spells")]
-    [SerializeField] private SpellScriptable opportunitySpell;
-    [SerializeField] private List<SpellScriptable> availableSpells;
+    [SerializeField] private SPL_SpellScriptable opportunitySpell;
+    [SerializeField] private List<SPL_SpellScriptable> availableSpells;
     [SerializeField] private int usableSpellByTurn = 1;
     [SerializeField, SerializeReference, ReferenceEditor(typeof(SpellRessource))] private SpellRessource usedRessource;
 
@@ -87,12 +87,12 @@ public class CharacterScriptable_Battle : CharacterScriptable, CPN_Data_HealthHa
         return speed;
     }
 
-    public List<SpellScriptable> AvailableSpells()
+    public List<SPL_SpellScriptable> AvailableSpells()
     {
         return availableSpells;
     }
 
-    public SpellScriptable OpportunitySpell()
+    public SPL_SpellScriptable OpportunitySpell()
     {
         return opportunitySpell;
     }

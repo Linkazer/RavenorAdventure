@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EFF_LockSpell : Effect
 {
-    [SerializeField] private SpellScriptable spellToLock;
+    [SerializeField] private SPL_SpellScriptable spellToLock;
 
     protected override void UseEffect(RVN_ComponentHandler effectTarget)
     {

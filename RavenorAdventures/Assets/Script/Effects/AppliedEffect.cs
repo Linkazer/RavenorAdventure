@@ -9,6 +9,8 @@ public class AppliedEffect
     [SerializeField] private EffectScriptable effect;
     [SerializeField] private int currentStack;
 
+    private CPN_SpellCaster caster;
+
     private RVN_ComponentHandler target;
 
     private RoundTimer effectTimer;
@@ -33,12 +35,14 @@ public class AppliedEffect
         if(currentStack < effect.MaxStack)
         {
             currentStack++;
-            ApplyEffect(toResetFrom);
+            ApplyEffect(toResetFrom, caster);
         }
     }
 
-    public void ApplyEffect(RVN_ComponentHandler toAddFrom)
+    public void ApplyEffect(RVN_ComponentHandler toAddFrom, CPN_SpellCaster nCaster)
     {
+        caster = nCaster;
+
         target = toAddFrom;
 
         foreach (Effect eff in effect.GetEffects)

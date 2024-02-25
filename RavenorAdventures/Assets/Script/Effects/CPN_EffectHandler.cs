@@ -36,7 +36,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
     {
         foreach (EffectScriptable eff in startingEffects)
         {
-            ApplyEffect(eff);
+            ApplyEffect(eff, null);
         }
     }
 
@@ -74,7 +74,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         }
     }
 
-    public void ApplyEffect(EffectScriptable toApply)
+    public void ApplyEffect(EffectScriptable toApply, CPN_SpellCaster caster)
     {
         AppliedEffect potentialAppliedEffect = TryGetAppliedEffect(toApply);
 
@@ -93,7 +93,7 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
 
             potentialAppliedEffect = new AppliedEffect(toApply, effectDisplay, toApply.Duration, ()=>RemoveEffect(potentialAppliedEffect));
 
-            potentialAppliedEffect.ApplyEffect(Handler);
+            potentialAppliedEffect.ApplyEffect(Handler, caster);
 
             currentAppliedEffects.Add(potentialAppliedEffect);
 

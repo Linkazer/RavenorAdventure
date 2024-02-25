@@ -7,17 +7,17 @@ using UnityEngine.Events;
 
 public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 {
-    private SpellScriptable opportunitySpell;
-    [SerializeField] private List<SpellScriptable> spells;
+    private SPL_SpellHolder opportunitySpell;
+    [SerializeField] private List<SPL_SpellHolder> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
-    [SerializeField] private UnityEvent<LaunchedSpellData> OnCastSpell;
+    [SerializeField] private UnityEvent<SPL_CastedSpell> OnCastSpell;
     [SerializeField] private UnityEvent<Vector2> OnCastSpellToDiection;
     [SerializeField] private UnityEvent onOpportunityAttack;
 
     [SerializeField] private int actionsLeftThisTurn = 1;
     [SerializeField] private int actionByTurn = 1;
-    private SpellScriptable currentSelectedSpell = null;
+    private SPL_SpellHolder currentSelectedSpell = null;
 
     [HideInInspector] public bool hasOpportunityAttack = true;
 
@@ -29,7 +29,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     [SerializeField] private SpellRessource ressource;
 
-    private Dictionary<int, SpellScriptable> changeSpellWithIndex = new Dictionary<int, SpellScriptable>();
+    private Dictionary<int, SPL_SpellHolder> changeSpellWithIndex = new Dictionary<int, SPL_SpellHolder>();
 
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
@@ -37,12 +37,12 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public Action<RVN_ComponentHandler> actOnUseSkillTarget;
     public Action actOnEndCastSpell;
     public Action<int> actOnSetActionLeft;
-    public Action<SpellScriptable> actOnSelectSpell;
-    public Action<SpellScriptable> actOnUnselectSpell;
+    public Action<SPL_SpellHolder> actOnSelectSpell;
+    public Action<SPL_SpellHolder> actOnUnselectSpell;
     public Action<CPN_SpellCaster> actOnUpdateSpell;
 
-    public List<SpellScriptable> Spells => spells;
-    public SpellScriptable OpportunitySpell => opportunitySpell;
+    public List<SPL_SpellHolder> Spells => spells;
+    public SPL_SpellHolder OpportunitySpell => opportunitySpell;
     public int ActionByTurn => actionByTurn;
     public int ActionLeftThisTurn => actionsLeftThisTurn;
     public int OffensiveRerolls => offensiveRerolls;
@@ -68,13 +68,13 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actionByTurn = toSet.MaxSpellUseByTurn();
 
-        spells = new List<SpellScriptable>();
-        foreach (SpellScriptable spell in toSet.AvailableSpells())
+        spells = new List<SPL_SpellHolder>();
+        foreach (SPL_SpellScriptable spell in toSet.AvailableSpells())
         {
             AddSpell(spell);
         }
 
-        opportunitySpell = toSet.OpportunitySpell();
+        opportunitySpell = new SPL_SpellHolder(toSet.OpportunitySpell());
 
         ressource = toSet.Ressource();
         ressource?.Initialize(handler as CPN_Character);
@@ -101,7 +101,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         base.OnEndHandlerGroupRound();
 
-        foreach (SpellScriptable spell in spells)
+        foreach (SPL_SpellHolder spell in spells)
         {
             spell.UpdateCurrentCooldown();
         }
@@ -143,7 +143,6 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public override void UnselectAction()
     {
         UnselectSpell();
-        //SelectSpell(-1);
     }
 
     /// <summary>
@@ -152,15 +151,15 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="actionTargetPosition">The current target position the player aim for.</param>
     public override void DisplayAction(Vector2 actionTargetPosition)
     {
-        if (currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount))
+        if (currentSelectedSpell != null && currentSelectedSpell.IsUsable() && (ressource == null || currentSelectedSpell.SpellData.RessourceCost <= ressource.CurrentAmount))
         {
-            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, currentSelectedSpell.Range, true);
+            List<Node> possibleTargetZone = Pathfinding.GetAllNodeInDistance(nodeData.CurrentNode, currentSelectedSpell.SpellData.Range, true);
 
             RVN_GridDisplayer.SetGridFeedback(possibleTargetZone, Color.blue);
 
             if (possibleTargetZone.Contains(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition)))
             {
-                List<Node> zoneNodes = currentSelectedSpell.GetZone(Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition), CurrentNode);
+                List<Node> zoneNodes = currentSelectedSpell.SpellData.GetDisplayzone(CurrentNode, Grid.GetNodeFromWorldPoint(RVN_InputController.MousePosition));
                 RVN_GridDisplayer.SetGridFeedback(zoneNodes, Color.red);
             }
         }
@@ -177,7 +176,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public override bool CanSelectAction()
     {
-        return spells.Count > 0 && /*actionsLeftThisTurn > 0 &&*/ currentSelectedSpell != null && currentSelectedSpell.IsUsable && (ressource == null || currentSelectedSpell.RessourceCost <= ressource.CurrentAmount);
+        return spells.Count > 0 && currentSelectedSpell != null && currentSelectedSpell.IsUsable() && (ressource == null || currentSelectedSpell.SpellData.RessourceCost <= ressource.CurrentAmount);
     }
 
     /// <summary>
@@ -188,20 +187,21 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
         return  spells.Count > 0 && currentSelectedSpell != null &&
-                (currentSelectedSpell.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
                 IsActionUsable(nodeData.CurrentNode.worldPosition, actionTargetPosition, currentSelectedSpell);
     }
 
-    public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SpellScriptable spellToCheck)
+    public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SPL_SpellScriptable spellToCheck)
     {
-        //Debug.Log($"{spellToCheck?.CastType == SpellCastType.Fast} || {actionsLeftThisTurn} > 0) && {spellToCheck != null} && {spellToCheck?.IsUsable} && ({ressource} == null || {spellToCheck?.RessourceCost} <= {ressource?.CurrentAmount}) && {Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range)}");
-        //Debug.Log($"{Grid.GetNodeFromWorldPoint(actionCasterPosition)}, { Grid.GetNodeFromWorldPoint(actionTargetPosition)}, {spellToCheck?.Range}");
+        return IsActionUsable(actionCasterPosition, actionTargetPosition, GetOrCreateSpellHolderForScriptable(spellToCheck));
+    }
 
-        return  (spellToCheck.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
+    public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SPL_SpellHolder spellToCheck)
+    {
+        return  (spellToCheck.SpellData.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
                 spellToCheck != null &&
-                spellToCheck.IsUsable &&
-                (ressource == null || spellToCheck.RessourceCost <= ressource.CurrentAmount) &&
-                Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.Range);
+                spellToCheck.IsUsable() &&
+                (ressource == null || spellToCheck.SpellData.RessourceCost <= ressource.CurrentAmount) &&
+                Grid.IsNodeVisible(Grid.GetNodeFromWorldPoint(actionCasterPosition), Grid.GetNodeFromWorldPoint(actionTargetPosition), spellToCheck.SpellData.Range);
     }
 
     public override void OnStartRound()
@@ -241,36 +241,9 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to play once the spell end.</param>
     public override bool TryDoAction(Vector2 actionTargetPosition, Action callback)
     {
-        LaunchedSpellData launchedSpell = new LaunchedSpellData(currentSelectedSpell, this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
-
-        if (currentSelectedSpell != null && RVN_SpellManager.CanUseSpell(launchedSpell))
+        if (currentSelectedSpell != null)// && RVN_SpellManager.CanUseSpell(castedSpell)) //TODO Spell Rework : A voir si le CanUseSpell est encore d'actualité
         {
-            if(launchedSpell.scriptable.IsCooldownGlobal && spells.Contains(launchedSpell.scriptable))
-            {
-                for(int i = 0; i < spells.Count; i++)
-                {
-                    if (spells[i].IsCooldownGlobal)
-                    {
-                        spells[i].SetCooldown(launchedSpell.scriptable.CooldownDuration);
-                    }
-                }
-            }
-            else
-            {
-                launchedSpell.scriptable.StartCooldown();
-            }
-
-            CastSpell(launchedSpell, callback);
-
-            if (launchedSpell.scriptable.CastType != SpellCastType.Fast && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
-            {
-                //StopMovementAction();
-                SetActionLeft(actionsLeftThisTurn - 1);
-            }
-            else
-            {
-                SetActionLeft(actionsLeftThisTurn);
-            }
+            CastSpell(currentSelectedSpell, actionTargetPosition, callback);
 
             return true;
         }
@@ -288,12 +261,24 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         return CanSpellBeUsed(spells[spellIndex]);
     }
 
-    public bool CanSpellBeUsed(SpellScriptable spellToCheck)
+    public bool CanSpellBeUsed(SPL_SpellHolder spellToCheck)
     {
-        return !spellToCheck.IsLocked
-                   && (ActionLeftThisTurn > 0 || spellToCheck.CastType == SpellCastType.Fast)
-                   && (spellToCheck.IsUsable)
-                   && (Ressource == null || spellToCheck.RessourceCost <= Ressource.CurrentAmount);
+        return (ActionLeftThisTurn > 0 || spellToCheck.SpellData.CastType == SpellCastType.Fast)
+                && (spellToCheck.IsUsable())
+                && (Ressource == null || spellToCheck.SpellData.RessourceCost <= Ressource.CurrentAmount);
+    }
+
+    private SPL_SpellHolder GetOrCreateSpellHolderForScriptable(SPL_SpellScriptable scriptable)
+    {
+        foreach(SPL_SpellHolder holder in spells)
+        {
+            if (holder.SpellData == scriptable)
+            {
+                return holder;
+            }
+        }
+
+        return new SPL_SpellHolder(scriptable);
     }
 
     /// <summary>
@@ -311,11 +296,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         return false;
     }
 
-    public bool SelectSpell(SpellScriptable spellToSelect, bool displayAction = true)
+    public bool SelectSpell(SPL_SpellScriptable spellScriptable, bool displayAction = true)
+    {
+        return SelectSpell(GetOrCreateSpellHolderForScriptable(spellScriptable), displayAction);
+    }
+
+    public bool SelectSpell(SPL_SpellHolder spellToSelect, bool displayAction = true)
     {
         bool hasSelectedSpell = false;
 
-        SpellScriptable lastSpell = currentSelectedSpell;
+        SPL_SpellHolder lastSpell = currentSelectedSpell;
         if (currentSelectedSpell != null)
         {
             UnselectSpell();
@@ -353,32 +343,35 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <summary>
     /// Prepare a spell at the target position.
     /// </summary>
-    /// <param name="launchedSpell">The spell to cast.</param>
+    /// <param name="spellToCast">The spell to cast.</param>
     /// <param name="actionTargetPosition">The target position of the spell.</param>
     /// <param name="callback">The callback to call after the spell is done.</param>
-    private void CastSpell(LaunchedSpellData launchedSpell, Action callback)
+    private void CastSpell(SPL_SpellHolder spellToCast, Vector2 actionTargetPosition, Action callback)
     {
-        ressource?.UseRessource(launchedSpell.scriptable.RessourceCost);
-        launchedSpell.scriptable.UseSpell();
+        spellToCast.UseSpell();
 
-        OnCastSpell?.Invoke(launchedSpell);
-        handler.animationController?.PlayAnimation(launchedSpell.scriptable.CastingAnimation.ToString(), launchedSpell);
+        SPL_CastedSpell castedSpell = new SPL_CastedSpell(currentSelectedSpell.SpellData, this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
-        OnCastSpellToDiection?.Invoke(launchedSpell.targetNode.worldPosition - launchedSpell.caster.transform.position);
-
-        if (launchedSpell.scriptable.Projectile != null)
+        if (castedSpell.SpellData.CastType != SpellCastType.Fast && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
         {
-            SpellProjectile projectile = Instantiate(launchedSpell.scriptable.Projectile);
-
-            projectile.SetProjectile(launchedSpell.caster.CurrentNode, launchedSpell.targetNode, () => UseSpell(launchedSpell, callback));
+            SetActionLeft(actionsLeftThisTurn - 1);
         }
         else
         {
-            TimerManager.CreateGameTimer(launchedSpell.scriptable.CastDuration, () => UseSpell(launchedSpell, callback));
+            SetActionLeft(actionsLeftThisTurn);
         }
+
+        ressource?.UseRessource(spellToCast.SpellData.RessourceCost);
+
+
+        OnCastSpell?.Invoke(castedSpell);
+        
+        OnCastSpellToDiection?.Invoke(castedSpell.TargetNode.worldPosition - castedSpell.Caster.transform.position);
+
+        SPL_SpellResolverManager.Instance.ResolveSpell(castedSpell, () => EndUseSpell(callback));
     }
 
-    /// <summary>
+   /* /// <summary>
     /// Launch a spell at the target position.
     /// </summary>
     /// <param name="launchedSpell">The spell to launch.</param>
@@ -392,7 +385,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
 
         RVN_SpellManager.UseSpell(launchedSpell, () => EndUseSpell(callback));
-    }
+    }*/
 
     /// <summary>
     /// End a spell.
@@ -407,21 +400,20 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         SelectSpell(-1);
     }
 
-    public void AddSpell(SpellScriptable toAdd)
+    public void AddSpell(SPL_SpellScriptable toAdd)
     {
-        spells.Add(Instantiate(toAdd));
-        spells[spells.Count - 1].SetSpell();
+        spells.Add(new SPL_SpellHolder(toAdd));
 
         actOnUpdateSpell?.Invoke(this);
     }
 
-    public void LockSpell(SpellScriptable toLock, bool lockState)
+    public void LockSpell(SPL_SpellScriptable toLock, bool lockState)
     {
         Debug.Log("Try lock spell : " + toLock);
         for (int i = 0; i < spells.Count; i++)
         {
-            Debug.Log("Contains check : " + spells[i].name + " C " + toLock.name);
-            if (spells[i].name.Contains(toLock.name))
+            Debug.Log("Contains check : " + spells[i].SpellID + " C " + toLock.name);
+            if (spells[i].SpellID.Contains(toLock.name))
             {
                 Debug.Log("Set lock state : " + lockState);
                 spells[i].LockSpell(lockState);
@@ -432,11 +424,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
-    public void RemoveSpell(SpellScriptable toRemove)
+    public void RemoveSpell(SPL_SpellScriptable toRemove)
     {
         for(int i = 0; i < spells.Count;i++)
         {
-            if(spells[i].name.Contains(toRemove.name))
+            if(spells[i].SpellID.Contains(toRemove.name))
             {
                 spells.RemoveAt(i);
 
@@ -446,15 +438,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
-    public void ChangeSpell(SpellScriptable toSet, SpellScriptable toChange)
+    public void ChangeSpell(SPL_SpellScriptable toSet, SPL_SpellScriptable toChange)
     {
         for (int i = 0; i < spells.Count; i++)
         {
-            if (spells[i].name.Contains(toChange.name))
+            if (spells[i].SpellID.Contains(toChange.name))
             {
                 changeSpellWithIndex.Add(i, spells[i]);
-                spells[i] = Instantiate(toSet);
-                spells[i].SetSpell();
+                spells[i] = new SPL_SpellHolder(toSet);
 
                 actOnUpdateSpell?.Invoke(this);
                 break;
@@ -462,11 +453,11 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
         }
     }
 
-    public void ResetChangeSpell(SpellScriptable toSet)
+    public void ResetChangeSpell(SPL_SpellScriptable toSet)
     {
         for (int i = 0; i < spells.Count; i++)
         {
-            if (spells[i].name.Contains(toSet.name))
+            if (spells[i].SpellID.Contains(toSet.name))
             {
                 spells[i] = changeSpellWithIndex[i];
 

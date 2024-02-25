@@ -27,7 +27,7 @@ public class SQA_AddEffect : SequenceAction
     {
         if(handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler caster))
         {
-            caster.ApplyEffect(effectToAdd);
+            caster.ApplyEffect(effectToAdd, null);
         }
     }
 }

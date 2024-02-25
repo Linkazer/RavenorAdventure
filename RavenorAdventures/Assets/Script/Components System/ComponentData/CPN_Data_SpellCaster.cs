@@ -8,8 +8,8 @@ public interface CPN_Data_SpellCaster
     /// Sorts disponibles.
     /// </summary>
     /// <returns></returns>
-    public List<SpellScriptable> AvailableSpells();
-    public SpellScriptable OpportunitySpell();
+    public List<SPL_SpellScriptable> AvailableSpells();
+    public SPL_SpellScriptable OpportunitySpell();
     /// <summary>
     /// Nombre de sort utilisable par tour.
     /// </summary>

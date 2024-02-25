@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Test_SpellProjectile
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Attaque test distance
+    englishText: 
+  icon: {fileID: 21300000, guid: f4b0e4a0cbd982348828ab7c14d22e44, type: 3}
+  description:
+    frenchText: Ceci est un test
+    englishText: 
+  ressourceCost: 0
+  maxUtilisations: -1
+  range: 55
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 0
+  spellAction:
+    possibleActions:
+    - condition:
+        id: 1
+      spellAction:
+        id: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_ByDefinedShape, ns: , asm: ravenor_engine}
+      data:
+        zoneDefined:
+        - {x: 0, y: 0}
+        - {x: -1, y: 1}
+        - {x: 0, y: 1}
+        - {x: 1, y: 1}
+        zoneFaceCaster: 1
+    00000001:
+      type: {class: , ns: , asm: }
+    00000002:
+      type: {class: SPL_AS_ProjectileAction, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 3
+        startAnimations:
+        - id: 4
+        projectileToUse: {fileID: 858645855968176571, guid: f71903c77545bf9499b2c9330537d28d, type: 3}
+        actionOnReachTarget:
+          possibleActions:
+          - condition:
+              id: 5
+            spellAction:
+              id: 6
+    00000003:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000004:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0
+        casterAnimation: 8
+    00000005:
+      type: {class: SPL_CCondition_CharacterStat, ns: , asm: ravenor_engine}
+      data:
+        conditionTarget: 0
+        calculCondition:
+        - stat: 0
+          condition: 1
+          valueToCheck: 1
+    00000006:
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 7
+        startAnimations: []
+        dicesUsed: 0
+        damageData:
+        - origin:
+            id: 8
+          damageType: 2
+          needHit: 0
+        - origin:
+            id: 9
+          damageType: 0
+          needHit: 0
+        damageAnimations:
+        - id: 10
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
+        nextAction:
+          possibleActions: []
+    00000007:
+      type: {class: SPL_Shape_ByDefinedShape, ns: , asm: ravenor_engine}
+      data:
+        zoneDefined:
+        - {x: 0, y: 0}
+        - {x: -1, y: 1}
+        - {x: 0, y: 1}
+        - {x: 1, y: 1}
+        zoneFaceCaster: 1
+    00000008:
+      type: {class: SPL_DO_Direct, ns: , asm: ravenor_engine}
+      data:
+        damageAmount: 3
+    00000009:
+      type: {class: SPL_DO_Direct, ns: , asm: ravenor_engine}
+      data:
+        damageAmount: 5
+    0000000A:
+      type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 0
+        animationDuration: 0
+        fxToPlay: {fileID: 9159210273921008915, guid: 3c5ab0e2a93f14a4dbe8504b271fcdf9, type: 3}

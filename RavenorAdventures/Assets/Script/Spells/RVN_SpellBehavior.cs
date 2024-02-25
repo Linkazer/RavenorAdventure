@@ -220,7 +220,7 @@ public abstract class RVN_SpellBehavior<T> : RVN_SpellBehavior where T : SpellSc
     protected void ApplyEffects(CPN_EffectHandler target, EffectScriptable effectToApply)
     {
         Debug.Log(target);
-        target.ApplyEffect(effectToApply);
+        target.ApplyEffect(effectToApply, null);
     }
 
     protected bool CanUseOnNode(List<CPN_HealthHandler> hitablesOnNode, SpellTargets targetType, CPN_SpellCaster caster)

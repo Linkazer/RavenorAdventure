@@ -182,7 +182,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         {
             possibleTargets = new List<CPN_Character>();
 
-            switch(consideration.wantedAction.CastTargets) //Récupération des targets possibles
+            switch(consideration.wantedAction.CastTarget) //Récupération des targets possibles
             {
                 case SpellTargets.Self:
                     possibleTargets.Add(caster);
@@ -198,7 +198,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                     break;
             }
 
-            if(!currentCharacterSpell.Spells[consideration.wantedActionIndex].IsUsable)
+            if(!currentCharacterSpell.Spells[consideration.wantedActionIndex].IsUsable())
             {
                 continue;
             }
@@ -232,7 +232,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                         actionToCheck.actualTarget = target;
                         actionToCheck.movementTarget = movementNode;
                         actionToCheck.actionIndex = consideration.wantedActionIndex;
-                        actionToCheck.hitedTargets = consideration.wantedAction.GetZone(spellNode, movementNode);
+                        actionToCheck.hitedTargets = consideration.wantedAction.GetDisplayzone(movementNode, spellNode);
 
                         if (CanDoAction(caster, actionToCheck, consideration, forNextTurn))
                         {
@@ -359,10 +359,10 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
             {
                 if (!RVN_BattleManager.AreCharacterAllies(casterHealthHandler.Handler as CPN_Character, c.Handler as CPN_Character))
                 {
-                    if (c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
+                    /*if (c.hasOpportunityAttack && c.OpportunitySpell.SpellData is SPL_AS_DamageSpell)
                     {
-                        opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
-                    }
+                        opportunityAttackDiceCounter += (c.OpportunitySpell.SpellData as SPL_AS_DamageSpell).DiceUsed; //TODO Spell Rework : A revoir
+                    }*/
                 }
             }
         }
@@ -389,7 +389,7 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 {
                     if (!alreadyAttackedCaster.Contains(c) && !RVN_BattleManager.AreCharacterAllies(c.Handler as CPN_Character, characterToCheck) && c.hasOpportunityAttack && c.OpportunitySpell is RVN_SS_DamageSpellScriptable)
                     {
-                        opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed;
+                        //opportunityAttackDiceCounter += (c.OpportunitySpell as RVN_SS_DamageSpellScriptable).DiceUsed; //TODO Spell Rework : A revoir
 
                         alreadyAttackedCaster.Add(c);
                     }
@@ -439,11 +439,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
         return possibleMovements;
     }
 
-    private List<Node> GetReachTargetNode(Node casterNode, Node targetNode, SpellScriptable spellToCheck)
+    private List<Node> GetReachTargetNode(Node casterNode, Node targetNode, SPL_SpellScriptable spellToCheck)
     {
         List<Node> toReturn = new List<Node>();
 
-        foreach (Node n in spellToCheck.GetZone(targetNode, casterNode))
+        foreach (Node n in spellToCheck.GetDisplayzone(casterNode, targetNode))
         {
             if (Pathfinding.GetAllNodeInDistance(casterNode, spellToCheck.Range, true).Contains(n))
             {
@@ -488,11 +488,11 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
     {
         CPN_Character target = actionToCheck.actualTarget;
 
-        SpellScriptable action = consideration.wantedAction;
+        SPL_SpellScriptable action = consideration.wantedAction;
 
         if (target != null)
         {
-            switch (action.CastTargets)
+            switch (action.CastTarget)
             {
                 case SpellTargets.Self:
                     if (caster != target)

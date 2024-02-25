@@ -32,6 +32,7 @@ public enum SpellAnimationTarget
     HitedCharacters,
 }
 
+[System.Obsolete("Use SPL_SpellScriptable")]
 public abstract class SpellScriptable : ScriptableObject, CPN_Data_EffectHandler
 {
     [Header("Général Informations")]

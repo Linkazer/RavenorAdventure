@@ -31,7 +31,7 @@ public enum AiAbscissaType
 public class AI_Consideration
 {
     [Header("Actions")]
-    public SpellScriptable wantedAction;
+    public SPL_SpellScriptable wantedAction;
     public int wantedActionIndex;
     //public OptimizePositionOption optimizePosition;
     [Header("Condition")]

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EFF_AddSpell : Effect
 {
-    [SerializeField] private SpellScriptable spellToAdd;
-    [SerializeField] private SpellScriptable spellToChange;
+    [SerializeField] private SPL_SpellScriptable spellToAdd;
+    [SerializeField] private SPL_SpellScriptable spellToChange;
 
     protected override void UseEffect(RVN_ComponentHandler effectTarget)
     {

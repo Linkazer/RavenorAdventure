@@ -8,7 +8,7 @@ public class EFF_StatEffect : Effect
     [Serializable]
     public struct StatEffect
     {
-        public EffectStatEnum stat;
+        public StatEnum stat;
         public float valueToChange;
     }
     
@@ -32,7 +32,7 @@ public class EFF_StatEffect : Effect
 
             switch (statEff.stat)
             {
-                case EffectStatEnum.MaxHealth:
+                case StatEnum.MaxHealth:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthMaxHealth))
                     {
                         if (value > 0)
@@ -48,38 +48,38 @@ public class EFF_StatEffect : Effect
                         }
                     }
                     break;
-                case EffectStatEnum.BaseDamage:
+                case StatEnum.BaseDamage:
 
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster damageCaster))
                     {
                         damageCaster.AddPower((int)value);
                     }
                     break;
-                case EffectStatEnum.Accuracy:
+                case StatEnum.Accuracy:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster accuracyCaster))
                     {
                         accuracyCaster.AddAccuracy((int)value);
                     }
                     break;
-                case EffectStatEnum.OffensiveRerolls:
+                case StatEnum.OffensiveRerolls:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster rerollCaster))
                     {
                         rerollCaster.AddOffensiveRerolls((int)value);
                     }
                     break;
-                case EffectStatEnum.OffensiveRerollsMalus:
+                case StatEnum.OffensiveRerollsMalus:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster rerollMalusCaster))
                     {
                         rerollMalusCaster.AddOffensiveRerollsMalus((int)value);
                     }
                     break;
-                case EffectStatEnum.ActionByTurn:
+                case StatEnum.ActionByTurn:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster actionCaster))
                     {
                         actionCaster.AddBonusAction((int)value);
                     }
                     break;
-                case EffectStatEnum.Armor:
+                case StatEnum.Armor:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthArmor))
                     {
                         if (value > 0)
@@ -92,7 +92,7 @@ public class EFF_StatEffect : Effect
                         }
                     }
                     break;
-                case EffectStatEnum.MaxArmor:
+                case StatEnum.MaxArmor:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthMaxArmor))
                     {
                         if (value > 0)
@@ -105,31 +105,31 @@ public class EFF_StatEffect : Effect
                         }
                     }
                     break;
-                case EffectStatEnum.Defense:
+                case StatEnum.Defense:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefense))
                     {
                         healthDefense.AddDefense((int)value);
                     }
                     break;
-                case EffectStatEnum.DefenseiveRerolls:
+                case StatEnum.DefenseiveRerolls:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefensiveReroll))
                     {
                         healthDefensiveReroll.AddDefensiveRerolls((int)value);
                     }
                     break;
-                case EffectStatEnum.DefensiveRerollsMalus:
+                case StatEnum.DefensiveRerollsMalus:
                     if (effectTarget.GetComponentOfType<CPN_HealthHandler>(out CPN_HealthHandler healthDefensiveRerollMalus))
                     {
                         healthDefensiveRerollMalus.AddDefensiveRerollsMalus((int)value);
                     }
                     break;
-                case EffectStatEnum.Movement:
+                case StatEnum.Movement:
                     if (effectTarget.GetComponentOfType<CPN_Movement>(out CPN_Movement movement))
                     {
                         movement.AddMovement((int)value);
                     }
                     break;
-                case EffectStatEnum.SpellRessource:
+                case StatEnum.SpellRessource:
                     if (effectTarget.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster ressourceCaster))
                     {
                         if (value > 0)

@@ -56,12 +56,12 @@ public class RVN_InventoryManager : RVN_Singleton<RVN_InventoryManager>
         return objectsQuantityInInventory[item];
     }
 
-    public SpellScriptable GetItemAction(int itemIndex)
+    public SPL_SpellScriptable GetItemAction(int itemIndex)
     {
         return GetItemAction(GetItem(itemIndex));
     }
 
-    public SpellScriptable GetItemAction(StorableItem item)
+    public SPL_SpellScriptable GetItemAction(StorableItem item)
     {
         if (item is StorableItem_Usable)
         {

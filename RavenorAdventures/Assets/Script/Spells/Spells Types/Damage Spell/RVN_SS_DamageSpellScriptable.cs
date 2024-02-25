@@ -6,7 +6,7 @@ using UnityEngine;
 public class RVN_SS_DamageSpellScriptable : SpellScriptable
 {
     [Header("Damage")]
-    [SerializeField] private DamageType type;
+    [SerializeField] private SPL_DamageType type;
     [SerializeField] private int diceUsed;
     [SerializeField] private int baseDamage;
     [SerializeField] private int armorPierced;
@@ -23,7 +23,7 @@ public class RVN_SS_DamageSpellScriptable : SpellScriptable
     private int offensiveRerollsMalus;
 
 
-    public DamageType Type => type;
+    public SPL_DamageType Type => type;
 
     public int DiceUsed => diceUsed;
 

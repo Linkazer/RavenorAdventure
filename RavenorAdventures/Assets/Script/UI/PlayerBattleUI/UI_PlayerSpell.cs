@@ -47,9 +47,9 @@ public class UI_PlayerSpell : MonoBehaviour
     [SerializeField] private UnityEvent OnLockSpell;
     [SerializeField] private UnityEvent OnUnlockSpell;
 
-    private SpellScriptable currentSpell;
+    private SPL_SpellHolder currentSpell;
 
-    public SpellScriptable Spell => currentSpell;
+    public SPL_SpellHolder Spell => currentSpell;
 
     public void CheckUsable(RVN_ComponentHandler characterHandler)
     {
@@ -63,15 +63,15 @@ public class UI_PlayerSpell : MonoBehaviour
         }
     }
 
-    public void SetSpell(SpellScriptable toSet)
+    public void SetSpell(SPL_SpellHolder toSet)
     {
         currentSpell = toSet;
-        icon.sprite = toSet.Icon;
+        icon.sprite = toSet.SpellData.Icon;
 
-        spellName.text = toSet.Name;
-        spellDescription.SetText(toSet.GetDescription());
+        spellName.text = toSet.SpellData.DisplayName;
+        spellDescription.SetText(toSet.SpellData.Description);
 
-        switch(toSet.CastType)
+        switch(toSet.SpellData.CastType)
         {
             case SpellCastType.Normal:
                 actionCostNormal.SetActive(true);
@@ -83,9 +83,9 @@ public class UI_PlayerSpell : MonoBehaviour
                 break;
         }
 
-        if(toSet.RessourceCost != 0)
+        if(toSet.SpellData.RessourceCost != 0)
         {
-            spellCost.text = toSet.RessourceCost.ToString();
+            spellCost.text = toSet.SpellData.RessourceCost.ToString();
 
             spellCost.gameObject.SetActive(true);
 
@@ -93,7 +93,7 @@ public class UI_PlayerSpell : MonoBehaviour
             {
                 if (caster.Ressource != null)
                 {
-                    ressourceHolders[(int)caster.Ressource.RessourceType].text.text = toSet.RessourceCost.ToString();
+                    ressourceHolders[(int)caster.Ressource.RessourceType].text.text = toSet.SpellData.RessourceCost.ToString();
 
                     ressourceHolders[(int)caster.Ressource.RessourceType].gameObject.SetActive(true);
                 }
@@ -112,7 +112,7 @@ public class UI_PlayerSpell : MonoBehaviour
             }
         }
 
-        if (toSet.MaxUtilisation >= 0)
+        if (toSet.SpellData.MaxUtilisations >= 0)
         {
             spellUtilisationLeft.text = toSet.UtilisationLeft.ToString();
 
@@ -123,9 +123,9 @@ public class UI_PlayerSpell : MonoBehaviour
             spellUtilisationLeftHolder.gameObject.SetActive(false);
         }
 
-        if(toSet.CooldownDuration > 0)
+        if(toSet.SpellData.Cooldown > 0)
         {
-            spellCooldown.text = toSet.CooldownDuration.ToString();
+            spellCooldown.text = toSet.SpellData.Cooldown.ToString();
 
             spellCooldown.gameObject.SetActive(true);
         }
@@ -136,12 +136,12 @@ public class UI_PlayerSpell : MonoBehaviour
 
         UpdateCooldown(currentSpell.CurrentCooldown);
 
-        if (currentSpell.CooldownDuration > 0)
+        if (currentSpell.SpellData.Cooldown > 0)
         {
             currentSpell.OnUpdateCooldown += UpdateCooldown;
         }
 
-        if (currentSpell.MaxUtilisation > 0)
+        if (currentSpell.SpellData.MaxUtilisations > 0)
         {
             currentSpell.OnUpdateUtilisationLeft += UpdateUtilisationLeft;
         }
@@ -200,9 +200,9 @@ public class UI_PlayerSpell : MonoBehaviour
 
     public void UpdateCooldown(int currentCooldown)
     {
-        if (currentSpell.CooldownDuration > 0)
+        if (currentSpell.SpellData.Cooldown > 0)
         {
-            cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.CooldownDuration;
+            cooldown.fillAmount = (float)currentCooldown / (float)currentSpell.SpellData.Cooldown;
         }
         else
         {

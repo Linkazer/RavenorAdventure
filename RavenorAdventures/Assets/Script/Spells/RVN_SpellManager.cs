@@ -13,9 +13,11 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
     /// <param name="spellToCheck">Sort à tester.</param>
     /// <param name="targetNode">Case visée.</param>
     /// <returns>TRUE si le sort peut être utilisé.</returns>
-    public static bool CanUseSpell(LaunchedSpellData spellToCheck)
+    public static bool CanUseSpell(SPL_CastedSpell spellToCheck)
     {
-        if (spellToCheck != null && spellToCheck.scriptable.IsUsable)
+        return true; //TODO Spell Rework : A faire
+
+        /*if (spellToCheck != null && spellToCheck.scriptable.IsUsable)
         {
             RVN_SpellBehavior behaviorUsed = instance.GetSpellBehaviorForSpellData(spellToCheck.scriptable);
 
@@ -25,7 +27,7 @@ public class RVN_SpellManager : RVN_Singleton<RVN_SpellManager>
             }
         }
 
-        return false;
+        return false;*/
     }
 
     /// <summary>

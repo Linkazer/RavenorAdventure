@@ -9,7 +9,8 @@ using UnityEngine;
 /// - Le sort lancé (Scriptable)
 /// - Le lanceur du sort (Caster)
 /// </summary>
-public class LaunchedSpellData : ISoundHolder
+[Obsolete("Use CastData")]
+public class LaunchedSpellData : ISoundHolder //TODO Rework Spell : Supprimer toutes les ref à ça (C'est principalement dans les behavior donc ça va)
 {
     public SpellScriptable scriptable;
 

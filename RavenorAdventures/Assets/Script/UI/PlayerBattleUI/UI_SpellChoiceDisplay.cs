@@ -43,7 +43,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
 
     private void SetSpells(CPN_SpellCaster caster)
     {
-        List<SpellScriptable> spells = caster.Spells;
+        List<SPL_SpellHolder> spells = caster.Spells;
 
         for (int i = 0; i < spellIcons.Count; i++)
         {
@@ -60,7 +60,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         CheckSpellUsabilities(caster.ActionLeftThisTurn);
     }
 
-    public void OnSelectSpell(SpellScriptable selectedSpell)
+    public void OnSelectSpell(SPL_SpellHolder selectedSpell)
     {
         foreach (UI_PlayerSpell spl in spellIcons)
         {
@@ -71,7 +71,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         }
     }
 
-    public void OnUnselectSpell(SpellScriptable unselectedSpell)
+    public void OnUnselectSpell(SPL_SpellHolder unselectedSpell)
     {
         foreach(UI_PlayerSpell spl in spellIcons)
         {

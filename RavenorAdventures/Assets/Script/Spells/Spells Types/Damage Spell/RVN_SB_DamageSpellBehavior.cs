@@ -3,14 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DamageType
-{
-    Normal,
-    Heal,
-    IgnoreArmor,
-    RegenArmor
-}
-
 public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellScriptable>
 {
     protected override void OnEndSpell(LaunchedSpellData spellToEnd)
@@ -43,10 +35,10 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
             {
                 switch (usedScriptable.Type)
                 {
-                    case DamageType.Heal:
+                    case SPL_DamageType.Heal:
                         hitedObject.TakeHeal(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
                         break;
-                    case DamageType.RegenArmor:
+                    case SPL_DamageType.RegenArmor:
                         hitedObject.AddArmor(usedScriptable.BaseDamage + usedScriptable.DiceUsed);
                         break;
                     default:
@@ -59,7 +51,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                             toReturn = false;
                         }
 
-                        hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
+                        //hitedObject.TakeDamage(spellToUse.caster, damageDices, damage);
 
                         if (damage > 0)
                         {
@@ -77,7 +69,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
                         {
                             if (usedScriptable.ArmorPierced > 0)
                             {
-                                hitedObject.TakeDamage(spellToUse.caster, 0);
+                                //hitedObject.TakeDamage(spellToUse.caster, 0);
                             }
                         }
 
@@ -169,7 +161,7 @@ public class RVN_SB_DamageSpellBehavior : RVN_SpellBehavior<RVN_SS_DamageSpellSc
 
             totalDamage += spellUsed.BaseDamage;
 
-            if (spellUsed.Type != DamageType.IgnoreArmor)
+            if (spellUsed.Type != SPL_DamageType.IgnoreArmor)
             {
                 if (totalDamage > target.CurrentArmor)
                 {

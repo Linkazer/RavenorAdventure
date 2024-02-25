@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
+public class CANIM_JumpOnTarget : CharacterAnimation<SPL_CastedSpell>
 {
     [SerializeField] private Transform toMove;
     [SerializeField] protected SortingGroup sortingGroup;
@@ -27,10 +27,10 @@ public class CANIM_JumpOnTarget : CharacterAnimation<LaunchedSpellData>
     /// Play a Jump animation on the target.
     /// </summary>
     /// <param name="_targetPosition"></param>
-    public override void Play(LaunchedSpellData launchedSpell)
+    public override void Play(SPL_CastedSpell launchedSpell)
     {
         startPosition = toMove.localPosition;
-        direction = launchedSpell.targetNode.worldPosition - toMove.position;
+        direction = launchedSpell.TargetNode.worldPosition - toMove.position;
         curveDirection = 1;
 
         startSortingOrder = sortingGroup.sortingOrder;

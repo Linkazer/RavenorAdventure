@@ -9,7 +9,7 @@ public class CPN_InventoryHandler : CPN_CharacterAction
     [SerializeField] private CPN_SpellCaster spellCaster;
 
     private StorableItem selectedItem = null;
-    private SpellScriptable selectedItemAction = null;
+    private SPL_SpellScriptable selectedItemAction = null;
 
     public CPN_SpellCaster Caster => spellCaster;
 
