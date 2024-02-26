@@ -9,12 +9,14 @@ public class EFF_ActionEffect : Effect
 
     protected override void UseEffect(RVN_ComponentHandler effectTarget)
     {
-        SPL_CastedSpell launchedSpell = new SPL_CastedSpell(spellToUse, null, Grid.GetNodeFromWorldPoint(effectTarget.transform.position));
+        SPL_CastedSpell castedSpell = new SPL_CastedSpell(spellToUse, null, Grid.GetNodeFromWorldPoint(effectTarget.transform.position));
 
-        if (RVN_SpellManager.CanUseSpell(launchedSpell))
+        SPL_SpellResolverManager.Instance.ResolveSpell(castedSpell, null);
+
+        /*if (RVN_SpellManager.CanUseSpell(launchedSpell))
         {
-            //RVN_SpellManager.UseSpell(launchedSpell, null); //TODO Spell Rework : A corriger
-        }
+            RVN_SpellManager.UseSpell(castedSpell, null); //TODO Spell Rework : A corriger
+        }*/
     }
 
     protected override void UndoEffect(RVN_ComponentHandler effectTarget)

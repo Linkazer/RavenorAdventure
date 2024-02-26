@@ -36,9 +36,9 @@ public abstract class SPL_SpellActionAnimation
         switch(animationTarget)
         {
             case SPL_AnimationTarget.FullZone:
-                return spellAction.Shape.GetZone(resolver.CastedSpellData.Caster.CurrentNode, resolver.CastedSpellData.TargetNode);
+                return spellAction.Shape.GetZone(resolver.CastedSpellData.Caster?.CurrentNode, resolver.CastedSpellData.TargetNode);
             case SPL_AnimationTarget.HandlersInZone:
-                List<Node> zoneNode = spellAction.Shape.GetZone(resolver.CastedSpellData.Caster.CurrentNode, resolver.CastedSpellData.TargetNode);
+                List<Node> zoneNode = spellAction.Shape.GetZone(resolver.CastedSpellData.Caster?.CurrentNode, resolver.CastedSpellData.TargetNode);
 
                 for(int i = 0; i < zoneNode.Count; i++)
                 {

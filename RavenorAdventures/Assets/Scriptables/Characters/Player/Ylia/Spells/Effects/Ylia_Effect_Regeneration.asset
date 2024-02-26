@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Ylia_Effect_Regeneration
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Ylia_Effect_Regeneration
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: Ylia_Effect_Regeneration
+    englishText: 
+  ressourceCost: 0
+  maxUtilisations: -1
+  range: 5
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 0
+  spellAction:
+    possibleActions:
+    - conditions: []
+      spellAction:
+        id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000001:
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 2
+        startAnimations: []
+        dicesUsed: 0
+        damageData:
+        - origin:
+            id: 3
+          damageType: 1
+          needHit: 0
+        damageAnimations: []
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
+        nextAction:
+          possibleActions: []
+    00000002:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000003:
+      type: {class: SPL_DO_Direct, ns: , asm: ravenor_engine}
+      data:
+        damageAmount: 2

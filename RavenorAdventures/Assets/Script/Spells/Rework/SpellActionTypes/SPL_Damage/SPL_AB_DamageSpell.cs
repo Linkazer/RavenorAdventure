@@ -10,7 +10,10 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
     {
         bool didHit = false;
 
-        foreach(Node node in actionToResolve.Shape.GetZone(spellResolver.CastedSpellData.Caster.CurrentNode, spellResolver.CastedSpellData.TargetNode))
+        Node casterNode = spellResolver.CastedSpellData.Caster?.CurrentNode;
+        Node targetNode = spellResolver.CastedSpellData.TargetNode;
+
+        foreach (Node node in actionToResolve.Shape.GetZone(casterNode, targetNode))
         {
             if(ResolveOnNode(actionToResolve, spellResolver.CastedSpellData, node) && !didHit)
             {
@@ -65,7 +68,7 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
             //TODO Spell Rework : Check target possible
 
             //Roll dices
-            List<Dice> actionDices = DiceManager.GetDices(actionToResolve.DiceUsed, 6, castData.Caster, castData.Caster.Accuracy);
+            List<Dice> actionDices = DiceManager.GetDices(actionToResolve.DiceUsed, 6, castData.Caster, castData.Caster != null ? castData.Caster.Accuracy : 0);
 
             RollDices(actionToResolve, actionDices, castData.Caster, hitedObject, out bool didHit);
 
@@ -105,6 +108,7 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
                             damageAmount = 0;
                         }
                         hitedObject.TakeDamage(castData.Caster, damageAmount);
+                        hitedObject.RemoveArmor(1);
                         break;
                     case SPL_DamageType.Heal:
                         hitedObject.TakeHeal(damageByType.Value);
@@ -125,10 +129,13 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
                     didHitAtLeastOne = true;
 
                     //Trigger des effets de dégâts
-                    castData.Caster.actOnDealDamageSelf?.Invoke(castData.Caster.Handler);
-                    castData.Caster.actOnDealDamageTarget?.Invoke(hitedObject.Handler);
-                    hitedObject.actOnAttackReceivedTowardTarget?.Invoke(castData.Caster.Handler);
-                    hitedObject.actOnAttackReceivedTowardSelf?.Invoke(hitedObject.Handler);
+                    if (castData.Caster != null)
+                    {
+                        castData.Caster.actOnDealDamageSelf?.Invoke(castData.Caster.Handler);
+                        castData.Caster.actOnDealDamageTarget?.Invoke(hitedObject.Handler);
+                        hitedObject.actOnAttackReceivedTowardTarget?.Invoke(castData.Caster.Handler);
+                        hitedObject.actOnAttackReceivedTowardSelf?.Invoke(hitedObject.Handler);
+                    }
                 }
             }
         }
@@ -142,12 +149,16 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
 
         float totalHits = 0;
         int currentOffensiveRerolls = -target.DefensiveRerollsMalus;
-        int currentDefensiveRerolls = -caster.OffensiveRerollsMalus;
+        int currentDefensiveRerolls = 0;
+        if (caster != null)
+        {
+            currentDefensiveRerolls  = - caster.OffensiveRerollsMalus;
+        }
 
 
         for (int i = 0; i < dicesToRoll.Count; i++)
         {
-            totalHits += CheckDiceHit(caster, dicesToRoll[i], target.Defense, currentOffensiveRerolls < caster.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);
+            totalHits += CheckDiceHit(caster, dicesToRoll[i], target.Defense, currentOffensiveRerolls < caster?.OffensiveRerolls, currentDefensiveRerolls < target.DefensiveRerolls, out bool usedOffensiveReroll, out bool usedDefensiveReroll);
 
             if (usedDefensiveReroll)
             {
@@ -165,27 +176,6 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
         if (totalHits > 0 || dicesToRoll.Count == 0)
         {
             didHit = true;
-
-            /*if (spellUsed.Type != SPL_DamageType.IgnoreArmor)
-            {
-                if (totalHits > target.CurrentArmor)
-                {
-                    totalHits -= target.CurrentArmor;
-                }
-                else
-                {
-                    totalHits = 0;
-                }
-
-                if (spellUsed.ArmorPierced <= 0)
-                {
-                    target.RemoveArmor(1);
-                }
-                else
-                {
-                    target.RemoveArmor(spellUsed.ArmorPierced);
-                }
-            }*/
         }
     }
 

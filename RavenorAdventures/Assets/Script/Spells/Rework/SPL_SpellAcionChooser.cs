@@ -10,8 +10,21 @@ public class SPL_SpellAcionChooser
     [Serializable]
     private class ActionByCondition
     {
-        [SerializeReference, ReferenceEditor(typeof(SPL_SpellActionChooserCondition))] public SPL_SpellActionChooserCondition condition = null;
+        [SerializeReference, ReferenceEditor(typeof(SPL_SpellActionChooserCondition))] public SPL_SpellActionChooserCondition[] conditions = null;
         [SerializeReference, ReferenceEditor(typeof(SPL_SpellAction))] public SPL_SpellAction spellAction = null;
+
+        public bool IsUsable(SPL_CastedSpell castedSpellData)
+        {
+            foreach(SPL_SpellActionChooserCondition condition in conditions)
+            {
+                if(!condition.IsConditionValid(castedSpellData))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
     [SerializeField] private ActionByCondition[] possibleActions;
@@ -20,7 +33,7 @@ public class SPL_SpellAcionChooser
     {
         foreach(ActionByCondition actionByCondition in possibleActions)
         {
-            if(actionByCondition.condition == null || actionByCondition.condition.IsConditionValid(castedSpellData))
+            if(actionByCondition.IsUsable(castedSpellData))
             {
                 return actionByCondition.spellAction;
             }

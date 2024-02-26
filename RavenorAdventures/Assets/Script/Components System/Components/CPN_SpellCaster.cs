@@ -74,7 +74,10 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
             AddSpell(spell);
         }
 
-        opportunitySpell = new SPL_SpellHolder(toSet.OpportunitySpell());
+        if (toSet.OpportunitySpell() != null)
+        {
+            opportunitySpell = new SPL_SpellHolder(toSet.OpportunitySpell());
+        }
 
         ressource = toSet.Ressource();
         ressource?.Initialize(handler as CPN_Character);
@@ -366,7 +369,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
         OnCastSpell?.Invoke(castedSpell);
         
-        OnCastSpellToDiection?.Invoke(castedSpell.TargetNode.worldPosition - castedSpell.Caster.transform.position);
+        OnCastSpellToDiection?.Invoke(castedSpell.TargetNode.worldPosition - transform.position);
 
         SPL_SpellResolverManager.Instance.ResolveSpell(castedSpell, () => EndUseSpell(callback));
     }

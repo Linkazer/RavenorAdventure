@@ -19,21 +19,24 @@ public class SPL_CCondition_CharacterAffiliation : SPL_SpellActionChooserConditi
     {
         List<CPN_Character> targetCharacters = castedSpellData.TargetNode.GetNodeHandler<CPN_Character>();
 
-        CPN_Character casterCharacter = castedSpellData.Caster.Handler as CPN_Character;
+        if (castedSpellData.Caster != null)
+        {
+            CPN_Character casterCharacter = castedSpellData.Caster.Handler as CPN_Character;
 
-        if (casterCharacter != null && targetCharacters.Count > 0)
-        {
-            switch (affiliationWanted)
+            if (casterCharacter != null && targetCharacters.Count > 0)
             {
-                case PossibleAffiliation.Ally:
-                    return RVN_BattleManager.AreCharacterAllies(casterCharacter, targetCharacters[0]);
-                case PossibleAffiliation.Ennemy:
-                    return !RVN_BattleManager.AreCharacterAllies(casterCharacter, targetCharacters[0]);
+                switch (affiliationWanted)
+                {
+                    case PossibleAffiliation.Ally:
+                        return RVN_BattleManager.AreCharacterAllies(casterCharacter, targetCharacters[0]);
+                    case PossibleAffiliation.Ennemy:
+                        return !RVN_BattleManager.AreCharacterAllies(casterCharacter, targetCharacters[0]);
+                }
             }
-        }
-        else 
-        {
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         return true;

@@ -41,13 +41,12 @@ MonoBehaviour:
   speed: 4.5
   dangerosityMaxDistance: 35
   dangerosityMinimumDistance: 25
-  opportunitySpell: {fileID: 11400000, guid: c9d381595a09eb342b9411e865e61d61, type: 2}
+  opportunitySpell: {fileID: 0}
   availableSpells:
-  - {fileID: 11400000, guid: 0e90293666764474aaf0625b8d205cdd, type: 2}
-  - {fileID: 11400000, guid: 5458f880cdbeb9d45be5e2044e4f8c59, type: 2}
-  - {fileID: 11400000, guid: bf7de4bd3db647842a8801fe8407d19d, type: 2}
-  - {fileID: 11400000, guid: d387ac51d9ec7664da74232ba3849f11, type: 2}
-  - {fileID: 11400000, guid: 181e047fcfb58574593aa6efed166fa0, type: 2}
+  - {fileID: 11400000, guid: f365289c50bdc1f45b35156ba9479dcd, type: 2}
+  - {fileID: 11400000, guid: 683d6e464a47d8f46bd4331012973e23, type: 2}
+  - {fileID: 11400000, guid: 71c7abe834a0b434ab04aa0b23bdc31b, type: 2}
+  - {fileID: 11400000, guid: 55986e5950e03214585d6789f3af4833, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
@@ -57,6 +56,6 @@ MonoBehaviour:
     00000000:
       type: {class: SpellRessource_Maana, ns: , asm: ravenor_engine}
       data:
-        startAmount: 0
+        startAmount: 3
         limits: {x: 0, y: 3}
         currentAmount: 1

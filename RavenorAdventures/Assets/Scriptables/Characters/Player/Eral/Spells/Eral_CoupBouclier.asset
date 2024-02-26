@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Eral_CoupBouclier
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Eral_CoupBouclier
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: Eral_CoupBouclier
+    englishText: 
+  ressourceCost: 0
+  maxUtilisations: -1
+  range: 15
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 1
+  spellAction:
+    possibleActions:
+    - conditions: []
+      spellAction:
+        id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000001:
+      type: {class: SPL_AS_EffectAction, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 2
+        startAnimations:
+        - id: 3
+        effectsOnTarget:
+        - {fileID: 11400000, guid: cd4b617f997a2d448a616fa95746379f, type: 2}
+        effectAnimation:
+        - id: 4
+        nextAction:
+          possibleActions: []
+    00000002:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000003:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0.25
+        casterAnimation: 5
+    00000004:
+      type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 1
+        animationDuration: 0
+        fxToPlay: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}

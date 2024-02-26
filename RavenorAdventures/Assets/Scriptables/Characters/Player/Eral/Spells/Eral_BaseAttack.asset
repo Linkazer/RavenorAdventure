@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
-  m_Name: Ylia_Heal
+  m_Name: Eral_BaseAttack
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: Ylia_Heal
+    frenchText: Eral_BaseAttack
     englishText: 
   icon: {fileID: 0}
   description:
-    frenchText: Ylia_Heal
+    frenchText: Eral_BaseAttack
     englishText: 
-  ressourceCost: 1
+  ressourceCost: 0
   maxUtilisations: -1
-  range: 25
+  range: 15
   previsualizationZone:
     id: 0
-  hitableTarget: 3
-  castTarget: 3
+  hitableTarget: 1
+  castTarget: 1
   castType: 0
   cooldown: 0
   spellAction:
@@ -44,58 +44,33 @@ MonoBehaviour:
           id: 2
         startAnimations:
         - id: 3
-        dicesUsed: 0
+        dicesUsed: 2
         damageData:
         - origin:
             id: 4
-          damageType: 1
-          needHit: 0
+          damageType: 0
+          needHit: 1
         damageAnimations:
         - id: 5
-        - id: 6
         touchAction:
           possibleActions: []
         noTouchAction:
           possibleActions: []
         nextAction:
-          possibleActions:
-          - conditions: []
-            spellAction:
-              id: 7
+          possibleActions: []
     00000002:
       type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
     00000003:
       type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
       data:
         animationTarget: 2
-        animationDuration: 0.5
-        casterAnimation: 3
+        animationDuration: 0.25
+        casterAnimation: 5
     00000004:
-      type: {class: SPL_DO_Direct, ns: , asm: ravenor_engine}
-      data:
-        damageAmount: 4
+      type: {class: SPL_DO_Dices, ns: , asm: ravenor_engine}
     00000005:
-      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
-      data:
-        animationTarget: 2
-        animationDuration: 0
-        casterAnimation: 4
-    00000006:
       type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
       data:
-        animationTarget: 0
+        animationTarget: 1
         animationDuration: 0
-        fxToPlay: {fileID: 3603624626837706201, guid: 265a89d061bd9d44c8d1877b44fb2088, type: 3}
-    00000007:
-      type: {class: SPL_AS_EffectAction, ns: , asm: ravenor_engine}
-      data:
-        actionShape:
-          id: 8
-        startAnimations: []
-        effectsOnTarget:
-        - {fileID: 11400000, guid: 0d55d198b28fe2c4a84b1eb5bec39ad7, type: 2}
-        effectAnimation: []
-        nextAction:
-          possibleActions: []
-    00000008:
-      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+        fxToPlay: {fileID: 7282106008027488376, guid: 5a6cef62b20695240932f9bb327de929, type: 3}
