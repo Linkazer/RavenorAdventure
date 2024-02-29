@@ -40,7 +40,7 @@ MonoBehaviour:
       type: {class: EFF_LockSpell, ns: , asm: ravenor_engine}
       data:
         trigger: 0
-        spellToLock: {fileID: 11400000, guid: be0606a785bdf594c84c326859d3cccc, type: 2}
+        spellToLock: {fileID: 11400000, guid: 1f834233e01ad7e409890aab42a8bc0f, type: 2}
     00000002:
       type: {class: EFF_StatEffect, ns: , asm: ravenor_engine}
       data:

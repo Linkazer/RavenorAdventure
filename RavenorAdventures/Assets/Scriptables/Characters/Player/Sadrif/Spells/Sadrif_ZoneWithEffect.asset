@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Sadrif_ZoneWithEffect
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Sadrif_ZoneWithEffect
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: Sadrif_ZoneWithEffect
+    englishText: 
+  ressourceCost: 0
+  maxUtilisationsByTurn: -1
+  maxUtilisationsByLevel: -1
+  range: 55
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 2
+  spellAction:
+    possibleActions:
+    - conditions:
+      - id: 1
+      spellAction:
+        id: 2
+    - conditions: []
+      spellAction:
+        id: 3
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000001:
+      type: {class: SPL_CCondition_CharacterHasEffect, ns: , asm: ravenor_engine}
+      data:
+        conditionTarget: 0
+        effectsWanted:
+        - {fileID: 11400000, guid: 9d32bf83f933d4842853d560f0ae3ba7, type: 2}
+    00000002:
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 4
+        startAnimations:
+        - id: 5
+        dicesUsed: 2
+        damageData:
+        - origin:
+            id: 6
+          damageType: 0
+          needHit: 1
+        damageAnimations:
+        - id: 7
+        - id: 8
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
+        nextAction:
+          possibleActions: []
+    00000003:
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 9
+        startAnimations:
+        - id: 10
+        dicesUsed: 2
+        damageData:
+        - origin:
+            id: 11
+          damageType: 0
+          needHit: 1
+        damageAnimations:
+        - id: 12
+        - id: 13
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
+        nextAction:
+          possibleActions: []
+    00000004:
+      type: {class: SPL_Shape_ByDistance, ns: , asm: ravenor_engine}
+      data:
+        zoneRange: 20
+    00000005:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0.75
+        casterAnimation: 3
+    00000006:
+      type: {class: SPL_DO_Dices, ns: , asm: ravenor_engine}
+    00000007:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0
+        casterAnimation: 4
+    00000008:
+      type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 0
+        animationDuration: 0
+        fxToPlay: {fileID: 4071321388199400130, guid: 6d81cec997fd5c243b08ee6ac778c80e, type: 3}
+    00000009:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    0000000A:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0.75
+        casterAnimation: 3
+    0000000B:
+      type: {class: SPL_DO_Dices, ns: , asm: ravenor_engine}
+    0000000C:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0
+        casterAnimation: 4
+    0000000D:
+      type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 0
+        animationDuration: 0
+        fxToPlay: {fileID: 4071321388199400130, guid: 6d81cec997fd5c243b08ee6ac778c80e, type: 3}

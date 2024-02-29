@@ -41,20 +41,19 @@ MonoBehaviour:
   speed: 5
   dangerosityMaxDistance: 25
   dangerosityMinimumDistance: 15
-  opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  opportunitySpell: {fileID: 11400000, guid: 5c2793adc5ccb5447b12865d16d3ee85, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - {fileID: 11400000, guid: 5c2793adc5ccb5447b12865d16d3ee85, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives:
   - {fileID: 11400000, guid: ef49cc8e0e07408408d741690a3dd43b, type: 2}
-  wantedDistanceFromTarget: {x: 0, y: 15}
   movementBehaviorUsed:
     id: 1
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 5c2793adc5ccb5447b12865d16d3ee85, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0

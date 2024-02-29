@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Effect", menuName = "Spell/Effect/Base Effect")]
+[CreateAssetMenu(fileName = "Effect", menuName = "Spell/2. Effect")]
 public class EffectScriptable : ScriptableObject
 {
     [Header("Affichage")]

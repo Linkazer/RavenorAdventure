@@ -16,7 +16,6 @@ public class CPN_InteractibleObject : RVN_Component
     /// </summary>
     public void TryInteract()
     {
-        Debug.Log("??");
         TryInteract(RVN_BattleManager.CurrentCharacter);
     }
 
@@ -26,13 +25,10 @@ public class CPN_InteractibleObject : RVN_Component
     /// <param name="interactor">L'objet qui veut interagir.</param>
     public void TryInteract(RVN_ComponentHandler interactor)
     {
-        Debug.Log("??");
         foreach (NodeDataHanlder n in interactibleNodes)
         {
-            Debug.Log(n.CurrentNode.worldPosition);
             if (Pathfinding.GetDistance(n.CurrentNode, interactor.CurrentNode) <= 15)
             {
-                Debug.Log("??");
                 Interact(interactor);
             }
         }

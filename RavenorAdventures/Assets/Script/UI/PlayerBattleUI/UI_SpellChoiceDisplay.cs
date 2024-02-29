@@ -25,7 +25,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
             {
                 currentCharacter = nCharacter;
 
-                caster.actOnSetActionLeft += CheckSpellUsabilities;
+                caster.actOnSetActionLeft += OnCasterUpdateActionLeft;
                 caster.actOnSelectSpell += OnSelectSpell;
                 caster.actOnUnselectSpell += OnUnselectSpell;
 
@@ -34,7 +34,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
 
                 if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
                 {
-                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource += CheckSpellUsabilities;
+                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource += OnCasterUseRessource;
                     ressources[(int)caster.Ressource.RessourceType].SetCharacter(nCharacter);
                 }
             }
@@ -57,7 +57,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
             }
         }
 
-        CheckSpellUsabilities(caster.ActionLeftThisTurn);
+        CheckSpellUsabilities();
     }
 
     public void OnSelectSpell(SPL_SpellHolder selectedSpell)
@@ -85,7 +85,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         {
             if (currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
             {
-                caster.actOnSetActionLeft -= CheckSpellUsabilities;
+                caster.actOnSetActionLeft -= OnCasterUpdateActionLeft;
                 caster.actOnSelectSpell -= OnSelectSpell;
                 caster.actOnUnselectSpell -= OnUnselectSpell;
                 caster.actOnUpdateSpell -= SetSpells;
@@ -93,7 +93,7 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
                 if (caster.Ressource != null && caster.Ressource.RessourceType != SpellRessourceType.None)
                 {
                     ressources[(int)caster.Ressource.RessourceType].UnsetCharacter();
-                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource -= CheckSpellUsabilities;
+                    ressources[(int)caster.Ressource.RessourceType].actOnUpdateRessource -= OnCasterUseRessource;
                 }
             }
 
@@ -104,7 +104,17 @@ public class UI_SpellChoiceDisplay : MonoBehaviour
         }
     }
 
-    private void CheckSpellUsabilities(int actionLeft)
+    private void OnCasterUpdateActionLeft(int maxAction, int actionLeft)
+    {
+        CheckSpellUsabilities();
+    }
+
+    private void OnCasterUseRessource(int ressourceLeft)
+    {
+        CheckSpellUsabilities();
+    }
+
+    private void CheckSpellUsabilities()
     {
         foreach (UI_PlayerSpell spl in spellIcons)
         {

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Sadrif_DamageByEffect
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Sadrif_DamageByEffect
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: Sadrif_DamageByEffect
+    englishText: 
+  ressourceCost: 0
+  maxUtilisationsByTurn: -1
+  maxUtilisationsByLevel: -1
+  range: 55
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 2
+  spellAction:
+    possibleActions:
+    - conditions: []
+      spellAction:
+        id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000001:
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 2
+        startAnimations:
+        - id: 3
+        dicesUsed: 1
+        damageData:
+        - origin:
+            id: 4
+          damageType: 0
+          needHit: 1
+        - origin:
+            id: 5
+          damageType: 3
+          needHit: 1
+        damageAnimations:
+        - id: 6
+        - id: 7
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
+        nextAction:
+          possibleActions: []
+    00000002:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000003:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0.75
+        casterAnimation: 3
+    00000004:
+      type: {class: SPL_DO_Dices, ns: , asm: ravenor_engine}
+    00000005:
+      type: {class: SPL_DO_EffectStack, ns: , asm: ravenor_engine}
+      data:
+        effectToScaleOn: {fileID: 11400000, guid: 9d32bf83f933d4842853d560f0ae3ba7, type: 2}
+        damageByStack: 1
+    00000006:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0
+        casterAnimation: 4
+    00000007:
+      type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 1
+        animationDuration: 0
+        fxToPlay: {fileID: 4071321388199400130, guid: 11c4d631bcacebf46ac92c1f0b28bc24, type: 3}

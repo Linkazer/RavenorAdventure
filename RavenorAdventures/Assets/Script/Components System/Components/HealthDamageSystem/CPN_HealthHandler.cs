@@ -25,6 +25,8 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     [SerializeField] private UnityEvent<int> OnLoseArmor;
     [SerializeField] private UnityEvent OnDeath;
 
+    private List<DamageOverrider> receivedDamageOverriders = new List<DamageOverrider>();
+
     public Action<RVN_ComponentHandler> actOnDeath;
     public Action<float> actOnChangeHealth;
     public Action<RVN_ComponentHandler> actOnTakeDamageSelf;
@@ -40,6 +42,7 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public int Defense => defense;
     public int DefensiveRerolls => defensiveRerolls;
     public int DefensiveRerollsMalus => defensiveRerollsMalus;
+    public List<DamageOverrider> ReceivedDamageOverriders => receivedDamageOverriders;
 
     public bool IsAlive => currentHealth > 0;
 
@@ -251,5 +254,15 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     public void AddDefensiveRerollsMalus(int toAdd)
     {
         defensiveRerollsMalus += toAdd;
+    }
+
+    public void AddReceivedDamageOverrider(DamageOverrider toAdd)
+    {
+        receivedDamageOverriders.Add(toAdd);
+    }
+
+    public void RemoveReceivedDamageOverrider(DamageOverrider toRemove)
+    {
+        receivedDamageOverriders.Remove(toRemove);
     }
 }

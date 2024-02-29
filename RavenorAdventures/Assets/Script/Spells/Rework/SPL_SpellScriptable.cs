@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spell", menuName = "Spell/Create Spell")]
+[CreateAssetMenu(fileName = "Spell", menuName = "Spell/1. Spell")]
 public class SPL_SpellScriptable : ScriptableObject
 {
     [Header("Général Informations")]
@@ -15,7 +15,8 @@ public class SPL_SpellScriptable : ScriptableObject
 
     [Header("Ressources")]
     [SerializeField] private int ressourceCost;
-    [SerializeField] private int maxUtilisations = -1;
+    [SerializeField] private int maxUtilisationsByTurn = -1;
+    [SerializeField] private int maxUtilisationsByLevel = -1;
 
     [Header("Cast Data")]
     [SerializeField] private int range;
@@ -36,7 +37,8 @@ public class SPL_SpellScriptable : ScriptableObject
     public Sprite Icon => icon;
 
     public int RessourceCost => ressourceCost;
-    public int MaxUtilisations => maxUtilisations;
+    public int MaxUtilisationsByTurn => maxUtilisationsByTurn;
+    public int MaxUtilisationsByLevel => maxUtilisationsByLevel;
 
     public int Cooldown => cooldown;
 

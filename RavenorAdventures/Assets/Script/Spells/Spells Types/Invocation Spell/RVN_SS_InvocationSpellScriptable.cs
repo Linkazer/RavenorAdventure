@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Invocation Spell", menuName = "Spell/Create Invocation Spell")]
+//[CreateAssetMenu(fileName = "Invocation Spell", menuName = "Spell/Create Invocation Spell")]
 public class RVN_SS_InvocationSpellScriptable : SpellScriptable
 {
     [SerializeField] private CPN_Character toSpawn;

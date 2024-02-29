@@ -112,9 +112,9 @@ public class UI_PlayerSpell : MonoBehaviour
             }
         }
 
-        if (toSet.SpellData.MaxUtilisations >= 0)
+        if (toSet.SpellData.MaxUtilisationsByLevel >= 0)
         {
-            spellUtilisationLeft.text = toSet.UtilisationLeft.ToString();
+            spellUtilisationLeft.text = toSet.UtilisationLeftForLevel.ToString();
 
             spellUtilisationLeftHolder.gameObject.SetActive(true);
         }
@@ -141,7 +141,7 @@ public class UI_PlayerSpell : MonoBehaviour
             currentSpell.OnUpdateCooldown += UpdateCooldown;
         }
 
-        if (currentSpell.SpellData.MaxUtilisations > 0)
+        if (currentSpell.SpellData.MaxUtilisationsByLevel > 0)
         {
             currentSpell.OnUpdateUtilisationLeft += UpdateUtilisationLeft;
         }

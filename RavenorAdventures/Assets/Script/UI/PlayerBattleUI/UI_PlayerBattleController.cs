@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using JetBrains.Annotations;
 
 public class UI_PlayerBattleController : MonoBehaviour
 {
@@ -39,26 +40,7 @@ public class UI_PlayerBattleController : MonoBehaviour
                 {
                     characterCaster.actOnSetActionLeft += UpdateCharacterAction;
 
-                    for (int i = 0; i < actionCounts.Length; i++)
-                    {
-                        if (i < characterCaster.ActionByTurn)
-                        {
-                            actionCounts[i].SetVisible(true);
-
-                            if (i < characterCaster.ActionLeftThisTurn)
-                            {
-                                actionCounts[i].SetAvailable(true);
-                            }
-                            else
-                            {
-                                actionCounts[i].SetAvailable(false);
-                            }
-                        }
-                        else
-                        {
-                            actionCounts[i].SetVisible(false);
-                        }
-                    }
+                    UpdateCharacterAction(characterCaster.ActionByTurn, characterCaster.ActionLeftThisTurn);
                 }
             }
         }
@@ -105,8 +87,27 @@ public class UI_PlayerBattleController : MonoBehaviour
         }
     }
 
-    private void UpdateCharacterAction(int actionLeft)
+    private void UpdateCharacterAction(int maxActions, int actionLeft)
     {
+        for (int i = 0; i < actionCounts.Length; i++)
+        {
+            if (i < maxActions)
+            {
+                actionCounts[i].SetVisible(true);
 
+                if (i < actionLeft)
+                {
+                    actionCounts[i].SetAvailable(true);
+                }
+                else
+                {
+                    actionCounts[i].SetAvailable(false);
+                }
+            }
+            else
+            {
+                actionCounts[i].SetVisible(false);
+            }
+        }
     }
 }

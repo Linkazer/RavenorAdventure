@@ -10,26 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a784dacfc9200d3489cac163fc51646b, type: 3}
-  m_Name: Lisbeth_Arbalete_AddSecond
+  m_Name: Ryn_AdrenalineMalus
   m_EditorClassIdentifier: 
-  hideOnApply: 1
+  hideOnApply: 0
   icon: {fileID: 0}
   effectName:
-    frenchText: 
+    frenchText: Ryn_AdrenalineMalus
     englishText: 
   effectDescription:
     frenchText: 
     englishText: 
   effectDisplay: {fileID: 0}
-  duration: 0.5
+  duration: 1
   maxStack: 1
   effects:
   - id: 0
   references:
     version: 1
     00000000:
-      type: {class: EFF_AddSpell, ns: , asm: ravenor_engine}
+      type: {class: EFF_StatEffect, ns: , asm: ravenor_engine}
       data:
         trigger: 0
-        spellToAdd: {fileID: 11400000, guid: cf1218d15ac8ca54c81fd5f9a8cdadf5, type: 2}
-        spellToChange: {fileID: 11400000, guid: 1846f8c985838ef49bae6245028fedfa, type: 2}
+        effects:
+        - stat: 4
+          valueToChange: -2

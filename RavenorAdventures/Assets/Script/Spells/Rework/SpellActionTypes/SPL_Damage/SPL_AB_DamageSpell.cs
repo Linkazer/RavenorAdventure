@@ -45,7 +45,6 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
         EndResolve(nextAction, spellResolver);
     }
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -96,6 +95,27 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
                 }
             }
 
+            //Damage Overriders
+            if(castData.Caster != null)
+            {
+                foreach(DamageOverrider dmgOverride in castData.Caster.DoneDamageOverriders)
+                {
+                    int damageToAdd = dmgOverride.damageOverrider.Origin.GetDamageAmount(actionData);
+                    damagesByType.Add(new KeyValuePair<SPL_DamageType, int>(dmgOverride.damageOverrider.DamageType, damageToAdd));
+                }
+            }
+
+            if(hitedObject != null)
+            {
+                foreach (DamageOverrider dmgOverride in hitedObject.ReceivedDamageOverriders)
+                {
+                    int damageToAdd = dmgOverride.damageOverrider.Origin.GetDamageAmount(actionData);
+                    damagesByType.Add(new KeyValuePair<SPL_DamageType, int>(dmgOverride.damageOverrider.DamageType, damageToAdd));
+                }
+            }
+
+            bool alreadyLostArmor = false;
+
             //Apply all Damages
             foreach(KeyValuePair<SPL_DamageType, int> damageByType in damagesByType)
             {
@@ -108,7 +128,11 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
                             damageAmount = 0;
                         }
                         hitedObject.TakeDamage(castData.Caster, damageAmount);
-                        hitedObject.RemoveArmor(1);
+                        if (!alreadyLostArmor)
+                        {
+                            hitedObject.RemoveArmor(1);
+                            alreadyLostArmor = true;
+                        }
                         break;
                     case SPL_DamageType.Heal:
                         hitedObject.TakeHeal(damageByType.Value);
@@ -118,6 +142,7 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
                         break;
                     case SPL_DamageType.PierceArmor:
                         hitedObject.RemoveArmor(damageByType.Value);
+                        alreadyLostArmor = true;
                         break;
                     case SPL_DamageType.RegenArmor:
                         hitedObject.AddArmor(damageByType.Value);

@@ -41,11 +41,11 @@ MonoBehaviour:
   speed: 4.5
   dangerosityMaxDistance: 65
   dangerosityMinimumDistance: 45
-  opportunitySpell: {fileID: 11400000, guid: 4c0851a9f67c2c34aab31dcdf9fcce10, type: 2}
+  opportunitySpell: {fileID: 0}
   availableSpells:
-  - {fileID: 11400000, guid: 0257c2dbab9bc844eb95fdeec5686c80, type: 2}
-  - {fileID: 11400000, guid: 1fdd5b308f227a24d9926181dc3a57db, type: 2}
-  - {fileID: 11400000, guid: a2b651b31841e304091d1b5f48e6e043, type: 2}
+  - {fileID: 11400000, guid: 681db8398f6379d46a2d2736cbf2f700, type: 2}
+  - {fileID: 11400000, guid: 621e9c40ae673ec4bb602fbbe38da084, type: 2}
+  - {fileID: 11400000, guid: 0d77d58192b761347973e53a5c020f2b, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0

@@ -138,6 +138,19 @@ public class CPN_EffectHandler : RVN_Component<CPN_Data_EffectHandler>
         return false;
     }
 
+    public int GetEffectStack(EffectScriptable toCheck)
+    {
+        foreach (AppliedEffect eff in currentAppliedEffects)
+        {
+            if (eff.GetEffect.name == toCheck.name)
+            {
+                return eff.Stacks;
+            }
+        }
+
+        return 0;
+    }
+
     private AppliedEffect TryGetAppliedEffect(EffectScriptable toCheck)
     {
         foreach(AppliedEffect eff in currentAppliedEffects)

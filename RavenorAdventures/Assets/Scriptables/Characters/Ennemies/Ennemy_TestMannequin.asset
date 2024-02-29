@@ -30,7 +30,7 @@ MonoBehaviour:
   displayHand: 0
   handHeight: 0.1
   uiHeight: 1.3
-  health: 3
+  health: 50
   armor: 0
   defense: 0
   accuracy: 0
@@ -42,68 +42,18 @@ MonoBehaviour:
   dangerosityMaxDistance: 0
   dangerosityMinimumDistance: 0
   opportunitySpell: {fileID: 0}
-  availableSpells:
-  - {fileID: 11400000, guid: c9d34beb4498f3847be8902f8c549040, type: 2}
-  - {fileID: 11400000, guid: ff96236a8f3784645a5c9b90f5c99bcb, type: 2}
+  availableSpells: []
   usableSpellByTurn: 1
   usedRessource:
     id: 0
   passives: []
-  wantedDistanceFromTarget: {x: 25, y: 30}
   movementBehaviorUsed:
     id: 1
   oppportunityHealthBonus: 10
-  comportement:
-  - wantedAction: {fileID: 11400000, guid: c9d34beb4498f3847be8902f8c549040, type: 2}
-    wantedActionIndex: 0
-    conditions: []
-    bonusScore: 0
-    calculs:
-    - id: 2
-    - id: 3
-  - wantedAction: {fileID: 11400000, guid: ff96236a8f3784645a5c9b90f5c99bcb, type: 2}
-    wantedActionIndex: 1
-    conditions: []
-    bonusScore: 0
-    calculs:
-    - id: 2
-    - id: 4
+  comportement: []
   references:
     version: 1
     00000000:
       type: {class: , ns: , asm: }
     00000001:
       type: {class: AI_MVT_StayMelee, ns: , asm: ravenor_engine}
-    00000002:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 0
-        abcissaCalcul:
-          id: 5
-        abscissaCoeficient: -1
-        constantToAdd: 50
-        maxValue: 50
-    00000003:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 1
-        abcissaCalcul:
-          id: 6
-        abscissaCoeficient: 0
-        constantToAdd: 0
-        maxValue: 4
-    00000004:
-      type: {class: AIC_Affine, ns: , asm: ravenor_engine}
-      data:
-        calculImportance: 1
-        abcissaCalcul:
-          id: 7
-        abscissaCoeficient: 0
-        constantToAdd: 0
-        maxValue: 4
-    00000005:
-      type: {class: AI_CA_DistranceFromTarget_BasePosition, ns: , asm: ravenor_engine}
-    00000006:
-      type: {class: AI_CA_TargetDangerosity, ns: , asm: ravenor_engine}
-    00000007:
-      type: {class: AI_CA_TargetVulnerability, ns: , asm: ravenor_engine}

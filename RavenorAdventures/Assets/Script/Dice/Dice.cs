@@ -17,6 +17,8 @@ public class Dice
     public bool succeed = false;
     public int rerolled = 0;// 1 : Reroll Attaque, 2 : Reroll Defense, 3 : Reroll des deux
 
+    public int FaceBonus => faceBonus;
+
     public float Result => result;
 
     public Dice()
@@ -30,16 +32,9 @@ public class Dice
         faceBonus = bonus;
     }
 
-    public float Roll()
-    {
-        result = UnityEngine.Random.Range(1, faceNumber+1) + faceBonus;
-
-        return result;
-    }
-
     public float Roll(MonoBehaviour asker)
     {
-        result = 0;
+        int diceResult = 0;
 
         List<int> history = new List<int>();
         if (asker != null)
@@ -82,7 +77,7 @@ public class Dice
             index++;
             if (rng < currentCount)
             {
-                result = index;
+                diceResult = index;
                 break;
             }
         }
@@ -91,12 +86,12 @@ public class Dice
         {
             if (asker != null)
             {
-                dicesHistory[asker].Add((int)result);
+                dicesHistory[asker].Add((int)diceResult);
             }
         }
         catch(Exception e)
         {
-            Debug.Log((int)result);
+            Debug.Log((int)diceResult);
         }
 
         if (asker != null)
@@ -107,6 +102,8 @@ public class Dice
             }
         }
 
-        return result;
+        result = diceResult + faceBonus;
+
+        return diceResult;
     }
 }

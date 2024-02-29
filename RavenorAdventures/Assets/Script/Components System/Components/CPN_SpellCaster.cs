@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.WSA;
 
 public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 {
@@ -31,12 +32,14 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     private Dictionary<int, SPL_SpellHolder> changeSpellWithIndex = new Dictionary<int, SPL_SpellHolder>();
 
+    private List<DamageOverrider> doneDamageOverriders = new List<DamageOverrider>();
+
     public Action<RVN_ComponentHandler> actOnDealDamageSelf;
     public Action<RVN_ComponentHandler> actOnDealDamageTarget;
     public Action<RVN_ComponentHandler> actOnUseSkillSelf;
     public Action<RVN_ComponentHandler> actOnUseSkillTarget;
     public Action actOnEndCastSpell;
-    public Action<int> actOnSetActionLeft;
+    public Action<int, int> actOnSetActionLeft;
     public Action<SPL_SpellHolder> actOnSelectSpell;
     public Action<SPL_SpellHolder> actOnUnselectSpell;
     public Action<CPN_SpellCaster> actOnUpdateSpell;
@@ -49,6 +52,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public int OffensiveRerollsMalus => offensiveRerollsMalus;
     public int Accuracy => accuracy;
     public int Power => power;
+    public List<DamageOverrider> DoneDamageOverriders => doneDamageOverriders;
 
     public SpellRessource Ressource => ressource;
 
@@ -100,6 +104,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     }
 
+    public override void OnStartHandlerGroupRound()
+    {
+        base.OnStartHandlerGroupRound();
+
+        foreach (SPL_SpellHolder spell in spells)
+        {
+            spell.OnCaterBeginTurn();
+        }
+    }
+
     public override void OnEndHandlerGroupRound()
     {
         base.OnEndHandlerGroupRound();
@@ -140,7 +154,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     {
         actionsLeftThisTurn = amount;
 
-        actOnSetActionLeft?.Invoke(actionsLeftThisTurn);
+        actOnSetActionLeft?.Invoke(actionByTurn, actionsLeftThisTurn);
     }
 
     public override void UnselectAction()
@@ -200,7 +214,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public bool IsActionUsable(Vector2 actionCasterPosition, Vector2 actionTargetPosition, SPL_SpellHolder spellToCheck)
     {
-        return  (spellToCheck.SpellData.CastType == SpellCastType.Fast || actionsLeftThisTurn > 0) &&
+        return  spellToCheck.CanBeCasted(actionsLeftThisTurn) &&
                 spellToCheck != null &&
                 spellToCheck.IsUsable() &&
                 (ressource == null || spellToCheck.SpellData.RessourceCost <= ressource.CurrentAmount) &&
@@ -266,7 +280,7 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 
     public bool CanSpellBeUsed(SPL_SpellHolder spellToCheck)
     {
-        return (ActionLeftThisTurn > 0 || spellToCheck.SpellData.CastType == SpellCastType.Fast)
+        return  spellToCheck.CanBeCasted(actionsLeftThisTurn)
                 && (spellToCheck.IsUsable())
                 && (Ressource == null || spellToCheck.SpellData.RessourceCost <= Ressource.CurrentAmount);
     }
@@ -351,16 +365,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     /// <param name="callback">The callback to call after the spell is done.</param>
     private void CastSpell(SPL_SpellHolder spellToCast, Vector2 actionTargetPosition, Action callback)
     {
-        spellToCast.UseSpell();
-
         SPL_CastedSpell castedSpell = new SPL_CastedSpell(currentSelectedSpell.SpellData, this, Grid.GetNodeFromWorldPoint(actionTargetPosition));
 
-        if (castedSpell.SpellData.CastType != SpellCastType.Fast && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
+        if (spellToCast.DoesCostAction() && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
         {
+            spellToCast.UseSpell();
             SetActionLeft(actionsLeftThisTurn - 1);
         }
         else
         {
+            spellToCast.UseSpell();
             SetActionLeft(actionsLeftThisTurn);
         }
 
@@ -475,6 +489,16 @@ public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
     public void UpdateCooldowns() //A déplacer dans une des fonctions de Round
     {
         Debug.Log("Should not pass here");
+    }
+
+    public void AddDamageOverrider(DamageOverrider toAdd)
+    {
+        doneDamageOverriders.Add(toAdd);
+    }
+
+    public void RemoveDamageOverrider(DamageOverrider toRemove)
+    {
+        doneDamageOverriders.Remove(toRemove);
     }
 
     //CODE REVIEW : Voir comment on peut faire pour éviter de juste avoir les events ici ?

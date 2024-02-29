@@ -19,6 +19,7 @@ public class AppliedEffect
 
     public EffectScriptable GetEffect => effect;
     public float Duration => effectTimer.roundLeft;
+    public int Stacks => currentStack;
 
     public void UpdateDuration()
     {

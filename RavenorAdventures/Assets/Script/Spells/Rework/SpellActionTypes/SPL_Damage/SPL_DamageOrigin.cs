@@ -54,3 +54,21 @@ public class SPL_DO_Direct : SPL_DamageOrigin
         return damageAmount;
     }
 }
+
+public class SPL_DO_EffectStack : SPL_DamageOrigin
+{
+    [SerializeField] private EffectScriptable effectToScaleOn;
+    [SerializeField] private int damageByStack;
+
+    public override int GetDamageAmount(SPL_DamageActionData damageData)
+    {
+        if(damageData.target.Handler.GetComponentOfType<CPN_EffectHandler>(out CPN_EffectHandler targetEffectHandler))
+        {
+            return targetEffectHandler.GetEffectStack(effectToScaleOn) * damageByStack;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}

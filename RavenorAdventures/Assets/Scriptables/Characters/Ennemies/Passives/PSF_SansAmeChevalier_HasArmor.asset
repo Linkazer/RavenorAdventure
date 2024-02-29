@@ -32,9 +32,9 @@ MonoBehaviour:
       type: {class: EFF_LockSpell, ns: , asm: ravenor_engine}
       data:
         trigger: 0
-        spellToLock: {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
+        spellToLock: {fileID: 11400000, guid: 9f2372e4eb8445a4f801ee1adec653ac, type: 2}
     00000001:
-      type: {class: EFF_ActionEffect, ns: , asm: ravenor_engine}
+      type: {class: Eff_SecondaryEffect, ns: , asm: ravenor_engine}
       data:
         trigger: 16
-        spellToUse: {fileID: 11400000, guid: e94b94f90ce34ce45be29ea0efb0dcfa, type: 2}
+        secondaryEffect: {fileID: 11400000, guid: ec984da0c60d1e842ab200a2e5086e50, type: 2}

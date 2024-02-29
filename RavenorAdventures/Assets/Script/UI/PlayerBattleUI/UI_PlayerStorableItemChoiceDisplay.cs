@@ -63,7 +63,7 @@ public class UI_PlayerStorableItemChoiceDisplay : MonoBehaviour
             }
         }
 
-        CheckItemsUsabilities(0);
+        CheckItemsUsabilities(0,0);
     }
 
     public void OnSelectItem(StorableItem selectedItem)
@@ -106,7 +106,7 @@ public class UI_PlayerStorableItemChoiceDisplay : MonoBehaviour
         }
     }
 
-    private void CheckItemsUsabilities(int actionLeft)
+    private void CheckItemsUsabilities(int maxAction, int actionLeft)
     {
         foreach (UI_PlayerStorableItem itm in itemIcons)
         {

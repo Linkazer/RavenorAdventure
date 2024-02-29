@@ -41,10 +41,10 @@ MonoBehaviour:
   speed: 4.5
   dangerosityMaxDistance: 0
   dangerosityMinimumDistance: 15
-  opportunitySpell: {fileID: 11400000, guid: a642aa09a78c15345ae2ee5f89562a38, type: 2}
+  opportunitySpell: {fileID: 11400000, guid: 1f834233e01ad7e409890aab42a8bc0f, type: 2}
   availableSpells:
-  - {fileID: 11400000, guid: be0606a785bdf594c84c326859d3cccc, type: 2}
-  - {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
+  - {fileID: 11400000, guid: 9f2372e4eb8445a4f801ee1adec653ac, type: 2}
+  - {fileID: 11400000, guid: 1f834233e01ad7e409890aab42a8bc0f, type: 2}
   usableSpellByTurn: 1
   usedRessource:
     id: 0
@@ -54,13 +54,13 @@ MonoBehaviour:
     id: 1
   oppportunityHealthBonus: 0
   comportement:
-  - wantedAction: {fileID: 11400000, guid: be0606a785bdf594c84c326859d3cccc, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 9f2372e4eb8445a4f801ee1adec653ac, type: 2}
     wantedActionIndex: 0
     conditions: []
     bonusScore: 0
     calculs:
     - id: 2
-  - wantedAction: {fileID: 11400000, guid: a132e4791bba38342a39219312363cbb, type: 2}
+  - wantedAction: {fileID: 11400000, guid: 1f834233e01ad7e409890aab42a8bc0f, type: 2}
     wantedActionIndex: 1
     conditions: []
     bonusScore: 0

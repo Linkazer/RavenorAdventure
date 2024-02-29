@@ -41,7 +41,7 @@ public class CANIM_JumpOnTarget : CharacterAnimation<SPL_CastedSpell>
         }
         else
         {
-            baseSortingOrder = startSortingOrder += sortingOrderOffset;
+            baseSortingOrder = startSortingOrder + sortingOrderOffset;
         }
 
         enabled = true;

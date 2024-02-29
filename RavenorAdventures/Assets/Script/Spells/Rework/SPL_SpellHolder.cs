@@ -12,7 +12,8 @@ public class SPL_SpellHolder
     protected RoundTimer cooldownTimer;
 
     //Usability
-    private int utilisationLeft = -1;
+    private int utilisationLeftForTurn = 1;
+    private int utilisationLeftForLevel = -1;
     private bool isLocked;
 
     public Action<int> OnUpdateCooldown;
@@ -20,7 +21,8 @@ public class SPL_SpellHolder
     public Action<bool> OnLockSpell;
 
     public string SpellID => spellData.name;
-    public int UtilisationLeft => utilisationLeft;
+    public int UtilisationLeftForTurn => utilisationLeftForTurn;
+    public int UtilisationLeftForLevel => utilisationLeftForLevel;
 
     public SPL_SpellScriptable SpellData => spellData;
 
@@ -41,12 +43,63 @@ public class SPL_SpellHolder
         spellData = spellToHold;
 
         cooldownTimer = null;
-        utilisationLeft = spellData.MaxUtilisations;
+        utilisationLeftForLevel = spellData.MaxUtilisationsByLevel;
+
+        if (spellData.MaxUtilisationsByTurn > 1)
+        {
+            utilisationLeftForTurn = spellData.MaxUtilisationsByTurn;
+        }
+        else
+        {
+            utilisationLeftForTurn = 1;
+        }
     }
 
     public bool IsUsable()
     {
-        return !isLocked && CurrentCooldown <= 0 && (utilisationLeft != 0);
+        return !isLocked && CurrentCooldown <= 0 && (utilisationLeftForLevel != 0);
+    }
+
+    public bool CanBeCasted(int actionLeft)
+    {
+        return actionLeft > 0 || spellData.CastType == SpellCastType.Fast || CanBeReused();
+    }
+
+    public bool DoesCostAction()
+    {
+        if(spellData.CastType == SpellCastType.Fast)
+        {
+            return false;
+        }
+
+        if(spellData.MaxUtilisationsByTurn > 0)
+        {
+            if(spellData.MaxUtilisationsByTurn == utilisationLeftForTurn)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+    public bool CanBeReused()
+    {
+        return spellData.MaxUtilisationsByTurn > 0 && utilisationLeftForTurn > 0 && utilisationLeftForTurn != spellData.MaxUtilisationsByTurn;
+    }
+
+    public void OnCaterBeginTurn()
+    {
+        if (spellData.MaxUtilisationsByTurn > 1)
+        {
+            utilisationLeftForTurn = spellData.MaxUtilisationsByTurn;
+            Debug.Log(utilisationLeftForTurn);
+        }
     }
 
     public void UpdateCurrentCooldown()
@@ -88,8 +141,10 @@ public class SPL_SpellHolder
 
     public void UseSpell()
     {
-        utilisationLeft--;
-        OnUpdateUtilisationLeft?.Invoke(utilisationLeft);
+        utilisationLeftForLevel--;
+        utilisationLeftForTurn--;
+
+        OnUpdateUtilisationLeft?.Invoke(utilisationLeftForLevel);
 
         StartCooldown();
     }

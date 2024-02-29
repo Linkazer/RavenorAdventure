@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
+  m_Name: Ryn_Adrenaline
+  m_EditorClassIdentifier: 
+  displayName:
+    frenchText: Ryn_Adrenaline
+    englishText: 
+  icon: {fileID: 0}
+  description:
+    frenchText: Ryn_Adrenaline
+    englishText: 
+  ressourceCost: 0
+  maxUtilisationsByTurn: -1
+  maxUtilisationsByLevel: -1
+  range: 0
+  previsualizationZone:
+    id: 0
+  hitableTarget: 3
+  castTarget: 3
+  castType: 0
+  cooldown: 0
+  spellAction:
+    possibleActions:
+    - conditions: []
+      spellAction:
+        id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000001:
+      type: {class: SPL_AS_EffectAction, ns: , asm: ravenor_engine}
+      data:
+        actionShape:
+          id: 2
+        startAnimations:
+        - id: 3
+        effectsOnTarget:
+        - {fileID: 11400000, guid: 24c7c80ce0dbd67498f19a59c72e85b4, type: 2}
+        effectAnimation: []
+        nextAction:
+          possibleActions: []
+    00000002:
+      type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
+    00000003:
+      type: {class: SPL_ANI_CharacterAnimation, ns: , asm: ravenor_engine}
+      data:
+        animationTarget: 2
+        animationDuration: 0
+        casterAnimation: 4
