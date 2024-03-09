@@ -22,11 +22,12 @@ MonoBehaviour:
   - talker: {fileID: 11400000, guid: 402eaad7681a3af46a5ef65fb01f4a9f, type: 2}
     text:
       frenchText: "Ylia fut la premi\xE8re \xE0 approcher, confirmant qu\u2019il
-        s\u2019agissait bien du collier d\u2019Haeriell."
+        s\u2019agissait bien du collier <link=\"Haeriell\">d\u2019Haeriell</link>."
       englishText: TODO
   - talker: {fileID: 11400000, guid: 9ce538e1082f66c42a50ef2118c0e3ad, type: 2}
     text:
-      frenchText: "\u201CQu\u2019est-ce que tu en penses ?\u201D"
+      frenchText: "\u201CQu\u2019est-ce <link=\"Haeriell\">que tu</link> en penses
+        ?\u201D demanda <link=\"Eral\">Eral</link>."
       englishText: TODO
   - talker: {fileID: 11400000, guid: f09337d1b3b23f246aadb8b852f3037a, type: 2}
     text:

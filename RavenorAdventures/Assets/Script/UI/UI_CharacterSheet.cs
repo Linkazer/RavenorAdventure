@@ -66,8 +66,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
             {
                 if (!effectHandler.Effects[i].GetEffect.HideOnApply)
                 {
-                    effects[i].SetEffect(effectHandler.Effects[i].GetEffect);
-                    effects[i].gameObject.SetActive(true);
+                    effects[i].SetEffect(effectHandler.Effects[i]);
                 }
             }
         }
@@ -77,7 +76,7 @@ public class UI_CharacterSheet : RVN_Singleton<UI_CharacterSheet>
     {
         foreach (UI_CharacterSheet_Effect effect in effects)
         {
-            effect.gameObject.SetActive(false);
+            effect.UnsetEffect();
         }
 
         currentCharacter = null;

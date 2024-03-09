@@ -8,7 +8,7 @@ public abstract class Effect
 {
     public EffectTrigger trigger;
 
-    public void ApplyEffect(RVN_ComponentHandler effectTarget)
+    public void ApplyEffect(RVN_ComponentHandler effectTarget, CPN_SpellCaster caster)
     {
         switch (trigger)
         {
@@ -19,7 +19,7 @@ public abstract class Effect
                 UseEffect(effectTarget);
                 break;
             case EffectTrigger.OnBeginTurn:
-                if (effectTarget is CPN_Character)// .GetComponentOfType<CPN_Character>(out CPN_Character beginTurnCharacter))
+                if (effectTarget is CPN_Character)
                 {
                     (effectTarget as CPN_Character).ActOnBeginTeamTurn += UseEffect;
                 }
@@ -193,7 +193,7 @@ public abstract class Effect
         }
     }
 
-    public void TryUseEffect(RVN_ComponentHandler effectTarget)
+    public void TryUseEffect(RVN_ComponentHandler effectTarget, CPN_SpellCaster caster)
     {
         UseEffect(effectTarget);
     }

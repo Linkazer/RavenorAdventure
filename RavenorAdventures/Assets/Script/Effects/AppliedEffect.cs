@@ -17,6 +17,11 @@ public class AppliedEffect
 
     private GameObject effectDisplay;
 
+    public Action actOnDurationUpdate;
+    public Action actOnRemoveEffect;
+
+    public CPN_SpellCaster Caster => caster;
+
     public EffectScriptable GetEffect => effect;
     public float Duration => effectTimer.roundLeft;
     public int Stacks => currentStack;
@@ -24,6 +29,7 @@ public class AppliedEffect
     public void UpdateDuration()
     {
         effectTimer.ProgressTimer(0.5f);
+        actOnDurationUpdate?.Invoke();
     }
 
     public void ResetEffect(RVN_ComponentHandler toResetFrom, float resetDuration)
@@ -48,7 +54,7 @@ public class AppliedEffect
 
         foreach (Effect eff in effect.GetEffects)
         {
-            eff.ApplyEffect(toAddFrom);
+            eff.ApplyEffect(toAddFrom, caster);
         }
     }
 
@@ -58,7 +64,7 @@ public class AppliedEffect
         {
             if(eff.trigger == EffectTrigger.OnBeginTurn || eff.trigger == EffectTrigger.OnEndTurn)
             {
-                eff.TryUseEffect(target);
+                eff.TryUseEffect(target, caster);
             }
         }
     }
@@ -77,6 +83,8 @@ public class AppliedEffect
         {
             GameObject.Destroy(effectDisplay); //TODO : Voir si on a besoin d'un pool ou pas
         }
+
+        actOnRemoveEffect?.Invoke();
 
         target = null;
     }

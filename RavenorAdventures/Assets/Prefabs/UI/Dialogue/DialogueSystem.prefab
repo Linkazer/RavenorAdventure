@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 8151951425343851732}
   - component: {fileID: 6086601233307756772}
   - component: {fileID: 3277128326766240014}
+  - component: {fileID: 4069292666469305079}
   m_Layer: 5
   m_Name: Dialog
   m_TagString: Untagged
@@ -323,8 +324,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4279052895
+  m_fontColor: {r: 0.37254903, g: 0.16470589, b: 0.050980393, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -383,6 +384,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4069292666469305079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545177093818186185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e17aed38d45a5f4ba0729382062a918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 3277128326766240014}
+  canvasTocheck: {fileID: 0}
+  textBoxRectTransform: {fileID: 8151951425343851732}
 --- !u!1 &3108434817893392358
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,8 +872,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueMusic: {fileID: 11400000, guid: b0c49cedd7d811c45a58b98a4725a3c7, type: 2}
-  speakColor: '#000000'
-  descriptionColor: '#5f2a0d'
+  speakColor: {r: 0, g: 0, b: 0, a: 1}
+  descriptionColor: {r: 0.37254903, g: 0.16470589, b: 0.05, a: 1}
+  linkedSpeakColor: {r: 0.3679245, g: 0, b: 0.02692128, a: 1}
+  linkedDescriptionColor: {r: 0.36862746, g: 0, b: 0.02745098, a: 1}
   dialogueText: {fileID: 3277128326766240014}
   characterGroup: {fileID: 4988021234763891093}
   characterName: {fileID: 595228651290446264}
@@ -867,6 +885,7 @@ MonoBehaviour:
   - {fileID: 8254781976743645700}
   - {fileID: 8254781977002086365}
   - {fileID: 8254781976930646773}
+  dialogueButton: {fileID: 0}
   dialogueGroup: {fileID: 9118486768862940066}
   responsesGroup: {fileID: 6674147076401416231}
   onStartDialogue:
@@ -1615,11 +1634,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
---- !u!224 &4556881700109969763 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
-  m_PrefabInstance: {fileID: 6117539654632825364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8254781977002086365 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2768374152015441353, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
@@ -1631,6 +1645,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f230940ea08fb3d4db2dd527e5f7522b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4556881700109969763 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7771126238781442935, guid: 258713bbbc810ed41b6901f0db866763, type: 3}
+  m_PrefabInstance: {fileID: 6117539654632825364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6117539654911328205
 PrefabInstance:
   m_ObjectHideFlags: 0

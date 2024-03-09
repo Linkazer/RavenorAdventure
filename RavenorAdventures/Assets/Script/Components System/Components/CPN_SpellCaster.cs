@@ -9,7 +9,7 @@ using UnityEngine.WSA;
 public class CPN_SpellCaster : CPN_CharacterAction<CPN_Data_SpellCaster>
 {
     private SPL_SpellHolder opportunitySpell;
-    [SerializeField] private List<SPL_SpellHolder> spells;
+    private List<SPL_SpellHolder> spells;
     [SerializeField] private NodeDataHanlder nodeData;
 
     [SerializeField] private UnityEvent<SPL_CastedSpell> OnCastSpell;

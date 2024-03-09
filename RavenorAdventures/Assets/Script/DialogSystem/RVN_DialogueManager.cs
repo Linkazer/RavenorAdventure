@@ -9,8 +9,10 @@ using TMPro;
 public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
 {
     [SerializeField] private AudioData dialogueMusic;
-    [SerializeField] private string speakColor = "#FFFFFF";
-    [SerializeField] private string descriptionColor = "#FFFFFF";
+    [SerializeField] private Color speakColor = Color.black;
+    [SerializeField] private Color descriptionColor = new Color(0.37f, 0.16f, 0.05f);
+    [SerializeField] private Color linkedSpeakColor = Color.magenta;
+    [SerializeField] private Color linkedDescriptionColor = Color.magenta;
 
     [Header("Dialogue setup")]
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -87,34 +89,77 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
             characterName.text = "";
         }
 
-        string[] formedSentence = sentence.text.GetText().Split('“', '”', '"');
+        string[] systemSentences = sentence.text.GetText().Split('<', '>');
 
         string fullSentence = "";
-        bool isSpeaking = true;
+        bool isSystem = true;
+        int systemCount = 0;
 
-        foreach (string str in formedSentence)
+        bool isSpeaking = false;
+
+        foreach (string systStr in systemSentences)
         {
-            isSpeaking = !isSpeaking;
-
-            if(fullSentence != "")
+            if(fullSentence != "" && isSystem)
             {
-                if(!isSpeaking)
+                fullSentence += $">";
+
+                if(systemCount % 2 == 0)
                 {
-                    fullSentence += "”";
+                    fullSentence += "</color>";
                 }
-                fullSentence += "</color>";
             }
 
-            if (isSpeaking)
+            isSystem = !isSystem;
+
+            if(isSystem)
             {
-                fullSentence +=  $"<color={speakColor}>“";
+                if (systemCount % 2 == 0)
+                {
+                    if (isSpeaking)
+                    {
+                        fullSentence += $"<color=#{ColorUtility.ToHtmlStringRGB(linkedSpeakColor)}>";
+                    }
+                    else
+                    {
+                        fullSentence += $"<color=#{ColorUtility.ToHtmlStringRGB(linkedDescriptionColor)}>";
+                    }
+                }
+
+                systemCount++;
+
+                fullSentence += "<" + systStr;
             }
             else
             {
-                fullSentence += $"<color={descriptionColor}>";
-            }
+                string[] formedSentence = systStr.Split('“', '”', '"');
 
-            fullSentence += str;
+                for(int i = 0; i < formedSentence.Length; i++)
+                {
+                    if (i != 0)
+                    {
+                        isSpeaking = !isSpeaking;
+
+                        if (!isSpeaking)
+                        {
+                            fullSentence += "”";
+                            fullSentence += "</color>";
+                        }
+
+                        if (isSpeaking)
+                        {
+                            fullSentence += $"<color=#{ColorUtility.ToHtmlStringRGB(speakColor)}>“";
+                        }
+                        else
+                        {
+                            fullSentence += $"<color=#{ColorUtility.ToHtmlStringRGB(descriptionColor)}>";
+                        }
+                    }
+
+                    Debug.Log($"{isSpeaking} : {formedSentence[i]}");
+
+                    fullSentence += formedSentence[i];
+                }
+            }
         }
 
         fullSentence += "</color>";

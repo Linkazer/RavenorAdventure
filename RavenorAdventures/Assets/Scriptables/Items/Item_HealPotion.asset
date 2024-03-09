@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9410ff664a7d7944ebf1823460c9b0c4, type: 3}
-  m_Name: Eral_ArmureBoost
+  m_Name: Item_HealPotion
   m_EditorClassIdentifier: 
   displayName:
-    frenchText: ???
+    frenchText: Potion de soin
     englishText: 
   icon: {fileID: 0}
   description:
-    frenchText: Augmente l'Armure maximum de la cible de 2.
+    frenchText: "Restaure jusqu'\xE0 3 points de vie."
     englishText: 
   ressourceCost: 0
   maxUtilisationsByTurn: -1
   maxUtilisationsByLevel: -1
-  range: 25
+  range: 5
   previsualizationZone:
     id: 0
-  hitableTarget: 0
-  castTarget: 0
-  castType: 0
+  hitableTarget: 2
+  castTarget: 2
+  castType: 1
   cooldown: 0
   spellAction:
     possibleActions:
@@ -39,22 +39,34 @@ MonoBehaviour:
     00000000:
       type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
     00000001:
-      type: {class: SPL_AS_EffectAction, ns: , asm: ravenor_engine}
+      type: {class: SPL_AS_DamageSpell, ns: , asm: ravenor_engine}
       data:
         actionShape:
           id: 2
         startAnimations: []
-        effectsOnTarget:
-        - {fileID: 11400000, guid: 165db7ad4b9b6a2408be741ff7173f01, type: 2}
-        effectAnimation:
-        - id: 3
+        dicesUsed: 0
+        damageData:
+        - origin:
+            id: 3
+          damageType: 1
+          needHit: 0
+        damageAnimations:
+        - id: 4
+        touchAction:
+          possibleActions: []
+        noTouchAction:
+          possibleActions: []
         nextAction:
           possibleActions: []
     00000002:
       type: {class: SPL_Shape_TargetNode, ns: , asm: ravenor_engine}
     00000003:
+      type: {class: SPL_DO_Direct, ns: , asm: ravenor_engine}
+      data:
+        damageAmount: 3
+    00000004:
       type: {class: SPL_ANI_Fx, ns: , asm: ravenor_engine}
       data:
         animationTarget: 1
         animationDuration: 0
-        fxToPlay: {fileID: 7282106008027488376, guid: 02af70b7846a4354689fb71f44f98cf8, type: 3}
+        fxToPlay: {fileID: 9051425662884510762, guid: f5d9b32a6d4a21644af00838b98a7925, type: 3}

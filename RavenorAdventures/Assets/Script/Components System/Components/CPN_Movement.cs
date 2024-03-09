@@ -238,6 +238,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	{
 		if (pathSuccessful)
 		{
+			if(currentMovement != null)
+			{
+				CancelMovement();
+			}
+
 			path = newPath;
 
 			targetIndex = 0;
@@ -292,13 +297,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <param name="callback">The callback to play once the component reach its destination.</param>
 	public void AskToMoveTo(Vector2 targetPosition, Action callback)
     {
-		OnEndMovementAction = null;
-
         Node targetNode = Grid.GetNodeFromWorldPoint(targetPosition);
 
 		targetInteractions = targetNode.GetNodeComponent<CPN_InteractibleObject>();
 
-        OnEndMovementAction += callback;
+        OnEndMovementAction = callback;
 
         PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
 	}
@@ -307,13 +310,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
     {
         //isMovementCosting = false; => Réparer les déplacement dans les tutos
 
-        OnEndMovementAction = null;
-
         Node targetNode = Grid.GetNodeFromWorldPoint(targetPosition);
 
         targetInteractions = targetNode.GetNodeComponent<CPN_InteractibleObject>();
 
-        OnEndMovementAction += callback;
+        OnEndMovementAction = callback;
 
         PathRequestManager.RequestPath(transform.position, targetPosition, -1, OnPathFound);
     }
@@ -325,6 +326,19 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
             currentMovement = StartCoroutine(FollowPath());
 		}
 	}
+
+	private void CancelMovement()
+    {
+        handler.animationController?.EndAnimation();
+        targetInteractions.Clear();
+
+        OnEndMovement?.Invoke();
+
+        OnEndMovementAction?.Invoke();
+        OnEndMovementAction = null;
+
+		StopMovement();
+    }
 
 	private void EndMovement()
     {
@@ -355,13 +369,6 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
         }
 
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
-
-		/*if (isMovementCosting && RVN_RoundManager.Instance.CurrentRoundMode != RVN_RoundManager.RoundMode.RealTime)
-		{
-			currentMovementLeft -= currentNode.gCost;
-
-			Debug.Log(this + " : " + currentMovementLeft);
-        }*/
 
 		OnEndMovementAction = null;
 		handler.animationController?.EndAnimation();

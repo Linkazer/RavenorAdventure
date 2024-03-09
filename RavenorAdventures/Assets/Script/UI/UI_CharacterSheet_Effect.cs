@@ -12,18 +12,52 @@ public class UI_CharacterSheet_Effect : MonoBehaviour
     [SerializeField] private TextMeshProUGUI effectName;
     [SerializeField] private TextMeshProUGUI effectDescription;
 
-    private EffectScriptable effectScriptable;
+    [Header("Duration")]
+    [SerializeField] private TextMeshProUGUI durationLeft;
+    [SerializeField] private GameObject durationHandler;
 
-    public void SetEffect(EffectScriptable effect)
+    private AppliedEffect appliedEffect;
+
+    public void SetEffect(AppliedEffect effect)
     {
-        effectScriptable = effect;
-        effectImage.sprite = effect.Icon;
+        appliedEffect = effect;
+        effectImage.sprite = effect.GetEffect.Icon;
+
+        if (effect.Duration > 0)
+        {
+            effect.actOnDurationUpdate += UpdateEffect;
+            durationHandler.SetActive(true);
+            UpdateEffect();
+        }
+        else
+        {
+            durationHandler.SetActive(true);
+        }
+
+        effect.actOnRemoveEffect += UnsetEffect;
+
+        gameObject.SetActive(true);
+    }
+
+    public void UnsetEffect()
+    {
+        if (appliedEffect != null)
+        {
+            appliedEffect.actOnDurationUpdate -= UpdateEffect;
+            appliedEffect.actOnRemoveEffect -= UnsetEffect;
+        }
+        gameObject.SetActive(false);
+    }
+
+    public void UpdateEffect()
+    {
+        durationLeft.text = Mathf.CeilToInt(appliedEffect.Duration).ToString();
     }
 
     public void ShowEffectDescription()
     {
-        effectName.text = effectScriptable.Name;
-        effectDescription.text = effectScriptable.Description;
+        effectName.text = appliedEffect.GetEffect.Name;
+        effectDescription.text = appliedEffect.GetEffect.Description;
         effectTooltipHolder.alpha = 1;
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(effectTooltipHolder.transform as RectTransform);

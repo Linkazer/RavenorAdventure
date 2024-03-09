@@ -240,7 +240,6 @@ public class DiceTests : MonoBehaviour
             Dice d = new Dice(6, attacker.Accuracy);
             d.Roll(this);
 
-
             totalDamage += CheckDiceHit(d, Defense, currentOffensiveRerolls < attacker.OffensiveRerolls, currentDefensiveRerolls < DefensiveRerolls, out bool usedOff, out bool usedDef);
 
             if (usedDef)

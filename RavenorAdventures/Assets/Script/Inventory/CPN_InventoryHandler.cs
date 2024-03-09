@@ -49,7 +49,7 @@ public class CPN_InventoryHandler : CPN_CharacterAction
     public bool CanItemBeUsed(StorableItem itemToCheck)
     {
         return itemToCheck is StorableItem_Usable
-            && (spellCaster.ActionLeftThisTurn > 0 || selectedItemAction.CastType == SpellCastType.Fast);
+            && (spellCaster.ActionLeftThisTurn > 0 || (itemToCheck as StorableItem_Usable).ObjectAction.CastType == SpellCastType.Fast);
     }
 
     internal bool SelectItem(int itemIndex)

@@ -34,6 +34,8 @@ public class RVN_CameraController : RVN_Singleton<RVN_CameraController>
     private float targetZoom;
     private float zoomDirection;
 
+    public Camera UsedCamera => camera;
+
     protected override void Awake()
     {
         base.Awake();

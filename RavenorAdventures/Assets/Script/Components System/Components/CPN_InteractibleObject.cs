@@ -9,16 +9,6 @@ public class CPN_InteractibleObject : RVN_Component
 
     [SerializeField] private SequenceCutscene interactionCutscene;
 
-    [SerializeField, System.Obsolete("We directly use a Cutscene now")] protected UnityEvent<RVN_ComponentHandler> OnInteract;
-
-    /// <summary>
-    /// Essaye de faire intéragir le personnage actuel avec l'objet. Called in UnityEvent
-    /// </summary>
-    public void TryInteract()
-    {
-        TryInteract(RVN_BattleManager.CurrentCharacter);
-    }
-
     /// <summary>
     /// Essaye de faire intéragir l'objet voulut avec l'objet interactible. Utiliser lors des Combats
     /// </summary>
@@ -42,7 +32,7 @@ public class CPN_InteractibleObject : RVN_Component
     {
         if (interactionCutscene == null)
         {
-            OnInteract?.Invoke(interactor);
+            //OnInteract?.Invoke(interactor);
         }
         else
         {

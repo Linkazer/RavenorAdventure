@@ -173,11 +173,11 @@ public class SPL_AB_DamageSpell : SPL_SpellActionBehavior<SPL_AS_DamageSpell>
         didHit = false;
 
         float totalHits = 0;
-        int currentOffensiveRerolls = -target.DefensiveRerollsMalus;
+        int currentOffensiveRerolls = -target.DefensiveRerollsMalus;//Equivalent d'augmenter le max d'Offensive reroll disponible)
         int currentDefensiveRerolls = 0;
         if (caster != null)
         {
-            currentDefensiveRerolls  = - caster.OffensiveRerollsMalus;
+            currentDefensiveRerolls  = -caster.OffensiveRerollsMalus;
         }
 
 
