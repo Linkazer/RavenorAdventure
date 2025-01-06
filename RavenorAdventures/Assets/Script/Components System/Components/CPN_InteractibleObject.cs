@@ -30,13 +30,13 @@ public class CPN_InteractibleObject : RVN_Component
     /// <param name="interactor">L'objet voulant interagir.</param>
     public void Interact(RVN_ComponentHandler interactor)
     {
-        if (interactionCutscene == null)
+        if (interactionCutscene != null)
         {
-            //OnInteract?.Invoke(interactor);
+            interactionCutscene.StartAction(EndInteraction);
         }
         else
         {
-            interactionCutscene.StartAction(EndInteraction);
+            EndInteraction();
         }
     }
 

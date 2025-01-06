@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   components: []
-  animationController: {fileID: 0}
+  nodeDataHandler: {fileID: 8922511803653897726}
 --- !u!210 &1997303123142076821
 SortingGroup:
   m_ObjectHideFlags: 0

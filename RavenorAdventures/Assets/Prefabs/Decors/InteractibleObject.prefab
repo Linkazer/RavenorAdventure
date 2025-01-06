@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4596588289848462271}
-  animationController: {fileID: 0}
+  nodeDataHandler: {fileID: 7484247598846990994}
 --- !u!114 &4596588289848462271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +167,6 @@ MonoBehaviour:
   interactibleNodes:
   - {fileID: 7484247598846990994}
   interactionCutscene: {fileID: 7239949995514355930}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &4596588289848462268
 MonoBehaviour:
   m_ObjectHideFlags: 0

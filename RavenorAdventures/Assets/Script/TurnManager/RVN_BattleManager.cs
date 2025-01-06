@@ -85,7 +85,7 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
     {
         if (RVN_SceneManager.CurrentLevel != null)
         {
-            level = Instantiate(RVN_SceneManager.CurrentLevel.levelPrefab);
+            level = Instantiate(RVN_SceneManager.CurrentLevel.Prefab);
         }
 
         beforeBattleStart?.Invoke();
@@ -107,10 +107,11 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         OnSetPlayerTeam?.Invoke(teams[0].characters);
 
-        if (level.startDialogue != null)
-        {
-            RVN_DialogueManager.PlayDialogue(level.startDialogue, StartBattle);
+        level.SetEnds();
 
+        if (level.StartCutscene != null)
+        {
+            level.StartCutscene.StartAction(StartBattle);
         }
         else
         {
@@ -168,9 +169,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
         if (didWin)
         {
-            if (level.endDialogue != null)
+            if (level.EndCutscene != null)
             {
-                TimerManager.CreateRealTimer(1f, () => RVN_DialogueManager.PlayDialogue(level.endDialogue, WinBattle));
+                TimerManager.CreateRealTimer(1f, () => level.EndCutscene.StartAction(WinBattle));
             }
             else
             {
@@ -567,9 +568,9 @@ public class RVN_BattleManager : RVN_Singleton<RVN_BattleManager>
 
     public void LoadNextBattle()
     {
-        if (level.nextLevel != null)
+        if (level.LevelData.NextLevel != null)
         {
-            RVN_SceneManager.LoadBattle(level.nextLevel);
+            RVN_SceneManager.LoadBattle(level.LevelData.NextLevel);
         }
         else
         {

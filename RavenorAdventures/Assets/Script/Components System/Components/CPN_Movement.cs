@@ -74,7 +74,7 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 	/// <summary>
 	/// The amount of movement left for the current turn.
 	/// </summary>
-	[SerializeField] private int currentMovementLeft;
+	private int currentMovementLeft;
 
 	private List<CPN_InteractibleObject> targetInteractions = new List<CPN_InteractibleObject>();
 
@@ -141,7 +141,30 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
     public override bool IsActionUsable(Vector2 actionTargetPosition)
     {
-        return CanMove && CanMoveToDestination(actionTargetPosition);
+        if (CanMove && RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
+        {
+            return true;
+        }
+
+        Node toCheck = Grid.GetNodeFromWorldPoint(actionTargetPosition);
+
+		if(toCheck.GetNodeComponent<CPN_InteractibleObject>().Count > 0)
+		{
+			if(Pathfinding.GetDistance(toCheck, CurrentNode) < 15)
+			{
+				return true;
+			}
+			else if(CanMove)
+			{
+				return CanInteractWithObject(toCheck.GetNodeComponent<CPN_InteractibleObject>()[0]);
+			}
+		}
+		else
+		{
+            return CanMove && CanMoveToDestination(actionTargetPosition);
+        }
+
+		return false;
     }
 
     public override bool CanSelectAction()
@@ -278,14 +301,24 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
         }
     }
 
+	private bool CanInteractWithObject(CPN_InteractibleObject interactibleObject)
+	{
+		List<Node> possibleMovement = GetPossibleMovementTarget();
+
+        foreach (Node interactibleNeighbourNode in Grid.GetNeighbours(interactibleObject.Handler.CurrentNode))
+		{
+			if (possibleMovement.Contains(interactibleNeighbourNode))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private bool CanMoveToDestination(Vector2 destination)
     {
         Node toCheck = Grid.GetNodeFromWorldPoint(destination);
-
-        if (RVN_RoundManager.Instance.CurrentRoundMode == RVN_RoundManager.RoundMode.RealTime)
-		{
-			return true;
-		}
 
 		return GetPossibleMovementTarget().Contains(toCheck);
     }
@@ -329,7 +362,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private void CancelMovement()
     {
-        handler.animationController?.EndAnimation();
+		if (handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+        {
+            animHandler.EndAnimation();
+		}
         targetInteractions.Clear();
 
         OnEndMovement?.Invoke();
@@ -342,7 +378,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 
 	private void EndMovement()
     {
-        handler.animationController?.EndAnimation();
+		if (handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+        {
+            animHandler.EndAnimation();
+		}
 		OnEndMovement?.Invoke();
 
 		OnEndMovementAction?.Invoke();
@@ -371,7 +410,10 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 		transform.position = new Vector2(currentNode.worldPosition.x, currentNode.worldPosition.y);
 
 		OnEndMovementAction = null;
-		handler.animationController?.EndAnimation();
+		if (handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+		{
+            animHandler.EndAnimation();
+		}
 		OnStopMovement?.Invoke();
 	}
 
@@ -388,7 +430,11 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 			ActOnMvtFound?.Invoke();
 
             OnStartMovement?.Invoke();
-			handler.animationController?.PlayAnimation("Character_Walk");
+
+			if (handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+			{
+                animHandler.PlayAnimation("Character_Walk");
+			}
 
 			float lerpValue = 0;
 			float distance = 0;
@@ -443,13 +489,12 @@ public class CPN_Movement : CPN_CharacterAction<CPN_Data_Movement>
 						//currentMovementLeft -= currentNode.gCost;
                         //Debug.Log(this + " : " + currentMovementLeft);
 
-                        handler.animationController?.EndAnimation();
+                        animHandler.EndAnimation();
 						OnStopMovement?.Invoke();
 						StopCoroutine(currentMovement);
 						currentMovement = null;
                     }
 				}
-
 
 				transform.position = Vector3.Lerp(posUnit, posTarget, lerpValue);
                 yield return null;

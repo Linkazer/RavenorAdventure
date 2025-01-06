@@ -301,13 +301,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
 
         if (possibleActions.Count > 0)
         {
-            /*Debug.Log("Possibles actions :");
-
-            foreach(Ai_PlannedAction action in possibleActions)
-            {
-                Debug.Log($"Can use {action.actionIndex} on {action.actualTarget}");
-            }*/
-
             toReturn = possibleActions[UnityEngine.Random.Range(0, possibleActions.Count)];
         }
 
@@ -450,28 +443,6 @@ public class RVN_AiBattleManager : RVN_Singleton<RVN_AiBattleManager>
                 toReturn.Add(n);
             }
         }
-
-        /*foreach(Node spellNode in )
-        {
-            List<Node> zoneNodes = spellToCheck.GetZone(spellNode, casterNode);
-
-            if(zoneNodes.Count > 0)
-            {
-                foreach(Node n in zoneNodes)
-                {
-                    if(n == targetNode)
-                    {
-                        toReturn.Add(spellNode);
-                        break;
-                    }
-                }
-            }
-            else if(spellNode == targetNode)
-            {
-                toReturn.Add(spellNode);
-                break;
-            }
-        }*/
 
         return toReturn;
     }

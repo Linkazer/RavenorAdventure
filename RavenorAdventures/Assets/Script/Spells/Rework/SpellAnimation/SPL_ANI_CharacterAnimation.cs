@@ -18,7 +18,10 @@ public class SPL_ANI_CharacterAnimation : SPL_SpellActionAnimation
         {
             foreach(RVN_ComponentHandler handler in node.GetNodeHandler<RVN_ComponentHandler>())
             {
-                handler.animationController.PlayAnimation(casterAnimation.ToString(), resolver.CastedSpellData);
+                if (handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+                {
+                    animHandler.PlayAnimation(casterAnimation.ToString(), resolver.CastedSpellData);
+                }
             }
         }
 

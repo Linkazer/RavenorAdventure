@@ -92,7 +92,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
 
     private void LateUpdate()
     {
-        if (nextCharacter != null) //CODE REVIEW : A revoir avec le MouseHandler (Eviter de faire une action si on sélectionne un personnage)
+        if (nextCharacter != null)
         {
             ChangeCharacter(nextCharacter);
 
@@ -211,7 +211,7 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
     /// Select a spell.
     /// </summary>
     /// <param name="spellIndex">The ID of the spell.</param>
-    public static void SelectSpell(int spellIndex) //CODE REVIEW : Voir si on peut mettre la sélection du spell dans le CPN_SpellCaster
+    public static void SelectSpell(int spellIndex)
     {
         if(instance.currentCharacter.GetComponentOfType<CPN_SpellCaster>(out CPN_SpellCaster caster))
         {
@@ -276,7 +276,6 @@ public class RVN_CombatInputController : RVN_Singleton<RVN_CombatInputController
         SelectAction(0);
     }
 
-    //CODE REVIEW : Voir pour mettre ça dans un gestionnaire de Feedback ?
     public void DisplayAction(CPN_CharacterAction toDisplay)
     {
         if (toDisplay != null)

@@ -8,16 +8,9 @@ public abstract class RVN_LevelEnd : MonoBehaviour
     [SerializeField] private UnityEvent OnWinBattle;
     [SerializeField] private UnityEvent OnLoseBattle;
 
-    private void Start()
+    public void SetLevelEnd()
     {
-        RVN_BattleManager.OnPlayerTeamDie += LoseLevel;
-
         OnSetLevelEnd();
-    }
-
-    private void OnDestroy()
-    {
-        RVN_BattleManager.OnPlayerTeamDie -= LoseLevel;
     }
 
     private void UnsetLevelEnd()

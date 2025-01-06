@@ -155,8 +155,6 @@ public class RVN_DialogueManager : RVN_Singleton<RVN_DialogueManager>
                         }
                     }
 
-                    Debug.Log($"{isSpeaking} : {formedSentence[i]}");
-
                     fullSentence += formedSentence[i];
                 }
             }

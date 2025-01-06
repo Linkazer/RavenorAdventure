@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 public class CPN_Character : RVN_ComponentHandler
 {
-    [SerializeField] private NodeDataHanlder nodeDataHandler;
     [SerializeField] private CharacterScriptable_Battle scriptable;
 
     [SerializeField] private List<CPN_CharacterAction> actions;
@@ -29,8 +28,6 @@ public class CPN_Character : RVN_ComponentHandler
     public bool IsSet => gameObject.activeSelf;
 
     public CharacterScriptable_Battle Scriptable => scriptable;
-
-    public NodeDataHanlder CharacterNodeDataHandler => nodeDataHandler;
 
     protected override void Start()
     {
@@ -58,16 +55,6 @@ public class CPN_Character : RVN_ComponentHandler
         gameObject.SetActive(true);
 
         OnSetCharacter?.Invoke(scriptable);
-    }
-
-    /// <summary>
-    /// Créer une copie du CharacterScriptable et initialise le personnage.
-    /// </summary>
-    /// <param name="nScriptable">Le scriptable de base du personnage.</param>
-    [Obsolete("Check if it is used in UnityEvents")]
-    public void SetCharacter(CharacterScriptable_Battle nScriptable)
-    {
-        Debug.Log("Should pass here");
     }
 
     /// <summary>

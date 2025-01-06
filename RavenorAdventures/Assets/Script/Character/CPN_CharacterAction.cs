@@ -61,11 +61,11 @@ public abstract class CPN_CharacterAction<T> : CPN_CharacterAction
 {
     public override void SetComponent(RVN_ComponentHandler handler)
     {
-        T healthData = GetDataFromHandler();
+        T data = GetDataFromHandler();
 
-        if (healthData != null)
+        if (data != null)
         {
-            SetData(healthData);
+            SetData(data);
         }
     }
 

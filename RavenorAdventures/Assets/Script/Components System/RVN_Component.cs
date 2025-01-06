@@ -70,11 +70,11 @@ public abstract class RVN_Component<T> : RVN_Component
 {
     public override void SetComponent(RVN_ComponentHandler handler)
     {
-        T healthData = GetDataFromHandler();
+        T data = GetDataFromHandler();
 
-        if (healthData != null)
+        if (data != null)
         {
-            SetData(healthData);
+            SetData(data);
         }
     }
 

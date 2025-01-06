@@ -8,11 +8,13 @@ public class RVN_ComponentHandler : MonoBehaviour
 {
     [SerializeField] protected List<RVN_Component> components;
 
-    [SerializeField] public CPN_ANIM_Character animationController; //Code review : A mettre dans les Components ?
+    [SerializeField] protected NodeDataHanlder nodeDataHandler;
 
     private Dictionary<Type, RVN_Component> componentByType = new Dictionary<Type, RVN_Component>();
 
     public Node CurrentNode => Grid.GetNodeFromWorldPoint(transform.position);
+
+    public NodeDataHanlder NodeData => nodeDataHandler;
 
     /// <summary>
     /// Search for a component of type T.
@@ -31,17 +33,6 @@ public class RVN_ComponentHandler : MonoBehaviour
         }
 
         return false;
-
-        /*for (int i = 0; i < components.Count; i++)
-        {
-            if (components[i] as T != null)
-            {
-                wantedComponent = components[i] as T;
-                return true;
-            }
-        }
-
-        return false;*/
     }
 
     protected virtual void Start()
@@ -60,7 +51,7 @@ public class RVN_ComponentHandler : MonoBehaviour
             }
             else
             {
-                Debug.Log($"!!! Component of type {component.GetType()} exist multiple times in {this} !!!");
+                Debug.LogError($"!!! Component of type {component.GetType()} exist multiple times in {this} !!!");
             }
 
             component.SetComponent(this);

@@ -182,7 +182,11 @@ public class CPN_HealthHandler : RVN_Component<CPN_Data_HealthHandler>
     {
         actOnDeath?.Invoke(Handler);
 
-        handler.animationController?.PlayAnimation("Character_Death");
+        if(handler.GetComponentOfType(out CPN_ANIM_Character animHandler))
+        {
+            animHandler.PlayAnimation("Character_Death");
+        }
+       
         OnDeath?.Invoke();
     }
 

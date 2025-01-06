@@ -1148,7 +1148,6 @@ MonoBehaviour:
   - {fileID: 6674373229304437009}
   - {fileID: 7894508926239594657}
   - {fileID: 6764615997093203826}
-  animationController: {fileID: 7894508926239594657}
   nodeDataHandler: {fileID: 4436041514107514922}
   scriptable: {fileID: 0}
   actions:
@@ -1490,7 +1489,6 @@ MonoBehaviour:
         m_CallState: 2
   nodesDatas: []
   currentEvasiveAmount: 0
-  currentMovementLeft: 0
 --- !u!114 &5140952349797873620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,9 +1502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handler: {fileID: 5140952349797873622}
-  spells:
-  - {fileID: 11400000, guid: 754b0d2c20058fe41b0c1e67541ec99d, type: 2}
-  - {fileID: 11400000, guid: 4a4e604ec6e1d404cad20714092a416b, type: 2}
   nodeData: {fileID: 4436041514107514922}
   OnCastSpell:
     m_PersistentCalls:
@@ -3564,6 +3559,10 @@ PrefabInstance:
     - target: {fileID: 7974688907215251826, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318145532944234118, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1.04
       objectReference: {fileID: 0}
     - target: {fileID: 8464289921287929117, guid: b0fd293ee554456448c94bcf6a129811, type: 3}
       propertyPath: m_IsActive

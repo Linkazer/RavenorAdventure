@@ -60,7 +60,7 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
             {
                 charaMvt.StopMovement();
             }
-            chara.CharacterNodeDataHandler.SetWalkable(false);
+            chara.NodeData.SetWalkable(false);
         }
 
         SetSelectedChara(null);
@@ -72,7 +72,7 @@ public class RVN_FreeRoamingManager : RVN_Singleton<RVN_FreeRoamingManager>
     {
         foreach (CPN_Character chara in characterMovements)
         {
-            chara.CharacterNodeDataHandler.SetWalkable(true);
+            chara.NodeData.SetWalkable(true);
         }
 
         SetSelectedChara(RVN_BattleManager.CurrentCharacter);

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName:
     frenchText: Ryn_BaseAttack
-    englishText: 
+    englishText: Dos Oruguitas
   icon: {fileID: 0}
   description:
-    frenchText: Ryn_BaseAttack
+    frenchText: New TextNew TextNew TextNew TextNew TextNew TextNew TextNew TextNew
+      TextNew TextNew TextNew TextNew TextNew TextNew Text
     englishText: 
   ressourceCost: 0
   maxUtilisationsByTurn: -1
@@ -28,7 +29,7 @@ MonoBehaviour:
   hitableTarget: 3
   castTarget: 3
   castType: 0
-  cooldown: 0
+  cooldown: 99
   spellAction:
     possibleActions:
     - conditions: []
