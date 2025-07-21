@@ -1,5 +1,5 @@
 # Ravenor Stories
 
-Ravenor Stories (de base Ravenor Adventure) est un dungeon crawler au tour par tour dans le même esprit que les jeux de rôle plateaux comme HéroQuest ou Dungeon Saga.
+Ravenor Stories (originaly Ravenor Adventure) is a turn-based dungeon crawler in the same spirit as board role-playing games such as HeroQuest or Dungeon Saga.
 
-Vous pouvez y jouer [ici](https://linkazer.itch.io/ravenor-stories), ou regarder une vidéo gameplay directement [ici](https://youtu.be/MOMn7ShqXy4). !
+You can play it [here](https://linkazer.itch.io/ravenor-stories), or watch a gameplay video directly [here](https://youtu.be/MOMn7ShqXy4). !
