@@ -2,5 +2,5 @@
 
 Choose language / Choisir la langue:
 
-- [English version](./README.en.md)
-- [Version française](./README.fr.md)
+- [English version](./README_en.md)
+- [Version française](./README_fr.md)
